@@ -323,25 +323,25 @@ pub const ID2D1SimplifiedGeometrySink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFillMode(self: *const ID2D1SimplifiedGeometrySink, fillMode: D2D1_FILL_MODE) callconv(.Inline) void {
+    pub fn SetFillMode(self: *const ID2D1SimplifiedGeometrySink, fillMode: D2D1_FILL_MODE) callconv(.@"inline") void {
         return self.vtable.SetFillMode(self, fillMode);
     }
-    pub fn SetSegmentFlags(self: *const ID2D1SimplifiedGeometrySink, vertexFlags: D2D1_PATH_SEGMENT) callconv(.Inline) void {
+    pub fn SetSegmentFlags(self: *const ID2D1SimplifiedGeometrySink, vertexFlags: D2D1_PATH_SEGMENT) callconv(.@"inline") void {
         return self.vtable.SetSegmentFlags(self, vertexFlags);
     }
-    pub fn BeginFigure(self: *const ID2D1SimplifiedGeometrySink, startPoint: D2D_POINT_2F, figureBegin: D2D1_FIGURE_BEGIN) callconv(.Inline) void {
+    pub fn BeginFigure(self: *const ID2D1SimplifiedGeometrySink, startPoint: D2D_POINT_2F, figureBegin: D2D1_FIGURE_BEGIN) callconv(.@"inline") void {
         return self.vtable.BeginFigure(self, startPoint, figureBegin);
     }
-    pub fn AddLines(self: *const ID2D1SimplifiedGeometrySink, points: [*]const D2D_POINT_2F, pointsCount: u32) callconv(.Inline) void {
+    pub fn AddLines(self: *const ID2D1SimplifiedGeometrySink, points: [*]const D2D_POINT_2F, pointsCount: u32) callconv(.@"inline") void {
         return self.vtable.AddLines(self, points, pointsCount);
     }
-    pub fn AddBeziers(self: *const ID2D1SimplifiedGeometrySink, beziers: [*]const D2D1_BEZIER_SEGMENT, beziersCount: u32) callconv(.Inline) void {
+    pub fn AddBeziers(self: *const ID2D1SimplifiedGeometrySink, beziers: [*]const D2D1_BEZIER_SEGMENT, beziersCount: u32) callconv(.@"inline") void {
         return self.vtable.AddBeziers(self, beziers, beziersCount);
     }
-    pub fn EndFigure(self: *const ID2D1SimplifiedGeometrySink, figureEnd: D2D1_FIGURE_END) callconv(.Inline) void {
+    pub fn EndFigure(self: *const ID2D1SimplifiedGeometrySink, figureEnd: D2D1_FIGURE_END) callconv(.@"inline") void {
         return self.vtable.EndFigure(self, figureEnd);
     }
-    pub fn Close(self: *const ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ID2D1SimplifiedGeometrySink) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };

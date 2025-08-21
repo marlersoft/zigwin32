@@ -56,22 +56,22 @@ pub const IMarshal = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUnmarshalClass(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pCid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetUnmarshalClass(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pCid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetUnmarshalClass(self, riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
     }
-    pub fn GetMarshalSizeMax(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMarshalSizeMax(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMarshalSizeMax(self, riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
     }
-    pub fn MarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32) callconv(.Inline) HRESULT {
+    pub fn MarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.MarshalInterface(self, pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
     }
-    pub fn UnmarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn UnmarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.UnmarshalInterface(self, pStm, riid, ppv);
     }
-    pub fn ReleaseMarshalData(self: *const IMarshal, pStm: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn ReleaseMarshalData(self: *const IMarshal, pStm: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseMarshalData(self, pStm);
     }
-    pub fn DisconnectObject(self: *const IMarshal, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn DisconnectObject(self: *const IMarshal, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DisconnectObject(self, dwReserved);
     }
 };
@@ -103,7 +103,7 @@ pub const IMarshalingStream = extern union {
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn GetMarshalingContextAttribute(self: *const IMarshalingStream, attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES, pAttributeValue: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetMarshalingContextAttribute(self: *const IMarshalingStream, attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES, pAttributeValue: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.GetMarshalingContextAttribute(self, attribute, pAttributeValue);
     }
 };

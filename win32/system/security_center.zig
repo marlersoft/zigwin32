@@ -95,25 +95,25 @@ pub const IWscProduct = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ProductName(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ProductName(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductName(self, pVal);
     }
-    pub fn get_ProductState(self: *const IWscProduct, pVal: ?*WSC_SECURITY_PRODUCT_STATE) callconv(.Inline) HRESULT {
+    pub fn get_ProductState(self: *const IWscProduct, pVal: ?*WSC_SECURITY_PRODUCT_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductState(self, pVal);
     }
-    pub fn get_SignatureStatus(self: *const IWscProduct, pVal: ?*WSC_SECURITY_SIGNATURE_STATUS) callconv(.Inline) HRESULT {
+    pub fn get_SignatureStatus(self: *const IWscProduct, pVal: ?*WSC_SECURITY_SIGNATURE_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_SignatureStatus(self, pVal);
     }
-    pub fn get_RemediationPath(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemediationPath(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemediationPath(self, pVal);
     }
-    pub fn get_ProductStateTimestamp(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ProductStateTimestamp(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductStateTimestamp(self, pVal);
     }
-    pub fn get_ProductGuid(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ProductGuid(self: *const IWscProduct, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductGuid(self, pVal);
     }
-    pub fn get_ProductIsDefault(self: *const IWscProduct, pVal: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_ProductIsDefault(self: *const IWscProduct, pVal: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductIsDefault(self, pVal);
     }
 };
@@ -158,22 +158,22 @@ pub const IWscProduct2 = extern union {
     IWscProduct: IWscProduct,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AntivirusScanSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+    pub fn get_AntivirusScanSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_AntivirusScanSubstatus(self, peStatus);
     }
-    pub fn get_AntivirusSettingsSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+    pub fn get_AntivirusSettingsSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_AntivirusSettingsSubstatus(self, peStatus);
     }
-    pub fn get_AntivirusProtectionUpdateSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+    pub fn get_AntivirusProtectionUpdateSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_AntivirusProtectionUpdateSubstatus(self, peStatus);
     }
-    pub fn get_FirewallDomainProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+    pub fn get_FirewallDomainProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_FirewallDomainProfileSubstatus(self, peStatus);
     }
-    pub fn get_FirewallPrivateProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+    pub fn get_FirewallPrivateProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_FirewallPrivateProfileSubstatus(self, peStatus);
     }
-    pub fn get_FirewallPublicProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.Inline) HRESULT {
+    pub fn get_FirewallPublicProfileSubstatus(self: *const IWscProduct2, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_FirewallPublicProfileSubstatus(self, peStatus);
     }
 };
@@ -194,7 +194,7 @@ pub const IWscProduct3 = extern union {
     IWscProduct: IWscProduct,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AntivirusDaysUntilExpired(self: *const IWscProduct3, pdwDays: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_AntivirusDaysUntilExpired(self: *const IWscProduct3, pdwDays: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AntivirusDaysUntilExpired(self, pdwDays);
     }
 };
@@ -223,13 +223,13 @@ pub const IWSCProductList = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWSCProductList, provider: WSC_SECURITY_PROVIDER) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWSCProductList, provider: WSC_SECURITY_PROVIDER) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, provider);
     }
-    pub fn get_Count(self: *const IWSCProductList, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IWSCProductList, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
-    pub fn get_Item(self: *const IWSCProductList, index: u32, pVal: ?*?*IWscProduct) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IWSCProductList, index: u32, pVal: ?*?*IWscProduct) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, index, pVal);
     }
 };
@@ -248,7 +248,7 @@ pub const IWSCDefaultProduct = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetDefaultProduct(self: *const IWSCDefaultProduct, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetDefaultProduct(self: *const IWSCDefaultProduct, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultProduct(self, eType, pGuid);
     }
 };

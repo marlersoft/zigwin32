@@ -2005,40 +2005,40 @@ pub const ITraceEvent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const ITraceEvent, NewEvent: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const ITraceEvent, NewEvent: ?*?*ITraceEvent) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, NewEvent);
     }
-    pub fn GetUserContext(self: *const ITraceEvent, UserContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetUserContext(self: *const ITraceEvent, UserContext: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserContext(self, UserContext);
     }
-    pub fn GetEventRecord(self: *const ITraceEvent, EventRecord: ?*?*EVENT_RECORD) callconv(.Inline) HRESULT {
+    pub fn GetEventRecord(self: *const ITraceEvent, EventRecord: ?*?*EVENT_RECORD) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventRecord(self, EventRecord);
     }
-    pub fn SetPayload(self: *const ITraceEvent, Payload: [*:0]u8, PayloadSize: u32) callconv(.Inline) HRESULT {
+    pub fn SetPayload(self: *const ITraceEvent, Payload: [*:0]u8, PayloadSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPayload(self, Payload, PayloadSize);
     }
-    pub fn SetEventDescriptor(self: *const ITraceEvent, EventDescriptor: ?*const EVENT_DESCRIPTOR) callconv(.Inline) HRESULT {
+    pub fn SetEventDescriptor(self: *const ITraceEvent, EventDescriptor: ?*const EVENT_DESCRIPTOR) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventDescriptor(self, EventDescriptor);
     }
-    pub fn SetProcessId(self: *const ITraceEvent, ProcessId: u32) callconv(.Inline) HRESULT {
+    pub fn SetProcessId(self: *const ITraceEvent, ProcessId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetProcessId(self, ProcessId);
     }
-    pub fn SetProcessorIndex(self: *const ITraceEvent, ProcessorIndex: u32) callconv(.Inline) HRESULT {
+    pub fn SetProcessorIndex(self: *const ITraceEvent, ProcessorIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetProcessorIndex(self, ProcessorIndex);
     }
-    pub fn SetThreadId(self: *const ITraceEvent, ThreadId: u32) callconv(.Inline) HRESULT {
+    pub fn SetThreadId(self: *const ITraceEvent, ThreadId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetThreadId(self, ThreadId);
     }
-    pub fn SetThreadTimes(self: *const ITraceEvent, KernelTime: u32, UserTime: u32) callconv(.Inline) HRESULT {
+    pub fn SetThreadTimes(self: *const ITraceEvent, KernelTime: u32, UserTime: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetThreadTimes(self, KernelTime, UserTime);
     }
-    pub fn SetActivityId(self: *const ITraceEvent, ActivityId: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetActivityId(self: *const ITraceEvent, ActivityId: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetActivityId(self, ActivityId);
     }
-    pub fn SetTimeStamp(self: *const ITraceEvent, TimeStamp: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn SetTimeStamp(self: *const ITraceEvent, TimeStamp: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.SetTimeStamp(self, TimeStamp);
     }
-    pub fn SetProviderId(self: *const ITraceEvent, ProviderId: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetProviderId(self: *const ITraceEvent, ProviderId: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetProviderId(self, ProviderId);
     }
 };
@@ -2066,13 +2066,13 @@ pub const ITraceEventCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnBeginProcessTrace(self: *const ITraceEventCallback, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
+    pub fn OnBeginProcessTrace(self: *const ITraceEventCallback, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeginProcessTrace(self, HeaderEvent, Relogger);
     }
-    pub fn OnFinalizeProcessTrace(self: *const ITraceEventCallback, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
+    pub fn OnFinalizeProcessTrace(self: *const ITraceEventCallback, Relogger: ?*ITraceRelogger) callconv(.@"inline") HRESULT {
         return self.vtable.OnFinalizeProcessTrace(self, Relogger);
     }
-    pub fn OnEvent(self: *const ITraceEventCallback, Event: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.Inline) HRESULT {
+    pub fn OnEvent(self: *const ITraceEventCallback, Event: ?*ITraceEvent, Relogger: ?*ITraceRelogger) callconv(.@"inline") HRESULT {
         return self.vtable.OnEvent(self, Event, Relogger);
     }
 };
@@ -2126,31 +2126,31 @@ pub const ITraceRelogger = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddLogfileTraceStream(self: *const ITraceRelogger, LogfileName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.Inline) HRESULT {
+    pub fn AddLogfileTraceStream(self: *const ITraceRelogger, LogfileName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.AddLogfileTraceStream(self, LogfileName, UserContext, TraceHandle);
     }
-    pub fn AddRealtimeTraceStream(self: *const ITraceRelogger, LoggerName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.Inline) HRESULT {
+    pub fn AddRealtimeTraceStream(self: *const ITraceRelogger, LoggerName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*RELOGSTREAM_HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.AddRealtimeTraceStream(self, LoggerName, UserContext, TraceHandle);
     }
-    pub fn RegisterCallback(self: *const ITraceRelogger, Callback: ?*ITraceEventCallback) callconv(.Inline) HRESULT {
+    pub fn RegisterCallback(self: *const ITraceRelogger, Callback: ?*ITraceEventCallback) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterCallback(self, Callback);
     }
-    pub fn Inject(self: *const ITraceRelogger, Event: ?*ITraceEvent) callconv(.Inline) HRESULT {
+    pub fn Inject(self: *const ITraceRelogger, Event: ?*ITraceEvent) callconv(.@"inline") HRESULT {
         return self.vtable.Inject(self, Event);
     }
-    pub fn CreateEventInstance(self: *const ITraceRelogger, TraceHandle: RELOGSTREAM_HANDLE, Flags: u32, Event: ?*?*ITraceEvent) callconv(.Inline) HRESULT {
+    pub fn CreateEventInstance(self: *const ITraceRelogger, TraceHandle: RELOGSTREAM_HANDLE, Flags: u32, Event: ?*?*ITraceEvent) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEventInstance(self, TraceHandle, Flags, Event);
     }
-    pub fn ProcessTrace(self: *const ITraceRelogger) callconv(.Inline) HRESULT {
+    pub fn ProcessTrace(self: *const ITraceRelogger) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessTrace(self);
     }
-    pub fn SetOutputFilename(self: *const ITraceRelogger, LogfileName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetOutputFilename(self: *const ITraceRelogger, LogfileName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetOutputFilename(self, LogfileName);
     }
-    pub fn SetCompressionMode(self: *const ITraceRelogger, CompressionMode: BOOLEAN) callconv(.Inline) HRESULT {
+    pub fn SetCompressionMode(self: *const ITraceRelogger, CompressionMode: BOOLEAN) callconv(.@"inline") HRESULT {
         return self.vtable.SetCompressionMode(self, CompressionMode);
     }
-    pub fn Cancel(self: *const ITraceRelogger) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const ITraceRelogger) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
 };

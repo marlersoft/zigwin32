@@ -28,10 +28,10 @@ pub const IDisplayDeviceInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateSharedHandle(self: *const IDisplayDeviceInterop, pObject: ?*IInspectable, pSecurityAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?HSTRING, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateSharedHandle(self: *const IDisplayDeviceInterop, pObject: ?*IInspectable, pSecurityAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?HSTRING, pHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSharedHandle(self, pObject, pSecurityAttributes, Access, Name, pHandle);
     }
-    pub fn OpenSharedHandle(self: *const IDisplayDeviceInterop, NTHandle: ?HANDLE, riid: Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenSharedHandle(self: *const IDisplayDeviceInterop, NTHandle: ?HANDLE, riid: Guid, ppvObj: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.OpenSharedHandle(self, NTHandle, riid, ppvObj);
     }
 };
@@ -52,10 +52,10 @@ pub const IDisplayPathInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateSourcePresentationHandle(self: *const IDisplayPathInterop, pValue: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateSourcePresentationHandle(self: *const IDisplayPathInterop, pValue: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSourcePresentationHandle(self, pValue);
     }
-    pub fn GetSourceId(self: *const IDisplayPathInterop, pSourceId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSourceId(self: *const IDisplayPathInterop, pSourceId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceId(self, pSourceId);
     }
 };

@@ -79,7 +79,7 @@ pub const IWaaSAssessor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) callconv(.Inline) HRESULT {
+    pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) callconv(.@"inline") HRESULT {
         return self.vtable.GetOSUpdateAssessment(self, result);
     }
 };

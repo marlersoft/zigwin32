@@ -6012,37 +6012,37 @@ pub const IAVIStream = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IAVIStream, lParam1: LPARAM, lParam2: LPARAM) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IAVIStream, lParam1: LPARAM, lParam2: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, lParam1, lParam2);
     }
-    pub fn Info(self: *const IAVIStream, psi: ?*AVISTREAMINFOW, lSize: i32) callconv(.Inline) HRESULT {
+    pub fn Info(self: *const IAVIStream, psi: ?*AVISTREAMINFOW, lSize: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Info(self, psi, lSize);
     }
-    pub fn FindSample(self: *const IAVIStream, lPos: i32, lFlags: i32) callconv(.Inline) i32 {
+    pub fn FindSample(self: *const IAVIStream, lPos: i32, lFlags: i32) callconv(.@"inline") i32 {
         return self.vtable.FindSample(self, lPos, lFlags);
     }
-    pub fn ReadFormat(self: *const IAVIStream, lPos: i32, lpFormat: ?*anyopaque, lpcbFormat: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ReadFormat(self: *const IAVIStream, lPos: i32, lpFormat: ?*anyopaque, lpcbFormat: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ReadFormat(self, lPos, lpFormat, lpcbFormat);
     }
-    pub fn SetFormat(self: *const IAVIStream, lPos: i32, lpFormat: ?*anyopaque, cbFormat: i32) callconv(.Inline) HRESULT {
+    pub fn SetFormat(self: *const IAVIStream, lPos: i32, lpFormat: ?*anyopaque, cbFormat: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFormat(self, lPos, lpFormat, cbFormat);
     }
-    pub fn Read(self: *const IAVIStream, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, plBytes: ?*i32, plSamples: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Read(self: *const IAVIStream, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, plBytes: ?*i32, plSamples: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Read(self, lStart, lSamples, lpBuffer, cbBuffer, plBytes, plSamples);
     }
-    pub fn Write(self: *const IAVIStream, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, dwFlags: u32, plSampWritten: ?*i32, plBytesWritten: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Write(self: *const IAVIStream, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, dwFlags: u32, plSampWritten: ?*i32, plBytesWritten: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Write(self, lStart, lSamples, lpBuffer, cbBuffer, dwFlags, plSampWritten, plBytesWritten);
     }
-    pub fn Delete(self: *const IAVIStream, lStart: i32, lSamples: i32) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IAVIStream, lStart: i32, lSamples: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, lStart, lSamples);
     }
-    pub fn ReadData(self: *const IAVIStream, fcc: u32, lp: ?*anyopaque, lpcb: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ReadData(self: *const IAVIStream, fcc: u32, lp: ?*anyopaque, lpcb: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ReadData(self, fcc, lp, lpcb);
     }
-    pub fn WriteData(self: *const IAVIStream, fcc: u32, lp: ?*anyopaque, cb: i32) callconv(.Inline) HRESULT {
+    pub fn WriteData(self: *const IAVIStream, fcc: u32, lp: ?*anyopaque, cb: i32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteData(self, fcc, lp, cb);
     }
-    pub fn SetInfo(self: *const IAVIStream, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) callconv(.Inline) HRESULT {
+    pub fn SetInfo(self: *const IAVIStream, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetInfo(self, lpInfo, cbInfo);
     }
 };
@@ -6065,10 +6065,10 @@ pub const IAVIStreaming = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin(self: *const IAVIStreaming, lStart: i32, lEnd: i32, lRate: i32) callconv(.Inline) HRESULT {
+    pub fn Begin(self: *const IAVIStreaming, lStart: i32, lEnd: i32, lRate: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin(self, lStart, lEnd, lRate);
     }
-    pub fn End(self: *const IAVIStreaming) callconv(.Inline) HRESULT {
+    pub fn End(self: *const IAVIStreaming) callconv(.@"inline") HRESULT {
         return self.vtable.End(self);
     }
 };
@@ -6112,19 +6112,19 @@ pub const IAVIEditStream = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Cut(self: *const IAVIEditStream, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
+    pub fn Cut(self: *const IAVIEditStream, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) callconv(.@"inline") HRESULT {
         return self.vtable.Cut(self, plStart, plLength, ppResult);
     }
-    pub fn Copy(self: *const IAVIEditStream, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
+    pub fn Copy(self: *const IAVIEditStream, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) callconv(.@"inline") HRESULT {
         return self.vtable.Copy(self, plStart, plLength, ppResult);
     }
-    pub fn Paste(self: *const IAVIEditStream, plPos: ?*i32, plLength: ?*i32, pstream: ?*IAVIStream, lStart: i32, lEnd: i32) callconv(.Inline) HRESULT {
+    pub fn Paste(self: *const IAVIEditStream, plPos: ?*i32, plLength: ?*i32, pstream: ?*IAVIStream, lStart: i32, lEnd: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Paste(self, plPos, plLength, pstream, lStart, lEnd);
     }
-    pub fn Clone(self: *const IAVIEditStream, ppResult: ?*?*IAVIStream) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IAVIEditStream, ppResult: ?*?*IAVIStream) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppResult);
     }
-    pub fn SetInfo(self: *const IAVIEditStream, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) callconv(.Inline) HRESULT {
+    pub fn SetInfo(self: *const IAVIEditStream, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetInfo(self, lpInfo, cbInfo);
     }
 };
@@ -6142,7 +6142,7 @@ pub const IAVIPersistFile = extern union {
     IPersistFile: IPersistFile,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn Reserved1(self: *const IAVIPersistFile) callconv(.Inline) HRESULT {
+    pub fn Reserved1(self: *const IAVIPersistFile) callconv(.@"inline") HRESULT {
         return self.vtable.Reserved1(self);
     }
 };
@@ -6195,25 +6195,25 @@ pub const IAVIFile = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Info(self: *const IAVIFile, pfi: ?*AVIFILEINFOW, lSize: i32) callconv(.Inline) HRESULT {
+    pub fn Info(self: *const IAVIFile, pfi: ?*AVIFILEINFOW, lSize: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Info(self, pfi, lSize);
     }
-    pub fn GetStream(self: *const IAVIFile, ppStream: ?*?*IAVIStream, fccType: u32, lParam: i32) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAVIFile, ppStream: ?*?*IAVIStream, fccType: u32, lParam: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStream(self, ppStream, fccType, lParam);
     }
-    pub fn CreateStream(self: *const IAVIFile, ppStream: ?*?*IAVIStream, psi: ?*AVISTREAMINFOW) callconv(.Inline) HRESULT {
+    pub fn CreateStream(self: *const IAVIFile, ppStream: ?*?*IAVIStream, psi: ?*AVISTREAMINFOW) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStream(self, ppStream, psi);
     }
-    pub fn WriteData(self: *const IAVIFile, ckid: u32, lpData: ?*anyopaque, cbData: i32) callconv(.Inline) HRESULT {
+    pub fn WriteData(self: *const IAVIFile, ckid: u32, lpData: ?*anyopaque, cbData: i32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteData(self, ckid, lpData, cbData);
     }
-    pub fn ReadData(self: *const IAVIFile, ckid: u32, lpData: ?*anyopaque, lpcbData: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ReadData(self: *const IAVIFile, ckid: u32, lpData: ?*anyopaque, lpcbData: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ReadData(self, ckid, lpData, lpcbData);
     }
-    pub fn EndRecord(self: *const IAVIFile) callconv(.Inline) HRESULT {
+    pub fn EndRecord(self: *const IAVIFile) callconv(.@"inline") HRESULT {
         return self.vtable.EndRecord(self);
     }
-    pub fn DeleteStream(self: *const IAVIFile, fccType: u32, lParam: i32) callconv(.Inline) HRESULT {
+    pub fn DeleteStream(self: *const IAVIFile, fccType: u32, lParam: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteStream(self, fccType, lParam);
     }
 };
@@ -6249,16 +6249,16 @@ pub const IGetFrame = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFrame(self: *const IGetFrame, lPos: i32) callconv(.Inline) ?*anyopaque {
+    pub fn GetFrame(self: *const IGetFrame, lPos: i32) callconv(.@"inline") ?*anyopaque {
         return self.vtable.GetFrame(self, lPos);
     }
-    pub fn Begin(self: *const IGetFrame, lStart: i32, lEnd: i32, lRate: i32) callconv(.Inline) HRESULT {
+    pub fn Begin(self: *const IGetFrame, lStart: i32, lEnd: i32, lRate: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin(self, lStart, lEnd, lRate);
     }
-    pub fn End(self: *const IGetFrame) callconv(.Inline) HRESULT {
+    pub fn End(self: *const IGetFrame) callconv(.@"inline") HRESULT {
         return self.vtable.End(self);
     }
-    pub fn SetFormat(self: *const IGetFrame, lpbi: ?*BITMAPINFOHEADER, lpBits: ?*anyopaque, x: i32, y: i32, dx: i32, dy: i32) callconv(.Inline) HRESULT {
+    pub fn SetFormat(self: *const IGetFrame, lpbi: ?*BITMAPINFOHEADER, lpBits: ?*anyopaque, x: i32, y: i32, dx: i32, dy: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFormat(self, lpbi, lpBits, x, y, dx, dy);
     }
 };

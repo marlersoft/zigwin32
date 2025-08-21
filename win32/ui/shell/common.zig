@@ -185,10 +185,10 @@ pub const IObjectArray = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IObjectArray, pcObjects: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IObjectArray, pcObjects: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pcObjects);
     }
-    pub fn GetAt(self: *const IObjectArray, uiIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IObjectArray, uiIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, uiIndex, riid, ppv);
     }
 };
@@ -218,16 +218,16 @@ pub const IObjectCollection = extern union {
     vtable: *const VTable,
     IObjectArray: IObjectArray,
     IUnknown: IUnknown,
-    pub fn AddObject(self: *const IObjectCollection, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn AddObject(self: *const IObjectCollection, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.AddObject(self, punk);
     }
-    pub fn AddFromArray(self: *const IObjectCollection, poaSource: ?*IObjectArray) callconv(.Inline) HRESULT {
+    pub fn AddFromArray(self: *const IObjectCollection, poaSource: ?*IObjectArray) callconv(.@"inline") HRESULT {
         return self.vtable.AddFromArray(self, poaSource);
     }
-    pub fn RemoveObjectAt(self: *const IObjectCollection, uiIndex: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveObjectAt(self: *const IObjectCollection, uiIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveObjectAt(self, uiIndex);
     }
-    pub fn Clear(self: *const IObjectCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const IObjectCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Clear(self);
     }
 };

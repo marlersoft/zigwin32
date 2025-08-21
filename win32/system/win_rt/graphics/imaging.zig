@@ -21,7 +21,7 @@ pub const ISoftwareBitmapNative = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetData(self: *const ISoftwareBitmapNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const ISoftwareBitmapNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, riid, ppv);
     }
 };
@@ -53,10 +53,10 @@ pub const ISoftwareBitmapNativeFactory = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateFromWICBitmap(self: *const ISoftwareBitmapNativeFactory, data: ?*IWICBitmap, forceReadOnly: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFromWICBitmap(self: *const ISoftwareBitmapNativeFactory, data: ?*IWICBitmap, forceReadOnly: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFromWICBitmap(self, data, forceReadOnly, riid, ppv);
     }
-    pub fn CreateFromMF2DBuffer2(self: *const ISoftwareBitmapNativeFactory, data: ?*IMF2DBuffer2, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFromMF2DBuffer2(self: *const ISoftwareBitmapNativeFactory, data: ?*IMF2DBuffer2, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFromMF2DBuffer2(self, data, subtype, width, height, forceReadOnly, minDisplayAperture, riid, ppv);
     }
 };

@@ -1291,16 +1291,16 @@ pub const ICloneViewHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConnectedIDs(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, pulCount: ?*u32, pulID: ?*u32, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetConnectedIDs(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, pulCount: ?*u32, pulID: ?*u32, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectedIDs(self, wszAdaptorName, pulCount, pulID, ulFlags);
     }
-    pub fn GetActiveTopology(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, pulCount: ?*u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetActiveTopology(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, pulCount: ?*u32, pulTargetID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetActiveTopology(self, wszAdaptorName, ulSourceID, pulCount, pulTargetID);
     }
-    pub fn SetActiveTopology(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, ulCount: u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetActiveTopology(self: *const ICloneViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, ulCount: u32, pulTargetID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetActiveTopology(self, wszAdaptorName, ulSourceID, ulCount, pulTargetID);
     }
-    pub fn Commit(self: *const ICloneViewHelper, fFinalCall: BOOL) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const ICloneViewHelper, fFinalCall: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self, fFinalCall);
     }
 };
@@ -1345,22 +1345,22 @@ pub const IViewHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConnectedIDs(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, pulCount: ?*u32, pulID: ?*u32, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetConnectedIDs(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, pulCount: ?*u32, pulID: ?*u32, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectedIDs(self, wszAdaptorName, pulCount, pulID, ulFlags);
     }
-    pub fn GetActiveTopology(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, pulCount: ?*u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetActiveTopology(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, pulCount: ?*u32, pulTargetID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetActiveTopology(self, wszAdaptorName, ulSourceID, pulCount, pulTargetID);
     }
-    pub fn SetActiveTopology(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, ulCount: u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetActiveTopology(self: *const IViewHelper, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, ulCount: u32, pulTargetID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetActiveTopology(self, wszAdaptorName, ulSourceID, ulCount, pulTargetID);
     }
-    pub fn Commit(self: *const IViewHelper) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IViewHelper) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn SetConfiguration(self: *const IViewHelper, pIStream: ?*IStream, pulStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetConfiguration(self: *const IViewHelper, pIStream: ?*IStream, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetConfiguration(self, pIStream, pulStatus);
     }
-    pub fn GetProceedOnNewConfiguration(self: *const IViewHelper) callconv(.Inline) HRESULT {
+    pub fn GetProceedOnNewConfiguration(self: *const IViewHelper) callconv(.@"inline") HRESULT {
         return self.vtable.GetProceedOnNewConfiguration(self);
     }
 };

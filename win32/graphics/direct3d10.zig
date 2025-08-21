@@ -527,16 +527,16 @@ pub const ID3D10DeviceChild = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const ID3D10DeviceChild, ppDevice: ?*?*ID3D10Device) callconv(.Inline) void {
+    pub fn GetDevice(self: *const ID3D10DeviceChild, ppDevice: ?*?*ID3D10Device) callconv(.@"inline") void {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn GetPrivateData(self: *const ID3D10DeviceChild, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const ID3D10DeviceChild, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivateData(self, guid, pDataSize, pData);
     }
-    pub fn SetPrivateData(self: *const ID3D10DeviceChild, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const ID3D10DeviceChild, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateData(self, guid, DataSize, pData);
     }
-    pub fn SetPrivateDataInterface(self: *const ID3D10DeviceChild, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetPrivateDataInterface(self: *const ID3D10DeviceChild, guid: ?*const Guid, pData: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateDataInterface(self, guid, pData);
     }
 };
@@ -618,7 +618,7 @@ pub const ID3D10DepthStencilState = extern union {
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10DepthStencilState, pDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10DepthStencilState, pDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -712,7 +712,7 @@ pub const ID3D10BlendState = extern union {
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10BlendState, pDesc: ?*D3D10_BLEND_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10BlendState, pDesc: ?*D3D10_BLEND_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -744,7 +744,7 @@ pub const ID3D10RasterizerState = extern union {
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10RasterizerState, pDesc: ?*D3D10_RASTERIZER_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10RasterizerState, pDesc: ?*D3D10_RASTERIZER_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -776,13 +776,13 @@ pub const ID3D10Resource = extern union {
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetType(self: *const ID3D10Resource, rType: ?*D3D10_RESOURCE_DIMENSION) callconv(.Inline) void {
+    pub fn GetType(self: *const ID3D10Resource, rType: ?*D3D10_RESOURCE_DIMENSION) callconv(.@"inline") void {
         return self.vtable.GetType(self, rType);
     }
-    pub fn SetEvictionPriority(self: *const ID3D10Resource, EvictionPriority: u32) callconv(.Inline) void {
+    pub fn SetEvictionPriority(self: *const ID3D10Resource, EvictionPriority: u32) callconv(.@"inline") void {
         return self.vtable.SetEvictionPriority(self, EvictionPriority);
     }
-    pub fn GetEvictionPriority(self: *const ID3D10Resource) callconv(.Inline) u32 {
+    pub fn GetEvictionPriority(self: *const ID3D10Resource) callconv(.@"inline") u32 {
         return self.vtable.GetEvictionPriority(self);
     }
 };
@@ -819,13 +819,13 @@ pub const ID3D10Buffer = extern union {
     ID3D10Resource: ID3D10Resource,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn Map(self: *const ID3D10Buffer, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Map(self: *const ID3D10Buffer, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Map(self, MapType, MapFlags, ppData);
     }
-    pub fn Unmap(self: *const ID3D10Buffer) callconv(.Inline) void {
+    pub fn Unmap(self: *const ID3D10Buffer) callconv(.@"inline") void {
         return self.vtable.Unmap(self);
     }
-    pub fn GetDesc(self: *const ID3D10Buffer, pDesc: ?*D3D10_BUFFER_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10Buffer, pDesc: ?*D3D10_BUFFER_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -867,13 +867,13 @@ pub const ID3D10Texture1D = extern union {
     ID3D10Resource: ID3D10Resource,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn Map(self: *const ID3D10Texture1D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Map(self: *const ID3D10Texture1D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, ppData: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Map(self, Subresource, MapType, MapFlags, ppData);
     }
-    pub fn Unmap(self: *const ID3D10Texture1D, Subresource: u32) callconv(.Inline) void {
+    pub fn Unmap(self: *const ID3D10Texture1D, Subresource: u32) callconv(.@"inline") void {
         return self.vtable.Unmap(self, Subresource);
     }
-    pub fn GetDesc(self: *const ID3D10Texture1D, pDesc: ?*D3D10_TEXTURE1D_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10Texture1D, pDesc: ?*D3D10_TEXTURE1D_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -922,13 +922,13 @@ pub const ID3D10Texture2D = extern union {
     ID3D10Resource: ID3D10Resource,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn Map(self: *const ID3D10Texture2D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex2D: ?*D3D10_MAPPED_TEXTURE2D) callconv(.Inline) HRESULT {
+    pub fn Map(self: *const ID3D10Texture2D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex2D: ?*D3D10_MAPPED_TEXTURE2D) callconv(.@"inline") HRESULT {
         return self.vtable.Map(self, Subresource, MapType, MapFlags, pMappedTex2D);
     }
-    pub fn Unmap(self: *const ID3D10Texture2D, Subresource: u32) callconv(.Inline) void {
+    pub fn Unmap(self: *const ID3D10Texture2D, Subresource: u32) callconv(.@"inline") void {
         return self.vtable.Unmap(self, Subresource);
     }
-    pub fn GetDesc(self: *const ID3D10Texture2D, pDesc: ?*D3D10_TEXTURE2D_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10Texture2D, pDesc: ?*D3D10_TEXTURE2D_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -977,13 +977,13 @@ pub const ID3D10Texture3D = extern union {
     ID3D10Resource: ID3D10Resource,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn Map(self: *const ID3D10Texture3D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex3D: ?*D3D10_MAPPED_TEXTURE3D) callconv(.Inline) HRESULT {
+    pub fn Map(self: *const ID3D10Texture3D, Subresource: u32, MapType: D3D10_MAP, MapFlags: u32, pMappedTex3D: ?*D3D10_MAPPED_TEXTURE3D) callconv(.@"inline") HRESULT {
         return self.vtable.Map(self, Subresource, MapType, MapFlags, pMappedTex3D);
     }
-    pub fn Unmap(self: *const ID3D10Texture3D, Subresource: u32) callconv(.Inline) void {
+    pub fn Unmap(self: *const ID3D10Texture3D, Subresource: u32) callconv(.@"inline") void {
         return self.vtable.Unmap(self, Subresource);
     }
-    pub fn GetDesc(self: *const ID3D10Texture3D, pDesc: ?*D3D10_TEXTURE3D_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10Texture3D, pDesc: ?*D3D10_TEXTURE3D_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -1017,7 +1017,7 @@ pub const ID3D10View = extern union {
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetResource(self: *const ID3D10View, ppResource: ?*?*ID3D10Resource) callconv(.Inline) void {
+    pub fn GetResource(self: *const ID3D10View, ppResource: ?*?*ID3D10Resource) callconv(.@"inline") void {
         return self.vtable.GetResource(self, ppResource);
     }
 };
@@ -1107,7 +1107,7 @@ pub const ID3D10ShaderResourceView = extern union {
     ID3D10View: ID3D10View,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10ShaderResourceView, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10ShaderResourceView, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -1188,7 +1188,7 @@ pub const ID3D10RenderTargetView = extern union {
     ID3D10View: ID3D10View,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10RenderTargetView, pDesc: ?*D3D10_RENDER_TARGET_VIEW_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10RenderTargetView, pDesc: ?*D3D10_RENDER_TARGET_VIEW_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -1250,7 +1250,7 @@ pub const ID3D10DepthStencilView = extern union {
     ID3D10View: ID3D10View,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10DepthStencilView, pDesc: ?*D3D10_DEPTH_STENCIL_VIEW_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10DepthStencilView, pDesc: ?*D3D10_DEPTH_STENCIL_VIEW_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -1391,7 +1391,7 @@ pub const ID3D10SamplerState = extern union {
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10SamplerState, pDesc: ?*D3D10_SAMPLER_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10SamplerState, pDesc: ?*D3D10_SAMPLER_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -1475,16 +1475,16 @@ pub const ID3D10Asynchronous = extern union {
     vtable: *const VTable,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn Begin(self: *const ID3D10Asynchronous) callconv(.Inline) void {
+    pub fn Begin(self: *const ID3D10Asynchronous) callconv(.@"inline") void {
         return self.vtable.Begin(self);
     }
-    pub fn End(self: *const ID3D10Asynchronous) callconv(.Inline) void {
+    pub fn End(self: *const ID3D10Asynchronous) callconv(.@"inline") void {
         return self.vtable.End(self);
     }
-    pub fn GetData(self: *const ID3D10Asynchronous, pData: ?*anyopaque, DataSize: u32, GetDataFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const ID3D10Asynchronous, pData: ?*anyopaque, DataSize: u32, GetDataFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, pData, DataSize, GetDataFlags);
     }
-    pub fn GetDataSize(self: *const ID3D10Asynchronous) callconv(.Inline) u32 {
+    pub fn GetDataSize(self: *const ID3D10Asynchronous) callconv(.@"inline") u32 {
         return self.vtable.GetDataSize(self);
     }
 };
@@ -1538,7 +1538,7 @@ pub const ID3D10Query = extern union {
     ID3D10Asynchronous: ID3D10Asynchronous,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10Query, pDesc: ?*D3D10_QUERY_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10Query, pDesc: ?*D3D10_QUERY_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -1656,7 +1656,7 @@ pub const ID3D10Counter = extern union {
     ID3D10Asynchronous: ID3D10Asynchronous,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10Counter, pDesc: ?*D3D10_COUNTER_DESC) callconv(.Inline) void {
+    pub fn GetDesc(self: *const ID3D10Counter, pDesc: ?*D3D10_COUNTER_DESC) callconv(.@"inline") void {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -2201,289 +2201,289 @@ pub const ID3D10Device = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn VSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+    pub fn VSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.@"inline") void {
         return self.vtable.VSSetConstantBuffers(self, StartSlot, NumBuffers, ppConstantBuffers);
     }
-    pub fn PSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+    pub fn PSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.@"inline") void {
         return self.vtable.PSSetShaderResources(self, StartSlot, NumViews, ppShaderResourceViews);
     }
-    pub fn PSSetShader(self: *const ID3D10Device, pPixelShader: ?*ID3D10PixelShader) callconv(.Inline) void {
+    pub fn PSSetShader(self: *const ID3D10Device, pPixelShader: ?*ID3D10PixelShader) callconv(.@"inline") void {
         return self.vtable.PSSetShader(self, pPixelShader);
     }
-    pub fn PSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+    pub fn PSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.@"inline") void {
         return self.vtable.PSSetSamplers(self, StartSlot, NumSamplers, ppSamplers);
     }
-    pub fn VSSetShader(self: *const ID3D10Device, pVertexShader: ?*ID3D10VertexShader) callconv(.Inline) void {
+    pub fn VSSetShader(self: *const ID3D10Device, pVertexShader: ?*ID3D10VertexShader) callconv(.@"inline") void {
         return self.vtable.VSSetShader(self, pVertexShader);
     }
-    pub fn DrawIndexed(self: *const ID3D10Device, IndexCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32) callconv(.Inline) void {
+    pub fn DrawIndexed(self: *const ID3D10Device, IndexCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32) callconv(.@"inline") void {
         return self.vtable.DrawIndexed(self, IndexCount, StartIndexLocation, BaseVertexLocation);
     }
-    pub fn Draw(self: *const ID3D10Device, VertexCount: u32, StartVertexLocation: u32) callconv(.Inline) void {
+    pub fn Draw(self: *const ID3D10Device, VertexCount: u32, StartVertexLocation: u32) callconv(.@"inline") void {
         return self.vtable.Draw(self, VertexCount, StartVertexLocation);
     }
-    pub fn PSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+    pub fn PSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.@"inline") void {
         return self.vtable.PSSetConstantBuffers(self, StartSlot, NumBuffers, ppConstantBuffers);
     }
-    pub fn IASetInputLayout(self: *const ID3D10Device, pInputLayout: ?*ID3D10InputLayout) callconv(.Inline) void {
+    pub fn IASetInputLayout(self: *const ID3D10Device, pInputLayout: ?*ID3D10InputLayout) callconv(.@"inline") void {
         return self.vtable.IASetInputLayout(self, pInputLayout);
     }
-    pub fn IASetVertexBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]const u32, pOffsets: ?[*]const u32) callconv(.Inline) void {
+    pub fn IASetVertexBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]const u32, pOffsets: ?[*]const u32) callconv(.@"inline") void {
         return self.vtable.IASetVertexBuffers(self, StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
     }
-    pub fn IASetIndexBuffer(self: *const ID3D10Device, pIndexBuffer: ?*ID3D10Buffer, Format: DXGI_FORMAT, Offset: u32) callconv(.Inline) void {
+    pub fn IASetIndexBuffer(self: *const ID3D10Device, pIndexBuffer: ?*ID3D10Buffer, Format: DXGI_FORMAT, Offset: u32) callconv(.@"inline") void {
         return self.vtable.IASetIndexBuffer(self, pIndexBuffer, Format, Offset);
     }
-    pub fn DrawIndexedInstanced(self: *const ID3D10Device, IndexCountPerInstance: u32, InstanceCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32, StartInstanceLocation: u32) callconv(.Inline) void {
+    pub fn DrawIndexedInstanced(self: *const ID3D10Device, IndexCountPerInstance: u32, InstanceCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32, StartInstanceLocation: u32) callconv(.@"inline") void {
         return self.vtable.DrawIndexedInstanced(self, IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
     }
-    pub fn DrawInstanced(self: *const ID3D10Device, VertexCountPerInstance: u32, InstanceCount: u32, StartVertexLocation: u32, StartInstanceLocation: u32) callconv(.Inline) void {
+    pub fn DrawInstanced(self: *const ID3D10Device, VertexCountPerInstance: u32, InstanceCount: u32, StartVertexLocation: u32, StartInstanceLocation: u32) callconv(.@"inline") void {
         return self.vtable.DrawInstanced(self, VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
     }
-    pub fn GSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+    pub fn GSSetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.@"inline") void {
         return self.vtable.GSSetConstantBuffers(self, StartSlot, NumBuffers, ppConstantBuffers);
     }
-    pub fn GSSetShader(self: *const ID3D10Device, pShader: ?*ID3D10GeometryShader) callconv(.Inline) void {
+    pub fn GSSetShader(self: *const ID3D10Device, pShader: ?*ID3D10GeometryShader) callconv(.@"inline") void {
         return self.vtable.GSSetShader(self, pShader);
     }
-    pub fn IASetPrimitiveTopology(self: *const ID3D10Device, Topology: D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
+    pub fn IASetPrimitiveTopology(self: *const ID3D10Device, Topology: D3D_PRIMITIVE_TOPOLOGY) callconv(.@"inline") void {
         return self.vtable.IASetPrimitiveTopology(self, Topology);
     }
-    pub fn VSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+    pub fn VSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.@"inline") void {
         return self.vtable.VSSetShaderResources(self, StartSlot, NumViews, ppShaderResourceViews);
     }
-    pub fn VSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+    pub fn VSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.@"inline") void {
         return self.vtable.VSSetSamplers(self, StartSlot, NumSamplers, ppSamplers);
     }
-    pub fn SetPredication(self: *const ID3D10Device, pPredicate: ?*ID3D10Predicate, PredicateValue: BOOL) callconv(.Inline) void {
+    pub fn SetPredication(self: *const ID3D10Device, pPredicate: ?*ID3D10Predicate, PredicateValue: BOOL) callconv(.@"inline") void {
         return self.vtable.SetPredication(self, pPredicate, PredicateValue);
     }
-    pub fn GSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+    pub fn GSSetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.@"inline") void {
         return self.vtable.GSSetShaderResources(self, StartSlot, NumViews, ppShaderResourceViews);
     }
-    pub fn GSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+    pub fn GSSetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.@"inline") void {
         return self.vtable.GSSetSamplers(self, StartSlot, NumSamplers, ppSamplers);
     }
-    pub fn OMSetRenderTargets(self: *const ID3D10Device, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, pDepthStencilView: ?*ID3D10DepthStencilView) callconv(.Inline) void {
+    pub fn OMSetRenderTargets(self: *const ID3D10Device, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, pDepthStencilView: ?*ID3D10DepthStencilView) callconv(.@"inline") void {
         return self.vtable.OMSetRenderTargets(self, NumViews, ppRenderTargetViews, pDepthStencilView);
     }
-    pub fn OMSetBlendState(self: *const ID3D10Device, pBlendState: ?*ID3D10BlendState, BlendFactor: ?*const f32, SampleMask: u32) callconv(.Inline) void {
+    pub fn OMSetBlendState(self: *const ID3D10Device, pBlendState: ?*ID3D10BlendState, BlendFactor: ?*const f32, SampleMask: u32) callconv(.@"inline") void {
         return self.vtable.OMSetBlendState(self, pBlendState, BlendFactor, SampleMask);
     }
-    pub fn OMSetDepthStencilState(self: *const ID3D10Device, pDepthStencilState: ?*ID3D10DepthStencilState, StencilRef: u32) callconv(.Inline) void {
+    pub fn OMSetDepthStencilState(self: *const ID3D10Device, pDepthStencilState: ?*ID3D10DepthStencilState, StencilRef: u32) callconv(.@"inline") void {
         return self.vtable.OMSetDepthStencilState(self, pDepthStencilState, StencilRef);
     }
-    pub fn SOSetTargets(self: *const ID3D10Device, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]const u32) callconv(.Inline) void {
+    pub fn SOSetTargets(self: *const ID3D10Device, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]const u32) callconv(.@"inline") void {
         return self.vtable.SOSetTargets(self, NumBuffers, ppSOTargets, pOffsets);
     }
-    pub fn DrawAuto(self: *const ID3D10Device) callconv(.Inline) void {
+    pub fn DrawAuto(self: *const ID3D10Device) callconv(.@"inline") void {
         return self.vtable.DrawAuto(self);
     }
-    pub fn RSSetState(self: *const ID3D10Device, pRasterizerState: ?*ID3D10RasterizerState) callconv(.Inline) void {
+    pub fn RSSetState(self: *const ID3D10Device, pRasterizerState: ?*ID3D10RasterizerState) callconv(.@"inline") void {
         return self.vtable.RSSetState(self, pRasterizerState);
     }
-    pub fn RSSetViewports(self: *const ID3D10Device, NumViewports: u32, pViewports: ?[*]const D3D10_VIEWPORT) callconv(.Inline) void {
+    pub fn RSSetViewports(self: *const ID3D10Device, NumViewports: u32, pViewports: ?[*]const D3D10_VIEWPORT) callconv(.@"inline") void {
         return self.vtable.RSSetViewports(self, NumViewports, pViewports);
     }
-    pub fn RSSetScissorRects(self: *const ID3D10Device, NumRects: u32, pRects: ?[*]const RECT) callconv(.Inline) void {
+    pub fn RSSetScissorRects(self: *const ID3D10Device, NumRects: u32, pRects: ?[*]const RECT) callconv(.@"inline") void {
         return self.vtable.RSSetScissorRects(self, NumRects, pRects);
     }
-    pub fn CopySubresourceRegion(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, DstX: u32, DstY: u32, DstZ: u32, pSrcResource: ?*ID3D10Resource, SrcSubresource: u32, pSrcBox: ?*const D3D10_BOX) callconv(.Inline) void {
+    pub fn CopySubresourceRegion(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, DstX: u32, DstY: u32, DstZ: u32, pSrcResource: ?*ID3D10Resource, SrcSubresource: u32, pSrcBox: ?*const D3D10_BOX) callconv(.@"inline") void {
         return self.vtable.CopySubresourceRegion(self, pDstResource, DstSubresource, DstX, DstY, DstZ, pSrcResource, SrcSubresource, pSrcBox);
     }
-    pub fn CopyResource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, pSrcResource: ?*ID3D10Resource) callconv(.Inline) void {
+    pub fn CopyResource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, pSrcResource: ?*ID3D10Resource) callconv(.@"inline") void {
         return self.vtable.CopyResource(self, pDstResource, pSrcResource);
     }
-    pub fn UpdateSubresource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, pDstBox: ?*const D3D10_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.Inline) void {
+    pub fn UpdateSubresource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, pDstBox: ?*const D3D10_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.@"inline") void {
         return self.vtable.UpdateSubresource(self, pDstResource, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
     }
-    pub fn ClearRenderTargetView(self: *const ID3D10Device, pRenderTargetView: ?*ID3D10RenderTargetView, ColorRGBA: ?*const f32) callconv(.Inline) void {
+    pub fn ClearRenderTargetView(self: *const ID3D10Device, pRenderTargetView: ?*ID3D10RenderTargetView, ColorRGBA: ?*const f32) callconv(.@"inline") void {
         return self.vtable.ClearRenderTargetView(self, pRenderTargetView, ColorRGBA);
     }
-    pub fn ClearDepthStencilView(self: *const ID3D10Device, pDepthStencilView: ?*ID3D10DepthStencilView, ClearFlags: u32, Depth: f32, Stencil: u8) callconv(.Inline) void {
+    pub fn ClearDepthStencilView(self: *const ID3D10Device, pDepthStencilView: ?*ID3D10DepthStencilView, ClearFlags: u32, Depth: f32, Stencil: u8) callconv(.@"inline") void {
         return self.vtable.ClearDepthStencilView(self, pDepthStencilView, ClearFlags, Depth, Stencil);
     }
-    pub fn GenerateMips(self: *const ID3D10Device, pShaderResourceView: ?*ID3D10ShaderResourceView) callconv(.Inline) void {
+    pub fn GenerateMips(self: *const ID3D10Device, pShaderResourceView: ?*ID3D10ShaderResourceView) callconv(.@"inline") void {
         return self.vtable.GenerateMips(self, pShaderResourceView);
     }
-    pub fn ResolveSubresource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, pSrcResource: ?*ID3D10Resource, SrcSubresource: u32, Format: DXGI_FORMAT) callconv(.Inline) void {
+    pub fn ResolveSubresource(self: *const ID3D10Device, pDstResource: ?*ID3D10Resource, DstSubresource: u32, pSrcResource: ?*ID3D10Resource, SrcSubresource: u32, Format: DXGI_FORMAT) callconv(.@"inline") void {
         return self.vtable.ResolveSubresource(self, pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
     }
-    pub fn VSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+    pub fn VSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.@"inline") void {
         return self.vtable.VSGetConstantBuffers(self, StartSlot, NumBuffers, ppConstantBuffers);
     }
-    pub fn PSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+    pub fn PSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.@"inline") void {
         return self.vtable.PSGetShaderResources(self, StartSlot, NumViews, ppShaderResourceViews);
     }
-    pub fn PSGetShader(self: *const ID3D10Device, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) void {
+    pub fn PSGetShader(self: *const ID3D10Device, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.@"inline") void {
         return self.vtable.PSGetShader(self, ppPixelShader);
     }
-    pub fn PSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+    pub fn PSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.@"inline") void {
         return self.vtable.PSGetSamplers(self, StartSlot, NumSamplers, ppSamplers);
     }
-    pub fn VSGetShader(self: *const ID3D10Device, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) void {
+    pub fn VSGetShader(self: *const ID3D10Device, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.@"inline") void {
         return self.vtable.VSGetShader(self, ppVertexShader);
     }
-    pub fn PSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+    pub fn PSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.@"inline") void {
         return self.vtable.PSGetConstantBuffers(self, StartSlot, NumBuffers, ppConstantBuffers);
     }
-    pub fn IAGetInputLayout(self: *const ID3D10Device, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) void {
+    pub fn IAGetInputLayout(self: *const ID3D10Device, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.@"inline") void {
         return self.vtable.IAGetInputLayout(self, ppInputLayout);
     }
-    pub fn IAGetVertexBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]u32, pOffsets: ?[*]u32) callconv(.Inline) void {
+    pub fn IAGetVertexBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppVertexBuffers: ?[*]?*ID3D10Buffer, pStrides: ?[*]u32, pOffsets: ?[*]u32) callconv(.@"inline") void {
         return self.vtable.IAGetVertexBuffers(self, StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
     }
-    pub fn IAGetIndexBuffer(self: *const ID3D10Device, pIndexBuffer: ?*?*ID3D10Buffer, Format: ?*DXGI_FORMAT, Offset: ?*u32) callconv(.Inline) void {
+    pub fn IAGetIndexBuffer(self: *const ID3D10Device, pIndexBuffer: ?*?*ID3D10Buffer, Format: ?*DXGI_FORMAT, Offset: ?*u32) callconv(.@"inline") void {
         return self.vtable.IAGetIndexBuffer(self, pIndexBuffer, Format, Offset);
     }
-    pub fn GSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.Inline) void {
+    pub fn GSGetConstantBuffers(self: *const ID3D10Device, StartSlot: u32, NumBuffers: u32, ppConstantBuffers: ?[*]?*ID3D10Buffer) callconv(.@"inline") void {
         return self.vtable.GSGetConstantBuffers(self, StartSlot, NumBuffers, ppConstantBuffers);
     }
-    pub fn GSGetShader(self: *const ID3D10Device, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) void {
+    pub fn GSGetShader(self: *const ID3D10Device, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.@"inline") void {
         return self.vtable.GSGetShader(self, ppGeometryShader);
     }
-    pub fn IAGetPrimitiveTopology(self: *const ID3D10Device, pTopology: ?*D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
+    pub fn IAGetPrimitiveTopology(self: *const ID3D10Device, pTopology: ?*D3D_PRIMITIVE_TOPOLOGY) callconv(.@"inline") void {
         return self.vtable.IAGetPrimitiveTopology(self, pTopology);
     }
-    pub fn VSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+    pub fn VSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.@"inline") void {
         return self.vtable.VSGetShaderResources(self, StartSlot, NumViews, ppShaderResourceViews);
     }
-    pub fn VSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+    pub fn VSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.@"inline") void {
         return self.vtable.VSGetSamplers(self, StartSlot, NumSamplers, ppSamplers);
     }
-    pub fn GetPredication(self: *const ID3D10Device, ppPredicate: ?*?*ID3D10Predicate, pPredicateValue: ?*BOOL) callconv(.Inline) void {
+    pub fn GetPredication(self: *const ID3D10Device, ppPredicate: ?*?*ID3D10Predicate, pPredicateValue: ?*BOOL) callconv(.@"inline") void {
         return self.vtable.GetPredication(self, ppPredicate, pPredicateValue);
     }
-    pub fn GSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.Inline) void {
+    pub fn GSGetShaderResources(self: *const ID3D10Device, StartSlot: u32, NumViews: u32, ppShaderResourceViews: ?[*]?*ID3D10ShaderResourceView) callconv(.@"inline") void {
         return self.vtable.GSGetShaderResources(self, StartSlot, NumViews, ppShaderResourceViews);
     }
-    pub fn GSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.Inline) void {
+    pub fn GSGetSamplers(self: *const ID3D10Device, StartSlot: u32, NumSamplers: u32, ppSamplers: ?[*]?*ID3D10SamplerState) callconv(.@"inline") void {
         return self.vtable.GSGetSamplers(self, StartSlot, NumSamplers, ppSamplers);
     }
-    pub fn OMGetRenderTargets(self: *const ID3D10Device, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.Inline) void {
+    pub fn OMGetRenderTargets(self: *const ID3D10Device, NumViews: u32, ppRenderTargetViews: ?[*]?*ID3D10RenderTargetView, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.@"inline") void {
         return self.vtable.OMGetRenderTargets(self, NumViews, ppRenderTargetViews, ppDepthStencilView);
     }
-    pub fn OMGetBlendState(self: *const ID3D10Device, ppBlendState: ?*?*ID3D10BlendState, BlendFactor: ?*f32, pSampleMask: ?*u32) callconv(.Inline) void {
+    pub fn OMGetBlendState(self: *const ID3D10Device, ppBlendState: ?*?*ID3D10BlendState, BlendFactor: ?*f32, pSampleMask: ?*u32) callconv(.@"inline") void {
         return self.vtable.OMGetBlendState(self, ppBlendState, BlendFactor, pSampleMask);
     }
-    pub fn OMGetDepthStencilState(self: *const ID3D10Device, ppDepthStencilState: ?*?*ID3D10DepthStencilState, pStencilRef: ?*u32) callconv(.Inline) void {
+    pub fn OMGetDepthStencilState(self: *const ID3D10Device, ppDepthStencilState: ?*?*ID3D10DepthStencilState, pStencilRef: ?*u32) callconv(.@"inline") void {
         return self.vtable.OMGetDepthStencilState(self, ppDepthStencilState, pStencilRef);
     }
-    pub fn SOGetTargets(self: *const ID3D10Device, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]u32) callconv(.Inline) void {
+    pub fn SOGetTargets(self: *const ID3D10Device, NumBuffers: u32, ppSOTargets: ?[*]?*ID3D10Buffer, pOffsets: ?[*]u32) callconv(.@"inline") void {
         return self.vtable.SOGetTargets(self, NumBuffers, ppSOTargets, pOffsets);
     }
-    pub fn RSGetState(self: *const ID3D10Device, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) void {
+    pub fn RSGetState(self: *const ID3D10Device, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.@"inline") void {
         return self.vtable.RSGetState(self, ppRasterizerState);
     }
-    pub fn RSGetViewports(self: *const ID3D10Device, NumViewports: ?*u32, pViewports: ?[*]D3D10_VIEWPORT) callconv(.Inline) void {
+    pub fn RSGetViewports(self: *const ID3D10Device, NumViewports: ?*u32, pViewports: ?[*]D3D10_VIEWPORT) callconv(.@"inline") void {
         return self.vtable.RSGetViewports(self, NumViewports, pViewports);
     }
-    pub fn RSGetScissorRects(self: *const ID3D10Device, NumRects: ?*u32, pRects: ?[*]RECT) callconv(.Inline) void {
+    pub fn RSGetScissorRects(self: *const ID3D10Device, NumRects: ?*u32, pRects: ?[*]RECT) callconv(.@"inline") void {
         return self.vtable.RSGetScissorRects(self, NumRects, pRects);
     }
-    pub fn GetDeviceRemovedReason(self: *const ID3D10Device) callconv(.Inline) HRESULT {
+    pub fn GetDeviceRemovedReason(self: *const ID3D10Device) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceRemovedReason(self);
     }
-    pub fn SetExceptionMode(self: *const ID3D10Device, RaiseFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetExceptionMode(self: *const ID3D10Device, RaiseFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetExceptionMode(self, RaiseFlags);
     }
-    pub fn GetExceptionMode(self: *const ID3D10Device) callconv(.Inline) u32 {
+    pub fn GetExceptionMode(self: *const ID3D10Device) callconv(.@"inline") u32 {
         return self.vtable.GetExceptionMode(self);
     }
-    pub fn GetPrivateData(self: *const ID3D10Device, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const ID3D10Device, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivateData(self, guid, pDataSize, pData);
     }
-    pub fn SetPrivateData(self: *const ID3D10Device, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const ID3D10Device, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateData(self, guid, DataSize, pData);
     }
-    pub fn SetPrivateDataInterface(self: *const ID3D10Device, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetPrivateDataInterface(self: *const ID3D10Device, guid: ?*const Guid, pData: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateDataInterface(self, guid, pData);
     }
-    pub fn ClearState(self: *const ID3D10Device) callconv(.Inline) void {
+    pub fn ClearState(self: *const ID3D10Device) callconv(.@"inline") void {
         return self.vtable.ClearState(self);
     }
-    pub fn Flush(self: *const ID3D10Device) callconv(.Inline) void {
+    pub fn Flush(self: *const ID3D10Device) callconv(.@"inline") void {
         return self.vtable.Flush(self);
     }
-    pub fn CreateBuffer(self: *const ID3D10Device, pDesc: ?*const D3D10_BUFFER_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppBuffer: ?*?*ID3D10Buffer) callconv(.Inline) HRESULT {
+    pub fn CreateBuffer(self: *const ID3D10Device, pDesc: ?*const D3D10_BUFFER_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppBuffer: ?*?*ID3D10Buffer) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBuffer(self, pDesc, pInitialData, ppBuffer);
     }
-    pub fn CreateTexture1D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE1D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture1D: ?*?*ID3D10Texture1D) callconv(.Inline) HRESULT {
+    pub fn CreateTexture1D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE1D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture1D: ?*?*ID3D10Texture1D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTexture1D(self, pDesc, pInitialData, ppTexture1D);
     }
-    pub fn CreateTexture2D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE2D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture2D: ?*?*ID3D10Texture2D) callconv(.Inline) HRESULT {
+    pub fn CreateTexture2D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE2D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture2D: ?*?*ID3D10Texture2D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTexture2D(self, pDesc, pInitialData, ppTexture2D);
     }
-    pub fn CreateTexture3D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE3D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture3D: ?*?*ID3D10Texture3D) callconv(.Inline) HRESULT {
+    pub fn CreateTexture3D(self: *const ID3D10Device, pDesc: ?*const D3D10_TEXTURE3D_DESC, pInitialData: ?*const D3D10_SUBRESOURCE_DATA, ppTexture3D: ?*?*ID3D10Texture3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTexture3D(self, pDesc, pInitialData, ppTexture3D);
     }
-    pub fn CreateShaderResourceView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+    pub fn CreateShaderResourceView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC, ppSRView: ?*?*ID3D10ShaderResourceView) callconv(.@"inline") HRESULT {
         return self.vtable.CreateShaderResourceView(self, pResource, pDesc, ppSRView);
     }
-    pub fn CreateRenderTargetView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_RENDER_TARGET_VIEW_DESC, ppRTView: ?*?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
+    pub fn CreateRenderTargetView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_RENDER_TARGET_VIEW_DESC, ppRTView: ?*?*ID3D10RenderTargetView) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRenderTargetView(self, pResource, pDesc, ppRTView);
     }
-    pub fn CreateDepthStencilView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
+    pub fn CreateDepthStencilView(self: *const ID3D10Device, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_DEPTH_STENCIL_VIEW_DESC, ppDepthStencilView: ?*?*ID3D10DepthStencilView) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDepthStencilView(self, pResource, pDesc, ppDepthStencilView);
     }
-    pub fn CreateInputLayout(self: *const ID3D10Device, pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.Inline) HRESULT {
+    pub fn CreateInputLayout(self: *const ID3D10Device, pInputElementDescs: [*]const D3D10_INPUT_ELEMENT_DESC, NumElements: u32, pShaderBytecodeWithInputSignature: [*]const u8, BytecodeLength: usize, ppInputLayout: ?*?*ID3D10InputLayout) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInputLayout(self, pInputElementDescs, NumElements, pShaderBytecodeWithInputSignature, BytecodeLength, ppInputLayout);
     }
-    pub fn CreateVertexShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
+    pub fn CreateVertexShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppVertexShader: ?*?*ID3D10VertexShader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVertexShader(self, pShaderBytecode, BytecodeLength, ppVertexShader);
     }
-    pub fn CreateGeometryShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+    pub fn CreateGeometryShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateGeometryShader(self, pShaderBytecode, BytecodeLength, ppGeometryShader);
     }
-    pub fn CreateGeometryShaderWithStreamOutput(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY, NumEntries: u32, OutputStreamStride: u32, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+    pub fn CreateGeometryShaderWithStreamOutput(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, pSODeclaration: ?[*]const D3D10_SO_DECLARATION_ENTRY, NumEntries: u32, OutputStreamStride: u32, ppGeometryShader: ?*?*ID3D10GeometryShader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateGeometryShaderWithStreamOutput(self, pShaderBytecode, BytecodeLength, pSODeclaration, NumEntries, OutputStreamStride, ppGeometryShader);
     }
-    pub fn CreatePixelShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
+    pub fn CreatePixelShader(self: *const ID3D10Device, pShaderBytecode: [*]const u8, BytecodeLength: usize, ppPixelShader: ?*?*ID3D10PixelShader) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePixelShader(self, pShaderBytecode, BytecodeLength, ppPixelShader);
     }
-    pub fn CreateBlendState(self: *const ID3D10Device, pBlendStateDesc: ?*const D3D10_BLEND_DESC, ppBlendState: ?*?*ID3D10BlendState) callconv(.Inline) HRESULT {
+    pub fn CreateBlendState(self: *const ID3D10Device, pBlendStateDesc: ?*const D3D10_BLEND_DESC, ppBlendState: ?*?*ID3D10BlendState) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBlendState(self, pBlendStateDesc, ppBlendState);
     }
-    pub fn CreateDepthStencilState(self: *const ID3D10Device, pDepthStencilDesc: ?*const D3D10_DEPTH_STENCIL_DESC, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.Inline) HRESULT {
+    pub fn CreateDepthStencilState(self: *const ID3D10Device, pDepthStencilDesc: ?*const D3D10_DEPTH_STENCIL_DESC, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDepthStencilState(self, pDepthStencilDesc, ppDepthStencilState);
     }
-    pub fn CreateRasterizerState(self: *const ID3D10Device, pRasterizerDesc: ?*const D3D10_RASTERIZER_DESC, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) HRESULT {
+    pub fn CreateRasterizerState(self: *const ID3D10Device, pRasterizerDesc: ?*const D3D10_RASTERIZER_DESC, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRasterizerState(self, pRasterizerDesc, ppRasterizerState);
     }
-    pub fn CreateSamplerState(self: *const ID3D10Device, pSamplerDesc: ?*const D3D10_SAMPLER_DESC, ppSamplerState: ?*?*ID3D10SamplerState) callconv(.Inline) HRESULT {
+    pub fn CreateSamplerState(self: *const ID3D10Device, pSamplerDesc: ?*const D3D10_SAMPLER_DESC, ppSamplerState: ?*?*ID3D10SamplerState) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSamplerState(self, pSamplerDesc, ppSamplerState);
     }
-    pub fn CreateQuery(self: *const ID3D10Device, pQueryDesc: ?*const D3D10_QUERY_DESC, ppQuery: ?*?*ID3D10Query) callconv(.Inline) HRESULT {
+    pub fn CreateQuery(self: *const ID3D10Device, pQueryDesc: ?*const D3D10_QUERY_DESC, ppQuery: ?*?*ID3D10Query) callconv(.@"inline") HRESULT {
         return self.vtable.CreateQuery(self, pQueryDesc, ppQuery);
     }
-    pub fn CreatePredicate(self: *const ID3D10Device, pPredicateDesc: ?*const D3D10_QUERY_DESC, ppPredicate: ?*?*ID3D10Predicate) callconv(.Inline) HRESULT {
+    pub fn CreatePredicate(self: *const ID3D10Device, pPredicateDesc: ?*const D3D10_QUERY_DESC, ppPredicate: ?*?*ID3D10Predicate) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePredicate(self, pPredicateDesc, ppPredicate);
     }
-    pub fn CreateCounter(self: *const ID3D10Device, pCounterDesc: ?*const D3D10_COUNTER_DESC, ppCounter: ?*?*ID3D10Counter) callconv(.Inline) HRESULT {
+    pub fn CreateCounter(self: *const ID3D10Device, pCounterDesc: ?*const D3D10_COUNTER_DESC, ppCounter: ?*?*ID3D10Counter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCounter(self, pCounterDesc, ppCounter);
     }
-    pub fn CheckFormatSupport(self: *const ID3D10Device, Format: DXGI_FORMAT, pFormatSupport: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CheckFormatSupport(self: *const ID3D10Device, Format: DXGI_FORMAT, pFormatSupport: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CheckFormatSupport(self, Format, pFormatSupport);
     }
-    pub fn CheckMultisampleQualityLevels(self: *const ID3D10Device, Format: DXGI_FORMAT, SampleCount: u32, pNumQualityLevels: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CheckMultisampleQualityLevels(self: *const ID3D10Device, Format: DXGI_FORMAT, SampleCount: u32, pNumQualityLevels: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CheckMultisampleQualityLevels(self, Format, SampleCount, pNumQualityLevels);
     }
-    pub fn CheckCounterInfo(self: *const ID3D10Device, pCounterInfo: ?*D3D10_COUNTER_INFO) callconv(.Inline) void {
+    pub fn CheckCounterInfo(self: *const ID3D10Device, pCounterInfo: ?*D3D10_COUNTER_INFO) callconv(.@"inline") void {
         return self.vtable.CheckCounterInfo(self, pCounterInfo);
     }
-    pub fn CheckCounter(self: *const ID3D10Device, pDesc: ?*const D3D10_COUNTER_DESC, pType: ?*D3D10_COUNTER_TYPE, pActiveCounters: ?*u32, szName: ?[*:0]u8, pNameLength: ?*u32, szUnits: ?[*:0]u8, pUnitsLength: ?*u32, szDescription: ?[*:0]u8, pDescriptionLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CheckCounter(self: *const ID3D10Device, pDesc: ?*const D3D10_COUNTER_DESC, pType: ?*D3D10_COUNTER_TYPE, pActiveCounters: ?*u32, szName: ?[*:0]u8, pNameLength: ?*u32, szUnits: ?[*:0]u8, pUnitsLength: ?*u32, szDescription: ?[*:0]u8, pDescriptionLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CheckCounter(self, pDesc, pType, pActiveCounters, szName, pNameLength, szUnits, pUnitsLength, szDescription, pDescriptionLength);
     }
-    pub fn GetCreationFlags(self: *const ID3D10Device) callconv(.Inline) u32 {
+    pub fn GetCreationFlags(self: *const ID3D10Device) callconv(.@"inline") u32 {
         return self.vtable.GetCreationFlags(self);
     }
-    pub fn OpenSharedResource(self: *const ID3D10Device, hResource: ?HANDLE, ReturnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenSharedResource(self: *const ID3D10Device, hResource: ?HANDLE, ReturnedInterface: ?*const Guid, ppResource: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.OpenSharedResource(self, hResource, ReturnedInterface, ppResource);
     }
-    pub fn SetTextFilterSize(self: *const ID3D10Device, Width: u32, Height: u32) callconv(.Inline) void {
+    pub fn SetTextFilterSize(self: *const ID3D10Device, Width: u32, Height: u32) callconv(.@"inline") void {
         return self.vtable.SetTextFilterSize(self, Width, Height);
     }
-    pub fn GetTextFilterSize(self: *const ID3D10Device, pWidth: ?*u32, pHeight: ?*u32) callconv(.Inline) void {
+    pub fn GetTextFilterSize(self: *const ID3D10Device, pWidth: ?*u32, pHeight: ?*u32) callconv(.@"inline") void {
         return self.vtable.GetTextFilterSize(self, pWidth, pHeight);
     }
 };
@@ -2510,16 +2510,16 @@ pub const ID3D10Multithread = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Enter(self: *const ID3D10Multithread) callconv(.Inline) void {
+    pub fn Enter(self: *const ID3D10Multithread) callconv(.@"inline") void {
         return self.vtable.Enter(self);
     }
-    pub fn Leave(self: *const ID3D10Multithread) callconv(.Inline) void {
+    pub fn Leave(self: *const ID3D10Multithread) callconv(.@"inline") void {
         return self.vtable.Leave(self);
     }
-    pub fn SetMultithreadProtected(self: *const ID3D10Multithread, bMTProtect: BOOL) callconv(.Inline) BOOL {
+    pub fn SetMultithreadProtected(self: *const ID3D10Multithread, bMTProtect: BOOL) callconv(.@"inline") BOOL {
         return self.vtable.SetMultithreadProtected(self, bMTProtect);
     }
-    pub fn GetMultithreadProtected(self: *const ID3D10Multithread) callconv(.Inline) BOOL {
+    pub fn GetMultithreadProtected(self: *const ID3D10Multithread) callconv(.@"inline") BOOL {
         return self.vtable.GetMultithreadProtected(self);
     }
 };
@@ -2579,25 +2579,25 @@ pub const ID3D10Debug = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFeatureMask(self: *const ID3D10Debug, Mask: u32) callconv(.Inline) HRESULT {
+    pub fn SetFeatureMask(self: *const ID3D10Debug, Mask: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFeatureMask(self, Mask);
     }
-    pub fn GetFeatureMask(self: *const ID3D10Debug) callconv(.Inline) u32 {
+    pub fn GetFeatureMask(self: *const ID3D10Debug) callconv(.@"inline") u32 {
         return self.vtable.GetFeatureMask(self);
     }
-    pub fn SetPresentPerRenderOpDelay(self: *const ID3D10Debug, Milliseconds: u32) callconv(.Inline) HRESULT {
+    pub fn SetPresentPerRenderOpDelay(self: *const ID3D10Debug, Milliseconds: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPresentPerRenderOpDelay(self, Milliseconds);
     }
-    pub fn GetPresentPerRenderOpDelay(self: *const ID3D10Debug) callconv(.Inline) u32 {
+    pub fn GetPresentPerRenderOpDelay(self: *const ID3D10Debug) callconv(.@"inline") u32 {
         return self.vtable.GetPresentPerRenderOpDelay(self);
     }
-    pub fn SetSwapChain(self: *const ID3D10Debug, pSwapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
+    pub fn SetSwapChain(self: *const ID3D10Debug, pSwapChain: ?*IDXGISwapChain) callconv(.@"inline") HRESULT {
         return self.vtable.SetSwapChain(self, pSwapChain);
     }
-    pub fn GetSwapChain(self: *const ID3D10Debug, ppSwapChain: ?*?*IDXGISwapChain) callconv(.Inline) HRESULT {
+    pub fn GetSwapChain(self: *const ID3D10Debug, ppSwapChain: ?*?*IDXGISwapChain) callconv(.@"inline") HRESULT {
         return self.vtable.GetSwapChain(self, ppSwapChain);
     }
-    pub fn Validate(self: *const ID3D10Debug) callconv(.Inline) HRESULT {
+    pub fn Validate(self: *const ID3D10Debug) callconv(.@"inline") HRESULT {
         return self.vtable.Validate(self);
     }
 };
@@ -2618,10 +2618,10 @@ pub const ID3D10SwitchToRef = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetUseRef(self: *const ID3D10SwitchToRef, UseRef: BOOL) callconv(.Inline) BOOL {
+    pub fn SetUseRef(self: *const ID3D10SwitchToRef, UseRef: BOOL) callconv(.@"inline") BOOL {
         return self.vtable.SetUseRef(self, UseRef);
     }
-    pub fn GetUseRef(self: *const ID3D10SwitchToRef) callconv(.Inline) BOOL {
+    pub fn GetUseRef(self: *const ID3D10SwitchToRef) callconv(.@"inline") BOOL {
         return self.vtable.GetUseRef(self);
     }
 };
@@ -3848,109 +3848,109 @@ pub const ID3D10InfoQueue = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetMessageCountLimit(self: *const ID3D10InfoQueue, MessageCountLimit: u64) callconv(.Inline) HRESULT {
+    pub fn SetMessageCountLimit(self: *const ID3D10InfoQueue, MessageCountLimit: u64) callconv(.@"inline") HRESULT {
         return self.vtable.SetMessageCountLimit(self, MessageCountLimit);
     }
-    pub fn ClearStoredMessages(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+    pub fn ClearStoredMessages(self: *const ID3D10InfoQueue) callconv(.@"inline") void {
         return self.vtable.ClearStoredMessages(self);
     }
-    pub fn GetMessage(self: *const ID3D10InfoQueue, MessageIndex: u64, pMessage: ?*D3D10_MESSAGE, pMessageByteLength: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetMessage(self: *const ID3D10InfoQueue, MessageIndex: u64, pMessage: ?*D3D10_MESSAGE, pMessageByteLength: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.GetMessage(self, MessageIndex, pMessage, pMessageByteLength);
     }
-    pub fn GetNumMessagesAllowedByStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+    pub fn GetNumMessagesAllowedByStorageFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") u64 {
         return self.vtable.GetNumMessagesAllowedByStorageFilter(self);
     }
-    pub fn GetNumMessagesDeniedByStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+    pub fn GetNumMessagesDeniedByStorageFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") u64 {
         return self.vtable.GetNumMessagesDeniedByStorageFilter(self);
     }
-    pub fn GetNumStoredMessages(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+    pub fn GetNumStoredMessages(self: *const ID3D10InfoQueue) callconv(.@"inline") u64 {
         return self.vtable.GetNumStoredMessages(self);
     }
-    pub fn GetNumStoredMessagesAllowedByRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+    pub fn GetNumStoredMessagesAllowedByRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") u64 {
         return self.vtable.GetNumStoredMessagesAllowedByRetrievalFilter(self);
     }
-    pub fn GetNumMessagesDiscardedByMessageCountLimit(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+    pub fn GetNumMessagesDiscardedByMessageCountLimit(self: *const ID3D10InfoQueue) callconv(.@"inline") u64 {
         return self.vtable.GetNumMessagesDiscardedByMessageCountLimit(self);
     }
-    pub fn GetMessageCountLimit(self: *const ID3D10InfoQueue) callconv(.Inline) u64 {
+    pub fn GetMessageCountLimit(self: *const ID3D10InfoQueue) callconv(.@"inline") u64 {
         return self.vtable.GetMessageCountLimit(self);
     }
-    pub fn AddStorageFilterEntries(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+    pub fn AddStorageFilterEntries(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.AddStorageFilterEntries(self, pFilter);
     }
-    pub fn GetStorageFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetStorageFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.GetStorageFilter(self, pFilter, pFilterByteLength);
     }
-    pub fn ClearStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+    pub fn ClearStorageFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") void {
         return self.vtable.ClearStorageFilter(self);
     }
-    pub fn PushEmptyStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) HRESULT {
+    pub fn PushEmptyStorageFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") HRESULT {
         return self.vtable.PushEmptyStorageFilter(self);
     }
-    pub fn PushCopyOfStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) HRESULT {
+    pub fn PushCopyOfStorageFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") HRESULT {
         return self.vtable.PushCopyOfStorageFilter(self);
     }
-    pub fn PushStorageFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+    pub fn PushStorageFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.PushStorageFilter(self, pFilter);
     }
-    pub fn PopStorageFilter(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+    pub fn PopStorageFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") void {
         return self.vtable.PopStorageFilter(self);
     }
-    pub fn GetStorageFilterStackSize(self: *const ID3D10InfoQueue) callconv(.Inline) u32 {
+    pub fn GetStorageFilterStackSize(self: *const ID3D10InfoQueue) callconv(.@"inline") u32 {
         return self.vtable.GetStorageFilterStackSize(self);
     }
-    pub fn AddRetrievalFilterEntries(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+    pub fn AddRetrievalFilterEntries(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.AddRetrievalFilterEntries(self, pFilter);
     }
-    pub fn GetRetrievalFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetRetrievalFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.GetRetrievalFilter(self, pFilter, pFilterByteLength);
     }
-    pub fn ClearRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+    pub fn ClearRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") void {
         return self.vtable.ClearRetrievalFilter(self);
     }
-    pub fn PushEmptyRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) HRESULT {
+    pub fn PushEmptyRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") HRESULT {
         return self.vtable.PushEmptyRetrievalFilter(self);
     }
-    pub fn PushCopyOfRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) HRESULT {
+    pub fn PushCopyOfRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") HRESULT {
         return self.vtable.PushCopyOfRetrievalFilter(self);
     }
-    pub fn PushRetrievalFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+    pub fn PushRetrievalFilter(self: *const ID3D10InfoQueue, pFilter: ?*D3D10_INFO_QUEUE_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.PushRetrievalFilter(self, pFilter);
     }
-    pub fn PopRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.Inline) void {
+    pub fn PopRetrievalFilter(self: *const ID3D10InfoQueue) callconv(.@"inline") void {
         return self.vtable.PopRetrievalFilter(self);
     }
-    pub fn GetRetrievalFilterStackSize(self: *const ID3D10InfoQueue) callconv(.Inline) u32 {
+    pub fn GetRetrievalFilterStackSize(self: *const ID3D10InfoQueue) callconv(.@"inline") u32 {
         return self.vtable.GetRetrievalFilterStackSize(self);
     }
-    pub fn AddMessage(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY, Severity: D3D10_MESSAGE_SEVERITY, ID: D3D10_MESSAGE_ID, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn AddMessage(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY, Severity: D3D10_MESSAGE_SEVERITY, ID: D3D10_MESSAGE_ID, pDescription: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.AddMessage(self, Category, Severity, ID, pDescription);
     }
-    pub fn AddApplicationMessage(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn AddApplicationMessage(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.AddApplicationMessage(self, Severity, pDescription);
     }
-    pub fn SetBreakOnCategory(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY, bEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBreakOnCategory(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY, bEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetBreakOnCategory(self, Category, bEnable);
     }
-    pub fn SetBreakOnSeverity(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY, bEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBreakOnSeverity(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY, bEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetBreakOnSeverity(self, Severity, bEnable);
     }
-    pub fn SetBreakOnID(self: *const ID3D10InfoQueue, ID: D3D10_MESSAGE_ID, bEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBreakOnID(self: *const ID3D10InfoQueue, ID: D3D10_MESSAGE_ID, bEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetBreakOnID(self, ID, bEnable);
     }
-    pub fn GetBreakOnCategory(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY) callconv(.Inline) BOOL {
+    pub fn GetBreakOnCategory(self: *const ID3D10InfoQueue, Category: D3D10_MESSAGE_CATEGORY) callconv(.@"inline") BOOL {
         return self.vtable.GetBreakOnCategory(self, Category);
     }
-    pub fn GetBreakOnSeverity(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY) callconv(.Inline) BOOL {
+    pub fn GetBreakOnSeverity(self: *const ID3D10InfoQueue, Severity: D3D10_MESSAGE_SEVERITY) callconv(.@"inline") BOOL {
         return self.vtable.GetBreakOnSeverity(self, Severity);
     }
-    pub fn GetBreakOnID(self: *const ID3D10InfoQueue, ID: D3D10_MESSAGE_ID) callconv(.Inline) BOOL {
+    pub fn GetBreakOnID(self: *const ID3D10InfoQueue, ID: D3D10_MESSAGE_ID) callconv(.@"inline") BOOL {
         return self.vtable.GetBreakOnID(self, ID);
     }
-    pub fn SetMuteDebugOutput(self: *const ID3D10InfoQueue, bMute: BOOL) callconv(.Inline) void {
+    pub fn SetMuteDebugOutput(self: *const ID3D10InfoQueue, bMute: BOOL) callconv(.@"inline") void {
         return self.vtable.SetMuteDebugOutput(self, bMute);
     }
-    pub fn GetMuteDebugOutput(self: *const ID3D10InfoQueue) callconv(.Inline) BOOL {
+    pub fn GetMuteDebugOutput(self: *const ID3D10InfoQueue) callconv(.@"inline") BOOL {
         return self.vtable.GetMuteDebugOutput(self);
     }
 };
@@ -4069,16 +4069,16 @@ pub const ID3D10ShaderReflectionType = extern union {
         ) callconv(.winapi) ?PSTR,
     };
     vtable: *const VTable,
-    pub fn GetDesc(self: *const ID3D10ShaderReflectionType, pDesc: ?*D3D10_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10ShaderReflectionType, pDesc: ?*D3D10_SHADER_TYPE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetMemberTypeByIndex(self: *const ID3D10ShaderReflectionType, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionType {
+    pub fn GetMemberTypeByIndex(self: *const ID3D10ShaderReflectionType, Index: u32) callconv(.@"inline") ?*ID3D10ShaderReflectionType {
         return self.vtable.GetMemberTypeByIndex(self, Index);
     }
-    pub fn GetMemberTypeByName(self: *const ID3D10ShaderReflectionType, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionType {
+    pub fn GetMemberTypeByName(self: *const ID3D10ShaderReflectionType, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10ShaderReflectionType {
         return self.vtable.GetMemberTypeByName(self, Name);
     }
-    pub fn GetMemberTypeName(self: *const ID3D10ShaderReflectionType, Index: u32) callconv(.Inline) ?PSTR {
+    pub fn GetMemberTypeName(self: *const ID3D10ShaderReflectionType, Index: u32) callconv(.@"inline") ?PSTR {
         return self.vtable.GetMemberTypeName(self, Index);
     }
 };
@@ -4097,10 +4097,10 @@ pub const ID3D10ShaderReflectionVariable = extern union {
         ) callconv(.winapi) ?*ID3D10ShaderReflectionType,
     };
     vtable: *const VTable,
-    pub fn GetDesc(self: *const ID3D10ShaderReflectionVariable, pDesc: ?*D3D10_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10ShaderReflectionVariable, pDesc: ?*D3D10_SHADER_VARIABLE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetType(self: *const ID3D10ShaderReflectionVariable) callconv(.Inline) ?*ID3D10ShaderReflectionType {
+    pub fn GetType(self: *const ID3D10ShaderReflectionVariable) callconv(.@"inline") ?*ID3D10ShaderReflectionType {
         return self.vtable.GetType(self);
     }
 };
@@ -4124,13 +4124,13 @@ pub const ID3D10ShaderReflectionConstantBuffer = extern union {
         ) callconv(.winapi) ?*ID3D10ShaderReflectionVariable,
     };
     vtable: *const VTable,
-    pub fn GetDesc(self: *const ID3D10ShaderReflectionConstantBuffer, pDesc: ?*D3D10_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10ShaderReflectionConstantBuffer, pDesc: ?*D3D10_SHADER_BUFFER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetVariableByIndex(self: *const ID3D10ShaderReflectionConstantBuffer, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
+    pub fn GetVariableByIndex(self: *const ID3D10ShaderReflectionConstantBuffer, Index: u32) callconv(.@"inline") ?*ID3D10ShaderReflectionVariable {
         return self.vtable.GetVariableByIndex(self, Index);
     }
-    pub fn GetVariableByName(self: *const ID3D10ShaderReflectionConstantBuffer, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
+    pub fn GetVariableByName(self: *const ID3D10ShaderReflectionConstantBuffer, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10ShaderReflectionVariable {
         return self.vtable.GetVariableByName(self, Name);
     }
 };
@@ -4171,22 +4171,22 @@ pub const ID3D10ShaderReflection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10ShaderReflection, pDesc: ?*D3D10_SHADER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10ShaderReflection, pDesc: ?*D3D10_SHADER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetConstantBufferByIndex(self: *const ID3D10ShaderReflection, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
+    pub fn GetConstantBufferByIndex(self: *const ID3D10ShaderReflection, Index: u32) callconv(.@"inline") ?*ID3D10ShaderReflectionConstantBuffer {
         return self.vtable.GetConstantBufferByIndex(self, Index);
     }
-    pub fn GetConstantBufferByName(self: *const ID3D10ShaderReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
+    pub fn GetConstantBufferByName(self: *const ID3D10ShaderReflection, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10ShaderReflectionConstantBuffer {
         return self.vtable.GetConstantBufferByName(self, Name);
     }
-    pub fn GetResourceBindingDesc(self: *const ID3D10ShaderReflection, ResourceIndex: u32, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+    pub fn GetResourceBindingDesc(self: *const ID3D10ShaderReflection, ResourceIndex: u32, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceBindingDesc(self, ResourceIndex, pDesc);
     }
-    pub fn GetInputParameterDesc(self: *const ID3D10ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetInputParameterDesc(self: *const ID3D10ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetInputParameterDesc(self, ParameterIndex, pDesc);
     }
-    pub fn GetOutputParameterDesc(self: *const ID3D10ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetOutputParameterDesc(self: *const ID3D10ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputParameterDesc(self, ParameterIndex, pDesc);
     }
 };
@@ -4291,16 +4291,16 @@ pub const ID3D10StateBlock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Capture(self: *const ID3D10StateBlock) callconv(.Inline) HRESULT {
+    pub fn Capture(self: *const ID3D10StateBlock) callconv(.@"inline") HRESULT {
         return self.vtable.Capture(self);
     }
-    pub fn Apply(self: *const ID3D10StateBlock) callconv(.Inline) HRESULT {
+    pub fn Apply(self: *const ID3D10StateBlock) callconv(.@"inline") HRESULT {
         return self.vtable.Apply(self);
     }
-    pub fn ReleaseAllDeviceObjects(self: *const ID3D10StateBlock) callconv(.Inline) HRESULT {
+    pub fn ReleaseAllDeviceObjects(self: *const ID3D10StateBlock) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseAllDeviceObjects(self);
     }
-    pub fn GetDevice(self: *const ID3D10StateBlock, ppDevice: ?*?*ID3D10Device) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const ID3D10StateBlock, ppDevice: ?*?*ID3D10Device) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
 };
@@ -4352,25 +4352,25 @@ pub const ID3D10EffectType = extern union {
         ) callconv(.winapi) ?PSTR,
     };
     vtable: *const VTable,
-    pub fn IsValid(self: *const ID3D10EffectType) callconv(.Inline) BOOL {
+    pub fn IsValid(self: *const ID3D10EffectType) callconv(.@"inline") BOOL {
         return self.vtable.IsValid(self);
     }
-    pub fn GetDesc(self: *const ID3D10EffectType, pDesc: ?*D3D10_EFFECT_TYPE_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10EffectType, pDesc: ?*D3D10_EFFECT_TYPE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetMemberTypeByIndex(self: *const ID3D10EffectType, Index: u32) callconv(.Inline) ?*ID3D10EffectType {
+    pub fn GetMemberTypeByIndex(self: *const ID3D10EffectType, Index: u32) callconv(.@"inline") ?*ID3D10EffectType {
         return self.vtable.GetMemberTypeByIndex(self, Index);
     }
-    pub fn GetMemberTypeByName(self: *const ID3D10EffectType, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectType {
+    pub fn GetMemberTypeByName(self: *const ID3D10EffectType, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectType {
         return self.vtable.GetMemberTypeByName(self, Name);
     }
-    pub fn GetMemberTypeBySemantic(self: *const ID3D10EffectType, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectType {
+    pub fn GetMemberTypeBySemantic(self: *const ID3D10EffectType, Semantic: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectType {
         return self.vtable.GetMemberTypeBySemantic(self, Semantic);
     }
-    pub fn GetMemberName(self: *const ID3D10EffectType, Index: u32) callconv(.Inline) ?PSTR {
+    pub fn GetMemberName(self: *const ID3D10EffectType, Index: u32) callconv(.@"inline") ?PSTR {
         return self.vtable.GetMemberName(self, Index);
     }
-    pub fn GetMemberSemantic(self: *const ID3D10EffectType, Index: u32) callconv(.Inline) ?PSTR {
+    pub fn GetMemberSemantic(self: *const ID3D10EffectType, Index: u32) callconv(.@"inline") ?PSTR {
         return self.vtable.GetMemberSemantic(self, Index);
     }
 };
@@ -4481,79 +4481,79 @@ pub const ID3D10EffectVariable = extern union {
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    pub fn IsValid(self: *const ID3D10EffectVariable) callconv(.Inline) BOOL {
+    pub fn IsValid(self: *const ID3D10EffectVariable) callconv(.@"inline") BOOL {
         return self.vtable.IsValid(self);
     }
-    pub fn GetType(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectType {
+    pub fn GetType(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectType {
         return self.vtable.GetType(self);
     }
-    pub fn GetDesc(self: *const ID3D10EffectVariable, pDesc: ?*D3D10_EFFECT_VARIABLE_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10EffectVariable, pDesc: ?*D3D10_EFFECT_VARIABLE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetAnnotationByIndex(self: *const ID3D10EffectVariable, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetAnnotationByIndex(self: *const ID3D10EffectVariable, Index: u32) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetAnnotationByIndex(self, Index);
     }
-    pub fn GetAnnotationByName(self: *const ID3D10EffectVariable, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetAnnotationByName(self: *const ID3D10EffectVariable, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetAnnotationByName(self, Name);
     }
-    pub fn GetMemberByIndex(self: *const ID3D10EffectVariable, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetMemberByIndex(self: *const ID3D10EffectVariable, Index: u32) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetMemberByIndex(self, Index);
     }
-    pub fn GetMemberByName(self: *const ID3D10EffectVariable, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetMemberByName(self: *const ID3D10EffectVariable, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetMemberByName(self, Name);
     }
-    pub fn GetMemberBySemantic(self: *const ID3D10EffectVariable, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetMemberBySemantic(self: *const ID3D10EffectVariable, Semantic: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetMemberBySemantic(self, Semantic);
     }
-    pub fn GetElement(self: *const ID3D10EffectVariable, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetElement(self: *const ID3D10EffectVariable, Index: u32) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetElement(self, Index);
     }
-    pub fn GetParentConstantBuffer(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
+    pub fn GetParentConstantBuffer(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectConstantBuffer {
         return self.vtable.GetParentConstantBuffer(self);
     }
-    pub fn AsScalar(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectScalarVariable {
+    pub fn AsScalar(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectScalarVariable {
         return self.vtable.AsScalar(self);
     }
-    pub fn AsVector(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectVectorVariable {
+    pub fn AsVector(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectVectorVariable {
         return self.vtable.AsVector(self);
     }
-    pub fn AsMatrix(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectMatrixVariable {
+    pub fn AsMatrix(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectMatrixVariable {
         return self.vtable.AsMatrix(self);
     }
-    pub fn AsString(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectStringVariable {
+    pub fn AsString(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectStringVariable {
         return self.vtable.AsString(self);
     }
-    pub fn AsShaderResource(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectShaderResourceVariable {
+    pub fn AsShaderResource(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectShaderResourceVariable {
         return self.vtable.AsShaderResource(self);
     }
-    pub fn AsRenderTargetView(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectRenderTargetViewVariable {
+    pub fn AsRenderTargetView(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectRenderTargetViewVariable {
         return self.vtable.AsRenderTargetView(self);
     }
-    pub fn AsDepthStencilView(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectDepthStencilViewVariable {
+    pub fn AsDepthStencilView(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectDepthStencilViewVariable {
         return self.vtable.AsDepthStencilView(self);
     }
-    pub fn AsConstantBuffer(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
+    pub fn AsConstantBuffer(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectConstantBuffer {
         return self.vtable.AsConstantBuffer(self);
     }
-    pub fn AsShader(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectShaderVariable {
+    pub fn AsShader(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectShaderVariable {
         return self.vtable.AsShader(self);
     }
-    pub fn AsBlend(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectBlendVariable {
+    pub fn AsBlend(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectBlendVariable {
         return self.vtable.AsBlend(self);
     }
-    pub fn AsDepthStencil(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectDepthStencilVariable {
+    pub fn AsDepthStencil(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectDepthStencilVariable {
         return self.vtable.AsDepthStencil(self);
     }
-    pub fn AsRasterizer(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectRasterizerVariable {
+    pub fn AsRasterizer(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectRasterizerVariable {
         return self.vtable.AsRasterizer(self);
     }
-    pub fn AsSampler(self: *const ID3D10EffectVariable) callconv(.Inline) ?*ID3D10EffectSamplerVariable {
+    pub fn AsSampler(self: *const ID3D10EffectVariable) callconv(.@"inline") ?*ID3D10EffectSamplerVariable {
         return self.vtable.AsSampler(self);
     }
-    pub fn SetRawValue(self: *const ID3D10EffectVariable, pData: ?*anyopaque, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetRawValue(self: *const ID3D10EffectVariable, pData: ?*anyopaque, Offset: u32, ByteCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRawValue(self, pData, Offset, ByteCount);
     }
-    pub fn GetRawValue(self: *const ID3D10EffectVariable, pData: ?*anyopaque, Offset: u32, ByteCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetRawValue(self: *const ID3D10EffectVariable, pData: ?*anyopaque, Offset: u32, ByteCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRawValue(self, pData, Offset, ByteCount);
     }
 };
@@ -4627,40 +4627,40 @@ pub const ID3D10EffectScalarVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn SetFloat(self: *const ID3D10EffectScalarVariable, Value: f32) callconv(.Inline) HRESULT {
+    pub fn SetFloat(self: *const ID3D10EffectScalarVariable, Value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFloat(self, Value);
     }
-    pub fn GetFloat(self: *const ID3D10EffectScalarVariable, pValue: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetFloat(self: *const ID3D10EffectScalarVariable, pValue: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFloat(self, pValue);
     }
-    pub fn SetFloatArray(self: *const ID3D10EffectScalarVariable, pData: [*]f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetFloatArray(self: *const ID3D10EffectScalarVariable, pData: [*]f32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFloatArray(self, pData, Offset, Count);
     }
-    pub fn GetFloatArray(self: *const ID3D10EffectScalarVariable, pData: [*]f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetFloatArray(self: *const ID3D10EffectScalarVariable, pData: [*]f32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFloatArray(self, pData, Offset, Count);
     }
-    pub fn SetInt(self: *const ID3D10EffectScalarVariable, Value: i32) callconv(.Inline) HRESULT {
+    pub fn SetInt(self: *const ID3D10EffectScalarVariable, Value: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetInt(self, Value);
     }
-    pub fn GetInt(self: *const ID3D10EffectScalarVariable, pValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetInt(self: *const ID3D10EffectScalarVariable, pValue: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetInt(self, pValue);
     }
-    pub fn SetIntArray(self: *const ID3D10EffectScalarVariable, pData: [*]i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetIntArray(self: *const ID3D10EffectScalarVariable, pData: [*]i32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIntArray(self, pData, Offset, Count);
     }
-    pub fn GetIntArray(self: *const ID3D10EffectScalarVariable, pData: [*]i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetIntArray(self: *const ID3D10EffectScalarVariable, pData: [*]i32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIntArray(self, pData, Offset, Count);
     }
-    pub fn SetBool(self: *const ID3D10EffectScalarVariable, Value: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBool(self: *const ID3D10EffectScalarVariable, Value: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetBool(self, Value);
     }
-    pub fn GetBool(self: *const ID3D10EffectScalarVariable, pValue: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetBool(self: *const ID3D10EffectScalarVariable, pValue: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetBool(self, pValue);
     }
-    pub fn SetBoolArray(self: *const ID3D10EffectScalarVariable, pData: [*]BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetBoolArray(self: *const ID3D10EffectScalarVariable, pData: [*]BOOL, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBoolArray(self, pData, Offset, Count);
     }
-    pub fn GetBoolArray(self: *const ID3D10EffectScalarVariable, pData: [*]BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetBoolArray(self: *const ID3D10EffectScalarVariable, pData: [*]BOOL, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBoolArray(self, pData, Offset, Count);
     }
 };
@@ -4734,40 +4734,40 @@ pub const ID3D10EffectVectorVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn SetBoolVector(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBoolVector(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetBoolVector(self, pData);
     }
-    pub fn SetIntVector(self: *const ID3D10EffectVectorVariable, pData: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SetIntVector(self: *const ID3D10EffectVectorVariable, pData: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIntVector(self, pData);
     }
-    pub fn SetFloatVector(self: *const ID3D10EffectVectorVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+    pub fn SetFloatVector(self: *const ID3D10EffectVectorVariable, pData: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFloatVector(self, pData);
     }
-    pub fn GetBoolVector(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetBoolVector(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetBoolVector(self, pData);
     }
-    pub fn GetIntVector(self: *const ID3D10EffectVectorVariable, pData: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIntVector(self: *const ID3D10EffectVectorVariable, pData: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIntVector(self, pData);
     }
-    pub fn GetFloatVector(self: *const ID3D10EffectVectorVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetFloatVector(self: *const ID3D10EffectVectorVariable, pData: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFloatVector(self, pData);
     }
-    pub fn SetBoolVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetBoolVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBoolVectorArray(self, pData, Offset, Count);
     }
-    pub fn SetIntVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetIntVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*i32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIntVectorArray(self, pData, Offset, Count);
     }
-    pub fn SetFloatVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetFloatVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFloatVectorArray(self, pData, Offset, Count);
     }
-    pub fn GetBoolVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetBoolVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*BOOL, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBoolVectorArray(self, pData, Offset, Count);
     }
-    pub fn GetIntVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*i32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetIntVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*i32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIntVectorArray(self, pData, Offset, Count);
     }
-    pub fn GetFloatVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetFloatVectorArray(self: *const ID3D10EffectVectorVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFloatVectorArray(self, pData, Offset, Count);
     }
 };
@@ -4821,28 +4821,28 @@ pub const ID3D10EffectMatrixVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn SetMatrix(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+    pub fn SetMatrix(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrix(self, pData);
     }
-    pub fn GetMatrix(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetMatrix(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMatrix(self, pData);
     }
-    pub fn SetMatrixArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetMatrixArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixArray(self, pData, Offset, Count);
     }
-    pub fn GetMatrixArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetMatrixArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMatrixArray(self, pData, Offset, Count);
     }
-    pub fn SetMatrixTranspose(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+    pub fn SetMatrixTranspose(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixTranspose(self, pData);
     }
-    pub fn GetMatrixTranspose(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetMatrixTranspose(self: *const ID3D10EffectMatrixVariable, pData: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMatrixTranspose(self, pData);
     }
-    pub fn SetMatrixTransposeArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetMatrixTransposeArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixTransposeArray(self, pData, Offset, Count);
     }
-    pub fn GetMatrixTransposeArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetMatrixTransposeArray(self: *const ID3D10EffectMatrixVariable, pData: ?*f32, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMatrixTransposeArray(self, pData, Offset, Count);
     }
 };
@@ -4866,10 +4866,10 @@ pub const ID3D10EffectStringVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn GetString(self: *const ID3D10EffectStringVariable, ppString: ?*?PSTR) callconv(.Inline) HRESULT {
+    pub fn GetString(self: *const ID3D10EffectStringVariable, ppString: ?*?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetString(self, ppString);
     }
-    pub fn GetStringArray(self: *const ID3D10EffectStringVariable, ppStrings: [*]?PSTR, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetStringArray(self: *const ID3D10EffectStringVariable, ppStrings: [*]?PSTR, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringArray(self, ppStrings, Offset, Count);
     }
 };
@@ -4903,16 +4903,16 @@ pub const ID3D10EffectShaderResourceVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn SetResource(self: *const ID3D10EffectShaderResourceVariable, pResource: ?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+    pub fn SetResource(self: *const ID3D10EffectShaderResourceVariable, pResource: ?*ID3D10ShaderResourceView) callconv(.@"inline") HRESULT {
         return self.vtable.SetResource(self, pResource);
     }
-    pub fn GetResource(self: *const ID3D10EffectShaderResourceVariable, ppResource: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+    pub fn GetResource(self: *const ID3D10EffectShaderResourceVariable, ppResource: ?*?*ID3D10ShaderResourceView) callconv(.@"inline") HRESULT {
         return self.vtable.GetResource(self, ppResource);
     }
-    pub fn SetResourceArray(self: *const ID3D10EffectShaderResourceVariable, ppResources: [*]?*ID3D10ShaderResourceView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetResourceArray(self: *const ID3D10EffectShaderResourceVariable, ppResources: [*]?*ID3D10ShaderResourceView, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetResourceArray(self, ppResources, Offset, Count);
     }
-    pub fn GetResourceArray(self: *const ID3D10EffectShaderResourceVariable, ppResources: [*]?*ID3D10ShaderResourceView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetResourceArray(self: *const ID3D10EffectShaderResourceVariable, ppResources: [*]?*ID3D10ShaderResourceView, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceArray(self, ppResources, Offset, Count);
     }
 };
@@ -4946,16 +4946,16 @@ pub const ID3D10EffectRenderTargetViewVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn SetRenderTarget(self: *const ID3D10EffectRenderTargetViewVariable, pResource: ?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
+    pub fn SetRenderTarget(self: *const ID3D10EffectRenderTargetViewVariable, pResource: ?*ID3D10RenderTargetView) callconv(.@"inline") HRESULT {
         return self.vtable.SetRenderTarget(self, pResource);
     }
-    pub fn GetRenderTarget(self: *const ID3D10EffectRenderTargetViewVariable, ppResource: ?*?*ID3D10RenderTargetView) callconv(.Inline) HRESULT {
+    pub fn GetRenderTarget(self: *const ID3D10EffectRenderTargetViewVariable, ppResource: ?*?*ID3D10RenderTargetView) callconv(.@"inline") HRESULT {
         return self.vtable.GetRenderTarget(self, ppResource);
     }
-    pub fn SetRenderTargetArray(self: *const ID3D10EffectRenderTargetViewVariable, ppResources: [*]?*ID3D10RenderTargetView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetRenderTargetArray(self: *const ID3D10EffectRenderTargetViewVariable, ppResources: [*]?*ID3D10RenderTargetView, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRenderTargetArray(self, ppResources, Offset, Count);
     }
-    pub fn GetRenderTargetArray(self: *const ID3D10EffectRenderTargetViewVariable, ppResources: [*]?*ID3D10RenderTargetView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetRenderTargetArray(self: *const ID3D10EffectRenderTargetViewVariable, ppResources: [*]?*ID3D10RenderTargetView, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRenderTargetArray(self, ppResources, Offset, Count);
     }
 };
@@ -4989,16 +4989,16 @@ pub const ID3D10EffectDepthStencilViewVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn SetDepthStencil(self: *const ID3D10EffectDepthStencilViewVariable, pResource: ?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
+    pub fn SetDepthStencil(self: *const ID3D10EffectDepthStencilViewVariable, pResource: ?*ID3D10DepthStencilView) callconv(.@"inline") HRESULT {
         return self.vtable.SetDepthStencil(self, pResource);
     }
-    pub fn GetDepthStencil(self: *const ID3D10EffectDepthStencilViewVariable, ppResource: ?*?*ID3D10DepthStencilView) callconv(.Inline) HRESULT {
+    pub fn GetDepthStencil(self: *const ID3D10EffectDepthStencilViewVariable, ppResource: ?*?*ID3D10DepthStencilView) callconv(.@"inline") HRESULT {
         return self.vtable.GetDepthStencil(self, ppResource);
     }
-    pub fn SetDepthStencilArray(self: *const ID3D10EffectDepthStencilViewVariable, ppResources: [*]?*ID3D10DepthStencilView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn SetDepthStencilArray(self: *const ID3D10EffectDepthStencilViewVariable, ppResources: [*]?*ID3D10DepthStencilView, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDepthStencilArray(self, ppResources, Offset, Count);
     }
-    pub fn GetDepthStencilArray(self: *const ID3D10EffectDepthStencilViewVariable, ppResources: [*]?*ID3D10DepthStencilView, Offset: u32, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetDepthStencilArray(self: *const ID3D10EffectDepthStencilViewVariable, ppResources: [*]?*ID3D10DepthStencilView, Offset: u32, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDepthStencilArray(self, ppResources, Offset, Count);
     }
 };
@@ -5028,16 +5028,16 @@ pub const ID3D10EffectConstantBuffer = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn SetConstantBuffer(self: *const ID3D10EffectConstantBuffer, pConstantBuffer: ?*ID3D10Buffer) callconv(.Inline) HRESULT {
+    pub fn SetConstantBuffer(self: *const ID3D10EffectConstantBuffer, pConstantBuffer: ?*ID3D10Buffer) callconv(.@"inline") HRESULT {
         return self.vtable.SetConstantBuffer(self, pConstantBuffer);
     }
-    pub fn GetConstantBuffer(self: *const ID3D10EffectConstantBuffer, ppConstantBuffer: ?*?*ID3D10Buffer) callconv(.Inline) HRESULT {
+    pub fn GetConstantBuffer(self: *const ID3D10EffectConstantBuffer, ppConstantBuffer: ?*?*ID3D10Buffer) callconv(.@"inline") HRESULT {
         return self.vtable.GetConstantBuffer(self, ppConstantBuffer);
     }
-    pub fn SetTextureBuffer(self: *const ID3D10EffectConstantBuffer, pTextureBuffer: ?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+    pub fn SetTextureBuffer(self: *const ID3D10EffectConstantBuffer, pTextureBuffer: ?*ID3D10ShaderResourceView) callconv(.@"inline") HRESULT {
         return self.vtable.SetTextureBuffer(self, pTextureBuffer);
     }
-    pub fn GetTextureBuffer(self: *const ID3D10EffectConstantBuffer, ppTextureBuffer: ?*?*ID3D10ShaderResourceView) callconv(.Inline) HRESULT {
+    pub fn GetTextureBuffer(self: *const ID3D10EffectConstantBuffer, ppTextureBuffer: ?*?*ID3D10ShaderResourceView) callconv(.@"inline") HRESULT {
         return self.vtable.GetTextureBuffer(self, ppTextureBuffer);
     }
 };
@@ -5093,22 +5093,22 @@ pub const ID3D10EffectShaderVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn GetShaderDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, pDesc: ?*D3D10_EFFECT_SHADER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetShaderDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, pDesc: ?*D3D10_EFFECT_SHADER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetShaderDesc(self, ShaderIndex, pDesc);
     }
-    pub fn GetVertexShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppVS: ?*?*ID3D10VertexShader) callconv(.Inline) HRESULT {
+    pub fn GetVertexShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppVS: ?*?*ID3D10VertexShader) callconv(.@"inline") HRESULT {
         return self.vtable.GetVertexShader(self, ShaderIndex, ppVS);
     }
-    pub fn GetGeometryShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppGS: ?*?*ID3D10GeometryShader) callconv(.Inline) HRESULT {
+    pub fn GetGeometryShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppGS: ?*?*ID3D10GeometryShader) callconv(.@"inline") HRESULT {
         return self.vtable.GetGeometryShader(self, ShaderIndex, ppGS);
     }
-    pub fn GetPixelShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppPS: ?*?*ID3D10PixelShader) callconv(.Inline) HRESULT {
+    pub fn GetPixelShader(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, ppPS: ?*?*ID3D10PixelShader) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelShader(self, ShaderIndex, ppPS);
     }
-    pub fn GetInputSignatureElementDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, Element: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetInputSignatureElementDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, Element: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetInputSignatureElementDesc(self, ShaderIndex, Element, pDesc);
     }
-    pub fn GetOutputSignatureElementDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, Element: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetOutputSignatureElementDesc(self: *const ID3D10EffectShaderVariable, ShaderIndex: u32, Element: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputSignatureElementDesc(self, ShaderIndex, Element, pDesc);
     }
 };
@@ -5132,10 +5132,10 @@ pub const ID3D10EffectBlendVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn GetBlendState(self: *const ID3D10EffectBlendVariable, Index: u32, ppBlendState: ?*?*ID3D10BlendState) callconv(.Inline) HRESULT {
+    pub fn GetBlendState(self: *const ID3D10EffectBlendVariable, Index: u32, ppBlendState: ?*?*ID3D10BlendState) callconv(.@"inline") HRESULT {
         return self.vtable.GetBlendState(self, Index, ppBlendState);
     }
-    pub fn GetBackingStore(self: *const ID3D10EffectBlendVariable, Index: u32, pBlendDesc: ?*D3D10_BLEND_DESC) callconv(.Inline) HRESULT {
+    pub fn GetBackingStore(self: *const ID3D10EffectBlendVariable, Index: u32, pBlendDesc: ?*D3D10_BLEND_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetBackingStore(self, Index, pBlendDesc);
     }
 };
@@ -5159,10 +5159,10 @@ pub const ID3D10EffectDepthStencilVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn GetDepthStencilState(self: *const ID3D10EffectDepthStencilVariable, Index: u32, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.Inline) HRESULT {
+    pub fn GetDepthStencilState(self: *const ID3D10EffectDepthStencilVariable, Index: u32, ppDepthStencilState: ?*?*ID3D10DepthStencilState) callconv(.@"inline") HRESULT {
         return self.vtable.GetDepthStencilState(self, Index, ppDepthStencilState);
     }
-    pub fn GetBackingStore(self: *const ID3D10EffectDepthStencilVariable, Index: u32, pDepthStencilDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.Inline) HRESULT {
+    pub fn GetBackingStore(self: *const ID3D10EffectDepthStencilVariable, Index: u32, pDepthStencilDesc: ?*D3D10_DEPTH_STENCIL_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetBackingStore(self, Index, pDepthStencilDesc);
     }
 };
@@ -5186,10 +5186,10 @@ pub const ID3D10EffectRasterizerVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn GetRasterizerState(self: *const ID3D10EffectRasterizerVariable, Index: u32, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.Inline) HRESULT {
+    pub fn GetRasterizerState(self: *const ID3D10EffectRasterizerVariable, Index: u32, ppRasterizerState: ?*?*ID3D10RasterizerState) callconv(.@"inline") HRESULT {
         return self.vtable.GetRasterizerState(self, Index, ppRasterizerState);
     }
-    pub fn GetBackingStore(self: *const ID3D10EffectRasterizerVariable, Index: u32, pRasterizerDesc: ?*D3D10_RASTERIZER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetBackingStore(self: *const ID3D10EffectRasterizerVariable, Index: u32, pRasterizerDesc: ?*D3D10_RASTERIZER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetBackingStore(self, Index, pRasterizerDesc);
     }
 };
@@ -5213,10 +5213,10 @@ pub const ID3D10EffectSamplerVariable = extern union {
     };
     vtable: *const VTable,
     ID3D10EffectVariable: ID3D10EffectVariable,
-    pub fn GetSampler(self: *const ID3D10EffectSamplerVariable, Index: u32, ppSampler: ?*?*ID3D10SamplerState) callconv(.Inline) HRESULT {
+    pub fn GetSampler(self: *const ID3D10EffectSamplerVariable, Index: u32, ppSampler: ?*?*ID3D10SamplerState) callconv(.@"inline") HRESULT {
         return self.vtable.GetSampler(self, Index, ppSampler);
     }
-    pub fn GetBackingStore(self: *const ID3D10EffectSamplerVariable, Index: u32, pSamplerDesc: ?*D3D10_SAMPLER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetBackingStore(self: *const ID3D10EffectSamplerVariable, Index: u32, pSamplerDesc: ?*D3D10_SAMPLER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetBackingStore(self, Index, pSamplerDesc);
     }
 };
@@ -5278,31 +5278,31 @@ pub const ID3D10EffectPass = extern union {
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    pub fn IsValid(self: *const ID3D10EffectPass) callconv(.Inline) BOOL {
+    pub fn IsValid(self: *const ID3D10EffectPass) callconv(.@"inline") BOOL {
         return self.vtable.IsValid(self);
     }
-    pub fn GetDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetVertexShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetVertexShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetVertexShaderDesc(self, pDesc);
     }
-    pub fn GetGeometryShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetGeometryShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetGeometryShaderDesc(self, pDesc);
     }
-    pub fn GetPixelShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetPixelShaderDesc(self: *const ID3D10EffectPass, pDesc: ?*D3D10_PASS_SHADER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelShaderDesc(self, pDesc);
     }
-    pub fn GetAnnotationByIndex(self: *const ID3D10EffectPass, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetAnnotationByIndex(self: *const ID3D10EffectPass, Index: u32) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetAnnotationByIndex(self, Index);
     }
-    pub fn GetAnnotationByName(self: *const ID3D10EffectPass, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetAnnotationByName(self: *const ID3D10EffectPass, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetAnnotationByName(self, Name);
     }
-    pub fn Apply(self: *const ID3D10EffectPass, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn Apply(self: *const ID3D10EffectPass, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Apply(self, Flags);
     }
-    pub fn ComputeStateBlockMask(self: *const ID3D10EffectPass, pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK) callconv(.Inline) HRESULT {
+    pub fn ComputeStateBlockMask(self: *const ID3D10EffectPass, pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK) callconv(.@"inline") HRESULT {
         return self.vtable.ComputeStateBlockMask(self, pStateBlockMask);
     }
 };
@@ -5347,25 +5347,25 @@ pub const ID3D10EffectTechnique = extern union {
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    pub fn IsValid(self: *const ID3D10EffectTechnique) callconv(.Inline) BOOL {
+    pub fn IsValid(self: *const ID3D10EffectTechnique) callconv(.@"inline") BOOL {
         return self.vtable.IsValid(self);
     }
-    pub fn GetDesc(self: *const ID3D10EffectTechnique, pDesc: ?*D3D10_TECHNIQUE_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10EffectTechnique, pDesc: ?*D3D10_TECHNIQUE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetAnnotationByIndex(self: *const ID3D10EffectTechnique, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetAnnotationByIndex(self: *const ID3D10EffectTechnique, Index: u32) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetAnnotationByIndex(self, Index);
     }
-    pub fn GetAnnotationByName(self: *const ID3D10EffectTechnique, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetAnnotationByName(self: *const ID3D10EffectTechnique, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetAnnotationByName(self, Name);
     }
-    pub fn GetPassByIndex(self: *const ID3D10EffectTechnique, Index: u32) callconv(.Inline) ?*ID3D10EffectPass {
+    pub fn GetPassByIndex(self: *const ID3D10EffectTechnique, Index: u32) callconv(.@"inline") ?*ID3D10EffectPass {
         return self.vtable.GetPassByIndex(self, Index);
     }
-    pub fn GetPassByName(self: *const ID3D10EffectTechnique, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectPass {
+    pub fn GetPassByName(self: *const ID3D10EffectTechnique, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectPass {
         return self.vtable.GetPassByName(self, Name);
     }
-    pub fn ComputeStateBlockMask(self: *const ID3D10EffectTechnique, pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK) callconv(.Inline) HRESULT {
+    pub fn ComputeStateBlockMask(self: *const ID3D10EffectTechnique, pStateBlockMask: ?*D3D10_STATE_BLOCK_MASK) callconv(.@"inline") HRESULT {
         return self.vtable.ComputeStateBlockMask(self, pStateBlockMask);
     }
 };
@@ -5436,43 +5436,43 @@ pub const ID3D10Effect = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsValid(self: *const ID3D10Effect) callconv(.Inline) BOOL {
+    pub fn IsValid(self: *const ID3D10Effect) callconv(.@"inline") BOOL {
         return self.vtable.IsValid(self);
     }
-    pub fn IsPool(self: *const ID3D10Effect) callconv(.Inline) BOOL {
+    pub fn IsPool(self: *const ID3D10Effect) callconv(.@"inline") BOOL {
         return self.vtable.IsPool(self);
     }
-    pub fn GetDevice(self: *const ID3D10Effect, ppDevice: ?*?*ID3D10Device) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const ID3D10Effect, ppDevice: ?*?*ID3D10Device) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn GetDesc(self: *const ID3D10Effect, pDesc: ?*D3D10_EFFECT_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10Effect, pDesc: ?*D3D10_EFFECT_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetConstantBufferByIndex(self: *const ID3D10Effect, Index: u32) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
+    pub fn GetConstantBufferByIndex(self: *const ID3D10Effect, Index: u32) callconv(.@"inline") ?*ID3D10EffectConstantBuffer {
         return self.vtable.GetConstantBufferByIndex(self, Index);
     }
-    pub fn GetConstantBufferByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectConstantBuffer {
+    pub fn GetConstantBufferByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectConstantBuffer {
         return self.vtable.GetConstantBufferByName(self, Name);
     }
-    pub fn GetVariableByIndex(self: *const ID3D10Effect, Index: u32) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetVariableByIndex(self: *const ID3D10Effect, Index: u32) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetVariableByIndex(self, Index);
     }
-    pub fn GetVariableByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetVariableByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetVariableByName(self, Name);
     }
-    pub fn GetVariableBySemantic(self: *const ID3D10Effect, Semantic: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectVariable {
+    pub fn GetVariableBySemantic(self: *const ID3D10Effect, Semantic: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectVariable {
         return self.vtable.GetVariableBySemantic(self, Semantic);
     }
-    pub fn GetTechniqueByIndex(self: *const ID3D10Effect, Index: u32) callconv(.Inline) ?*ID3D10EffectTechnique {
+    pub fn GetTechniqueByIndex(self: *const ID3D10Effect, Index: u32) callconv(.@"inline") ?*ID3D10EffectTechnique {
         return self.vtable.GetTechniqueByIndex(self, Index);
     }
-    pub fn GetTechniqueByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10EffectTechnique {
+    pub fn GetTechniqueByName(self: *const ID3D10Effect, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10EffectTechnique {
         return self.vtable.GetTechniqueByName(self, Name);
     }
-    pub fn Optimize(self: *const ID3D10Effect) callconv(.Inline) HRESULT {
+    pub fn Optimize(self: *const ID3D10Effect) callconv(.@"inline") HRESULT {
         return self.vtable.Optimize(self);
     }
-    pub fn IsOptimized(self: *const ID3D10Effect) callconv(.Inline) BOOL {
+    pub fn IsOptimized(self: *const ID3D10Effect) callconv(.@"inline") BOOL {
         return self.vtable.IsOptimized(self);
     }
 };
@@ -5489,7 +5489,7 @@ pub const ID3D10EffectPool = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AsEffect(self: *const ID3D10EffectPool) callconv(.Inline) ?*ID3D10Effect {
+    pub fn AsEffect(self: *const ID3D10EffectPool) callconv(.@"inline") ?*ID3D10Effect {
         return self.vtable.AsEffect(self);
     }
 };
@@ -5539,7 +5539,7 @@ pub const ID3D10BlendState1 = extern union {
     ID3D10BlendState: ID3D10BlendState,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc1(self: *const ID3D10BlendState1, pDesc: ?*D3D10_BLEND_DESC1) callconv(.Inline) void {
+    pub fn GetDesc1(self: *const ID3D10BlendState1, pDesc: ?*D3D10_BLEND_DESC1) callconv(.@"inline") void {
         return self.vtable.GetDesc1(self, pDesc);
     }
 };
@@ -5584,7 +5584,7 @@ pub const ID3D10ShaderResourceView1 = extern union {
     ID3D10View: ID3D10View,
     ID3D10DeviceChild: ID3D10DeviceChild,
     IUnknown: IUnknown,
-    pub fn GetDesc1(self: *const ID3D10ShaderResourceView1, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC1) callconv(.Inline) void {
+    pub fn GetDesc1(self: *const ID3D10ShaderResourceView1, pDesc: ?*D3D10_SHADER_RESOURCE_VIEW_DESC1) callconv(.@"inline") void {
         return self.vtable.GetDesc1(self, pDesc);
     }
 };
@@ -5620,13 +5620,13 @@ pub const ID3D10Device1 = extern union {
     vtable: *const VTable,
     ID3D10Device: ID3D10Device,
     IUnknown: IUnknown,
-    pub fn CreateShaderResourceView1(self: *const ID3D10Device1, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1, ppSRView: ?*?*ID3D10ShaderResourceView1) callconv(.Inline) HRESULT {
+    pub fn CreateShaderResourceView1(self: *const ID3D10Device1, pResource: ?*ID3D10Resource, pDesc: ?*const D3D10_SHADER_RESOURCE_VIEW_DESC1, ppSRView: ?*?*ID3D10ShaderResourceView1) callconv(.@"inline") HRESULT {
         return self.vtable.CreateShaderResourceView1(self, pResource, pDesc, ppSRView);
     }
-    pub fn CreateBlendState1(self: *const ID3D10Device1, pBlendStateDesc: ?*const D3D10_BLEND_DESC1, ppBlendState: ?*?*ID3D10BlendState1) callconv(.Inline) HRESULT {
+    pub fn CreateBlendState1(self: *const ID3D10Device1, pBlendStateDesc: ?*const D3D10_BLEND_DESC1, ppBlendState: ?*?*ID3D10BlendState1) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBlendState1(self, pBlendStateDesc, ppBlendState);
     }
-    pub fn GetFeatureLevel(self: *const ID3D10Device1) callconv(.Inline) D3D10_FEATURE_LEVEL1 {
+    pub fn GetFeatureLevel(self: *const ID3D10Device1) callconv(.@"inline") D3D10_FEATURE_LEVEL1 {
         return self.vtable.GetFeatureLevel(self);
     }
 };
@@ -5879,49 +5879,49 @@ pub const ID3D10ShaderReflection1 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDesc(self: *const ID3D10ShaderReflection1, pDesc: ?*D3D10_SHADER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const ID3D10ShaderReflection1, pDesc: ?*D3D10_SHADER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn GetConstantBufferByIndex(self: *const ID3D10ShaderReflection1, Index: u32) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
+    pub fn GetConstantBufferByIndex(self: *const ID3D10ShaderReflection1, Index: u32) callconv(.@"inline") ?*ID3D10ShaderReflectionConstantBuffer {
         return self.vtable.GetConstantBufferByIndex(self, Index);
     }
-    pub fn GetConstantBufferByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionConstantBuffer {
+    pub fn GetConstantBufferByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10ShaderReflectionConstantBuffer {
         return self.vtable.GetConstantBufferByName(self, Name);
     }
-    pub fn GetResourceBindingDesc(self: *const ID3D10ShaderReflection1, ResourceIndex: u32, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+    pub fn GetResourceBindingDesc(self: *const ID3D10ShaderReflection1, ResourceIndex: u32, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceBindingDesc(self, ResourceIndex, pDesc);
     }
-    pub fn GetInputParameterDesc(self: *const ID3D10ShaderReflection1, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetInputParameterDesc(self: *const ID3D10ShaderReflection1, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetInputParameterDesc(self, ParameterIndex, pDesc);
     }
-    pub fn GetOutputParameterDesc(self: *const ID3D10ShaderReflection1, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetOutputParameterDesc(self: *const ID3D10ShaderReflection1, ParameterIndex: u32, pDesc: ?*D3D10_SIGNATURE_PARAMETER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputParameterDesc(self, ParameterIndex, pDesc);
     }
-    pub fn GetVariableByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D10ShaderReflectionVariable {
+    pub fn GetVariableByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8) callconv(.@"inline") ?*ID3D10ShaderReflectionVariable {
         return self.vtable.GetVariableByName(self, Name);
     }
-    pub fn GetResourceBindingDescByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+    pub fn GetResourceBindingDescByName(self: *const ID3D10ShaderReflection1, Name: ?[*:0]const u8, pDesc: ?*D3D10_SHADER_INPUT_BIND_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceBindingDescByName(self, Name, pDesc);
     }
-    pub fn GetMovInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMovInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMovInstructionCount(self, pCount);
     }
-    pub fn GetMovcInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMovcInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMovcInstructionCount(self, pCount);
     }
-    pub fn GetConversionInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetConversionInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConversionInstructionCount(self, pCount);
     }
-    pub fn GetBitwiseInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBitwiseInstructionCount(self: *const ID3D10ShaderReflection1, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBitwiseInstructionCount(self, pCount);
     }
-    pub fn GetGSInputPrimitive(self: *const ID3D10ShaderReflection1, pPrim: ?*D3D_PRIMITIVE) callconv(.Inline) HRESULT {
+    pub fn GetGSInputPrimitive(self: *const ID3D10ShaderReflection1, pPrim: ?*D3D_PRIMITIVE) callconv(.@"inline") HRESULT {
         return self.vtable.GetGSInputPrimitive(self, pPrim);
     }
-    pub fn IsLevel9Shader(self: *const ID3D10ShaderReflection1, pbLevel9Shader: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsLevel9Shader(self: *const ID3D10ShaderReflection1, pbLevel9Shader: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsLevel9Shader(self, pbLevel9Shader);
     }
-    pub fn IsSampleFrequencyShader(self: *const ID3D10ShaderReflection1, pbSampleFrequency: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsSampleFrequencyShader(self: *const ID3D10ShaderReflection1, pbSampleFrequency: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSampleFrequencyShader(self, pbSampleFrequency);
     }
 };

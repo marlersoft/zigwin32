@@ -1444,10 +1444,10 @@ pub const IEnumEnhancedStorageACT = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetACTs(self: *const IEnumEnhancedStorageACT, pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT, pcEnhancedStorageACTs: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetACTs(self: *const IEnumEnhancedStorageACT, pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT, pcEnhancedStorageACTs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetACTs(self, pppIEnhancedStorageACTs, pcEnhancedStorageACTs);
     }
-    pub fn GetMatchingACT(self: *const IEnumEnhancedStorageACT, szVolume: ?[*:0]const u16, ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT) callconv(.Inline) HRESULT {
+    pub fn GetMatchingACT(self: *const IEnumEnhancedStorageACT, szVolume: ?[*:0]const u16, ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT) callconv(.@"inline") HRESULT {
         return self.vtable.GetMatchingACT(self, szVolume, ppIEnhancedStorageACT);
     }
 };
@@ -1486,22 +1486,22 @@ pub const IEnhancedStorageACT = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Authorize(self: *const IEnhancedStorageACT, hwndParent: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Authorize(self: *const IEnhancedStorageACT, hwndParent: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Authorize(self, hwndParent, dwFlags);
     }
-    pub fn Unauthorize(self: *const IEnhancedStorageACT) callconv(.Inline) HRESULT {
+    pub fn Unauthorize(self: *const IEnhancedStorageACT) callconv(.@"inline") HRESULT {
         return self.vtable.Unauthorize(self);
     }
-    pub fn GetAuthorizationState(self: *const IEnhancedStorageACT, pState: ?*ACT_AUTHORIZATION_STATE) callconv(.Inline) HRESULT {
+    pub fn GetAuthorizationState(self: *const IEnhancedStorageACT, pState: ?*ACT_AUTHORIZATION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetAuthorizationState(self, pState);
     }
-    pub fn GetMatchingVolume(self: *const IEnhancedStorageACT, ppwszVolume: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMatchingVolume(self: *const IEnhancedStorageACT, ppwszVolume: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMatchingVolume(self, ppwszVolume);
     }
-    pub fn GetUniqueIdentity(self: *const IEnhancedStorageACT, ppwszIdentity: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetUniqueIdentity(self: *const IEnhancedStorageACT, ppwszIdentity: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetUniqueIdentity(self, ppwszIdentity);
     }
-    pub fn GetSilos(self: *const IEnhancedStorageACT, pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo, pcEnhancedStorageSilos: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSilos(self: *const IEnhancedStorageACT, pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo, pcEnhancedStorageSilos: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSilos(self, pppIEnhancedStorageSilos, pcEnhancedStorageSilos);
     }
 };
@@ -1524,10 +1524,10 @@ pub const IEnhancedStorageACT2 = extern union {
     vtable: *const VTable,
     IEnhancedStorageACT: IEnhancedStorageACT,
     IUnknown: IUnknown,
-    pub fn GetDeviceName(self: *const IEnhancedStorageACT2, ppwszDeviceName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDeviceName(self: *const IEnhancedStorageACT2, ppwszDeviceName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceName(self, ppwszDeviceName);
     }
-    pub fn IsDeviceRemovable(self: *const IEnhancedStorageACT2, pIsDeviceRemovable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsDeviceRemovable(self: *const IEnhancedStorageACT2, pIsDeviceRemovable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsDeviceRemovable(self, pIsDeviceRemovable);
     }
 };
@@ -1554,13 +1554,13 @@ pub const IEnhancedStorageACT3 = extern union {
     IEnhancedStorageACT2: IEnhancedStorageACT2,
     IEnhancedStorageACT: IEnhancedStorageACT,
     IUnknown: IUnknown,
-    pub fn UnauthorizeEx(self: *const IEnhancedStorageACT3, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn UnauthorizeEx(self: *const IEnhancedStorageACT3, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnauthorizeEx(self, dwFlags);
     }
-    pub fn IsQueueFrozen(self: *const IEnhancedStorageACT3, pIsQueueFrozen: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsQueueFrozen(self: *const IEnhancedStorageACT3, pIsQueueFrozen: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsQueueFrozen(self, pIsQueueFrozen);
     }
-    pub fn GetShellExtSupport(self: *const IEnhancedStorageACT3, pShellExtSupport: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetShellExtSupport(self: *const IEnhancedStorageACT3, pShellExtSupport: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetShellExtSupport(self, pShellExtSupport);
     }
 };
@@ -1599,19 +1599,19 @@ pub const IEnhancedStorageSilo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInfo(self: *const IEnhancedStorageSilo, pSiloInfo: ?*SILO_INFO) callconv(.Inline) HRESULT {
+    pub fn GetInfo(self: *const IEnhancedStorageSilo, pSiloInfo: ?*SILO_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetInfo(self, pSiloInfo);
     }
-    pub fn GetActions(self: *const IEnhancedStorageSilo, pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction, pcEnhancedStorageSiloActions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetActions(self: *const IEnhancedStorageSilo, pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction, pcEnhancedStorageSiloActions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetActions(self, pppIEnhancedStorageSiloActions, pcEnhancedStorageSiloActions);
     }
-    pub fn SendCommand(self: *const IEnhancedStorageSilo, Command: u8, pbCommandBuffer: [*:0]u8, cbCommandBuffer: u32, pbResponseBuffer: [*:0]u8, pcbResponseBuffer: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SendCommand(self: *const IEnhancedStorageSilo, Command: u8, pbCommandBuffer: [*:0]u8, cbCommandBuffer: u32, pbResponseBuffer: [*:0]u8, pcbResponseBuffer: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendCommand(self, Command, pbCommandBuffer, cbCommandBuffer, pbResponseBuffer, pcbResponseBuffer);
     }
-    pub fn GetPortableDevice(self: *const IEnhancedStorageSilo, ppIPortableDevice: ?*?*IPortableDevice) callconv(.Inline) HRESULT {
+    pub fn GetPortableDevice(self: *const IEnhancedStorageSilo, ppIPortableDevice: ?*?*IPortableDevice) callconv(.@"inline") HRESULT {
         return self.vtable.GetPortableDevice(self, ppIPortableDevice);
     }
-    pub fn GetDevicePath(self: *const IEnhancedStorageSilo, ppwszSiloDevicePath: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDevicePath(self: *const IEnhancedStorageSilo, ppwszSiloDevicePath: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevicePath(self, ppwszSiloDevicePath);
     }
 };
@@ -1636,13 +1636,13 @@ pub const IEnhancedStorageSiloAction = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IEnhancedStorageSiloAction, ppwszActionName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IEnhancedStorageSiloAction, ppwszActionName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppwszActionName);
     }
-    pub fn GetDescription(self: *const IEnhancedStorageSiloAction, ppwszActionDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const IEnhancedStorageSiloAction, ppwszActionDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, ppwszActionDescription);
     }
-    pub fn Invoke(self: *const IEnhancedStorageSiloAction) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IEnhancedStorageSiloAction) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self);
     }
 };

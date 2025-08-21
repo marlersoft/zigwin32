@@ -174,34 +174,34 @@ pub const IDXCoreAdapter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsValid(self: *const IDXCoreAdapter) callconv(.Inline) bool {
+    pub fn IsValid(self: *const IDXCoreAdapter) callconv(.@"inline") bool {
         return self.vtable.IsValid(self);
     }
-    pub fn IsAttributeSupported(self: *const IDXCoreAdapter, attributeGUID: ?*const Guid) callconv(.Inline) bool {
+    pub fn IsAttributeSupported(self: *const IDXCoreAdapter, attributeGUID: ?*const Guid) callconv(.@"inline") bool {
         return self.vtable.IsAttributeSupported(self, attributeGUID);
     }
-    pub fn IsPropertySupported(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty) callconv(.Inline) bool {
+    pub fn IsPropertySupported(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty) callconv(.@"inline") bool {
         return self.vtable.IsPropertySupported(self, property);
     }
-    pub fn GetProperty(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty, bufferSize: usize, propertyData: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty, bufferSize: usize, propertyData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, property, bufferSize, propertyData);
     }
-    pub fn GetPropertySize(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty, bufferSize: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetPropertySize(self: *const IDXCoreAdapter, property: DXCoreAdapterProperty, bufferSize: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertySize(self, property, bufferSize);
     }
-    pub fn IsQueryStateSupported(self: *const IDXCoreAdapter, property: DXCoreAdapterState) callconv(.Inline) bool {
+    pub fn IsQueryStateSupported(self: *const IDXCoreAdapter, property: DXCoreAdapterState) callconv(.@"inline") bool {
         return self.vtable.IsQueryStateSupported(self, property);
     }
-    pub fn QueryState(self: *const IDXCoreAdapter, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, outputBufferSize: usize, outputBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryState(self: *const IDXCoreAdapter, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, outputBufferSize: usize, outputBuffer: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.QueryState(self, state, inputStateDetailsSize, inputStateDetails, outputBufferSize, outputBuffer);
     }
-    pub fn IsSetStateSupported(self: *const IDXCoreAdapter, property: DXCoreAdapterState) callconv(.Inline) bool {
+    pub fn IsSetStateSupported(self: *const IDXCoreAdapter, property: DXCoreAdapterState) callconv(.@"inline") bool {
         return self.vtable.IsSetStateSupported(self, property);
     }
-    pub fn SetState(self: *const IDXCoreAdapter, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, inputDataSize: usize, inputData: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetState(self: *const IDXCoreAdapter, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, inputDataSize: usize, inputData: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetState(self, state, inputStateDetailsSize, inputStateDetails, inputDataSize, inputData);
     }
-    pub fn GetFactory(self: *const IDXCoreAdapter, riid: ?*const Guid, ppvFactory: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFactory(self: *const IDXCoreAdapter, riid: ?*const Guid, ppvFactory: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetFactory(self, riid, ppvFactory);
     }
 };
@@ -240,22 +240,22 @@ pub const IDXCoreAdapterList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAdapter(self: *const IDXCoreAdapterList, index: u32, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAdapter(self: *const IDXCoreAdapterList, index: u32, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetAdapter(self, index, riid, ppvAdapter);
     }
-    pub fn GetAdapterCount(self: *const IDXCoreAdapterList) callconv(.Inline) u32 {
+    pub fn GetAdapterCount(self: *const IDXCoreAdapterList) callconv(.@"inline") u32 {
         return self.vtable.GetAdapterCount(self);
     }
-    pub fn IsStale(self: *const IDXCoreAdapterList) callconv(.Inline) bool {
+    pub fn IsStale(self: *const IDXCoreAdapterList) callconv(.@"inline") bool {
         return self.vtable.IsStale(self);
     }
-    pub fn GetFactory(self: *const IDXCoreAdapterList, riid: ?*const Guid, ppvFactory: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFactory(self: *const IDXCoreAdapterList, riid: ?*const Guid, ppvFactory: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetFactory(self, riid, ppvFactory);
     }
-    pub fn Sort(self: *const IDXCoreAdapterList, numPreferences: u32, preferences: [*]const DXCoreAdapterPreference) callconv(.Inline) HRESULT {
+    pub fn Sort(self: *const IDXCoreAdapterList, numPreferences: u32, preferences: [*]const DXCoreAdapterPreference) callconv(.@"inline") HRESULT {
         return self.vtable.Sort(self, numPreferences, preferences);
     }
-    pub fn IsAdapterPreferenceSupported(self: *const IDXCoreAdapterList, preference: DXCoreAdapterPreference) callconv(.Inline) bool {
+    pub fn IsAdapterPreferenceSupported(self: *const IDXCoreAdapterList, preference: DXCoreAdapterPreference) callconv(.@"inline") bool {
         return self.vtable.IsAdapterPreferenceSupported(self, preference);
     }
 };
@@ -297,19 +297,19 @@ pub const IDXCoreAdapterFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateAdapterList(self: *const IDXCoreAdapterFactory, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateAdapterList(self: *const IDXCoreAdapterFactory, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAdapterList(self, numAttributes, filterAttributes, riid, ppvAdapterList);
     }
-    pub fn GetAdapterByLuid(self: *const IDXCoreAdapterFactory, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAdapterByLuid(self: *const IDXCoreAdapterFactory, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetAdapterByLuid(self, adapterLUID, riid, ppvAdapter);
     }
-    pub fn IsNotificationTypeSupported(self: *const IDXCoreAdapterFactory, notificationType: DXCoreNotificationType) callconv(.Inline) bool {
+    pub fn IsNotificationTypeSupported(self: *const IDXCoreAdapterFactory, notificationType: DXCoreNotificationType) callconv(.@"inline") bool {
         return self.vtable.IsNotificationTypeSupported(self, notificationType);
     }
-    pub fn RegisterEventNotification(self: *const IDXCoreAdapterFactory, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RegisterEventNotification(self: *const IDXCoreAdapterFactory, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterEventNotification(self, dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
     }
-    pub fn UnregisterEventNotification(self: *const IDXCoreAdapterFactory, eventCookie: u32) callconv(.Inline) HRESULT {
+    pub fn UnregisterEventNotification(self: *const IDXCoreAdapterFactory, eventCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterEventNotification(self, eventCookie);
     }
 };

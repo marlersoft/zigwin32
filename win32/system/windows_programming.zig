@@ -1033,19 +1033,19 @@ pub const ICameraUIControlEventCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStartupComplete(self: *const ICameraUIControlEventCallback) callconv(.Inline) void {
+    pub fn OnStartupComplete(self: *const ICameraUIControlEventCallback) callconv(.@"inline") void {
         return self.vtable.OnStartupComplete(self);
     }
-    pub fn OnSuspendComplete(self: *const ICameraUIControlEventCallback) callconv(.Inline) void {
+    pub fn OnSuspendComplete(self: *const ICameraUIControlEventCallback) callconv(.@"inline") void {
         return self.vtable.OnSuspendComplete(self);
     }
-    pub fn OnItemCaptured(self: *const ICameraUIControlEventCallback, pszPath: ?[*:0]const u16) callconv(.Inline) void {
+    pub fn OnItemCaptured(self: *const ICameraUIControlEventCallback, pszPath: ?[*:0]const u16) callconv(.@"inline") void {
         return self.vtable.OnItemCaptured(self, pszPath);
     }
-    pub fn OnItemDeleted(self: *const ICameraUIControlEventCallback, pszPath: ?[*:0]const u16) callconv(.Inline) void {
+    pub fn OnItemDeleted(self: *const ICameraUIControlEventCallback, pszPath: ?[*:0]const u16) callconv(.@"inline") void {
         return self.vtable.OnItemDeleted(self, pszPath);
     }
-    pub fn OnClosed(self: *const ICameraUIControlEventCallback) callconv(.Inline) void {
+    pub fn OnClosed(self: *const ICameraUIControlEventCallback) callconv(.@"inline") void {
         return self.vtable.OnClosed(self);
     }
 };
@@ -1096,28 +1096,28 @@ pub const ICameraUIControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Show(self: *const ICameraUIControl, pWindow: ?*IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) callconv(.Inline) HRESULT {
+    pub fn Show(self: *const ICameraUIControl, pWindow: ?*IUnknown, mode: CameraUIControlMode, selectionMode: CameraUIControlLinearSelectionMode, captureMode: CameraUIControlCaptureMode, photoFormat: CameraUIControlPhotoFormat, videoFormat: CameraUIControlVideoFormat, bHasCloseButton: BOOL, pEventCallback: ?*ICameraUIControlEventCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self, pWindow, mode, selectionMode, captureMode, photoFormat, videoFormat, bHasCloseButton, pEventCallback);
     }
-    pub fn Close(self: *const ICameraUIControl) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ICameraUIControl) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn Suspend(self: *const ICameraUIControl, pbDeferralRequired: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn Suspend(self: *const ICameraUIControl, pbDeferralRequired: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Suspend(self, pbDeferralRequired);
     }
-    pub fn Resume(self: *const ICameraUIControl) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const ICameraUIControl) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn GetCurrentViewType(self: *const ICameraUIControl, pViewType: ?*CameraUIControlViewType) callconv(.Inline) HRESULT {
+    pub fn GetCurrentViewType(self: *const ICameraUIControl, pViewType: ?*CameraUIControlViewType) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentViewType(self, pViewType);
     }
-    pub fn GetActiveItem(self: *const ICameraUIControl, pbstrActiveItemPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetActiveItem(self: *const ICameraUIControl, pbstrActiveItemPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetActiveItem(self, pbstrActiveItemPath);
     }
-    pub fn GetSelectedItems(self: *const ICameraUIControl, ppSelectedItemPaths: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn GetSelectedItems(self: *const ICameraUIControl, ppSelectedItemPaths: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectedItems(self, ppSelectedItemPaths);
     }
-    pub fn RemoveCapturedItem(self: *const ICameraUIControl, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RemoveCapturedItem(self: *const ICameraUIControl, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveCapturedItem(self, pszPath);
     }
 };
@@ -1156,19 +1156,19 @@ pub const IEditionUpgradeHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CanUpgrade(self: *const IEditionUpgradeHelper, isAllowed: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn CanUpgrade(self: *const IEditionUpgradeHelper, isAllowed: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CanUpgrade(self, isAllowed);
     }
-    pub fn UpdateOperatingSystem(self: *const IEditionUpgradeHelper, contentId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn UpdateOperatingSystem(self: *const IEditionUpgradeHelper, contentId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOperatingSystem(self, contentId);
     }
-    pub fn ShowProductKeyUI(self: *const IEditionUpgradeHelper) callconv(.Inline) HRESULT {
+    pub fn ShowProductKeyUI(self: *const IEditionUpgradeHelper) callconv(.@"inline") HRESULT {
         return self.vtable.ShowProductKeyUI(self);
     }
-    pub fn GetOsProductContentId(self: *const IEditionUpgradeHelper, contentId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetOsProductContentId(self: *const IEditionUpgradeHelper, contentId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetOsProductContentId(self, contentId);
     }
-    pub fn GetGenuineLocalStatus(self: *const IEditionUpgradeHelper, isGenuine: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetGenuineLocalStatus(self: *const IEditionUpgradeHelper, isGenuine: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetGenuineLocalStatus(self, isGenuine);
     }
 };
@@ -1185,7 +1185,7 @@ pub const IWindowsLockModeHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSMode(self: *const IWindowsLockModeHelper, isSmode: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetSMode(self: *const IWindowsLockModeHelper, isSmode: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetSMode(self, isSmode);
     }
 };
@@ -1212,16 +1212,16 @@ pub const IEditionUpgradeBroker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitializeParentWindow(self: *const IEditionUpgradeBroker, parentHandle: u32) callconv(.Inline) HRESULT {
+    pub fn InitializeParentWindow(self: *const IEditionUpgradeBroker, parentHandle: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeParentWindow(self, parentHandle);
     }
-    pub fn UpdateOperatingSystem(self: *const IEditionUpgradeBroker, parameter: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn UpdateOperatingSystem(self: *const IEditionUpgradeBroker, parameter: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOperatingSystem(self, parameter);
     }
-    pub fn ShowProductKeyUI(self: *const IEditionUpgradeBroker) callconv(.Inline) HRESULT {
+    pub fn ShowProductKeyUI(self: *const IEditionUpgradeBroker) callconv(.@"inline") HRESULT {
         return self.vtable.ShowProductKeyUI(self);
     }
-    pub fn CanUpgrade(self: *const IEditionUpgradeBroker) callconv(.Inline) HRESULT {
+    pub fn CanUpgrade(self: *const IEditionUpgradeBroker) callconv(.@"inline") HRESULT {
         return self.vtable.CanUpgrade(self);
     }
 };
@@ -1238,7 +1238,7 @@ pub const IContainerActivationHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CanActivateClientVM(self: *const IContainerActivationHelper, isAllowed: ?*i16) callconv(.Inline) HRESULT {
+    pub fn CanActivateClientVM(self: *const IContainerActivationHelper, isAllowed: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.CanActivateClientVM(self, isAllowed);
     }
 };
@@ -1259,7 +1259,7 @@ pub const IClipServiceNotificationHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowToast(self: *const IClipServiceNotificationHelper, titleText: ?BSTR, bodyText: ?BSTR, packageName: ?BSTR, appId: ?BSTR, launchCommand: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ShowToast(self: *const IClipServiceNotificationHelper, titleText: ?BSTR, bodyText: ?BSTR, packageName: ?BSTR, appId: ?BSTR, launchCommand: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ShowToast(self, titleText, bodyText, packageName, appId, launchCommand);
     }
 };
@@ -1760,7 +1760,7 @@ pub const IDefaultBrowserSyncSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsEnabled(self: *const IDefaultBrowserSyncSettings) callconv(.Inline) BOOL {
+    pub fn IsEnabled(self: *const IDefaultBrowserSyncSettings) callconv(.@"inline") BOOL {
         return self.vtable.IsEnabled(self);
     }
 };
@@ -1791,7 +1791,7 @@ pub const IDeleteBrowsingHistory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DeleteBrowsingHistory(self: *const IDeleteBrowsingHistory, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteBrowsingHistory(self: *const IDeleteBrowsingHistory, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteBrowsingHistory(self, dwFlags);
     }
 };

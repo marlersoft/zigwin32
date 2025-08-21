@@ -55,13 +55,13 @@ pub const IDirect3DDevice9On12 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetD3D12Device(self: *const IDirect3DDevice9On12, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetD3D12Device(self: *const IDirect3DDevice9On12, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetD3D12Device(self, riid, ppvDevice);
     }
-    pub fn UnwrapUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn UnwrapUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.UnwrapUnderlyingResource(self, pResource, pCommandQueue, riid, ppvResource12);
     }
-    pub fn ReturnUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, NumSync: u32, pSignalValues: ?*u64, ppFences: ?*?*ID3D12Fence) callconv(.Inline) HRESULT {
+    pub fn ReturnUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, NumSync: u32, pSignalValues: ?*u64, ppFences: ?*?*ID3D12Fence) callconv(.@"inline") HRESULT {
         return self.vtable.ReturnUnderlyingResource(self, pResource, NumSync, pSignalValues, ppFences);
     }
 };

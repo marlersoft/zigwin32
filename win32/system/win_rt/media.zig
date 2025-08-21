@@ -22,7 +22,7 @@ pub const IAudioFrameNative = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetData(self: *const IAudioFrameNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const IAudioFrameNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, riid, ppv);
     }
 };
@@ -46,10 +46,10 @@ pub const IVideoFrameNative = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetData(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, riid, ppv);
     }
-    pub fn GetDevice(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IVideoFrameNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, riid, ppv);
     }
 };
@@ -70,7 +70,7 @@ pub const IAudioFrameNativeFactory = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateFromMFSample(self: *const IAudioFrameNativeFactory, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFromMFSample(self: *const IAudioFrameNativeFactory, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFromMFSample(self, data, forceReadOnly, riid, ppv);
     }
 };
@@ -96,7 +96,7 @@ pub const IVideoFrameNativeFactory = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateFromMFSample(self: *const IVideoFrameNativeFactory, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFromMFSample(self: *const IVideoFrameNativeFactory, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFromMFSample(self, data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
     }
 };

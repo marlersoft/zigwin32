@@ -224,25 +224,25 @@ pub const IDirectManipulationManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Activate(self: *const IDirectManipulationManager, window: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IDirectManipulationManager, window: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, window);
     }
-    pub fn Deactivate(self: *const IDirectManipulationManager, window: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Deactivate(self: *const IDirectManipulationManager, window: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Deactivate(self, window);
     }
-    pub fn RegisterHitTestTarget(self: *const IDirectManipulationManager, window: ?HWND, hitTestWindow: ?HWND, @"type": DIRECTMANIPULATION_HITTEST_TYPE) callconv(.Inline) HRESULT {
+    pub fn RegisterHitTestTarget(self: *const IDirectManipulationManager, window: ?HWND, hitTestWindow: ?HWND, @"type": DIRECTMANIPULATION_HITTEST_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterHitTestTarget(self, window, hitTestWindow, @"type");
     }
-    pub fn ProcessInput(self: *const IDirectManipulationManager, message: ?*const MSG, handled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn ProcessInput(self: *const IDirectManipulationManager, message: ?*const MSG, handled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessInput(self, message, handled);
     }
-    pub fn GetUpdateManager(self: *const IDirectManipulationManager, riid: ?*const Guid, object: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetUpdateManager(self: *const IDirectManipulationManager, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetUpdateManager(self, riid, object);
     }
-    pub fn CreateViewport(self: *const IDirectManipulationManager, frameInfo: ?*IDirectManipulationFrameInfoProvider, window: ?HWND, riid: ?*const Guid, object: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateViewport(self: *const IDirectManipulationManager, frameInfo: ?*IDirectManipulationFrameInfoProvider, window: ?HWND, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateViewport(self, frameInfo, window, riid, object);
     }
-    pub fn CreateContent(self: *const IDirectManipulationManager, frameInfo: ?*IDirectManipulationFrameInfoProvider, clsid: ?*const Guid, riid: ?*const Guid, object: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateContent(self: *const IDirectManipulationManager, frameInfo: ?*IDirectManipulationFrameInfoProvider, clsid: ?*const Guid, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateContent(self, frameInfo, clsid, riid, object);
     }
 };
@@ -263,7 +263,7 @@ pub const IDirectManipulationManager2 = extern union {
     vtable: *const VTable,
     IDirectManipulationManager: IDirectManipulationManager,
     IUnknown: IUnknown,
-    pub fn CreateBehavior(self: *const IDirectManipulationManager2, clsid: ?*const Guid, riid: ?*const Guid, object: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateBehavior(self: *const IDirectManipulationManager2, clsid: ?*const Guid, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBehavior(self, clsid, riid, object);
     }
 };
@@ -285,7 +285,7 @@ pub const IDirectManipulationManager3 = extern union {
     IDirectManipulationManager2: IDirectManipulationManager2,
     IDirectManipulationManager: IDirectManipulationManager,
     IUnknown: IUnknown,
-    pub fn GetService(self: *const IDirectManipulationManager3, clsid: ?*const Guid, riid: ?*const Guid, object: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetService(self: *const IDirectManipulationManager3, clsid: ?*const Guid, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetService(self, clsid, riid, object);
     }
 };
@@ -418,88 +418,88 @@ pub const IDirectManipulationViewport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Enable(self: *const IDirectManipulationViewport) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const IDirectManipulationViewport) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self);
     }
-    pub fn Disable(self: *const IDirectManipulationViewport) callconv(.Inline) HRESULT {
+    pub fn Disable(self: *const IDirectManipulationViewport) callconv(.@"inline") HRESULT {
         return self.vtable.Disable(self);
     }
-    pub fn SetContact(self: *const IDirectManipulationViewport, pointerId: u32) callconv(.Inline) HRESULT {
+    pub fn SetContact(self: *const IDirectManipulationViewport, pointerId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetContact(self, pointerId);
     }
-    pub fn ReleaseContact(self: *const IDirectManipulationViewport, pointerId: u32) callconv(.Inline) HRESULT {
+    pub fn ReleaseContact(self: *const IDirectManipulationViewport, pointerId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseContact(self, pointerId);
     }
-    pub fn ReleaseAllContacts(self: *const IDirectManipulationViewport) callconv(.Inline) HRESULT {
+    pub fn ReleaseAllContacts(self: *const IDirectManipulationViewport) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseAllContacts(self);
     }
-    pub fn GetStatus(self: *const IDirectManipulationViewport, status: ?*DIRECTMANIPULATION_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDirectManipulationViewport, status: ?*DIRECTMANIPULATION_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, status);
     }
-    pub fn GetTag(self: *const IDirectManipulationViewport, riid: ?*const Guid, object: ?**anyopaque, id: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTag(self: *const IDirectManipulationViewport, riid: ?*const Guid, object: ?**anyopaque, id: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTag(self, riid, object, id);
     }
-    pub fn SetTag(self: *const IDirectManipulationViewport, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+    pub fn SetTag(self: *const IDirectManipulationViewport, object: ?*IUnknown, id: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTag(self, object, id);
     }
-    pub fn GetViewportRect(self: *const IDirectManipulationViewport, viewport: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetViewportRect(self: *const IDirectManipulationViewport, viewport: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewportRect(self, viewport);
     }
-    pub fn SetViewportRect(self: *const IDirectManipulationViewport, viewport: ?*const RECT) callconv(.Inline) HRESULT {
+    pub fn SetViewportRect(self: *const IDirectManipulationViewport, viewport: ?*const RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetViewportRect(self, viewport);
     }
-    pub fn ZoomToRect(self: *const IDirectManipulationViewport, left: f32, top: f32, right: f32, bottom: f32, animate: BOOL) callconv(.Inline) HRESULT {
+    pub fn ZoomToRect(self: *const IDirectManipulationViewport, left: f32, top: f32, right: f32, bottom: f32, animate: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ZoomToRect(self, left, top, right, bottom, animate);
     }
-    pub fn SetViewportTransform(self: *const IDirectManipulationViewport, matrix: [*]const f32, pointCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetViewportTransform(self: *const IDirectManipulationViewport, matrix: [*]const f32, pointCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetViewportTransform(self, matrix, pointCount);
     }
-    pub fn SyncDisplayTransform(self: *const IDirectManipulationViewport, matrix: [*]const f32, pointCount: u32) callconv(.Inline) HRESULT {
+    pub fn SyncDisplayTransform(self: *const IDirectManipulationViewport, matrix: [*]const f32, pointCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SyncDisplayTransform(self, matrix, pointCount);
     }
-    pub fn GetPrimaryContent(self: *const IDirectManipulationViewport, riid: ?*const Guid, object: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPrimaryContent(self: *const IDirectManipulationViewport, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrimaryContent(self, riid, object);
     }
-    pub fn AddContent(self: *const IDirectManipulationViewport, content: ?*IDirectManipulationContent) callconv(.Inline) HRESULT {
+    pub fn AddContent(self: *const IDirectManipulationViewport, content: ?*IDirectManipulationContent) callconv(.@"inline") HRESULT {
         return self.vtable.AddContent(self, content);
     }
-    pub fn RemoveContent(self: *const IDirectManipulationViewport, content: ?*IDirectManipulationContent) callconv(.Inline) HRESULT {
+    pub fn RemoveContent(self: *const IDirectManipulationViewport, content: ?*IDirectManipulationContent) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveContent(self, content);
     }
-    pub fn SetViewportOptions(self: *const IDirectManipulationViewport, options: DIRECTMANIPULATION_VIEWPORT_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn SetViewportOptions(self: *const IDirectManipulationViewport, options: DIRECTMANIPULATION_VIEWPORT_OPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.SetViewportOptions(self, options);
     }
-    pub fn AddConfiguration(self: *const IDirectManipulationViewport, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.Inline) HRESULT {
+    pub fn AddConfiguration(self: *const IDirectManipulationViewport, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.@"inline") HRESULT {
         return self.vtable.AddConfiguration(self, configuration);
     }
-    pub fn RemoveConfiguration(self: *const IDirectManipulationViewport, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.Inline) HRESULT {
+    pub fn RemoveConfiguration(self: *const IDirectManipulationViewport, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveConfiguration(self, configuration);
     }
-    pub fn ActivateConfiguration(self: *const IDirectManipulationViewport, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.Inline) HRESULT {
+    pub fn ActivateConfiguration(self: *const IDirectManipulationViewport, configuration: DIRECTMANIPULATION_CONFIGURATION) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateConfiguration(self, configuration);
     }
-    pub fn SetManualGesture(self: *const IDirectManipulationViewport, configuration: DIRECTMANIPULATION_GESTURE_CONFIGURATION) callconv(.Inline) HRESULT {
+    pub fn SetManualGesture(self: *const IDirectManipulationViewport, configuration: DIRECTMANIPULATION_GESTURE_CONFIGURATION) callconv(.@"inline") HRESULT {
         return self.vtable.SetManualGesture(self, configuration);
     }
-    pub fn SetChaining(self: *const IDirectManipulationViewport, enabledTypes: DIRECTMANIPULATION_MOTION_TYPES) callconv(.Inline) HRESULT {
+    pub fn SetChaining(self: *const IDirectManipulationViewport, enabledTypes: DIRECTMANIPULATION_MOTION_TYPES) callconv(.@"inline") HRESULT {
         return self.vtable.SetChaining(self, enabledTypes);
     }
-    pub fn AddEventHandler(self: *const IDirectManipulationViewport, window: ?HWND, eventHandler: ?*IDirectManipulationViewportEventHandler, cookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AddEventHandler(self: *const IDirectManipulationViewport, window: ?HWND, eventHandler: ?*IDirectManipulationViewportEventHandler, cookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddEventHandler(self, window, eventHandler, cookie);
     }
-    pub fn RemoveEventHandler(self: *const IDirectManipulationViewport, cookie: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveEventHandler(self: *const IDirectManipulationViewport, cookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveEventHandler(self, cookie);
     }
-    pub fn SetInputMode(self: *const IDirectManipulationViewport, mode: DIRECTMANIPULATION_INPUT_MODE) callconv(.Inline) HRESULT {
+    pub fn SetInputMode(self: *const IDirectManipulationViewport, mode: DIRECTMANIPULATION_INPUT_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetInputMode(self, mode);
     }
-    pub fn SetUpdateMode(self: *const IDirectManipulationViewport, mode: DIRECTMANIPULATION_INPUT_MODE) callconv(.Inline) HRESULT {
+    pub fn SetUpdateMode(self: *const IDirectManipulationViewport, mode: DIRECTMANIPULATION_INPUT_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetUpdateMode(self, mode);
     }
-    pub fn Stop(self: *const IDirectManipulationViewport) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IDirectManipulationViewport) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn Abandon(self: *const IDirectManipulationViewport) callconv(.Inline) HRESULT {
+    pub fn Abandon(self: *const IDirectManipulationViewport) callconv(.@"inline") HRESULT {
         return self.vtable.Abandon(self);
     }
 };
@@ -526,13 +526,13 @@ pub const IDirectManipulationViewport2 = extern union {
     vtable: *const VTable,
     IDirectManipulationViewport: IDirectManipulationViewport,
     IUnknown: IUnknown,
-    pub fn AddBehavior(self: *const IDirectManipulationViewport2, behavior: ?*IUnknown, cookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AddBehavior(self: *const IDirectManipulationViewport2, behavior: ?*IUnknown, cookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddBehavior(self, behavior, cookie);
     }
-    pub fn RemoveBehavior(self: *const IDirectManipulationViewport2, cookie: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveBehavior(self: *const IDirectManipulationViewport2, cookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveBehavior(self, cookie);
     }
-    pub fn RemoveAllBehaviors(self: *const IDirectManipulationViewport2) callconv(.Inline) HRESULT {
+    pub fn RemoveAllBehaviors(self: *const IDirectManipulationViewport2) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAllBehaviors(self);
     }
 };
@@ -561,13 +561,13 @@ pub const IDirectManipulationViewportEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnViewportStatusChanged(self: *const IDirectManipulationViewportEventHandler, viewport: ?*IDirectManipulationViewport, current: DIRECTMANIPULATION_STATUS, previous: DIRECTMANIPULATION_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnViewportStatusChanged(self: *const IDirectManipulationViewportEventHandler, viewport: ?*IDirectManipulationViewport, current: DIRECTMANIPULATION_STATUS, previous: DIRECTMANIPULATION_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnViewportStatusChanged(self, viewport, current, previous);
     }
-    pub fn OnViewportUpdated(self: *const IDirectManipulationViewportEventHandler, viewport: ?*IDirectManipulationViewport) callconv(.Inline) HRESULT {
+    pub fn OnViewportUpdated(self: *const IDirectManipulationViewportEventHandler, viewport: ?*IDirectManipulationViewport) callconv(.@"inline") HRESULT {
         return self.vtable.OnViewportUpdated(self, viewport);
     }
-    pub fn OnContentUpdated(self: *const IDirectManipulationViewportEventHandler, viewport: ?*IDirectManipulationViewport, content: ?*IDirectManipulationContent) callconv(.Inline) HRESULT {
+    pub fn OnContentUpdated(self: *const IDirectManipulationViewportEventHandler, viewport: ?*IDirectManipulationViewport, content: ?*IDirectManipulationContent) callconv(.@"inline") HRESULT {
         return self.vtable.OnContentUpdated(self, viewport, content);
     }
 };
@@ -620,28 +620,28 @@ pub const IDirectManipulationContent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetContentRect(self: *const IDirectManipulationContent, contentSize: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetContentRect(self: *const IDirectManipulationContent, contentSize: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentRect(self, contentSize);
     }
-    pub fn SetContentRect(self: *const IDirectManipulationContent, contentSize: ?*const RECT) callconv(.Inline) HRESULT {
+    pub fn SetContentRect(self: *const IDirectManipulationContent, contentSize: ?*const RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetContentRect(self, contentSize);
     }
-    pub fn GetViewport(self: *const IDirectManipulationContent, riid: ?*const Guid, object: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetViewport(self: *const IDirectManipulationContent, riid: ?*const Guid, object: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewport(self, riid, object);
     }
-    pub fn GetTag(self: *const IDirectManipulationContent, riid: ?*const Guid, object: ?**anyopaque, id: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTag(self: *const IDirectManipulationContent, riid: ?*const Guid, object: ?**anyopaque, id: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTag(self, riid, object, id);
     }
-    pub fn SetTag(self: *const IDirectManipulationContent, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+    pub fn SetTag(self: *const IDirectManipulationContent, object: ?*IUnknown, id: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTag(self, object, id);
     }
-    pub fn GetOutputTransform(self: *const IDirectManipulationContent, matrix: [*]f32, pointCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetOutputTransform(self: *const IDirectManipulationContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputTransform(self, matrix, pointCount);
     }
-    pub fn GetContentTransform(self: *const IDirectManipulationContent, matrix: [*]f32, pointCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetContentTransform(self: *const IDirectManipulationContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentTransform(self, matrix, pointCount);
     }
-    pub fn SyncContentTransform(self: *const IDirectManipulationContent, matrix: [*]const f32, pointCount: u32) callconv(.Inline) HRESULT {
+    pub fn SyncContentTransform(self: *const IDirectManipulationContent, matrix: [*]const f32, pointCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SyncContentTransform(self, matrix, pointCount);
     }
 };
@@ -701,31 +701,31 @@ pub const IDirectManipulationPrimaryContent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSnapInterval(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, interval: f32, offset: f32) callconv(.Inline) HRESULT {
+    pub fn SetSnapInterval(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, interval: f32, offset: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSnapInterval(self, motion, interval, offset);
     }
-    pub fn SetSnapPoints(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, points: ?[*]const f32, pointCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetSnapPoints(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, points: ?[*]const f32, pointCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSnapPoints(self, motion, points, pointCount);
     }
-    pub fn SetSnapType(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, @"type": DIRECTMANIPULATION_SNAPPOINT_TYPE) callconv(.Inline) HRESULT {
+    pub fn SetSnapType(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, @"type": DIRECTMANIPULATION_SNAPPOINT_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.SetSnapType(self, motion, @"type");
     }
-    pub fn SetSnapCoordinate(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE, origin: f32) callconv(.Inline) HRESULT {
+    pub fn SetSnapCoordinate(self: *const IDirectManipulationPrimaryContent, motion: DIRECTMANIPULATION_MOTION_TYPES, coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE, origin: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSnapCoordinate(self, motion, coordinate, origin);
     }
-    pub fn SetZoomBoundaries(self: *const IDirectManipulationPrimaryContent, zoomMinimum: f32, zoomMaximum: f32) callconv(.Inline) HRESULT {
+    pub fn SetZoomBoundaries(self: *const IDirectManipulationPrimaryContent, zoomMinimum: f32, zoomMaximum: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetZoomBoundaries(self, zoomMinimum, zoomMaximum);
     }
-    pub fn SetHorizontalAlignment(self: *const IDirectManipulationPrimaryContent, alignment: DIRECTMANIPULATION_HORIZONTALALIGNMENT) callconv(.Inline) HRESULT {
+    pub fn SetHorizontalAlignment(self: *const IDirectManipulationPrimaryContent, alignment: DIRECTMANIPULATION_HORIZONTALALIGNMENT) callconv(.@"inline") HRESULT {
         return self.vtable.SetHorizontalAlignment(self, alignment);
     }
-    pub fn SetVerticalAlignment(self: *const IDirectManipulationPrimaryContent, alignment: DIRECTMANIPULATION_VERTICALALIGNMENT) callconv(.Inline) HRESULT {
+    pub fn SetVerticalAlignment(self: *const IDirectManipulationPrimaryContent, alignment: DIRECTMANIPULATION_VERTICALALIGNMENT) callconv(.@"inline") HRESULT {
         return self.vtable.SetVerticalAlignment(self, alignment);
     }
-    pub fn GetInertiaEndTransform(self: *const IDirectManipulationPrimaryContent, matrix: [*]f32, pointCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetInertiaEndTransform(self: *const IDirectManipulationPrimaryContent, matrix: [*]f32, pointCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetInertiaEndTransform(self, matrix, pointCount);
     }
-    pub fn GetCenterPoint(self: *const IDirectManipulationPrimaryContent, centerX: ?*f32, centerY: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetCenterPoint(self: *const IDirectManipulationPrimaryContent, centerX: ?*f32, centerY: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCenterPoint(self, centerX, centerY);
     }
 };
@@ -760,7 +760,7 @@ pub const IDirectManipulationDragDropEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnDragDropStatusChange(self: *const IDirectManipulationDragDropEventHandler, viewport: ?*IDirectManipulationViewport2, current: DIRECTMANIPULATION_DRAG_DROP_STATUS, previous: DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnDragDropStatusChange(self: *const IDirectManipulationDragDropEventHandler, viewport: ?*IDirectManipulationViewport2, current: DIRECTMANIPULATION_DRAG_DROP_STATUS, previous: DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnDragDropStatusChange(self, viewport, current, previous);
     }
 };
@@ -795,10 +795,10 @@ pub const IDirectManipulationDragDropBehavior = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetConfiguration(self: *const IDirectManipulationDragDropBehavior, configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION) callconv(.Inline) HRESULT {
+    pub fn SetConfiguration(self: *const IDirectManipulationDragDropBehavior, configuration: DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION) callconv(.@"inline") HRESULT {
         return self.vtable.SetConfiguration(self, configuration);
     }
-    pub fn GetStatus(self: *const IDirectManipulationDragDropBehavior, status: ?*DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDirectManipulationDragDropBehavior, status: ?*DIRECTMANIPULATION_DRAG_DROP_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, status);
     }
 };
@@ -834,7 +834,7 @@ pub const IDirectManipulationInteractionEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnInteraction(self: *const IDirectManipulationInteractionEventHandler, viewport: ?*IDirectManipulationViewport2, interaction: DIRECTMANIPULATION_INTERACTION_TYPE) callconv(.Inline) HRESULT {
+    pub fn OnInteraction(self: *const IDirectManipulationInteractionEventHandler, viewport: ?*IDirectManipulationViewport2, interaction: DIRECTMANIPULATION_INTERACTION_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.OnInteraction(self, viewport, interaction);
     }
 };
@@ -854,7 +854,7 @@ pub const IDirectManipulationFrameInfoProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNextFrameInfo(self: *const IDirectManipulationFrameInfoProvider, time: ?*u64, processTime: ?*u64, compositionTime: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetNextFrameInfo(self: *const IDirectManipulationFrameInfoProvider, time: ?*u64, processTime: ?*u64, compositionTime: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextFrameInfo(self, time, processTime, compositionTime);
     }
 };
@@ -886,16 +886,16 @@ pub const IDirectManipulationCompositor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn AddContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.AddContent(self, content, device, parentVisual, childVisual);
     }
-    pub fn RemoveContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent) callconv(.Inline) HRESULT {
+    pub fn RemoveContent(self: *const IDirectManipulationCompositor, content: ?*IDirectManipulationContent) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveContent(self, content);
     }
-    pub fn SetUpdateManager(self: *const IDirectManipulationCompositor, updateManager: ?*IDirectManipulationUpdateManager) callconv(.Inline) HRESULT {
+    pub fn SetUpdateManager(self: *const IDirectManipulationCompositor, updateManager: ?*IDirectManipulationUpdateManager) callconv(.@"inline") HRESULT {
         return self.vtable.SetUpdateManager(self, updateManager);
     }
-    pub fn Flush(self: *const IDirectManipulationCompositor) callconv(.Inline) HRESULT {
+    pub fn Flush(self: *const IDirectManipulationCompositor) callconv(.@"inline") HRESULT {
         return self.vtable.Flush(self);
     }
 };
@@ -917,7 +917,7 @@ pub const IDirectManipulationCompositor2 = extern union {
     vtable: *const VTable,
     IDirectManipulationCompositor: IDirectManipulationCompositor,
     IUnknown: IUnknown,
-    pub fn AddContentWithCrossProcessChaining(self: *const IDirectManipulationCompositor2, content: ?*IDirectManipulationPrimaryContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn AddContentWithCrossProcessChaining(self: *const IDirectManipulationCompositor2, content: ?*IDirectManipulationPrimaryContent, device: ?*IUnknown, parentVisual: ?*IUnknown, childVisual: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.AddContentWithCrossProcessChaining(self, content, device, parentVisual, childVisual);
     }
 };
@@ -934,7 +934,7 @@ pub const IDirectManipulationUpdateHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Update(self: *const IDirectManipulationUpdateHandler) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IDirectManipulationUpdateHandler) callconv(.@"inline") HRESULT {
         return self.vtable.Update(self);
     }
 };
@@ -962,13 +962,13 @@ pub const IDirectManipulationUpdateManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, handle: ?HANDLE, eventHandler: ?*IDirectManipulationUpdateHandler, cookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RegisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, handle: ?HANDLE, eventHandler: ?*IDirectManipulationUpdateHandler, cookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterWaitHandleCallback(self, handle, eventHandler, cookie);
     }
-    pub fn UnregisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, cookie: u32) callconv(.Inline) HRESULT {
+    pub fn UnregisterWaitHandleCallback(self: *const IDirectManipulationUpdateManager, cookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterWaitHandleCallback(self, cookie);
     }
-    pub fn Update(self: *const IDirectManipulationUpdateManager, frameInfo: ?*IDirectManipulationFrameInfoProvider) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IDirectManipulationUpdateManager, frameInfo: ?*IDirectManipulationFrameInfoProvider) callconv(.@"inline") HRESULT {
         return self.vtable.Update(self, frameInfo);
     }
 };
@@ -996,7 +996,7 @@ pub const IDirectManipulationAutoScrollBehavior = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetConfiguration(self: *const IDirectManipulationAutoScrollBehavior, motionTypes: DIRECTMANIPULATION_MOTION_TYPES, scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION) callconv(.Inline) HRESULT {
+    pub fn SetConfiguration(self: *const IDirectManipulationAutoScrollBehavior, motionTypes: DIRECTMANIPULATION_MOTION_TYPES, scrollMotion: DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION) callconv(.@"inline") HRESULT {
         return self.vtable.SetConfiguration(self, motionTypes, scrollMotion);
     }
 };
@@ -1023,13 +1023,13 @@ pub const IDirectManipulationDeferContactService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DeferContact(self: *const IDirectManipulationDeferContactService, pointerId: u32, timeout: u32) callconv(.Inline) HRESULT {
+    pub fn DeferContact(self: *const IDirectManipulationDeferContactService, pointerId: u32, timeout: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeferContact(self, pointerId, timeout);
     }
-    pub fn CancelContact(self: *const IDirectManipulationDeferContactService, pointerId: u32) callconv(.Inline) HRESULT {
+    pub fn CancelContact(self: *const IDirectManipulationDeferContactService, pointerId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CancelContact(self, pointerId);
     }
-    pub fn CancelDeferral(self: *const IDirectManipulationDeferContactService, pointerId: u32) callconv(.Inline) HRESULT {
+    pub fn CancelDeferral(self: *const IDirectManipulationDeferContactService, pointerId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CancelDeferral(self, pointerId);
     }
 };

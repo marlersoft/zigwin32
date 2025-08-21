@@ -343,58 +343,58 @@ pub const INetDiagHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const INetDiagHelper, celt: u32, rgAttributes: [*]HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const INetDiagHelper, celt: u32, rgAttributes: [*]HELPER_ATTRIBUTE) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, celt, rgAttributes);
     }
-    pub fn GetDiagnosticsInfo(self: *const INetDiagHelper, ppInfo: ?*?*DiagnosticsInfo) callconv(.Inline) HRESULT {
+    pub fn GetDiagnosticsInfo(self: *const INetDiagHelper, ppInfo: ?*?*DiagnosticsInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetDiagnosticsInfo(self, ppInfo);
     }
-    pub fn GetKeyAttributes(self: *const INetDiagHelper, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
+    pub fn GetKeyAttributes(self: *const INetDiagHelper, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyAttributes(self, pcelt, pprgAttributes);
     }
-    pub fn LowHealth(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
+    pub fn LowHealth(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.LowHealth(self, pwszInstanceDescription, ppwszDescription, pDeferredTime, pStatus);
     }
-    pub fn HighUtilization(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
+    pub fn HighUtilization(self: *const INetDiagHelper, pwszInstanceDescription: ?[*:0]const u16, ppwszDescription: ?*?PWSTR, pDeferredTime: ?*i32, pStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.HighUtilization(self, pwszInstanceDescription, ppwszDescription, pDeferredTime, pStatus);
     }
-    pub fn GetLowerHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
+    pub fn GetLowerHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.@"inline") HRESULT {
         return self.vtable.GetLowerHypotheses(self, pcelt, pprgHypotheses);
     }
-    pub fn GetDownStreamHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
+    pub fn GetDownStreamHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.@"inline") HRESULT {
         return self.vtable.GetDownStreamHypotheses(self, pcelt, pprgHypotheses);
     }
-    pub fn GetHigherHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
+    pub fn GetHigherHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.@"inline") HRESULT {
         return self.vtable.GetHigherHypotheses(self, pcelt, pprgHypotheses);
     }
-    pub fn GetUpStreamHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.Inline) HRESULT {
+    pub fn GetUpStreamHypotheses(self: *const INetDiagHelper, pcelt: ?*u32, pprgHypotheses: [*]?*HYPOTHESIS) callconv(.@"inline") HRESULT {
         return self.vtable.GetUpStreamHypotheses(self, pcelt, pprgHypotheses);
     }
-    pub fn Repair(self: *const INetDiagHelper, pInfo: ?*RepairInfo, pDeferredTime: ?*i32, pStatus: ?*REPAIR_STATUS) callconv(.Inline) HRESULT {
+    pub fn Repair(self: *const INetDiagHelper, pInfo: ?*RepairInfo, pDeferredTime: ?*i32, pStatus: ?*REPAIR_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.Repair(self, pInfo, pDeferredTime, pStatus);
     }
-    pub fn Validate(self: *const INetDiagHelper, problem: PROBLEM_TYPE, pDeferredTime: ?*i32, pStatus: ?*REPAIR_STATUS) callconv(.Inline) HRESULT {
+    pub fn Validate(self: *const INetDiagHelper, problem: PROBLEM_TYPE, pDeferredTime: ?*i32, pStatus: ?*REPAIR_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.Validate(self, problem, pDeferredTime, pStatus);
     }
-    pub fn GetRepairInfo(self: *const INetDiagHelper, problem: PROBLEM_TYPE, pcelt: ?*u32, ppInfo: [*]?*RepairInfo) callconv(.Inline) HRESULT {
+    pub fn GetRepairInfo(self: *const INetDiagHelper, problem: PROBLEM_TYPE, pcelt: ?*u32, ppInfo: [*]?*RepairInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetRepairInfo(self, problem, pcelt, ppInfo);
     }
-    pub fn GetLifeTime(self: *const INetDiagHelper, pLifeTime: ?*LIFE_TIME) callconv(.Inline) HRESULT {
+    pub fn GetLifeTime(self: *const INetDiagHelper, pLifeTime: ?*LIFE_TIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetLifeTime(self, pLifeTime);
     }
-    pub fn SetLifeTime(self: *const INetDiagHelper, lifeTime: LIFE_TIME) callconv(.Inline) HRESULT {
+    pub fn SetLifeTime(self: *const INetDiagHelper, lifeTime: LIFE_TIME) callconv(.@"inline") HRESULT {
         return self.vtable.SetLifeTime(self, lifeTime);
     }
-    pub fn GetCacheTime(self: *const INetDiagHelper, pCacheTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetCacheTime(self: *const INetDiagHelper, pCacheTime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetCacheTime(self, pCacheTime);
     }
-    pub fn GetAttributes(self: *const INetDiagHelper, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
+    pub fn GetAttributes(self: *const INetDiagHelper, pcelt: ?*u32, pprgAttributes: [*]?*HELPER_ATTRIBUTE) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributes(self, pcelt, pprgAttributes);
     }
-    pub fn Cancel(self: *const INetDiagHelper) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const INetDiagHelper) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
-    pub fn Cleanup(self: *const INetDiagHelper) callconv(.Inline) HRESULT {
+    pub fn Cleanup(self: *const INetDiagHelper) callconv(.@"inline") HRESULT {
         return self.vtable.Cleanup(self);
     }
 };
@@ -418,7 +418,7 @@ pub const INetDiagHelperUtilFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateUtilityInstance(self: *const INetDiagHelperUtilFactory, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateUtilityInstance(self: *const INetDiagHelperUtilFactory, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateUtilityInstance(self, riid, ppvObject);
     }
 };
@@ -446,13 +446,13 @@ pub const INetDiagHelperEx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReconfirmLowHealth(self: *const INetDiagHelperEx, celt: u32, pResults: [*]HypothesisResult, ppwszUpdatedDescription: ?*?PWSTR, pUpdatedStatus: ?*DIAGNOSIS_STATUS) callconv(.Inline) HRESULT {
+    pub fn ReconfirmLowHealth(self: *const INetDiagHelperEx, celt: u32, pResults: [*]HypothesisResult, ppwszUpdatedDescription: ?*?PWSTR, pUpdatedStatus: ?*DIAGNOSIS_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.ReconfirmLowHealth(self, celt, pResults, ppwszUpdatedDescription, pUpdatedStatus);
     }
-    pub fn SetUtilities(self: *const INetDiagHelperEx, pUtilities: ?*INetDiagHelperUtilFactory) callconv(.Inline) HRESULT {
+    pub fn SetUtilities(self: *const INetDiagHelperEx, pUtilities: ?*INetDiagHelperUtilFactory) callconv(.@"inline") HRESULT {
         return self.vtable.SetUtilities(self, pUtilities);
     }
-    pub fn ReproduceFailure(self: *const INetDiagHelperEx) callconv(.Inline) HRESULT {
+    pub fn ReproduceFailure(self: *const INetDiagHelperEx) callconv(.@"inline") HRESULT {
         return self.vtable.ReproduceFailure(self);
     }
 };
@@ -471,7 +471,7 @@ pub const INetDiagHelperInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAttributeInfo(self: *const INetDiagHelperInfo, pcelt: ?*u32, pprgAttributeInfos: [*]?*HelperAttributeInfo) callconv(.Inline) HRESULT {
+    pub fn GetAttributeInfo(self: *const INetDiagHelperInfo, pcelt: ?*u32, pprgAttributeInfos: [*]?*HelperAttributeInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeInfo(self, pcelt, pprgAttributeInfos);
     }
 };
@@ -491,7 +491,7 @@ pub const INetDiagExtensibleHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ResolveAttributes(self: *const INetDiagExtensibleHelper, celt: u32, rgKeyAttributes: [*]HELPER_ATTRIBUTE, pcelt: ?*u32, prgMatchValues: [*]?*HELPER_ATTRIBUTE) callconv(.Inline) HRESULT {
+    pub fn ResolveAttributes(self: *const INetDiagExtensibleHelper, celt: u32, rgKeyAttributes: [*]HELPER_ATTRIBUTE, pcelt: ?*u32, prgMatchValues: [*]?*HELPER_ATTRIBUTE) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveAttributes(self, celt, rgKeyAttributes, pcelt, prgMatchValues);
     }
 };

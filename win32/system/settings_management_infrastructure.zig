@@ -172,13 +172,13 @@ pub const IItemEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Current(self: *const IItemEnumerator, Item: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Current(self: *const IItemEnumerator, Item: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Current(self, Item);
     }
-    pub fn MoveNext(self: *const IItemEnumerator, ItemValid: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IItemEnumerator, ItemValid: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, ItemValid);
     }
-    pub fn Reset(self: *const IItemEnumerator) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IItemEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -212,16 +212,16 @@ pub const ISettingsIdentity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttribute(self, Reserved, Name, Value);
     }
-    pub fn SetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAttribute(self: *const ISettingsIdentity, Reserved: ?*anyopaque, Name: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAttribute(self, Reserved, Name, Value);
     }
-    pub fn GetFlags(self: *const ISettingsIdentity, Flags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const ISettingsIdentity, Flags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlags(self, Flags);
     }
-    pub fn SetFlags(self: *const ISettingsIdentity, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn SetFlags(self: *const ISettingsIdentity, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFlags(self, Flags);
     }
 };
@@ -332,67 +332,67 @@ pub const ITargetInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTargetMode(self: *const ITargetInfo, TargetMode: ?*WcmTargetMode) callconv(.Inline) HRESULT {
+    pub fn GetTargetMode(self: *const ITargetInfo, TargetMode: ?*WcmTargetMode) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetMode(self, TargetMode);
     }
-    pub fn SetTargetMode(self: *const ITargetInfo, TargetMode: WcmTargetMode) callconv(.Inline) HRESULT {
+    pub fn SetTargetMode(self: *const ITargetInfo, TargetMode: WcmTargetMode) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetMode(self, TargetMode);
     }
-    pub fn GetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTemporaryStoreLocation(self, TemporaryStoreLocation);
     }
-    pub fn SetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTemporaryStoreLocation(self: *const ITargetInfo, TemporaryStoreLocation: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTemporaryStoreLocation(self, TemporaryStoreLocation);
     }
-    pub fn GetTargetID(self: *const ITargetInfo, TargetID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetTargetID(self: *const ITargetInfo, TargetID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetID(self, TargetID);
     }
-    pub fn SetTargetID(self: *const ITargetInfo, TargetID: Guid) callconv(.Inline) HRESULT {
+    pub fn SetTargetID(self: *const ITargetInfo, TargetID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetID(self, TargetID);
     }
-    pub fn GetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetProcessorArchitecture(self, ProcessorArchitecture);
     }
-    pub fn SetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTargetProcessorArchitecture(self: *const ITargetInfo, ProcessorArchitecture: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetProcessorArchitecture(self, ProcessorArchitecture);
     }
-    pub fn GetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, Offline, Property, Value);
     }
-    pub fn SetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const ITargetInfo, Offline: BOOL, Property: ?[*:0]const u16, Value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, Offline, Property, Value);
     }
-    pub fn GetEnumerator(self: *const ITargetInfo, Enumerator: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const ITargetInfo, Enumerator: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnumerator(self, Enumerator);
     }
-    pub fn ExpandTarget(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExpandTarget(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExpandTarget(self, Offline, Location, ExpandedLocation);
     }
-    pub fn ExpandTargetPath(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExpandTargetPath(self: *const ITargetInfo, Offline: BOOL, Location: ?[*:0]const u16, ExpandedLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExpandTargetPath(self, Offline, Location, ExpandedLocation);
     }
-    pub fn SetModulePath(self: *const ITargetInfo, Module: ?[*:0]const u16, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetModulePath(self: *const ITargetInfo, Module: ?[*:0]const u16, Path: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetModulePath(self, Module, Path);
     }
-    pub fn LoadModule(self: *const ITargetInfo, Module: ?[*:0]const u16, ModuleHandle: ?*?HINSTANCE) callconv(.Inline) HRESULT {
+    pub fn LoadModule(self: *const ITargetInfo, Module: ?[*:0]const u16, ModuleHandle: ?*?HINSTANCE) callconv(.@"inline") HRESULT {
         return self.vtable.LoadModule(self, Module, ModuleHandle);
     }
-    pub fn SetWow64Context(self: *const ITargetInfo, InstallerModule: ?[*:0]const u16, Wow64Context: ?*u8) callconv(.Inline) HRESULT {
+    pub fn SetWow64Context(self: *const ITargetInfo, InstallerModule: ?[*:0]const u16, Wow64Context: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetWow64Context(self, InstallerModule, Wow64Context);
     }
-    pub fn TranslateWow64(self: *const ITargetInfo, ClientArchitecture: ?[*:0]const u16, Value: ?[*:0]const u16, TranslatedValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn TranslateWow64(self: *const ITargetInfo, ClientArchitecture: ?[*:0]const u16, Value: ?[*:0]const u16, TranslatedValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateWow64(self, ClientArchitecture, Value, TranslatedValue);
     }
-    pub fn SetSchemaHiveLocation(self: *const ITargetInfo, pwzHiveDir: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetSchemaHiveLocation(self: *const ITargetInfo, pwzHiveDir: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSchemaHiveLocation(self, pwzHiveDir);
     }
-    pub fn GetSchemaHiveLocation(self: *const ITargetInfo, pHiveLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSchemaHiveLocation(self: *const ITargetInfo, pHiveLocation: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSchemaHiveLocation(self, pHiveLocation);
     }
-    pub fn SetSchemaHiveMountName(self: *const ITargetInfo, pwzMountName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetSchemaHiveMountName(self: *const ITargetInfo, pwzMountName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSchemaHiveMountName(self, pwzMountName);
     }
-    pub fn GetSchemaHiveMountName(self: *const ITargetInfo, pMountName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSchemaHiveMountName(self: *const ITargetInfo, pMountName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSchemaHiveMountName(self, pMountName);
     }
 };
@@ -485,52 +485,52 @@ pub const ISettingsEngine = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNamespaces(self: *const ISettingsEngine, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*anyopaque, Namespaces: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetNamespaces(self: *const ISettingsEngine, Flags: WcmNamespaceEnumerationFlags, Reserved: ?*anyopaque, Namespaces: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamespaces(self, Flags, Reserved, Namespaces);
     }
-    pub fn GetNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, Access: WcmNamespaceAccess, Reserved: ?*anyopaque, NamespaceItem: ?*?*ISettingsNamespace) callconv(.Inline) HRESULT {
+    pub fn GetNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, Access: WcmNamespaceAccess, Reserved: ?*anyopaque, NamespaceItem: ?*?*ISettingsNamespace) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamespace(self, SettingsID, Access, Reserved, NamespaceItem);
     }
-    pub fn GetErrorDescription(self: *const ISettingsEngine, HResult: i32, Message: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetErrorDescription(self: *const ISettingsEngine, HResult: i32, Message: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorDescription(self, HResult, Message);
     }
-    pub fn CreateSettingsIdentity(self: *const ISettingsEngine, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
+    pub fn CreateSettingsIdentity(self: *const ISettingsEngine, SettingsID: ?*?*ISettingsIdentity) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSettingsIdentity(self, SettingsID);
     }
-    pub fn GetStoreStatus(self: *const ISettingsEngine, Reserved: ?*anyopaque, Status: ?*WcmUserStatus) callconv(.Inline) HRESULT {
+    pub fn GetStoreStatus(self: *const ISettingsEngine, Reserved: ?*anyopaque, Status: ?*WcmUserStatus) callconv(.@"inline") HRESULT {
         return self.vtable.GetStoreStatus(self, Reserved, Status);
     }
-    pub fn LoadStore(self: *const ISettingsEngine, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn LoadStore(self: *const ISettingsEngine, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LoadStore(self, Flags);
     }
-    pub fn UnloadStore(self: *const ISettingsEngine, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn UnloadStore(self: *const ISettingsEngine, Reserved: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.UnloadStore(self, Reserved);
     }
-    pub fn RegisterNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, Stream: ?*IStream, PushSettings: BOOL, Results: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn RegisterNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, Stream: ?*IStream, PushSettings: BOOL, Results: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterNamespace(self, SettingsID, Stream, PushSettings, Results);
     }
-    pub fn UnregisterNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, RemoveSettings: BOOL) callconv(.Inline) HRESULT {
+    pub fn UnregisterNamespace(self: *const ISettingsEngine, SettingsID: ?*ISettingsIdentity, RemoveSettings: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterNamespace(self, SettingsID, RemoveSettings);
     }
-    pub fn CreateTargetInfo(self: *const ISettingsEngine, Target: ?*?*ITargetInfo) callconv(.Inline) HRESULT {
+    pub fn CreateTargetInfo(self: *const ISettingsEngine, Target: ?*?*ITargetInfo) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTargetInfo(self, Target);
     }
-    pub fn GetTargetInfo(self: *const ISettingsEngine, Target: ?*?*ITargetInfo) callconv(.Inline) HRESULT {
+    pub fn GetTargetInfo(self: *const ISettingsEngine, Target: ?*?*ITargetInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetInfo(self, Target);
     }
-    pub fn SetTargetInfo(self: *const ISettingsEngine, Target: ?*ITargetInfo) callconv(.Inline) HRESULT {
+    pub fn SetTargetInfo(self: *const ISettingsEngine, Target: ?*ITargetInfo) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetInfo(self, Target);
     }
-    pub fn CreateSettingsContext(self: *const ISettingsEngine, Flags: u32, Reserved: ?*anyopaque, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
+    pub fn CreateSettingsContext(self: *const ISettingsEngine, Flags: u32, Reserved: ?*anyopaque, SettingsContext: ?*?*ISettingsContext) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSettingsContext(self, Flags, Reserved, SettingsContext);
     }
-    pub fn SetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext) callconv(.Inline) HRESULT {
+    pub fn SetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext) callconv(.@"inline") HRESULT {
         return self.vtable.SetSettingsContext(self, SettingsContext);
     }
-    pub fn ApplySettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext, pppwzIdentities: ?*?*?PWSTR, pcIdentities: ?*usize) callconv(.Inline) HRESULT {
+    pub fn ApplySettingsContext(self: *const ISettingsEngine, SettingsContext: ?*ISettingsContext, pppwzIdentities: ?*?*?PWSTR, pcIdentities: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.ApplySettingsContext(self, SettingsContext, pppwzIdentities, pcIdentities);
     }
-    pub fn GetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*?*ISettingsContext) callconv(.Inline) HRESULT {
+    pub fn GetSettingsContext(self: *const ISettingsEngine, SettingsContext: ?*?*ISettingsContext) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettingsContext(self, SettingsContext);
     }
 };
@@ -642,70 +642,70 @@ pub const ISettingsItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const ISettingsItem, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const ISettingsItem, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, Name);
     }
-    pub fn GetValue(self: *const ISettingsItem, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const ISettingsItem, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, Value);
     }
-    pub fn SetValue(self: *const ISettingsItem, Value: ?*const VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetValue(self: *const ISettingsItem, Value: ?*const VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetValue(self, Value);
     }
-    pub fn GetSettingType(self: *const ISettingsItem, Type: ?*WcmSettingType) callconv(.Inline) HRESULT {
+    pub fn GetSettingType(self: *const ISettingsItem, Type: ?*WcmSettingType) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettingType(self, Type);
     }
-    pub fn GetDataType(self: *const ISettingsItem, Type: ?*WcmDataType) callconv(.Inline) HRESULT {
+    pub fn GetDataType(self: *const ISettingsItem, Type: ?*WcmDataType) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataType(self, Type);
     }
-    pub fn GetValueRaw(self: *const ISettingsItem, Data: [*]?*u8, DataSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetValueRaw(self: *const ISettingsItem, Data: [*]?*u8, DataSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetValueRaw(self, Data, DataSize);
     }
-    pub fn SetValueRaw(self: *const ISettingsItem, DataType: i32, Data: [*:0]const u8, DataSize: u32) callconv(.Inline) HRESULT {
+    pub fn SetValueRaw(self: *const ISettingsItem, DataType: i32, Data: [*:0]const u8, DataSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetValueRaw(self, DataType, Data, DataSize);
     }
-    pub fn HasChild(self: *const ISettingsItem, ItemHasChild: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn HasChild(self: *const ISettingsItem, ItemHasChild: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HasChild(self, ItemHasChild);
     }
-    pub fn Children(self: *const ISettingsItem, _param_Children: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+    pub fn Children(self: *const ISettingsItem, _param_Children: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.Children(self, _param_Children);
     }
-    pub fn GetChild(self: *const ISettingsItem, Name: ?[*:0]const u16, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+    pub fn GetChild(self: *const ISettingsItem, Name: ?[*:0]const u16, Child: ?*?*ISettingsItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetChild(self, Name, Child);
     }
-    pub fn GetSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+    pub fn GetSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettingByPath(self, Path, Setting);
     }
-    pub fn CreateSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+    pub fn CreateSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSettingByPath(self, Path, Setting);
     }
-    pub fn RemoveSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RemoveSettingByPath(self: *const ISettingsItem, Path: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveSettingByPath(self, Path);
     }
-    pub fn GetListKeyInformation(self: *const ISettingsItem, KeyName: ?*?BSTR, DataType: ?*WcmDataType) callconv(.Inline) HRESULT {
+    pub fn GetListKeyInformation(self: *const ISettingsItem, KeyName: ?*?BSTR, DataType: ?*WcmDataType) callconv(.@"inline") HRESULT {
         return self.vtable.GetListKeyInformation(self, KeyName, DataType);
     }
-    pub fn CreateListElement(self: *const ISettingsItem, KeyData: ?*const VARIANT, Child: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+    pub fn CreateListElement(self: *const ISettingsItem, KeyData: ?*const VARIANT, Child: ?*?*ISettingsItem) callconv(.@"inline") HRESULT {
         return self.vtable.CreateListElement(self, KeyData, Child);
     }
-    pub fn RemoveListElement(self: *const ISettingsItem, ElementName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RemoveListElement(self: *const ISettingsItem, ElementName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveListElement(self, ElementName);
     }
-    pub fn Attributes(self: *const ISettingsItem, _param_Attributes: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+    pub fn Attributes(self: *const ISettingsItem, _param_Attributes: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.Attributes(self, _param_Attributes);
     }
-    pub fn GetAttribute(self: *const ISettingsItem, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetAttribute(self: *const ISettingsItem, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttribute(self, Name, Value);
     }
-    pub fn GetPath(self: *const ISettingsItem, Path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const ISettingsItem, Path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, Path);
     }
-    pub fn GetRestrictionFacets(self: *const ISettingsItem, RestrictionFacets: ?*WcmRestrictionFacets) callconv(.Inline) HRESULT {
+    pub fn GetRestrictionFacets(self: *const ISettingsItem, RestrictionFacets: ?*WcmRestrictionFacets) callconv(.@"inline") HRESULT {
         return self.vtable.GetRestrictionFacets(self, RestrictionFacets);
     }
-    pub fn GetRestriction(self: *const ISettingsItem, RestrictionFacet: WcmRestrictionFacets, FacetData: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetRestriction(self: *const ISettingsItem, RestrictionFacet: WcmRestrictionFacets, FacetData: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetRestriction(self, RestrictionFacet, FacetData);
     }
-    pub fn GetKeyValue(self: *const ISettingsItem, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetKeyValue(self: *const ISettingsItem, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyValue(self, Value);
     }
 };
@@ -751,25 +751,25 @@ pub const ISettingsNamespace = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIdentity(self: *const ISettingsNamespace, SettingsID: ?*?*ISettingsIdentity) callconv(.Inline) HRESULT {
+    pub fn GetIdentity(self: *const ISettingsNamespace, SettingsID: ?*?*ISettingsIdentity) callconv(.@"inline") HRESULT {
         return self.vtable.GetIdentity(self, SettingsID);
     }
-    pub fn Settings(self: *const ISettingsNamespace, _param_Settings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+    pub fn Settings(self: *const ISettingsNamespace, _param_Settings: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.Settings(self, _param_Settings);
     }
-    pub fn Save(self: *const ISettingsNamespace, PushSettings: BOOL, Result: ?*?*ISettingsResult) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const ISettingsNamespace, PushSettings: BOOL, Result: ?*?*ISettingsResult) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, PushSettings, Result);
     }
-    pub fn GetSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+    pub fn GetSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettingByPath(self, Path, Setting);
     }
-    pub fn CreateSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.Inline) HRESULT {
+    pub fn CreateSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16, Setting: ?*?*ISettingsItem) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSettingByPath(self, Path, Setting);
     }
-    pub fn RemoveSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RemoveSettingByPath(self: *const ISettingsNamespace, Path: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveSettingByPath(self, Path);
     }
-    pub fn GetAttribute(self: *const ISettingsNamespace, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetAttribute(self: *const ISettingsNamespace, Name: ?[*:0]const u16, Value: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttribute(self, Name, Value);
     }
 };
@@ -807,22 +807,22 @@ pub const ISettingsResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDescription(self: *const ISettingsResult, description: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const ISettingsResult, description: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, description);
     }
-    pub fn GetErrorCode(self: *const ISettingsResult, hrOut: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn GetErrorCode(self: *const ISettingsResult, hrOut: ?*HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorCode(self, hrOut);
     }
-    pub fn GetContextDescription(self: *const ISettingsResult, description: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetContextDescription(self: *const ISettingsResult, description: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetContextDescription(self, description);
     }
-    pub fn GetLine(self: *const ISettingsResult, dwLine: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLine(self: *const ISettingsResult, dwLine: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLine(self, dwLine);
     }
-    pub fn GetColumn(self: *const ISettingsResult, dwColumn: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColumn(self: *const ISettingsResult, dwColumn: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumn(self, dwColumn);
     }
-    pub fn GetSource(self: *const ISettingsResult, file: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSource(self: *const ISettingsResult, file: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSource(self, file);
     }
 };
@@ -872,25 +872,25 @@ pub const ISettingsContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Serialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo) callconv(.Inline) HRESULT {
+    pub fn Serialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo) callconv(.@"inline") HRESULT {
         return self.vtable.Serialize(self, pStream, pTarget);
     }
-    pub fn Deserialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo, pppResults: [*]?*?*ISettingsResult, pcResultCount: ?*usize) callconv(.Inline) HRESULT {
+    pub fn Deserialize(self: *const ISettingsContext, pStream: ?*IStream, pTarget: ?*ITargetInfo, pppResults: [*]?*?*ISettingsResult, pcResultCount: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.Deserialize(self, pStream, pTarget, pppResults, pcResultCount);
     }
-    pub fn SetUserData(self: *const ISettingsContext, pUserData: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetUserData(self: *const ISettingsContext, pUserData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetUserData(self, pUserData);
     }
-    pub fn GetUserData(self: *const ISettingsContext, pUserData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetUserData(self: *const ISettingsContext, pUserData: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserData(self, pUserData);
     }
-    pub fn GetNamespaces(self: *const ISettingsContext, ppNamespaceIds: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetNamespaces(self: *const ISettingsContext, ppNamespaceIds: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamespaces(self, ppNamespaceIds);
     }
-    pub fn GetStoredSettings(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, ppAddedSettings: ?*?*IItemEnumerator, ppModifiedSettings: ?*?*IItemEnumerator, ppDeletedSettings: ?*?*IItemEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetStoredSettings(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, ppAddedSettings: ?*?*IItemEnumerator, ppModifiedSettings: ?*?*IItemEnumerator, ppDeletedSettings: ?*?*IItemEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetStoredSettings(self, pIdentity, ppAddedSettings, ppModifiedSettings, ppDeletedSettings);
     }
-    pub fn RevertSetting(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, pwzSetting: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RevertSetting(self: *const ISettingsContext, pIdentity: ?*ISettingsIdentity, pwzSetting: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RevertSetting(self, pIdentity, pwzSetting);
     }
 };

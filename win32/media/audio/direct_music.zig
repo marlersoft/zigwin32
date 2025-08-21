@@ -606,31 +606,31 @@ pub const IDirectMusic = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumPort(self: *const IDirectMusic, dwIndex: u32, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
+    pub fn EnumPort(self: *const IDirectMusic, dwIndex: u32, pPortCaps: ?*DMUS_PORTCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.EnumPort(self, dwIndex, pPortCaps);
     }
-    pub fn CreateMusicBuffer(self: *const IDirectMusic, pBufferDesc: ?*DMUS_BUFFERDESC, ppBuffer: ?*?*IDirectMusicBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateMusicBuffer(self: *const IDirectMusic, pBufferDesc: ?*DMUS_BUFFERDESC, ppBuffer: ?*?*IDirectMusicBuffer, pUnkOuter: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMusicBuffer(self, pBufferDesc, ppBuffer, pUnkOuter);
     }
-    pub fn CreatePort(self: *const IDirectMusic, rclsidPort: ?*const Guid, pPortParams: ?*DMUS_PORTPARAMS8, ppPort: ?*?*IDirectMusicPort, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePort(self: *const IDirectMusic, rclsidPort: ?*const Guid, pPortParams: ?*DMUS_PORTPARAMS8, ppPort: ?*?*IDirectMusicPort, pUnkOuter: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePort(self, rclsidPort, pPortParams, ppPort, pUnkOuter);
     }
-    pub fn EnumMasterClock(self: *const IDirectMusic, dwIndex: u32, lpClockInfo: ?*DMUS_CLOCKINFO8) callconv(.Inline) HRESULT {
+    pub fn EnumMasterClock(self: *const IDirectMusic, dwIndex: u32, lpClockInfo: ?*DMUS_CLOCKINFO8) callconv(.@"inline") HRESULT {
         return self.vtable.EnumMasterClock(self, dwIndex, lpClockInfo);
     }
-    pub fn GetMasterClock(self: *const IDirectMusic, pguidClock: ?*Guid, ppReferenceClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
+    pub fn GetMasterClock(self: *const IDirectMusic, pguidClock: ?*Guid, ppReferenceClock: ?*?*IReferenceClock) callconv(.@"inline") HRESULT {
         return self.vtable.GetMasterClock(self, pguidClock, ppReferenceClock);
     }
-    pub fn SetMasterClock(self: *const IDirectMusic, rguidClock: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetMasterClock(self: *const IDirectMusic, rguidClock: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetMasterClock(self, rguidClock);
     }
-    pub fn Activate(self: *const IDirectMusic, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IDirectMusic, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, fEnable);
     }
-    pub fn GetDefaultPort(self: *const IDirectMusic, pguidPort: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetDefaultPort(self: *const IDirectMusic, pguidPort: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultPort(self, pguidPort);
     }
-    pub fn SetDirectSound(self: *const IDirectMusic, pDirectSound: ?*IDirectSound, hWnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetDirectSound(self: *const IDirectMusic, pDirectSound: ?*IDirectSound, hWnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetDirectSound(self, pDirectSound, hWnd);
     }
 };
@@ -648,7 +648,7 @@ pub const IDirectMusic8 = extern union {
     vtable: *const VTable,
     IDirectMusic: IDirectMusic,
     IUnknown: IUnknown,
-    pub fn SetExternalMasterClock(self: *const IDirectMusic8, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
+    pub fn SetExternalMasterClock(self: *const IDirectMusic8, pClock: ?*IReferenceClock) callconv(.@"inline") HRESULT {
         return self.vtable.SetExternalMasterClock(self, pClock);
     }
 };
@@ -719,43 +719,43 @@ pub const IDirectMusicBuffer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Flush(self: *const IDirectMusicBuffer) callconv(.Inline) HRESULT {
+    pub fn Flush(self: *const IDirectMusicBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.Flush(self);
     }
-    pub fn TotalTime(self: *const IDirectMusicBuffer, prtTime: ?*i64) callconv(.Inline) HRESULT {
+    pub fn TotalTime(self: *const IDirectMusicBuffer, prtTime: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.TotalTime(self, prtTime);
     }
-    pub fn PackStructured(self: *const IDirectMusicBuffer, rt: i64, dwChannelGroup: u32, dwChannelMessage: u32) callconv(.Inline) HRESULT {
+    pub fn PackStructured(self: *const IDirectMusicBuffer, rt: i64, dwChannelGroup: u32, dwChannelMessage: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PackStructured(self, rt, dwChannelGroup, dwChannelMessage);
     }
-    pub fn PackUnstructured(self: *const IDirectMusicBuffer, rt: i64, dwChannelGroup: u32, cb: u32, lpb: ?*u8) callconv(.Inline) HRESULT {
+    pub fn PackUnstructured(self: *const IDirectMusicBuffer, rt: i64, dwChannelGroup: u32, cb: u32, lpb: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.PackUnstructured(self, rt, dwChannelGroup, cb, lpb);
     }
-    pub fn ResetReadPtr(self: *const IDirectMusicBuffer) callconv(.Inline) HRESULT {
+    pub fn ResetReadPtr(self: *const IDirectMusicBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.ResetReadPtr(self);
     }
-    pub fn GetNextEvent(self: *const IDirectMusicBuffer, prt: ?*i64, pdwChannelGroup: ?*u32, pdwLength: ?*u32, ppData: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetNextEvent(self: *const IDirectMusicBuffer, prt: ?*i64, pdwChannelGroup: ?*u32, pdwLength: ?*u32, ppData: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextEvent(self, prt, pdwChannelGroup, pdwLength, ppData);
     }
-    pub fn GetRawBufferPtr(self: *const IDirectMusicBuffer, ppData: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetRawBufferPtr(self: *const IDirectMusicBuffer, ppData: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetRawBufferPtr(self, ppData);
     }
-    pub fn GetStartTime(self: *const IDirectMusicBuffer, prt: ?*i64) callconv(.Inline) HRESULT {
+    pub fn GetStartTime(self: *const IDirectMusicBuffer, prt: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetStartTime(self, prt);
     }
-    pub fn GetUsedBytes(self: *const IDirectMusicBuffer, pcb: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUsedBytes(self: *const IDirectMusicBuffer, pcb: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetUsedBytes(self, pcb);
     }
-    pub fn GetMaxBytes(self: *const IDirectMusicBuffer, pcb: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxBytes(self: *const IDirectMusicBuffer, pcb: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxBytes(self, pcb);
     }
-    pub fn GetBufferFormat(self: *const IDirectMusicBuffer, pGuidFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetBufferFormat(self: *const IDirectMusicBuffer, pGuidFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetBufferFormat(self, pGuidFormat);
     }
-    pub fn SetStartTime(self: *const IDirectMusicBuffer, rt: i64) callconv(.Inline) HRESULT {
+    pub fn SetStartTime(self: *const IDirectMusicBuffer, rt: i64) callconv(.@"inline") HRESULT {
         return self.vtable.SetStartTime(self, rt);
     }
-    pub fn SetUsedBytes(self: *const IDirectMusicBuffer, cb: u32) callconv(.Inline) HRESULT {
+    pub fn SetUsedBytes(self: *const IDirectMusicBuffer, cb: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetUsedBytes(self, cb);
     }
 };
@@ -776,10 +776,10 @@ pub const IDirectMusicInstrument = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPatch(self: *const IDirectMusicInstrument, pdwPatch: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPatch(self: *const IDirectMusicInstrument, pdwPatch: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPatch(self, pdwPatch);
     }
-    pub fn SetPatch(self: *const IDirectMusicInstrument, dwPatch: u32) callconv(.Inline) HRESULT {
+    pub fn SetPatch(self: *const IDirectMusicInstrument, dwPatch: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPatch(self, dwPatch);
     }
 };
@@ -814,10 +814,10 @@ pub const IDirectMusicCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInstrument(self: *const IDirectMusicCollection, dwPatch: u32, ppInstrument: ?*?*IDirectMusicInstrument) callconv(.Inline) HRESULT {
+    pub fn GetInstrument(self: *const IDirectMusicCollection, dwPatch: u32, ppInstrument: ?*?*IDirectMusicInstrument) callconv(.@"inline") HRESULT {
         return self.vtable.GetInstrument(self, dwPatch, ppInstrument);
     }
-    pub fn EnumInstrument(self: *const IDirectMusicCollection, dwIndex: u32, pdwPatch: ?*u32, pwszName: ?PWSTR, dwNameLen: u32) callconv(.Inline) HRESULT {
+    pub fn EnumInstrument(self: *const IDirectMusicCollection, dwIndex: u32, pdwPatch: ?*u32, pwszName: ?PWSTR, dwNameLen: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumInstrument(self, dwIndex, pdwPatch, pwszName, dwNameLen);
     }
 };
@@ -835,7 +835,7 @@ pub const IDirectMusicDownload = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const IDirectMusicDownload, ppvBuffer: ?*?*anyopaque, pdwSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const IDirectMusicDownload, ppvBuffer: ?*?*anyopaque, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBuffer(self, ppvBuffer, pdwSize);
     }
 };
@@ -875,22 +875,22 @@ pub const IDirectMusicPortDownload = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const IDirectMusicPortDownload, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const IDirectMusicPortDownload, dwDLId: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
         return self.vtable.GetBuffer(self, dwDLId, ppIDMDownload);
     }
-    pub fn AllocateBuffer(self: *const IDirectMusicPortDownload, dwSize: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.Inline) HRESULT {
+    pub fn AllocateBuffer(self: *const IDirectMusicPortDownload, dwSize: u32, ppIDMDownload: ?*?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
         return self.vtable.AllocateBuffer(self, dwSize, ppIDMDownload);
     }
-    pub fn GetDLId(self: *const IDirectMusicPortDownload, pdwStartDLId: ?*u32, dwCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetDLId(self: *const IDirectMusicPortDownload, pdwStartDLId: ?*u32, dwCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDLId(self, pdwStartDLId, dwCount);
     }
-    pub fn GetAppend(self: *const IDirectMusicPortDownload, pdwAppend: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAppend(self: *const IDirectMusicPortDownload, pdwAppend: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppend(self, pdwAppend);
     }
-    pub fn Download(self: *const IDirectMusicPortDownload, pIDMDownload: ?*IDirectMusicDownload) callconv(.Inline) HRESULT {
+    pub fn Download(self: *const IDirectMusicPortDownload, pIDMDownload: ?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
         return self.vtable.Download(self, pIDMDownload);
     }
-    pub fn Unload(self: *const IDirectMusicPortDownload, pIDMDownload: ?*IDirectMusicDownload) callconv(.Inline) HRESULT {
+    pub fn Unload(self: *const IDirectMusicPortDownload, pIDMDownload: ?*IDirectMusicDownload) callconv(.@"inline") HRESULT {
         return self.vtable.Unload(self, pIDMDownload);
     }
 };
@@ -986,55 +986,55 @@ pub const IDirectMusicPort = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PlayBuffer(self: *const IDirectMusicPort, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
+    pub fn PlayBuffer(self: *const IDirectMusicPort, pBuffer: ?*IDirectMusicBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.PlayBuffer(self, pBuffer);
     }
-    pub fn SetReadNotificationHandle(self: *const IDirectMusicPort, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn SetReadNotificationHandle(self: *const IDirectMusicPort, hEvent: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SetReadNotificationHandle(self, hEvent);
     }
-    pub fn Read(self: *const IDirectMusicPort, pBuffer: ?*IDirectMusicBuffer) callconv(.Inline) HRESULT {
+    pub fn Read(self: *const IDirectMusicPort, pBuffer: ?*IDirectMusicBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.Read(self, pBuffer);
     }
-    pub fn DownloadInstrument(self: *const IDirectMusicPort, pInstrument: ?*IDirectMusicInstrument, ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument, pNoteRanges: ?*DMUS_NOTERANGE, dwNumNoteRanges: u32) callconv(.Inline) HRESULT {
+    pub fn DownloadInstrument(self: *const IDirectMusicPort, pInstrument: ?*IDirectMusicInstrument, ppDownloadedInstrument: ?*?*IDirectMusicDownloadedInstrument, pNoteRanges: ?*DMUS_NOTERANGE, dwNumNoteRanges: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadInstrument(self, pInstrument, ppDownloadedInstrument, pNoteRanges, dwNumNoteRanges);
     }
-    pub fn UnloadInstrument(self: *const IDirectMusicPort, pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument) callconv(.Inline) HRESULT {
+    pub fn UnloadInstrument(self: *const IDirectMusicPort, pDownloadedInstrument: ?*IDirectMusicDownloadedInstrument) callconv(.@"inline") HRESULT {
         return self.vtable.UnloadInstrument(self, pDownloadedInstrument);
     }
-    pub fn GetLatencyClock(self: *const IDirectMusicPort, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
+    pub fn GetLatencyClock(self: *const IDirectMusicPort, ppClock: ?*?*IReferenceClock) callconv(.@"inline") HRESULT {
         return self.vtable.GetLatencyClock(self, ppClock);
     }
-    pub fn GetRunningStats(self: *const IDirectMusicPort, pStats: ?*DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
+    pub fn GetRunningStats(self: *const IDirectMusicPort, pStats: ?*DMUS_SYNTHSTATS) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningStats(self, pStats);
     }
-    pub fn Compact(self: *const IDirectMusicPort) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectMusicPort) callconv(.@"inline") HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn GetCaps(self: *const IDirectMusicPort, pPortCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectMusicPort, pPortCaps: ?*DMUS_PORTCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, pPortCaps);
     }
-    pub fn DeviceIoControl(self: *const IDirectMusicPort, dwIoControlCode: u32, lpInBuffer: ?*anyopaque, nInBufferSize: u32, lpOutBuffer: ?*anyopaque, nOutBufferSize: u32, lpBytesReturned: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+    pub fn DeviceIoControl(self: *const IDirectMusicPort, dwIoControlCode: u32, lpInBuffer: ?*anyopaque, nInBufferSize: u32, lpOutBuffer: ?*anyopaque, nOutBufferSize: u32, lpBytesReturned: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.@"inline") HRESULT {
         return self.vtable.DeviceIoControl(self, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
     }
-    pub fn SetNumChannelGroups(self: *const IDirectMusicPort, dwChannelGroups: u32) callconv(.Inline) HRESULT {
+    pub fn SetNumChannelGroups(self: *const IDirectMusicPort, dwChannelGroups: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetNumChannelGroups(self, dwChannelGroups);
     }
-    pub fn GetNumChannelGroups(self: *const IDirectMusicPort, pdwChannelGroups: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNumChannelGroups(self: *const IDirectMusicPort, pdwChannelGroups: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumChannelGroups(self, pdwChannelGroups);
     }
-    pub fn Activate(self: *const IDirectMusicPort, fActive: BOOL) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IDirectMusicPort, fActive: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, fActive);
     }
-    pub fn SetChannelPriority(self: *const IDirectMusicPort, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) callconv(.Inline) HRESULT {
+    pub fn SetChannelPriority(self: *const IDirectMusicPort, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetChannelPriority(self, dwChannelGroup, dwChannel, dwPriority);
     }
-    pub fn GetChannelPriority(self: *const IDirectMusicPort, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelPriority(self: *const IDirectMusicPort, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelPriority(self, dwChannelGroup, dwChannel, pdwPriority);
     }
-    pub fn SetDirectSound(self: *const IDirectMusicPort, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
+    pub fn SetDirectSound(self: *const IDirectMusicPort, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.SetDirectSound(self, pDirectSound, pDirectSoundBuffer);
     }
-    pub fn GetFormat(self: *const IDirectMusicPort, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const IDirectMusicPort, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32, pdwBufferSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormat(self, pWaveFormatEx, pdwWaveFormatExSize, pdwBufferSize);
     }
 };
@@ -1055,7 +1055,7 @@ pub const IDirectMusicThru = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ThruChannel(self: *const IDirectMusicThru, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) callconv(.Inline) HRESULT {
+    pub fn ThruChannel(self: *const IDirectMusicThru, dwSourceChannelGroup: u32, dwSourceChannel: u32, dwDestinationChannelGroup: u32, dwDestinationChannel: u32, pDestinationPort: ?*IDirectMusicPort) callconv(.@"inline") HRESULT {
         return self.vtable.ThruChannel(self, dwSourceChannelGroup, dwSourceChannel, dwDestinationChannelGroup, dwDestinationChannel, pDestinationPort);
     }
 };
@@ -1153,55 +1153,55 @@ pub const IDirectMusicSynth = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const IDirectMusicSynth, pPortParams: ?*DMUS_PORTPARAMS8) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IDirectMusicSynth, pPortParams: ?*DMUS_PORTPARAMS8) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, pPortParams);
     }
-    pub fn Close(self: *const IDirectMusicSynth) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IDirectMusicSynth) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn SetNumChannelGroups(self: *const IDirectMusicSynth, dwGroups: u32) callconv(.Inline) HRESULT {
+    pub fn SetNumChannelGroups(self: *const IDirectMusicSynth, dwGroups: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetNumChannelGroups(self, dwGroups);
     }
-    pub fn Download(self: *const IDirectMusicSynth, phDownload: ?*?HANDLE, pvData: ?*anyopaque, pbFree: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Download(self: *const IDirectMusicSynth, phDownload: ?*?HANDLE, pvData: ?*anyopaque, pbFree: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Download(self, phDownload, pvData, pbFree);
     }
-    pub fn Unload(self: *const IDirectMusicSynth, hDownload: ?HANDLE, lpFreeHandle: isize, hUserData: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Unload(self: *const IDirectMusicSynth, hDownload: ?HANDLE, lpFreeHandle: isize, hUserData: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.Unload(self, hDownload, lpFreeHandle, hUserData);
     }
-    pub fn PlayBuffer(self: *const IDirectMusicSynth, rt: i64, pbBuffer: ?*u8, cbBuffer: u32) callconv(.Inline) HRESULT {
+    pub fn PlayBuffer(self: *const IDirectMusicSynth, rt: i64, pbBuffer: ?*u8, cbBuffer: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PlayBuffer(self, rt, pbBuffer, cbBuffer);
     }
-    pub fn GetRunningStats(self: *const IDirectMusicSynth, pStats: ?*DMUS_SYNTHSTATS) callconv(.Inline) HRESULT {
+    pub fn GetRunningStats(self: *const IDirectMusicSynth, pStats: ?*DMUS_SYNTHSTATS) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningStats(self, pStats);
     }
-    pub fn GetPortCaps(self: *const IDirectMusicSynth, pCaps: ?*DMUS_PORTCAPS) callconv(.Inline) HRESULT {
+    pub fn GetPortCaps(self: *const IDirectMusicSynth, pCaps: ?*DMUS_PORTCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetPortCaps(self, pCaps);
     }
-    pub fn SetMasterClock(self: *const IDirectMusicSynth, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
+    pub fn SetMasterClock(self: *const IDirectMusicSynth, pClock: ?*IReferenceClock) callconv(.@"inline") HRESULT {
         return self.vtable.SetMasterClock(self, pClock);
     }
-    pub fn GetLatencyClock(self: *const IDirectMusicSynth, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
+    pub fn GetLatencyClock(self: *const IDirectMusicSynth, ppClock: ?*?*IReferenceClock) callconv(.@"inline") HRESULT {
         return self.vtable.GetLatencyClock(self, ppClock);
     }
-    pub fn Activate(self: *const IDirectMusicSynth, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IDirectMusicSynth, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, fEnable);
     }
-    pub fn SetSynthSink(self: *const IDirectMusicSynth, pSynthSink: ?*IDirectMusicSynthSink) callconv(.Inline) HRESULT {
+    pub fn SetSynthSink(self: *const IDirectMusicSynth, pSynthSink: ?*IDirectMusicSynthSink) callconv(.@"inline") HRESULT {
         return self.vtable.SetSynthSink(self, pSynthSink);
     }
-    pub fn Render(self: *const IDirectMusicSynth, pBuffer: ?*i16, dwLength: u32, llPosition: i64) callconv(.Inline) HRESULT {
+    pub fn Render(self: *const IDirectMusicSynth, pBuffer: ?*i16, dwLength: u32, llPosition: i64) callconv(.@"inline") HRESULT {
         return self.vtable.Render(self, pBuffer, dwLength, llPosition);
     }
-    pub fn SetChannelPriority(self: *const IDirectMusicSynth, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) callconv(.Inline) HRESULT {
+    pub fn SetChannelPriority(self: *const IDirectMusicSynth, dwChannelGroup: u32, dwChannel: u32, dwPriority: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetChannelPriority(self, dwChannelGroup, dwChannel, dwPriority);
     }
-    pub fn GetChannelPriority(self: *const IDirectMusicSynth, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelPriority(self: *const IDirectMusicSynth, dwChannelGroup: u32, dwChannel: u32, pdwPriority: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelPriority(self, dwChannelGroup, dwChannel, pdwPriority);
     }
-    pub fn GetFormat(self: *const IDirectMusicSynth, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const IDirectMusicSynth, pWaveFormatEx: ?*WAVEFORMATEX, pdwWaveFormatExSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormat(self, pWaveFormatEx, pdwWaveFormatExSize);
     }
-    pub fn GetAppend(self: *const IDirectMusicSynth, pdwAppend: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAppend(self: *const IDirectMusicSynth, pdwAppend: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppend(self, pdwAppend);
     }
 };
@@ -1251,19 +1251,19 @@ pub const IDirectMusicSynth8 = extern union {
     vtable: *const VTable,
     IDirectMusicSynth: IDirectMusicSynth,
     IUnknown: IUnknown,
-    pub fn PlayVoice(self: *const IDirectMusicSynth8, rt: i64, dwVoiceId: u32, dwChannelGroup: u32, dwChannel: u32, dwDLId: u32, prPitch: i32, vrVolume: i32, stVoiceStart: u64, stLoopStart: u64, stLoopEnd: u64) callconv(.Inline) HRESULT {
+    pub fn PlayVoice(self: *const IDirectMusicSynth8, rt: i64, dwVoiceId: u32, dwChannelGroup: u32, dwChannel: u32, dwDLId: u32, prPitch: i32, vrVolume: i32, stVoiceStart: u64, stLoopStart: u64, stLoopEnd: u64) callconv(.@"inline") HRESULT {
         return self.vtable.PlayVoice(self, rt, dwVoiceId, dwChannelGroup, dwChannel, dwDLId, prPitch, vrVolume, stVoiceStart, stLoopStart, stLoopEnd);
     }
-    pub fn StopVoice(self: *const IDirectMusicSynth8, rt: i64, dwVoiceId: u32) callconv(.Inline) HRESULT {
+    pub fn StopVoice(self: *const IDirectMusicSynth8, rt: i64, dwVoiceId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.StopVoice(self, rt, dwVoiceId);
     }
-    pub fn GetVoiceState(self: *const IDirectMusicSynth8, dwVoice: ?*u32, cbVoice: u32, dwVoiceState: ?*DMUS_VOICE_STATE) callconv(.Inline) HRESULT {
+    pub fn GetVoiceState(self: *const IDirectMusicSynth8, dwVoice: ?*u32, cbVoice: u32, dwVoiceState: ?*DMUS_VOICE_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetVoiceState(self, dwVoice, cbVoice, dwVoiceState);
     }
-    pub fn Refresh(self: *const IDirectMusicSynth8, dwDownloadID: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IDirectMusicSynth8, dwDownloadID: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self, dwDownloadID, dwFlags);
     }
-    pub fn AssignChannelToBuses(self: *const IDirectMusicSynth8, dwChannelGroup: u32, dwChannel: u32, pdwBuses: ?*u32, cBuses: u32) callconv(.Inline) HRESULT {
+    pub fn AssignChannelToBuses(self: *const IDirectMusicSynth8, dwChannelGroup: u32, dwChannel: u32, pdwBuses: ?*u32, cBuses: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AssignChannelToBuses(self, dwChannelGroup, dwChannel, pdwBuses, cBuses);
     }
 };
@@ -1311,28 +1311,28 @@ pub const IDirectMusicSynthSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const IDirectMusicSynthSink, pSynth: ?*IDirectMusicSynth) callconv(.Inline) HRESULT {
+    pub fn Init(self: *const IDirectMusicSynthSink, pSynth: ?*IDirectMusicSynth) callconv(.@"inline") HRESULT {
         return self.vtable.Init(self, pSynth);
     }
-    pub fn SetMasterClock(self: *const IDirectMusicSynthSink, pClock: ?*IReferenceClock) callconv(.Inline) HRESULT {
+    pub fn SetMasterClock(self: *const IDirectMusicSynthSink, pClock: ?*IReferenceClock) callconv(.@"inline") HRESULT {
         return self.vtable.SetMasterClock(self, pClock);
     }
-    pub fn GetLatencyClock(self: *const IDirectMusicSynthSink, ppClock: ?*?*IReferenceClock) callconv(.Inline) HRESULT {
+    pub fn GetLatencyClock(self: *const IDirectMusicSynthSink, ppClock: ?*?*IReferenceClock) callconv(.@"inline") HRESULT {
         return self.vtable.GetLatencyClock(self, ppClock);
     }
-    pub fn Activate(self: *const IDirectMusicSynthSink, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IDirectMusicSynthSink, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, fEnable);
     }
-    pub fn SampleToRefTime(self: *const IDirectMusicSynthSink, llSampleTime: i64, prfTime: ?*i64) callconv(.Inline) HRESULT {
+    pub fn SampleToRefTime(self: *const IDirectMusicSynthSink, llSampleTime: i64, prfTime: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.SampleToRefTime(self, llSampleTime, prfTime);
     }
-    pub fn RefTimeToSample(self: *const IDirectMusicSynthSink, rfTime: i64, pllSampleTime: ?*i64) callconv(.Inline) HRESULT {
+    pub fn RefTimeToSample(self: *const IDirectMusicSynthSink, rfTime: i64, pllSampleTime: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.RefTimeToSample(self, rfTime, pllSampleTime);
     }
-    pub fn SetDirectSound(self: *const IDirectMusicSynthSink, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
+    pub fn SetDirectSound(self: *const IDirectMusicSynthSink, pDirectSound: ?*IDirectSound, pDirectSoundBuffer: ?*IDirectSoundBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.SetDirectSound(self, pDirectSound, pDirectSoundBuffer);
     }
-    pub fn GetDesiredBufferSize(self: *const IDirectMusicSynthSink, pdwBufferSizeInSamples: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDesiredBufferSize(self: *const IDirectMusicSynthSink, pdwBufferSizeInSamples: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesiredBufferSize(self, pdwBufferSizeInSamples);
     }
 };

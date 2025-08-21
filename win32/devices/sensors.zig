@@ -404,19 +404,19 @@ pub const ISensorManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSensorsByCategory(self: *const ISensorManager, sensorCategory: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
+    pub fn GetSensorsByCategory(self: *const ISensorManager, sensorCategory: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.@"inline") HRESULT {
         return self.vtable.GetSensorsByCategory(self, sensorCategory, ppSensorsFound);
     }
-    pub fn GetSensorsByType(self: *const ISensorManager, sensorType: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
+    pub fn GetSensorsByType(self: *const ISensorManager, sensorType: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.@"inline") HRESULT {
         return self.vtable.GetSensorsByType(self, sensorType, ppSensorsFound);
     }
-    pub fn GetSensorByID(self: *const ISensorManager, sensorID: ?*Guid, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
+    pub fn GetSensorByID(self: *const ISensorManager, sensorID: ?*Guid, ppSensor: ?*?*ISensor) callconv(.@"inline") HRESULT {
         return self.vtable.GetSensorByID(self, sensorID, ppSensor);
     }
-    pub fn SetEventSink(self: *const ISensorManager, pEvents: ?*ISensorManagerEvents) callconv(.Inline) HRESULT {
+    pub fn SetEventSink(self: *const ISensorManager, pEvents: ?*ISensorManagerEvents) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventSink(self, pEvents);
     }
-    pub fn RequestPermissions(self: *const ISensorManager, hParent: ?HWND, pSensors: ?*ISensorCollection, fModal: BOOL) callconv(.Inline) HRESULT {
+    pub fn RequestPermissions(self: *const ISensorManager, hParent: ?HWND, pSensors: ?*ISensorCollection, fModal: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RequestPermissions(self, hParent, pSensors, fModal);
     }
 };
@@ -438,10 +438,10 @@ pub const ILocationPermissions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGlobalLocationPermission(self: *const ILocationPermissions, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetGlobalLocationPermission(self: *const ILocationPermissions, pfEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetGlobalLocationPermission(self, pfEnabled);
     }
-    pub fn CheckLocationCapability(self: *const ILocationPermissions, dwClientThreadId: u32) callconv(.Inline) HRESULT {
+    pub fn CheckLocationCapability(self: *const ILocationPermissions, dwClientThreadId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CheckLocationCapability(self, dwClientThreadId);
     }
 };
@@ -479,22 +479,22 @@ pub const ISensorCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAt(self: *const ISensorCollection, ulIndex: u32, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const ISensorCollection, ulIndex: u32, ppSensor: ?*?*ISensor) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, ulIndex, ppSensor);
     }
-    pub fn GetCount(self: *const ISensorCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISensorCollection, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pCount);
     }
-    pub fn Add(self: *const ISensorCollection, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISensorCollection, pSensor: ?*ISensor) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, pSensor);
     }
-    pub fn Remove(self: *const ISensorCollection, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISensorCollection, pSensor: ?*ISensor) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, pSensor);
     }
-    pub fn RemoveByID(self: *const ISensorCollection, sensorID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn RemoveByID(self: *const ISensorCollection, sensorID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveByID(self, sensorID);
     }
-    pub fn Clear(self: *const ISensorCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const ISensorCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Clear(self);
     }
 };
@@ -575,49 +575,49 @@ pub const ISensor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetID(self: *const ISensor, pID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetID(self: *const ISensor, pID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetID(self, pID);
     }
-    pub fn GetCategory(self: *const ISensor, pSensorCategory: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetCategory(self: *const ISensor, pSensorCategory: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategory(self, pSensorCategory);
     }
-    pub fn GetType(self: *const ISensor, pSensorType: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const ISensor, pSensorType: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pSensorType);
     }
-    pub fn GetFriendlyName(self: *const ISensor, pFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetFriendlyName(self: *const ISensor, pFriendlyName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFriendlyName(self, pFriendlyName);
     }
-    pub fn GetProperty(self: *const ISensor, key: ?*const PROPERTYKEY, pProperty: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const ISensor, key: ?*const PROPERTYKEY, pProperty: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, key, pProperty);
     }
-    pub fn GetProperties(self: *const ISensor, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const ISensor, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperties(self, pKeys, ppProperties);
     }
-    pub fn GetSupportedDataFields(self: *const ISensor, ppDataFields: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+    pub fn GetSupportedDataFields(self: *const ISensor, ppDataFields: ?*?*IPortableDeviceKeyCollection) callconv(.@"inline") HRESULT {
         return self.vtable.GetSupportedDataFields(self, ppDataFields);
     }
-    pub fn SetProperties(self: *const ISensor, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+    pub fn SetProperties(self: *const ISensor, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperties(self, pProperties, ppResults);
     }
-    pub fn SupportsDataField(self: *const ISensor, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn SupportsDataField(self: *const ISensor, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.SupportsDataField(self, key, pIsSupported);
     }
-    pub fn GetState(self: *const ISensor, pState: ?*SensorState) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const ISensor, pState: ?*SensorState) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, pState);
     }
-    pub fn GetData(self: *const ISensor, ppDataReport: ?*?*ISensorDataReport) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const ISensor, ppDataReport: ?*?*ISensorDataReport) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, ppDataReport);
     }
-    pub fn SupportsEvent(self: *const ISensor, eventGuid: ?*const Guid, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn SupportsEvent(self: *const ISensor, eventGuid: ?*const Guid, pIsSupported: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.SupportsEvent(self, eventGuid, pIsSupported);
     }
-    pub fn GetEventInterest(self: *const ISensor, ppValues: [*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEventInterest(self: *const ISensor, ppValues: [*]?*Guid, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventInterest(self, ppValues, pCount);
     }
-    pub fn SetEventInterest(self: *const ISensor, pValues: ?[*]Guid, count: u32) callconv(.Inline) HRESULT {
+    pub fn SetEventInterest(self: *const ISensor, pValues: ?[*]Guid, count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventInterest(self, pValues, count);
     }
-    pub fn SetEventSink(self: *const ISensor, pEvents: ?*ISensorEvents) callconv(.Inline) HRESULT {
+    pub fn SetEventSink(self: *const ISensor, pEvents: ?*ISensorEvents) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventSink(self, pEvents);
     }
 };
@@ -645,13 +645,13 @@ pub const ISensorDataReport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTimestamp(self: *const ISensorDataReport, pTimeStamp: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn GetTimestamp(self: *const ISensorDataReport, pTimeStamp: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetTimestamp(self, pTimeStamp);
     }
-    pub fn GetSensorValue(self: *const ISensorDataReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetSensorValue(self: *const ISensorDataReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetSensorValue(self, pKey, pValue);
     }
-    pub fn GetSensorValues(self: *const ISensorDataReport, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+    pub fn GetSensorValues(self: *const ISensorDataReport, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.@"inline") HRESULT {
         return self.vtable.GetSensorValues(self, pKeys, ppValues);
     }
 };
@@ -670,7 +670,7 @@ pub const ISensorManagerEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnSensorEnter(self: *const ISensorManagerEvents, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
+    pub fn OnSensorEnter(self: *const ISensorManagerEvents, pSensor: ?*ISensor, state: SensorState) callconv(.@"inline") HRESULT {
         return self.vtable.OnSensorEnter(self, pSensor, state);
     }
 };
@@ -704,16 +704,16 @@ pub const ISensorEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStateChanged(self: *const ISensorEvents, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
+    pub fn OnStateChanged(self: *const ISensorEvents, pSensor: ?*ISensor, state: SensorState) callconv(.@"inline") HRESULT {
         return self.vtable.OnStateChanged(self, pSensor, state);
     }
-    pub fn OnDataUpdated(self: *const ISensorEvents, pSensor: ?*ISensor, pNewData: ?*ISensorDataReport) callconv(.Inline) HRESULT {
+    pub fn OnDataUpdated(self: *const ISensorEvents, pSensor: ?*ISensor, pNewData: ?*ISensorDataReport) callconv(.@"inline") HRESULT {
         return self.vtable.OnDataUpdated(self, pSensor, pNewData);
     }
-    pub fn OnEvent(self: *const ISensorEvents, pSensor: ?*ISensor, eventID: ?*const Guid, pEventData: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+    pub fn OnEvent(self: *const ISensorEvents, pSensor: ?*ISensor, eventID: ?*const Guid, pEventData: ?*IPortableDeviceValues) callconv(.@"inline") HRESULT {
         return self.vtable.OnEvent(self, pSensor, eventID, pEventData);
     }
-    pub fn OnLeave(self: *const ISensorEvents, ID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn OnLeave(self: *const ISensorEvents, ID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnLeave(self, ID);
     }
 };

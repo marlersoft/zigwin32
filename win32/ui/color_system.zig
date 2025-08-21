@@ -319,37 +319,37 @@ pub const IDeviceModelPlugIn = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IDeviceModelPlugIn, bstrXml: ?BSTR, cNumModels: u32, iModelPosition: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDeviceModelPlugIn, bstrXml: ?BSTR, cNumModels: u32, iModelPosition: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, bstrXml, cNumModels, iModelPosition);
     }
-    pub fn GetNumChannels(self: *const IDeviceModelPlugIn, pNumChannels: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNumChannels(self: *const IDeviceModelPlugIn, pNumChannels: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumChannels(self, pNumChannels);
     }
-    pub fn DeviceToColorimetricColors(self: *const IDeviceModelPlugIn, cColors: u32, cChannels: u32, pDeviceValues: ?*const f32, pXYZColors: [*]XYZColorF) callconv(.Inline) HRESULT {
+    pub fn DeviceToColorimetricColors(self: *const IDeviceModelPlugIn, cColors: u32, cChannels: u32, pDeviceValues: ?*const f32, pXYZColors: [*]XYZColorF) callconv(.@"inline") HRESULT {
         return self.vtable.DeviceToColorimetricColors(self, cColors, cChannels, pDeviceValues, pXYZColors);
     }
-    pub fn ColorimetricToDeviceColors(self: *const IDeviceModelPlugIn, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pDeviceValues: ?*f32) callconv(.Inline) HRESULT {
+    pub fn ColorimetricToDeviceColors(self: *const IDeviceModelPlugIn, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pDeviceValues: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.ColorimetricToDeviceColors(self, cColors, cChannels, pXYZColors, pDeviceValues);
     }
-    pub fn ColorimetricToDeviceColorsWithBlack(self: *const IDeviceModelPlugIn, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pBlackInformation: [*]const BlackInformation, pDeviceValues: ?*f32) callconv(.Inline) HRESULT {
+    pub fn ColorimetricToDeviceColorsWithBlack(self: *const IDeviceModelPlugIn, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pBlackInformation: [*]const BlackInformation, pDeviceValues: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.ColorimetricToDeviceColorsWithBlack(self, cColors, cChannels, pXYZColors, pBlackInformation, pDeviceValues);
     }
-    pub fn SetTransformDeviceModelInfo(self: *const IDeviceModelPlugIn, iModelPosition: u32, pIDeviceModelOther: ?*IDeviceModelPlugIn) callconv(.Inline) HRESULT {
+    pub fn SetTransformDeviceModelInfo(self: *const IDeviceModelPlugIn, iModelPosition: u32, pIDeviceModelOther: ?*IDeviceModelPlugIn) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformDeviceModelInfo(self, iModelPosition, pIDeviceModelOther);
     }
-    pub fn GetPrimarySamples(self: *const IDeviceModelPlugIn, pPrimaryColor: ?*PrimaryXYZColors) callconv(.Inline) HRESULT {
+    pub fn GetPrimarySamples(self: *const IDeviceModelPlugIn, pPrimaryColor: ?*PrimaryXYZColors) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrimarySamples(self, pPrimaryColor);
     }
-    pub fn GetGamutBoundaryMeshSize(self: *const IDeviceModelPlugIn, pNumVertices: ?*u32, pNumTriangles: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGamutBoundaryMeshSize(self: *const IDeviceModelPlugIn, pNumVertices: ?*u32, pNumTriangles: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGamutBoundaryMeshSize(self, pNumVertices, pNumTriangles);
     }
-    pub fn GetGamutBoundaryMesh(self: *const IDeviceModelPlugIn, cChannels: u32, cVertices: u32, cTriangles: u32, pVertices: ?*f32, pTriangles: [*]GamutShellTriangle) callconv(.Inline) HRESULT {
+    pub fn GetGamutBoundaryMesh(self: *const IDeviceModelPlugIn, cChannels: u32, cVertices: u32, cTriangles: u32, pVertices: ?*f32, pTriangles: [*]GamutShellTriangle) callconv(.@"inline") HRESULT {
         return self.vtable.GetGamutBoundaryMesh(self, cChannels, cVertices, cTriangles, pVertices, pTriangles);
     }
-    pub fn GetNeutralAxisSize(self: *const IDeviceModelPlugIn, pcColors: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNeutralAxisSize(self: *const IDeviceModelPlugIn, pcColors: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNeutralAxisSize(self, pcColors);
     }
-    pub fn GetNeutralAxis(self: *const IDeviceModelPlugIn, cColors: u32, pXYZColors: [*]XYZColorF) callconv(.Inline) HRESULT {
+    pub fn GetNeutralAxis(self: *const IDeviceModelPlugIn, cColors: u32, pXYZColors: [*]XYZColorF) callconv(.@"inline") HRESULT {
         return self.vtable.GetNeutralAxis(self, cColors, pXYZColors);
     }
 };
@@ -376,10 +376,10 @@ pub const IGamutMapModelPlugIn = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IGamutMapModelPlugIn, bstrXml: ?BSTR, pSrcPlugIn: ?*IDeviceModelPlugIn, pDestPlugIn: ?*IDeviceModelPlugIn, pSrcGBD: ?*GamutBoundaryDescription, pDestGBD: ?*GamutBoundaryDescription) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IGamutMapModelPlugIn, bstrXml: ?BSTR, pSrcPlugIn: ?*IDeviceModelPlugIn, pDestPlugIn: ?*IDeviceModelPlugIn, pSrcGBD: ?*GamutBoundaryDescription, pDestGBD: ?*GamutBoundaryDescription) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, bstrXml, pSrcPlugIn, pDestPlugIn, pSrcGBD, pDestGBD);
     }
-    pub fn SourceToDestinationAppearanceColors(self: *const IGamutMapModelPlugIn, cColors: u32, pInputColors: [*]const JChColorF, pOutputColors: [*]JChColorF) callconv(.Inline) HRESULT {
+    pub fn SourceToDestinationAppearanceColors(self: *const IGamutMapModelPlugIn, cColors: u32, pInputColors: [*]const JChColorF, pOutputColors: [*]JChColorF) callconv(.@"inline") HRESULT {
         return self.vtable.SourceToDestinationAppearanceColors(self, cColors, pInputColors, pOutputColors);
     }
 };

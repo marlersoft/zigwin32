@@ -1841,16 +1841,16 @@ pub const IDMLObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: ?*u32, data: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: ?*u32, data: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivateData(self, guid, dataSize, data);
     }
-    pub fn SetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: u32, data: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const IDMLObject, guid: ?*const Guid, dataSize: u32, data: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateData(self, guid, dataSize, data);
     }
-    pub fn SetPrivateDataInterface(self: *const IDMLObject, guid: ?*const Guid, data: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetPrivateDataInterface(self: *const IDMLObject, guid: ?*const Guid, data: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateDataInterface(self, guid, data);
     }
-    pub fn SetName(self: *const IDMLObject, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetName(self: *const IDMLObject, name: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetName(self, name);
     }
 };
@@ -1923,34 +1923,34 @@ pub const IDMLDevice = extern union {
     vtable: *const VTable,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn CheckFeatureSupport(self: *const IDMLDevice, feature: DML_FEATURE, featureQueryDataSize: u32, featureQueryData: ?*const anyopaque, featureSupportDataSize: u32, featureSupportData: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CheckFeatureSupport(self: *const IDMLDevice, feature: DML_FEATURE, featureQueryDataSize: u32, featureQueryData: ?*const anyopaque, featureSupportDataSize: u32, featureSupportData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CheckFeatureSupport(self, feature, featureQueryDataSize, featureQueryData, featureSupportDataSize, featureSupportData);
     }
-    pub fn CreateOperator(self: *const IDMLDevice, desc: ?*const DML_OPERATOR_DESC, riid: ?*const Guid, ppv: ?**anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateOperator(self: *const IDMLDevice, desc: ?*const DML_OPERATOR_DESC, riid: ?*const Guid, ppv: ?**anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateOperator(self, desc, riid, ppv);
     }
-    pub fn CompileOperator(self: *const IDMLDevice, op: ?*IDMLOperator, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?**anyopaque) callconv(.Inline) HRESULT {
+    pub fn CompileOperator(self: *const IDMLDevice, op: ?*IDMLOperator, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?**anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CompileOperator(self, op, flags, riid, ppv);
     }
-    pub fn CreateOperatorInitializer(self: *const IDMLDevice, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateOperatorInitializer(self: *const IDMLDevice, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateOperatorInitializer(self, operatorCount, operators, riid, ppv);
     }
-    pub fn CreateCommandRecorder(self: *const IDMLDevice, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCommandRecorder(self: *const IDMLDevice, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCommandRecorder(self, riid, ppv);
     }
-    pub fn CreateBindingTable(self: *const IDMLDevice, desc: ?*const DML_BINDING_TABLE_DESC, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateBindingTable(self: *const IDMLDevice, desc: ?*const DML_BINDING_TABLE_DESC, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBindingTable(self, desc, riid, ppv);
     }
-    pub fn Evict(self: *const IDMLDevice, count: u32, ppObjects: [*]?*IDMLPageable) callconv(.Inline) HRESULT {
+    pub fn Evict(self: *const IDMLDevice, count: u32, ppObjects: [*]?*IDMLPageable) callconv(.@"inline") HRESULT {
         return self.vtable.Evict(self, count, ppObjects);
     }
-    pub fn MakeResident(self: *const IDMLDevice, count: u32, ppObjects: [*]?*IDMLPageable) callconv(.Inline) HRESULT {
+    pub fn MakeResident(self: *const IDMLDevice, count: u32, ppObjects: [*]?*IDMLPageable) callconv(.@"inline") HRESULT {
         return self.vtable.MakeResident(self, count, ppObjects);
     }
-    pub fn GetDeviceRemovedReason(self: *const IDMLDevice) callconv(.Inline) HRESULT {
+    pub fn GetDeviceRemovedReason(self: *const IDMLDevice) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceRemovedReason(self);
     }
-    pub fn GetParentDevice(self: *const IDMLDevice, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetParentDevice(self: *const IDMLDevice, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetParentDevice(self, riid, ppv);
     }
 };
@@ -1969,7 +1969,7 @@ pub const IDMLDeviceChild = extern union {
     vtable: *const VTable,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDMLDeviceChild, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDMLDeviceChild, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, riid, ppv);
     }
 };
@@ -2018,7 +2018,7 @@ pub const IDMLDispatchable = extern union {
     IDMLDeviceChild: IDMLDeviceChild,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn GetBindingProperties(self: *const IDMLDispatchable) callconv(.Inline) DML_BINDING_PROPERTIES {
+    pub fn GetBindingProperties(self: *const IDMLDispatchable) callconv(.@"inline") DML_BINDING_PROPERTIES {
         return self.vtable.GetBindingProperties(self);
     }
 };
@@ -2054,7 +2054,7 @@ pub const IDMLOperatorInitializer = extern union {
     IDMLDeviceChild: IDMLDeviceChild,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IDMLOperatorInitializer, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IDMLOperatorInitializer, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self, operatorCount, operators);
     }
 };
@@ -2116,19 +2116,19 @@ pub const IDMLBindingTable = extern union {
     IDMLDeviceChild: IDMLDeviceChild,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn BindInputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.Inline) void {
+    pub fn BindInputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.@"inline") void {
         return self.vtable.BindInputs(self, bindingCount, bindings);
     }
-    pub fn BindOutputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.Inline) void {
+    pub fn BindOutputs(self: *const IDMLBindingTable, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) callconv(.@"inline") void {
         return self.vtable.BindOutputs(self, bindingCount, bindings);
     }
-    pub fn BindTemporaryResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.Inline) void {
+    pub fn BindTemporaryResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.@"inline") void {
         return self.vtable.BindTemporaryResource(self, binding);
     }
-    pub fn BindPersistentResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.Inline) void {
+    pub fn BindPersistentResource(self: *const IDMLBindingTable, binding: ?*const DML_BINDING_DESC) callconv(.@"inline") void {
         return self.vtable.BindPersistentResource(self, binding);
     }
-    pub fn Reset(self: *const IDMLBindingTable, desc: ?*const DML_BINDING_TABLE_DESC) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IDMLBindingTable, desc: ?*const DML_BINDING_TABLE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self, desc);
     }
 };
@@ -2149,7 +2149,7 @@ pub const IDMLCommandRecorder = extern union {
     IDMLDeviceChild: IDMLDeviceChild,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn RecordDispatch(self: *const IDMLCommandRecorder, commandList: ?*ID3D12CommandList, dispatchable: ?*IDMLDispatchable, bindings: ?*IDMLBindingTable) callconv(.Inline) void {
+    pub fn RecordDispatch(self: *const IDMLCommandRecorder, commandList: ?*ID3D12CommandList, dispatchable: ?*IDMLDispatchable, bindings: ?*IDMLBindingTable) callconv(.@"inline") void {
         return self.vtable.RecordDispatch(self, commandList, dispatchable, bindings);
     }
 };
@@ -2166,7 +2166,7 @@ pub const IDMLDebugDevice = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetMuteDebugOutput(self: *const IDMLDebugDevice, mute: BOOL) callconv(.Inline) void {
+    pub fn SetMuteDebugOutput(self: *const IDMLDebugDevice, mute: BOOL) callconv(.@"inline") void {
         return self.vtable.SetMuteDebugOutput(self, mute);
     }
 };
@@ -2256,7 +2256,7 @@ pub const IDMLDevice1 = extern union {
     IDMLDevice: IDMLDevice,
     IDMLObject: IDMLObject,
     IUnknown: IUnknown,
-    pub fn CompileGraph(self: *const IDMLDevice1, desc: ?*const DML_GRAPH_DESC, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?**anyopaque) callconv(.Inline) HRESULT {
+    pub fn CompileGraph(self: *const IDMLDevice1, desc: ?*const DML_GRAPH_DESC, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?**anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CompileGraph(self, desc, flags, riid, ppv);
     }
 };

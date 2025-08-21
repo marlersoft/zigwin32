@@ -2819,7 +2819,7 @@ pub const INotifyReplica = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn YouAreAReplica(self: *const INotifyReplica, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn YouAreAReplica(self: *const INotifyReplica, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.YouAreAReplica(self, ulcOtherReplicas, rgpmkOtherReplicas);
     }
 };
@@ -3173,13 +3173,13 @@ pub const IContextMenu = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryContextMenu(self: *const IContextMenu, hmenu: ?HMENU, indexMenu: u32, idCmdFirst: u32, idCmdLast: u32, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn QueryContextMenu(self: *const IContextMenu, hmenu: ?HMENU, indexMenu: u32, idCmdFirst: u32, idCmdLast: u32, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryContextMenu(self, hmenu, indexMenu, idCmdFirst, idCmdLast, uFlags);
     }
-    pub fn InvokeCommand(self: *const IContextMenu, pici: ?*CMINVOKECOMMANDINFO) callconv(.Inline) HRESULT {
+    pub fn InvokeCommand(self: *const IContextMenu, pici: ?*CMINVOKECOMMANDINFO) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeCommand(self, pici);
     }
-    pub fn GetCommandString(self: *const IContextMenu, idCmd: usize, uType: u32, pReserved: ?*u32, pszName: ?PSTR, cchMax: u32) callconv(.Inline) HRESULT {
+    pub fn GetCommandString(self: *const IContextMenu, idCmd: usize, uType: u32, pReserved: ?*u32, pszName: ?PSTR, cchMax: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCommandString(self, idCmd, uType, pReserved, pszName, cchMax);
     }
 };
@@ -3200,7 +3200,7 @@ pub const IContextMenu2 = extern union {
     vtable: *const VTable,
     IContextMenu: IContextMenu,
     IUnknown: IUnknown,
-    pub fn HandleMenuMsg(self: *const IContextMenu2, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn HandleMenuMsg(self: *const IContextMenu2, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.HandleMenuMsg(self, uMsg, wParam, lParam);
     }
 };
@@ -3223,7 +3223,7 @@ pub const IContextMenu3 = extern union {
     IContextMenu2: IContextMenu2,
     IContextMenu: IContextMenu,
     IUnknown: IUnknown,
-    pub fn HandleMenuMsg2(self: *const IContextMenu3, uMsg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
+    pub fn HandleMenuMsg2(self: *const IContextMenu3, uMsg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.HandleMenuMsg2(self, uMsg, wParam, lParam, plResult);
     }
 };
@@ -3264,25 +3264,25 @@ pub const IExecuteCommand = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetKeyState(self: *const IExecuteCommand, grfKeyState: u32) callconv(.Inline) HRESULT {
+    pub fn SetKeyState(self: *const IExecuteCommand, grfKeyState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetKeyState(self, grfKeyState);
     }
-    pub fn SetParameters(self: *const IExecuteCommand, pszParameters: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetParameters(self: *const IExecuteCommand, pszParameters: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetParameters(self, pszParameters);
     }
-    pub fn SetPosition(self: *const IExecuteCommand, pt: POINT) callconv(.Inline) HRESULT {
+    pub fn SetPosition(self: *const IExecuteCommand, pt: POINT) callconv(.@"inline") HRESULT {
         return self.vtable.SetPosition(self, pt);
     }
-    pub fn SetShowWindow(self: *const IExecuteCommand, nShow: i32) callconv(.Inline) HRESULT {
+    pub fn SetShowWindow(self: *const IExecuteCommand, nShow: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetShowWindow(self, nShow);
     }
-    pub fn SetNoShowUI(self: *const IExecuteCommand, fNoShowUI: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNoShowUI(self: *const IExecuteCommand, fNoShowUI: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNoShowUI(self, fNoShowUI);
     }
-    pub fn SetDirectory(self: *const IExecuteCommand, pszDirectory: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDirectory(self: *const IExecuteCommand, pszDirectory: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDirectory(self, pszDirectory);
     }
-    pub fn Execute(self: *const IExecuteCommand) callconv(.Inline) HRESULT {
+    pub fn Execute(self: *const IExecuteCommand) callconv(.@"inline") HRESULT {
         return self.vtable.Execute(self);
     }
 };
@@ -3301,7 +3301,7 @@ pub const IPersistFolder = extern union {
     vtable: *const VTable,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IPersistFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IPersistFolder, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pidl);
     }
 };
@@ -3331,19 +3331,19 @@ pub const IRunnableTask = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Run(self: *const IRunnableTask) callconv(.Inline) HRESULT {
+    pub fn Run(self: *const IRunnableTask) callconv(.@"inline") HRESULT {
         return self.vtable.Run(self);
     }
-    pub fn Kill(self: *const IRunnableTask, bWait: BOOL) callconv(.Inline) HRESULT {
+    pub fn Kill(self: *const IRunnableTask, bWait: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Kill(self, bWait);
     }
-    pub fn Suspend(self: *const IRunnableTask) callconv(.Inline) HRESULT {
+    pub fn Suspend(self: *const IRunnableTask) callconv(.@"inline") HRESULT {
         return self.vtable.Suspend(self);
     }
-    pub fn Resume(self: *const IRunnableTask) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IRunnableTask) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn IsRunning(self: *const IRunnableTask) callconv(.Inline) u32 {
+    pub fn IsRunning(self: *const IRunnableTask) callconv(.@"inline") u32 {
         return self.vtable.IsRunning(self);
     }
 };
@@ -3379,16 +3379,16 @@ pub const IShellTaskScheduler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddTask(self: *const IShellTaskScheduler, prt: ?*IRunnableTask, rtoid: ?*const Guid, lParam: usize, dwPriority: u32) callconv(.Inline) HRESULT {
+    pub fn AddTask(self: *const IShellTaskScheduler, prt: ?*IRunnableTask, rtoid: ?*const Guid, lParam: usize, dwPriority: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddTask(self, prt, rtoid, lParam, dwPriority);
     }
-    pub fn RemoveTasks(self: *const IShellTaskScheduler, rtoid: ?*const Guid, lParam: usize, bWaitIfRunning: BOOL) callconv(.Inline) HRESULT {
+    pub fn RemoveTasks(self: *const IShellTaskScheduler, rtoid: ?*const Guid, lParam: usize, bWaitIfRunning: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveTasks(self, rtoid, lParam, bWaitIfRunning);
     }
-    pub fn CountTasks(self: *const IShellTaskScheduler, rtoid: ?*const Guid) callconv(.Inline) u32 {
+    pub fn CountTasks(self: *const IShellTaskScheduler, rtoid: ?*const Guid) callconv(.@"inline") u32 {
         return self.vtable.CountTasks(self, rtoid);
     }
-    pub fn Status(self: *const IShellTaskScheduler, dwReleaseStatus: u32, dwThreadTimeout: u32) callconv(.Inline) HRESULT {
+    pub fn Status(self: *const IShellTaskScheduler, dwReleaseStatus: u32, dwThreadTimeout: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Status(self, dwReleaseStatus, dwThreadTimeout);
     }
 };
@@ -3408,7 +3408,7 @@ pub const IPersistFolder2 = extern union {
     IPersistFolder: IPersistFolder,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn GetCurFolder(self: *const IPersistFolder2, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetCurFolder(self: *const IPersistFolder2, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurFolder(self, ppidl);
     }
 };
@@ -3443,10 +3443,10 @@ pub const IPersistFolder3 = extern union {
     IPersistFolder: IPersistFolder,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn InitializeEx(self: *const IPersistFolder3, pbc: ?*IBindCtx, pidlRoot: ?*ITEMIDLIST, ppfti: ?*const PERSIST_FOLDER_TARGET_INFO) callconv(.Inline) HRESULT {
+    pub fn InitializeEx(self: *const IPersistFolder3, pbc: ?*IBindCtx, pidlRoot: ?*ITEMIDLIST, ppfti: ?*const PERSIST_FOLDER_TARGET_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeEx(self, pbc, pidlRoot, ppfti);
     }
-    pub fn GetFolderTargetInfo(self: *const IPersistFolder3, ppfti: ?*PERSIST_FOLDER_TARGET_INFO) callconv(.Inline) HRESULT {
+    pub fn GetFolderTargetInfo(self: *const IPersistFolder3, ppfti: ?*PERSIST_FOLDER_TARGET_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderTargetInfo(self, ppfti);
     }
 };
@@ -3469,10 +3469,10 @@ pub const IPersistIDList = extern union {
     vtable: *const VTable,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn SetIDList(self: *const IPersistIDList, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn SetIDList(self: *const IPersistIDList, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.SetIDList(self, pidl);
     }
-    pub fn GetIDList(self: *const IPersistIDList, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetIDList(self: *const IPersistIDList, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDList(self, ppidl);
     }
 };
@@ -3503,16 +3503,16 @@ pub const IEnumIDList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumIDList, celt: u32, rgelt: [*]?*ITEMIDLIST, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumIDList, celt: u32, rgelt: [*]?*ITEMIDLIST, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumIDList, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumIDList, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumIDList) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumIDList) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumIDList, ppenum: ?*?*IEnumIDList) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumIDList, ppenum: ?*?*IEnumIDList) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -3543,16 +3543,16 @@ pub const IEnumFullIDList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumFullIDList, celt: u32, rgelt: [*]?*ITEMIDLIST, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumFullIDList, celt: u32, rgelt: [*]?*ITEMIDLIST, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumFullIDList, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumFullIDList, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumFullIDList) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumFullIDList) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumFullIDList, ppenum: ?*?*IEnumFullIDList) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumFullIDList, ppenum: ?*?*IEnumFullIDList) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -3637,10 +3637,10 @@ pub const IFileSyncMergeHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Merge(self: *const IFileSyncMergeHandler, localFilePath: ?[*:0]const u16, serverFilePath: ?[*:0]const u16, updateStatus: ?*MERGE_UPDATE_STATUS) callconv(.Inline) HRESULT {
+    pub fn Merge(self: *const IFileSyncMergeHandler, localFilePath: ?[*:0]const u16, serverFilePath: ?[*:0]const u16, updateStatus: ?*MERGE_UPDATE_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.Merge(self, localFilePath, serverFilePath, updateStatus);
     }
-    pub fn ShowResolveConflictUIAsync(self: *const IFileSyncMergeHandler, localFilePath: ?[*:0]const u16, monitorToDisplayOn: ?HMONITOR) callconv(.Inline) HRESULT {
+    pub fn ShowResolveConflictUIAsync(self: *const IFileSyncMergeHandler, localFilePath: ?[*:0]const u16, monitorToDisplayOn: ?HMONITOR) callconv(.@"inline") HRESULT {
         return self.vtable.ShowResolveConflictUIAsync(self, localFilePath, monitorToDisplayOn);
     }
 };
@@ -3669,10 +3669,10 @@ pub const IObjectWithFolderEnumMode = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetMode(self: *const IObjectWithFolderEnumMode, feMode: FOLDER_ENUM_MODE) callconv(.Inline) HRESULT {
+    pub fn SetMode(self: *const IObjectWithFolderEnumMode, feMode: FOLDER_ENUM_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetMode(self, feMode);
     }
-    pub fn GetMode(self: *const IObjectWithFolderEnumMode, pfeMode: ?*FOLDER_ENUM_MODE) callconv(.Inline) HRESULT {
+    pub fn GetMode(self: *const IObjectWithFolderEnumMode, pfeMode: ?*FOLDER_ENUM_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.GetMode(self, pfeMode);
     }
 };
@@ -3695,10 +3695,10 @@ pub const IParseAndCreateItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetItem(self: *const IParseAndCreateItem, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn SetItem(self: *const IParseAndCreateItem, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.SetItem(self, psi);
     }
-    pub fn GetItem(self: *const IParseAndCreateItem, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const IParseAndCreateItem, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetItem(self, riid, ppv);
     }
 };
@@ -3782,34 +3782,34 @@ pub const IShellFolder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ParseDisplayName(self: *const IShellFolder, hwnd: ?HWND, pbc: ?*IBindCtx, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppidl: ?*?*ITEMIDLIST, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ParseDisplayName(self: *const IShellFolder, hwnd: ?HWND, pbc: ?*IBindCtx, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppidl: ?*?*ITEMIDLIST, pdwAttributes: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ParseDisplayName(self, hwnd, pbc, pszDisplayName, pchEaten, ppidl, pdwAttributes);
     }
-    pub fn EnumObjects(self: *const IShellFolder, hwnd: ?HWND, grfFlags: u32, ppenumIDList: ?*?*IEnumIDList) callconv(.Inline) HRESULT {
+    pub fn EnumObjects(self: *const IShellFolder, hwnd: ?HWND, grfFlags: u32, ppenumIDList: ?*?*IEnumIDList) callconv(.@"inline") HRESULT {
         return self.vtable.EnumObjects(self, hwnd, grfFlags, ppenumIDList);
     }
-    pub fn BindToObject(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToObject(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToObject(self, pidl, pbc, riid, ppv);
     }
-    pub fn BindToStorage(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToStorage(self: *const IShellFolder, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToStorage(self, pidl, pbc, riid, ppv);
     }
-    pub fn CompareIDs(self: *const IShellFolder, lParam: LPARAM, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn CompareIDs(self: *const IShellFolder, lParam: LPARAM, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.CompareIDs(self, lParam, pidl1, pidl2);
     }
-    pub fn CreateViewObject(self: *const IShellFolder, hwndOwner: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateViewObject(self: *const IShellFolder, hwndOwner: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateViewObject(self, hwndOwner, riid, ppv);
     }
-    pub fn GetAttributesOf(self: *const IShellFolder, cidl: u32, apidl: [*]?*ITEMIDLIST, rgfInOut: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAttributesOf(self: *const IShellFolder, cidl: u32, apidl: [*]?*ITEMIDLIST, rgfInOut: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributesOf(self, cidl, apidl, rgfInOut);
     }
-    pub fn GetUIObjectOf(self: *const IShellFolder, hwndOwner: ?HWND, cidl: u32, apidl: [*]?*ITEMIDLIST, riid: ?*const Guid, rgfReserved: ?*u32, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetUIObjectOf(self: *const IShellFolder, hwndOwner: ?HWND, cidl: u32, apidl: [*]?*ITEMIDLIST, riid: ?*const Guid, rgfReserved: ?*u32, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetUIObjectOf(self, hwndOwner, cidl, apidl, riid, rgfReserved, ppv);
     }
-    pub fn GetDisplayNameOf(self: *const IShellFolder, pidl: ?*ITEMIDLIST, uFlags: SHGDNF, pName: ?*STRRET) callconv(.Inline) HRESULT {
+    pub fn GetDisplayNameOf(self: *const IShellFolder, pidl: ?*ITEMIDLIST, uFlags: SHGDNF, pName: ?*STRRET) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayNameOf(self, pidl, uFlags, pName);
     }
-    pub fn SetNameOf(self: *const IShellFolder, hwnd: ?HWND, pidl: ?*ITEMIDLIST, pszName: ?[*:0]const u16, uFlags: SHGDNF, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn SetNameOf(self: *const IShellFolder, hwnd: ?HWND, pidl: ?*ITEMIDLIST, pszName: ?[*:0]const u16, uFlags: SHGDNF, ppidlOut: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.SetNameOf(self, hwnd, pidl, pszName, uFlags, ppidlOut);
     }
 };
@@ -3846,16 +3846,16 @@ pub const IEnumExtraSearch = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumExtraSearch, celt: u32, rgelt: [*]EXTRASEARCH, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumExtraSearch, celt: u32, rgelt: [*]EXTRASEARCH, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumExtraSearch, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumExtraSearch, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumExtraSearch) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumExtraSearch) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumExtraSearch, ppenum: ?*?*IEnumExtraSearch) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumExtraSearch, ppenum: ?*?*IEnumExtraSearch) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -3906,25 +3906,25 @@ pub const IShellFolder2 = extern union {
     vtable: *const VTable,
     IShellFolder: IShellFolder,
     IUnknown: IUnknown,
-    pub fn GetDefaultSearchGUID(self: *const IShellFolder2, pguid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetDefaultSearchGUID(self: *const IShellFolder2, pguid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultSearchGUID(self, pguid);
     }
-    pub fn EnumSearches(self: *const IShellFolder2, ppenum: ?*?*IEnumExtraSearch) callconv(.Inline) HRESULT {
+    pub fn EnumSearches(self: *const IShellFolder2, ppenum: ?*?*IEnumExtraSearch) callconv(.@"inline") HRESULT {
         return self.vtable.EnumSearches(self, ppenum);
     }
-    pub fn GetDefaultColumn(self: *const IShellFolder2, dwRes: u32, pSort: ?*u32, pDisplay: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDefaultColumn(self: *const IShellFolder2, dwRes: u32, pSort: ?*u32, pDisplay: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultColumn(self, dwRes, pSort, pDisplay);
     }
-    pub fn GetDefaultColumnState(self: *const IShellFolder2, iColumn: u32, pcsFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDefaultColumnState(self: *const IShellFolder2, iColumn: u32, pcsFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultColumnState(self, iColumn, pcsFlags);
     }
-    pub fn GetDetailsEx(self: *const IShellFolder2, pidl: ?*ITEMIDLIST, pscid: ?*const PROPERTYKEY, pv: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetDetailsEx(self: *const IShellFolder2, pidl: ?*ITEMIDLIST, pscid: ?*const PROPERTYKEY, pv: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetDetailsEx(self, pidl, pscid, pv);
     }
-    pub fn GetDetailsOf(self: *const IShellFolder2, pidl: ?*ITEMIDLIST, iColumn: u32, psd: ?*SHELLDETAILS) callconv(.Inline) HRESULT {
+    pub fn GetDetailsOf(self: *const IShellFolder2, pidl: ?*ITEMIDLIST, iColumn: u32, psd: ?*SHELLDETAILS) callconv(.@"inline") HRESULT {
         return self.vtable.GetDetailsOf(self, pidl, iColumn, psd);
     }
-    pub fn MapColumnToSCID(self: *const IShellFolder2, iColumn: u32, pscid: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn MapColumnToSCID(self: *const IShellFolder2, iColumn: u32, pscid: ?*PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.MapColumnToSCID(self, iColumn, pscid);
     }
 };
@@ -4162,37 +4162,37 @@ pub const IShellView = extern union {
     vtable: *const VTable,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn TranslateAccelerator(self: *const IShellView, pmsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn TranslateAccelerator(self: *const IShellView, pmsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateAccelerator(self, pmsg);
     }
-    pub fn EnableModeless(self: *const IShellView, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn EnableModeless(self: *const IShellView, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EnableModeless(self, fEnable);
     }
-    pub fn UIActivate(self: *const IShellView, uState: u32) callconv(.Inline) HRESULT {
+    pub fn UIActivate(self: *const IShellView, uState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UIActivate(self, uState);
     }
-    pub fn Refresh(self: *const IShellView) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IShellView) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn CreateViewWindow(self: *const IShellView, psvPrevious: ?*IShellView, pfs: ?*FOLDERSETTINGS, psb: ?*IShellBrowser, prcView: ?*RECT, phWnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn CreateViewWindow(self: *const IShellView, psvPrevious: ?*IShellView, pfs: ?*FOLDERSETTINGS, psb: ?*IShellBrowser, prcView: ?*RECT, phWnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.CreateViewWindow(self, psvPrevious, pfs, psb, prcView, phWnd);
     }
-    pub fn DestroyViewWindow(self: *const IShellView) callconv(.Inline) HRESULT {
+    pub fn DestroyViewWindow(self: *const IShellView) callconv(.@"inline") HRESULT {
         return self.vtable.DestroyViewWindow(self);
     }
-    pub fn GetCurrentInfo(self: *const IShellView, pfs: ?*FOLDERSETTINGS) callconv(.Inline) HRESULT {
+    pub fn GetCurrentInfo(self: *const IShellView, pfs: ?*FOLDERSETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentInfo(self, pfs);
     }
-    pub fn AddPropertySheetPages(self: *const IShellView, dwReserved: u32, pfn: ?LPFNSVADDPROPSHEETPAGE, lparam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn AddPropertySheetPages(self: *const IShellView, dwReserved: u32, pfn: ?LPFNSVADDPROPSHEETPAGE, lparam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertySheetPages(self, dwReserved, pfn, lparam);
     }
-    pub fn SaveViewState(self: *const IShellView) callconv(.Inline) HRESULT {
+    pub fn SaveViewState(self: *const IShellView) callconv(.@"inline") HRESULT {
         return self.vtable.SaveViewState(self);
     }
-    pub fn SelectItem(self: *const IShellView, pidlItem: ?*ITEMIDLIST, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SelectItem(self: *const IShellView, pidlItem: ?*ITEMIDLIST, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SelectItem(self, pidlItem, uFlags);
     }
-    pub fn GetItemObject(self: *const IShellView, uItem: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItemObject(self: *const IShellView, uItem: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemObject(self, uItem, riid, ppv);
     }
 };
@@ -4237,16 +4237,16 @@ pub const IShellView2 = extern union {
     IShellView: IShellView,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn GetView(self: *const IShellView2, pvid: ?*Guid, uView: u32) callconv(.Inline) HRESULT {
+    pub fn GetView(self: *const IShellView2, pvid: ?*Guid, uView: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetView(self, pvid, uView);
     }
-    pub fn CreateViewWindow2(self: *const IShellView2, lpParams: ?*SV2CVW2_PARAMS) callconv(.Inline) HRESULT {
+    pub fn CreateViewWindow2(self: *const IShellView2, lpParams: ?*SV2CVW2_PARAMS) callconv(.@"inline") HRESULT {
         return self.vtable.CreateViewWindow2(self, lpParams);
     }
-    pub fn HandleRename(self: *const IShellView2, pidlNew: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn HandleRename(self: *const IShellView2, pidlNew: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.HandleRename(self, pidlNew);
     }
-    pub fn SelectAndPositionItem(self: *const IShellView2, pidlItem: ?*ITEMIDLIST, uFlags: u32, ppt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn SelectAndPositionItem(self: *const IShellView2, pidlItem: ?*ITEMIDLIST, uFlags: u32, ppt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.SelectAndPositionItem(self, pidlItem, uFlags, ppt);
     }
 };
@@ -4325,46 +4325,46 @@ pub const IFolderView = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrentViewMode(self: *const IFolderView, pViewMode: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentViewMode(self: *const IFolderView, pViewMode: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentViewMode(self, pViewMode);
     }
-    pub fn SetCurrentViewMode(self: *const IFolderView, ViewMode: u32) callconv(.Inline) HRESULT {
+    pub fn SetCurrentViewMode(self: *const IFolderView, ViewMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCurrentViewMode(self, ViewMode);
     }
-    pub fn GetFolder(self: *const IFolderView, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const IFolderView, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolder(self, riid, ppv);
     }
-    pub fn Item(self: *const IFolderView, iItemIndex: i32, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const IFolderView, iItemIndex: i32, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, iItemIndex, ppidl);
     }
-    pub fn ItemCount(self: *const IFolderView, uFlags: u32, pcItems: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ItemCount(self: *const IFolderView, uFlags: u32, pcItems: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ItemCount(self, uFlags, pcItems);
     }
-    pub fn Items(self: *const IFolderView, uFlags: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn Items(self: *const IFolderView, uFlags: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Items(self, uFlags, riid, ppv);
     }
-    pub fn GetSelectionMarkedItem(self: *const IFolderView, piItem: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetSelectionMarkedItem(self: *const IFolderView, piItem: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectionMarkedItem(self, piItem);
     }
-    pub fn GetFocusedItem(self: *const IFolderView, piItem: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetFocusedItem(self: *const IFolderView, piItem: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFocusedItem(self, piItem);
     }
-    pub fn GetItemPosition(self: *const IFolderView, pidl: ?*ITEMIDLIST, ppt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn GetItemPosition(self: *const IFolderView, pidl: ?*ITEMIDLIST, ppt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemPosition(self, pidl, ppt);
     }
-    pub fn GetSpacing(self: *const IFolderView, ppt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn GetSpacing(self: *const IFolderView, ppt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.GetSpacing(self, ppt);
     }
-    pub fn GetDefaultSpacing(self: *const IFolderView, ppt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn GetDefaultSpacing(self: *const IFolderView, ppt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultSpacing(self, ppt);
     }
-    pub fn GetAutoArrange(self: *const IFolderView) callconv(.Inline) HRESULT {
+    pub fn GetAutoArrange(self: *const IFolderView) callconv(.@"inline") HRESULT {
         return self.vtable.GetAutoArrange(self);
     }
-    pub fn SelectItem(self: *const IFolderView, iItem: i32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SelectItem(self: *const IFolderView, iItem: i32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SelectItem(self, iItem, dwFlags);
     }
-    pub fn SelectAndPositionItems(self: *const IFolderView, cidl: u32, apidl: [*]?*ITEMIDLIST, apt: ?[*]POINT, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SelectAndPositionItems(self: *const IFolderView, cidl: u32, apidl: [*]?*ITEMIDLIST, apt: ?[*]POINT, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SelectAndPositionItems(self, cidl, apidl, apt, dwFlags);
     }
 };
@@ -4515,79 +4515,79 @@ pub const IFolderView2 = extern union {
     vtable: *const VTable,
     IFolderView: IFolderView,
     IUnknown: IUnknown,
-    pub fn SetGroupBy(self: *const IFolderView2, key: ?*const PROPERTYKEY, fAscending: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetGroupBy(self: *const IFolderView2, key: ?*const PROPERTYKEY, fAscending: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetGroupBy(self, key, fAscending);
     }
-    pub fn GetGroupBy(self: *const IFolderView2, pkey: ?*PROPERTYKEY, pfAscending: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetGroupBy(self: *const IFolderView2, pkey: ?*PROPERTYKEY, pfAscending: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetGroupBy(self, pkey, pfAscending);
     }
-    pub fn SetViewProperty(self: *const IFolderView2, pidl: ?*ITEMIDLIST, propkey: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn SetViewProperty(self: *const IFolderView2, pidl: ?*ITEMIDLIST, propkey: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetViewProperty(self, pidl, propkey, propvar);
     }
-    pub fn GetViewProperty(self: *const IFolderView2, pidl: ?*ITEMIDLIST, propkey: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetViewProperty(self: *const IFolderView2, pidl: ?*ITEMIDLIST, propkey: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewProperty(self, pidl, propkey, ppropvar);
     }
-    pub fn SetTileViewProperties(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pszPropList: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTileViewProperties(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pszPropList: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTileViewProperties(self, pidl, pszPropList);
     }
-    pub fn SetExtendedTileViewProperties(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pszPropList: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetExtendedTileViewProperties(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pszPropList: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetExtendedTileViewProperties(self, pidl, pszPropList);
     }
-    pub fn SetText(self: *const IFolderView2, iType: FVTEXTTYPE, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetText(self: *const IFolderView2, iType: FVTEXTTYPE, pwszText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetText(self, iType, pwszText);
     }
-    pub fn SetCurrentFolderFlags(self: *const IFolderView2, dwMask: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetCurrentFolderFlags(self: *const IFolderView2, dwMask: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCurrentFolderFlags(self, dwMask, dwFlags);
     }
-    pub fn GetCurrentFolderFlags(self: *const IFolderView2, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentFolderFlags(self: *const IFolderView2, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentFolderFlags(self, pdwFlags);
     }
-    pub fn GetSortColumnCount(self: *const IFolderView2, pcColumns: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetSortColumnCount(self: *const IFolderView2, pcColumns: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSortColumnCount(self, pcColumns);
     }
-    pub fn SetSortColumns(self: *const IFolderView2, rgSortColumns: [*]const SORTCOLUMN, cColumns: i32) callconv(.Inline) HRESULT {
+    pub fn SetSortColumns(self: *const IFolderView2, rgSortColumns: [*]const SORTCOLUMN, cColumns: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSortColumns(self, rgSortColumns, cColumns);
     }
-    pub fn GetSortColumns(self: *const IFolderView2, rgSortColumns: [*]SORTCOLUMN, cColumns: i32) callconv(.Inline) HRESULT {
+    pub fn GetSortColumns(self: *const IFolderView2, rgSortColumns: [*]SORTCOLUMN, cColumns: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSortColumns(self, rgSortColumns, cColumns);
     }
-    pub fn GetItem(self: *const IFolderView2, iItem: i32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const IFolderView2, iItem: i32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetItem(self, iItem, riid, ppv);
     }
-    pub fn GetVisibleItem(self: *const IFolderView2, iStart: i32, fPrevious: BOOL, piItem: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVisibleItem(self: *const IFolderView2, iStart: i32, fPrevious: BOOL, piItem: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVisibleItem(self, iStart, fPrevious, piItem);
     }
-    pub fn GetSelectedItem(self: *const IFolderView2, iStart: i32, piItem: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetSelectedItem(self: *const IFolderView2, iStart: i32, piItem: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectedItem(self, iStart, piItem);
     }
-    pub fn GetSelection(self: *const IFolderView2, fNoneImpliesFolder: BOOL, ppsia: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn GetSelection(self: *const IFolderView2, fNoneImpliesFolder: BOOL, ppsia: ?*?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelection(self, fNoneImpliesFolder, ppsia);
     }
-    pub fn GetSelectionState(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSelectionState(self: *const IFolderView2, pidl: ?*ITEMIDLIST, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectionState(self, pidl, pdwFlags);
     }
-    pub fn InvokeVerbOnSelection(self: *const IFolderView2, pszVerb: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn InvokeVerbOnSelection(self: *const IFolderView2, pszVerb: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeVerbOnSelection(self, pszVerb);
     }
-    pub fn SetViewModeAndIconSize(self: *const IFolderView2, uViewMode: FOLDERVIEWMODE, iImageSize: i32) callconv(.Inline) HRESULT {
+    pub fn SetViewModeAndIconSize(self: *const IFolderView2, uViewMode: FOLDERVIEWMODE, iImageSize: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetViewModeAndIconSize(self, uViewMode, iImageSize);
     }
-    pub fn GetViewModeAndIconSize(self: *const IFolderView2, puViewMode: ?*FOLDERVIEWMODE, piImageSize: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetViewModeAndIconSize(self: *const IFolderView2, puViewMode: ?*FOLDERVIEWMODE, piImageSize: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewModeAndIconSize(self, puViewMode, piImageSize);
     }
-    pub fn SetGroupSubsetCount(self: *const IFolderView2, cVisibleRows: u32) callconv(.Inline) HRESULT {
+    pub fn SetGroupSubsetCount(self: *const IFolderView2, cVisibleRows: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGroupSubsetCount(self, cVisibleRows);
     }
-    pub fn GetGroupSubsetCount(self: *const IFolderView2, pcVisibleRows: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGroupSubsetCount(self: *const IFolderView2, pcVisibleRows: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGroupSubsetCount(self, pcVisibleRows);
     }
-    pub fn SetRedraw(self: *const IFolderView2, fRedrawOn: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetRedraw(self: *const IFolderView2, fRedrawOn: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedraw(self, fRedrawOn);
     }
-    pub fn IsMoveInSameFolder(self: *const IFolderView2) callconv(.Inline) HRESULT {
+    pub fn IsMoveInSameFolder(self: *const IFolderView2) callconv(.@"inline") HRESULT {
         return self.vtable.IsMoveInSameFolder(self);
     }
-    pub fn DoRename(self: *const IFolderView2) callconv(.Inline) HRESULT {
+    pub fn DoRename(self: *const IFolderView2) callconv(.@"inline") HRESULT {
         return self.vtable.DoRename(self);
     }
 };
@@ -4634,25 +4634,25 @@ pub const IFolderViewSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetColumnPropertyList(self: *const IFolderViewSettings, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetColumnPropertyList(self: *const IFolderViewSettings, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumnPropertyList(self, riid, ppv);
     }
-    pub fn GetGroupByProperty(self: *const IFolderViewSettings, pkey: ?*PROPERTYKEY, pfGroupAscending: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetGroupByProperty(self: *const IFolderViewSettings, pkey: ?*PROPERTYKEY, pfGroupAscending: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetGroupByProperty(self, pkey, pfGroupAscending);
     }
-    pub fn GetViewMode(self: *const IFolderViewSettings, plvm: ?*FOLDERLOGICALVIEWMODE) callconv(.Inline) HRESULT {
+    pub fn GetViewMode(self: *const IFolderViewSettings, plvm: ?*FOLDERLOGICALVIEWMODE) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewMode(self, plvm);
     }
-    pub fn GetIconSize(self: *const IFolderViewSettings, puIconSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetIconSize(self: *const IFolderViewSettings, puIconSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconSize(self, puIconSize);
     }
-    pub fn GetFolderFlags(self: *const IFolderViewSettings, pfolderMask: ?*FOLDERFLAGS, pfolderFlags: ?*FOLDERFLAGS) callconv(.Inline) HRESULT {
+    pub fn GetFolderFlags(self: *const IFolderViewSettings, pfolderMask: ?*FOLDERFLAGS, pfolderFlags: ?*FOLDERFLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderFlags(self, pfolderMask, pfolderFlags);
     }
-    pub fn GetSortColumns(self: *const IFolderViewSettings, rgSortColumns: [*]SORTCOLUMN, cColumnsIn: u32, pcColumnsOut: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSortColumns(self: *const IFolderViewSettings, rgSortColumns: [*]SORTCOLUMN, cColumnsIn: u32, pcColumnsOut: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSortColumns(self, rgSortColumns, cColumnsIn, pcColumnsOut);
     }
-    pub fn GetGroupSubsetCount(self: *const IFolderViewSettings, pcVisibleRows: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGroupSubsetCount(self: *const IFolderViewSettings, pcVisibleRows: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGroupSubsetCount(self, pcVisibleRows);
     }
 };
@@ -4674,7 +4674,7 @@ pub const IInitializeNetworkFolder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IInitializeNetworkFolder, pidl: ?*ITEMIDLIST, pidlTarget: ?*ITEMIDLIST, uDisplayType: u32, pszResName: ?[*:0]const u16, pszProvider: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IInitializeNetworkFolder, pidl: ?*ITEMIDLIST, pidlTarget: ?*ITEMIDLIST, uDisplayType: u32, pszResName: ?[*:0]const u16, pszProvider: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pidl, pidlTarget, uDisplayType, pszResName, pszProvider);
     }
 };
@@ -4702,13 +4702,13 @@ pub const INetworkFolderInternal = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetResourceDisplayType(self: *const INetworkFolderInternal, displayType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetResourceDisplayType(self: *const INetworkFolderInternal, displayType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceDisplayType(self, displayType);
     }
-    pub fn GetIDList(self: *const INetworkFolderInternal, idList: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetIDList(self: *const INetworkFolderInternal, idList: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDList(self, idList);
     }
-    pub fn GetProvider(self: *const INetworkFolderInternal, itemIdCount: u32, itemIds: [*]?*ITEMIDLIST, providerMaxLength: u32, provider: [*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetProvider(self: *const INetworkFolderInternal, itemIdCount: u32, itemIds: [*]?*ITEMIDLIST, providerMaxLength: u32, provider: [*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetProvider(self, itemIdCount, itemIds, providerMaxLength, provider);
     }
 };
@@ -4734,13 +4734,13 @@ pub const IPreviewHandlerVisuals = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetBackgroundColor(self: *const IPreviewHandlerVisuals, color: u32) callconv(.Inline) HRESULT {
+    pub fn SetBackgroundColor(self: *const IPreviewHandlerVisuals, color: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBackgroundColor(self, color);
     }
-    pub fn SetFont(self: *const IPreviewHandlerVisuals, plf: ?*const LOGFONTW) callconv(.Inline) HRESULT {
+    pub fn SetFont(self: *const IPreviewHandlerVisuals, plf: ?*const LOGFONTW) callconv(.@"inline") HRESULT {
         return self.vtable.SetFont(self, plf);
     }
-    pub fn SetTextColor(self: *const IPreviewHandlerVisuals, color: u32) callconv(.Inline) HRESULT {
+    pub fn SetTextColor(self: *const IPreviewHandlerVisuals, color: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTextColor(self, color);
     }
 };
@@ -4768,13 +4768,13 @@ pub const ICommDlgBrowser = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnDefaultCommand(self: *const ICommDlgBrowser, ppshv: ?*IShellView) callconv(.Inline) HRESULT {
+    pub fn OnDefaultCommand(self: *const ICommDlgBrowser, ppshv: ?*IShellView) callconv(.@"inline") HRESULT {
         return self.vtable.OnDefaultCommand(self, ppshv);
     }
-    pub fn OnStateChange(self: *const ICommDlgBrowser, ppshv: ?*IShellView, uChange: u32) callconv(.Inline) HRESULT {
+    pub fn OnStateChange(self: *const ICommDlgBrowser, ppshv: ?*IShellView, uChange: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnStateChange(self, ppshv, uChange);
     }
-    pub fn IncludeObject(self: *const ICommDlgBrowser, ppshv: ?*IShellView, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn IncludeObject(self: *const ICommDlgBrowser, ppshv: ?*IShellView, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.IncludeObject(self, ppshv, pidl);
     }
 };
@@ -4804,13 +4804,13 @@ pub const ICommDlgBrowser2 = extern union {
     vtable: *const VTable,
     ICommDlgBrowser: ICommDlgBrowser,
     IUnknown: IUnknown,
-    pub fn Notify(self: *const ICommDlgBrowser2, ppshv: ?*IShellView, dwNotifyType: u32) callconv(.Inline) HRESULT {
+    pub fn Notify(self: *const ICommDlgBrowser2, ppshv: ?*IShellView, dwNotifyType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Notify(self, ppshv, dwNotifyType);
     }
-    pub fn GetDefaultMenuText(self: *const ICommDlgBrowser2, ppshv: ?*IShellView, pszText: [*:0]u16, cchMax: i32) callconv(.Inline) HRESULT {
+    pub fn GetDefaultMenuText(self: *const ICommDlgBrowser2, ppshv: ?*IShellView, pszText: [*:0]u16, cchMax: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultMenuText(self, ppshv, pszText, cchMax);
     }
-    pub fn GetViewFlags(self: *const ICommDlgBrowser2, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetViewFlags(self: *const ICommDlgBrowser2, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewFlags(self, pdwFlags);
     }
 };
@@ -4900,19 +4900,19 @@ pub const IColumnManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetColumnInfo(self: *const IColumnManager, propkey: ?*const PROPERTYKEY, pcmci: ?*const CM_COLUMNINFO) callconv(.Inline) HRESULT {
+    pub fn SetColumnInfo(self: *const IColumnManager, propkey: ?*const PROPERTYKEY, pcmci: ?*const CM_COLUMNINFO) callconv(.@"inline") HRESULT {
         return self.vtable.SetColumnInfo(self, propkey, pcmci);
     }
-    pub fn GetColumnInfo(self: *const IColumnManager, propkey: ?*const PROPERTYKEY, pcmci: ?*CM_COLUMNINFO) callconv(.Inline) HRESULT {
+    pub fn GetColumnInfo(self: *const IColumnManager, propkey: ?*const PROPERTYKEY, pcmci: ?*CM_COLUMNINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumnInfo(self, propkey, pcmci);
     }
-    pub fn GetColumnCount(self: *const IColumnManager, dwFlags: CM_ENUM_FLAGS, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColumnCount(self: *const IColumnManager, dwFlags: CM_ENUM_FLAGS, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumnCount(self, dwFlags, puCount);
     }
-    pub fn GetColumns(self: *const IColumnManager, dwFlags: CM_ENUM_FLAGS, rgkeyOrder: [*]PROPERTYKEY, cColumns: u32) callconv(.Inline) HRESULT {
+    pub fn GetColumns(self: *const IColumnManager, dwFlags: CM_ENUM_FLAGS, rgkeyOrder: [*]PROPERTYKEY, cColumns: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumns(self, dwFlags, rgkeyOrder, cColumns);
     }
-    pub fn SetColumns(self: *const IColumnManager, rgkeyOrder: [*]const PROPERTYKEY, cVisible: u32) callconv(.Inline) HRESULT {
+    pub fn SetColumns(self: *const IColumnManager, rgkeyOrder: [*]const PROPERTYKEY, cVisible: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetColumns(self, rgkeyOrder, cVisible);
     }
 };
@@ -4930,7 +4930,7 @@ pub const IFolderFilterSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFilter(self: *const IFolderFilterSite, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetFilter(self: *const IFolderFilterSite, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetFilter(self, punk);
     }
 };
@@ -4957,10 +4957,10 @@ pub const IFolderFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShouldShow(self: *const IFolderFilter, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, pidlItem: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn ShouldShow(self: *const IFolderFilter, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, pidlItem: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.ShouldShow(self, psf, pidlFolder, pidlItem);
     }
-    pub fn GetEnumFlags(self: *const IFolderFilter, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, phwnd: ?*?HWND, pgrfFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEnumFlags(self: *const IFolderFilter, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, phwnd: ?*?HWND, pgrfFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnumFlags(self, psf, pidlFolder, phwnd, pgrfFlags);
     }
 };
@@ -4979,7 +4979,7 @@ pub const IInputObjectSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnFocusChangeIS(self: *const IInputObjectSite, punkObj: ?*IUnknown, fSetFocus: BOOL) callconv(.Inline) HRESULT {
+    pub fn OnFocusChangeIS(self: *const IInputObjectSite, punkObj: ?*IUnknown, fSetFocus: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnFocusChangeIS(self, punkObj, fSetFocus);
     }
 };
@@ -5005,13 +5005,13 @@ pub const IInputObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn UIActivateIO(self: *const IInputObject, fActivate: BOOL, pMsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn UIActivateIO(self: *const IInputObject, fActivate: BOOL, pMsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.UIActivateIO(self, fActivate, pMsg);
     }
-    pub fn HasFocusIO(self: *const IInputObject) callconv(.Inline) HRESULT {
+    pub fn HasFocusIO(self: *const IInputObject) callconv(.@"inline") HRESULT {
         return self.vtable.HasFocusIO(self);
     }
-    pub fn TranslateAcceleratorIO(self: *const IInputObject, pMsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn TranslateAcceleratorIO(self: *const IInputObject, pMsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateAcceleratorIO(self, pMsg);
     }
 };
@@ -5030,7 +5030,7 @@ pub const IInputObject2 = extern union {
     vtable: *const VTable,
     IInputObject: IInputObject,
     IUnknown: IUnknown,
-    pub fn TranslateAcceleratorGlobal(self: *const IInputObject2, pMsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn TranslateAcceleratorGlobal(self: *const IInputObject2, pMsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateAcceleratorGlobal(self, pMsg);
     }
 };
@@ -5050,7 +5050,7 @@ pub const IShellIcon = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIconOf(self: *const IShellIcon, pidl: ?*ITEMIDLIST, flags: u32, pIconIndex: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIconOf(self: *const IShellIcon, pidl: ?*ITEMIDLIST, flags: u32, pIconIndex: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconOf(self, pidl, flags, pIconIndex);
     }
 };
@@ -5130,43 +5130,43 @@ pub const IShellBrowser = extern union {
     vtable: *const VTable,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn InsertMenusSB(self: *const IShellBrowser, hmenuShared: ?HMENU, lpMenuWidths: ?*OleMenuGroupWidths) callconv(.Inline) HRESULT {
+    pub fn InsertMenusSB(self: *const IShellBrowser, hmenuShared: ?HMENU, lpMenuWidths: ?*OleMenuGroupWidths) callconv(.@"inline") HRESULT {
         return self.vtable.InsertMenusSB(self, hmenuShared, lpMenuWidths);
     }
-    pub fn SetMenuSB(self: *const IShellBrowser, hmenuShared: ?HMENU, holemenuRes: isize, hwndActiveObject: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetMenuSB(self: *const IShellBrowser, hmenuShared: ?HMENU, holemenuRes: isize, hwndActiveObject: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetMenuSB(self, hmenuShared, holemenuRes, hwndActiveObject);
     }
-    pub fn RemoveMenusSB(self: *const IShellBrowser, hmenuShared: ?HMENU) callconv(.Inline) HRESULT {
+    pub fn RemoveMenusSB(self: *const IShellBrowser, hmenuShared: ?HMENU) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveMenusSB(self, hmenuShared);
     }
-    pub fn SetStatusTextSB(self: *const IShellBrowser, pszStatusText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetStatusTextSB(self: *const IShellBrowser, pszStatusText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStatusTextSB(self, pszStatusText);
     }
-    pub fn EnableModelessSB(self: *const IShellBrowser, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn EnableModelessSB(self: *const IShellBrowser, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EnableModelessSB(self, fEnable);
     }
-    pub fn TranslateAcceleratorSB(self: *const IShellBrowser, pmsg: ?*MSG, wID: u16) callconv(.Inline) HRESULT {
+    pub fn TranslateAcceleratorSB(self: *const IShellBrowser, pmsg: ?*MSG, wID: u16) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateAcceleratorSB(self, pmsg, wID);
     }
-    pub fn BrowseObject(self: *const IShellBrowser, pidl: ?*ITEMIDLIST, wFlags: u32) callconv(.Inline) HRESULT {
+    pub fn BrowseObject(self: *const IShellBrowser, pidl: ?*ITEMIDLIST, wFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BrowseObject(self, pidl, wFlags);
     }
-    pub fn GetViewStateStream(self: *const IShellBrowser, grfMode: u32, ppStrm: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetViewStateStream(self: *const IShellBrowser, grfMode: u32, ppStrm: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewStateStream(self, grfMode, ppStrm);
     }
-    pub fn GetControlWindow(self: *const IShellBrowser, id: u32, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn GetControlWindow(self: *const IShellBrowser, id: u32, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetControlWindow(self, id, phwnd);
     }
-    pub fn SendControlMsg(self: *const IShellBrowser, id: u32, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pret: ?*LRESULT) callconv(.Inline) HRESULT {
+    pub fn SendControlMsg(self: *const IShellBrowser, id: u32, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pret: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.SendControlMsg(self, id, uMsg, wParam, lParam, pret);
     }
-    pub fn QueryActiveShellView(self: *const IShellBrowser, ppshv: ?*?*IShellView) callconv(.Inline) HRESULT {
+    pub fn QueryActiveShellView(self: *const IShellBrowser, ppshv: ?*?*IShellView) callconv(.@"inline") HRESULT {
         return self.vtable.QueryActiveShellView(self, ppshv);
     }
-    pub fn OnViewWindowActive(self: *const IShellBrowser, pshv: ?*IShellView) callconv(.Inline) HRESULT {
+    pub fn OnViewWindowActive(self: *const IShellBrowser, pshv: ?*IShellView) callconv(.@"inline") HRESULT {
         return self.vtable.OnViewWindowActive(self, pshv);
     }
-    pub fn SetToolbarItems(self: *const IShellBrowser, lpButtons: ?[*]TBBUTTON, nButtons: u32, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetToolbarItems(self: *const IShellBrowser, lpButtons: ?[*]TBBUTTON, nButtons: u32, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetToolbarItems(self, lpButtons, nButtons, uFlags);
     }
 };
@@ -5190,10 +5190,10 @@ pub const IProfferService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ProfferService(self: *const IProfferService, serviceId: ?*const Guid, serviceProvider: ?*IServiceProvider, cookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ProfferService(self: *const IProfferService, serviceId: ?*const Guid, serviceProvider: ?*IServiceProvider, cookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ProfferService(self, serviceId, serviceProvider, cookie);
     }
-    pub fn RevokeService(self: *const IProfferService, cookie: u32) callconv(.Inline) HRESULT {
+    pub fn RevokeService(self: *const IProfferService, cookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RevokeService(self, cookie);
     }
 };
@@ -5211,7 +5211,7 @@ pub const IGetServiceIds = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetServiceIds(self: *const IGetServiceIds, serviceIdCount: ?*u32, serviceIds: [*]?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetServiceIds(self: *const IGetServiceIds, serviceIdCount: ?*u32, serviceIds: [*]?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetServiceIds(self, serviceIdCount, serviceIds);
     }
 };
@@ -5286,19 +5286,19 @@ pub const IShellItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BindToHandler(self: *const IShellItem, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToHandler(self: *const IShellItem, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToHandler(self, pbc, bhid, riid, ppv);
     }
-    pub fn GetParent(self: *const IShellItem, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn GetParent(self: *const IShellItem, ppsi: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetParent(self, ppsi);
     }
-    pub fn GetDisplayName(self: *const IShellItem, sigdnName: SIGDN, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDisplayName(self: *const IShellItem, sigdnName: SIGDN, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, sigdnName, ppszName);
     }
-    pub fn GetAttributes(self: *const IShellItem, sfgaoMask: u32, psfgaoAttribs: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAttributes(self: *const IShellItem, sfgaoMask: u32, psfgaoAttribs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributes(self, sfgaoMask, psfgaoAttribs);
     }
-    pub fn Compare(self: *const IShellItem, psi: ?*IShellItem, hint: u32, piOrder: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Compare(self: *const IShellItem, psi: ?*IShellItem, hint: u32, piOrder: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Compare(self, psi, hint, piOrder);
     }
 };
@@ -5397,43 +5397,43 @@ pub const IShellItem2 = extern union {
     vtable: *const VTable,
     IShellItem: IShellItem,
     IUnknown: IUnknown,
-    pub fn GetPropertyStore(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStore(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyStore(self, flags, riid, ppv);
     }
-    pub fn GetPropertyStoreWithCreateObject(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStoreWithCreateObject(self: *const IShellItem2, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyStoreWithCreateObject(self, flags, punkCreateObject, riid, ppv);
     }
-    pub fn GetPropertyStoreForKeys(self: *const IShellItem2, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStoreForKeys(self: *const IShellItem2, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyStoreForKeys(self, rgKeys, cKeys, flags, riid, ppv);
     }
-    pub fn GetPropertyDescriptionList(self: *const IShellItem2, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDescriptionList(self: *const IShellItem2, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyDescriptionList(self, keyType, riid, ppv);
     }
-    pub fn Update(self: *const IShellItem2, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IShellItem2, pbc: ?*IBindCtx) callconv(.@"inline") HRESULT {
         return self.vtable.Update(self, pbc);
     }
-    pub fn GetProperty(self: *const IShellItem2, key: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IShellItem2, key: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, key, ppropvar);
     }
-    pub fn GetCLSID(self: *const IShellItem2, key: ?*const PROPERTYKEY, pclsid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetCLSID(self: *const IShellItem2, key: ?*const PROPERTYKEY, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetCLSID(self, key, pclsid);
     }
-    pub fn GetFileTime(self: *const IShellItem2, key: ?*const PROPERTYKEY, pft: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetFileTime(self: *const IShellItem2, key: ?*const PROPERTYKEY, pft: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileTime(self, key, pft);
     }
-    pub fn GetInt32(self: *const IShellItem2, key: ?*const PROPERTYKEY, pi: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetInt32(self: *const IShellItem2, key: ?*const PROPERTYKEY, pi: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetInt32(self, key, pi);
     }
-    pub fn GetString(self: *const IShellItem2, key: ?*const PROPERTYKEY, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetString(self: *const IShellItem2, key: ?*const PROPERTYKEY, ppsz: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetString(self, key, ppsz);
     }
-    pub fn GetUInt32(self: *const IShellItem2, key: ?*const PROPERTYKEY, pui: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUInt32(self: *const IShellItem2, key: ?*const PROPERTYKEY, pui: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetUInt32(self, key, pui);
     }
-    pub fn GetUInt64(self: *const IShellItem2, key: ?*const PROPERTYKEY, pull: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetUInt64(self: *const IShellItem2, key: ?*const PROPERTYKEY, pull: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetUInt64(self, key, pull);
     }
-    pub fn GetBool(self: *const IShellItem2, key: ?*const PROPERTYKEY, pf: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetBool(self: *const IShellItem2, key: ?*const PROPERTYKEY, pf: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetBool(self, key, pf);
     }
 };
@@ -5498,7 +5498,7 @@ pub const IShellItemImageFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetImage(self: *const IShellItemImageFactory, size: SIZE, flags: SIIGBF, phbm: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn GetImage(self: *const IShellItemImageFactory, size: SIZE, flags: SIIGBF, phbm: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.GetImage(self, size, flags, phbm);
     }
 };
@@ -5529,16 +5529,16 @@ pub const IEnumShellItems = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumShellItems, celt: u32, rgelt: [*]?*IShellItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumShellItems, celt: u32, rgelt: [*]?*IShellItem, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumShellItems, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumShellItems, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumShellItems) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumShellItems) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumShellItems, ppenum: ?*?*IEnumShellItems) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumShellItems, ppenum: ?*?*IEnumShellItems) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -5654,25 +5654,25 @@ pub const ITransferAdviseSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn UpdateProgress(self: *const ITransferAdviseSink, ullSizeCurrent: u64, ullSizeTotal: u64, nFilesCurrent: i32, nFilesTotal: i32, nFoldersCurrent: i32, nFoldersTotal: i32) callconv(.Inline) HRESULT {
+    pub fn UpdateProgress(self: *const ITransferAdviseSink, ullSizeCurrent: u64, ullSizeTotal: u64, nFilesCurrent: i32, nFilesTotal: i32, nFoldersCurrent: i32, nFoldersTotal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateProgress(self, ullSizeCurrent, ullSizeTotal, nFilesCurrent, nFilesTotal, nFoldersCurrent, nFoldersTotal);
     }
-    pub fn UpdateTransferState(self: *const ITransferAdviseSink, ts: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateTransferState(self: *const ITransferAdviseSink, ts: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateTransferState(self, ts);
     }
-    pub fn ConfirmOverwrite(self: *const ITransferAdviseSink, psiSource: ?*IShellItem, psiDestParent: ?*IShellItem, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ConfirmOverwrite(self: *const ITransferAdviseSink, psiSource: ?*IShellItem, psiDestParent: ?*IShellItem, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.ConfirmOverwrite(self, psiSource, psiDestParent, pszName);
     }
-    pub fn ConfirmEncryptionLoss(self: *const ITransferAdviseSink, psiSource: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn ConfirmEncryptionLoss(self: *const ITransferAdviseSink, psiSource: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.ConfirmEncryptionLoss(self, psiSource);
     }
-    pub fn FileFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pszItem: ?[*:0]const u16, hrError: HRESULT, pszRename: [*:0]u16, cchRename: u32) callconv(.Inline) HRESULT {
+    pub fn FileFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pszItem: ?[*:0]const u16, hrError: HRESULT, pszRename: [*:0]u16, cchRename: u32) callconv(.@"inline") HRESULT {
         return self.vtable.FileFailure(self, psi, pszItem, hrError, pszRename, cchRename);
     }
-    pub fn SubStreamFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pszStreamName: ?[*:0]const u16, hrError: HRESULT) callconv(.Inline) HRESULT {
+    pub fn SubStreamFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pszStreamName: ?[*:0]const u16, hrError: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.SubStreamFailure(self, psi, pszStreamName, hrError);
     }
-    pub fn PropertyFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pkey: ?*const PROPERTYKEY, hrError: HRESULT) callconv(.Inline) HRESULT {
+    pub fn PropertyFailure(self: *const ITransferAdviseSink, psi: ?*IShellItem, pkey: ?*const PROPERTYKEY, hrError: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.PropertyFailure(self, psi, pkey, hrError);
     }
 };
@@ -5760,43 +5760,43 @@ pub const ITransferSource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Advise(self: *const ITransferSource, psink: ?*ITransferAdviseSink, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const ITransferSource, psink: ?*ITransferAdviseSink, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, psink, pdwCookie);
     }
-    pub fn Unadvise(self: *const ITransferSource, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const ITransferSource, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwCookie);
     }
-    pub fn SetProperties(self: *const ITransferSource, pproparray: ?*IPropertyChangeArray) callconv(.Inline) HRESULT {
+    pub fn SetProperties(self: *const ITransferSource, pproparray: ?*IPropertyChangeArray) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperties(self, pproparray);
     }
-    pub fn OpenItem(self: *const ITransferSource, psi: ?*IShellItem, flags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenItem(self: *const ITransferSource, psi: ?*IShellItem, flags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.OpenItem(self, psi, flags, riid, ppv);
     }
-    pub fn MoveItem(self: *const ITransferSource, psi: ?*IShellItem, psiParentDst: ?*IShellItem, pszNameDst: ?[*:0]const u16, flags: u32, ppsiNew: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn MoveItem(self: *const ITransferSource, psi: ?*IShellItem, psiParentDst: ?*IShellItem, pszNameDst: ?[*:0]const u16, flags: u32, ppsiNew: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.MoveItem(self, psi, psiParentDst, pszNameDst, flags, ppsiNew);
     }
-    pub fn RecycleItem(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn RecycleItem(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.RecycleItem(self, psiSource, psiParentDest, flags, ppsiNewDest);
     }
-    pub fn RemoveItem(self: *const ITransferSource, psiSource: ?*IShellItem, flags: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ITransferSource, psiSource: ?*IShellItem, flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveItem(self, psiSource, flags);
     }
-    pub fn RenameItem(self: *const ITransferSource, psiSource: ?*IShellItem, pszNewName: ?[*:0]const u16, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn RenameItem(self: *const ITransferSource, psiSource: ?*IShellItem, pszNewName: ?[*:0]const u16, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.RenameItem(self, psiSource, pszNewName, flags, ppsiNewDest);
     }
-    pub fn LinkItem(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, pszNewName: ?[*:0]const u16, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn LinkItem(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, pszNewName: ?[*:0]const u16, flags: u32, ppsiNewDest: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.LinkItem(self, psiSource, psiParentDest, pszNewName, flags, ppsiNewDest);
     }
-    pub fn ApplyPropertiesToItem(self: *const ITransferSource, psiSource: ?*IShellItem, ppsiNew: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn ApplyPropertiesToItem(self: *const ITransferSource, psiSource: ?*IShellItem, ppsiNew: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.ApplyPropertiesToItem(self, psiSource, ppsiNew);
     }
-    pub fn GetDefaultDestinationName(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, ppszDestinationName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDefaultDestinationName(self: *const ITransferSource, psiSource: ?*IShellItem, psiParentDest: ?*IShellItem, ppszDestinationName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultDestinationName(self, psiSource, psiParentDest, ppszDestinationName);
     }
-    pub fn EnterFolder(self: *const ITransferSource, psiChildFolderDest: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn EnterFolder(self: *const ITransferSource, psiChildFolderDest: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.EnterFolder(self, psiChildFolderDest);
     }
-    pub fn LeaveFolder(self: *const ITransferSource, psiChildFolderDest: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn LeaveFolder(self: *const ITransferSource, psiChildFolderDest: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.LeaveFolder(self, psiChildFolderDest);
     }
 };
@@ -5832,16 +5832,16 @@ pub const IEnumResources = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumResources, celt: u32, psir: [*]SHELL_ITEM_RESOURCE, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumResources, celt: u32, psir: [*]SHELL_ITEM_RESOURCE, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, psir, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumResources, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumResources, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumResources) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumResources) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumResources, ppenumr: ?*?*IEnumResources) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumResources, ppenumr: ?*?*IEnumResources) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenumr);
     }
 };
@@ -5903,34 +5903,34 @@ pub const IShellItemResources = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAttributes(self: *const IShellItemResources, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAttributes(self: *const IShellItemResources, pdwAttributes: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributes(self, pdwAttributes);
     }
-    pub fn GetSize(self: *const IShellItemResources, pullSize: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IShellItemResources, pullSize: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, pullSize);
     }
-    pub fn GetTimes(self: *const IShellItemResources, pftCreation: ?*FILETIME, pftWrite: ?*FILETIME, pftAccess: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetTimes(self: *const IShellItemResources, pftCreation: ?*FILETIME, pftWrite: ?*FILETIME, pftAccess: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetTimes(self, pftCreation, pftWrite, pftAccess);
     }
-    pub fn SetTimes(self: *const IShellItemResources, pftCreation: ?*const FILETIME, pftWrite: ?*const FILETIME, pftAccess: ?*const FILETIME) callconv(.Inline) HRESULT {
+    pub fn SetTimes(self: *const IShellItemResources, pftCreation: ?*const FILETIME, pftWrite: ?*const FILETIME, pftAccess: ?*const FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.SetTimes(self, pftCreation, pftWrite, pftAccess);
     }
-    pub fn GetResourceDescription(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetResourceDescription(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, ppszDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceDescription(self, pcsir, ppszDescription);
     }
-    pub fn EnumResources(self: *const IShellItemResources, ppenumr: ?*?*IEnumResources) callconv(.Inline) HRESULT {
+    pub fn EnumResources(self: *const IShellItemResources, ppenumr: ?*?*IEnumResources) callconv(.@"inline") HRESULT {
         return self.vtable.EnumResources(self, ppenumr);
     }
-    pub fn SupportsResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE) callconv(.Inline) HRESULT {
+    pub fn SupportsResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE) callconv(.@"inline") HRESULT {
         return self.vtable.SupportsResource(self, pcsir);
     }
-    pub fn OpenResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.OpenResource(self, pcsir, riid, ppv);
     }
-    pub fn CreateResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateResource(self: *const IShellItemResources, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateResource(self, pcsir, riid, ppv);
     }
-    pub fn MarkForDelete(self: *const IShellItemResources) callconv(.Inline) HRESULT {
+    pub fn MarkForDelete(self: *const IShellItemResources) callconv(.@"inline") HRESULT {
         return self.vtable.MarkForDelete(self);
     }
 };
@@ -5964,13 +5964,13 @@ pub const ITransferDestination = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Advise(self: *const ITransferDestination, psink: ?*ITransferAdviseSink, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const ITransferDestination, psink: ?*ITransferAdviseSink, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, psink, pdwCookie);
     }
-    pub fn Unadvise(self: *const ITransferDestination, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const ITransferDestination, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwCookie);
     }
-    pub fn CreateItem(self: *const ITransferDestination, pszName: ?[*:0]const u16, dwAttributes: u32, ullSize: u64, flags: u32, riidItem: ?*const Guid, ppvItem: ?*?*anyopaque, riidResources: ?*const Guid, ppvResources: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ITransferDestination, pszName: ?[*:0]const u16, dwAttributes: u32, ullSize: u64, flags: u32, riidItem: ?*const Guid, ppvItem: ?*?*anyopaque, riidResources: ?*const Guid, ppvResources: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateItem(self, pszName, dwAttributes, ullSize, flags, riidItem, ppvItem, riidResources, ppvResources);
     }
 };
@@ -6079,52 +6079,52 @@ pub const IFileOperationProgressSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StartOperations(self: *const IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn StartOperations(self: *const IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.StartOperations(self);
     }
-    pub fn FinishOperations(self: *const IFileOperationProgressSink, hrResult: HRESULT) callconv(.Inline) HRESULT {
+    pub fn FinishOperations(self: *const IFileOperationProgressSink, hrResult: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.FinishOperations(self, hrResult);
     }
-    pub fn PreRenameItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn PreRenameItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.PreRenameItem(self, dwFlags, psiItem, pszNewName);
     }
-    pub fn PostRenameItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16, hrRename: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn PostRenameItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16, hrRename: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.PostRenameItem(self, dwFlags, psiItem, pszNewName, hrRename, psiNewlyCreated);
     }
-    pub fn PreMoveItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn PreMoveItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.PreMoveItem(self, dwFlags, psiItem, psiDestinationFolder, pszNewName);
     }
-    pub fn PostMoveItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, hrMove: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn PostMoveItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, hrMove: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.PostMoveItem(self, dwFlags, psiItem, psiDestinationFolder, pszNewName, hrMove, psiNewlyCreated);
     }
-    pub fn PreCopyItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn PreCopyItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.PreCopyItem(self, dwFlags, psiItem, psiDestinationFolder, pszNewName);
     }
-    pub fn PostCopyItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, hrCopy: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn PostCopyItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, hrCopy: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.PostCopyItem(self, dwFlags, psiItem, psiDestinationFolder, pszNewName, hrCopy, psiNewlyCreated);
     }
-    pub fn PreDeleteItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn PreDeleteItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.PreDeleteItem(self, dwFlags, psiItem);
     }
-    pub fn PostDeleteItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, hrDelete: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn PostDeleteItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiItem: ?*IShellItem, hrDelete: HRESULT, psiNewlyCreated: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.PostDeleteItem(self, dwFlags, psiItem, hrDelete, psiNewlyCreated);
     }
-    pub fn PreNewItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn PreNewItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.PreNewItem(self, dwFlags, psiDestinationFolder, pszNewName);
     }
-    pub fn PostNewItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, pszTemplateName: ?[*:0]const u16, dwFileAttributes: u32, hrNew: HRESULT, psiNewItem: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn PostNewItem(self: *const IFileOperationProgressSink, dwFlags: u32, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, pszTemplateName: ?[*:0]const u16, dwFileAttributes: u32, hrNew: HRESULT, psiNewItem: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.PostNewItem(self, dwFlags, psiDestinationFolder, pszNewName, pszTemplateName, dwFileAttributes, hrNew, psiNewItem);
     }
-    pub fn UpdateProgress(self: *const IFileOperationProgressSink, iWorkTotal: u32, iWorkSoFar: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateProgress(self: *const IFileOperationProgressSink, iWorkTotal: u32, iWorkSoFar: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateProgress(self, iWorkTotal, iWorkSoFar);
     }
-    pub fn ResetTimer(self: *const IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn ResetTimer(self: *const IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.ResetTimer(self);
     }
-    pub fn PauseTimer(self: *const IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn PauseTimer(self: *const IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.PauseTimer(self);
     }
-    pub fn ResumeTimer(self: *const IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn ResumeTimer(self: *const IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.ResumeTimer(self);
     }
 };
@@ -6189,25 +6189,25 @@ pub const IShellItemArray = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BindToHandler(self: *const IShellItemArray, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppvOut: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToHandler(self: *const IShellItemArray, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppvOut: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToHandler(self, pbc, bhid, riid, ppvOut);
     }
-    pub fn GetPropertyStore(self: *const IShellItemArray, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyStore(self: *const IShellItemArray, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyStore(self, flags, riid, ppv);
     }
-    pub fn GetPropertyDescriptionList(self: *const IShellItemArray, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDescriptionList(self: *const IShellItemArray, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyDescriptionList(self, keyType, riid, ppv);
     }
-    pub fn GetAttributes(self: *const IShellItemArray, AttribFlags: SIATTRIBFLAGS, sfgaoMask: u32, psfgaoAttribs: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAttributes(self: *const IShellItemArray, AttribFlags: SIATTRIBFLAGS, sfgaoMask: u32, psfgaoAttribs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributes(self, AttribFlags, sfgaoMask, psfgaoAttribs);
     }
-    pub fn GetCount(self: *const IShellItemArray, pdwNumItems: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IShellItemArray, pdwNumItems: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pdwNumItems);
     }
-    pub fn GetItemAt(self: *const IShellItemArray, dwIndex: u32, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn GetItemAt(self: *const IShellItemArray, dwIndex: u32, ppsi: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemAt(self, dwIndex, ppsi);
     }
-    pub fn EnumItems(self: *const IShellItemArray, ppenumShellItems: ?*?*IEnumShellItems) callconv(.Inline) HRESULT {
+    pub fn EnumItems(self: *const IShellItemArray, ppenumShellItems: ?*?*IEnumShellItems) callconv(.@"inline") HRESULT {
         return self.vtable.EnumItems(self, ppenumShellItems);
     }
 };
@@ -6226,7 +6226,7 @@ pub const IInitializeWithItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IInitializeWithItem, psi: ?*IShellItem, grfMode: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IInitializeWithItem, psi: ?*IShellItem, grfMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, psi, grfMode);
     }
 };
@@ -6249,10 +6249,10 @@ pub const IObjectWithSelection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSelection(self: *const IObjectWithSelection, psia: ?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn SetSelection(self: *const IObjectWithSelection, psia: ?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.SetSelection(self, psia);
     }
-    pub fn GetSelection(self: *const IObjectWithSelection, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetSelection(self: *const IObjectWithSelection, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelection(self, riid, ppv);
     }
 };
@@ -6269,7 +6269,7 @@ pub const IObjectWithBackReferences = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RemoveBackReferences(self: *const IObjectWithBackReferences) callconv(.Inline) HRESULT {
+    pub fn RemoveBackReferences(self: *const IObjectWithBackReferences) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveBackReferences(self);
     }
 };
@@ -6313,22 +6313,22 @@ pub const ICategoryProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CanCategorizeOnSCID(self: *const ICategoryProvider, pscid: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn CanCategorizeOnSCID(self: *const ICategoryProvider, pscid: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.CanCategorizeOnSCID(self, pscid);
     }
-    pub fn GetDefaultCategory(self: *const ICategoryProvider, pguid: ?*Guid, pscid: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn GetDefaultCategory(self: *const ICategoryProvider, pguid: ?*Guid, pscid: ?*PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultCategory(self, pguid, pscid);
     }
-    pub fn GetCategoryForSCID(self: *const ICategoryProvider, pscid: ?*const PROPERTYKEY, pguid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetCategoryForSCID(self: *const ICategoryProvider, pscid: ?*const PROPERTYKEY, pguid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategoryForSCID(self, pscid, pguid);
     }
-    pub fn EnumCategories(self: *const ICategoryProvider, penum: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
+    pub fn EnumCategories(self: *const ICategoryProvider, penum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCategories(self, penum);
     }
-    pub fn GetCategoryName(self: *const ICategoryProvider, pguid: ?*const Guid, pszName: [*:0]u16, cch: u32) callconv(.Inline) HRESULT {
+    pub fn GetCategoryName(self: *const ICategoryProvider, pguid: ?*const Guid, pszName: [*:0]u16, cch: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategoryName(self, pguid, pszName, cch);
     }
-    pub fn CreateCategory(self: *const ICategoryProvider, pguid: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateCategory(self: *const ICategoryProvider, pguid: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCategory(self, pguid, riid, ppv);
     }
 };
@@ -6399,16 +6399,16 @@ pub const ICategorizer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDescription(self: *const ICategorizer, pszDesc: [*:0]u16, cch: u32) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const ICategorizer, pszDesc: [*:0]u16, cch: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, pszDesc, cch);
     }
-    pub fn GetCategory(self: *const ICategorizer, cidl: u32, apidl: [*]?*ITEMIDLIST, rgCategoryIds: [*]u32) callconv(.Inline) HRESULT {
+    pub fn GetCategory(self: *const ICategorizer, cidl: u32, apidl: [*]?*ITEMIDLIST, rgCategoryIds: [*]u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategory(self, cidl, apidl, rgCategoryIds);
     }
-    pub fn GetCategoryInfo(self: *const ICategorizer, dwCategoryId: u32, pci: ?*CATEGORY_INFO) callconv(.Inline) HRESULT {
+    pub fn GetCategoryInfo(self: *const ICategorizer, dwCategoryId: u32, pci: ?*CATEGORY_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategoryInfo(self, dwCategoryId, pci);
     }
-    pub fn CompareCategory(self: *const ICategorizer, csfFlags: CATSORT_FLAGS, dwCategoryId1: u32, dwCategoryId2: u32) callconv(.Inline) HRESULT {
+    pub fn CompareCategory(self: *const ICategorizer, csfFlags: CATSORT_FLAGS, dwCategoryId1: u32, dwCategoryId2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CompareCategory(self, csfFlags, dwCategoryId1, dwCategoryId2);
     }
 };
@@ -6454,19 +6454,19 @@ pub const IDropTargetHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DragEnter(self: *const IDropTargetHelper, hwndTarget: ?HWND, pDataObject: ?*IDataObject, ppt: ?*POINT, dwEffect: u32) callconv(.Inline) HRESULT {
+    pub fn DragEnter(self: *const IDropTargetHelper, hwndTarget: ?HWND, pDataObject: ?*IDataObject, ppt: ?*POINT, dwEffect: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DragEnter(self, hwndTarget, pDataObject, ppt, dwEffect);
     }
-    pub fn DragLeave(self: *const IDropTargetHelper) callconv(.Inline) HRESULT {
+    pub fn DragLeave(self: *const IDropTargetHelper) callconv(.@"inline") HRESULT {
         return self.vtable.DragLeave(self);
     }
-    pub fn DragOver(self: *const IDropTargetHelper, ppt: ?*POINT, dwEffect: u32) callconv(.Inline) HRESULT {
+    pub fn DragOver(self: *const IDropTargetHelper, ppt: ?*POINT, dwEffect: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DragOver(self, ppt, dwEffect);
     }
-    pub fn Drop(self: *const IDropTargetHelper, pDataObject: ?*IDataObject, ppt: ?*POINT, dwEffect: u32) callconv(.Inline) HRESULT {
+    pub fn Drop(self: *const IDropTargetHelper, pDataObject: ?*IDataObject, ppt: ?*POINT, dwEffect: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Drop(self, pDataObject, ppt, dwEffect);
     }
-    pub fn Show(self: *const IDropTargetHelper, fShow: BOOL) callconv(.Inline) HRESULT {
+    pub fn Show(self: *const IDropTargetHelper, fShow: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self, fShow);
     }
 };
@@ -6491,10 +6491,10 @@ pub const IDragSourceHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitializeFromBitmap(self: *const IDragSourceHelper, pshdi: ?*SHDRAGIMAGE, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn InitializeFromBitmap(self: *const IDragSourceHelper, pshdi: ?*SHDRAGIMAGE, pDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromBitmap(self, pshdi, pDataObject);
     }
-    pub fn InitializeFromWindow(self: *const IDragSourceHelper, hwnd: ?HWND, ppt: ?*POINT, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn InitializeFromWindow(self: *const IDragSourceHelper, hwnd: ?HWND, ppt: ?*POINT, pDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromWindow(self, hwnd, ppt, pDataObject);
     }
 };
@@ -6635,58 +6635,58 @@ pub const IShellLinkA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPath(self: *const IShellLinkA, pszFile: [*:0]u8, cch: i32, pfd: ?*WIN32_FIND_DATAA, fFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const IShellLinkA, pszFile: [*:0]u8, cch: i32, pfd: ?*WIN32_FIND_DATAA, fFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, pszFile, cch, pfd, fFlags);
     }
-    pub fn GetIDList(self: *const IShellLinkA, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetIDList(self: *const IShellLinkA, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDList(self, ppidl);
     }
-    pub fn SetIDList(self: *const IShellLinkA, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn SetIDList(self: *const IShellLinkA, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.SetIDList(self, pidl);
     }
-    pub fn GetDescription(self: *const IShellLinkA, pszName: [*:0]u8, cch: i32) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const IShellLinkA, pszName: [*:0]u8, cch: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, pszName, cch);
     }
-    pub fn SetDescription(self: *const IShellLinkA, pszName: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn SetDescription(self: *const IShellLinkA, pszName: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetDescription(self, pszName);
     }
-    pub fn GetWorkingDirectory(self: *const IShellLinkA, pszDir: [*:0]u8, cch: i32) callconv(.Inline) HRESULT {
+    pub fn GetWorkingDirectory(self: *const IShellLinkA, pszDir: [*:0]u8, cch: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetWorkingDirectory(self, pszDir, cch);
     }
-    pub fn SetWorkingDirectory(self: *const IShellLinkA, pszDir: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn SetWorkingDirectory(self: *const IShellLinkA, pszDir: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetWorkingDirectory(self, pszDir);
     }
-    pub fn GetArguments(self: *const IShellLinkA, pszArgs: [*:0]u8, cch: i32) callconv(.Inline) HRESULT {
+    pub fn GetArguments(self: *const IShellLinkA, pszArgs: [*:0]u8, cch: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetArguments(self, pszArgs, cch);
     }
-    pub fn SetArguments(self: *const IShellLinkA, pszArgs: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn SetArguments(self: *const IShellLinkA, pszArgs: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetArguments(self, pszArgs);
     }
-    pub fn GetHotkey(self: *const IShellLinkA, pwHotkey: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetHotkey(self: *const IShellLinkA, pwHotkey: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetHotkey(self, pwHotkey);
     }
-    pub fn SetHotkey(self: *const IShellLinkA, wHotkey: u16) callconv(.Inline) HRESULT {
+    pub fn SetHotkey(self: *const IShellLinkA, wHotkey: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHotkey(self, wHotkey);
     }
-    pub fn GetShowCmd(self: *const IShellLinkA, piShowCmd: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetShowCmd(self: *const IShellLinkA, piShowCmd: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetShowCmd(self, piShowCmd);
     }
-    pub fn SetShowCmd(self: *const IShellLinkA, iShowCmd: i32) callconv(.Inline) HRESULT {
+    pub fn SetShowCmd(self: *const IShellLinkA, iShowCmd: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetShowCmd(self, iShowCmd);
     }
-    pub fn GetIconLocation(self: *const IShellLinkA, pszIconPath: [*:0]u8, cch: i32, piIcon: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIconLocation(self: *const IShellLinkA, pszIconPath: [*:0]u8, cch: i32, piIcon: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconLocation(self, pszIconPath, cch, piIcon);
     }
-    pub fn SetIconLocation(self: *const IShellLinkA, pszIconPath: ?[*:0]const u8, iIcon: i32) callconv(.Inline) HRESULT {
+    pub fn SetIconLocation(self: *const IShellLinkA, pszIconPath: ?[*:0]const u8, iIcon: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconLocation(self, pszIconPath, iIcon);
     }
-    pub fn SetRelativePath(self: *const IShellLinkA, pszPathRel: ?[*:0]const u8, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn SetRelativePath(self: *const IShellLinkA, pszPathRel: ?[*:0]const u8, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRelativePath(self, pszPathRel, dwReserved);
     }
-    pub fn Resolve(self: *const IShellLinkA, hwnd: ?HWND, fFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Resolve(self: *const IShellLinkA, hwnd: ?HWND, fFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Resolve(self, hwnd, fFlags);
     }
-    pub fn SetPath(self: *const IShellLinkA, pszFile: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn SetPath(self: *const IShellLinkA, pszFile: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetPath(self, pszFile);
     }
 };
@@ -6783,58 +6783,58 @@ pub const IShellLinkW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPath(self: *const IShellLinkW, pszFile: [*:0]u16, cch: i32, pfd: ?*WIN32_FIND_DATAW, fFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const IShellLinkW, pszFile: [*:0]u16, cch: i32, pfd: ?*WIN32_FIND_DATAW, fFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, pszFile, cch, pfd, fFlags);
     }
-    pub fn GetIDList(self: *const IShellLinkW, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetIDList(self: *const IShellLinkW, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDList(self, ppidl);
     }
-    pub fn SetIDList(self: *const IShellLinkW, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn SetIDList(self: *const IShellLinkW, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.SetIDList(self, pidl);
     }
-    pub fn GetDescription(self: *const IShellLinkW, pszName: [*:0]u16, cch: i32) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const IShellLinkW, pszName: [*:0]u16, cch: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, pszName, cch);
     }
-    pub fn SetDescription(self: *const IShellLinkW, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDescription(self: *const IShellLinkW, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDescription(self, pszName);
     }
-    pub fn GetWorkingDirectory(self: *const IShellLinkW, pszDir: [*:0]u16, cch: i32) callconv(.Inline) HRESULT {
+    pub fn GetWorkingDirectory(self: *const IShellLinkW, pszDir: [*:0]u16, cch: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetWorkingDirectory(self, pszDir, cch);
     }
-    pub fn SetWorkingDirectory(self: *const IShellLinkW, pszDir: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetWorkingDirectory(self: *const IShellLinkW, pszDir: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetWorkingDirectory(self, pszDir);
     }
-    pub fn GetArguments(self: *const IShellLinkW, pszArgs: [*:0]u16, cch: i32) callconv(.Inline) HRESULT {
+    pub fn GetArguments(self: *const IShellLinkW, pszArgs: [*:0]u16, cch: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetArguments(self, pszArgs, cch);
     }
-    pub fn SetArguments(self: *const IShellLinkW, pszArgs: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetArguments(self: *const IShellLinkW, pszArgs: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetArguments(self, pszArgs);
     }
-    pub fn GetHotkey(self: *const IShellLinkW, pwHotkey: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetHotkey(self: *const IShellLinkW, pwHotkey: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetHotkey(self, pwHotkey);
     }
-    pub fn SetHotkey(self: *const IShellLinkW, wHotkey: u16) callconv(.Inline) HRESULT {
+    pub fn SetHotkey(self: *const IShellLinkW, wHotkey: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHotkey(self, wHotkey);
     }
-    pub fn GetShowCmd(self: *const IShellLinkW, piShowCmd: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetShowCmd(self: *const IShellLinkW, piShowCmd: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetShowCmd(self, piShowCmd);
     }
-    pub fn SetShowCmd(self: *const IShellLinkW, iShowCmd: i32) callconv(.Inline) HRESULT {
+    pub fn SetShowCmd(self: *const IShellLinkW, iShowCmd: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetShowCmd(self, iShowCmd);
     }
-    pub fn GetIconLocation(self: *const IShellLinkW, pszIconPath: [*:0]u16, cch: i32, piIcon: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIconLocation(self: *const IShellLinkW, pszIconPath: [*:0]u16, cch: i32, piIcon: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconLocation(self, pszIconPath, cch, piIcon);
     }
-    pub fn SetIconLocation(self: *const IShellLinkW, pszIconPath: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
+    pub fn SetIconLocation(self: *const IShellLinkW, pszIconPath: ?[*:0]const u16, iIcon: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconLocation(self, pszIconPath, iIcon);
     }
-    pub fn SetRelativePath(self: *const IShellLinkW, pszPathRel: ?[*:0]const u16, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn SetRelativePath(self: *const IShellLinkW, pszPathRel: ?[*:0]const u16, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRelativePath(self, pszPathRel, dwReserved);
     }
-    pub fn Resolve(self: *const IShellLinkW, hwnd: ?HWND, fFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Resolve(self: *const IShellLinkW, hwnd: ?HWND, fFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Resolve(self, hwnd, fFlags);
     }
-    pub fn SetPath(self: *const IShellLinkW, pszFile: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetPath(self: *const IShellLinkW, pszFile: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetPath(self, pszFile);
     }
 };
@@ -6869,19 +6869,19 @@ pub const IShellLinkDataList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddDataBlock(self: *const IShellLinkDataList, pDataBlock: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn AddDataBlock(self: *const IShellLinkDataList, pDataBlock: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.AddDataBlock(self, pDataBlock);
     }
-    pub fn CopyDataBlock(self: *const IShellLinkDataList, dwSig: u32, ppDataBlock: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CopyDataBlock(self: *const IShellLinkDataList, dwSig: u32, ppDataBlock: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CopyDataBlock(self, dwSig, ppDataBlock);
     }
-    pub fn RemoveDataBlock(self: *const IShellLinkDataList, dwSig: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveDataBlock(self: *const IShellLinkDataList, dwSig: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveDataBlock(self, dwSig);
     }
-    pub fn GetFlags(self: *const IShellLinkDataList, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const IShellLinkDataList, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlags(self, pdwFlags);
     }
-    pub fn SetFlags(self: *const IShellLinkDataList, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetFlags(self: *const IShellLinkDataList, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFlags(self, dwFlags);
     }
 };
@@ -6901,7 +6901,7 @@ pub const IResolveShellLink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ResolveShellLink(self: *const IResolveShellLink, punkLink: ?*IUnknown, hwnd: ?HWND, fFlags: u32) callconv(.Inline) HRESULT {
+    pub fn ResolveShellLink(self: *const IResolveShellLink, punkLink: ?*IUnknown, hwnd: ?HWND, fFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveShellLink(self, punkLink, hwnd, fFlags);
     }
 };
@@ -6933,10 +6933,10 @@ pub const IActionProgressDialog = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IActionProgressDialog, flags: u32, pszTitle: ?[*:0]const u16, pszCancel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IActionProgressDialog, flags: u32, pszTitle: ?[*:0]const u16, pszCancel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, flags, pszTitle, pszCancel);
     }
-    pub fn Stop(self: *const IActionProgressDialog) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IActionProgressDialog) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
 };
@@ -7027,22 +7027,22 @@ pub const IActionProgress = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin(self: *const IActionProgress, action: SPACTION, flags: u32) callconv(.Inline) HRESULT {
+    pub fn Begin(self: *const IActionProgress, action: SPACTION, flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin(self, action, flags);
     }
-    pub fn UpdateProgress(self: *const IActionProgress, ulCompleted: u64, ulTotal: u64) callconv(.Inline) HRESULT {
+    pub fn UpdateProgress(self: *const IActionProgress, ulCompleted: u64, ulTotal: u64) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateProgress(self, ulCompleted, ulTotal);
     }
-    pub fn UpdateText(self: *const IActionProgress, sptext: SPTEXT, pszText: ?[*:0]const u16, fMayCompact: BOOL) callconv(.Inline) HRESULT {
+    pub fn UpdateText(self: *const IActionProgress, sptext: SPTEXT, pszText: ?[*:0]const u16, fMayCompact: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateText(self, sptext, pszText, fMayCompact);
     }
-    pub fn QueryCancel(self: *const IActionProgress, pfCancelled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn QueryCancel(self: *const IActionProgress, pfCancelled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.QueryCancel(self, pfCancelled);
     }
-    pub fn ResetCancel(self: *const IActionProgress) callconv(.Inline) HRESULT {
+    pub fn ResetCancel(self: *const IActionProgress) callconv(.@"inline") HRESULT {
         return self.vtable.ResetCancel(self);
     }
-    pub fn End(self: *const IActionProgress) callconv(.Inline) HRESULT {
+    pub fn End(self: *const IActionProgress) callconv(.@"inline") HRESULT {
         return self.vtable.End(self);
     }
 };
@@ -7062,7 +7062,7 @@ pub const IShellExtInit = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IShellExtInit, pidlFolder: ?*ITEMIDLIST, pdtobj: ?*IDataObject, hkeyProgID: ?HKEY) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IShellExtInit, pidlFolder: ?*ITEMIDLIST, pdtobj: ?*IDataObject, hkeyProgID: ?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pidlFolder, pdtobj, hkeyProgID);
     }
 };
@@ -7092,10 +7092,10 @@ pub const IShellPropSheetExt = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPages(self: *const IShellPropSheetExt, pfnAddPage: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn AddPages(self: *const IShellPropSheetExt, pfnAddPage: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.AddPages(self, pfnAddPage, lParam);
     }
-    pub fn ReplacePage(self: *const IShellPropSheetExt, uPageID: u32, pfnReplaceWith: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn ReplacePage(self: *const IShellPropSheetExt, uPageID: u32, pfnReplaceWith: ?LPFNSVADDPROPSHEETPAGE, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.ReplacePage(self, uPageID, pfnReplaceWith, lParam);
     }
 };
@@ -7114,7 +7114,7 @@ pub const IRemoteComputer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IRemoteComputer, pszMachine: ?[*:0]const u16, bEnumerating: BOOL) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IRemoteComputer, pszMachine: ?[*:0]const u16, bEnumerating: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pszMachine, bEnumerating);
     }
 };
@@ -7131,7 +7131,7 @@ pub const IQueryContinue = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryContinue(self: *const IQueryContinue) callconv(.Inline) HRESULT {
+    pub fn QueryContinue(self: *const IQueryContinue) callconv(.@"inline") HRESULT {
         return self.vtable.QueryContinue(self);
     }
 };
@@ -7149,7 +7149,7 @@ pub const IObjectWithCancelEvent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCancelEvent(self: *const IObjectWithCancelEvent, phEvent: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn GetCancelEvent(self: *const IObjectWithCancelEvent, phEvent: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetCancelEvent(self, phEvent);
     }
 };
@@ -7189,19 +7189,19 @@ pub const IUserNotification = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetBalloonInfo(self: *const IUserNotification, pszTitle: ?[*:0]const u16, pszText: ?[*:0]const u16, dwInfoFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetBalloonInfo(self: *const IUserNotification, pszTitle: ?[*:0]const u16, pszText: ?[*:0]const u16, dwInfoFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBalloonInfo(self, pszTitle, pszText, dwInfoFlags);
     }
-    pub fn SetBalloonRetry(self: *const IUserNotification, dwShowTime: u32, dwInterval: u32, cRetryCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetBalloonRetry(self: *const IUserNotification, dwShowTime: u32, dwInterval: u32, cRetryCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBalloonRetry(self, dwShowTime, dwInterval, cRetryCount);
     }
-    pub fn SetIconInfo(self: *const IUserNotification, hIcon: ?HICON, pszToolTip: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetIconInfo(self: *const IUserNotification, hIcon: ?HICON, pszToolTip: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconInfo(self, hIcon, pszToolTip);
     }
-    pub fn Show(self: *const IUserNotification, pqc: ?*IQueryContinue, dwContinuePollInterval: u32) callconv(.Inline) HRESULT {
+    pub fn Show(self: *const IUserNotification, pqc: ?*IQueryContinue, dwContinuePollInterval: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self, pqc, dwContinuePollInterval);
     }
-    pub fn PlaySound(self: *const IUserNotification, pszSoundName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn PlaySound(self: *const IUserNotification, pszSoundName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.PlaySound(self, pszSoundName);
     }
 };
@@ -7225,10 +7225,10 @@ pub const IItemNameLimits = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetValidCharacters(self: *const IItemNameLimits, ppwszValidChars: ?*?PWSTR, ppwszInvalidChars: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetValidCharacters(self: *const IItemNameLimits, ppwszValidChars: ?*?PWSTR, ppwszInvalidChars: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetValidCharacters(self, ppwszValidChars, ppwszInvalidChars);
     }
-    pub fn GetMaxLength(self: *const IItemNameLimits, pszName: ?[*:0]const u16, piMaxNameLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetMaxLength(self: *const IItemNameLimits, pszName: ?[*:0]const u16, piMaxNameLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxLength(self, pszName, piMaxNameLen);
     }
 };
@@ -7294,40 +7294,40 @@ pub const ISearchFolderItemFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetDisplayName(self: *const ISearchFolderItemFactory, pszDisplayName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDisplayName(self: *const ISearchFolderItemFactory, pszDisplayName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayName(self, pszDisplayName);
     }
-    pub fn SetFolderTypeID(self: *const ISearchFolderItemFactory, ftid: Guid) callconv(.Inline) HRESULT {
+    pub fn SetFolderTypeID(self: *const ISearchFolderItemFactory, ftid: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolderTypeID(self, ftid);
     }
-    pub fn SetFolderLogicalViewMode(self: *const ISearchFolderItemFactory, flvm: FOLDERLOGICALVIEWMODE) callconv(.Inline) HRESULT {
+    pub fn SetFolderLogicalViewMode(self: *const ISearchFolderItemFactory, flvm: FOLDERLOGICALVIEWMODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolderLogicalViewMode(self, flvm);
     }
-    pub fn SetIconSize(self: *const ISearchFolderItemFactory, iIconSize: i32) callconv(.Inline) HRESULT {
+    pub fn SetIconSize(self: *const ISearchFolderItemFactory, iIconSize: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconSize(self, iIconSize);
     }
-    pub fn SetVisibleColumns(self: *const ISearchFolderItemFactory, cVisibleColumns: u32, rgKey: [*]const PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn SetVisibleColumns(self: *const ISearchFolderItemFactory, cVisibleColumns: u32, rgKey: [*]const PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetVisibleColumns(self, cVisibleColumns, rgKey);
     }
-    pub fn SetSortColumns(self: *const ISearchFolderItemFactory, cSortColumns: u32, rgSortColumns: [*]SORTCOLUMN) callconv(.Inline) HRESULT {
+    pub fn SetSortColumns(self: *const ISearchFolderItemFactory, cSortColumns: u32, rgSortColumns: [*]SORTCOLUMN) callconv(.@"inline") HRESULT {
         return self.vtable.SetSortColumns(self, cSortColumns, rgSortColumns);
     }
-    pub fn SetGroupColumn(self: *const ISearchFolderItemFactory, keyGroup: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn SetGroupColumn(self: *const ISearchFolderItemFactory, keyGroup: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetGroupColumn(self, keyGroup);
     }
-    pub fn SetStacks(self: *const ISearchFolderItemFactory, cStackKeys: u32, rgStackKeys: [*]PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn SetStacks(self: *const ISearchFolderItemFactory, cStackKeys: u32, rgStackKeys: [*]PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetStacks(self, cStackKeys, rgStackKeys);
     }
-    pub fn SetScope(self: *const ISearchFolderItemFactory, psiaScope: ?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn SetScope(self: *const ISearchFolderItemFactory, psiaScope: ?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.SetScope(self, psiaScope);
     }
-    pub fn SetCondition(self: *const ISearchFolderItemFactory, pCondition: ?*ICondition) callconv(.Inline) HRESULT {
+    pub fn SetCondition(self: *const ISearchFolderItemFactory, pCondition: ?*ICondition) callconv(.@"inline") HRESULT {
         return self.vtable.SetCondition(self, pCondition);
     }
-    pub fn GetShellItem(self: *const ISearchFolderItemFactory, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetShellItem(self: *const ISearchFolderItemFactory, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetShellItem(self, riid, ppv);
     }
-    pub fn GetIDList(self: *const ISearchFolderItemFactory, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetIDList(self: *const ISearchFolderItemFactory, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDList(self, ppidl);
     }
 };
@@ -7354,10 +7354,10 @@ pub const IExtractImage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLocation(self: *const IExtractImage, pszPathBuffer: [*:0]u16, cch: u32, pdwPriority: ?*u32, prgSize: ?*const SIZE, dwRecClrDepth: u32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLocation(self: *const IExtractImage, pszPathBuffer: [*:0]u16, cch: u32, pdwPriority: ?*u32, prgSize: ?*const SIZE, dwRecClrDepth: u32, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocation(self, pszPathBuffer, cch, pdwPriority, prgSize, dwRecClrDepth, pdwFlags);
     }
-    pub fn Extract(self: *const IExtractImage, phBmpThumbnail: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn Extract(self: *const IExtractImage, phBmpThumbnail: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.Extract(self, phBmpThumbnail);
     }
 };
@@ -7376,7 +7376,7 @@ pub const IExtractImage2 = extern union {
     vtable: *const VTable,
     IExtractImage: IExtractImage,
     IUnknown: IUnknown,
-    pub fn GetDateStamp(self: *const IExtractImage2, pDateStamp: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetDateStamp(self: *const IExtractImage2, pDateStamp: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetDateStamp(self, pDateStamp);
     }
 };
@@ -7397,7 +7397,7 @@ pub const IThumbnailHandlerFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetThumbnailHandler(self: *const IThumbnailHandlerFactory, pidlChild: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetThumbnailHandler(self: *const IThumbnailHandlerFactory, pidlChild: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetThumbnailHandler(self, pidlChild, pbc, riid, ppv);
     }
 };
@@ -7423,10 +7423,10 @@ pub const IParentAndItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetParentAndItem(self: *const IParentAndItem, pidlParent: ?*ITEMIDLIST, psf: ?*IShellFolder, pidlChild: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn SetParentAndItem(self: *const IParentAndItem, pidlParent: ?*ITEMIDLIST, psf: ?*IShellFolder, pidlChild: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.SetParentAndItem(self, pidlParent, psf, pidlChild);
     }
-    pub fn GetParentAndItem(self: *const IParentAndItem, ppidlParent: ?*?*ITEMIDLIST, ppsf: ?*?*IShellFolder, ppidlChild: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetParentAndItem(self: *const IParentAndItem, ppidlParent: ?*?*ITEMIDLIST, ppsf: ?*?*IShellFolder, ppidlChild: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetParentAndItem(self, ppidlParent, ppsf, ppidlChild);
     }
 };
@@ -7455,13 +7455,13 @@ pub const IDockingWindow = extern union {
     vtable: *const VTable,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn ShowDW(self: *const IDockingWindow, fShow: BOOL) callconv(.Inline) HRESULT {
+    pub fn ShowDW(self: *const IDockingWindow, fShow: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ShowDW(self, fShow);
     }
-    pub fn CloseDW(self: *const IDockingWindow, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn CloseDW(self: *const IDockingWindow, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CloseDW(self, dwReserved);
     }
-    pub fn ResizeBorderDW(self: *const IDockingWindow, prcBorder: ?*RECT, punkToolbarSite: ?*IUnknown, fReserved: BOOL) callconv(.Inline) HRESULT {
+    pub fn ResizeBorderDW(self: *const IDockingWindow, prcBorder: ?*RECT, punkToolbarSite: ?*IUnknown, fReserved: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ResizeBorderDW(self, prcBorder, punkToolbarSite, fReserved);
     }
 };
@@ -7513,7 +7513,7 @@ pub const IDeskBand = extern union {
     IDockingWindow: IDockingWindow,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn GetBandInfo(self: *const IDeskBand, dwBandID: u32, dwViewMode: u32, pdbi: ?*DESKBANDINFO) callconv(.Inline) HRESULT {
+    pub fn GetBandInfo(self: *const IDeskBand, dwBandID: u32, dwViewMode: u32, pdbi: ?*DESKBANDINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetBandInfo(self, dwBandID, dwViewMode, pdbi);
     }
 };
@@ -7533,7 +7533,7 @@ pub const IDeskBandInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDefaultBandWidth(self: *const IDeskBandInfo, dwBandID: u32, dwViewMode: u32, pnWidth: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetDefaultBandWidth(self: *const IDeskBandInfo, dwBandID: u32, dwViewMode: u32, pnWidth: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultBandWidth(self, dwBandID, dwViewMode, pnWidth);
     }
 };
@@ -7566,19 +7566,19 @@ pub const ITaskbarList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HrInit(self: *const ITaskbarList) callconv(.Inline) HRESULT {
+    pub fn HrInit(self: *const ITaskbarList) callconv(.@"inline") HRESULT {
         return self.vtable.HrInit(self);
     }
-    pub fn AddTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn AddTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.AddTab(self, hwnd);
     }
-    pub fn DeleteTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn DeleteTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteTab(self, hwnd);
     }
-    pub fn ActivateTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn ActivateTab(self: *const ITaskbarList, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateTab(self, hwnd);
     }
-    pub fn SetActiveAlt(self: *const ITaskbarList, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetActiveAlt(self: *const ITaskbarList, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetActiveAlt(self, hwnd);
     }
 };
@@ -7598,7 +7598,7 @@ pub const ITaskbarList2 = extern union {
     vtable: *const VTable,
     ITaskbarList: ITaskbarList,
     IUnknown: IUnknown,
-    pub fn MarkFullscreenWindow(self: *const ITaskbarList2, hwnd: ?HWND, fFullscreen: BOOL) callconv(.Inline) HRESULT {
+    pub fn MarkFullscreenWindow(self: *const ITaskbarList2, hwnd: ?HWND, fFullscreen: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MarkFullscreenWindow(self, hwnd, fFullscreen);
     }
 };
@@ -7726,40 +7726,40 @@ pub const ITaskbarList3 = extern union {
     ITaskbarList2: ITaskbarList2,
     ITaskbarList: ITaskbarList,
     IUnknown: IUnknown,
-    pub fn SetProgressValue(self: *const ITaskbarList3, hwnd: ?HWND, ullCompleted: u64, ullTotal: u64) callconv(.Inline) HRESULT {
+    pub fn SetProgressValue(self: *const ITaskbarList3, hwnd: ?HWND, ullCompleted: u64, ullTotal: u64) callconv(.@"inline") HRESULT {
         return self.vtable.SetProgressValue(self, hwnd, ullCompleted, ullTotal);
     }
-    pub fn SetProgressState(self: *const ITaskbarList3, hwnd: ?HWND, tbpFlags: TBPFLAG) callconv(.Inline) HRESULT {
+    pub fn SetProgressState(self: *const ITaskbarList3, hwnd: ?HWND, tbpFlags: TBPFLAG) callconv(.@"inline") HRESULT {
         return self.vtable.SetProgressState(self, hwnd, tbpFlags);
     }
-    pub fn RegisterTab(self: *const ITaskbarList3, hwndTab: ?HWND, hwndMDI: ?HWND) callconv(.Inline) HRESULT {
+    pub fn RegisterTab(self: *const ITaskbarList3, hwndTab: ?HWND, hwndMDI: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterTab(self, hwndTab, hwndMDI);
     }
-    pub fn UnregisterTab(self: *const ITaskbarList3, hwndTab: ?HWND) callconv(.Inline) HRESULT {
+    pub fn UnregisterTab(self: *const ITaskbarList3, hwndTab: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterTab(self, hwndTab);
     }
-    pub fn SetTabOrder(self: *const ITaskbarList3, hwndTab: ?HWND, hwndInsertBefore: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetTabOrder(self: *const ITaskbarList3, hwndTab: ?HWND, hwndInsertBefore: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetTabOrder(self, hwndTab, hwndInsertBefore);
     }
-    pub fn SetTabActive(self: *const ITaskbarList3, hwndTab: ?HWND, hwndMDI: ?HWND, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn SetTabActive(self: *const ITaskbarList3, hwndTab: ?HWND, hwndMDI: ?HWND, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTabActive(self, hwndTab, hwndMDI, dwReserved);
     }
-    pub fn ThumbBarAddButtons(self: *const ITaskbarList3, hwnd: ?HWND, cButtons: u32, pButton: [*]THUMBBUTTON) callconv(.Inline) HRESULT {
+    pub fn ThumbBarAddButtons(self: *const ITaskbarList3, hwnd: ?HWND, cButtons: u32, pButton: [*]THUMBBUTTON) callconv(.@"inline") HRESULT {
         return self.vtable.ThumbBarAddButtons(self, hwnd, cButtons, pButton);
     }
-    pub fn ThumbBarUpdateButtons(self: *const ITaskbarList3, hwnd: ?HWND, cButtons: u32, pButton: [*]THUMBBUTTON) callconv(.Inline) HRESULT {
+    pub fn ThumbBarUpdateButtons(self: *const ITaskbarList3, hwnd: ?HWND, cButtons: u32, pButton: [*]THUMBBUTTON) callconv(.@"inline") HRESULT {
         return self.vtable.ThumbBarUpdateButtons(self, hwnd, cButtons, pButton);
     }
-    pub fn ThumbBarSetImageList(self: *const ITaskbarList3, hwnd: ?HWND, himl: ?HIMAGELIST) callconv(.Inline) HRESULT {
+    pub fn ThumbBarSetImageList(self: *const ITaskbarList3, hwnd: ?HWND, himl: ?HIMAGELIST) callconv(.@"inline") HRESULT {
         return self.vtable.ThumbBarSetImageList(self, hwnd, himl);
     }
-    pub fn SetOverlayIcon(self: *const ITaskbarList3, hwnd: ?HWND, hIcon: ?HICON, pszDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetOverlayIcon(self: *const ITaskbarList3, hwnd: ?HWND, hIcon: ?HICON, pszDescription: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetOverlayIcon(self, hwnd, hIcon, pszDescription);
     }
-    pub fn SetThumbnailTooltip(self: *const ITaskbarList3, hwnd: ?HWND, pszTip: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetThumbnailTooltip(self: *const ITaskbarList3, hwnd: ?HWND, pszTip: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetThumbnailTooltip(self, hwnd, pszTip);
     }
-    pub fn SetThumbnailClip(self: *const ITaskbarList3, hwnd: ?HWND, prcClip: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn SetThumbnailClip(self: *const ITaskbarList3, hwnd: ?HWND, prcClip: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetThumbnailClip(self, hwnd, prcClip);
     }
 };
@@ -7794,7 +7794,7 @@ pub const ITaskbarList4 = extern union {
     ITaskbarList2: ITaskbarList2,
     ITaskbarList: ITaskbarList,
     IUnknown: IUnknown,
-    pub fn SetTabProperties(self: *const ITaskbarList4, hwndTab: ?HWND, stpFlags: STPFLAG) callconv(.Inline) HRESULT {
+    pub fn SetTabProperties(self: *const ITaskbarList4, hwndTab: ?HWND, stpFlags: STPFLAG) callconv(.@"inline") HRESULT {
         return self.vtable.SetTabProperties(self, hwndTab, stpFlags);
     }
 };
@@ -7824,16 +7824,16 @@ pub const IExplorerBrowserEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnNavigationPending(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn OnNavigationPending(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.OnNavigationPending(self, pidlFolder);
     }
-    pub fn OnViewCreated(self: *const IExplorerBrowserEvents, psv: ?*IShellView) callconv(.Inline) HRESULT {
+    pub fn OnViewCreated(self: *const IExplorerBrowserEvents, psv: ?*IShellView) callconv(.@"inline") HRESULT {
         return self.vtable.OnViewCreated(self, psv);
     }
-    pub fn OnNavigationComplete(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn OnNavigationComplete(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.OnNavigationComplete(self, pidlFolder);
     }
-    pub fn OnNavigationFailed(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn OnNavigationFailed(self: *const IExplorerBrowserEvents, pidlFolder: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.OnNavigationFailed(self, pidlFolder);
     }
 };
@@ -7943,49 +7943,49 @@ pub const IExplorerBrowser = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IExplorerBrowser, hwndParent: ?HWND, prc: ?*const RECT, pfs: ?*const FOLDERSETTINGS) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IExplorerBrowser, hwndParent: ?HWND, prc: ?*const RECT, pfs: ?*const FOLDERSETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, hwndParent, prc, pfs);
     }
-    pub fn Destroy(self: *const IExplorerBrowser) callconv(.Inline) HRESULT {
+    pub fn Destroy(self: *const IExplorerBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.Destroy(self);
     }
-    pub fn SetRect(self: *const IExplorerBrowser, phdwp: ?*isize, rcBrowser: RECT) callconv(.Inline) HRESULT {
+    pub fn SetRect(self: *const IExplorerBrowser, phdwp: ?*isize, rcBrowser: RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetRect(self, phdwp, rcBrowser);
     }
-    pub fn SetPropertyBag(self: *const IExplorerBrowser, pszPropertyBag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetPropertyBag(self: *const IExplorerBrowser, pszPropertyBag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetPropertyBag(self, pszPropertyBag);
     }
-    pub fn SetEmptyText(self: *const IExplorerBrowser, pszEmptyText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetEmptyText(self: *const IExplorerBrowser, pszEmptyText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetEmptyText(self, pszEmptyText);
     }
-    pub fn SetFolderSettings(self: *const IExplorerBrowser, pfs: ?*const FOLDERSETTINGS) callconv(.Inline) HRESULT {
+    pub fn SetFolderSettings(self: *const IExplorerBrowser, pfs: ?*const FOLDERSETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolderSettings(self, pfs);
     }
-    pub fn Advise(self: *const IExplorerBrowser, psbe: ?*IExplorerBrowserEvents, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IExplorerBrowser, psbe: ?*IExplorerBrowserEvents, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, psbe, pdwCookie);
     }
-    pub fn Unadvise(self: *const IExplorerBrowser, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IExplorerBrowser, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwCookie);
     }
-    pub fn SetOptions(self: *const IExplorerBrowser, dwFlag: EXPLORER_BROWSER_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn SetOptions(self: *const IExplorerBrowser, dwFlag: EXPLORER_BROWSER_OPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.SetOptions(self, dwFlag);
     }
-    pub fn GetOptions(self: *const IExplorerBrowser, pdwFlag: ?*EXPLORER_BROWSER_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn GetOptions(self: *const IExplorerBrowser, pdwFlag: ?*EXPLORER_BROWSER_OPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptions(self, pdwFlag);
     }
-    pub fn BrowseToIDList(self: *const IExplorerBrowser, pidl: ?*ITEMIDLIST, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn BrowseToIDList(self: *const IExplorerBrowser, pidl: ?*ITEMIDLIST, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BrowseToIDList(self, pidl, uFlags);
     }
-    pub fn BrowseToObject(self: *const IExplorerBrowser, punk: ?*IUnknown, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn BrowseToObject(self: *const IExplorerBrowser, punk: ?*IUnknown, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BrowseToObject(self, punk, uFlags);
     }
-    pub fn FillFromObject(self: *const IExplorerBrowser, punk: ?*IUnknown, dwFlags: EXPLORER_BROWSER_FILL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn FillFromObject(self: *const IExplorerBrowser, punk: ?*IUnknown, dwFlags: EXPLORER_BROWSER_FILL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.FillFromObject(self, punk, dwFlags);
     }
-    pub fn RemoveAll(self: *const IExplorerBrowser) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const IExplorerBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAll(self);
     }
-    pub fn GetCurrentView(self: *const IExplorerBrowser, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCurrentView(self: *const IExplorerBrowser, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentView(self, riid, ppv);
     }
 };
@@ -8017,16 +8017,16 @@ pub const IEnumObjects = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumObjects, celt: u32, riid: ?*const Guid, rgelt: [*]?*anyopaque, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumObjects, celt: u32, riid: ?*const Guid, rgelt: [*]?*anyopaque, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, riid, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumObjects, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumObjects, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumObjects) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumObjects) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumObjects, ppenum: ?*?*IEnumObjects) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumObjects, ppenum: ?*?*IEnumObjects) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -8121,37 +8121,37 @@ pub const IOperationsProgressDialog = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StartProgressDialog(self: *const IOperationsProgressDialog, hwndOwner: ?HWND, flags: u32) callconv(.Inline) HRESULT {
+    pub fn StartProgressDialog(self: *const IOperationsProgressDialog, hwndOwner: ?HWND, flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.StartProgressDialog(self, hwndOwner, flags);
     }
-    pub fn StopProgressDialog(self: *const IOperationsProgressDialog) callconv(.Inline) HRESULT {
+    pub fn StopProgressDialog(self: *const IOperationsProgressDialog) callconv(.@"inline") HRESULT {
         return self.vtable.StopProgressDialog(self);
     }
-    pub fn SetOperation(self: *const IOperationsProgressDialog, action: SPACTION) callconv(.Inline) HRESULT {
+    pub fn SetOperation(self: *const IOperationsProgressDialog, action: SPACTION) callconv(.@"inline") HRESULT {
         return self.vtable.SetOperation(self, action);
     }
-    pub fn SetMode(self: *const IOperationsProgressDialog, mode: u32) callconv(.Inline) HRESULT {
+    pub fn SetMode(self: *const IOperationsProgressDialog, mode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMode(self, mode);
     }
-    pub fn UpdateProgress(self: *const IOperationsProgressDialog, ullPointsCurrent: u64, ullPointsTotal: u64, ullSizeCurrent: u64, ullSizeTotal: u64, ullItemsCurrent: u64, ullItemsTotal: u64) callconv(.Inline) HRESULT {
+    pub fn UpdateProgress(self: *const IOperationsProgressDialog, ullPointsCurrent: u64, ullPointsTotal: u64, ullSizeCurrent: u64, ullSizeTotal: u64, ullItemsCurrent: u64, ullItemsTotal: u64) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateProgress(self, ullPointsCurrent, ullPointsTotal, ullSizeCurrent, ullSizeTotal, ullItemsCurrent, ullItemsTotal);
     }
-    pub fn UpdateLocations(self: *const IOperationsProgressDialog, psiSource: ?*IShellItem, psiTarget: ?*IShellItem, psiItem: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn UpdateLocations(self: *const IOperationsProgressDialog, psiSource: ?*IShellItem, psiTarget: ?*IShellItem, psiItem: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateLocations(self, psiSource, psiTarget, psiItem);
     }
-    pub fn ResetTimer(self: *const IOperationsProgressDialog) callconv(.Inline) HRESULT {
+    pub fn ResetTimer(self: *const IOperationsProgressDialog) callconv(.@"inline") HRESULT {
         return self.vtable.ResetTimer(self);
     }
-    pub fn PauseTimer(self: *const IOperationsProgressDialog) callconv(.Inline) HRESULT {
+    pub fn PauseTimer(self: *const IOperationsProgressDialog) callconv(.@"inline") HRESULT {
         return self.vtable.PauseTimer(self);
     }
-    pub fn ResumeTimer(self: *const IOperationsProgressDialog) callconv(.Inline) HRESULT {
+    pub fn ResumeTimer(self: *const IOperationsProgressDialog) callconv(.@"inline") HRESULT {
         return self.vtable.ResumeTimer(self);
     }
-    pub fn GetMilliseconds(self: *const IOperationsProgressDialog, pullElapsed: ?*u64, pullRemaining: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMilliseconds(self: *const IOperationsProgressDialog, pullElapsed: ?*u64, pullRemaining: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMilliseconds(self, pullElapsed, pullRemaining);
     }
-    pub fn GetOperationStatus(self: *const IOperationsProgressDialog, popstatus: ?*PDOPSTATUS) callconv(.Inline) HRESULT {
+    pub fn GetOperationStatus(self: *const IOperationsProgressDialog, popstatus: ?*PDOPSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetOperationStatus(self, popstatus);
     }
 };
@@ -8175,10 +8175,10 @@ pub const IIOCancelInformation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetCancelInformation(self: *const IIOCancelInformation, dwThreadID: u32, uMsgCancel: u32) callconv(.Inline) HRESULT {
+    pub fn SetCancelInformation(self: *const IIOCancelInformation, dwThreadID: u32, uMsgCancel: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCancelInformation(self, dwThreadID, uMsgCancel);
     }
-    pub fn GetCancelInformation(self: *const IIOCancelInformation, pdwThreadID: ?*u32, puMsgCancel: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCancelInformation(self: *const IIOCancelInformation, pdwThreadID: ?*u32, puMsgCancel: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCancelInformation(self, pdwThreadID, puMsgCancel);
     }
 };
@@ -8288,64 +8288,64 @@ pub const IFileOperation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Advise(self: *const IFileOperation, pfops: ?*IFileOperationProgressSink, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IFileOperation, pfops: ?*IFileOperationProgressSink, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, pfops, pdwCookie);
     }
-    pub fn Unadvise(self: *const IFileOperation, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IFileOperation, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwCookie);
     }
-    pub fn SetOperationFlags(self: *const IFileOperation, dwOperationFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetOperationFlags(self: *const IFileOperation, dwOperationFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOperationFlags(self, dwOperationFlags);
     }
-    pub fn SetProgressMessage(self: *const IFileOperation, pszMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetProgressMessage(self: *const IFileOperation, pszMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetProgressMessage(self, pszMessage);
     }
-    pub fn SetProgressDialog(self: *const IFileOperation, popd: ?*IOperationsProgressDialog) callconv(.Inline) HRESULT {
+    pub fn SetProgressDialog(self: *const IFileOperation, popd: ?*IOperationsProgressDialog) callconv(.@"inline") HRESULT {
         return self.vtable.SetProgressDialog(self, popd);
     }
-    pub fn SetProperties(self: *const IFileOperation, pproparray: ?*IPropertyChangeArray) callconv(.Inline) HRESULT {
+    pub fn SetProperties(self: *const IFileOperation, pproparray: ?*IPropertyChangeArray) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperties(self, pproparray);
     }
-    pub fn SetOwnerWindow(self: *const IFileOperation, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetOwnerWindow(self: *const IFileOperation, hwndOwner: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetOwnerWindow(self, hwndOwner);
     }
-    pub fn ApplyPropertiesToItem(self: *const IFileOperation, psiItem: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn ApplyPropertiesToItem(self: *const IFileOperation, psiItem: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.ApplyPropertiesToItem(self, psiItem);
     }
-    pub fn ApplyPropertiesToItems(self: *const IFileOperation, punkItems: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn ApplyPropertiesToItems(self: *const IFileOperation, punkItems: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.ApplyPropertiesToItems(self, punkItems);
     }
-    pub fn RenameItem(self: *const IFileOperation, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn RenameItem(self: *const IFileOperation, psiItem: ?*IShellItem, pszNewName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.RenameItem(self, psiItem, pszNewName, pfopsItem);
     }
-    pub fn RenameItems(self: *const IFileOperation, pUnkItems: ?*IUnknown, pszNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RenameItems(self: *const IFileOperation, pUnkItems: ?*IUnknown, pszNewName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RenameItems(self, pUnkItems, pszNewName);
     }
-    pub fn MoveItem(self: *const IFileOperation, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn MoveItem(self: *const IFileOperation, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszNewName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.MoveItem(self, psiItem, psiDestinationFolder, pszNewName, pfopsItem);
     }
-    pub fn MoveItems(self: *const IFileOperation, punkItems: ?*IUnknown, psiDestinationFolder: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn MoveItems(self: *const IFileOperation, punkItems: ?*IUnknown, psiDestinationFolder: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.MoveItems(self, punkItems, psiDestinationFolder);
     }
-    pub fn CopyItem(self: *const IFileOperation, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszCopyName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn CopyItem(self: *const IFileOperation, psiItem: ?*IShellItem, psiDestinationFolder: ?*IShellItem, pszCopyName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.CopyItem(self, psiItem, psiDestinationFolder, pszCopyName, pfopsItem);
     }
-    pub fn CopyItems(self: *const IFileOperation, punkItems: ?*IUnknown, psiDestinationFolder: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn CopyItems(self: *const IFileOperation, punkItems: ?*IUnknown, psiDestinationFolder: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.CopyItems(self, punkItems, psiDestinationFolder);
     }
-    pub fn DeleteItem(self: *const IFileOperation, psiItem: ?*IShellItem, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn DeleteItem(self: *const IFileOperation, psiItem: ?*IShellItem, pfopsItem: ?*IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteItem(self, psiItem, pfopsItem);
     }
-    pub fn DeleteItems(self: *const IFileOperation, punkItems: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn DeleteItems(self: *const IFileOperation, punkItems: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteItems(self, punkItems);
     }
-    pub fn NewItem(self: *const IFileOperation, psiDestinationFolder: ?*IShellItem, dwFileAttributes: u32, pszName: ?[*:0]const u16, pszTemplateName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn NewItem(self: *const IFileOperation, psiDestinationFolder: ?*IShellItem, dwFileAttributes: u32, pszName: ?[*:0]const u16, pszTemplateName: ?[*:0]const u16, pfopsItem: ?*IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.NewItem(self, psiDestinationFolder, dwFileAttributes, pszName, pszTemplateName, pfopsItem);
     }
-    pub fn PerformOperations(self: *const IFileOperation) callconv(.Inline) HRESULT {
+    pub fn PerformOperations(self: *const IFileOperation) callconv(.@"inline") HRESULT {
         return self.vtable.PerformOperations(self);
     }
-    pub fn GetAnyOperationsAborted(self: *const IFileOperation, pfAnyOperationsAborted: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetAnyOperationsAborted(self: *const IFileOperation, pfAnyOperationsAborted: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetAnyOperationsAborted(self, pfAnyOperationsAborted);
     }
 };
@@ -8370,7 +8370,7 @@ pub const IFileOperation2 = extern union {
     vtable: *const VTable,
     IFileOperation: IFileOperation,
     IUnknown: IUnknown,
-    pub fn SetOperationFlags2(self: *const IFileOperation2, operationFlags2: FILE_OPERATION_FLAGS2) callconv(.Inline) HRESULT {
+    pub fn SetOperationFlags2(self: *const IFileOperation2, operationFlags2: FILE_OPERATION_FLAGS2) callconv(.@"inline") HRESULT {
         return self.vtable.SetOperationFlags2(self, operationFlags2);
     }
 };
@@ -8390,7 +8390,7 @@ pub const IObjectProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryObject(self: *const IObjectProvider, guidObject: ?*const Guid, riid: ?*const Guid, ppvOut: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryObject(self: *const IObjectProvider, guidObject: ?*const Guid, riid: ?*const Guid, ppvOut: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.QueryObject(self, guidObject, riid, ppvOut);
     }
 };
@@ -8424,16 +8424,16 @@ pub const INamespaceWalkCB = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FoundItem(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn FoundItem(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.FoundItem(self, psf, pidl);
     }
-    pub fn EnterFolder(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn EnterFolder(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.EnterFolder(self, psf, pidl);
     }
-    pub fn LeaveFolder(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn LeaveFolder(self: *const INamespaceWalkCB, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.LeaveFolder(self, psf, pidl);
     }
-    pub fn InitializeProgressDialog(self: *const INamespaceWalkCB, ppszTitle: ?*?PWSTR, ppszCancel: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn InitializeProgressDialog(self: *const INamespaceWalkCB, ppszTitle: ?*?PWSTR, ppszCancel: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeProgressDialog(self, ppszTitle, ppszCancel);
     }
 };
@@ -8452,7 +8452,7 @@ pub const INamespaceWalkCB2 = extern union {
     vtable: *const VTable,
     INamespaceWalkCB: INamespaceWalkCB,
     IUnknown: IUnknown,
-    pub fn WalkComplete(self: *const INamespaceWalkCB2, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn WalkComplete(self: *const INamespaceWalkCB2, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.WalkComplete(self, hr);
     }
 };
@@ -8515,10 +8515,10 @@ pub const INamespaceWalk = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Walk(self: *const INamespaceWalk, punkToWalk: ?*IUnknown, dwFlags: u32, cDepth: i32, pnswcb: ?*INamespaceWalkCB) callconv(.Inline) HRESULT {
+    pub fn Walk(self: *const INamespaceWalk, punkToWalk: ?*IUnknown, dwFlags: u32, cDepth: i32, pnswcb: ?*INamespaceWalkCB) callconv(.@"inline") HRESULT {
         return self.vtable.Walk(self, punkToWalk, dwFlags, cDepth, pnswcb);
     }
-    pub fn GetIDArrayResult(self: *const INamespaceWalk, pcItems: ?*u32, prgpidl: [*]?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetIDArrayResult(self: *const INamespaceWalk, pcItems: ?*u32, prgpidl: [*]?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDArrayResult(self, pcItems, prgpidl);
     }
 };
@@ -8586,28 +8586,28 @@ pub const IBandSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddBand(self: *const IBandSite, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn AddBand(self: *const IBandSite, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.AddBand(self, punk);
     }
-    pub fn EnumBands(self: *const IBandSite, uBand: u32, pdwBandID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EnumBands(self: *const IBandSite, uBand: u32, pdwBandID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumBands(self, uBand, pdwBandID);
     }
-    pub fn QueryBand(self: *const IBandSite, dwBandID: u32, ppstb: ?*?*IDeskBand, pdwState: ?*u32, pszName: ?[*:0]u16, cchName: i32) callconv(.Inline) HRESULT {
+    pub fn QueryBand(self: *const IBandSite, dwBandID: u32, ppstb: ?*?*IDeskBand, pdwState: ?*u32, pszName: ?[*:0]u16, cchName: i32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryBand(self, dwBandID, ppstb, pdwState, pszName, cchName);
     }
-    pub fn SetBandState(self: *const IBandSite, dwBandID: u32, dwMask: u32, dwState: u32) callconv(.Inline) HRESULT {
+    pub fn SetBandState(self: *const IBandSite, dwBandID: u32, dwMask: u32, dwState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBandState(self, dwBandID, dwMask, dwState);
     }
-    pub fn RemoveBand(self: *const IBandSite, dwBandID: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveBand(self: *const IBandSite, dwBandID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveBand(self, dwBandID);
     }
-    pub fn GetBandObject(self: *const IBandSite, dwBandID: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetBandObject(self: *const IBandSite, dwBandID: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetBandObject(self, dwBandID, riid, ppv);
     }
-    pub fn SetBandSiteInfo(self: *const IBandSite, pbsinfo: ?*const BANDSITEINFO) callconv(.Inline) HRESULT {
+    pub fn SetBandSiteInfo(self: *const IBandSite, pbsinfo: ?*const BANDSITEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.SetBandSiteInfo(self, pbsinfo);
     }
-    pub fn GetBandSiteInfo(self: *const IBandSite, pbsinfo: ?*BANDSITEINFO) callconv(.Inline) HRESULT {
+    pub fn GetBandSiteInfo(self: *const IBandSite, pbsinfo: ?*BANDSITEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetBandSiteInfo(self, pbsinfo);
     }
 };
@@ -8625,7 +8625,7 @@ pub const IModalWindow = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Show(self: *const IModalWindow, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Show(self: *const IModalWindow, hwndOwner: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self, hwndOwner);
     }
 };
@@ -8645,7 +8645,7 @@ pub const IContextMenuSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DoContextMenuPopup(self: *const IContextMenuSite, punkContextMenu: ?*IUnknown, fFlags: u32, pt: POINT) callconv(.Inline) HRESULT {
+    pub fn DoContextMenuPopup(self: *const IContextMenuSite, punkContextMenu: ?*IUnknown, fFlags: u32, pt: POINT) callconv(.@"inline") HRESULT {
         return self.vtable.DoContextMenuPopup(self, punkContextMenu, fFlags, pt);
     }
 };
@@ -8673,10 +8673,10 @@ pub const IMenuBand = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsMenuMessage(self: *const IMenuBand, pmsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn IsMenuMessage(self: *const IMenuBand, pmsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.IsMenuMessage(self, pmsg);
     }
-    pub fn TranslateMenuMessage(self: *const IMenuBand, pmsg: ?*MSG, plRet: ?*LRESULT) callconv(.Inline) HRESULT {
+    pub fn TranslateMenuMessage(self: *const IMenuBand, pmsg: ?*MSG, plRet: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateMenuMessage(self, pmsg, plRet);
     }
 };
@@ -8698,10 +8698,10 @@ pub const IRegTreeItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCheckState(self: *const IRegTreeItem, pbCheck: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetCheckState(self: *const IRegTreeItem, pbCheck: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetCheckState(self, pbCheck);
     }
-    pub fn SetCheckState(self: *const IRegTreeItem, bCheck: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetCheckState(self: *const IRegTreeItem, bCheck: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetCheckState(self, bCheck);
     }
 };
@@ -8728,13 +8728,13 @@ pub const IDeskBar = extern union {
     vtable: *const VTable,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn SetClient(self: *const IDeskBar, punkClient: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetClient(self: *const IDeskBar, punkClient: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetClient(self, punkClient);
     }
-    pub fn GetClient(self: *const IDeskBar, ppunkClient: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetClient(self: *const IDeskBar, ppunkClient: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetClient(self, ppunkClient);
     }
-    pub fn OnPosRectChangeDB(self: *const IDeskBar, prc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn OnPosRectChangeDB(self: *const IDeskBar, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.OnPosRectChangeDB(self, prc);
     }
 };
@@ -8811,13 +8811,13 @@ pub const IMenuPopup = extern union {
     IDeskBar: IDeskBar,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn Popup(self: *const IMenuPopup, ppt: ?*POINTL, prcExclude: ?*RECTL, dwFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Popup(self: *const IMenuPopup, ppt: ?*POINTL, prcExclude: ?*RECTL, dwFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Popup(self, ppt, prcExclude, dwFlags);
     }
-    pub fn OnSelect(self: *const IMenuPopup, dwSelectType: u32) callconv(.Inline) HRESULT {
+    pub fn OnSelect(self: *const IMenuPopup, dwSelectType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnSelect(self, dwSelectType);
     }
-    pub fn SetSubMenu(self: *const IMenuPopup, pmp: ?*IMenuPopup, fSet: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetSubMenu(self: *const IMenuPopup, pmp: ?*IMenuPopup, fSet: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetSubMenu(self, pmp, fSet);
     }
 };
@@ -8859,19 +8859,19 @@ pub const IFileIsInUse = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAppName(self: *const IFileIsInUse, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetAppName(self: *const IFileIsInUse, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppName(self, ppszName);
     }
-    pub fn GetUsage(self: *const IFileIsInUse, pfut: ?*FILE_USAGE_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetUsage(self: *const IFileIsInUse, pfut: ?*FILE_USAGE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetUsage(self, pfut);
     }
-    pub fn GetCapabilities(self: *const IFileIsInUse, pdwCapFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IFileIsInUse, pdwCapFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, pdwCapFlags);
     }
-    pub fn GetSwitchToHWND(self: *const IFileIsInUse, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn GetSwitchToHWND(self: *const IFileIsInUse, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetSwitchToHWND(self, phwnd);
     }
-    pub fn CloseFile(self: *const IFileIsInUse) callconv(.Inline) HRESULT {
+    pub fn CloseFile(self: *const IFileIsInUse) callconv(.@"inline") HRESULT {
         return self.vtable.CloseFile(self);
     }
 };
@@ -8943,25 +8943,25 @@ pub const IFileDialogEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnFileOk(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.Inline) HRESULT {
+    pub fn OnFileOk(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.@"inline") HRESULT {
         return self.vtable.OnFileOk(self, pfd);
     }
-    pub fn OnFolderChanging(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psiFolder: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnFolderChanging(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psiFolder: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnFolderChanging(self, pfd, psiFolder);
     }
-    pub fn OnFolderChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.Inline) HRESULT {
+    pub fn OnFolderChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.@"inline") HRESULT {
         return self.vtable.OnFolderChange(self, pfd);
     }
-    pub fn OnSelectionChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.Inline) HRESULT {
+    pub fn OnSelectionChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.@"inline") HRESULT {
         return self.vtable.OnSelectionChange(self, pfd);
     }
-    pub fn OnShareViolation(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psi: ?*IShellItem, pResponse: ?*FDE_SHAREVIOLATION_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn OnShareViolation(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psi: ?*IShellItem, pResponse: ?*FDE_SHAREVIOLATION_RESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.OnShareViolation(self, pfd, psi, pResponse);
     }
-    pub fn OnTypeChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.Inline) HRESULT {
+    pub fn OnTypeChange(self: *const IFileDialogEvents, pfd: ?*IFileDialog) callconv(.@"inline") HRESULT {
         return self.vtable.OnTypeChange(self, pfd);
     }
-    pub fn OnOverwrite(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psi: ?*IShellItem, pResponse: ?*FDE_OVERWRITE_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn OnOverwrite(self: *const IFileDialogEvents, pfd: ?*IFileDialog, psi: ?*IShellItem, pResponse: ?*FDE_OVERWRITE_RESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.OnOverwrite(self, pfd, psi, pResponse);
     }
 };
@@ -9128,73 +9128,73 @@ pub const IFileDialog = extern union {
     vtable: *const VTable,
     IModalWindow: IModalWindow,
     IUnknown: IUnknown,
-    pub fn SetFileTypes(self: *const IFileDialog, cFileTypes: u32, rgFilterSpec: [*]const COMDLG_FILTERSPEC) callconv(.Inline) HRESULT {
+    pub fn SetFileTypes(self: *const IFileDialog, cFileTypes: u32, rgFilterSpec: [*]const COMDLG_FILTERSPEC) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileTypes(self, cFileTypes, rgFilterSpec);
     }
-    pub fn SetFileTypeIndex(self: *const IFileDialog, iFileType: u32) callconv(.Inline) HRESULT {
+    pub fn SetFileTypeIndex(self: *const IFileDialog, iFileType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileTypeIndex(self, iFileType);
     }
-    pub fn GetFileTypeIndex(self: *const IFileDialog, piFileType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFileTypeIndex(self: *const IFileDialog, piFileType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileTypeIndex(self, piFileType);
     }
-    pub fn Advise(self: *const IFileDialog, pfde: ?*IFileDialogEvents, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IFileDialog, pfde: ?*IFileDialogEvents, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, pfde, pdwCookie);
     }
-    pub fn Unadvise(self: *const IFileDialog, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IFileDialog, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwCookie);
     }
-    pub fn SetOptions(self: *const IFileDialog, fos: FILEOPENDIALOGOPTIONS) callconv(.Inline) HRESULT {
+    pub fn SetOptions(self: *const IFileDialog, fos: FILEOPENDIALOGOPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.SetOptions(self, fos);
     }
-    pub fn GetOptions(self: *const IFileDialog, pfos: ?*FILEOPENDIALOGOPTIONS) callconv(.Inline) HRESULT {
+    pub fn GetOptions(self: *const IFileDialog, pfos: ?*FILEOPENDIALOGOPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptions(self, pfos);
     }
-    pub fn SetDefaultFolder(self: *const IFileDialog, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn SetDefaultFolder(self: *const IFileDialog, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultFolder(self, psi);
     }
-    pub fn SetFolder(self: *const IFileDialog, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn SetFolder(self: *const IFileDialog, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolder(self, psi);
     }
-    pub fn GetFolder(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolder(self, ppsi);
     }
-    pub fn GetCurrentSelection(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn GetCurrentSelection(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentSelection(self, ppsi);
     }
-    pub fn SetFileName(self: *const IFileDialog, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFileName(self: *const IFileDialog, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileName(self, pszName);
     }
-    pub fn GetFileName(self: *const IFileDialog, pszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFileName(self: *const IFileDialog, pszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileName(self, pszName);
     }
-    pub fn SetTitle(self: *const IFileDialog, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTitle(self: *const IFileDialog, pszTitle: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTitle(self, pszTitle);
     }
-    pub fn SetOkButtonLabel(self: *const IFileDialog, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetOkButtonLabel(self: *const IFileDialog, pszText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetOkButtonLabel(self, pszText);
     }
-    pub fn SetFileNameLabel(self: *const IFileDialog, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFileNameLabel(self: *const IFileDialog, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileNameLabel(self, pszLabel);
     }
-    pub fn GetResult(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn GetResult(self: *const IFileDialog, ppsi: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetResult(self, ppsi);
     }
-    pub fn AddPlace(self: *const IFileDialog, psi: ?*IShellItem, fdap: FDAP) callconv(.Inline) HRESULT {
+    pub fn AddPlace(self: *const IFileDialog, psi: ?*IShellItem, fdap: FDAP) callconv(.@"inline") HRESULT {
         return self.vtable.AddPlace(self, psi, fdap);
     }
-    pub fn SetDefaultExtension(self: *const IFileDialog, pszDefaultExtension: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDefaultExtension(self: *const IFileDialog, pszDefaultExtension: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultExtension(self, pszDefaultExtension);
     }
-    pub fn Close(self: *const IFileDialog, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IFileDialog, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self, hr);
     }
-    pub fn SetClientGuid(self: *const IFileDialog, guid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetClientGuid(self: *const IFileDialog, guid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetClientGuid(self, guid);
     }
-    pub fn ClearClientData(self: *const IFileDialog) callconv(.Inline) HRESULT {
+    pub fn ClearClientData(self: *const IFileDialog) callconv(.@"inline") HRESULT {
         return self.vtable.ClearClientData(self);
     }
-    pub fn SetFilter(self: *const IFileDialog, pFilter: ?*IShellItemFilter) callconv(.Inline) HRESULT {
+    pub fn SetFilter(self: *const IFileDialog, pFilter: ?*IShellItemFilter) callconv(.@"inline") HRESULT {
         return self.vtable.SetFilter(self, pFilter);
     }
 };
@@ -9234,19 +9234,19 @@ pub const IFileSaveDialog = extern union {
     IFileDialog: IFileDialog,
     IModalWindow: IModalWindow,
     IUnknown: IUnknown,
-    pub fn SetSaveAsItem(self: *const IFileSaveDialog, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn SetSaveAsItem(self: *const IFileSaveDialog, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.SetSaveAsItem(self, psi);
     }
-    pub fn SetProperties(self: *const IFileSaveDialog, pStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn SetProperties(self: *const IFileSaveDialog, pStore: ?*IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperties(self, pStore);
     }
-    pub fn SetCollectedProperties(self: *const IFileSaveDialog, pList: ?*IPropertyDescriptionList, fAppendDefault: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetCollectedProperties(self: *const IFileSaveDialog, pList: ?*IPropertyDescriptionList, fAppendDefault: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetCollectedProperties(self, pList, fAppendDefault);
     }
-    pub fn GetProperties(self: *const IFileSaveDialog, ppStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const IFileSaveDialog, ppStore: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperties(self, ppStore);
     }
-    pub fn ApplyProperties(self: *const IFileSaveDialog, psi: ?*IShellItem, pStore: ?*IPropertyStore, hwnd: ?HWND, pSink: ?*IFileOperationProgressSink) callconv(.Inline) HRESULT {
+    pub fn ApplyProperties(self: *const IFileSaveDialog, psi: ?*IShellItem, pStore: ?*IPropertyStore, hwnd: ?HWND, pSink: ?*IFileOperationProgressSink) callconv(.@"inline") HRESULT {
         return self.vtable.ApplyProperties(self, psi, pStore, hwnd, pSink);
     }
 };
@@ -9270,10 +9270,10 @@ pub const IFileOpenDialog = extern union {
     IFileDialog: IFileDialog,
     IModalWindow: IModalWindow,
     IUnknown: IUnknown,
-    pub fn GetResults(self: *const IFileOpenDialog, ppenum: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn GetResults(self: *const IFileOpenDialog, ppenum: ?*?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetResults(self, ppenum);
     }
-    pub fn GetSelectedItems(self: *const IFileOpenDialog, ppsai: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn GetSelectedItems(self: *const IFileOpenDialog, ppsai: ?*?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectedItems(self, ppsai);
     }
 };
@@ -9430,85 +9430,85 @@ pub const IFileDialogCustomize = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnableOpenDropDown(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
+    pub fn EnableOpenDropDown(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnableOpenDropDown(self, dwIDCtl);
     }
-    pub fn AddMenu(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddMenu(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddMenu(self, dwIDCtl, pszLabel);
     }
-    pub fn AddPushButton(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddPushButton(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddPushButton(self, dwIDCtl, pszLabel);
     }
-    pub fn AddComboBox(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
+    pub fn AddComboBox(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddComboBox(self, dwIDCtl);
     }
-    pub fn AddRadioButtonList(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
+    pub fn AddRadioButtonList(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddRadioButtonList(self, dwIDCtl);
     }
-    pub fn AddCheckButton(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16, bChecked: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddCheckButton(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16, bChecked: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddCheckButton(self, dwIDCtl, pszLabel, bChecked);
     }
-    pub fn AddEditBox(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddEditBox(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddEditBox(self, dwIDCtl, pszText);
     }
-    pub fn AddSeparator(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
+    pub fn AddSeparator(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddSeparator(self, dwIDCtl);
     }
-    pub fn AddText(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddText(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddText(self, dwIDCtl, pszText);
     }
-    pub fn SetControlLabel(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetControlLabel(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetControlLabel(self, dwIDCtl, pszLabel);
     }
-    pub fn GetControlState(self: *const IFileDialogCustomize, dwIDCtl: u32, pdwState: ?*CDCONTROLSTATEF) callconv(.Inline) HRESULT {
+    pub fn GetControlState(self: *const IFileDialogCustomize, dwIDCtl: u32, pdwState: ?*CDCONTROLSTATEF) callconv(.@"inline") HRESULT {
         return self.vtable.GetControlState(self, dwIDCtl, pdwState);
     }
-    pub fn SetControlState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwState: CDCONTROLSTATEF) callconv(.Inline) HRESULT {
+    pub fn SetControlState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwState: CDCONTROLSTATEF) callconv(.@"inline") HRESULT {
         return self.vtable.SetControlState(self, dwIDCtl, dwState);
     }
-    pub fn GetEditBoxText(self: *const IFileDialogCustomize, dwIDCtl: u32, ppszText: ?*?*u16) callconv(.Inline) HRESULT {
+    pub fn GetEditBoxText(self: *const IFileDialogCustomize, dwIDCtl: u32, ppszText: ?*?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetEditBoxText(self, dwIDCtl, ppszText);
     }
-    pub fn SetEditBoxText(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetEditBoxText(self: *const IFileDialogCustomize, dwIDCtl: u32, pszText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetEditBoxText(self, dwIDCtl, pszText);
     }
-    pub fn GetCheckButtonState(self: *const IFileDialogCustomize, dwIDCtl: u32, pbChecked: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetCheckButtonState(self: *const IFileDialogCustomize, dwIDCtl: u32, pbChecked: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetCheckButtonState(self, dwIDCtl, pbChecked);
     }
-    pub fn SetCheckButtonState(self: *const IFileDialogCustomize, dwIDCtl: u32, bChecked: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetCheckButtonState(self: *const IFileDialogCustomize, dwIDCtl: u32, bChecked: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetCheckButtonState(self, dwIDCtl, bChecked);
     }
-    pub fn AddControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddControlItem(self, dwIDCtl, dwIDItem, pszLabel);
     }
-    pub fn RemoveControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveControlItem(self, dwIDCtl, dwIDItem);
     }
-    pub fn RemoveAllControlItems(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveAllControlItems(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAllControlItems(self, dwIDCtl);
     }
-    pub fn GetControlItemState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pdwState: ?*CDCONTROLSTATEF) callconv(.Inline) HRESULT {
+    pub fn GetControlItemState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pdwState: ?*CDCONTROLSTATEF) callconv(.@"inline") HRESULT {
         return self.vtable.GetControlItemState(self, dwIDCtl, dwIDItem, pdwState);
     }
-    pub fn SetControlItemState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, dwState: CDCONTROLSTATEF) callconv(.Inline) HRESULT {
+    pub fn SetControlItemState(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, dwState: CDCONTROLSTATEF) callconv(.@"inline") HRESULT {
         return self.vtable.SetControlItemState(self, dwIDCtl, dwIDItem, dwState);
     }
-    pub fn GetSelectedControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, pdwIDItem: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSelectedControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, pdwIDItem: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectedControlItem(self, dwIDCtl, pdwIDItem);
     }
-    pub fn SetSelectedControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.Inline) HRESULT {
+    pub fn SetSelectedControlItem(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSelectedControlItem(self, dwIDCtl, dwIDItem);
     }
-    pub fn StartVisualGroup(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn StartVisualGroup(self: *const IFileDialogCustomize, dwIDCtl: u32, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.StartVisualGroup(self, dwIDCtl, pszLabel);
     }
-    pub fn EndVisualGroup(self: *const IFileDialogCustomize) callconv(.Inline) HRESULT {
+    pub fn EndVisualGroup(self: *const IFileDialogCustomize) callconv(.@"inline") HRESULT {
         return self.vtable.EndVisualGroup(self);
     }
-    pub fn MakeProminent(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
+    pub fn MakeProminent(self: *const IFileDialogCustomize, dwIDCtl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.MakeProminent(self, dwIDCtl);
     }
-    pub fn SetControlItemText(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetControlItemText(self: *const IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetControlItemText(self, dwIDCtl, dwIDItem, pszLabel);
     }
 };
@@ -9576,22 +9576,22 @@ pub const IApplicationAssociationRegistration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryCurrentDefault(self: *const IApplicationAssociationRegistration, pszQuery: ?[*:0]const u16, atQueryType: ASSOCIATIONTYPE, alQueryLevel: ASSOCIATIONLEVEL, ppszAssociation: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn QueryCurrentDefault(self: *const IApplicationAssociationRegistration, pszQuery: ?[*:0]const u16, atQueryType: ASSOCIATIONTYPE, alQueryLevel: ASSOCIATIONLEVEL, ppszAssociation: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.QueryCurrentDefault(self, pszQuery, atQueryType, alQueryLevel, ppszAssociation);
     }
-    pub fn QueryAppIsDefault(self: *const IApplicationAssociationRegistration, pszQuery: ?[*:0]const u16, atQueryType: ASSOCIATIONTYPE, alQueryLevel: ASSOCIATIONLEVEL, pszAppRegistryName: ?[*:0]const u16, pfDefault: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn QueryAppIsDefault(self: *const IApplicationAssociationRegistration, pszQuery: ?[*:0]const u16, atQueryType: ASSOCIATIONTYPE, alQueryLevel: ASSOCIATIONLEVEL, pszAppRegistryName: ?[*:0]const u16, pfDefault: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.QueryAppIsDefault(self, pszQuery, atQueryType, alQueryLevel, pszAppRegistryName, pfDefault);
     }
-    pub fn QueryAppIsDefaultAll(self: *const IApplicationAssociationRegistration, alQueryLevel: ASSOCIATIONLEVEL, pszAppRegistryName: ?[*:0]const u16, pfDefault: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn QueryAppIsDefaultAll(self: *const IApplicationAssociationRegistration, alQueryLevel: ASSOCIATIONLEVEL, pszAppRegistryName: ?[*:0]const u16, pfDefault: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.QueryAppIsDefaultAll(self, alQueryLevel, pszAppRegistryName, pfDefault);
     }
-    pub fn SetAppAsDefault(self: *const IApplicationAssociationRegistration, pszAppRegistryName: ?[*:0]const u16, pszSet: ?[*:0]const u16, atSetType: ASSOCIATIONTYPE) callconv(.Inline) HRESULT {
+    pub fn SetAppAsDefault(self: *const IApplicationAssociationRegistration, pszAppRegistryName: ?[*:0]const u16, pszSet: ?[*:0]const u16, atSetType: ASSOCIATIONTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.SetAppAsDefault(self, pszAppRegistryName, pszSet, atSetType);
     }
-    pub fn SetAppAsDefaultAll(self: *const IApplicationAssociationRegistration, pszAppRegistryName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAppAsDefaultAll(self: *const IApplicationAssociationRegistration, pszAppRegistryName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAppAsDefaultAll(self, pszAppRegistryName);
     }
-    pub fn ClearUserAssociations(self: *const IApplicationAssociationRegistration) callconv(.Inline) HRESULT {
+    pub fn ClearUserAssociations(self: *const IApplicationAssociationRegistration) callconv(.@"inline") HRESULT {
         return self.vtable.ClearUserAssociations(self);
     }
 };
@@ -9616,7 +9616,7 @@ pub const IDelegateFolder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetItemAlloc(self: *const IDelegateFolder, pmalloc: ?*IMalloc) callconv(.Inline) HRESULT {
+    pub fn SetItemAlloc(self: *const IDelegateFolder, pmalloc: ?*IMalloc) callconv(.@"inline") HRESULT {
         return self.vtable.SetItemAlloc(self, pmalloc);
     }
 };
@@ -9678,7 +9678,7 @@ pub const IBrowserFrameOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFrameOptions(self: *const IBrowserFrameOptions, dwMask: u32, pdwOptions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFrameOptions(self: *const IBrowserFrameOptions, dwMask: u32, pdwOptions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameOptions(self, dwMask, pdwOptions);
     }
 };
@@ -9733,7 +9733,7 @@ pub const INewWindowManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EvaluateNewWindow(self: *const INewWindowManager, pszUrl: ?[*:0]const u16, pszName: ?[*:0]const u16, pszUrlContext: ?[*:0]const u16, pszFeatures: ?[*:0]const u16, fReplace: BOOL, dwFlags: u32, dwUserActionTime: u32) callconv(.Inline) HRESULT {
+    pub fn EvaluateNewWindow(self: *const INewWindowManager, pszUrl: ?[*:0]const u16, pszName: ?[*:0]const u16, pszUrlContext: ?[*:0]const u16, pszFeatures: ?[*:0]const u16, fReplace: BOOL, dwFlags: u32, dwUserActionTime: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EvaluateNewWindow(self, pszUrl, pszName, pszUrlContext, pszFeatures, fReplace, dwFlags, dwUserActionTime);
     }
 };
@@ -9816,40 +9816,40 @@ pub const IAttachmentExecute = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetClientTitle(self: *const IAttachmentExecute, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetClientTitle(self: *const IAttachmentExecute, pszTitle: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetClientTitle(self, pszTitle);
     }
-    pub fn SetClientGuid(self: *const IAttachmentExecute, guid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetClientGuid(self: *const IAttachmentExecute, guid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetClientGuid(self, guid);
     }
-    pub fn SetLocalPath(self: *const IAttachmentExecute, pszLocalPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetLocalPath(self: *const IAttachmentExecute, pszLocalPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetLocalPath(self, pszLocalPath);
     }
-    pub fn SetFileName(self: *const IAttachmentExecute, pszFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFileName(self: *const IAttachmentExecute, pszFileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileName(self, pszFileName);
     }
-    pub fn SetSource(self: *const IAttachmentExecute, pszSource: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetSource(self: *const IAttachmentExecute, pszSource: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSource(self, pszSource);
     }
-    pub fn SetReferrer(self: *const IAttachmentExecute, pszReferrer: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetReferrer(self: *const IAttachmentExecute, pszReferrer: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetReferrer(self, pszReferrer);
     }
-    pub fn CheckPolicy(self: *const IAttachmentExecute) callconv(.Inline) HRESULT {
+    pub fn CheckPolicy(self: *const IAttachmentExecute) callconv(.@"inline") HRESULT {
         return self.vtable.CheckPolicy(self);
     }
-    pub fn Prompt(self: *const IAttachmentExecute, hwnd: ?HWND, prompt: ATTACHMENT_PROMPT, paction: ?*ATTACHMENT_ACTION) callconv(.Inline) HRESULT {
+    pub fn Prompt(self: *const IAttachmentExecute, hwnd: ?HWND, prompt: ATTACHMENT_PROMPT, paction: ?*ATTACHMENT_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.Prompt(self, hwnd, prompt, paction);
     }
-    pub fn Save(self: *const IAttachmentExecute) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IAttachmentExecute) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn Execute(self: *const IAttachmentExecute, hwnd: ?HWND, pszVerb: ?[*:0]const u16, phProcess: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Execute(self: *const IAttachmentExecute, hwnd: ?HWND, pszVerb: ?[*:0]const u16, phProcess: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.Execute(self, hwnd, pszVerb, phProcess);
     }
-    pub fn SaveWithUI(self: *const IAttachmentExecute, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SaveWithUI(self: *const IAttachmentExecute, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SaveWithUI(self, hwnd);
     }
-    pub fn ClearClientState(self: *const IAttachmentExecute) callconv(.Inline) HRESULT {
+    pub fn ClearClientState(self: *const IAttachmentExecute) callconv(.@"inline") HRESULT {
         return self.vtable.ClearClientState(self);
     }
 };
@@ -9943,7 +9943,7 @@ pub const IShellMenuCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CallbackSM(self: *const IShellMenuCallback, psmd: ?*SMDATA, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn CallbackSM(self: *const IShellMenuCallback, psmd: ?*SMDATA, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.CallbackSM(self, psmd, uMsg, wParam, lParam);
     }
 };
@@ -10011,31 +10011,31 @@ pub const IShellMenu = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IShellMenu, psmc: ?*IShellMenuCallback, uId: u32, uIdAncestor: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IShellMenu, psmc: ?*IShellMenuCallback, uId: u32, uIdAncestor: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, psmc, uId, uIdAncestor, dwFlags);
     }
-    pub fn GetMenuInfo(self: *const IShellMenu, ppsmc: ?*?*IShellMenuCallback, puId: ?*u32, puIdAncestor: ?*u32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMenuInfo(self: *const IShellMenu, ppsmc: ?*?*IShellMenuCallback, puId: ?*u32, puIdAncestor: ?*u32, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMenuInfo(self, ppsmc, puId, puIdAncestor, pdwFlags);
     }
-    pub fn SetShellFolder(self: *const IShellMenu, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, hKey: ?HKEY, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetShellFolder(self: *const IShellMenu, psf: ?*IShellFolder, pidlFolder: ?*ITEMIDLIST, hKey: ?HKEY, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetShellFolder(self, psf, pidlFolder, hKey, dwFlags);
     }
-    pub fn GetShellFolder(self: *const IShellMenu, pdwFlags: ?*u32, ppidl: ?*?*ITEMIDLIST, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetShellFolder(self: *const IShellMenu, pdwFlags: ?*u32, ppidl: ?*?*ITEMIDLIST, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetShellFolder(self, pdwFlags, ppidl, riid, ppv);
     }
-    pub fn SetMenu(self: *const IShellMenu, hmenu: ?HMENU, hwnd: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetMenu(self: *const IShellMenu, hmenu: ?HMENU, hwnd: ?HWND, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMenu(self, hmenu, hwnd, dwFlags);
     }
-    pub fn GetMenu(self: *const IShellMenu, phmenu: ?*?HMENU, phwnd: ?*?HWND, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMenu(self: *const IShellMenu, phmenu: ?*?HMENU, phwnd: ?*?HWND, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMenu(self, phmenu, phwnd, pdwFlags);
     }
-    pub fn InvalidateItem(self: *const IShellMenu, psmd: ?*SMDATA, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn InvalidateItem(self: *const IShellMenu, psmd: ?*SMDATA, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InvalidateItem(self, psmd, dwFlags);
     }
-    pub fn GetState(self: *const IShellMenu, psmd: ?*SMDATA) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IShellMenu, psmd: ?*SMDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, psmd);
     }
-    pub fn SetMenuToolbar(self: *const IShellMenu, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetMenuToolbar(self: *const IShellMenu, punk: ?*IUnknown, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMenuToolbar(self, punk, dwFlags);
     }
 };
@@ -10172,31 +10172,31 @@ pub const IKnownFolder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetId(self: *const IKnownFolder, pkfid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetId(self: *const IKnownFolder, pkfid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, pkfid);
     }
-    pub fn GetCategory(self: *const IKnownFolder, pCategory: ?*KF_CATEGORY) callconv(.Inline) HRESULT {
+    pub fn GetCategory(self: *const IKnownFolder, pCategory: ?*KF_CATEGORY) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategory(self, pCategory);
     }
-    pub fn GetShellItem(self: *const IKnownFolder, dwFlags: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetShellItem(self: *const IKnownFolder, dwFlags: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetShellItem(self, dwFlags, riid, ppv);
     }
-    pub fn GetPath(self: *const IKnownFolder, dwFlags: u32, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const IKnownFolder, dwFlags: u32, ppszPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, dwFlags, ppszPath);
     }
-    pub fn SetPath(self: *const IKnownFolder, dwFlags: u32, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetPath(self: *const IKnownFolder, dwFlags: u32, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetPath(self, dwFlags, pszPath);
     }
-    pub fn GetIDList(self: *const IKnownFolder, dwFlags: u32, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetIDList(self: *const IKnownFolder, dwFlags: u32, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDList(self, dwFlags, ppidl);
     }
-    pub fn GetFolderType(self: *const IKnownFolder, pftid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetFolderType(self: *const IKnownFolder, pftid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderType(self, pftid);
     }
-    pub fn GetRedirectionCapabilities(self: *const IKnownFolder, pCapabilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRedirectionCapabilities(self: *const IKnownFolder, pCapabilities: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRedirectionCapabilities(self, pCapabilities);
     }
-    pub fn GetFolderDefinition(self: *const IKnownFolder, pKFD: ?*KNOWNFOLDER_DEFINITION) callconv(.Inline) HRESULT {
+    pub fn GetFolderDefinition(self: *const IKnownFolder, pKFD: ?*KNOWNFOLDER_DEFINITION) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderDefinition(self, pKFD);
     }
 };
@@ -10272,34 +10272,34 @@ pub const IKnownFolderManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FolderIdFromCsidl(self: *const IKnownFolderManager, nCsidl: i32, pfid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn FolderIdFromCsidl(self: *const IKnownFolderManager, nCsidl: i32, pfid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FolderIdFromCsidl(self, nCsidl, pfid);
     }
-    pub fn FolderIdToCsidl(self: *const IKnownFolderManager, rfid: ?*const Guid, pnCsidl: ?*i32) callconv(.Inline) HRESULT {
+    pub fn FolderIdToCsidl(self: *const IKnownFolderManager, rfid: ?*const Guid, pnCsidl: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.FolderIdToCsidl(self, rfid, pnCsidl);
     }
-    pub fn GetFolderIds(self: *const IKnownFolderManager, ppKFId: [*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFolderIds(self: *const IKnownFolderManager, ppKFId: [*]?*Guid, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderIds(self, ppKFId, pCount);
     }
-    pub fn GetFolder(self: *const IKnownFolderManager, rfid: ?*const Guid, ppkf: ?*?*IKnownFolder) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const IKnownFolderManager, rfid: ?*const Guid, ppkf: ?*?*IKnownFolder) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolder(self, rfid, ppkf);
     }
-    pub fn GetFolderByName(self: *const IKnownFolderManager, pszCanonicalName: ?[*:0]const u16, ppkf: ?*?*IKnownFolder) callconv(.Inline) HRESULT {
+    pub fn GetFolderByName(self: *const IKnownFolderManager, pszCanonicalName: ?[*:0]const u16, ppkf: ?*?*IKnownFolder) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderByName(self, pszCanonicalName, ppkf);
     }
-    pub fn RegisterFolder(self: *const IKnownFolderManager, rfid: ?*const Guid, pKFD: ?*const KNOWNFOLDER_DEFINITION) callconv(.Inline) HRESULT {
+    pub fn RegisterFolder(self: *const IKnownFolderManager, rfid: ?*const Guid, pKFD: ?*const KNOWNFOLDER_DEFINITION) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterFolder(self, rfid, pKFD);
     }
-    pub fn UnregisterFolder(self: *const IKnownFolderManager, rfid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn UnregisterFolder(self: *const IKnownFolderManager, rfid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterFolder(self, rfid);
     }
-    pub fn FindFolderFromPath(self: *const IKnownFolderManager, pszPath: ?[*:0]const u16, mode: FFFP_MODE, ppkf: ?*?*IKnownFolder) callconv(.Inline) HRESULT {
+    pub fn FindFolderFromPath(self: *const IKnownFolderManager, pszPath: ?[*:0]const u16, mode: FFFP_MODE, ppkf: ?*?*IKnownFolder) callconv(.@"inline") HRESULT {
         return self.vtable.FindFolderFromPath(self, pszPath, mode, ppkf);
     }
-    pub fn FindFolderFromIDList(self: *const IKnownFolderManager, pidl: ?*ITEMIDLIST, ppkf: ?*?*IKnownFolder) callconv(.Inline) HRESULT {
+    pub fn FindFolderFromIDList(self: *const IKnownFolderManager, pidl: ?*ITEMIDLIST, ppkf: ?*?*IKnownFolder) callconv(.@"inline") HRESULT {
         return self.vtable.FindFolderFromIDList(self, pidl, ppkf);
     }
-    pub fn Redirect(self: *const IKnownFolderManager, rfid: ?*const Guid, hwnd: ?HWND, flags: u32, pszTargetPath: ?[*:0]const u16, cFolders: u32, pExclusion: ?[*]const Guid, ppszError: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn Redirect(self: *const IKnownFolderManager, rfid: ?*const Guid, hwnd: ?HWND, flags: u32, pszTargetPath: ?[*:0]const u16, cFolders: u32, pExclusion: ?[*]const Guid, ppszError: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Redirect(self, rfid, hwnd, flags, pszTargetPath, cFolders, pExclusion, ppszError);
     }
 };
@@ -10364,25 +10364,25 @@ pub const ISharingConfigurationManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateShare(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID, role: SHARE_ROLE) callconv(.Inline) HRESULT {
+    pub fn CreateShare(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID, role: SHARE_ROLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateShare(self, dsid, role);
     }
-    pub fn DeleteShare(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID) callconv(.Inline) HRESULT {
+    pub fn DeleteShare(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteShare(self, dsid);
     }
-    pub fn ShareExists(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID) callconv(.Inline) HRESULT {
+    pub fn ShareExists(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID) callconv(.@"inline") HRESULT {
         return self.vtable.ShareExists(self, dsid);
     }
-    pub fn GetSharePermissions(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID, pRole: ?*SHARE_ROLE) callconv(.Inline) HRESULT {
+    pub fn GetSharePermissions(self: *const ISharingConfigurationManager, dsid: DEF_SHARE_ID, pRole: ?*SHARE_ROLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetSharePermissions(self, dsid, pRole);
     }
-    pub fn SharePrinters(self: *const ISharingConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn SharePrinters(self: *const ISharingConfigurationManager) callconv(.@"inline") HRESULT {
         return self.vtable.SharePrinters(self);
     }
-    pub fn StopSharingPrinters(self: *const ISharingConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn StopSharingPrinters(self: *const ISharingConfigurationManager) callconv(.@"inline") HRESULT {
         return self.vtable.StopSharingPrinters(self);
     }
-    pub fn ArePrintersShared(self: *const ISharingConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn ArePrintersShared(self: *const ISharingConfigurationManager) callconv(.@"inline") HRESULT {
         return self.vtable.ArePrintersShared(self);
     }
 };
@@ -10404,10 +10404,10 @@ pub const IRelatedItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemIDList(self: *const IRelatedItem, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetItemIDList(self: *const IRelatedItem, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemIDList(self, ppidl);
     }
-    pub fn GetItem(self: *const IRelatedItem, ppsi: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const IRelatedItem, ppsi: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetItem(self, ppsi);
     }
 };
@@ -10509,7 +10509,7 @@ pub const IDestinationStreamFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDestinationStream(self: *const IDestinationStreamFactory, ppstm: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetDestinationStream(self: *const IDestinationStreamFactory, ppstm: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.GetDestinationStream(self, ppstm);
     }
 };
@@ -10552,25 +10552,25 @@ pub const ICreateProcessInputs = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCreateFlags(self: *const ICreateProcessInputs, pdwCreationFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCreateFlags(self: *const ICreateProcessInputs, pdwCreationFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCreateFlags(self, pdwCreationFlags);
     }
-    pub fn SetCreateFlags(self: *const ICreateProcessInputs, dwCreationFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetCreateFlags(self: *const ICreateProcessInputs, dwCreationFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCreateFlags(self, dwCreationFlags);
     }
-    pub fn AddCreateFlags(self: *const ICreateProcessInputs, dwCreationFlags: u32) callconv(.Inline) HRESULT {
+    pub fn AddCreateFlags(self: *const ICreateProcessInputs, dwCreationFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddCreateFlags(self, dwCreationFlags);
     }
-    pub fn SetHotKey(self: *const ICreateProcessInputs, wHotKey: u16) callconv(.Inline) HRESULT {
+    pub fn SetHotKey(self: *const ICreateProcessInputs, wHotKey: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHotKey(self, wHotKey);
     }
-    pub fn AddStartupFlags(self: *const ICreateProcessInputs, dwStartupInfoFlags: u32) callconv(.Inline) HRESULT {
+    pub fn AddStartupFlags(self: *const ICreateProcessInputs, dwStartupInfoFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddStartupFlags(self, dwStartupInfoFlags);
     }
-    pub fn SetTitle(self: *const ICreateProcessInputs, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTitle(self: *const ICreateProcessInputs, pszTitle: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTitle(self, pszTitle);
     }
-    pub fn SetEnvironmentVariable(self: *const ICreateProcessInputs, pszName: ?[*:0]const u16, pszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetEnvironmentVariable(self: *const ICreateProcessInputs, pszName: ?[*:0]const u16, pszValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnvironmentVariable(self, pszName, pszValue);
     }
 };
@@ -10588,7 +10588,7 @@ pub const ICreatingProcess = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnCreating(self: *const ICreatingProcess, pcpi: ?*ICreateProcessInputs) callconv(.Inline) HRESULT {
+    pub fn OnCreating(self: *const ICreatingProcess, pcpi: ?*ICreateProcessInputs) callconv(.@"inline") HRESULT {
         return self.vtable.OnCreating(self, pcpi);
     }
 };
@@ -10609,10 +10609,10 @@ pub const ILaunchUIContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAssociatedWindow(self: *const ILaunchUIContext, value: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetAssociatedWindow(self: *const ILaunchUIContext, value: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetAssociatedWindow(self, value);
     }
-    pub fn SetTabGroupingPreference(self: *const ILaunchUIContext, value: u32) callconv(.Inline) HRESULT {
+    pub fn SetTabGroupingPreference(self: *const ILaunchUIContext, value: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTabGroupingPreference(self, value);
     }
 };
@@ -10629,7 +10629,7 @@ pub const ILaunchUIContextProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn UpdateContext(self: *const ILaunchUIContextProvider, context: ?*ILaunchUIContext) callconv(.Inline) HRESULT {
+    pub fn UpdateContext(self: *const ILaunchUIContextProvider, context: ?*ILaunchUIContext) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateContext(self, context);
     }
 };
@@ -10668,10 +10668,10 @@ pub const INewMenuClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IncludeItems(self: *const INewMenuClient, pflags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn IncludeItems(self: *const INewMenuClient, pflags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.IncludeItems(self, pflags);
     }
-    pub fn SelectAndEditItem(self: *const INewMenuClient, pidlItem: ?*ITEMIDLIST, flags: i32) callconv(.Inline) HRESULT {
+    pub fn SelectAndEditItem(self: *const INewMenuClient, pidlItem: ?*ITEMIDLIST, flags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SelectAndEditItem(self, pidlItem, flags);
     }
 };
@@ -10689,7 +10689,7 @@ pub const IInitializeWithBindCtx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IInitializeWithBindCtx, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IInitializeWithBindCtx, pbc: ?*IBindCtx) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pbc);
     }
 };
@@ -10712,10 +10712,10 @@ pub const IShellItemFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IncludeItem(self: *const IShellItemFilter, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn IncludeItem(self: *const IShellItemFilter, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.IncludeItem(self, psi);
     }
-    pub fn GetEnumFlagsForItem(self: *const IShellItemFilter, psi: ?*IShellItem, pgrfFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEnumFlagsForItem(self: *const IShellItemFilter, psi: ?*IShellItem, pgrfFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnumFlagsForItem(self, psi, pgrfFlags);
     }
 };
@@ -10929,61 +10929,61 @@ pub const INameSpaceTreeControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const INameSpaceTreeControl, hwndParent: ?HWND, prc: ?*RECT, nsctsFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const INameSpaceTreeControl, hwndParent: ?HWND, prc: ?*RECT, nsctsFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, hwndParent, prc, nsctsFlags);
     }
-    pub fn TreeAdvise(self: *const INameSpaceTreeControl, punk: ?*IUnknown, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn TreeAdvise(self: *const INameSpaceTreeControl, punk: ?*IUnknown, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.TreeAdvise(self, punk, pdwCookie);
     }
-    pub fn TreeUnadvise(self: *const INameSpaceTreeControl, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn TreeUnadvise(self: *const INameSpaceTreeControl, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.TreeUnadvise(self, dwCookie);
     }
-    pub fn AppendRoot(self: *const INameSpaceTreeControl, psiRoot: ?*IShellItem, grfEnumFlags: u32, grfRootStyle: u32, pif: ?*IShellItemFilter) callconv(.Inline) HRESULT {
+    pub fn AppendRoot(self: *const INameSpaceTreeControl, psiRoot: ?*IShellItem, grfEnumFlags: u32, grfRootStyle: u32, pif: ?*IShellItemFilter) callconv(.@"inline") HRESULT {
         return self.vtable.AppendRoot(self, psiRoot, grfEnumFlags, grfRootStyle, pif);
     }
-    pub fn InsertRoot(self: *const INameSpaceTreeControl, iIndex: i32, psiRoot: ?*IShellItem, grfEnumFlags: u32, grfRootStyle: u32, pif: ?*IShellItemFilter) callconv(.Inline) HRESULT {
+    pub fn InsertRoot(self: *const INameSpaceTreeControl, iIndex: i32, psiRoot: ?*IShellItem, grfEnumFlags: u32, grfRootStyle: u32, pif: ?*IShellItemFilter) callconv(.@"inline") HRESULT {
         return self.vtable.InsertRoot(self, iIndex, psiRoot, grfEnumFlags, grfRootStyle, pif);
     }
-    pub fn RemoveRoot(self: *const INameSpaceTreeControl, psiRoot: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn RemoveRoot(self: *const INameSpaceTreeControl, psiRoot: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveRoot(self, psiRoot);
     }
-    pub fn RemoveAllRoots(self: *const INameSpaceTreeControl) callconv(.Inline) HRESULT {
+    pub fn RemoveAllRoots(self: *const INameSpaceTreeControl) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAllRoots(self);
     }
-    pub fn GetRootItems(self: *const INameSpaceTreeControl, ppsiaRootItems: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn GetRootItems(self: *const INameSpaceTreeControl, ppsiaRootItems: ?*?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetRootItems(self, ppsiaRootItems);
     }
-    pub fn SetItemState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcisMask: u32, nstcisFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetItemState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcisMask: u32, nstcisFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetItemState(self, psi, nstcisMask, nstcisFlags);
     }
-    pub fn GetItemState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcisMask: u32, pnstcisFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetItemState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcisMask: u32, pnstcisFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemState(self, psi, nstcisMask, pnstcisFlags);
     }
-    pub fn GetSelectedItems(self: *const INameSpaceTreeControl, psiaItems: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn GetSelectedItems(self: *const INameSpaceTreeControl, psiaItems: ?*?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectedItems(self, psiaItems);
     }
-    pub fn GetItemCustomState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, piStateNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetItemCustomState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, piStateNumber: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemCustomState(self, psi, piStateNumber);
     }
-    pub fn SetItemCustomState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, iStateNumber: i32) callconv(.Inline) HRESULT {
+    pub fn SetItemCustomState(self: *const INameSpaceTreeControl, psi: ?*IShellItem, iStateNumber: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetItemCustomState(self, psi, iStateNumber);
     }
-    pub fn EnsureItemVisible(self: *const INameSpaceTreeControl, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn EnsureItemVisible(self: *const INameSpaceTreeControl, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.EnsureItemVisible(self, psi);
     }
-    pub fn SetTheme(self: *const INameSpaceTreeControl, pszTheme: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTheme(self: *const INameSpaceTreeControl, pszTheme: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTheme(self, pszTheme);
     }
-    pub fn GetNextItem(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcgi: NSTCGNI, ppsiNext: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn GetNextItem(self: *const INameSpaceTreeControl, psi: ?*IShellItem, nstcgi: NSTCGNI, ppsiNext: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextItem(self, psi, nstcgi, ppsiNext);
     }
-    pub fn HitTest(self: *const INameSpaceTreeControl, ppt: ?*POINT, ppsiOut: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn HitTest(self: *const INameSpaceTreeControl, ppt: ?*POINT, ppsiOut: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.HitTest(self, ppt, ppsiOut);
     }
-    pub fn GetItemRect(self: *const INameSpaceTreeControl, psi: ?*IShellItem, prect: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetItemRect(self: *const INameSpaceTreeControl, psi: ?*IShellItem, prect: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemRect(self, psi, prect);
     }
-    pub fn CollapseAll(self: *const INameSpaceTreeControl) callconv(.Inline) HRESULT {
+    pub fn CollapseAll(self: *const INameSpaceTreeControl) callconv(.@"inline") HRESULT {
         return self.vtable.CollapseAll(self);
     }
 };
@@ -11011,7 +11011,7 @@ pub const INameSpaceTreeControlFolderCapabilities = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFolderCapabilities(self: *const INameSpaceTreeControlFolderCapabilities, nfcMask: NSTCFOLDERCAPABILITIES, pnfcValue: ?*NSTCFOLDERCAPABILITIES) callconv(.Inline) HRESULT {
+    pub fn GetFolderCapabilities(self: *const INameSpaceTreeControlFolderCapabilities, nfcMask: NSTCFOLDERCAPABILITIES, pnfcValue: ?*NSTCFOLDERCAPABILITIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderCapabilities(self, nfcMask, pnfcValue);
     }
 };
@@ -11051,25 +11051,25 @@ pub const IPreviewHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetWindow(self: *const IPreviewHandler, hwnd: ?HWND, prc: ?*const RECT) callconv(.Inline) HRESULT {
+    pub fn SetWindow(self: *const IPreviewHandler, hwnd: ?HWND, prc: ?*const RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetWindow(self, hwnd, prc);
     }
-    pub fn SetRect(self: *const IPreviewHandler, prc: ?*const RECT) callconv(.Inline) HRESULT {
+    pub fn SetRect(self: *const IPreviewHandler, prc: ?*const RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetRect(self, prc);
     }
-    pub fn DoPreview(self: *const IPreviewHandler) callconv(.Inline) HRESULT {
+    pub fn DoPreview(self: *const IPreviewHandler) callconv(.@"inline") HRESULT {
         return self.vtable.DoPreview(self);
     }
-    pub fn Unload(self: *const IPreviewHandler) callconv(.Inline) HRESULT {
+    pub fn Unload(self: *const IPreviewHandler) callconv(.@"inline") HRESULT {
         return self.vtable.Unload(self);
     }
-    pub fn SetFocus(self: *const IPreviewHandler) callconv(.Inline) HRESULT {
+    pub fn SetFocus(self: *const IPreviewHandler) callconv(.@"inline") HRESULT {
         return self.vtable.SetFocus(self);
     }
-    pub fn QueryFocus(self: *const IPreviewHandler, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn QueryFocus(self: *const IPreviewHandler, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.QueryFocus(self, phwnd);
     }
-    pub fn TranslateAccelerator(self: *const IPreviewHandler, pmsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn TranslateAccelerator(self: *const IPreviewHandler, pmsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateAccelerator(self, pmsg);
     }
 };
@@ -11096,10 +11096,10 @@ pub const IPreviewHandlerFrame = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetWindowContext(self: *const IPreviewHandlerFrame, pinfo: ?*PREVIEWHANDLERFRAMEINFO) callconv(.Inline) HRESULT {
+    pub fn GetWindowContext(self: *const IPreviewHandlerFrame, pinfo: ?*PREVIEWHANDLERFRAMEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetWindowContext(self, pinfo);
     }
-    pub fn TranslateAccelerator(self: *const IPreviewHandlerFrame, pmsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn TranslateAccelerator(self: *const IPreviewHandlerFrame, pmsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateAccelerator(self, pmsg);
     }
 };
@@ -11133,7 +11133,7 @@ pub const IExplorerPaneVisibility = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPaneState(self: *const IExplorerPaneVisibility, ep: ?*const Guid, peps: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPaneState(self: *const IExplorerPaneVisibility, ep: ?*const Guid, peps: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPaneState(self, ep, peps);
     }
 };
@@ -11156,7 +11156,7 @@ pub const IContextMenuCB = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CallBack(self: *const IContextMenuCB, psf: ?*IShellFolder, hwndOwner: ?HWND, pdtobj: ?*IDataObject, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn CallBack(self: *const IContextMenuCB, psf: ?*IShellFolder, hwndOwner: ?HWND, pdtobj: ?*IDataObject, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.CallBack(self, psf, hwndOwner, pdtobj, uMsg, wParam, lParam);
     }
 };
@@ -11198,22 +11198,22 @@ pub const IDefaultExtractIconInit = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFlags(self: *const IDefaultExtractIconInit, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetFlags(self: *const IDefaultExtractIconInit, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFlags(self, uFlags);
     }
-    pub fn SetKey(self: *const IDefaultExtractIconInit, hkey: ?HKEY) callconv(.Inline) HRESULT {
+    pub fn SetKey(self: *const IDefaultExtractIconInit, hkey: ?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetKey(self, hkey);
     }
-    pub fn SetNormalIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
+    pub fn SetNormalIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetNormalIcon(self, pszFile, iIcon);
     }
-    pub fn SetOpenIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
+    pub fn SetOpenIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOpenIcon(self, pszFile, iIcon);
     }
-    pub fn SetShortcutIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
+    pub fn SetShortcutIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetShortcutIcon(self, pszFile, iIcon);
     }
-    pub fn SetDefaultIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.Inline) HRESULT {
+    pub fn SetDefaultIcon(self: *const IDefaultExtractIconInit, pszFile: ?[*:0]const u16, iIcon: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultIcon(self, pszFile, iIcon);
     }
 };
@@ -11305,28 +11305,28 @@ pub const IExplorerCommand = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTitle(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTitle(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTitle(self, psiItemArray, ppszName);
     }
-    pub fn GetIcon(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszIcon: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetIcon(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszIcon: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetIcon(self, psiItemArray, ppszIcon);
     }
-    pub fn GetToolTip(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszInfotip: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetToolTip(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, ppszInfotip: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetToolTip(self, psiItemArray, ppszInfotip);
     }
-    pub fn GetCanonicalName(self: *const IExplorerCommand, pguidCommandName: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetCanonicalName(self: *const IExplorerCommand, pguidCommandName: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetCanonicalName(self, pguidCommandName);
     }
-    pub fn GetState(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, fOkToBeSlow: BOOL, pCmdState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, fOkToBeSlow: BOOL, pCmdState: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, psiItemArray, fOkToBeSlow, pCmdState);
     }
-    pub fn Invoke(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IExplorerCommand, psiItemArray: ?*IShellItemArray, pbc: ?*IBindCtx) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, psiItemArray, pbc);
     }
-    pub fn GetFlags(self: *const IExplorerCommand, pFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const IExplorerCommand, pFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlags(self, pFlags);
     }
-    pub fn EnumSubCommands(self: *const IExplorerCommand, ppEnum: ?*?*IEnumExplorerCommand) callconv(.Inline) HRESULT {
+    pub fn EnumSubCommands(self: *const IExplorerCommand, ppEnum: ?*?*IEnumExplorerCommand) callconv(.@"inline") HRESULT {
         return self.vtable.EnumSubCommands(self, ppEnum);
     }
 };
@@ -11346,7 +11346,7 @@ pub const IExplorerCommandState = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetState(self: *const IExplorerCommandState, psiItemArray: ?*IShellItemArray, fOkToBeSlow: BOOL, pCmdState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IExplorerCommandState, psiItemArray: ?*IShellItemArray, fOkToBeSlow: BOOL, pCmdState: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, psiItemArray, fOkToBeSlow, pCmdState);
     }
 };
@@ -11365,7 +11365,7 @@ pub const IInitializeCommand = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IInitializeCommand, pszCommandName: ?[*:0]const u16, ppb: ?*IPropertyBag) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IInitializeCommand, pszCommandName: ?[*:0]const u16, ppb: ?*IPropertyBag) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pszCommandName, ppb);
     }
 };
@@ -11396,16 +11396,16 @@ pub const IEnumExplorerCommand = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumExplorerCommand, celt: u32, pUICommand: [*]?*IExplorerCommand, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumExplorerCommand, celt: u32, pUICommand: [*]?*IExplorerCommand, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, pUICommand, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumExplorerCommand, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumExplorerCommand, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumExplorerCommand) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumExplorerCommand) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumExplorerCommand, ppenum: ?*?*IEnumExplorerCommand) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumExplorerCommand, ppenum: ?*?*IEnumExplorerCommand) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -11431,10 +11431,10 @@ pub const IExplorerCommandProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCommands(self: *const IExplorerCommandProvider, punkSite: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCommands(self: *const IExplorerCommandProvider, punkSite: ?*IUnknown, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCommands(self, punkSite, riid, ppv);
     }
-    pub fn GetCommand(self: *const IExplorerCommandProvider, rguidCommandId: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCommand(self: *const IExplorerCommandProvider, rguidCommandId: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCommand(self, rguidCommandId, riid, ppv);
     }
 };
@@ -11475,13 +11475,13 @@ pub const IOpenControlPanel = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const IOpenControlPanel, pszName: ?[*:0]const u16, pszPage: ?[*:0]const u16, punkSite: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IOpenControlPanel, pszName: ?[*:0]const u16, pszPage: ?[*:0]const u16, punkSite: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, pszName, pszPage, punkSite);
     }
-    pub fn GetPath(self: *const IOpenControlPanel, pszName: ?[*:0]const u16, pszPath: [*:0]u16, cchPath: u32) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const IOpenControlPanel, pszName: ?[*:0]const u16, pszPath: [*:0]u16, cchPath: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, pszName, pszPath, cchPath);
     }
-    pub fn GetCurrentView(self: *const IOpenControlPanel, pView: ?*CPVIEW) callconv(.Inline) HRESULT {
+    pub fn GetCurrentView(self: *const IOpenControlPanel, pView: ?*CPVIEW) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentView(self, pView);
     }
 };
@@ -11503,10 +11503,10 @@ pub const IFileSystemBindData = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFindData(self: *const IFileSystemBindData, pfd: ?*const WIN32_FIND_DATAW) callconv(.Inline) HRESULT {
+    pub fn SetFindData(self: *const IFileSystemBindData, pfd: ?*const WIN32_FIND_DATAW) callconv(.@"inline") HRESULT {
         return self.vtable.SetFindData(self, pfd);
     }
-    pub fn GetFindData(self: *const IFileSystemBindData, pfd: ?*WIN32_FIND_DATAW) callconv(.Inline) HRESULT {
+    pub fn GetFindData(self: *const IFileSystemBindData, pfd: ?*WIN32_FIND_DATAW) callconv(.@"inline") HRESULT {
         return self.vtable.GetFindData(self, pfd);
     }
 };
@@ -11537,16 +11537,16 @@ pub const IFileSystemBindData2 = extern union {
     vtable: *const VTable,
     IFileSystemBindData: IFileSystemBindData,
     IUnknown: IUnknown,
-    pub fn SetFileID(self: *const IFileSystemBindData2, liFileID: LARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn SetFileID(self: *const IFileSystemBindData2, liFileID: LARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileID(self, liFileID);
     }
-    pub fn GetFileID(self: *const IFileSystemBindData2, pliFileID: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn GetFileID(self: *const IFileSystemBindData2, pliFileID: ?*LARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileID(self, pliFileID);
     }
-    pub fn SetJunctionCLSID(self: *const IFileSystemBindData2, clsid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetJunctionCLSID(self: *const IFileSystemBindData2, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetJunctionCLSID(self, clsid);
     }
-    pub fn GetJunctionCLSID(self: *const IFileSystemBindData2, pclsid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetJunctionCLSID(self: *const IFileSystemBindData2, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetJunctionCLSID(self, pclsid);
     }
 };
@@ -11605,31 +11605,31 @@ pub const ICustomDestinationList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAppID(self: *const ICustomDestinationList, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAppID(self: *const ICustomDestinationList, pszAppID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAppID(self, pszAppID);
     }
-    pub fn BeginList(self: *const ICustomDestinationList, pcMinSlots: ?*u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn BeginList(self: *const ICustomDestinationList, pcMinSlots: ?*u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BeginList(self, pcMinSlots, riid, ppv);
     }
-    pub fn AppendCategory(self: *const ICustomDestinationList, pszCategory: ?[*:0]const u16, poa: ?*IObjectArray) callconv(.Inline) HRESULT {
+    pub fn AppendCategory(self: *const ICustomDestinationList, pszCategory: ?[*:0]const u16, poa: ?*IObjectArray) callconv(.@"inline") HRESULT {
         return self.vtable.AppendCategory(self, pszCategory, poa);
     }
-    pub fn AppendKnownCategory(self: *const ICustomDestinationList, category: KNOWNDESTCATEGORY) callconv(.Inline) HRESULT {
+    pub fn AppendKnownCategory(self: *const ICustomDestinationList, category: KNOWNDESTCATEGORY) callconv(.@"inline") HRESULT {
         return self.vtable.AppendKnownCategory(self, category);
     }
-    pub fn AddUserTasks(self: *const ICustomDestinationList, poa: ?*IObjectArray) callconv(.Inline) HRESULT {
+    pub fn AddUserTasks(self: *const ICustomDestinationList, poa: ?*IObjectArray) callconv(.@"inline") HRESULT {
         return self.vtable.AddUserTasks(self, poa);
     }
-    pub fn CommitList(self: *const ICustomDestinationList) callconv(.Inline) HRESULT {
+    pub fn CommitList(self: *const ICustomDestinationList) callconv(.@"inline") HRESULT {
         return self.vtable.CommitList(self);
     }
-    pub fn GetRemovedDestinations(self: *const ICustomDestinationList, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetRemovedDestinations(self: *const ICustomDestinationList, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetRemovedDestinations(self, riid, ppv);
     }
-    pub fn DeleteList(self: *const ICustomDestinationList, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteList(self: *const ICustomDestinationList, pszAppID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteList(self, pszAppID);
     }
-    pub fn AbortList(self: *const ICustomDestinationList) callconv(.Inline) HRESULT {
+    pub fn AbortList(self: *const ICustomDestinationList) callconv(.@"inline") HRESULT {
         return self.vtable.AbortList(self);
     }
 };
@@ -11654,13 +11654,13 @@ pub const IApplicationDestinations = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAppID(self: *const IApplicationDestinations, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAppID(self: *const IApplicationDestinations, pszAppID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAppID(self, pszAppID);
     }
-    pub fn RemoveDestination(self: *const IApplicationDestinations, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn RemoveDestination(self: *const IApplicationDestinations, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveDestination(self, punk);
     }
-    pub fn RemoveAllDestinations(self: *const IApplicationDestinations) callconv(.Inline) HRESULT {
+    pub fn RemoveAllDestinations(self: *const IApplicationDestinations) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAllDestinations(self);
     }
 };
@@ -11692,10 +11692,10 @@ pub const IApplicationDocumentLists = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAppID(self: *const IApplicationDocumentLists, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAppID(self: *const IApplicationDocumentLists, pszAppID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAppID(self, pszAppID);
     }
-    pub fn GetList(self: *const IApplicationDocumentLists, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetList(self: *const IApplicationDocumentLists, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetList(self, listtype, cItemsDesired, riid, ppv);
     }
 };
@@ -11717,10 +11717,10 @@ pub const IObjectWithAppUserModelID = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAppID(self: *const IObjectWithAppUserModelID, pszAppID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAppID(self: *const IObjectWithAppUserModelID, pszAppID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAppID(self, pszAppID);
     }
-    pub fn GetAppID(self: *const IObjectWithAppUserModelID, ppszAppID: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetAppID(self: *const IObjectWithAppUserModelID, ppszAppID: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppID(self, ppszAppID);
     }
 };
@@ -11742,10 +11742,10 @@ pub const IObjectWithProgID = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetProgID(self: *const IObjectWithProgID, pszProgID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetProgID(self: *const IObjectWithProgID, pszProgID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetProgID(self, pszProgID);
     }
-    pub fn GetProgID(self: *const IObjectWithProgID, ppszProgID: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetProgID(self: *const IObjectWithProgID, ppszProgID: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetProgID(self, ppszProgID);
     }
 };
@@ -11765,7 +11765,7 @@ pub const IUpdateIDList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Update(self: *const IUpdateIDList, pbc: ?*IBindCtx, pidlIn: ?*ITEMIDLIST, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IUpdateIDList, pbc: ?*IBindCtx, pidlIn: ?*ITEMIDLIST, ppidlOut: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.Update(self, pbc, pidlIn, ppidlOut);
     }
 };
@@ -11886,52 +11886,52 @@ pub const IDesktopWallpaper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetWallpaper(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, wallpaper: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetWallpaper(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, wallpaper: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetWallpaper(self, monitorID, wallpaper);
     }
-    pub fn GetWallpaper(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, wallpaper: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetWallpaper(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, wallpaper: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetWallpaper(self, monitorID, wallpaper);
     }
-    pub fn GetMonitorDevicePathAt(self: *const IDesktopWallpaper, monitorIndex: u32, monitorID: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMonitorDevicePathAt(self: *const IDesktopWallpaper, monitorIndex: u32, monitorID: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitorDevicePathAt(self, monitorIndex, monitorID);
     }
-    pub fn GetMonitorDevicePathCount(self: *const IDesktopWallpaper, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorDevicePathCount(self: *const IDesktopWallpaper, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitorDevicePathCount(self, count);
     }
-    pub fn GetMonitorRECT(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, displayRect: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetMonitorRECT(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, displayRect: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitorRECT(self, monitorID, displayRect);
     }
-    pub fn SetBackgroundColor(self: *const IDesktopWallpaper, color: u32) callconv(.Inline) HRESULT {
+    pub fn SetBackgroundColor(self: *const IDesktopWallpaper, color: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBackgroundColor(self, color);
     }
-    pub fn GetBackgroundColor(self: *const IDesktopWallpaper, color: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBackgroundColor(self: *const IDesktopWallpaper, color: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBackgroundColor(self, color);
     }
-    pub fn SetPosition(self: *const IDesktopWallpaper, position: DESKTOP_WALLPAPER_POSITION) callconv(.Inline) HRESULT {
+    pub fn SetPosition(self: *const IDesktopWallpaper, position: DESKTOP_WALLPAPER_POSITION) callconv(.@"inline") HRESULT {
         return self.vtable.SetPosition(self, position);
     }
-    pub fn GetPosition(self: *const IDesktopWallpaper, position: ?*DESKTOP_WALLPAPER_POSITION) callconv(.Inline) HRESULT {
+    pub fn GetPosition(self: *const IDesktopWallpaper, position: ?*DESKTOP_WALLPAPER_POSITION) callconv(.@"inline") HRESULT {
         return self.vtable.GetPosition(self, position);
     }
-    pub fn SetSlideshow(self: *const IDesktopWallpaper, items: ?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn SetSlideshow(self: *const IDesktopWallpaper, items: ?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.SetSlideshow(self, items);
     }
-    pub fn GetSlideshow(self: *const IDesktopWallpaper, items: ?*?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn GetSlideshow(self: *const IDesktopWallpaper, items: ?*?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetSlideshow(self, items);
     }
-    pub fn SetSlideshowOptions(self: *const IDesktopWallpaper, options: DESKTOP_SLIDESHOW_OPTIONS, slideshowTick: u32) callconv(.Inline) HRESULT {
+    pub fn SetSlideshowOptions(self: *const IDesktopWallpaper, options: DESKTOP_SLIDESHOW_OPTIONS, slideshowTick: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSlideshowOptions(self, options, slideshowTick);
     }
-    pub fn GetSlideshowOptions(self: *const IDesktopWallpaper, options: ?*DESKTOP_SLIDESHOW_OPTIONS, slideshowTick: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSlideshowOptions(self: *const IDesktopWallpaper, options: ?*DESKTOP_SLIDESHOW_OPTIONS, slideshowTick: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSlideshowOptions(self, options, slideshowTick);
     }
-    pub fn AdvanceSlideshow(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, direction: DESKTOP_SLIDESHOW_DIRECTION) callconv(.Inline) HRESULT {
+    pub fn AdvanceSlideshow(self: *const IDesktopWallpaper, monitorID: ?[*:0]const u16, direction: DESKTOP_SLIDESHOW_DIRECTION) callconv(.@"inline") HRESULT {
         return self.vtable.AdvanceSlideshow(self, monitorID, direction);
     }
-    pub fn GetStatus(self: *const IDesktopWallpaper, state: ?*DESKTOP_SLIDESHOW_STATE) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDesktopWallpaper, state: ?*DESKTOP_SLIDESHOW_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, state);
     }
-    pub fn Enable(self: *const IDesktopWallpaper, enable: BOOL) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const IDesktopWallpaper, enable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, enable);
     }
 };
@@ -11969,10 +11969,10 @@ pub const IHomeGroup = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsMember(self: *const IHomeGroup, member: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsMember(self: *const IHomeGroup, member: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsMember(self, member);
     }
-    pub fn ShowSharingWizard(self: *const IHomeGroup, owner: ?HWND, sharingchoices: ?*HOMEGROUPSHARINGCHOICES) callconv(.Inline) HRESULT {
+    pub fn ShowSharingWizard(self: *const IHomeGroup, owner: ?HWND, sharingchoices: ?*HOMEGROUPSHARINGCHOICES) callconv(.@"inline") HRESULT {
         return self.vtable.ShowSharingWizard(self, owner, sharingchoices);
     }
 };
@@ -11990,7 +11990,7 @@ pub const IInitializeWithPropertyStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IInitializeWithPropertyStore, pps: ?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IInitializeWithPropertyStore, pps: ?*IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pps);
     }
 };
@@ -12013,7 +12013,7 @@ pub const IOpenSearchSource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetResults(self: *const IOpenSearchSource, hwnd: ?HWND, pszQuery: ?[*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetResults(self: *const IOpenSearchSource, hwnd: ?HWND, pszQuery: ?[*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetResults(self, hwnd, pszQuery, dwStartIndex, dwCount, riid, ppv);
     }
 };
@@ -12147,55 +12147,55 @@ pub const IShellLibrary = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LoadLibraryFromItem(self: *const IShellLibrary, psiLibrary: ?*IShellItem, grfMode: u32) callconv(.Inline) HRESULT {
+    pub fn LoadLibraryFromItem(self: *const IShellLibrary, psiLibrary: ?*IShellItem, grfMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LoadLibraryFromItem(self, psiLibrary, grfMode);
     }
-    pub fn LoadLibraryFromKnownFolder(self: *const IShellLibrary, kfidLibrary: ?*const Guid, grfMode: u32) callconv(.Inline) HRESULT {
+    pub fn LoadLibraryFromKnownFolder(self: *const IShellLibrary, kfidLibrary: ?*const Guid, grfMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LoadLibraryFromKnownFolder(self, kfidLibrary, grfMode);
     }
-    pub fn AddFolder(self: *const IShellLibrary, psiLocation: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn AddFolder(self: *const IShellLibrary, psiLocation: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.AddFolder(self, psiLocation);
     }
-    pub fn RemoveFolder(self: *const IShellLibrary, psiLocation: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn RemoveFolder(self: *const IShellLibrary, psiLocation: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveFolder(self, psiLocation);
     }
-    pub fn GetFolders(self: *const IShellLibrary, lff: LIBRARYFOLDERFILTER, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetFolders(self: *const IShellLibrary, lff: LIBRARYFOLDERFILTER, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolders(self, lff, riid, ppv);
     }
-    pub fn ResolveFolder(self: *const IShellLibrary, psiFolderToResolve: ?*IShellItem, dwTimeout: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn ResolveFolder(self: *const IShellLibrary, psiFolderToResolve: ?*IShellItem, dwTimeout: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveFolder(self, psiFolderToResolve, dwTimeout, riid, ppv);
     }
-    pub fn GetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultSaveFolder(self, dsft, riid, ppv);
     }
-    pub fn SetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn SetDefaultSaveFolder(self: *const IShellLibrary, dsft: DEFAULTSAVEFOLDERTYPE, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultSaveFolder(self, dsft, psi);
     }
-    pub fn GetOptions(self: *const IShellLibrary, plofOptions: ?*LIBRARYOPTIONFLAGS) callconv(.Inline) HRESULT {
+    pub fn GetOptions(self: *const IShellLibrary, plofOptions: ?*LIBRARYOPTIONFLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptions(self, plofOptions);
     }
-    pub fn SetOptions(self: *const IShellLibrary, lofMask: LIBRARYOPTIONFLAGS, lofOptions: LIBRARYOPTIONFLAGS) callconv(.Inline) HRESULT {
+    pub fn SetOptions(self: *const IShellLibrary, lofMask: LIBRARYOPTIONFLAGS, lofOptions: LIBRARYOPTIONFLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.SetOptions(self, lofMask, lofOptions);
     }
-    pub fn GetFolderType(self: *const IShellLibrary, pftid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetFolderType(self: *const IShellLibrary, pftid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderType(self, pftid);
     }
-    pub fn SetFolderType(self: *const IShellLibrary, ftid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetFolderType(self: *const IShellLibrary, ftid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolderType(self, ftid);
     }
-    pub fn GetIcon(self: *const IShellLibrary, ppszIcon: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetIcon(self: *const IShellLibrary, ppszIcon: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetIcon(self, ppszIcon);
     }
-    pub fn SetIcon(self: *const IShellLibrary, pszIcon: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetIcon(self: *const IShellLibrary, pszIcon: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetIcon(self, pszIcon);
     }
-    pub fn Commit(self: *const IShellLibrary) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IShellLibrary) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn Save(self: *const IShellLibrary, psiFolderToSaveIn: ?*IShellItem, pszLibraryName: ?[*:0]const u16, lsf: LIBRARYSAVEFLAGS, ppsiSavedTo: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IShellLibrary, psiFolderToSaveIn: ?*IShellItem, pszLibraryName: ?[*:0]const u16, lsf: LIBRARYSAVEFLAGS, ppsiSavedTo: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, psiFolderToSaveIn, pszLibraryName, lsf, ppsiSavedTo);
     }
-    pub fn SaveInKnownFolder(self: *const IShellLibrary, kfidToSaveIn: ?*const Guid, pszLibraryName: ?[*:0]const u16, lsf: LIBRARYSAVEFLAGS, ppsiSavedTo: ?*?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn SaveInKnownFolder(self: *const IShellLibrary, kfidToSaveIn: ?*const Guid, pszLibraryName: ?[*:0]const u16, lsf: LIBRARYSAVEFLAGS, ppsiSavedTo: ?*?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.SaveInKnownFolder(self, kfidToSaveIn, pszLibraryName, lsf, ppsiSavedTo);
     }
 };
@@ -12259,16 +12259,16 @@ pub const IDefaultFolderMenuInitialize = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IDefaultFolderMenuInitialize, hwnd: ?HWND, pcmcb: ?*IContextMenuCB, pidlFolder: ?*ITEMIDLIST, psf: ?*IShellFolder, cidl: u32, apidl: [*]?*ITEMIDLIST, punkAssociation: ?*IUnknown, cKeys: u32, aKeys: ?*const ?HKEY) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDefaultFolderMenuInitialize, hwnd: ?HWND, pcmcb: ?*IContextMenuCB, pidlFolder: ?*ITEMIDLIST, psf: ?*IShellFolder, cidl: u32, apidl: [*]?*ITEMIDLIST, punkAssociation: ?*IUnknown, cKeys: u32, aKeys: ?*const ?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, hwnd, pcmcb, pidlFolder, psf, cidl, apidl, punkAssociation, cKeys, aKeys);
     }
-    pub fn SetMenuRestrictions(self: *const IDefaultFolderMenuInitialize, dfmrValues: DEFAULT_FOLDER_MENU_RESTRICTIONS) callconv(.Inline) HRESULT {
+    pub fn SetMenuRestrictions(self: *const IDefaultFolderMenuInitialize, dfmrValues: DEFAULT_FOLDER_MENU_RESTRICTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.SetMenuRestrictions(self, dfmrValues);
     }
-    pub fn GetMenuRestrictions(self: *const IDefaultFolderMenuInitialize, dfmrMask: DEFAULT_FOLDER_MENU_RESTRICTIONS, pdfmrValues: ?*DEFAULT_FOLDER_MENU_RESTRICTIONS) callconv(.Inline) HRESULT {
+    pub fn GetMenuRestrictions(self: *const IDefaultFolderMenuInitialize, dfmrMask: DEFAULT_FOLDER_MENU_RESTRICTIONS, pdfmrValues: ?*DEFAULT_FOLDER_MENU_RESTRICTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetMenuRestrictions(self, dfmrMask, pdfmrValues);
     }
-    pub fn SetHandlerClsid(self: *const IDefaultFolderMenuInitialize, rclsid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetHandlerClsid(self: *const IDefaultFolderMenuInitialize, rclsid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetHandlerClsid(self, rclsid);
     }
 };
@@ -12315,13 +12315,13 @@ pub const IApplicationActivationManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ActivateApplication(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, options: ACTIVATEOPTIONS, processId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ActivateApplication(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, options: ACTIVATEOPTIONS, processId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateApplication(self, appUserModelId, arguments, options, processId);
     }
-    pub fn ActivateForFile(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, itemArray: ?*IShellItemArray, verb: ?[*:0]const u16, processId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ActivateForFile(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, itemArray: ?*IShellItemArray, verb: ?[*:0]const u16, processId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateForFile(self, appUserModelId, itemArray, verb, processId);
     }
-    pub fn ActivateForProtocol(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, itemArray: ?*IShellItemArray, processId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ActivateForProtocol(self: *const IApplicationActivationManager, appUserModelId: ?[*:0]const u16, itemArray: ?*IShellItemArray, processId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateForProtocol(self, appUserModelId, itemArray, processId);
     }
 };
@@ -12350,13 +12350,13 @@ pub const IVirtualDesktopManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsWindowOnCurrentVirtualDesktop(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, onCurrentDesktop: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsWindowOnCurrentVirtualDesktop(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, onCurrentDesktop: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsWindowOnCurrentVirtualDesktop(self, topLevelWindow, onCurrentDesktop);
     }
-    pub fn GetWindowDesktopId(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, desktopId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetWindowDesktopId(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, desktopId: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetWindowDesktopId(self, topLevelWindow, desktopId);
     }
-    pub fn MoveWindowToDesktop(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, desktopId: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn MoveWindowToDesktop(self: *const IVirtualDesktopManager, topLevelWindow: ?HWND, desktopId: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.MoveWindowToDesktop(self, topLevelWindow, desktopId);
     }
 };
@@ -12383,10 +12383,10 @@ pub const IAssocHandlerInvoker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SupportsSelection(self: *const IAssocHandlerInvoker) callconv(.Inline) HRESULT {
+    pub fn SupportsSelection(self: *const IAssocHandlerInvoker) callconv(.@"inline") HRESULT {
         return self.vtable.SupportsSelection(self);
     }
-    pub fn Invoke(self: *const IAssocHandlerInvoker) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IAssocHandlerInvoker) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self);
     }
 };
@@ -12448,25 +12448,25 @@ pub const IAssocHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAssocHandler, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAssocHandler, ppsz: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppsz);
     }
-    pub fn GetUIName(self: *const IAssocHandler, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetUIName(self: *const IAssocHandler, ppsz: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetUIName(self, ppsz);
     }
-    pub fn GetIconLocation(self: *const IAssocHandler, ppszPath: ?*?PWSTR, pIndex: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIconLocation(self: *const IAssocHandler, ppszPath: ?*?PWSTR, pIndex: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconLocation(self, ppszPath, pIndex);
     }
-    pub fn IsRecommended(self: *const IAssocHandler) callconv(.Inline) HRESULT {
+    pub fn IsRecommended(self: *const IAssocHandler) callconv(.@"inline") HRESULT {
         return self.vtable.IsRecommended(self);
     }
-    pub fn MakeDefault(self: *const IAssocHandler, pszDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn MakeDefault(self: *const IAssocHandler, pszDescription: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.MakeDefault(self, pszDescription);
     }
-    pub fn Invoke(self: *const IAssocHandler, pdo: ?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IAssocHandler, pdo: ?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, pdo);
     }
-    pub fn CreateInvoker(self: *const IAssocHandler, pdo: ?*IDataObject, ppInvoker: ?*?*IAssocHandlerInvoker) callconv(.Inline) HRESULT {
+    pub fn CreateInvoker(self: *const IAssocHandler, pdo: ?*IDataObject, ppInvoker: ?*?*IAssocHandlerInvoker) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInvoker(self, pdo, ppInvoker);
     }
 };
@@ -12486,7 +12486,7 @@ pub const IEnumAssocHandlers = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumAssocHandlers, celt: u32, rgelt: [*]?*IAssocHandler, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumAssocHandlers, celt: u32, rgelt: [*]?*IAssocHandler, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
 };
@@ -12515,10 +12515,10 @@ pub const IDataObjectProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDataObject(self: *const IDataObjectProvider, dataObject: ?*?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn GetDataObject(self: *const IDataObjectProvider, dataObject: ?*?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataObject(self, dataObject);
     }
-    pub fn SetDataObject(self: *const IDataObjectProvider, dataObject: ?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn SetDataObject(self: *const IDataObjectProvider, dataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.SetDataObject(self, dataObject);
     }
 };
@@ -12542,10 +12542,10 @@ pub const IDataTransferManagerInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND, riid: ?*const Guid, dataTransferManager: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND, riid: ?*const Guid, dataTransferManager: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, dataTransferManager);
     }
-    pub fn ShowShareUIForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND) callconv(.Inline) HRESULT {
+    pub fn ShowShareUIForWindow(self: *const IDataTransferManagerInterop, appWindow: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.ShowShareUIForWindow(self, appWindow);
     }
 };
@@ -12568,10 +12568,10 @@ pub const IFrameworkInputPaneHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Showing(self: *const IFrameworkInputPaneHandler, prcInputPaneScreenLocation: ?*RECT, fEnsureFocusedElementInView: BOOL) callconv(.Inline) HRESULT {
+    pub fn Showing(self: *const IFrameworkInputPaneHandler, prcInputPaneScreenLocation: ?*RECT, fEnsureFocusedElementInView: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Showing(self, prcInputPaneScreenLocation, fEnsureFocusedElementInView);
     }
-    pub fn Hiding(self: *const IFrameworkInputPaneHandler, fEnsureFocusedElementInView: BOOL) callconv(.Inline) HRESULT {
+    pub fn Hiding(self: *const IFrameworkInputPaneHandler, fEnsureFocusedElementInView: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Hiding(self, fEnsureFocusedElementInView);
     }
 };
@@ -12605,16 +12605,16 @@ pub const IFrameworkInputPane = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Advise(self: *const IFrameworkInputPane, pWindow: ?*IUnknown, pHandler: ?*IFrameworkInputPaneHandler, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IFrameworkInputPane, pWindow: ?*IUnknown, pHandler: ?*IFrameworkInputPaneHandler, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, pWindow, pHandler, pdwCookie);
     }
-    pub fn AdviseWithHWND(self: *const IFrameworkInputPane, hwnd: ?HWND, pHandler: ?*IFrameworkInputPaneHandler, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AdviseWithHWND(self: *const IFrameworkInputPane, hwnd: ?HWND, pHandler: ?*IFrameworkInputPaneHandler, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AdviseWithHWND(self, hwnd, pHandler, pdwCookie);
     }
-    pub fn Unadvise(self: *const IFrameworkInputPane, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IFrameworkInputPane, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwCookie);
     }
-    pub fn Location(self: *const IFrameworkInputPane, prcInputPaneScreenLocation: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn Location(self: *const IFrameworkInputPane, prcInputPaneScreenLocation: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.Location(self, prcInputPaneScreenLocation);
     }
 };
@@ -12647,10 +12647,10 @@ pub const IAppVisibilityEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AppVisibilityOnMonitorChanged(self: *const IAppVisibilityEvents, hMonitor: ?HMONITOR, previousMode: MONITOR_APP_VISIBILITY, currentMode: MONITOR_APP_VISIBILITY) callconv(.Inline) HRESULT {
+    pub fn AppVisibilityOnMonitorChanged(self: *const IAppVisibilityEvents, hMonitor: ?HMONITOR, previousMode: MONITOR_APP_VISIBILITY, currentMode: MONITOR_APP_VISIBILITY) callconv(.@"inline") HRESULT {
         return self.vtable.AppVisibilityOnMonitorChanged(self, hMonitor, previousMode, currentMode);
     }
-    pub fn LauncherVisibilityChange(self: *const IAppVisibilityEvents, currentVisibleState: BOOL) callconv(.Inline) HRESULT {
+    pub fn LauncherVisibilityChange(self: *const IAppVisibilityEvents, currentVisibleState: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.LauncherVisibilityChange(self, currentVisibleState);
     }
 };
@@ -12682,16 +12682,16 @@ pub const IAppVisibility = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAppVisibilityOnMonitor(self: *const IAppVisibility, hMonitor: ?HMONITOR, pMode: ?*MONITOR_APP_VISIBILITY) callconv(.Inline) HRESULT {
+    pub fn GetAppVisibilityOnMonitor(self: *const IAppVisibility, hMonitor: ?HMONITOR, pMode: ?*MONITOR_APP_VISIBILITY) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppVisibilityOnMonitor(self, hMonitor, pMode);
     }
-    pub fn IsLauncherVisible(self: *const IAppVisibility, pfVisible: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsLauncherVisible(self: *const IAppVisibility, pfVisible: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsLauncherVisible(self, pfVisible);
     }
-    pub fn Advise(self: *const IAppVisibility, pCallback: ?*IAppVisibilityEvents, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IAppVisibility, pCallback: ?*IAppVisibilityEvents, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, pCallback, pdwCookie);
     }
-    pub fn Unadvise(self: *const IAppVisibility, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IAppVisibility, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwCookie);
     }
 };
@@ -12723,7 +12723,7 @@ pub const IPackageExecutionStateChangeNotification = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStateChanged(self: *const IPackageExecutionStateChangeNotification, pszPackageFullName: ?[*:0]const u16, pesNewState: PACKAGE_EXECUTION_STATE) callconv(.Inline) HRESULT {
+    pub fn OnStateChanged(self: *const IPackageExecutionStateChangeNotification, pszPackageFullName: ?[*:0]const u16, pesNewState: PACKAGE_EXECUTION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.OnStateChanged(self, pszPackageFullName, pesNewState);
     }
 };
@@ -12806,49 +12806,49 @@ pub const IPackageDebugSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnableDebugging(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, debuggerCommandLine: ?[*:0]const u16, environment: ?[*]u16) callconv(.Inline) HRESULT {
+    pub fn EnableDebugging(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, debuggerCommandLine: ?[*:0]const u16, environment: ?[*]u16) callconv(.@"inline") HRESULT {
         return self.vtable.EnableDebugging(self, packageFullName, debuggerCommandLine, environment);
     }
-    pub fn DisableDebugging(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DisableDebugging(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DisableDebugging(self, packageFullName);
     }
-    pub fn Suspend(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Suspend(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Suspend(self, packageFullName);
     }
-    pub fn Resume(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self, packageFullName);
     }
-    pub fn TerminateAllProcesses(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn TerminateAllProcesses(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.TerminateAllProcesses(self, packageFullName);
     }
-    pub fn SetTargetSessionId(self: *const IPackageDebugSettings, sessionId: u32) callconv(.Inline) HRESULT {
+    pub fn SetTargetSessionId(self: *const IPackageDebugSettings, sessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetSessionId(self, sessionId);
     }
-    pub fn EnumerateBackgroundTasks(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, taskCount: ?*u32, taskIds: ?*?*Guid, taskNames: ?*?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn EnumerateBackgroundTasks(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, taskCount: ?*u32, taskIds: ?*?*Guid, taskNames: ?*?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateBackgroundTasks(self, packageFullName, taskCount, taskIds, taskNames);
     }
-    pub fn ActivateBackgroundTask(self: *const IPackageDebugSettings, taskId: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn ActivateBackgroundTask(self: *const IPackageDebugSettings, taskId: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateBackgroundTask(self, taskId);
     }
-    pub fn StartServicing(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn StartServicing(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.StartServicing(self, packageFullName);
     }
-    pub fn StopServicing(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn StopServicing(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.StopServicing(self, packageFullName);
     }
-    pub fn StartSessionRedirection(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, sessionId: u32) callconv(.Inline) HRESULT {
+    pub fn StartSessionRedirection(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, sessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.StartSessionRedirection(self, packageFullName, sessionId);
     }
-    pub fn StopSessionRedirection(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn StopSessionRedirection(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.StopSessionRedirection(self, packageFullName);
     }
-    pub fn GetPackageExecutionState(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, packageExecutionState: ?*PACKAGE_EXECUTION_STATE) callconv(.Inline) HRESULT {
+    pub fn GetPackageExecutionState(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, packageExecutionState: ?*PACKAGE_EXECUTION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageExecutionState(self, packageFullName, packageExecutionState);
     }
-    pub fn RegisterForPackageStateChanges(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, pPackageExecutionStateChangeNotification: ?*IPackageExecutionStateChangeNotification, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RegisterForPackageStateChanges(self: *const IPackageDebugSettings, packageFullName: ?[*:0]const u16, pPackageExecutionStateChangeNotification: ?*IPackageExecutionStateChangeNotification, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterForPackageStateChanges(self, packageFullName, pPackageExecutionStateChangeNotification, pdwCookie);
     }
-    pub fn UnregisterForPackageStateChanges(self: *const IPackageDebugSettings, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn UnregisterForPackageStateChanges(self: *const IPackageDebugSettings, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterForPackageStateChanges(self, dwCookie);
     }
 };
@@ -12869,7 +12869,7 @@ pub const IPackageDebugSettings2 = extern union {
     vtable: *const VTable,
     IPackageDebugSettings: IPackageDebugSettings,
     IUnknown: IUnknown,
-    pub fn EnumerateApps(self: *const IPackageDebugSettings2, packageFullName: ?[*:0]const u16, appCount: ?*u32, appUserModelIds: ?*?*?PWSTR, appDisplayNames: ?*?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn EnumerateApps(self: *const IPackageDebugSettings2, packageFullName: ?[*:0]const u16, appCount: ?*u32, appUserModelIds: ?*?*?PWSTR, appDisplayNames: ?*?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateApps(self, packageFullName, appCount, appUserModelIds, appDisplayNames);
     }
 };
@@ -12895,13 +12895,13 @@ pub const ISuspensionDependencyManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterAsChild(self: *const ISuspensionDependencyManager, processHandle: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn RegisterAsChild(self: *const ISuspensionDependencyManager, processHandle: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterAsChild(self, processHandle);
     }
-    pub fn GroupChildWithParent(self: *const ISuspensionDependencyManager, childProcessHandle: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn GroupChildWithParent(self: *const ISuspensionDependencyManager, childProcessHandle: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.GroupChildWithParent(self, childProcessHandle);
     }
-    pub fn UngroupChildFromParent(self: *const ISuspensionDependencyManager, childProcessHandle: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn UngroupChildFromParent(self: *const ISuspensionDependencyManager, childProcessHandle: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.UngroupChildFromParent(self, childProcessHandle);
     }
 };
@@ -12926,7 +12926,7 @@ pub const IExecuteCommandApplicationHostEnvironment = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetValue(self: *const IExecuteCommandApplicationHostEnvironment, pahe: ?*AHE_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IExecuteCommandApplicationHostEnvironment, pahe: ?*AHE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, pahe);
     }
 };
@@ -12953,7 +12953,7 @@ pub const IExecuteCommandHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUIMode(self: *const IExecuteCommandHost, pUIMode: ?*EC_HOST_UI_MODE) callconv(.Inline) HRESULT {
+    pub fn GetUIMode(self: *const IExecuteCommandHost, pUIMode: ?*EC_HOST_UI_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.GetUIMode(self, pUIMode);
     }
 };
@@ -13014,22 +13014,22 @@ pub const IApplicationDesignModeSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetNativeDisplaySize(self: *const IApplicationDesignModeSettings, nativeDisplaySizePixels: SIZE) callconv(.Inline) HRESULT {
+    pub fn SetNativeDisplaySize(self: *const IApplicationDesignModeSettings, nativeDisplaySizePixels: SIZE) callconv(.@"inline") HRESULT {
         return self.vtable.SetNativeDisplaySize(self, nativeDisplaySizePixels);
     }
-    pub fn SetScaleFactor(self: *const IApplicationDesignModeSettings, scaleFactor: DEVICE_SCALE_FACTOR) callconv(.Inline) HRESULT {
+    pub fn SetScaleFactor(self: *const IApplicationDesignModeSettings, scaleFactor: DEVICE_SCALE_FACTOR) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleFactor(self, scaleFactor);
     }
-    pub fn SetApplicationViewState(self: *const IApplicationDesignModeSettings, viewState: APPLICATION_VIEW_STATE) callconv(.Inline) HRESULT {
+    pub fn SetApplicationViewState(self: *const IApplicationDesignModeSettings, viewState: APPLICATION_VIEW_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.SetApplicationViewState(self, viewState);
     }
-    pub fn ComputeApplicationSize(self: *const IApplicationDesignModeSettings, applicationSizePixels: ?*SIZE) callconv(.Inline) HRESULT {
+    pub fn ComputeApplicationSize(self: *const IApplicationDesignModeSettings, applicationSizePixels: ?*SIZE) callconv(.@"inline") HRESULT {
         return self.vtable.ComputeApplicationSize(self, applicationSizePixels);
     }
-    pub fn IsApplicationViewStateSupported(self: *const IApplicationDesignModeSettings, viewState: APPLICATION_VIEW_STATE, nativeDisplaySizePixels: SIZE, scaleFactor: DEVICE_SCALE_FACTOR, supported: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsApplicationViewStateSupported(self: *const IApplicationDesignModeSettings, viewState: APPLICATION_VIEW_STATE, nativeDisplaySizePixels: SIZE, scaleFactor: DEVICE_SCALE_FACTOR, supported: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsApplicationViewStateSupported(self, viewState, nativeDisplaySizePixels, scaleFactor, supported);
     }
-    pub fn TriggerEdgeGesture(self: *const IApplicationDesignModeSettings, edgeGestureKind: EDGE_GESTURE_KIND) callconv(.Inline) HRESULT {
+    pub fn TriggerEdgeGesture(self: *const IApplicationDesignModeSettings, edgeGestureKind: EDGE_GESTURE_KIND) callconv(.@"inline") HRESULT {
         return self.vtable.TriggerEdgeGesture(self, edgeGestureKind);
     }
 };
@@ -13106,25 +13106,25 @@ pub const IApplicationDesignModeSettings2 = extern union {
     vtable: *const VTable,
     IApplicationDesignModeSettings: IApplicationDesignModeSettings,
     IUnknown: IUnknown,
-    pub fn SetNativeDisplayOrientation(self: *const IApplicationDesignModeSettings2, nativeDisplayOrientation: NATIVE_DISPLAY_ORIENTATION) callconv(.Inline) HRESULT {
+    pub fn SetNativeDisplayOrientation(self: *const IApplicationDesignModeSettings2, nativeDisplayOrientation: NATIVE_DISPLAY_ORIENTATION) callconv(.@"inline") HRESULT {
         return self.vtable.SetNativeDisplayOrientation(self, nativeDisplayOrientation);
     }
-    pub fn SetApplicationViewOrientation(self: *const IApplicationDesignModeSettings2, viewOrientation: APPLICATION_VIEW_ORIENTATION) callconv(.Inline) HRESULT {
+    pub fn SetApplicationViewOrientation(self: *const IApplicationDesignModeSettings2, viewOrientation: APPLICATION_VIEW_ORIENTATION) callconv(.@"inline") HRESULT {
         return self.vtable.SetApplicationViewOrientation(self, viewOrientation);
     }
-    pub fn SetAdjacentDisplayEdges(self: *const IApplicationDesignModeSettings2, adjacentDisplayEdges: ADJACENT_DISPLAY_EDGES) callconv(.Inline) HRESULT {
+    pub fn SetAdjacentDisplayEdges(self: *const IApplicationDesignModeSettings2, adjacentDisplayEdges: ADJACENT_DISPLAY_EDGES) callconv(.@"inline") HRESULT {
         return self.vtable.SetAdjacentDisplayEdges(self, adjacentDisplayEdges);
     }
-    pub fn SetIsOnLockScreen(self: *const IApplicationDesignModeSettings2, isOnLockScreen: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetIsOnLockScreen(self: *const IApplicationDesignModeSettings2, isOnLockScreen: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetIsOnLockScreen(self, isOnLockScreen);
     }
-    pub fn SetApplicationViewMinWidth(self: *const IApplicationDesignModeSettings2, viewMinWidth: APPLICATION_VIEW_MIN_WIDTH) callconv(.Inline) HRESULT {
+    pub fn SetApplicationViewMinWidth(self: *const IApplicationDesignModeSettings2, viewMinWidth: APPLICATION_VIEW_MIN_WIDTH) callconv(.@"inline") HRESULT {
         return self.vtable.SetApplicationViewMinWidth(self, viewMinWidth);
     }
-    pub fn GetApplicationSizeBounds(self: *const IApplicationDesignModeSettings2, minApplicationSizePixels: ?*SIZE, maxApplicationSizePixels: ?*SIZE) callconv(.Inline) HRESULT {
+    pub fn GetApplicationSizeBounds(self: *const IApplicationDesignModeSettings2, minApplicationSizePixels: ?*SIZE, maxApplicationSizePixels: ?*SIZE) callconv(.@"inline") HRESULT {
         return self.vtable.GetApplicationSizeBounds(self, minApplicationSizePixels, maxApplicationSizePixels);
     }
-    pub fn GetApplicationViewOrientation(self: *const IApplicationDesignModeSettings2, applicationSizePixels: SIZE, viewOrientation: ?*APPLICATION_VIEW_ORIENTATION) callconv(.Inline) HRESULT {
+    pub fn GetApplicationViewOrientation(self: *const IApplicationDesignModeSettings2, applicationSizePixels: SIZE, viewOrientation: ?*APPLICATION_VIEW_ORIENTATION) callconv(.@"inline") HRESULT {
         return self.vtable.GetApplicationViewOrientation(self, applicationSizePixels, viewOrientation);
     }
 };
@@ -13142,7 +13142,7 @@ pub const ILaunchTargetMonitor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMonitor(self: *const ILaunchTargetMonitor, monitor: ?*?HMONITOR) callconv(.Inline) HRESULT {
+    pub fn GetMonitor(self: *const ILaunchTargetMonitor, monitor: ?*?HMONITOR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitor(self, monitor);
     }
 };
@@ -13181,10 +13181,10 @@ pub const ILaunchSourceViewSizePreference = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSourceViewToPosition(self: *const ILaunchSourceViewSizePreference, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn GetSourceViewToPosition(self: *const ILaunchSourceViewSizePreference, hwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceViewToPosition(self, hwnd);
     }
-    pub fn GetSourceViewSizePreference(self: *const ILaunchSourceViewSizePreference, sourceSizeAfterLaunch: ?*APPLICATION_VIEW_SIZE_PREFERENCE) callconv(.Inline) HRESULT {
+    pub fn GetSourceViewSizePreference(self: *const ILaunchSourceViewSizePreference, sourceSizeAfterLaunch: ?*APPLICATION_VIEW_SIZE_PREFERENCE) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceViewSizePreference(self, sourceSizeAfterLaunch);
     }
 };
@@ -13202,7 +13202,7 @@ pub const ILaunchTargetViewSizePreference = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTargetViewSizePreference(self: *const ILaunchTargetViewSizePreference, targetSizeOnLaunch: ?*APPLICATION_VIEW_SIZE_PREFERENCE) callconv(.Inline) HRESULT {
+    pub fn GetTargetViewSizePreference(self: *const ILaunchTargetViewSizePreference, targetSizeOnLaunch: ?*APPLICATION_VIEW_SIZE_PREFERENCE) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetViewSizePreference(self, targetSizeOnLaunch);
     }
 };
@@ -13220,7 +13220,7 @@ pub const ILaunchSourceAppUserModelId = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAppUserModelId(self: *const ILaunchSourceAppUserModelId, launchingApp: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetAppUserModelId(self: *const ILaunchSourceAppUserModelId, launchingApp: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppUserModelId(self, launchingApp);
     }
 };
@@ -13238,7 +13238,7 @@ pub const IInitializeWithWindow = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IInitializeWithWindow, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IInitializeWithWindow, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, hwnd);
     }
 };
@@ -13264,13 +13264,13 @@ pub const IHandlerInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetApplicationDisplayName(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetApplicationDisplayName(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetApplicationDisplayName(self, value);
     }
-    pub fn GetApplicationPublisher(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetApplicationPublisher(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetApplicationPublisher(self, value);
     }
-    pub fn GetApplicationIconReference(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetApplicationIconReference(self: *const IHandlerInfo, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetApplicationIconReference(self, value);
     }
 };
@@ -13288,7 +13288,7 @@ pub const IHandlerInfo2 = extern union {
     vtable: *const VTable,
     IHandlerInfo: IHandlerInfo,
     IUnknown: IUnknown,
-    pub fn GetApplicationId(self: *const IHandlerInfo2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetApplicationId(self: *const IHandlerInfo2, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetApplicationId(self, value);
     }
 };
@@ -13314,10 +13314,10 @@ pub const IHandlerActivationHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeforeCoCreateInstance(self: *const IHandlerActivationHost, clsidHandler: ?*const Guid, itemsBeingActivated: ?*IShellItemArray, handlerInfo: ?*IHandlerInfo) callconv(.Inline) HRESULT {
+    pub fn BeforeCoCreateInstance(self: *const IHandlerActivationHost, clsidHandler: ?*const Guid, itemsBeingActivated: ?*IShellItemArray, handlerInfo: ?*IHandlerInfo) callconv(.@"inline") HRESULT {
         return self.vtable.BeforeCoCreateInstance(self, clsidHandler, itemsBeingActivated, handlerInfo);
     }
-    pub fn BeforeCreateProcess(self: *const IHandlerActivationHost, applicationPath: ?[*:0]const u16, commandLine: ?[*:0]const u16, handlerInfo: ?*IHandlerInfo) callconv(.Inline) HRESULT {
+    pub fn BeforeCreateProcess(self: *const IHandlerActivationHost, applicationPath: ?[*:0]const u16, commandLine: ?[*:0]const u16, handlerInfo: ?*IHandlerInfo) callconv(.@"inline") HRESULT {
         return self.vtable.BeforeCreateProcess(self, applicationPath, commandLine, handlerInfo);
     }
 };
@@ -13350,19 +13350,19 @@ pub const IAppActivationUIInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMonitor(self: *const IAppActivationUIInfo, value: ?*?HMONITOR) callconv(.Inline) HRESULT {
+    pub fn GetMonitor(self: *const IAppActivationUIInfo, value: ?*?HMONITOR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitor(self, value);
     }
-    pub fn GetInvokePoint(self: *const IAppActivationUIInfo, value: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn GetInvokePoint(self: *const IAppActivationUIInfo, value: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.GetInvokePoint(self, value);
     }
-    pub fn GetShowCommand(self: *const IAppActivationUIInfo, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetShowCommand(self: *const IAppActivationUIInfo, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetShowCommand(self, value);
     }
-    pub fn GetShowUI(self: *const IAppActivationUIInfo, value: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetShowUI(self: *const IAppActivationUIInfo, value: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetShowUI(self, value);
     }
-    pub fn GetKeyState(self: *const IAppActivationUIInfo, value: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetKeyState(self: *const IAppActivationUIInfo, value: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyState(self, value);
     }
 };
@@ -13396,7 +13396,7 @@ pub const IContactManagerInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowContactCardForWindow(self: *const IContactManagerInterop, appWindow: ?HWND, contact: ?*IUnknown, selection: ?*const RECT, preferredPlacement: FLYOUT_PLACEMENT) callconv(.Inline) HRESULT {
+    pub fn ShowContactCardForWindow(self: *const IContactManagerInterop, appWindow: ?HWND, contact: ?*IUnknown, selection: ?*const RECT, preferredPlacement: FLYOUT_PLACEMENT) callconv(.@"inline") HRESULT {
         return self.vtable.ShowContactCardForWindow(self, appWindow, contact, selection, preferredPlacement);
     }
 };
@@ -13426,13 +13426,13 @@ pub const IShellIconOverlayIdentifier = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsMemberOf(self: *const IShellIconOverlayIdentifier, pwszPath: ?[*:0]const u16, dwAttrib: u32) callconv(.Inline) HRESULT {
+    pub fn IsMemberOf(self: *const IShellIconOverlayIdentifier, pwszPath: ?[*:0]const u16, dwAttrib: u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsMemberOf(self, pwszPath, dwAttrib);
     }
-    pub fn GetOverlayInfo(self: *const IShellIconOverlayIdentifier, pwszIconFile: [*:0]u16, cchMax: i32, pIndex: ?*i32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayInfo(self: *const IShellIconOverlayIdentifier, pwszIconFile: [*:0]u16, cchMax: i32, pIndex: ?*i32, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayInfo(self, pwszIconFile, cchMax, pIndex, pdwFlags);
     }
-    pub fn GetPriority(self: *const IShellIconOverlayIdentifier, pPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPriority(self: *const IShellIconOverlayIdentifier, pPriority: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPriority(self, pPriority);
     }
 };
@@ -13470,7 +13470,7 @@ pub const IBannerNotificationHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnBannerEvent(self: *const IBannerNotificationHandler, notification: ?*const BANNER_NOTIFICATION) callconv(.Inline) HRESULT {
+    pub fn OnBannerEvent(self: *const IBannerNotificationHandler, notification: ?*const BANNER_NOTIFICATION) callconv(.@"inline") HRESULT {
         return self.vtable.OnBannerEvent(self, notification);
     }
 };
@@ -13503,13 +13503,13 @@ pub const ISortColumnArray = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const ISortColumnArray, columnCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISortColumnArray, columnCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, columnCount);
     }
-    pub fn GetAt(self: *const ISortColumnArray, index: u32, sortcolumn: ?*SORTCOLUMN) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const ISortColumnArray, index: u32, sortcolumn: ?*SORTCOLUMN) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, index, sortcolumn);
     }
-    pub fn GetSortType(self: *const ISortColumnArray, @"type": ?*SORT_ORDER_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetSortType(self: *const ISortColumnArray, @"type": ?*SORT_ORDER_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetSortType(self, @"type");
     }
 };
@@ -13547,22 +13547,22 @@ pub const IPropertyKeyStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetKeyCount(self: *const IPropertyKeyStore, keyCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetKeyCount(self: *const IPropertyKeyStore, keyCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyCount(self, keyCount);
     }
-    pub fn GetKeyAt(self: *const IPropertyKeyStore, index: i32, pkey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn GetKeyAt(self: *const IPropertyKeyStore, index: i32, pkey: ?*PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyAt(self, index, pkey);
     }
-    pub fn AppendKey(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn AppendKey(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.AppendKey(self, key);
     }
-    pub fn DeleteKey(self: *const IPropertyKeyStore, index: i32) callconv(.Inline) HRESULT {
+    pub fn DeleteKey(self: *const IPropertyKeyStore, index: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteKey(self, index);
     }
-    pub fn IsKeyInStore(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn IsKeyInStore(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.IsKeyInStore(self, key);
     }
-    pub fn RemoveKey(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn RemoveKey(self: *const IPropertyKeyStore, key: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveKey(self, key);
     }
 };
@@ -13584,10 +13584,10 @@ pub const IQueryCodePage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCodePage(self: *const IQueryCodePage, puiCodePage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCodePage(self: *const IQueryCodePage, puiCodePage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCodePage(self, puiCodePage);
     }
-    pub fn SetCodePage(self: *const IQueryCodePage, uiCodePage: u32) callconv(.Inline) HRESULT {
+    pub fn SetCodePage(self: *const IQueryCodePage, uiCodePage: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCodePage(self, uiCodePage);
     }
 };
@@ -13627,10 +13627,10 @@ pub const IFolderViewOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFolderViewOptions(self: *const IFolderViewOptions, fvoMask: FOLDERVIEWOPTIONS, fvoFlags: FOLDERVIEWOPTIONS) callconv(.Inline) HRESULT {
+    pub fn SetFolderViewOptions(self: *const IFolderViewOptions, fvoMask: FOLDERVIEWOPTIONS, fvoFlags: FOLDERVIEWOPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolderViewOptions(self, fvoMask, fvoFlags);
     }
-    pub fn GetFolderViewOptions(self: *const IFolderViewOptions, pfvoFlags: ?*FOLDERVIEWOPTIONS) callconv(.Inline) HRESULT {
+    pub fn GetFolderViewOptions(self: *const IFolderViewOptions, pfvoFlags: ?*FOLDERVIEWOPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderViewOptions(self, pfvoFlags);
     }
 };
@@ -13670,7 +13670,7 @@ pub const IShellView3 = extern union {
     IShellView: IShellView,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn CreateViewWindow3(self: *const IShellView3, psbOwner: ?*IShellBrowser, psvPrev: ?*IShellView, dwViewFlags: u32, dwMask: FOLDERFLAGS, dwFlags: FOLDERFLAGS, fvMode: FOLDERVIEWMODE, pvid: ?*const Guid, prcView: ?*const RECT, phwndView: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn CreateViewWindow3(self: *const IShellView3, psbOwner: ?*IShellBrowser, psvPrev: ?*IShellView, dwViewFlags: u32, dwMask: FOLDERFLAGS, dwFlags: FOLDERFLAGS, fvMode: FOLDERVIEWMODE, pvid: ?*const Guid, prcView: ?*const RECT, phwndView: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.CreateViewWindow3(self, psbOwner, psvPrev, dwViewFlags, dwMask, dwFlags, fvMode, pvid, prcView, phwndView);
     }
 };
@@ -13693,10 +13693,10 @@ pub const ISearchBoxInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCondition(self: *const ISearchBoxInfo, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCondition(self: *const ISearchBoxInfo, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCondition(self, riid, ppv);
     }
-    pub fn GetText(self: *const ISearchBoxInfo, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetText(self: *const ISearchBoxInfo, ppsz: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetText(self, ppsz);
     }
 };
@@ -13767,28 +13767,28 @@ pub const IVisualProperties = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetWatermark(self: *const IVisualProperties, hbmp: ?HBITMAP, vpwf: VPWATERMARKFLAGS) callconv(.Inline) HRESULT {
+    pub fn SetWatermark(self: *const IVisualProperties, hbmp: ?HBITMAP, vpwf: VPWATERMARKFLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.SetWatermark(self, hbmp, vpwf);
     }
-    pub fn SetColor(self: *const IVisualProperties, vpcf: VPCOLORFLAGS, cr: u32) callconv(.Inline) HRESULT {
+    pub fn SetColor(self: *const IVisualProperties, vpcf: VPCOLORFLAGS, cr: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetColor(self, vpcf, cr);
     }
-    pub fn GetColor(self: *const IVisualProperties, vpcf: VPCOLORFLAGS, pcr: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColor(self: *const IVisualProperties, vpcf: VPCOLORFLAGS, pcr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColor(self, vpcf, pcr);
     }
-    pub fn SetItemHeight(self: *const IVisualProperties, cyItemInPixels: i32) callconv(.Inline) HRESULT {
+    pub fn SetItemHeight(self: *const IVisualProperties, cyItemInPixels: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetItemHeight(self, cyItemInPixels);
     }
-    pub fn GetItemHeight(self: *const IVisualProperties, cyItemInPixels: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetItemHeight(self: *const IVisualProperties, cyItemInPixels: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemHeight(self, cyItemInPixels);
     }
-    pub fn SetFont(self: *const IVisualProperties, plf: ?*const LOGFONTW, bRedraw: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetFont(self: *const IVisualProperties, plf: ?*const LOGFONTW, bRedraw: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetFont(self, plf, bRedraw);
     }
-    pub fn GetFont(self: *const IVisualProperties, plf: ?*LOGFONTW) callconv(.Inline) HRESULT {
+    pub fn GetFont(self: *const IVisualProperties, plf: ?*LOGFONTW) callconv(.@"inline") HRESULT {
         return self.vtable.GetFont(self, plf);
     }
-    pub fn SetTheme(self: *const IVisualProperties, pszSubAppName: ?[*:0]const u16, pszSubIdList: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTheme(self: *const IVisualProperties, pszSubAppName: ?[*:0]const u16, pszSubIdList: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTheme(self, pszSubAppName, pszSubIdList);
     }
 };
@@ -13818,13 +13818,13 @@ pub const ICommDlgBrowser3 = extern union {
     ICommDlgBrowser2: ICommDlgBrowser2,
     ICommDlgBrowser: ICommDlgBrowser,
     IUnknown: IUnknown,
-    pub fn OnColumnClicked(self: *const ICommDlgBrowser3, ppshv: ?*IShellView, iColumn: i32) callconv(.Inline) HRESULT {
+    pub fn OnColumnClicked(self: *const ICommDlgBrowser3, ppshv: ?*IShellView, iColumn: i32) callconv(.@"inline") HRESULT {
         return self.vtable.OnColumnClicked(self, ppshv, iColumn);
     }
-    pub fn GetCurrentFilter(self: *const ICommDlgBrowser3, pszFileSpec: [*:0]u16, cchFileSpec: i32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentFilter(self: *const ICommDlgBrowser3, pszFileSpec: [*:0]u16, cchFileSpec: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentFilter(self, pszFileSpec, cchFileSpec);
     }
-    pub fn OnPreViewCreated(self: *const ICommDlgBrowser3, ppshv: ?*IShellView) callconv(.Inline) HRESULT {
+    pub fn OnPreViewCreated(self: *const ICommDlgBrowser3, ppshv: ?*IShellView) callconv(.@"inline") HRESULT {
         return self.vtable.OnPreViewCreated(self, ppshv);
     }
 };
@@ -13842,7 +13842,7 @@ pub const IUserAccountChangeCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPictureChange(self: *const IUserAccountChangeCallback, pszUserName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OnPictureChange(self: *const IUserAccountChangeCallback, pszUserName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnPictureChange(self, pszUserName);
     }
 };
@@ -13883,16 +13883,16 @@ pub const IStreamAsync = extern union {
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn ReadAsync(self: *const IStreamAsync, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+    pub fn ReadAsync(self: *const IStreamAsync, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.@"inline") HRESULT {
         return self.vtable.ReadAsync(self, pv, cb, pcbRead, lpOverlapped);
     }
-    pub fn WriteAsync(self: *const IStreamAsync, lpBuffer: ?*const anyopaque, cb: u32, pcbWritten: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+    pub fn WriteAsync(self: *const IStreamAsync, lpBuffer: ?*const anyopaque, cb: u32, pcbWritten: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.@"inline") HRESULT {
         return self.vtable.WriteAsync(self, lpBuffer, cb, pcbWritten, lpOverlapped);
     }
-    pub fn OverlappedResult(self: *const IStreamAsync, lpOverlapped: ?*OVERLAPPED, lpNumberOfBytesTransferred: ?*u32, bWait: BOOL) callconv(.Inline) HRESULT {
+    pub fn OverlappedResult(self: *const IStreamAsync, lpOverlapped: ?*OVERLAPPED, lpNumberOfBytesTransferred: ?*u32, bWait: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OverlappedResult(self, lpOverlapped, lpNumberOfBytesTransferred, bWait);
     }
-    pub fn CancelIo(self: *const IStreamAsync) callconv(.Inline) HRESULT {
+    pub fn CancelIo(self: *const IStreamAsync) callconv(.@"inline") HRESULT {
         return self.vtable.CancelIo(self);
     }
 };
@@ -13910,7 +13910,7 @@ pub const IStreamUnbufferedInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSectorSize(self: *const IStreamUnbufferedInfo, pcbSectorSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSectorSize(self: *const IStreamUnbufferedInfo, pcbSectorSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSectorSize(self, pcbSectorSize);
     }
 };
@@ -13934,7 +13934,7 @@ pub const IDragSourceHelper2 = extern union {
     vtable: *const VTable,
     IDragSourceHelper: IDragSourceHelper,
     IUnknown: IUnknown,
-    pub fn SetFlags(self: *const IDragSourceHelper2, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetFlags(self: *const IDragSourceHelper2, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFlags(self, dwFlags);
     }
 };
@@ -13966,13 +13966,13 @@ pub const IHWEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IHWEventHandler, pszParams: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IHWEventHandler, pszParams: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pszParams);
     }
-    pub fn HandleEvent(self: *const IHWEventHandler, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn HandleEvent(self: *const IHWEventHandler, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.HandleEvent(self, pszDeviceID, pszAltDeviceID, pszEventType);
     }
-    pub fn HandleEventWithContent(self: *const IHWEventHandler, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16, pszContentTypeHandler: ?[*:0]const u16, pdataobject: ?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn HandleEventWithContent(self: *const IHWEventHandler, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16, pszContentTypeHandler: ?[*:0]const u16, pdataobject: ?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.HandleEventWithContent(self, pszDeviceID, pszAltDeviceID, pszEventType, pszContentTypeHandler, pdataobject);
     }
 };
@@ -13994,7 +13994,7 @@ pub const IHWEventHandler2 = extern union {
     vtable: *const VTable,
     IHWEventHandler: IHWEventHandler,
     IUnknown: IUnknown,
-    pub fn HandleEventWithHWND(self: *const IHWEventHandler2, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
+    pub fn HandleEventWithHWND(self: *const IHWEventHandler2, pszDeviceID: ?[*:0]const u16, pszAltDeviceID: ?[*:0]const u16, pszEventType: ?[*:0]const u16, hwndOwner: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.HandleEventWithHWND(self, pszDeviceID, pszAltDeviceID, pszEventType, hwndOwner);
     }
 };
@@ -14015,7 +14015,7 @@ pub const IQueryCancelAutoPlay = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AllowAutoPlay(self: *const IQueryCancelAutoPlay, pszPath: ?[*:0]const u16, dwContentType: u32, pszLabel: ?[*:0]const u16, dwSerialNumber: u32) callconv(.Inline) HRESULT {
+    pub fn AllowAutoPlay(self: *const IQueryCancelAutoPlay, pszPath: ?[*:0]const u16, dwContentType: u32, pszLabel: ?[*:0]const u16, dwSerialNumber: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AllowAutoPlay(self, pszPath, dwContentType, pszLabel, dwSerialNumber);
     }
 };
@@ -14035,7 +14035,7 @@ pub const IDynamicHWHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDynamicInfo(self: *const IDynamicHWHandler, pszDeviceID: ?[*:0]const u16, dwContentType: u32, ppszAction: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDynamicInfo(self: *const IDynamicHWHandler, pszDeviceID: ?[*:0]const u16, dwContentType: u32, ppszAction: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDynamicInfo(self, pszDeviceID, dwContentType, ppszAction);
     }
 };
@@ -14061,13 +14061,13 @@ pub const IUserNotificationCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnBalloonUserClick(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn OnBalloonUserClick(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.OnBalloonUserClick(self, pt);
     }
-    pub fn OnLeftClick(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn OnLeftClick(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.OnLeftClick(self, pt);
     }
-    pub fn OnContextMenu(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn OnContextMenu(self: *const IUserNotificationCallback, pt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.OnContextMenu(self, pt);
     }
 };
@@ -14108,19 +14108,19 @@ pub const IUserNotification2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetBalloonInfo(self: *const IUserNotification2, pszTitle: ?[*:0]const u16, pszText: ?[*:0]const u16, dwInfoFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetBalloonInfo(self: *const IUserNotification2, pszTitle: ?[*:0]const u16, pszText: ?[*:0]const u16, dwInfoFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBalloonInfo(self, pszTitle, pszText, dwInfoFlags);
     }
-    pub fn SetBalloonRetry(self: *const IUserNotification2, dwShowTime: u32, dwInterval: u32, cRetryCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetBalloonRetry(self: *const IUserNotification2, dwShowTime: u32, dwInterval: u32, cRetryCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBalloonRetry(self, dwShowTime, dwInterval, cRetryCount);
     }
-    pub fn SetIconInfo(self: *const IUserNotification2, hIcon: ?HICON, pszToolTip: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetIconInfo(self: *const IUserNotification2, hIcon: ?HICON, pszToolTip: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconInfo(self, hIcon, pszToolTip);
     }
-    pub fn Show(self: *const IUserNotification2, pqc: ?*IQueryContinue, dwContinuePollInterval: u32, pSink: ?*IUserNotificationCallback) callconv(.Inline) HRESULT {
+    pub fn Show(self: *const IUserNotification2, pqc: ?*IQueryContinue, dwContinuePollInterval: u32, pSink: ?*IUserNotificationCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self, pqc, dwContinuePollInterval, pSink);
     }
-    pub fn PlaySound(self: *const IUserNotification2, pszSoundName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn PlaySound(self: *const IUserNotification2, pszSoundName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.PlaySound(self, pszSoundName);
     }
 };
@@ -14149,13 +14149,13 @@ pub const IDeskBand2 = extern union {
     IDockingWindow: IDockingWindow,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn CanRenderComposited(self: *const IDeskBand2, pfCanRenderComposited: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn CanRenderComposited(self: *const IDeskBand2, pfCanRenderComposited: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CanRenderComposited(self, pfCanRenderComposited);
     }
-    pub fn SetCompositionState(self: *const IDeskBand2, fCompositionEnabled: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetCompositionState(self: *const IDeskBand2, fCompositionEnabled: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetCompositionState(self, fCompositionEnabled);
     }
-    pub fn GetCompositionState(self: *const IDeskBand2, pfCompositionEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetCompositionState(self: *const IDeskBand2, pfCompositionEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetCompositionState(self, pfCompositionEnabled);
     }
 };
@@ -14173,7 +14173,7 @@ pub const IStartMenuPinnedList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RemoveFromList(self: *const IStartMenuPinnedList, pitem: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn RemoveFromList(self: *const IStartMenuPinnedList, pitem: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveFromList(self, pitem);
     }
 };
@@ -14200,13 +14200,13 @@ pub const ICDBurn = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRecorderDriveLetter(self: *const ICDBurn, pszDrive: [*:0]u16, cch: u32) callconv(.Inline) HRESULT {
+    pub fn GetRecorderDriveLetter(self: *const ICDBurn, pszDrive: [*:0]u16, cch: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRecorderDriveLetter(self, pszDrive, cch);
     }
-    pub fn Burn(self: *const ICDBurn, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Burn(self: *const ICDBurn, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Burn(self, hwnd);
     }
-    pub fn HasRecordableDrive(self: *const ICDBurn, pfHasRecorder: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn HasRecordableDrive(self: *const ICDBurn, pfHasRecorder: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HasRecordableDrive(self, pfHasRecorder);
     }
 };
@@ -14232,13 +14232,13 @@ pub const IWizardSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPreviousPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
+    pub fn GetPreviousPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousPage(self, phpage);
     }
-    pub fn GetNextPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
+    pub fn GetNextPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextPage(self, phpage);
     }
-    pub fn GetCancelledPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
+    pub fn GetCancelledPage(self: *const IWizardSite, phpage: ?*?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetCancelledPage(self, phpage);
     }
 };
@@ -14266,13 +14266,13 @@ pub const IWizardExtension = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPages(self: *const IWizardExtension, aPages: [*]?HPROPSHEETPAGE, cPages: u32, pnPagesAdded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AddPages(self: *const IWizardExtension, aPages: [*]?HPROPSHEETPAGE, cPages: u32, pnPagesAdded: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddPages(self, aPages, cPages, pnPagesAdded);
     }
-    pub fn GetFirstPage(self: *const IWizardExtension, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
+    pub fn GetFirstPage(self: *const IWizardExtension, phpage: ?*?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetFirstPage(self, phpage);
     }
-    pub fn GetLastPage(self: *const IWizardExtension, phpage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
+    pub fn GetLastPage(self: *const IWizardExtension, phpage: ?*?HPROPSHEETPAGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastPage(self, phpage);
     }
 };
@@ -14295,10 +14295,10 @@ pub const IWebWizardExtension = extern union {
     vtable: *const VTable,
     IWizardExtension: IWizardExtension,
     IUnknown: IUnknown,
-    pub fn SetInitialURL(self: *const IWebWizardExtension, pszURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetInitialURL(self: *const IWebWizardExtension, pszURL: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialURL(self, pszURL);
     }
-    pub fn SetErrorURL(self: *const IWebWizardExtension, pszErrorURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetErrorURL(self: *const IWebWizardExtension, pszErrorURL: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetErrorURL(self, pszErrorURL);
     }
 };
@@ -14324,10 +14324,10 @@ pub const IPublishingWizard = extern union {
     vtable: *const VTable,
     IWizardExtension: IWizardExtension,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IPublishingWizard, pdo: ?*IDataObject, dwOptions: u32, pszServiceScope: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IPublishingWizard, pdo: ?*IDataObject, dwOptions: u32, pszServiceScope: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pdo, dwOptions, pszServiceScope);
     }
-    pub fn GetTransferManifest(self: *const IPublishingWizard, phrFromTransfer: ?*HRESULT, pdocManifest: ?*?*IXMLDOMDocument) callconv(.Inline) HRESULT {
+    pub fn GetTransferManifest(self: *const IPublishingWizard, phrFromTransfer: ?*HRESULT, pdocManifest: ?*?*IXMLDOMDocument) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransferManifest(self, phrFromTransfer, pdocManifest);
     }
 };
@@ -14347,7 +14347,7 @@ pub const IFolderViewHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IFolderViewHost, hwndParent: ?HWND, pdo: ?*IDataObject, prc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IFolderViewHost, hwndParent: ?HWND, pdo: ?*IDataObject, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, hwndParent, pdo, prc);
     }
 };
@@ -14365,7 +14365,7 @@ pub const IAccessibleObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAccessibleName(self: *const IAccessibleObject, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAccessibleName(self: *const IAccessibleObject, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAccessibleName(self, pszName);
     }
 };
@@ -14399,19 +14399,19 @@ pub const IResultsFolder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddItem(self: *const IResultsFolder, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn AddItem(self: *const IResultsFolder, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.AddItem(self, psi);
     }
-    pub fn AddIDList(self: *const IResultsFolder, pidl: ?*ITEMIDLIST, ppidlAdded: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn AddIDList(self: *const IResultsFolder, pidl: ?*ITEMIDLIST, ppidlAdded: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.AddIDList(self, pidl, ppidlAdded);
     }
-    pub fn RemoveItem(self: *const IResultsFolder, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const IResultsFolder, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveItem(self, psi);
     }
-    pub fn RemoveIDList(self: *const IResultsFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn RemoveIDList(self: *const IResultsFolder, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveIDList(self, pidl);
     }
-    pub fn RemoveAll(self: *const IResultsFolder) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const IResultsFolder) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAll(self);
     }
 };
@@ -14433,10 +14433,10 @@ pub const IAutoCompleteDropDown = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDropDownStatus(self: *const IAutoCompleteDropDown, pdwFlags: ?*u32, ppwszString: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDropDownStatus(self: *const IAutoCompleteDropDown, pdwFlags: ?*u32, ppwszString: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDropDownStatus(self, pdwFlags, ppwszString);
     }
-    pub fn ResetEnumerator(self: *const IAutoCompleteDropDown) callconv(.Inline) HRESULT {
+    pub fn ResetEnumerator(self: *const IAutoCompleteDropDown) callconv(.@"inline") HRESULT {
         return self.vtable.ResetEnumerator(self);
     }
 };
@@ -14472,7 +14472,7 @@ pub const ICDBurnExt = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSupportedActionTypes(self: *const ICDBurnExt, pdwActions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSupportedActionTypes(self: *const ICDBurnExt, pdwActions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSupportedActionTypes(self, pdwActions);
     }
 };
@@ -14489,7 +14489,7 @@ pub const IEnumReadyCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumReady(self: *const IEnumReadyCallback) callconv(.Inline) HRESULT {
+    pub fn EnumReady(self: *const IEnumReadyCallback) callconv(.@"inline") HRESULT {
         return self.vtable.EnumReady(self);
     }
 };
@@ -14513,10 +14513,10 @@ pub const IEnumerableView = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetEnumReadyCallback(self: *const IEnumerableView, percb: ?*IEnumReadyCallback) callconv(.Inline) HRESULT {
+    pub fn SetEnumReadyCallback(self: *const IEnumerableView, percb: ?*IEnumReadyCallback) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnumReadyCallback(self, percb);
     }
-    pub fn CreateEnumIDListFromContents(self: *const IEnumerableView, pidlFolder: ?*ITEMIDLIST, dwEnumFlags: u32, ppEnumIDList: ?*?*IEnumIDList) callconv(.Inline) HRESULT {
+    pub fn CreateEnumIDListFromContents(self: *const IEnumerableView, pidlFolder: ?*ITEMIDLIST, dwEnumFlags: u32, ppEnumIDList: ?*?*IEnumIDList) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEnumIDListFromContents(self, pidlFolder, dwEnumFlags, ppEnumIDList);
     }
 };
@@ -14534,7 +14534,7 @@ pub const IInsertItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InsertItem(self: *const IInsertItem, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn InsertItem(self: *const IInsertItem, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.InsertItem(self, pidl);
     }
 };
@@ -14564,16 +14564,16 @@ pub const IFolderBandPriv = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetCascade(self: *const IFolderBandPriv, fCascade: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetCascade(self: *const IFolderBandPriv, fCascade: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetCascade(self, fCascade);
     }
-    pub fn SetAccelerators(self: *const IFolderBandPriv, fAccelerators: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetAccelerators(self: *const IFolderBandPriv, fAccelerators: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetAccelerators(self, fAccelerators);
     }
-    pub fn SetNoIcons(self: *const IFolderBandPriv, fNoIcons: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNoIcons(self: *const IFolderBandPriv, fNoIcons: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNoIcons(self, fNoIcons);
     }
-    pub fn SetNoText(self: *const IFolderBandPriv, fNoText: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNoText(self: *const IFolderBandPriv, fNoText: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNoText(self, fNoText);
     }
 };
@@ -14596,7 +14596,7 @@ pub const IImageRecompress = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RecompressImage(self: *const IImageRecompress, psi: ?*IShellItem, cx: i32, cy: i32, iQuality: i32, pstg: ?*IStorage, ppstrmOut: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn RecompressImage(self: *const IImageRecompress, psi: ?*IShellItem, cx: i32, cy: i32, iQuality: i32, pstg: ?*IStorage, ppstrmOut: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.RecompressImage(self, psi, cx, cy, iQuality, pstg, ppstrmOut);
     }
 };
@@ -14632,16 +14632,16 @@ pub const IFileDialogControlEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnItemSelected(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.Inline) HRESULT {
+    pub fn OnItemSelected(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32, dwIDItem: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnItemSelected(self, pfdc, dwIDCtl, dwIDItem);
     }
-    pub fn OnButtonClicked(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
+    pub fn OnButtonClicked(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnButtonClicked(self, pfdc, dwIDCtl);
     }
-    pub fn OnCheckButtonToggled(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32, bChecked: BOOL) callconv(.Inline) HRESULT {
+    pub fn OnCheckButtonToggled(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32, bChecked: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnCheckButtonToggled(self, pfdc, dwIDCtl, bChecked);
     }
-    pub fn OnControlActivating(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32) callconv(.Inline) HRESULT {
+    pub fn OnControlActivating(self: *const IFileDialogControlEvents, pfdc: ?*IFileDialogCustomize, dwIDCtl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnControlActivating(self, pfdc, dwIDCtl);
     }
 };
@@ -14665,10 +14665,10 @@ pub const IFileDialog2 = extern union {
     IFileDialog: IFileDialog,
     IModalWindow: IModalWindow,
     IUnknown: IUnknown,
-    pub fn SetCancelButtonLabel(self: *const IFileDialog2, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetCancelButtonLabel(self: *const IFileDialog2, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCancelButtonLabel(self, pszLabel);
     }
-    pub fn SetNavigationRoot(self: *const IFileDialog2, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn SetNavigationRoot(self: *const IFileDialog2, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.SetNavigationRoot(self, psi);
     }
 };
@@ -14686,7 +14686,7 @@ pub const IApplicationAssociationRegistrationUI = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LaunchAdvancedAssociationUI(self: *const IApplicationAssociationRegistrationUI, pszAppRegistryName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn LaunchAdvancedAssociationUI(self: *const IApplicationAssociationRegistrationUI, pszAppRegistryName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.LaunchAdvancedAssociationUI(self, pszAppRegistryName);
     }
 };
@@ -14704,7 +14704,7 @@ pub const IShellRunDll = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Run(self: *const IShellRunDll, pszArgs: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Run(self: *const IShellRunDll, pszArgs: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Run(self, pszArgs);
     }
 };
@@ -14724,7 +14724,7 @@ pub const IPreviousVersionsInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AreSnapshotsAvailable(self: *const IPreviousVersionsInfo, pszPath: ?[*:0]const u16, fOkToBeSlow: BOOL, pfAvailable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn AreSnapshotsAvailable(self: *const IPreviousVersionsInfo, pszPath: ?[*:0]const u16, fOkToBeSlow: BOOL, pfAvailable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AreSnapshotsAvailable(self, pszPath, fOkToBeSlow, pfAvailable);
     }
 };
@@ -14788,16 +14788,16 @@ pub const INameSpaceTreeControl2 = extern union {
     vtable: *const VTable,
     INameSpaceTreeControl: INameSpaceTreeControl,
     IUnknown: IUnknown,
-    pub fn SetControlStyle(self: *const INameSpaceTreeControl2, nstcsMask: u32, nstcsStyle: u32) callconv(.Inline) HRESULT {
+    pub fn SetControlStyle(self: *const INameSpaceTreeControl2, nstcsMask: u32, nstcsStyle: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetControlStyle(self, nstcsMask, nstcsStyle);
     }
-    pub fn GetControlStyle(self: *const INameSpaceTreeControl2, nstcsMask: u32, pnstcsStyle: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetControlStyle(self: *const INameSpaceTreeControl2, nstcsMask: u32, pnstcsStyle: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetControlStyle(self, nstcsMask, pnstcsStyle);
     }
-    pub fn SetControlStyle2(self: *const INameSpaceTreeControl2, nstcsMask: NSTCSTYLE2, nstcsStyle: NSTCSTYLE2) callconv(.Inline) HRESULT {
+    pub fn SetControlStyle2(self: *const INameSpaceTreeControl2, nstcsMask: NSTCSTYLE2, nstcsStyle: NSTCSTYLE2) callconv(.@"inline") HRESULT {
         return self.vtable.SetControlStyle2(self, nstcsMask, nstcsStyle);
     }
-    pub fn GetControlStyle2(self: *const INameSpaceTreeControl2, nstcsMask: NSTCSTYLE2, pnstcsStyle: ?*NSTCSTYLE2) callconv(.Inline) HRESULT {
+    pub fn GetControlStyle2(self: *const INameSpaceTreeControl2, nstcsMask: NSTCSTYLE2, pnstcsStyle: ?*NSTCSTYLE2) callconv(.@"inline") HRESULT {
         return self.vtable.GetControlStyle2(self, nstcsMask, pnstcsStyle);
     }
 };
@@ -14936,58 +14936,58 @@ pub const INameSpaceTreeControlEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnItemClick(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstceHitTest: u32, nstceClickType: u32) callconv(.Inline) HRESULT {
+    pub fn OnItemClick(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstceHitTest: u32, nstceClickType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnItemClick(self, psi, nstceHitTest, nstceClickType);
     }
-    pub fn OnPropertyItemCommit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnPropertyItemCommit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnPropertyItemCommit(self, psi);
     }
-    pub fn OnItemStateChanging(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstcisMask: u32, nstcisState: u32) callconv(.Inline) HRESULT {
+    pub fn OnItemStateChanging(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstcisMask: u32, nstcisState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnItemStateChanging(self, psi, nstcisMask, nstcisState);
     }
-    pub fn OnItemStateChanged(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstcisMask: u32, nstcisState: u32) callconv(.Inline) HRESULT {
+    pub fn OnItemStateChanged(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, nstcisMask: u32, nstcisState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnItemStateChanged(self, psi, nstcisMask, nstcisState);
     }
-    pub fn OnSelectionChanged(self: *const INameSpaceTreeControlEvents, psiaSelection: ?*IShellItemArray) callconv(.Inline) HRESULT {
+    pub fn OnSelectionChanged(self: *const INameSpaceTreeControlEvents, psiaSelection: ?*IShellItemArray) callconv(.@"inline") HRESULT {
         return self.vtable.OnSelectionChanged(self, psiaSelection);
     }
-    pub fn OnKeyboardInput(self: *const INameSpaceTreeControlEvents, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn OnKeyboardInput(self: *const INameSpaceTreeControlEvents, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.OnKeyboardInput(self, uMsg, wParam, lParam);
     }
-    pub fn OnBeforeExpand(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnBeforeExpand(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeforeExpand(self, psi);
     }
-    pub fn OnAfterExpand(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnAfterExpand(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnAfterExpand(self, psi);
     }
-    pub fn OnBeginLabelEdit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnBeginLabelEdit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeginLabelEdit(self, psi);
     }
-    pub fn OnEndLabelEdit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnEndLabelEdit(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnEndLabelEdit(self, psi);
     }
-    pub fn OnGetToolTip(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, pszTip: [*:0]u16, cchTip: i32) callconv(.Inline) HRESULT {
+    pub fn OnGetToolTip(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, pszTip: [*:0]u16, cchTip: i32) callconv(.@"inline") HRESULT {
         return self.vtable.OnGetToolTip(self, psi, pszTip, cchTip);
     }
-    pub fn OnBeforeItemDelete(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnBeforeItemDelete(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeforeItemDelete(self, psi);
     }
-    pub fn OnItemAdded(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, fIsRoot: BOOL) callconv(.Inline) HRESULT {
+    pub fn OnItemAdded(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, fIsRoot: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnItemAdded(self, psi, fIsRoot);
     }
-    pub fn OnItemDeleted(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, fIsRoot: BOOL) callconv(.Inline) HRESULT {
+    pub fn OnItemDeleted(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, fIsRoot: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnItemDeleted(self, psi, fIsRoot);
     }
-    pub fn OnBeforeContextMenu(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OnBeforeContextMenu(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeforeContextMenu(self, psi, riid, ppv);
     }
-    pub fn OnAfterContextMenu(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, pcmIn: ?*IContextMenu, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn OnAfterContextMenu(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, pcmIn: ?*IContextMenu, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.OnAfterContextMenu(self, psi, pcmIn, riid, ppv);
     }
-    pub fn OnBeforeStateImageChange(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnBeforeStateImageChange(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeforeStateImageChange(self, psi);
     }
-    pub fn OnGetDefaultIconIndex(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, piDefaultIcon: ?*i32, piOpenIcon: ?*i32) callconv(.Inline) HRESULT {
+    pub fn OnGetDefaultIconIndex(self: *const INameSpaceTreeControlEvents, psi: ?*IShellItem, piDefaultIcon: ?*i32, piOpenIcon: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.OnGetDefaultIconIndex(self, psi, piDefaultIcon, piOpenIcon);
     }
 };
@@ -15042,22 +15042,22 @@ pub const INameSpaceTreeControlDropHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnDragEnter(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, fOutsideSource: BOOL, grfKeyState: u32, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
+    pub fn OnDragEnter(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, fOutsideSource: BOOL, grfKeyState: u32, pdwEffect: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnDragEnter(self, psiOver, psiaData, fOutsideSource, grfKeyState, pdwEffect);
     }
-    pub fn OnDragOver(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, grfKeyState: u32, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
+    pub fn OnDragOver(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, grfKeyState: u32, pdwEffect: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnDragOver(self, psiOver, psiaData, grfKeyState, pdwEffect);
     }
-    pub fn OnDragPosition(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iNewPosition: i32, iOldPosition: i32) callconv(.Inline) HRESULT {
+    pub fn OnDragPosition(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iNewPosition: i32, iOldPosition: i32) callconv(.@"inline") HRESULT {
         return self.vtable.OnDragPosition(self, psiOver, psiaData, iNewPosition, iOldPosition);
     }
-    pub fn OnDrop(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iPosition: i32, grfKeyState: u32, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
+    pub fn OnDrop(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iPosition: i32, grfKeyState: u32, pdwEffect: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnDrop(self, psiOver, psiaData, iPosition, grfKeyState, pdwEffect);
     }
-    pub fn OnDropPosition(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iNewPosition: i32, iOldPosition: i32) callconv(.Inline) HRESULT {
+    pub fn OnDropPosition(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem, psiaData: ?*IShellItemArray, iNewPosition: i32, iOldPosition: i32) callconv(.@"inline") HRESULT {
         return self.vtable.OnDropPosition(self, psiOver, psiaData, iNewPosition, iOldPosition);
     }
-    pub fn OnDragLeave(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnDragLeave(self: *const INameSpaceTreeControlDropHandler, psiOver: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnDragLeave(self, psiOver);
     }
 };
@@ -15085,13 +15085,13 @@ pub const INameSpaceTreeAccessible = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnGetDefaultAccessibilityAction(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem, pbstrDefaultAction: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn OnGetDefaultAccessibilityAction(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem, pbstrDefaultAction: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnGetDefaultAccessibilityAction(self, psi, pbstrDefaultAction);
     }
-    pub fn OnDoDefaultAccessibilityAction(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem) callconv(.Inline) HRESULT {
+    pub fn OnDoDefaultAccessibilityAction(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem) callconv(.@"inline") HRESULT {
         return self.vtable.OnDoDefaultAccessibilityAction(self, psi);
     }
-    pub fn OnGetAccessibilityRole(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem, pvarRole: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn OnGetAccessibilityRole(self: *const INameSpaceTreeAccessible, psi: ?*IShellItem, pvarRole: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.OnGetAccessibilityRole(self, psi, pvarRole);
     }
 };
@@ -15142,16 +15142,16 @@ pub const INameSpaceTreeControlCustomDraw = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, plres: ?*LRESULT) callconv(.Inline) HRESULT {
+    pub fn PrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, plres: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.PrePaint(self, hdc, prc, plres);
     }
-    pub fn PostPaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn PostPaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.PostPaint(self, hdc, prc);
     }
-    pub fn ItemPrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW, pclrText: ?*u32, pclrTextBk: ?*u32, plres: ?*LRESULT) callconv(.Inline) HRESULT {
+    pub fn ItemPrePaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW, pclrText: ?*u32, pclrTextBk: ?*u32, plres: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.ItemPrePaint(self, hdc, prc, pnstccdItem, pclrText, pclrTextBk, plres);
     }
-    pub fn ItemPostPaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW) callconv(.Inline) HRESULT {
+    pub fn ItemPostPaint(self: *const INameSpaceTreeControlCustomDraw, hdc: ?HDC, prc: ?*RECT, pnstccdItem: ?*NSTCCUSTOMDRAW) callconv(.@"inline") HRESULT {
         return self.vtable.ItemPostPaint(self, hdc, prc, pnstccdItem);
     }
 };
@@ -15180,16 +15180,16 @@ pub const ITrayDeskBand = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowDeskBand(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn ShowDeskBand(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ShowDeskBand(self, clsid);
     }
-    pub fn HideDeskBand(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn HideDeskBand(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.HideDeskBand(self, clsid);
     }
-    pub fn IsDeskBandShown(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn IsDeskBandShown(self: *const ITrayDeskBand, clsid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.IsDeskBandShown(self, clsid);
     }
-    pub fn DeskBandRegistrationChanged(self: *const ITrayDeskBand) callconv(.Inline) HRESULT {
+    pub fn DeskBandRegistrationChanged(self: *const ITrayDeskBand) callconv(.@"inline") HRESULT {
         return self.vtable.DeskBandRegistrationChanged(self);
     }
 };
@@ -15220,13 +15220,13 @@ pub const IBandHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateBand(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL, fVisible: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateBand(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL, fVisible: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBand(self, rclsidBand, fAvailable, fVisible, riid, ppv);
     }
-    pub fn SetBandAvailability(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBandAvailability(self: *const IBandHost, rclsidBand: ?*const Guid, fAvailable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetBandAvailability(self, rclsidBand, fAvailable);
     }
-    pub fn DestroyBand(self: *const IBandHost, rclsidBand: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn DestroyBand(self: *const IBandHost, rclsidBand: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.DestroyBand(self, rclsidBand);
     }
 };
@@ -15243,7 +15243,7 @@ pub const IComputerInfoChangeNotify = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ComputerInfoChanged(self: *const IComputerInfoChangeNotify) callconv(.Inline) HRESULT {
+    pub fn ComputerInfoChanged(self: *const IComputerInfoChangeNotify) callconv(.@"inline") HRESULT {
         return self.vtable.ComputerInfoChanged(self);
     }
 };
@@ -15261,7 +15261,7 @@ pub const IDesktopGadget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RunGadget(self: *const IDesktopGadget, gadgetPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RunGadget(self: *const IDesktopGadget, gadgetPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RunGadget(self, gadgetPath);
     }
 };
@@ -15285,7 +15285,7 @@ pub const IAccessibilityDockingServiceCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Undocked(self: *const IAccessibilityDockingServiceCallback, undockReason: UNDOCK_REASON) callconv(.Inline) HRESULT {
+    pub fn Undocked(self: *const IAccessibilityDockingServiceCallback, undockReason: UNDOCK_REASON) callconv(.@"inline") HRESULT {
         return self.vtable.Undocked(self, undockReason);
     }
 };
@@ -15315,13 +15315,13 @@ pub const IAccessibilityDockingService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAvailableSize(self: *const IAccessibilityDockingService, hMonitor: ?HMONITOR, pcxFixed: ?*u32, pcyMax: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAvailableSize(self: *const IAccessibilityDockingService, hMonitor: ?HMONITOR, pcxFixed: ?*u32, pcyMax: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAvailableSize(self, hMonitor, pcxFixed, pcyMax);
     }
-    pub fn DockWindow(self: *const IAccessibilityDockingService, hwnd: ?HWND, hMonitor: ?HMONITOR, cyRequested: u32, pCallback: ?*IAccessibilityDockingServiceCallback) callconv(.Inline) HRESULT {
+    pub fn DockWindow(self: *const IAccessibilityDockingService, hwnd: ?HWND, hMonitor: ?HMONITOR, cyRequested: u32, pCallback: ?*IAccessibilityDockingServiceCallback) callconv(.@"inline") HRESULT {
         return self.vtable.DockWindow(self, hwnd, hMonitor, cyRequested, pCallback);
     }
-    pub fn UndockWindow(self: *const IAccessibilityDockingService, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn UndockWindow(self: *const IAccessibilityDockingService, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.UndockWindow(self, hwnd);
     }
 };
@@ -15355,16 +15355,16 @@ pub const IStorageProviderBanners = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16, contentId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16, contentId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetBanner(self, providerIdentity, subscriptionId, contentId);
     }
-    pub fn ClearBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ClearBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.ClearBanner(self, providerIdentity, subscriptionId);
     }
-    pub fn ClearAllBanners(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ClearAllBanners(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.ClearAllBanners(self, providerIdentity);
     }
-    pub fn GetBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16, contentId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetBanner(self: *const IStorageProviderBanners, providerIdentity: ?[*:0]const u16, subscriptionId: ?[*:0]const u16, contentId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetBanner(self, providerIdentity, subscriptionId, contentId);
     }
 };
@@ -15388,7 +15388,7 @@ pub const IStorageProviderCopyHook = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CopyCallback(self: *const IStorageProviderCopyHook, hwnd: ?HWND, operation: u32, flags: u32, srcFile: ?[*:0]const u16, srcAttribs: u32, destFile: ?[*:0]const u16, destAttribs: u32, result: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CopyCallback(self: *const IStorageProviderCopyHook, hwnd: ?HWND, operation: u32, flags: u32, srcFile: ?[*:0]const u16, srcAttribs: u32, destFile: ?[*:0]const u16, destAttribs: u32, result: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CopyCallback(self, hwnd, operation, flags, srcFile, srcAttribs, destFile, destAttribs, result);
     }
 };
@@ -15673,79 +15673,79 @@ pub const IWebBrowser = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GoBack(self: *const IWebBrowser) callconv(.Inline) HRESULT {
+    pub fn GoBack(self: *const IWebBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.GoBack(self);
     }
-    pub fn GoForward(self: *const IWebBrowser) callconv(.Inline) HRESULT {
+    pub fn GoForward(self: *const IWebBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.GoForward(self);
     }
-    pub fn GoHome(self: *const IWebBrowser) callconv(.Inline) HRESULT {
+    pub fn GoHome(self: *const IWebBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.GoHome(self);
     }
-    pub fn GoSearch(self: *const IWebBrowser) callconv(.Inline) HRESULT {
+    pub fn GoSearch(self: *const IWebBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.GoSearch(self);
     }
-    pub fn Navigate(self: *const IWebBrowser, URL: ?BSTR, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Navigate(self: *const IWebBrowser, URL: ?BSTR, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Navigate(self, URL, Flags, TargetFrameName, PostData, Headers);
     }
-    pub fn Refresh(self: *const IWebBrowser) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IWebBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn Refresh2(self: *const IWebBrowser, Level: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Refresh2(self: *const IWebBrowser, Level: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh2(self, Level);
     }
-    pub fn Stop(self: *const IWebBrowser) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IWebBrowser) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn get_Application(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, ppDisp);
     }
-    pub fn get_Parent(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, ppDisp);
     }
-    pub fn get_Container(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Container(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Container(self, ppDisp);
     }
-    pub fn get_Document(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Document(self: *const IWebBrowser, ppDisp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Document(self, ppDisp);
     }
-    pub fn get_TopLevelContainer(self: *const IWebBrowser, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_TopLevelContainer(self: *const IWebBrowser, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_TopLevelContainer(self, pBool);
     }
-    pub fn get_Type(self: *const IWebBrowser, Type: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IWebBrowser, Type: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, Type);
     }
-    pub fn get_Left(self: *const IWebBrowser, pl: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Left(self: *const IWebBrowser, pl: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Left(self, pl);
     }
-    pub fn put_Left(self: *const IWebBrowser, Left: i32) callconv(.Inline) HRESULT {
+    pub fn put_Left(self: *const IWebBrowser, Left: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Left(self, Left);
     }
-    pub fn get_Top(self: *const IWebBrowser, pl: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Top(self: *const IWebBrowser, pl: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Top(self, pl);
     }
-    pub fn put_Top(self: *const IWebBrowser, Top: i32) callconv(.Inline) HRESULT {
+    pub fn put_Top(self: *const IWebBrowser, Top: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Top(self, Top);
     }
-    pub fn get_Width(self: *const IWebBrowser, pl: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Width(self: *const IWebBrowser, pl: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Width(self, pl);
     }
-    pub fn put_Width(self: *const IWebBrowser, Width: i32) callconv(.Inline) HRESULT {
+    pub fn put_Width(self: *const IWebBrowser, Width: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Width(self, Width);
     }
-    pub fn get_Height(self: *const IWebBrowser, pl: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Height(self: *const IWebBrowser, pl: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Height(self, pl);
     }
-    pub fn put_Height(self: *const IWebBrowser, Height: i32) callconv(.Inline) HRESULT {
+    pub fn put_Height(self: *const IWebBrowser, Height: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Height(self, Height);
     }
-    pub fn get_LocationName(self: *const IWebBrowser, LocationName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocationName(self: *const IWebBrowser, LocationName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocationName(self, LocationName);
     }
-    pub fn get_LocationURL(self: *const IWebBrowser, LocationURL: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocationURL(self: *const IWebBrowser, LocationURL: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocationURL(self, LocationURL);
     }
-    pub fn get_Busy(self: *const IWebBrowser, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Busy(self: *const IWebBrowser, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Busy(self, pBool);
     }
 };
@@ -15869,64 +15869,64 @@ pub const IWebBrowserApp = extern union {
     IWebBrowser: IWebBrowser,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Quit(self: *const IWebBrowserApp) callconv(.Inline) HRESULT {
+    pub fn Quit(self: *const IWebBrowserApp) callconv(.@"inline") HRESULT {
         return self.vtable.Quit(self);
     }
-    pub fn ClientToWindow(self: *const IWebBrowserApp, pcx: ?*i32, pcy: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ClientToWindow(self: *const IWebBrowserApp, pcx: ?*i32, pcy: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ClientToWindow(self, pcx, pcy);
     }
-    pub fn PutProperty(self: *const IWebBrowserApp, Property: ?BSTR, vtValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn PutProperty(self: *const IWebBrowserApp, Property: ?BSTR, vtValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.PutProperty(self, Property, vtValue);
     }
-    pub fn GetProperty(self: *const IWebBrowserApp, Property: ?BSTR, pvtValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IWebBrowserApp, Property: ?BSTR, pvtValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, Property, pvtValue);
     }
-    pub fn get_Name(self: *const IWebBrowserApp, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IWebBrowserApp, Name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, Name);
     }
-    pub fn get_HWND(self: *const IWebBrowserApp, pHWND: ?*SHANDLE_PTR) callconv(.Inline) HRESULT {
+    pub fn get_HWND(self: *const IWebBrowserApp, pHWND: ?*SHANDLE_PTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_HWND(self, pHWND);
     }
-    pub fn get_FullName(self: *const IWebBrowserApp, FullName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FullName(self: *const IWebBrowserApp, FullName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_FullName(self, FullName);
     }
-    pub fn get_Path(self: *const IWebBrowserApp, Path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IWebBrowserApp, Path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, Path);
     }
-    pub fn get_Visible(self: *const IWebBrowserApp, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Visible(self: *const IWebBrowserApp, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Visible(self, pBool);
     }
-    pub fn put_Visible(self: *const IWebBrowserApp, Value: i16) callconv(.Inline) HRESULT {
+    pub fn put_Visible(self: *const IWebBrowserApp, Value: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Visible(self, Value);
     }
-    pub fn get_StatusBar(self: *const IWebBrowserApp, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_StatusBar(self: *const IWebBrowserApp, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_StatusBar(self, pBool);
     }
-    pub fn put_StatusBar(self: *const IWebBrowserApp, Value: i16) callconv(.Inline) HRESULT {
+    pub fn put_StatusBar(self: *const IWebBrowserApp, Value: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_StatusBar(self, Value);
     }
-    pub fn get_StatusText(self: *const IWebBrowserApp, StatusText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_StatusText(self: *const IWebBrowserApp, StatusText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_StatusText(self, StatusText);
     }
-    pub fn put_StatusText(self: *const IWebBrowserApp, StatusText: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_StatusText(self: *const IWebBrowserApp, StatusText: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_StatusText(self, StatusText);
     }
-    pub fn get_ToolBar(self: *const IWebBrowserApp, Value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ToolBar(self: *const IWebBrowserApp, Value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ToolBar(self, Value);
     }
-    pub fn put_ToolBar(self: *const IWebBrowserApp, Value: i32) callconv(.Inline) HRESULT {
+    pub fn put_ToolBar(self: *const IWebBrowserApp, Value: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ToolBar(self, Value);
     }
-    pub fn get_MenuBar(self: *const IWebBrowserApp, Value: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MenuBar(self: *const IWebBrowserApp, Value: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MenuBar(self, Value);
     }
-    pub fn put_MenuBar(self: *const IWebBrowserApp, Value: i16) callconv(.Inline) HRESULT {
+    pub fn put_MenuBar(self: *const IWebBrowserApp, Value: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MenuBar(self, Value);
     }
-    pub fn get_FullScreen(self: *const IWebBrowserApp, pbFullScreen: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_FullScreen(self: *const IWebBrowserApp, pbFullScreen: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_FullScreen(self, pbFullScreen);
     }
-    pub fn put_FullScreen(self: *const IWebBrowserApp, bFullScreen: i16) callconv(.Inline) HRESULT {
+    pub fn put_FullScreen(self: *const IWebBrowserApp, bFullScreen: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_FullScreen(self, bFullScreen);
     }
 };
@@ -16044,61 +16044,61 @@ pub const IWebBrowser2 = extern union {
     IWebBrowser: IWebBrowser,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Navigate2(self: *const IWebBrowser2, URL: ?*VARIANT, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Navigate2(self: *const IWebBrowser2, URL: ?*VARIANT, Flags: ?*VARIANT, TargetFrameName: ?*VARIANT, PostData: ?*VARIANT, Headers: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Navigate2(self, URL, Flags, TargetFrameName, PostData, Headers);
     }
-    pub fn QueryStatusWB(self: *const IWebBrowser2, cmdID: OLECMDID, pcmdf: ?*OLECMDF) callconv(.Inline) HRESULT {
+    pub fn QueryStatusWB(self: *const IWebBrowser2, cmdID: OLECMDID, pcmdf: ?*OLECMDF) callconv(.@"inline") HRESULT {
         return self.vtable.QueryStatusWB(self, cmdID, pcmdf);
     }
-    pub fn ExecWB(self: *const IWebBrowser2, cmdID: OLECMDID, cmdexecopt: OLECMDEXECOPT, pvaIn: ?*VARIANT, pvaOut: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn ExecWB(self: *const IWebBrowser2, cmdID: OLECMDID, cmdexecopt: OLECMDEXECOPT, pvaIn: ?*VARIANT, pvaOut: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ExecWB(self, cmdID, cmdexecopt, pvaIn, pvaOut);
     }
-    pub fn ShowBrowserBar(self: *const IWebBrowser2, pvaClsid: ?*VARIANT, pvarShow: ?*VARIANT, pvarSize: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn ShowBrowserBar(self: *const IWebBrowser2, pvaClsid: ?*VARIANT, pvarShow: ?*VARIANT, pvarSize: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ShowBrowserBar(self, pvaClsid, pvarShow, pvarSize);
     }
-    pub fn get_ReadyState(self: *const IWebBrowser2, plReadyState: ?*READYSTATE) callconv(.Inline) HRESULT {
+    pub fn get_ReadyState(self: *const IWebBrowser2, plReadyState: ?*READYSTATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReadyState(self, plReadyState);
     }
-    pub fn get_Offline(self: *const IWebBrowser2, pbOffline: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Offline(self: *const IWebBrowser2, pbOffline: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Offline(self, pbOffline);
     }
-    pub fn put_Offline(self: *const IWebBrowser2, bOffline: i16) callconv(.Inline) HRESULT {
+    pub fn put_Offline(self: *const IWebBrowser2, bOffline: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Offline(self, bOffline);
     }
-    pub fn get_Silent(self: *const IWebBrowser2, pbSilent: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Silent(self: *const IWebBrowser2, pbSilent: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Silent(self, pbSilent);
     }
-    pub fn put_Silent(self: *const IWebBrowser2, bSilent: i16) callconv(.Inline) HRESULT {
+    pub fn put_Silent(self: *const IWebBrowser2, bSilent: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Silent(self, bSilent);
     }
-    pub fn get_RegisterAsBrowser(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_RegisterAsBrowser(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_RegisterAsBrowser(self, pbRegister);
     }
-    pub fn put_RegisterAsBrowser(self: *const IWebBrowser2, bRegister: i16) callconv(.Inline) HRESULT {
+    pub fn put_RegisterAsBrowser(self: *const IWebBrowser2, bRegister: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_RegisterAsBrowser(self, bRegister);
     }
-    pub fn get_RegisterAsDropTarget(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_RegisterAsDropTarget(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_RegisterAsDropTarget(self, pbRegister);
     }
-    pub fn put_RegisterAsDropTarget(self: *const IWebBrowser2, bRegister: i16) callconv(.Inline) HRESULT {
+    pub fn put_RegisterAsDropTarget(self: *const IWebBrowser2, bRegister: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_RegisterAsDropTarget(self, bRegister);
     }
-    pub fn get_TheaterMode(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_TheaterMode(self: *const IWebBrowser2, pbRegister: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_TheaterMode(self, pbRegister);
     }
-    pub fn put_TheaterMode(self: *const IWebBrowser2, bRegister: i16) callconv(.Inline) HRESULT {
+    pub fn put_TheaterMode(self: *const IWebBrowser2, bRegister: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_TheaterMode(self, bRegister);
     }
-    pub fn get_AddressBar(self: *const IWebBrowser2, Value: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AddressBar(self: *const IWebBrowser2, Value: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AddressBar(self, Value);
     }
-    pub fn put_AddressBar(self: *const IWebBrowser2, Value: i16) callconv(.Inline) HRESULT {
+    pub fn put_AddressBar(self: *const IWebBrowser2, Value: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AddressBar(self, Value);
     }
-    pub fn get_Resizable(self: *const IWebBrowser2, Value: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Resizable(self: *const IWebBrowser2, Value: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Resizable(self, Value);
     }
-    pub fn put_Resizable(self: *const IWebBrowser2, Value: i16) callconv(.Inline) HRESULT {
+    pub fn put_Resizable(self: *const IWebBrowser2, Value: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Resizable(self, Value);
     }
 };
@@ -16195,37 +16195,37 @@ pub const IShellWindows = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IShellWindows, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IShellWindows, Count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const IShellWindows, index: VARIANT, _param_Folder: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const IShellWindows, index: VARIANT, _param_Folder: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, index, _param_Folder);
     }
-    pub fn _NewEnum(self: *const IShellWindows, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn _NewEnum(self: *const IShellWindows, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable._NewEnum(self, ppunk);
     }
-    pub fn Register(self: *const IShellWindows, pid: ?*IDispatch, hwnd: i32, swClass: i32, plCookie: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Register(self: *const IShellWindows, pid: ?*IDispatch, hwnd: i32, swClass: i32, plCookie: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Register(self, pid, hwnd, swClass, plCookie);
     }
-    pub fn RegisterPending(self: *const IShellWindows, lThreadId: i32, pvarloc: ?*VARIANT, pvarlocRoot: ?*VARIANT, swClass: i32, plCookie: ?*i32) callconv(.Inline) HRESULT {
+    pub fn RegisterPending(self: *const IShellWindows, lThreadId: i32, pvarloc: ?*VARIANT, pvarlocRoot: ?*VARIANT, swClass: i32, plCookie: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterPending(self, lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
     }
-    pub fn Revoke(self: *const IShellWindows, lCookie: i32) callconv(.Inline) HRESULT {
+    pub fn Revoke(self: *const IShellWindows, lCookie: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Revoke(self, lCookie);
     }
-    pub fn OnNavigate(self: *const IShellWindows, lCookie: i32, pvarLoc: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn OnNavigate(self: *const IShellWindows, lCookie: i32, pvarLoc: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.OnNavigate(self, lCookie, pvarLoc);
     }
-    pub fn OnActivated(self: *const IShellWindows, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
+    pub fn OnActivated(self: *const IShellWindows, lCookie: i32, fActive: i16) callconv(.@"inline") HRESULT {
         return self.vtable.OnActivated(self, lCookie, fActive);
     }
-    pub fn FindWindowSW(self: *const IShellWindows, pvarLoc: ?*VARIANT, pvarLocRoot: ?*VARIANT, swClass: i32, phwnd: ?*i32, swfwOptions: i32, ppdispOut: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn FindWindowSW(self: *const IShellWindows, pvarLoc: ?*VARIANT, pvarLocRoot: ?*VARIANT, swClass: i32, phwnd: ?*i32, swfwOptions: i32, ppdispOut: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.FindWindowSW(self, pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
     }
-    pub fn OnCreated(self: *const IShellWindows, lCookie: i32, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn OnCreated(self: *const IShellWindows, lCookie: i32, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OnCreated(self, lCookie, punk);
     }
-    pub fn ProcessAttachDetach(self: *const IShellWindows, fAttach: i16) callconv(.Inline) HRESULT {
+    pub fn ProcessAttachDetach(self: *const IShellWindows, fAttach: i16) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessAttachDetach(self, fAttach);
     }
 };
@@ -16302,43 +16302,43 @@ pub const IShellUIHelper = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ResetFirstBootMode(self: *const IShellUIHelper) callconv(.Inline) HRESULT {
+    pub fn ResetFirstBootMode(self: *const IShellUIHelper) callconv(.@"inline") HRESULT {
         return self.vtable.ResetFirstBootMode(self);
     }
-    pub fn ResetSafeMode(self: *const IShellUIHelper) callconv(.Inline) HRESULT {
+    pub fn ResetSafeMode(self: *const IShellUIHelper) callconv(.@"inline") HRESULT {
         return self.vtable.ResetSafeMode(self);
     }
-    pub fn RefreshOfflineDesktop(self: *const IShellUIHelper) callconv(.Inline) HRESULT {
+    pub fn RefreshOfflineDesktop(self: *const IShellUIHelper) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshOfflineDesktop(self);
     }
-    pub fn AddFavorite(self: *const IShellUIHelper, URL: ?BSTR, Title: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddFavorite(self: *const IShellUIHelper, URL: ?BSTR, Title: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddFavorite(self, URL, Title);
     }
-    pub fn AddChannel(self: *const IShellUIHelper, URL: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddChannel(self: *const IShellUIHelper, URL: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddChannel(self, URL);
     }
-    pub fn AddDesktopComponent(self: *const IShellUIHelper, URL: ?BSTR, Type: ?BSTR, Left: ?*VARIANT, Top: ?*VARIANT, Width: ?*VARIANT, Height: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDesktopComponent(self: *const IShellUIHelper, URL: ?BSTR, Type: ?BSTR, Left: ?*VARIANT, Top: ?*VARIANT, Width: ?*VARIANT, Height: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddDesktopComponent(self, URL, Type, Left, Top, Width, Height);
     }
-    pub fn IsSubscribed(self: *const IShellUIHelper, URL: ?BSTR, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsSubscribed(self: *const IShellUIHelper, URL: ?BSTR, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsSubscribed(self, URL, pBool);
     }
-    pub fn NavigateAndFind(self: *const IShellUIHelper, URL: ?BSTR, strQuery: ?BSTR, varTargetFrame: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn NavigateAndFind(self: *const IShellUIHelper, URL: ?BSTR, strQuery: ?BSTR, varTargetFrame: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.NavigateAndFind(self, URL, strQuery, varTargetFrame);
     }
-    pub fn ImportExportFavorites(self: *const IShellUIHelper, fImport: i16, strImpExpPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ImportExportFavorites(self: *const IShellUIHelper, fImport: i16, strImpExpPath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ImportExportFavorites(self, fImport, strImpExpPath);
     }
-    pub fn AutoCompleteSaveForm(self: *const IShellUIHelper, Form: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AutoCompleteSaveForm(self: *const IShellUIHelper, Form: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AutoCompleteSaveForm(self, Form);
     }
-    pub fn AutoScan(self: *const IShellUIHelper, strSearch: ?BSTR, strFailureUrl: ?BSTR, pvarTargetFrame: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AutoScan(self: *const IShellUIHelper, strSearch: ?BSTR, strFailureUrl: ?BSTR, pvarTargetFrame: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AutoScan(self, strSearch, strFailureUrl, pvarTargetFrame);
     }
-    pub fn AutoCompleteAttach(self: *const IShellUIHelper, Reserved: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AutoCompleteAttach(self: *const IShellUIHelper, Reserved: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AutoCompleteAttach(self, Reserved);
     }
-    pub fn ShowBrowserUI(self: *const IShellUIHelper, bstrName: ?BSTR, pvarIn: ?*VARIANT, pvarOut: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn ShowBrowserUI(self: *const IShellUIHelper, bstrName: ?BSTR, pvarIn: ?*VARIANT, pvarOut: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ShowBrowserUI(self, bstrName, pvarIn, pvarOut);
     }
 };
@@ -16416,52 +16416,52 @@ pub const IShellUIHelper2 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddSearchProvider(self: *const IShellUIHelper2, URL: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddSearchProvider(self: *const IShellUIHelper2, URL: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddSearchProvider(self, URL);
     }
-    pub fn RunOnceShown(self: *const IShellUIHelper2) callconv(.Inline) HRESULT {
+    pub fn RunOnceShown(self: *const IShellUIHelper2) callconv(.@"inline") HRESULT {
         return self.vtable.RunOnceShown(self);
     }
-    pub fn SkipRunOnce(self: *const IShellUIHelper2) callconv(.Inline) HRESULT {
+    pub fn SkipRunOnce(self: *const IShellUIHelper2) callconv(.@"inline") HRESULT {
         return self.vtable.SkipRunOnce(self);
     }
-    pub fn CustomizeSettings(self: *const IShellUIHelper2, fSQM: i16, fPhishing: i16, bstrLocale: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn CustomizeSettings(self: *const IShellUIHelper2, fSQM: i16, fPhishing: i16, bstrLocale: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.CustomizeSettings(self, fSQM, fPhishing, bstrLocale);
     }
-    pub fn SqmEnabled(self: *const IShellUIHelper2, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn SqmEnabled(self: *const IShellUIHelper2, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.SqmEnabled(self, pfEnabled);
     }
-    pub fn PhishingEnabled(self: *const IShellUIHelper2, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn PhishingEnabled(self: *const IShellUIHelper2, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.PhishingEnabled(self, pfEnabled);
     }
-    pub fn BrandImageUri(self: *const IShellUIHelper2, pbstrUri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn BrandImageUri(self: *const IShellUIHelper2, pbstrUri: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.BrandImageUri(self, pbstrUri);
     }
-    pub fn SkipTabsWelcome(self: *const IShellUIHelper2) callconv(.Inline) HRESULT {
+    pub fn SkipTabsWelcome(self: *const IShellUIHelper2) callconv(.@"inline") HRESULT {
         return self.vtable.SkipTabsWelcome(self);
     }
-    pub fn DiagnoseConnection(self: *const IShellUIHelper2) callconv(.Inline) HRESULT {
+    pub fn DiagnoseConnection(self: *const IShellUIHelper2) callconv(.@"inline") HRESULT {
         return self.vtable.DiagnoseConnection(self);
     }
-    pub fn CustomizeClearType(self: *const IShellUIHelper2, fSet: i16) callconv(.Inline) HRESULT {
+    pub fn CustomizeClearType(self: *const IShellUIHelper2, fSet: i16) callconv(.@"inline") HRESULT {
         return self.vtable.CustomizeClearType(self, fSet);
     }
-    pub fn IsSearchProviderInstalled(self: *const IShellUIHelper2, URL: ?BSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn IsSearchProviderInstalled(self: *const IShellUIHelper2, URL: ?BSTR, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsSearchProviderInstalled(self, URL, pdwResult);
     }
-    pub fn IsSearchMigrated(self: *const IShellUIHelper2, pfMigrated: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsSearchMigrated(self: *const IShellUIHelper2, pfMigrated: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsSearchMigrated(self, pfMigrated);
     }
-    pub fn DefaultSearchProvider(self: *const IShellUIHelper2, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn DefaultSearchProvider(self: *const IShellUIHelper2, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DefaultSearchProvider(self, pbstrName);
     }
-    pub fn RunOnceRequiredSettingsComplete(self: *const IShellUIHelper2, fComplete: i16) callconv(.Inline) HRESULT {
+    pub fn RunOnceRequiredSettingsComplete(self: *const IShellUIHelper2, fComplete: i16) callconv(.@"inline") HRESULT {
         return self.vtable.RunOnceRequiredSettingsComplete(self, fComplete);
     }
-    pub fn RunOnceHasShown(self: *const IShellUIHelper2, pfShown: ?*i16) callconv(.Inline) HRESULT {
+    pub fn RunOnceHasShown(self: *const IShellUIHelper2, pfShown: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.RunOnceHasShown(self, pfShown);
     }
-    pub fn SearchGuideUrl(self: *const IShellUIHelper2, pbstrUrl: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn SearchGuideUrl(self: *const IShellUIHelper2, pbstrUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SearchGuideUrl(self, pbstrUrl);
     }
 };
@@ -16529,43 +16529,43 @@ pub const IShellUIHelper3 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddService(self: *const IShellUIHelper3, URL: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddService(self: *const IShellUIHelper3, URL: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddService(self, URL);
     }
-    pub fn IsServiceInstalled(self: *const IShellUIHelper3, URL: ?BSTR, Verb: ?BSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn IsServiceInstalled(self: *const IShellUIHelper3, URL: ?BSTR, Verb: ?BSTR, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsServiceInstalled(self, URL, Verb, pdwResult);
     }
-    pub fn InPrivateFilteringEnabled(self: *const IShellUIHelper3, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn InPrivateFilteringEnabled(self: *const IShellUIHelper3, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.InPrivateFilteringEnabled(self, pfEnabled);
     }
-    pub fn AddToFavoritesBar(self: *const IShellUIHelper3, URL: ?BSTR, Title: ?BSTR, Type: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddToFavoritesBar(self: *const IShellUIHelper3, URL: ?BSTR, Title: ?BSTR, Type: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddToFavoritesBar(self, URL, Title, Type);
     }
-    pub fn BuildNewTabPage(self: *const IShellUIHelper3) callconv(.Inline) HRESULT {
+    pub fn BuildNewTabPage(self: *const IShellUIHelper3) callconv(.@"inline") HRESULT {
         return self.vtable.BuildNewTabPage(self);
     }
-    pub fn SetRecentlyClosedVisible(self: *const IShellUIHelper3, fVisible: i16) callconv(.Inline) HRESULT {
+    pub fn SetRecentlyClosedVisible(self: *const IShellUIHelper3, fVisible: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SetRecentlyClosedVisible(self, fVisible);
     }
-    pub fn SetActivitiesVisible(self: *const IShellUIHelper3, fVisible: i16) callconv(.Inline) HRESULT {
+    pub fn SetActivitiesVisible(self: *const IShellUIHelper3, fVisible: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SetActivitiesVisible(self, fVisible);
     }
-    pub fn ContentDiscoveryReset(self: *const IShellUIHelper3) callconv(.Inline) HRESULT {
+    pub fn ContentDiscoveryReset(self: *const IShellUIHelper3) callconv(.@"inline") HRESULT {
         return self.vtable.ContentDiscoveryReset(self);
     }
-    pub fn IsSuggestedSitesEnabled(self: *const IShellUIHelper3, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsSuggestedSitesEnabled(self: *const IShellUIHelper3, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsSuggestedSitesEnabled(self, pfEnabled);
     }
-    pub fn EnableSuggestedSites(self: *const IShellUIHelper3, fEnable: i16) callconv(.Inline) HRESULT {
+    pub fn EnableSuggestedSites(self: *const IShellUIHelper3, fEnable: i16) callconv(.@"inline") HRESULT {
         return self.vtable.EnableSuggestedSites(self, fEnable);
     }
-    pub fn NavigateToSuggestedSites(self: *const IShellUIHelper3, bstrRelativeUrl: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn NavigateToSuggestedSites(self: *const IShellUIHelper3, bstrRelativeUrl: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.NavigateToSuggestedSites(self, bstrRelativeUrl);
     }
-    pub fn ShowTabsHelp(self: *const IShellUIHelper3) callconv(.Inline) HRESULT {
+    pub fn ShowTabsHelp(self: *const IShellUIHelper3) callconv(.@"inline") HRESULT {
         return self.vtable.ShowTabsHelp(self);
     }
-    pub fn ShowInPrivateHelp(self: *const IShellUIHelper3) callconv(.Inline) HRESULT {
+    pub fn ShowInPrivateHelp(self: *const IShellUIHelper3) callconv(.@"inline") HRESULT {
         return self.vtable.ShowInPrivateHelp(self);
     }
 };
@@ -16662,58 +16662,58 @@ pub const IShellUIHelper4 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn msIsSiteMode(self: *const IShellUIHelper4, pfSiteMode: ?*i16) callconv(.Inline) HRESULT {
+    pub fn msIsSiteMode(self: *const IShellUIHelper4, pfSiteMode: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.msIsSiteMode(self, pfSiteMode);
     }
-    pub fn msSiteModeShowThumbBar(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
+    pub fn msSiteModeShowThumbBar(self: *const IShellUIHelper4) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeShowThumbBar(self);
     }
-    pub fn msSiteModeAddThumbBarButton(self: *const IShellUIHelper4, bstrIconURL: ?BSTR, bstrTooltip: ?BSTR, pvarButtonID: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn msSiteModeAddThumbBarButton(self: *const IShellUIHelper4, bstrIconURL: ?BSTR, bstrTooltip: ?BSTR, pvarButtonID: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeAddThumbBarButton(self, bstrIconURL, bstrTooltip, pvarButtonID);
     }
-    pub fn msSiteModeUpdateThumbBarButton(self: *const IShellUIHelper4, ButtonID: VARIANT, fEnabled: i16, fVisible: i16) callconv(.Inline) HRESULT {
+    pub fn msSiteModeUpdateThumbBarButton(self: *const IShellUIHelper4, ButtonID: VARIANT, fEnabled: i16, fVisible: i16) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeUpdateThumbBarButton(self, ButtonID, fEnabled, fVisible);
     }
-    pub fn msSiteModeSetIconOverlay(self: *const IShellUIHelper4, IconUrl: ?BSTR, pvarDescription: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn msSiteModeSetIconOverlay(self: *const IShellUIHelper4, IconUrl: ?BSTR, pvarDescription: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeSetIconOverlay(self, IconUrl, pvarDescription);
     }
-    pub fn msSiteModeClearIconOverlay(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
+    pub fn msSiteModeClearIconOverlay(self: *const IShellUIHelper4) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeClearIconOverlay(self);
     }
-    pub fn msAddSiteMode(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
+    pub fn msAddSiteMode(self: *const IShellUIHelper4) callconv(.@"inline") HRESULT {
         return self.vtable.msAddSiteMode(self);
     }
-    pub fn msSiteModeCreateJumpList(self: *const IShellUIHelper4, bstrHeader: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn msSiteModeCreateJumpList(self: *const IShellUIHelper4, bstrHeader: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeCreateJumpList(self, bstrHeader);
     }
-    pub fn msSiteModeAddJumpListItem(self: *const IShellUIHelper4, bstrName: ?BSTR, bstrActionUri: ?BSTR, bstrIconUri: ?BSTR, pvarWindowType: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn msSiteModeAddJumpListItem(self: *const IShellUIHelper4, bstrName: ?BSTR, bstrActionUri: ?BSTR, bstrIconUri: ?BSTR, pvarWindowType: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeAddJumpListItem(self, bstrName, bstrActionUri, bstrIconUri, pvarWindowType);
     }
-    pub fn msSiteModeClearJumpList(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
+    pub fn msSiteModeClearJumpList(self: *const IShellUIHelper4) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeClearJumpList(self);
     }
-    pub fn msSiteModeShowJumpList(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
+    pub fn msSiteModeShowJumpList(self: *const IShellUIHelper4) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeShowJumpList(self);
     }
-    pub fn msSiteModeAddButtonStyle(self: *const IShellUIHelper4, uiButtonID: VARIANT, bstrIconUrl: ?BSTR, bstrTooltip: ?BSTR, pvarStyleID: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn msSiteModeAddButtonStyle(self: *const IShellUIHelper4, uiButtonID: VARIANT, bstrIconUrl: ?BSTR, bstrTooltip: ?BSTR, pvarStyleID: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeAddButtonStyle(self, uiButtonID, bstrIconUrl, bstrTooltip, pvarStyleID);
     }
-    pub fn msSiteModeShowButtonStyle(self: *const IShellUIHelper4, uiButtonID: VARIANT, uiStyleID: VARIANT) callconv(.Inline) HRESULT {
+    pub fn msSiteModeShowButtonStyle(self: *const IShellUIHelper4, uiButtonID: VARIANT, uiStyleID: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeShowButtonStyle(self, uiButtonID, uiStyleID);
     }
-    pub fn msSiteModeActivate(self: *const IShellUIHelper4) callconv(.Inline) HRESULT {
+    pub fn msSiteModeActivate(self: *const IShellUIHelper4) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeActivate(self);
     }
-    pub fn msIsSiteModeFirstRun(self: *const IShellUIHelper4, fPreserveState: i16, puiFirstRun: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn msIsSiteModeFirstRun(self: *const IShellUIHelper4, fPreserveState: i16, puiFirstRun: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msIsSiteModeFirstRun(self, fPreserveState, puiFirstRun);
     }
-    pub fn msAddTrackingProtectionList(self: *const IShellUIHelper4, URL: ?BSTR, bstrFilterName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn msAddTrackingProtectionList(self: *const IShellUIHelper4, URL: ?BSTR, bstrFilterName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.msAddTrackingProtectionList(self, URL, bstrFilterName);
     }
-    pub fn msTrackingProtectionEnabled(self: *const IShellUIHelper4, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn msTrackingProtectionEnabled(self: *const IShellUIHelper4, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.msTrackingProtectionEnabled(self, pfEnabled);
     }
-    pub fn msActiveXFilteringEnabled(self: *const IShellUIHelper4, pfEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn msActiveXFilteringEnabled(self: *const IShellUIHelper4, pfEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.msActiveXFilteringEnabled(self, pfEnabled);
     }
 };
@@ -16755,25 +16755,25 @@ pub const IShellUIHelper5 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn msProvisionNetworks(self: *const IShellUIHelper5, bstrProvisioningXml: ?BSTR, puiResult: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn msProvisionNetworks(self: *const IShellUIHelper5, bstrProvisioningXml: ?BSTR, puiResult: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msProvisionNetworks(self, bstrProvisioningXml, puiResult);
     }
-    pub fn msReportSafeUrl(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
+    pub fn msReportSafeUrl(self: *const IShellUIHelper5) callconv(.@"inline") HRESULT {
         return self.vtable.msReportSafeUrl(self);
     }
-    pub fn msSiteModeRefreshBadge(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
+    pub fn msSiteModeRefreshBadge(self: *const IShellUIHelper5) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeRefreshBadge(self);
     }
-    pub fn msSiteModeClearBadge(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
+    pub fn msSiteModeClearBadge(self: *const IShellUIHelper5) callconv(.@"inline") HRESULT {
         return self.vtable.msSiteModeClearBadge(self);
     }
-    pub fn msDiagnoseConnectionUILess(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
+    pub fn msDiagnoseConnectionUILess(self: *const IShellUIHelper5) callconv(.@"inline") HRESULT {
         return self.vtable.msDiagnoseConnectionUILess(self);
     }
-    pub fn msLaunchNetworkClientHelp(self: *const IShellUIHelper5) callconv(.Inline) HRESULT {
+    pub fn msLaunchNetworkClientHelp(self: *const IShellUIHelper5) callconv(.@"inline") HRESULT {
         return self.vtable.msLaunchNetworkClientHelp(self);
     }
-    pub fn msChangeDefaultBrowser(self: *const IShellUIHelper5, fChange: i16) callconv(.Inline) HRESULT {
+    pub fn msChangeDefaultBrowser(self: *const IShellUIHelper5, fChange: i16) callconv(.@"inline") HRESULT {
         return self.vtable.msChangeDefaultBrowser(self, fChange);
     }
 };
@@ -16854,46 +16854,46 @@ pub const IShellUIHelper6 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn msStopPeriodicTileUpdate(self: *const IShellUIHelper6) callconv(.Inline) HRESULT {
+    pub fn msStopPeriodicTileUpdate(self: *const IShellUIHelper6) callconv(.@"inline") HRESULT {
         return self.vtable.msStopPeriodicTileUpdate(self);
     }
-    pub fn msStartPeriodicTileUpdate(self: *const IShellUIHelper6, pollingUris: VARIANT, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.Inline) HRESULT {
+    pub fn msStartPeriodicTileUpdate(self: *const IShellUIHelper6, pollingUris: VARIANT, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msStartPeriodicTileUpdate(self, pollingUris, startTime, uiUpdateRecurrence);
     }
-    pub fn msStartPeriodicTileUpdateBatch(self: *const IShellUIHelper6, pollingUris: VARIANT, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.Inline) HRESULT {
+    pub fn msStartPeriodicTileUpdateBatch(self: *const IShellUIHelper6, pollingUris: VARIANT, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msStartPeriodicTileUpdateBatch(self, pollingUris, startTime, uiUpdateRecurrence);
     }
-    pub fn msClearTile(self: *const IShellUIHelper6) callconv(.Inline) HRESULT {
+    pub fn msClearTile(self: *const IShellUIHelper6) callconv(.@"inline") HRESULT {
         return self.vtable.msClearTile(self);
     }
-    pub fn msEnableTileNotificationQueue(self: *const IShellUIHelper6, fChange: i16) callconv(.Inline) HRESULT {
+    pub fn msEnableTileNotificationQueue(self: *const IShellUIHelper6, fChange: i16) callconv(.@"inline") HRESULT {
         return self.vtable.msEnableTileNotificationQueue(self, fChange);
     }
-    pub fn msPinnedSiteState(self: *const IShellUIHelper6, pvarSiteState: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn msPinnedSiteState(self: *const IShellUIHelper6, pvarSiteState: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msPinnedSiteState(self, pvarSiteState);
     }
-    pub fn msEnableTileNotificationQueueForSquare150x150(self: *const IShellUIHelper6, fChange: i16) callconv(.Inline) HRESULT {
+    pub fn msEnableTileNotificationQueueForSquare150x150(self: *const IShellUIHelper6, fChange: i16) callconv(.@"inline") HRESULT {
         return self.vtable.msEnableTileNotificationQueueForSquare150x150(self, fChange);
     }
-    pub fn msEnableTileNotificationQueueForWide310x150(self: *const IShellUIHelper6, fChange: i16) callconv(.Inline) HRESULT {
+    pub fn msEnableTileNotificationQueueForWide310x150(self: *const IShellUIHelper6, fChange: i16) callconv(.@"inline") HRESULT {
         return self.vtable.msEnableTileNotificationQueueForWide310x150(self, fChange);
     }
-    pub fn msEnableTileNotificationQueueForSquare310x310(self: *const IShellUIHelper6, fChange: i16) callconv(.Inline) HRESULT {
+    pub fn msEnableTileNotificationQueueForSquare310x310(self: *const IShellUIHelper6, fChange: i16) callconv(.@"inline") HRESULT {
         return self.vtable.msEnableTileNotificationQueueForSquare310x310(self, fChange);
     }
-    pub fn msScheduledTileNotification(self: *const IShellUIHelper6, bstrNotificationXml: ?BSTR, bstrNotificationId: ?BSTR, bstrNotificationTag: ?BSTR, startTime: VARIANT, expirationTime: VARIANT) callconv(.Inline) HRESULT {
+    pub fn msScheduledTileNotification(self: *const IShellUIHelper6, bstrNotificationXml: ?BSTR, bstrNotificationId: ?BSTR, bstrNotificationTag: ?BSTR, startTime: VARIANT, expirationTime: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msScheduledTileNotification(self, bstrNotificationXml, bstrNotificationId, bstrNotificationTag, startTime, expirationTime);
     }
-    pub fn msRemoveScheduledTileNotification(self: *const IShellUIHelper6, bstrNotificationId: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn msRemoveScheduledTileNotification(self: *const IShellUIHelper6, bstrNotificationId: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.msRemoveScheduledTileNotification(self, bstrNotificationId);
     }
-    pub fn msStartPeriodicBadgeUpdate(self: *const IShellUIHelper6, pollingUri: ?BSTR, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.Inline) HRESULT {
+    pub fn msStartPeriodicBadgeUpdate(self: *const IShellUIHelper6, pollingUri: ?BSTR, startTime: VARIANT, uiUpdateRecurrence: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.msStartPeriodicBadgeUpdate(self, pollingUri, startTime, uiUpdateRecurrence);
     }
-    pub fn msStopPeriodicBadgeUpdate(self: *const IShellUIHelper6) callconv(.Inline) HRESULT {
+    pub fn msStopPeriodicBadgeUpdate(self: *const IShellUIHelper6) callconv(.@"inline") HRESULT {
         return self.vtable.msStopPeriodicBadgeUpdate(self);
     }
-    pub fn msLaunchInternetOptions(self: *const IShellUIHelper6) callconv(.Inline) HRESULT {
+    pub fn msLaunchInternetOptions(self: *const IShellUIHelper6) callconv(.@"inline") HRESULT {
         return self.vtable.msLaunchInternetOptions(self);
     }
 };
@@ -16956,31 +16956,31 @@ pub const IShellUIHelper7 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: i16) callconv(.Inline) HRESULT {
+    pub fn SetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SetExperimentalFlag(self, bstrFlagString, vfFlag);
     }
-    pub fn GetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: ?*i16) callconv(.Inline) HRESULT {
+    pub fn GetExperimentalFlag(self: *const IShellUIHelper7, bstrFlagString: ?BSTR, vfFlag: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.GetExperimentalFlag(self, bstrFlagString, vfFlag);
     }
-    pub fn SetExperimentalValue(self: *const IShellUIHelper7, bstrValueString: ?BSTR, dwValue: u32) callconv(.Inline) HRESULT {
+    pub fn SetExperimentalValue(self: *const IShellUIHelper7, bstrValueString: ?BSTR, dwValue: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetExperimentalValue(self, bstrValueString, dwValue);
     }
-    pub fn GetExperimentalValue(self: *const IShellUIHelper7, bstrValueString: ?BSTR, pdwValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetExperimentalValue(self: *const IShellUIHelper7, bstrValueString: ?BSTR, pdwValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetExperimentalValue(self, bstrValueString, pdwValue);
     }
-    pub fn ResetAllExperimentalFlagsAndValues(self: *const IShellUIHelper7) callconv(.Inline) HRESULT {
+    pub fn ResetAllExperimentalFlagsAndValues(self: *const IShellUIHelper7) callconv(.@"inline") HRESULT {
         return self.vtable.ResetAllExperimentalFlagsAndValues(self);
     }
-    pub fn GetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: ?*i16) callconv(.Inline) HRESULT {
+    pub fn GetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.GetNeedIEAutoLaunchFlag(self, bstrUrl, flag);
     }
-    pub fn SetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: i16) callconv(.Inline) HRESULT {
+    pub fn SetNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, flag: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SetNeedIEAutoLaunchFlag(self, bstrUrl, flag);
     }
-    pub fn HasNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, exists: ?*i16) callconv(.Inline) HRESULT {
+    pub fn HasNeedIEAutoLaunchFlag(self: *const IShellUIHelper7, bstrUrl: ?BSTR, exists: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.HasNeedIEAutoLaunchFlag(self, bstrUrl, exists);
     }
-    pub fn LaunchIE(self: *const IShellUIHelper7, bstrUrl: ?BSTR, automated: i16) callconv(.Inline) HRESULT {
+    pub fn LaunchIE(self: *const IShellUIHelper7, bstrUrl: ?BSTR, automated: i16) callconv(.@"inline") HRESULT {
         return self.vtable.LaunchIE(self, bstrUrl, automated);
     }
 };
@@ -17027,25 +17027,25 @@ pub const IShellUIHelper8 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetCVListData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetCVListData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCVListData(self, pbstrResult);
     }
-    pub fn GetCVListLocalData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetCVListLocalData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCVListLocalData(self, pbstrResult);
     }
-    pub fn GetEMIEListData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetEMIEListData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetEMIEListData(self, pbstrResult);
     }
-    pub fn GetEMIEListLocalData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetEMIEListLocalData(self: *const IShellUIHelper8, pbstrResult: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetEMIEListLocalData(self, pbstrResult);
     }
-    pub fn OpenFavoritesPane(self: *const IShellUIHelper8) callconv(.Inline) HRESULT {
+    pub fn OpenFavoritesPane(self: *const IShellUIHelper8) callconv(.@"inline") HRESULT {
         return self.vtable.OpenFavoritesPane(self);
     }
-    pub fn OpenFavoritesSettings(self: *const IShellUIHelper8) callconv(.Inline) HRESULT {
+    pub fn OpenFavoritesSettings(self: *const IShellUIHelper8) callconv(.@"inline") HRESULT {
         return self.vtable.OpenFavoritesSettings(self);
     }
-    pub fn LaunchInHVSI(self: *const IShellUIHelper8, bstrUrl: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn LaunchInHVSI(self: *const IShellUIHelper8, bstrUrl: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.LaunchInHVSI(self, bstrUrl);
     }
 };
@@ -17071,7 +17071,7 @@ pub const IShellUIHelper9 = extern union {
     IShellUIHelper: IShellUIHelper,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetOSSku(self: *const IShellUIHelper9, pdwResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOSSku(self: *const IShellUIHelper9, pdwResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOSSku(self, pdwResult);
     }
 };
@@ -17141,43 +17141,43 @@ pub const IShellFavoritesNameSpace = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn MoveSelectionUp(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
+    pub fn MoveSelectionUp(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.MoveSelectionUp(self);
     }
-    pub fn MoveSelectionDown(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
+    pub fn MoveSelectionDown(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.MoveSelectionDown(self);
     }
-    pub fn ResetSort(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
+    pub fn ResetSort(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.ResetSort(self);
     }
-    pub fn NewFolder(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
+    pub fn NewFolder(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.NewFolder(self);
     }
-    pub fn Synchronize(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
+    pub fn Synchronize(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.Synchronize(self);
     }
-    pub fn Import(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
+    pub fn Import(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.Import(self);
     }
-    pub fn Export(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
+    pub fn Export(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.Export(self);
     }
-    pub fn InvokeContextMenuCommand(self: *const IShellFavoritesNameSpace, strCommand: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn InvokeContextMenuCommand(self: *const IShellFavoritesNameSpace, strCommand: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeContextMenuCommand(self, strCommand);
     }
-    pub fn MoveSelectionTo(self: *const IShellFavoritesNameSpace) callconv(.Inline) HRESULT {
+    pub fn MoveSelectionTo(self: *const IShellFavoritesNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.MoveSelectionTo(self);
     }
-    pub fn get_SubscriptionsEnabled(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_SubscriptionsEnabled(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_SubscriptionsEnabled(self, pBool);
     }
-    pub fn CreateSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn CreateSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSubscriptionForSelection(self, pBool);
     }
-    pub fn DeleteSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn DeleteSubscriptionForSelection(self: *const IShellFavoritesNameSpace, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteSubscriptionForSelection(self, pBool);
     }
-    pub fn SetRoot(self: *const IShellFavoritesNameSpace, bstrFullPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetRoot(self: *const IShellFavoritesNameSpace, bstrFullPath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetRoot(self, bstrFullPath);
     }
 };
@@ -17293,67 +17293,67 @@ pub const IShellNameSpace = extern union {
     IShellFavoritesNameSpace: IShellFavoritesNameSpace,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_EnumOptions(self: *const IShellNameSpace, pgrfEnumFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EnumOptions(self: *const IShellNameSpace, pgrfEnumFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnumOptions(self, pgrfEnumFlags);
     }
-    pub fn put_EnumOptions(self: *const IShellNameSpace, lVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_EnumOptions(self: *const IShellNameSpace, lVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnumOptions(self, lVal);
     }
-    pub fn get_SelectedItem(self: *const IShellNameSpace, pItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_SelectedItem(self: *const IShellNameSpace, pItem: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_SelectedItem(self, pItem);
     }
-    pub fn put_SelectedItem(self: *const IShellNameSpace, pItem: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn put_SelectedItem(self: *const IShellNameSpace, pItem: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.put_SelectedItem(self, pItem);
     }
-    pub fn get_Root(self: *const IShellNameSpace, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Root(self: *const IShellNameSpace, pvar: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Root(self, pvar);
     }
-    pub fn put_Root(self: *const IShellNameSpace, @"var": VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Root(self: *const IShellNameSpace, @"var": VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Root(self, @"var");
     }
-    pub fn get_Depth(self: *const IShellNameSpace, piDepth: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Depth(self: *const IShellNameSpace, piDepth: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Depth(self, piDepth);
     }
-    pub fn put_Depth(self: *const IShellNameSpace, iDepth: i32) callconv(.Inline) HRESULT {
+    pub fn put_Depth(self: *const IShellNameSpace, iDepth: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Depth(self, iDepth);
     }
-    pub fn get_Mode(self: *const IShellNameSpace, puMode: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Mode(self: *const IShellNameSpace, puMode: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Mode(self, puMode);
     }
-    pub fn put_Mode(self: *const IShellNameSpace, uMode: u32) callconv(.Inline) HRESULT {
+    pub fn put_Mode(self: *const IShellNameSpace, uMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Mode(self, uMode);
     }
-    pub fn get_Flags(self: *const IShellNameSpace, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const IShellNameSpace, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Flags(self, pdwFlags);
     }
-    pub fn put_Flags(self: *const IShellNameSpace, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn put_Flags(self: *const IShellNameSpace, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Flags(self, dwFlags);
     }
-    pub fn put_TVFlags(self: *const IShellNameSpace, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn put_TVFlags(self: *const IShellNameSpace, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_TVFlags(self, dwFlags);
     }
-    pub fn get_TVFlags(self: *const IShellNameSpace, dwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_TVFlags(self: *const IShellNameSpace, dwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_TVFlags(self, dwFlags);
     }
-    pub fn get_Columns(self: *const IShellNameSpace, bstrColumns: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Columns(self: *const IShellNameSpace, bstrColumns: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Columns(self, bstrColumns);
     }
-    pub fn put_Columns(self: *const IShellNameSpace, bstrColumns: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Columns(self: *const IShellNameSpace, bstrColumns: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Columns(self, bstrColumns);
     }
-    pub fn get_CountViewTypes(self: *const IShellNameSpace, piTypes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_CountViewTypes(self: *const IShellNameSpace, piTypes: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CountViewTypes(self, piTypes);
     }
-    pub fn SetViewType(self: *const IShellNameSpace, iType: i32) callconv(.Inline) HRESULT {
+    pub fn SetViewType(self: *const IShellNameSpace, iType: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetViewType(self, iType);
     }
-    pub fn SelectedItems(self: *const IShellNameSpace, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn SelectedItems(self: *const IShellNameSpace, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SelectedItems(self, ppid);
     }
-    pub fn Expand(self: *const IShellNameSpace, @"var": VARIANT, iDepth: i32) callconv(.Inline) HRESULT {
+    pub fn Expand(self: *const IShellNameSpace, @"var": VARIANT, iDepth: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Expand(self, @"var", iDepth);
     }
-    pub fn UnselectAll(self: *const IShellNameSpace) callconv(.Inline) HRESULT {
+    pub fn UnselectAll(self: *const IShellNameSpace) callconv(.@"inline") HRESULT {
         return self.vtable.UnselectAll(self);
     }
 };
@@ -17421,46 +17421,46 @@ pub const IScriptErrorList = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn advanceError(self: *const IScriptErrorList) callconv(.Inline) HRESULT {
+    pub fn advanceError(self: *const IScriptErrorList) callconv(.@"inline") HRESULT {
         return self.vtable.advanceError(self);
     }
-    pub fn retreatError(self: *const IScriptErrorList) callconv(.Inline) HRESULT {
+    pub fn retreatError(self: *const IScriptErrorList) callconv(.@"inline") HRESULT {
         return self.vtable.retreatError(self);
     }
-    pub fn canAdvanceError(self: *const IScriptErrorList, pfCanAdvance: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn canAdvanceError(self: *const IScriptErrorList, pfCanAdvance: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.canAdvanceError(self, pfCanAdvance);
     }
-    pub fn canRetreatError(self: *const IScriptErrorList, pfCanRetreat: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn canRetreatError(self: *const IScriptErrorList, pfCanRetreat: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.canRetreatError(self, pfCanRetreat);
     }
-    pub fn getErrorLine(self: *const IScriptErrorList, plLine: ?*i32) callconv(.Inline) HRESULT {
+    pub fn getErrorLine(self: *const IScriptErrorList, plLine: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.getErrorLine(self, plLine);
     }
-    pub fn getErrorChar(self: *const IScriptErrorList, plChar: ?*i32) callconv(.Inline) HRESULT {
+    pub fn getErrorChar(self: *const IScriptErrorList, plChar: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.getErrorChar(self, plChar);
     }
-    pub fn getErrorCode(self: *const IScriptErrorList, plCode: ?*i32) callconv(.Inline) HRESULT {
+    pub fn getErrorCode(self: *const IScriptErrorList, plCode: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.getErrorCode(self, plCode);
     }
-    pub fn getErrorMsg(self: *const IScriptErrorList, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn getErrorMsg(self: *const IScriptErrorList, pstr: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.getErrorMsg(self, pstr);
     }
-    pub fn getErrorUrl(self: *const IScriptErrorList, pstr: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn getErrorUrl(self: *const IScriptErrorList, pstr: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.getErrorUrl(self, pstr);
     }
-    pub fn getAlwaysShowLockState(self: *const IScriptErrorList, pfAlwaysShowLocked: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn getAlwaysShowLockState(self: *const IScriptErrorList, pfAlwaysShowLocked: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getAlwaysShowLockState(self, pfAlwaysShowLocked);
     }
-    pub fn getDetailsPaneOpen(self: *const IScriptErrorList, pfDetailsPaneOpen: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn getDetailsPaneOpen(self: *const IScriptErrorList, pfDetailsPaneOpen: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getDetailsPaneOpen(self, pfDetailsPaneOpen);
     }
-    pub fn setDetailsPaneOpen(self: *const IScriptErrorList, fDetailsPaneOpen: BOOL) callconv(.Inline) HRESULT {
+    pub fn setDetailsPaneOpen(self: *const IScriptErrorList, fDetailsPaneOpen: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setDetailsPaneOpen(self, fDetailsPaneOpen);
     }
-    pub fn getPerErrorDisplay(self: *const IScriptErrorList, pfPerErrorDisplay: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn getPerErrorDisplay(self: *const IScriptErrorList, pfPerErrorDisplay: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.getPerErrorDisplay(self, pfPerErrorDisplay);
     }
-    pub fn setPerErrorDisplay(self: *const IScriptErrorList, fPerErrorDisplay: BOOL) callconv(.Inline) HRESULT {
+    pub fn setPerErrorDisplay(self: *const IScriptErrorList, fPerErrorDisplay: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.setPerErrorDisplay(self, fPerErrorDisplay);
     }
 };
@@ -17608,7 +17608,7 @@ pub const IFolderViewOC = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetFolderView(self: *const IFolderViewOC, pdisp: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn SetFolderView(self: *const IFolderViewOC, pdisp: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolderView(self, pdisp);
     }
 };
@@ -17643,10 +17643,10 @@ pub const DFConstraint = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const DFConstraint, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const DFConstraint, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbs);
     }
-    pub fn get_Value(self: *const DFConstraint, pv: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const DFConstraint, pv: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, pv);
     }
 };
@@ -17743,55 +17743,55 @@ pub const FolderItem = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Application(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, ppid);
     }
-    pub fn get_Parent(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, ppid);
     }
-    pub fn get_Name(self: *const FolderItem, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const FolderItem, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbs);
     }
-    pub fn put_Name(self: *const FolderItem, bs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const FolderItem, bs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, bs);
     }
-    pub fn get_Path(self: *const FolderItem, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const FolderItem, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, pbs);
     }
-    pub fn get_GetLink(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_GetLink(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_GetLink(self, ppid);
     }
-    pub fn get_GetFolder(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_GetFolder(self: *const FolderItem, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_GetFolder(self, ppid);
     }
-    pub fn get_IsLink(self: *const FolderItem, pb: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLink(self: *const FolderItem, pb: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLink(self, pb);
     }
-    pub fn get_IsFolder(self: *const FolderItem, pb: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsFolder(self: *const FolderItem, pb: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFolder(self, pb);
     }
-    pub fn get_IsFileSystem(self: *const FolderItem, pb: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsFileSystem(self: *const FolderItem, pb: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFileSystem(self, pb);
     }
-    pub fn get_IsBrowsable(self: *const FolderItem, pb: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsBrowsable(self: *const FolderItem, pb: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsBrowsable(self, pb);
     }
-    pub fn get_ModifyDate(self: *const FolderItem, pdt: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_ModifyDate(self: *const FolderItem, pdt: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModifyDate(self, pdt);
     }
-    pub fn put_ModifyDate(self: *const FolderItem, dt: f64) callconv(.Inline) HRESULT {
+    pub fn put_ModifyDate(self: *const FolderItem, dt: f64) callconv(.@"inline") HRESULT {
         return self.vtable.put_ModifyDate(self, dt);
     }
-    pub fn get_Size(self: *const FolderItem, pul: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Size(self: *const FolderItem, pul: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Size(self, pul);
     }
-    pub fn get_Type(self: *const FolderItem, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const FolderItem, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, pbs);
     }
-    pub fn Verbs(self: *const FolderItem, ppfic: ?*?*FolderItemVerbs) callconv(.Inline) HRESULT {
+    pub fn Verbs(self: *const FolderItem, ppfic: ?*?*FolderItemVerbs) callconv(.@"inline") HRESULT {
         return self.vtable.Verbs(self, ppfic);
     }
-    pub fn InvokeVerb(self: *const FolderItem, vVerb: VARIANT) callconv(.Inline) HRESULT {
+    pub fn InvokeVerb(self: *const FolderItem, vVerb: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeVerb(self, vVerb);
     }
 };
@@ -17829,19 +17829,19 @@ pub const FolderItems = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const FolderItems, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const FolderItems, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get_Application(self: *const FolderItems, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const FolderItems, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, ppid);
     }
-    pub fn get_Parent(self: *const FolderItems, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const FolderItems, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, ppid);
     }
-    pub fn Item(self: *const FolderItems, index: VARIANT, ppid: ?*?*FolderItem) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const FolderItems, index: VARIANT, ppid: ?*?*FolderItem) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, index, ppid);
     }
-    pub fn _NewEnum(self: *const FolderItems, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn _NewEnum(self: *const FolderItems, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable._NewEnum(self, ppunk);
     }
 };
@@ -17873,16 +17873,16 @@ pub const FolderItemVerb = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Application(self: *const FolderItemVerb, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const FolderItemVerb, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, ppid);
     }
-    pub fn get_Parent(self: *const FolderItemVerb, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const FolderItemVerb, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, ppid);
     }
-    pub fn get_Name(self: *const FolderItemVerb, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const FolderItemVerb, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbs);
     }
-    pub fn DoIt(self: *const FolderItemVerb) callconv(.Inline) HRESULT {
+    pub fn DoIt(self: *const FolderItemVerb) callconv(.@"inline") HRESULT {
         return self.vtable.DoIt(self);
     }
 };
@@ -17920,19 +17920,19 @@ pub const FolderItemVerbs = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const FolderItemVerbs, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const FolderItemVerbs, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get_Application(self: *const FolderItemVerbs, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const FolderItemVerbs, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, ppid);
     }
-    pub fn get_Parent(self: *const FolderItemVerbs, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const FolderItemVerbs, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, ppid);
     }
-    pub fn Item(self: *const FolderItemVerbs, index: VARIANT, ppid: ?*?*FolderItemVerb) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const FolderItemVerbs, index: VARIANT, ppid: ?*?*FolderItemVerb) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, index, ppid);
     }
-    pub fn _NewEnum(self: *const FolderItemVerbs, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn _NewEnum(self: *const FolderItemVerbs, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable._NewEnum(self, ppunk);
     }
 };
@@ -17996,34 +17996,34 @@ pub const Folder = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Title(self: *const Folder, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Title(self: *const Folder, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Title(self, pbs);
     }
-    pub fn get_Application(self: *const Folder, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const Folder, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, ppid);
     }
-    pub fn get_Parent(self: *const Folder, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const Folder, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, ppid);
     }
-    pub fn get_ParentFolder(self: *const Folder, ppsf: ?*?*Folder) callconv(.Inline) HRESULT {
+    pub fn get_ParentFolder(self: *const Folder, ppsf: ?*?*Folder) callconv(.@"inline") HRESULT {
         return self.vtable.get_ParentFolder(self, ppsf);
     }
-    pub fn Items(self: *const Folder, ppid: ?*?*FolderItems) callconv(.Inline) HRESULT {
+    pub fn Items(self: *const Folder, ppid: ?*?*FolderItems) callconv(.@"inline") HRESULT {
         return self.vtable.Items(self, ppid);
     }
-    pub fn ParseName(self: *const Folder, bName: ?BSTR, ppid: ?*?*FolderItem) callconv(.Inline) HRESULT {
+    pub fn ParseName(self: *const Folder, bName: ?BSTR, ppid: ?*?*FolderItem) callconv(.@"inline") HRESULT {
         return self.vtable.ParseName(self, bName, ppid);
     }
-    pub fn NewFolder(self: *const Folder, bName: ?BSTR, vOptions: VARIANT) callconv(.Inline) HRESULT {
+    pub fn NewFolder(self: *const Folder, bName: ?BSTR, vOptions: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.NewFolder(self, bName, vOptions);
     }
-    pub fn MoveHere(self: *const Folder, vItem: VARIANT, vOptions: VARIANT) callconv(.Inline) HRESULT {
+    pub fn MoveHere(self: *const Folder, vItem: VARIANT, vOptions: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.MoveHere(self, vItem, vOptions);
     }
-    pub fn CopyHere(self: *const Folder, vItem: VARIANT, vOptions: VARIANT) callconv(.Inline) HRESULT {
+    pub fn CopyHere(self: *const Folder, vItem: VARIANT, vOptions: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.CopyHere(self, vItem, vOptions);
     }
-    pub fn GetDetailsOf(self: *const Folder, vItem: VARIANT, iColumn: i32, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDetailsOf(self: *const Folder, vItem: VARIANT, iColumn: i32, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDetailsOf(self, vItem, iColumn, pbs);
     }
 };
@@ -18059,19 +18059,19 @@ pub const Folder2 = extern union {
     Folder: Folder,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Self(self: *const Folder2, ppfi: ?*?*FolderItem) callconv(.Inline) HRESULT {
+    pub fn get_Self(self: *const Folder2, ppfi: ?*?*FolderItem) callconv(.@"inline") HRESULT {
         return self.vtable.get_Self(self, ppfi);
     }
-    pub fn get_OfflineStatus(self: *const Folder2, pul: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_OfflineStatus(self: *const Folder2, pul: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_OfflineStatus(self, pul);
     }
-    pub fn Synchronize(self: *const Folder2) callconv(.Inline) HRESULT {
+    pub fn Synchronize(self: *const Folder2) callconv(.@"inline") HRESULT {
         return self.vtable.Synchronize(self);
     }
-    pub fn get_HaveToShowWebViewBarricade(self: *const Folder2, pbHaveToShowWebViewBarricade: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_HaveToShowWebViewBarricade(self: *const Folder2, pbHaveToShowWebViewBarricade: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_HaveToShowWebViewBarricade(self, pbHaveToShowWebViewBarricade);
     }
-    pub fn DismissedWebViewBarricade(self: *const Folder2) callconv(.Inline) HRESULT {
+    pub fn DismissedWebViewBarricade(self: *const Folder2) callconv(.@"inline") HRESULT {
         return self.vtable.DismissedWebViewBarricade(self);
     }
 };
@@ -18097,10 +18097,10 @@ pub const Folder3 = extern union {
     Folder: Folder,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ShowWebViewBarricade(self: *const Folder3, pbShowWebViewBarricade: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_ShowWebViewBarricade(self: *const Folder3, pbShowWebViewBarricade: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ShowWebViewBarricade(self, pbShowWebViewBarricade);
     }
-    pub fn put_ShowWebViewBarricade(self: *const Folder3, bShowWebViewBarricade: i16) callconv(.Inline) HRESULT {
+    pub fn put_ShowWebViewBarricade(self: *const Folder3, bShowWebViewBarricade: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_ShowWebViewBarricade(self, bShowWebViewBarricade);
     }
 };
@@ -18125,10 +18125,10 @@ pub const FolderItem2 = extern union {
     FolderItem: FolderItem,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn InvokeVerbEx(self: *const FolderItem2, vVerb: VARIANT, vArgs: VARIANT) callconv(.Inline) HRESULT {
+    pub fn InvokeVerbEx(self: *const FolderItem2, vVerb: VARIANT, vArgs: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeVerbEx(self, vVerb, vArgs);
     }
-    pub fn ExtendedProperty(self: *const FolderItem2, bstrPropName: ?BSTR, pvRet: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn ExtendedProperty(self: *const FolderItem2, bstrPropName: ?BSTR, pvRet: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ExtendedProperty(self, bstrPropName, pvRet);
     }
 };
@@ -18148,7 +18148,7 @@ pub const FolderItems2 = extern union {
     FolderItems: FolderItems,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn InvokeVerbEx(self: *const FolderItems2, vVerb: VARIANT, vArgs: VARIANT) callconv(.Inline) HRESULT {
+    pub fn InvokeVerbEx(self: *const FolderItems2, vVerb: VARIANT, vArgs: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeVerbEx(self, vVerb, vArgs);
     }
 };
@@ -18174,10 +18174,10 @@ pub const FolderItems3 = extern union {
     FolderItems: FolderItems,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Filter(self: *const FolderItems3, grfFlags: i32, bstrFileSpec: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Filter(self: *const FolderItems3, grfFlags: i32, bstrFileSpec: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Filter(self, grfFlags, bstrFileSpec);
     }
-    pub fn get_Verbs(self: *const FolderItems3, ppfic: ?*?*FolderItemVerbs) callconv(.Inline) HRESULT {
+    pub fn get_Verbs(self: *const FolderItems3, ppfic: ?*?*FolderItemVerbs) callconv(.@"inline") HRESULT {
         return self.vtable.get_Verbs(self, ppfic);
     }
 };
@@ -18269,52 +18269,52 @@ pub const IShellLinkDual = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Path(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, pbs);
     }
-    pub fn put_Path(self: *const IShellLinkDual, bs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Path(self: *const IShellLinkDual, bs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Path(self, bs);
     }
-    pub fn get_Description(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pbs);
     }
-    pub fn put_Description(self: *const IShellLinkDual, bs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IShellLinkDual, bs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bs);
     }
-    pub fn get_WorkingDirectory(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_WorkingDirectory(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_WorkingDirectory(self, pbs);
     }
-    pub fn put_WorkingDirectory(self: *const IShellLinkDual, bs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_WorkingDirectory(self: *const IShellLinkDual, bs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_WorkingDirectory(self, bs);
     }
-    pub fn get_Arguments(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Arguments(self: *const IShellLinkDual, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Arguments(self, pbs);
     }
-    pub fn put_Arguments(self: *const IShellLinkDual, bs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Arguments(self: *const IShellLinkDual, bs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Arguments(self, bs);
     }
-    pub fn get_Hotkey(self: *const IShellLinkDual, piHK: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Hotkey(self: *const IShellLinkDual, piHK: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Hotkey(self, piHK);
     }
-    pub fn put_Hotkey(self: *const IShellLinkDual, iHK: i32) callconv(.Inline) HRESULT {
+    pub fn put_Hotkey(self: *const IShellLinkDual, iHK: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Hotkey(self, iHK);
     }
-    pub fn get_ShowCommand(self: *const IShellLinkDual, piShowCommand: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ShowCommand(self: *const IShellLinkDual, piShowCommand: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ShowCommand(self, piShowCommand);
     }
-    pub fn put_ShowCommand(self: *const IShellLinkDual, iShowCommand: i32) callconv(.Inline) HRESULT {
+    pub fn put_ShowCommand(self: *const IShellLinkDual, iShowCommand: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ShowCommand(self, iShowCommand);
     }
-    pub fn Resolve(self: *const IShellLinkDual, fFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Resolve(self: *const IShellLinkDual, fFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Resolve(self, fFlags);
     }
-    pub fn GetIconLocation(self: *const IShellLinkDual, pbs: ?*?BSTR, piIcon: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIconLocation(self: *const IShellLinkDual, pbs: ?*?BSTR, piIcon: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconLocation(self, pbs, piIcon);
     }
-    pub fn SetIconLocation(self: *const IShellLinkDual, bs: ?BSTR, iIcon: i32) callconv(.Inline) HRESULT {
+    pub fn SetIconLocation(self: *const IShellLinkDual, bs: ?BSTR, iIcon: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconLocation(self, bs, iIcon);
     }
-    pub fn Save(self: *const IShellLinkDual, vWhere: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IShellLinkDual, vWhere: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, vWhere);
     }
 };
@@ -18334,7 +18334,7 @@ pub const IShellLinkDual2 = extern union {
     IShellLinkDual: IShellLinkDual,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Target(self: *const IShellLinkDual2, ppfi: ?*?*FolderItem) callconv(.Inline) HRESULT {
+    pub fn get_Target(self: *const IShellLinkDual2, ppfi: ?*?*FolderItem) callconv(.@"inline") HRESULT {
         return self.vtable.get_Target(self, ppfi);
     }
 };
@@ -18395,31 +18395,31 @@ pub const IShellFolderViewDual = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Application(self: *const IShellFolderViewDual, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const IShellFolderViewDual, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, ppid);
     }
-    pub fn get_Parent(self: *const IShellFolderViewDual, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const IShellFolderViewDual, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, ppid);
     }
-    pub fn get_Folder(self: *const IShellFolderViewDual, ppid: ?*?*Folder) callconv(.Inline) HRESULT {
+    pub fn get_Folder(self: *const IShellFolderViewDual, ppid: ?*?*Folder) callconv(.@"inline") HRESULT {
         return self.vtable.get_Folder(self, ppid);
     }
-    pub fn SelectedItems(self: *const IShellFolderViewDual, ppid: ?*?*FolderItems) callconv(.Inline) HRESULT {
+    pub fn SelectedItems(self: *const IShellFolderViewDual, ppid: ?*?*FolderItems) callconv(.@"inline") HRESULT {
         return self.vtable.SelectedItems(self, ppid);
     }
-    pub fn get_FocusedItem(self: *const IShellFolderViewDual, ppid: ?*?*FolderItem) callconv(.Inline) HRESULT {
+    pub fn get_FocusedItem(self: *const IShellFolderViewDual, ppid: ?*?*FolderItem) callconv(.@"inline") HRESULT {
         return self.vtable.get_FocusedItem(self, ppid);
     }
-    pub fn SelectItem(self: *const IShellFolderViewDual, pvfi: ?*VARIANT, dwFlags: i32) callconv(.Inline) HRESULT {
+    pub fn SelectItem(self: *const IShellFolderViewDual, pvfi: ?*VARIANT, dwFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SelectItem(self, pvfi, dwFlags);
     }
-    pub fn PopupItemMenu(self: *const IShellFolderViewDual, pfi: ?*FolderItem, vx: VARIANT, vy: VARIANT, pbs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn PopupItemMenu(self: *const IShellFolderViewDual, pfi: ?*FolderItem, vx: VARIANT, vy: VARIANT, pbs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.PopupItemMenu(self, pfi, vx, vy, pbs);
     }
-    pub fn get_Script(self: *const IShellFolderViewDual, ppDisp: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Script(self: *const IShellFolderViewDual, ppDisp: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Script(self, ppDisp);
     }
-    pub fn get_ViewOptions(self: *const IShellFolderViewDual, plViewOptions: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ViewOptions(self: *const IShellFolderViewDual, plViewOptions: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ViewOptions(self, plViewOptions);
     }
 };
@@ -18449,13 +18449,13 @@ pub const IShellFolderViewDual2 = extern union {
     IShellFolderViewDual: IShellFolderViewDual,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CurrentViewMode(self: *const IShellFolderViewDual2, pViewMode: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_CurrentViewMode(self: *const IShellFolderViewDual2, pViewMode: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentViewMode(self, pViewMode);
     }
-    pub fn put_CurrentViewMode(self: *const IShellFolderViewDual2, ViewMode: u32) callconv(.Inline) HRESULT {
+    pub fn put_CurrentViewMode(self: *const IShellFolderViewDual2, ViewMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_CurrentViewMode(self, ViewMode);
     }
-    pub fn SelectItemRelative(self: *const IShellFolderViewDual2, iRelative: i32) callconv(.Inline) HRESULT {
+    pub fn SelectItemRelative(self: *const IShellFolderViewDual2, iRelative: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SelectItemRelative(self, iRelative);
     }
 };
@@ -18516,31 +18516,31 @@ pub const IShellFolderViewDual3 = extern union {
     IShellFolderViewDual: IShellFolderViewDual,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_GroupBy(self: *const IShellFolderViewDual3, pbstrGroupBy: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_GroupBy(self: *const IShellFolderViewDual3, pbstrGroupBy: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_GroupBy(self, pbstrGroupBy);
     }
-    pub fn put_GroupBy(self: *const IShellFolderViewDual3, bstrGroupBy: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_GroupBy(self: *const IShellFolderViewDual3, bstrGroupBy: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_GroupBy(self, bstrGroupBy);
     }
-    pub fn get_FolderFlags(self: *const IShellFolderViewDual3, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_FolderFlags(self: *const IShellFolderViewDual3, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_FolderFlags(self, pdwFlags);
     }
-    pub fn put_FolderFlags(self: *const IShellFolderViewDual3, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn put_FolderFlags(self: *const IShellFolderViewDual3, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_FolderFlags(self, dwFlags);
     }
-    pub fn get_SortColumns(self: *const IShellFolderViewDual3, pbstrSortColumns: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SortColumns(self: *const IShellFolderViewDual3, pbstrSortColumns: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SortColumns(self, pbstrSortColumns);
     }
-    pub fn put_SortColumns(self: *const IShellFolderViewDual3, bstrSortColumns: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_SortColumns(self: *const IShellFolderViewDual3, bstrSortColumns: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_SortColumns(self, bstrSortColumns);
     }
-    pub fn put_IconSize(self: *const IShellFolderViewDual3, iIconSize: i32) callconv(.Inline) HRESULT {
+    pub fn put_IconSize(self: *const IShellFolderViewDual3, iIconSize: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_IconSize(self, iIconSize);
     }
-    pub fn get_IconSize(self: *const IShellFolderViewDual3, piIconSize: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_IconSize(self: *const IShellFolderViewDual3, piIconSize: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_IconSize(self, piIconSize);
     }
-    pub fn FilterView(self: *const IShellFolderViewDual3, bstrFilterText: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn FilterView(self: *const IShellFolderViewDual3, bstrFilterText: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.FilterView(self, bstrFilterText);
     }
 };
@@ -18638,73 +18638,73 @@ pub const IShellDispatch = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Application(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, ppid);
     }
-    pub fn get_Parent(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parent(self, ppid);
     }
-    pub fn NameSpace(self: *const IShellDispatch, vDir: VARIANT, ppsdf: ?*?*Folder) callconv(.Inline) HRESULT {
+    pub fn NameSpace(self: *const IShellDispatch, vDir: VARIANT, ppsdf: ?*?*Folder) callconv(.@"inline") HRESULT {
         return self.vtable.NameSpace(self, vDir, ppsdf);
     }
-    pub fn BrowseForFolder(self: *const IShellDispatch, Hwnd: i32, Title: ?BSTR, Options: i32, RootFolder: VARIANT, ppsdf: ?*?*Folder) callconv(.Inline) HRESULT {
+    pub fn BrowseForFolder(self: *const IShellDispatch, Hwnd: i32, Title: ?BSTR, Options: i32, RootFolder: VARIANT, ppsdf: ?*?*Folder) callconv(.@"inline") HRESULT {
         return self.vtable.BrowseForFolder(self, Hwnd, Title, Options, RootFolder, ppsdf);
     }
-    pub fn Windows(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Windows(self: *const IShellDispatch, ppid: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Windows(self, ppid);
     }
-    pub fn Open(self: *const IShellDispatch, vDir: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IShellDispatch, vDir: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, vDir);
     }
-    pub fn Explore(self: *const IShellDispatch, vDir: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Explore(self: *const IShellDispatch, vDir: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Explore(self, vDir);
     }
-    pub fn MinimizeAll(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn MinimizeAll(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.MinimizeAll(self);
     }
-    pub fn UndoMinimizeALL(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn UndoMinimizeALL(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.UndoMinimizeALL(self);
     }
-    pub fn FileRun(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn FileRun(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.FileRun(self);
     }
-    pub fn CascadeWindows(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn CascadeWindows(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.CascadeWindows(self);
     }
-    pub fn TileVertically(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn TileVertically(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.TileVertically(self);
     }
-    pub fn TileHorizontally(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn TileHorizontally(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.TileHorizontally(self);
     }
-    pub fn ShutdownWindows(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn ShutdownWindows(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ShutdownWindows(self);
     }
-    pub fn Suspend(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn Suspend(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Suspend(self);
     }
-    pub fn EjectPC(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn EjectPC(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.EjectPC(self);
     }
-    pub fn SetTime(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn SetTime(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SetTime(self);
     }
-    pub fn TrayProperties(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn TrayProperties(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.TrayProperties(self);
     }
-    pub fn Help(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn Help(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Help(self);
     }
-    pub fn FindFiles(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn FindFiles(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.FindFiles(self);
     }
-    pub fn FindComputer(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn FindComputer(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.FindComputer(self);
     }
-    pub fn RefreshMenu(self: *const IShellDispatch) callconv(.Inline) HRESULT {
+    pub fn RefreshMenu(self: *const IShellDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshMenu(self);
     }
-    pub fn ControlPanelItem(self: *const IShellDispatch, bstrDir: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ControlPanelItem(self: *const IShellDispatch, bstrDir: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ControlPanelItem(self, bstrDir);
     }
 };
@@ -18772,31 +18772,31 @@ pub const IShellDispatch2 = extern union {
     IShellDispatch: IShellDispatch,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsRestricted(self: *const IShellDispatch2, Group: ?BSTR, Restriction: ?BSTR, plRestrictValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn IsRestricted(self: *const IShellDispatch2, Group: ?BSTR, Restriction: ?BSTR, plRestrictValue: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.IsRestricted(self, Group, Restriction, plRestrictValue);
     }
-    pub fn ShellExecute(self: *const IShellDispatch2, File: ?BSTR, vArgs: VARIANT, vDir: VARIANT, vOperation: VARIANT, vShow: VARIANT) callconv(.Inline) HRESULT {
+    pub fn ShellExecute(self: *const IShellDispatch2, File: ?BSTR, vArgs: VARIANT, vDir: VARIANT, vOperation: VARIANT, vShow: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ShellExecute(self, File, vArgs, vDir, vOperation, vShow);
     }
-    pub fn FindPrinter(self: *const IShellDispatch2, name: ?BSTR, location: ?BSTR, model: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn FindPrinter(self: *const IShellDispatch2, name: ?BSTR, location: ?BSTR, model: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.FindPrinter(self, name, location, model);
     }
-    pub fn GetSystemInformation(self: *const IShellDispatch2, name: ?BSTR, pv: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetSystemInformation(self: *const IShellDispatch2, name: ?BSTR, pv: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetSystemInformation(self, name, pv);
     }
-    pub fn ServiceStart(self: *const IShellDispatch2, ServiceName: ?BSTR, Persistent: VARIANT, pSuccess: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn ServiceStart(self: *const IShellDispatch2, ServiceName: ?BSTR, Persistent: VARIANT, pSuccess: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ServiceStart(self, ServiceName, Persistent, pSuccess);
     }
-    pub fn ServiceStop(self: *const IShellDispatch2, ServiceName: ?BSTR, Persistent: VARIANT, pSuccess: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn ServiceStop(self: *const IShellDispatch2, ServiceName: ?BSTR, Persistent: VARIANT, pSuccess: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ServiceStop(self, ServiceName, Persistent, pSuccess);
     }
-    pub fn IsServiceRunning(self: *const IShellDispatch2, ServiceName: ?BSTR, pRunning: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn IsServiceRunning(self: *const IShellDispatch2, ServiceName: ?BSTR, pRunning: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.IsServiceRunning(self, ServiceName, pRunning);
     }
-    pub fn CanStartStopService(self: *const IShellDispatch2, ServiceName: ?BSTR, pCanStartStop: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn CanStartStopService(self: *const IShellDispatch2, ServiceName: ?BSTR, pCanStartStop: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.CanStartStopService(self, ServiceName, pCanStartStop);
     }
-    pub fn ShowBrowserBar(self: *const IShellDispatch2, bstrClsid: ?BSTR, bShow: VARIANT, pSuccess: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn ShowBrowserBar(self: *const IShellDispatch2, bstrClsid: ?BSTR, bShow: VARIANT, pSuccess: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ShowBrowserBar(self, bstrClsid, bShow, pSuccess);
     }
 };
@@ -18817,7 +18817,7 @@ pub const IShellDispatch3 = extern union {
     IShellDispatch: IShellDispatch,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddToRecent(self: *const IShellDispatch3, varFile: VARIANT, bstrCategory: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddToRecent(self: *const IShellDispatch3, varFile: VARIANT, bstrCategory: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddToRecent(self, varFile, bstrCategory);
     }
 };
@@ -18850,16 +18850,16 @@ pub const IShellDispatch4 = extern union {
     IShellDispatch: IShellDispatch,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn WindowsSecurity(self: *const IShellDispatch4) callconv(.Inline) HRESULT {
+    pub fn WindowsSecurity(self: *const IShellDispatch4) callconv(.@"inline") HRESULT {
         return self.vtable.WindowsSecurity(self);
     }
-    pub fn ToggleDesktop(self: *const IShellDispatch4) callconv(.Inline) HRESULT {
+    pub fn ToggleDesktop(self: *const IShellDispatch4) callconv(.@"inline") HRESULT {
         return self.vtable.ToggleDesktop(self);
     }
-    pub fn ExplorerPolicy(self: *const IShellDispatch4, bstrPolicyName: ?BSTR, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn ExplorerPolicy(self: *const IShellDispatch4, bstrPolicyName: ?BSTR, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ExplorerPolicy(self, bstrPolicyName, pValue);
     }
-    pub fn GetSetting(self: *const IShellDispatch4, lSetting: i32, pResult: ?*i16) callconv(.Inline) HRESULT {
+    pub fn GetSetting(self: *const IShellDispatch4, lSetting: i32, pResult: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.GetSetting(self, lSetting, pResult);
     }
 };
@@ -18880,7 +18880,7 @@ pub const IShellDispatch5 = extern union {
     IShellDispatch: IShellDispatch,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn WindowSwitcher(self: *const IShellDispatch5) callconv(.Inline) HRESULT {
+    pub fn WindowSwitcher(self: *const IShellDispatch5) callconv(.@"inline") HRESULT {
         return self.vtable.WindowSwitcher(self);
     }
 };
@@ -18902,7 +18902,7 @@ pub const IShellDispatch6 = extern union {
     IShellDispatch: IShellDispatch,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SearchCommand(self: *const IShellDispatch6) callconv(.Inline) HRESULT {
+    pub fn SearchCommand(self: *const IShellDispatch6) callconv(.@"inline") HRESULT {
         return self.vtable.SearchCommand(self);
     }
 };
@@ -18941,19 +18941,19 @@ pub const IFileSearchBand = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetFocus(self: *const IFileSearchBand) callconv(.Inline) HRESULT {
+    pub fn SetFocus(self: *const IFileSearchBand) callconv(.@"inline") HRESULT {
         return self.vtable.SetFocus(self);
     }
-    pub fn SetSearchParameters(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR, bNavToResults: i16, pvarScope: ?*VARIANT, pvarQueryFile: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetSearchParameters(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR, bNavToResults: i16, pvarScope: ?*VARIANT, pvarQueryFile: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetSearchParameters(self, pbstrSearchID, bNavToResults, pvarScope, pvarQueryFile);
     }
-    pub fn get_SearchID(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SearchID(self: *const IFileSearchBand, pbstrSearchID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SearchID(self, pbstrSearchID);
     }
-    pub fn get_Scope(self: *const IFileSearchBand, pvarScope: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Scope(self: *const IFileSearchBand, pvarScope: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scope(self, pvarScope);
     }
-    pub fn get_QueryFile(self: *const IFileSearchBand, pvarFile: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_QueryFile(self: *const IFileSearchBand, pvarFile: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_QueryFile(self, pvarFile);
     }
 };
@@ -19007,31 +19007,31 @@ pub const IWebWizardHost = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn FinalBack(self: *const IWebWizardHost) callconv(.Inline) HRESULT {
+    pub fn FinalBack(self: *const IWebWizardHost) callconv(.@"inline") HRESULT {
         return self.vtable.FinalBack(self);
     }
-    pub fn FinalNext(self: *const IWebWizardHost) callconv(.Inline) HRESULT {
+    pub fn FinalNext(self: *const IWebWizardHost) callconv(.@"inline") HRESULT {
         return self.vtable.FinalNext(self);
     }
-    pub fn Cancel(self: *const IWebWizardHost) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IWebWizardHost) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
-    pub fn put_Caption(self: *const IWebWizardHost, bstrCaption: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Caption(self: *const IWebWizardHost, bstrCaption: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Caption(self, bstrCaption);
     }
-    pub fn get_Caption(self: *const IWebWizardHost, pbstrCaption: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Caption(self: *const IWebWizardHost, pbstrCaption: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Caption(self, pbstrCaption);
     }
-    pub fn put_Property(self: *const IWebWizardHost, bstrPropertyName: ?BSTR, pvProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Property(self: *const IWebWizardHost, bstrPropertyName: ?BSTR, pvProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Property(self, bstrPropertyName, pvProperty);
     }
-    pub fn get_Property(self: *const IWebWizardHost, bstrPropertyName: ?BSTR, pvProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Property(self: *const IWebWizardHost, bstrPropertyName: ?BSTR, pvProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Property(self, bstrPropertyName, pvProperty);
     }
-    pub fn SetWizardButtons(self: *const IWebWizardHost, vfEnableBack: i16, vfEnableNext: i16, vfLastPage: i16) callconv(.Inline) HRESULT {
+    pub fn SetWizardButtons(self: *const IWebWizardHost, vfEnableBack: i16, vfEnableNext: i16, vfLastPage: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SetWizardButtons(self, vfEnableBack, vfEnableNext, vfLastPage);
     }
-    pub fn SetHeaderText(self: *const IWebWizardHost, bstrHeaderTitle: ?BSTR, bstrHeaderSubtitle: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetHeaderText(self: *const IWebWizardHost, bstrHeaderTitle: ?BSTR, bstrHeaderSubtitle: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetHeaderText(self, bstrHeaderTitle, bstrHeaderSubtitle);
     }
 };
@@ -19051,7 +19051,7 @@ pub const IWebWizardHost2 = extern union {
     IWebWizardHost: IWebWizardHost,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SignString(self: *const IWebWizardHost2, value: ?BSTR, signedValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn SignString(self: *const IWebWizardHost2, value: ?BSTR, signedValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SignString(self, value, signedValue);
     }
 };
@@ -19071,7 +19071,7 @@ pub const INewWDEvents = extern union {
     IWebWizardHost: IWebWizardHost,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn PassportAuthenticate(self: *const INewWDEvents, bstrSignInUrl: ?BSTR, pvfAuthenitcated: ?*i16) callconv(.Inline) HRESULT {
+    pub fn PassportAuthenticate(self: *const INewWDEvents, bstrSignInUrl: ?BSTR, pvfAuthenitcated: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.PassportAuthenticate(self, bstrSignInUrl, pvfAuthenitcated);
     }
 };
@@ -19096,10 +19096,10 @@ pub const IAutoComplete = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const IAutoComplete, hwndEdit: ?HWND, punkACL: ?*IUnknown, pwszRegKeyPath: ?[*:0]const u16, pwszQuickComplete: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Init(self: *const IAutoComplete, hwndEdit: ?HWND, punkACL: ?*IUnknown, pwszRegKeyPath: ?[*:0]const u16, pwszQuickComplete: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Init(self, hwndEdit, punkACL, pwszRegKeyPath, pwszQuickComplete);
     }
-    pub fn Enable(self: *const IAutoComplete, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const IAutoComplete, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, fEnable);
     }
 };
@@ -19145,10 +19145,10 @@ pub const IAutoComplete2 = extern union {
     vtable: *const VTable,
     IAutoComplete: IAutoComplete,
     IUnknown: IUnknown,
-    pub fn SetOptions(self: *const IAutoComplete2, dwFlag: u32) callconv(.Inline) HRESULT {
+    pub fn SetOptions(self: *const IAutoComplete2, dwFlag: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOptions(self, dwFlag);
     }
-    pub fn GetOptions(self: *const IAutoComplete2, pdwFlag: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOptions(self: *const IAutoComplete2, pdwFlag: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptions(self, pdwFlag);
     }
 };
@@ -19185,13 +19185,13 @@ pub const IEnumACString = extern union {
     vtable: *const VTable,
     IEnumString: IEnumString,
     IUnknown: IUnknown,
-    pub fn NextItem(self: *const IEnumACString, pszUrl: ?[*:0]u16, cchMax: u32, pulSortIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn NextItem(self: *const IEnumACString, pszUrl: ?[*:0]u16, cchMax: u32, pulSortIndex: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.NextItem(self, pszUrl, cchMax, pulSortIndex);
     }
-    pub fn SetEnumOptions(self: *const IEnumACString, dwOptions: u32) callconv(.Inline) HRESULT {
+    pub fn SetEnumOptions(self: *const IEnumACString, dwOptions: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnumOptions(self, dwOptions);
     }
-    pub fn GetEnumOptions(self: *const IEnumACString, pdwOptions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEnumOptions(self: *const IEnumACString, pdwOptions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnumOptions(self, pdwOptions);
     }
 };
@@ -19227,19 +19227,19 @@ pub const IDataObjectAsyncCapability = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAsyncMode(self: *const IDataObjectAsyncCapability, fDoOpAsync: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetAsyncMode(self: *const IDataObjectAsyncCapability, fDoOpAsync: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetAsyncMode(self, fDoOpAsync);
     }
-    pub fn GetAsyncMode(self: *const IDataObjectAsyncCapability, pfIsOpAsync: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetAsyncMode(self: *const IDataObjectAsyncCapability, pfIsOpAsync: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetAsyncMode(self, pfIsOpAsync);
     }
-    pub fn StartOperation(self: *const IDataObjectAsyncCapability, pbcReserved: ?*IBindCtx) callconv(.Inline) HRESULT {
+    pub fn StartOperation(self: *const IDataObjectAsyncCapability, pbcReserved: ?*IBindCtx) callconv(.@"inline") HRESULT {
         return self.vtable.StartOperation(self, pbcReserved);
     }
-    pub fn InOperation(self: *const IDataObjectAsyncCapability, pfInAsyncOp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn InOperation(self: *const IDataObjectAsyncCapability, pfInAsyncOp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InOperation(self, pfInAsyncOp);
     }
-    pub fn EndOperation(self: *const IDataObjectAsyncCapability, hResult: HRESULT, pbcReserved: ?*IBindCtx, dwEffects: u32) callconv(.Inline) HRESULT {
+    pub fn EndOperation(self: *const IDataObjectAsyncCapability, hResult: HRESULT, pbcReserved: ?*IBindCtx, dwEffects: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EndOperation(self, hResult, pbcReserved, dwEffects);
     }
 };
@@ -19269,10 +19269,10 @@ pub const IExtractIconA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIconLocation(self: *const IExtractIconA, uFlags: u32, pszIconFile: [*:0]u8, cchMax: u32, piIndex: ?*i32, pwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetIconLocation(self: *const IExtractIconA, uFlags: u32, pszIconFile: [*:0]u8, cchMax: u32, piIndex: ?*i32, pwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconLocation(self, uFlags, pszIconFile, cchMax, piIndex, pwFlags);
     }
-    pub fn Extract(self: *const IExtractIconA, pszFile: ?[*:0]const u8, nIconIndex: u32, phiconLarge: ?*?HICON, phiconSmall: ?*?HICON, nIconSize: u32) callconv(.Inline) HRESULT {
+    pub fn Extract(self: *const IExtractIconA, pszFile: ?[*:0]const u8, nIconIndex: u32, phiconLarge: ?*?HICON, phiconSmall: ?*?HICON, nIconSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Extract(self, pszFile, nIconIndex, phiconLarge, phiconSmall, nIconSize);
     }
 };
@@ -19302,10 +19302,10 @@ pub const IExtractIconW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIconLocation(self: *const IExtractIconW, uFlags: u32, pszIconFile: [*:0]u16, cchMax: u32, piIndex: ?*i32, pwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetIconLocation(self: *const IExtractIconW, uFlags: u32, pszIconFile: [*:0]u16, cchMax: u32, piIndex: ?*i32, pwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconLocation(self, uFlags, pszIconFile, cchMax, piIndex, pwFlags);
     }
-    pub fn Extract(self: *const IExtractIconW, pszFile: ?[*:0]const u16, nIconIndex: u32, phiconLarge: ?*?HICON, phiconSmall: ?*?HICON, nIconSize: u32) callconv(.Inline) HRESULT {
+    pub fn Extract(self: *const IExtractIconW, pszFile: ?[*:0]const u16, nIconIndex: u32, phiconLarge: ?*?HICON, phiconSmall: ?*?HICON, nIconSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Extract(self, pszFile, nIconIndex, phiconLarge, phiconSmall, nIconSize);
     }
 };
@@ -19347,19 +19347,19 @@ pub const IShellIconOverlayManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFileOverlayInfo(self: *const IShellIconOverlayManager, pwszPath: ?[*:0]const u16, dwAttrib: u32, pIndex: ?*i32, dwflags: u32) callconv(.Inline) HRESULT {
+    pub fn GetFileOverlayInfo(self: *const IShellIconOverlayManager, pwszPath: ?[*:0]const u16, dwAttrib: u32, pIndex: ?*i32, dwflags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileOverlayInfo(self, pwszPath, dwAttrib, pIndex, dwflags);
     }
-    pub fn GetReservedOverlayInfo(self: *const IShellIconOverlayManager, pwszPath: ?[*:0]const u16, dwAttrib: u32, pIndex: ?*i32, dwflags: u32, iReservedID: i32) callconv(.Inline) HRESULT {
+    pub fn GetReservedOverlayInfo(self: *const IShellIconOverlayManager, pwszPath: ?[*:0]const u16, dwAttrib: u32, pIndex: ?*i32, dwflags: u32, iReservedID: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetReservedOverlayInfo(self, pwszPath, dwAttrib, pIndex, dwflags, iReservedID);
     }
-    pub fn RefreshOverlayImages(self: *const IShellIconOverlayManager, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn RefreshOverlayImages(self: *const IShellIconOverlayManager, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshOverlayImages(self, dwFlags);
     }
-    pub fn LoadNonloadedOverlayIdentifiers(self: *const IShellIconOverlayManager) callconv(.Inline) HRESULT {
+    pub fn LoadNonloadedOverlayIdentifiers(self: *const IShellIconOverlayManager) callconv(.@"inline") HRESULT {
         return self.vtable.LoadNonloadedOverlayIdentifiers(self);
     }
-    pub fn OverlayIndexFromImageIndex(self: *const IShellIconOverlayManager, iImage: i32, piIndex: ?*i32, fAdd: BOOL) callconv(.Inline) HRESULT {
+    pub fn OverlayIndexFromImageIndex(self: *const IShellIconOverlayManager, iImage: i32, piIndex: ?*i32, fAdd: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OverlayIndexFromImageIndex(self, iImage, piIndex, fAdd);
     }
 };
@@ -19383,10 +19383,10 @@ pub const IShellIconOverlay = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOverlayIndex(self: *const IShellIconOverlay, pidl: ?*ITEMIDLIST, pIndex: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayIndex(self: *const IShellIconOverlay, pidl: ?*ITEMIDLIST, pIndex: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayIndex(self, pidl, pIndex);
     }
-    pub fn GetOverlayIconIndex(self: *const IShellIconOverlay, pidl: ?*ITEMIDLIST, pIconIndex: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayIconIndex(self: *const IShellIconOverlay, pidl: ?*ITEMIDLIST, pIconIndex: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayIconIndex(self, pidl, pIconIndex);
     }
 };
@@ -19528,7 +19528,7 @@ pub const IURLSearchHook = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Translate(self: *const IURLSearchHook, pwszSearchURL: [*:0]u16, cchBufferSize: u32) callconv(.Inline) HRESULT {
+    pub fn Translate(self: *const IURLSearchHook, pwszSearchURL: [*:0]u16, cchBufferSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Translate(self, pwszSearchURL, cchBufferSize);
     }
 };
@@ -19554,13 +19554,13 @@ pub const ISearchContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSearchUrl(self: *const ISearchContext, pbstrSearchUrl: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSearchUrl(self: *const ISearchContext, pbstrSearchUrl: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSearchUrl(self, pbstrSearchUrl);
     }
-    pub fn GetSearchText(self: *const ISearchContext, pbstrSearchText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSearchText(self: *const ISearchContext, pbstrSearchText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSearchText(self, pbstrSearchText);
     }
-    pub fn GetSearchStyle(self: *const ISearchContext, pdwSearchStyle: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSearchStyle(self: *const ISearchContext, pdwSearchStyle: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSearchStyle(self, pdwSearchStyle);
     }
 };
@@ -19581,7 +19581,7 @@ pub const IURLSearchHook2 = extern union {
     vtable: *const VTable,
     IURLSearchHook: IURLSearchHook,
     IUnknown: IUnknown,
-    pub fn TranslateWithSearchContext(self: *const IURLSearchHook2, pwszSearchURL: [*:0]u16, cchBufferSize: u32, pSearchContext: ?*ISearchContext) callconv(.Inline) HRESULT {
+    pub fn TranslateWithSearchContext(self: *const IURLSearchHook2, pwszSearchURL: [*:0]u16, cchBufferSize: u32, pSearchContext: ?*ISearchContext) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateWithSearchContext(self, pwszSearchURL, cchBufferSize, pSearchContext);
     }
 };
@@ -19694,10 +19694,10 @@ pub const IShellDetails = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDetailsOf(self: *const IShellDetails, pidl: ?*ITEMIDLIST, iColumn: u32, pDetails: ?*SHELLDETAILS) callconv(.Inline) HRESULT {
+    pub fn GetDetailsOf(self: *const IShellDetails, pidl: ?*ITEMIDLIST, iColumn: u32, pDetails: ?*SHELLDETAILS) callconv(.@"inline") HRESULT {
         return self.vtable.GetDetailsOf(self, pidl, iColumn, pDetails);
     }
-    pub fn ColumnClick(self: *const IShellDetails, iColumn: u32) callconv(.Inline) HRESULT {
+    pub fn ColumnClick(self: *const IShellDetails, iColumn: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ColumnClick(self, iColumn);
     }
 };
@@ -19719,10 +19719,10 @@ pub const IObjMgr = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Append(self: *const IObjMgr, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Append(self: *const IObjMgr, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Append(self, punk);
     }
-    pub fn Remove(self: *const IObjMgr, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IObjMgr, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, punk);
     }
 };
@@ -19740,7 +19740,7 @@ pub const IACList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Expand(self: *const IACList, pszExpand: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Expand(self: *const IACList, pszExpand: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Expand(self, pszExpand);
     }
 };
@@ -19782,10 +19782,10 @@ pub const IACList2 = extern union {
     vtable: *const VTable,
     IACList: IACList,
     IUnknown: IUnknown,
-    pub fn SetOptions(self: *const IACList2, dwFlag: u32) callconv(.Inline) HRESULT {
+    pub fn SetOptions(self: *const IACList2, dwFlag: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOptions(self, dwFlag);
     }
-    pub fn GetOptions(self: *const IACList2, pdwFlag: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOptions(self: *const IACList2, pdwFlag: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptions(self, pdwFlag);
     }
 };
@@ -19848,34 +19848,34 @@ pub const IProgressDialog = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StartProgressDialog(self: *const IProgressDialog, hwndParent: ?HWND, punkEnableModless: ?*IUnknown, dwFlags: u32, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn StartProgressDialog(self: *const IProgressDialog, hwndParent: ?HWND, punkEnableModless: ?*IUnknown, dwFlags: u32, pvResevered: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.StartProgressDialog(self, hwndParent, punkEnableModless, dwFlags, pvResevered);
     }
-    pub fn StopProgressDialog(self: *const IProgressDialog) callconv(.Inline) HRESULT {
+    pub fn StopProgressDialog(self: *const IProgressDialog) callconv(.@"inline") HRESULT {
         return self.vtable.StopProgressDialog(self);
     }
-    pub fn SetTitle(self: *const IProgressDialog, pwzTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTitle(self: *const IProgressDialog, pwzTitle: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTitle(self, pwzTitle);
     }
-    pub fn SetAnimation(self: *const IProgressDialog, hInstAnimation: ?HINSTANCE, idAnimation: u32) callconv(.Inline) HRESULT {
+    pub fn SetAnimation(self: *const IProgressDialog, hInstAnimation: ?HINSTANCE, idAnimation: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAnimation(self, hInstAnimation, idAnimation);
     }
-    pub fn HasUserCancelled(self: *const IProgressDialog) callconv(.Inline) BOOL {
+    pub fn HasUserCancelled(self: *const IProgressDialog) callconv(.@"inline") BOOL {
         return self.vtable.HasUserCancelled(self);
     }
-    pub fn SetProgress(self: *const IProgressDialog, dwCompleted: u32, dwTotal: u32) callconv(.Inline) HRESULT {
+    pub fn SetProgress(self: *const IProgressDialog, dwCompleted: u32, dwTotal: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetProgress(self, dwCompleted, dwTotal);
     }
-    pub fn SetProgress64(self: *const IProgressDialog, ullCompleted: u64, ullTotal: u64) callconv(.Inline) HRESULT {
+    pub fn SetProgress64(self: *const IProgressDialog, ullCompleted: u64, ullTotal: u64) callconv(.@"inline") HRESULT {
         return self.vtable.SetProgress64(self, ullCompleted, ullTotal);
     }
-    pub fn SetLine(self: *const IProgressDialog, dwLineNum: u32, pwzString: ?[*:0]const u16, fCompactPath: BOOL, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetLine(self: *const IProgressDialog, dwLineNum: u32, pwzString: ?[*:0]const u16, fCompactPath: BOOL, pvResevered: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetLine(self, dwLineNum, pwzString, fCompactPath, pvResevered);
     }
-    pub fn SetCancelMsg(self: *const IProgressDialog, pwzCancelMsg: ?[*:0]const u16, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetCancelMsg(self: *const IProgressDialog, pwzCancelMsg: ?[*:0]const u16, pvResevered: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetCancelMsg(self, pwzCancelMsg, pvResevered);
     }
-    pub fn Timer(self: *const IProgressDialog, dwTimerAction: u32, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn Timer(self: *const IProgressDialog, dwTimerAction: u32, pvResevered: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Timer(self, dwTimerAction, pvResevered);
     }
 };
@@ -19905,13 +19905,13 @@ pub const IDockingWindowSite = extern union {
     vtable: *const VTable,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn GetBorderDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, prcBorder: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetBorderDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, prcBorder: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetBorderDW(self, punkObj, prcBorder);
     }
-    pub fn RequestBorderSpaceDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, pbw: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn RequestBorderSpaceDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, pbw: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.RequestBorderSpaceDW(self, punkObj, pbw);
     }
-    pub fn SetBorderSpaceDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, pbw: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn SetBorderSpaceDW(self: *const IDockingWindowSite, punkObj: ?*IUnknown, pbw: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetBorderSpaceDW(self, punkObj, pbw);
     }
 };
@@ -20044,7 +20044,7 @@ pub const IShellChangeNotify = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnChange(self: *const IShellChangeNotify, lEvent: i32, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn OnChange(self: *const IShellChangeNotify, lEvent: i32, pidl1: ?*ITEMIDLIST, pidl2: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.OnChange(self, lEvent, pidl1, pidl2);
     }
 };
@@ -20067,10 +20067,10 @@ pub const IQueryInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInfoTip(self: *const IQueryInfo, dwFlags: QITIPF_FLAGS, ppwszTip: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetInfoTip(self: *const IQueryInfo, dwFlags: QITIPF_FLAGS, ppwszTip: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetInfoTip(self, dwFlags, ppwszTip);
     }
-    pub fn GetInfoFlags(self: *const IQueryInfo, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetInfoFlags(self: *const IQueryInfo, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetInfoFlags(self, pdwFlags);
     }
 };
@@ -20547,7 +20547,7 @@ pub const IShellFolderViewCB = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MessageSFVCB(self: *const IShellFolderViewCB, uMsg: SFVM_MESSAGE_ID, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn MessageSFVCB(self: *const IShellFolderViewCB, uMsg: SFVM_MESSAGE_ID, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.MessageSFVCB(self, uMsg, wParam, lParam);
     }
 };
@@ -20724,88 +20724,88 @@ pub const IShellFolderView = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Rearrange(self: *const IShellFolderView, lParamSort: LPARAM) callconv(.Inline) HRESULT {
+    pub fn Rearrange(self: *const IShellFolderView, lParamSort: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.Rearrange(self, lParamSort);
     }
-    pub fn GetArrangeParam(self: *const IShellFolderView, plParamSort: ?*LPARAM) callconv(.Inline) HRESULT {
+    pub fn GetArrangeParam(self: *const IShellFolderView, plParamSort: ?*LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.GetArrangeParam(self, plParamSort);
     }
-    pub fn ArrangeGrid(self: *const IShellFolderView) callconv(.Inline) HRESULT {
+    pub fn ArrangeGrid(self: *const IShellFolderView) callconv(.@"inline") HRESULT {
         return self.vtable.ArrangeGrid(self);
     }
-    pub fn AutoArrange(self: *const IShellFolderView) callconv(.Inline) HRESULT {
+    pub fn AutoArrange(self: *const IShellFolderView) callconv(.@"inline") HRESULT {
         return self.vtable.AutoArrange(self);
     }
-    pub fn GetAutoArrange(self: *const IShellFolderView) callconv(.Inline) HRESULT {
+    pub fn GetAutoArrange(self: *const IShellFolderView) callconv(.@"inline") HRESULT {
         return self.vtable.GetAutoArrange(self);
     }
-    pub fn AddObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AddObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddObject(self, pidl, puItem);
     }
-    pub fn GetObject(self: *const IShellFolderView, ppidl: ?*?*ITEMIDLIST, uItem: u32) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const IShellFolderView, ppidl: ?*?*ITEMIDLIST, uItem: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, ppidl, uItem);
     }
-    pub fn RemoveObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RemoveObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveObject(self, pidl, puItem);
     }
-    pub fn GetObjectCount(self: *const IShellFolderView, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetObjectCount(self: *const IShellFolderView, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectCount(self, puCount);
     }
-    pub fn SetObjectCount(self: *const IShellFolderView, uCount: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetObjectCount(self: *const IShellFolderView, uCount: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetObjectCount(self, uCount, dwFlags);
     }
-    pub fn UpdateObject(self: *const IShellFolderView, pidlOld: ?*ITEMIDLIST, pidlNew: ?*ITEMIDLIST, puItem: ?*u32) callconv(.Inline) HRESULT {
+    pub fn UpdateObject(self: *const IShellFolderView, pidlOld: ?*ITEMIDLIST, pidlNew: ?*ITEMIDLIST, puItem: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateObject(self, pidlOld, pidlNew, puItem);
     }
-    pub fn RefreshObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RefreshObject(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, puItem: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshObject(self, pidl, puItem);
     }
-    pub fn SetRedraw(self: *const IShellFolderView, bRedraw: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetRedraw(self: *const IShellFolderView, bRedraw: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedraw(self, bRedraw);
     }
-    pub fn GetSelectedCount(self: *const IShellFolderView, puSelected: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSelectedCount(self: *const IShellFolderView, puSelected: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectedCount(self, puSelected);
     }
-    pub fn GetSelectedObjects(self: *const IShellFolderView, pppidl: ?*?*?*ITEMIDLIST, puItems: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSelectedObjects(self: *const IShellFolderView, pppidl: ?*?*?*ITEMIDLIST, puItems: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelectedObjects(self, pppidl, puItems);
     }
-    pub fn IsDropOnSource(self: *const IShellFolderView, pDropTarget: ?*IDropTarget) callconv(.Inline) HRESULT {
+    pub fn IsDropOnSource(self: *const IShellFolderView, pDropTarget: ?*IDropTarget) callconv(.@"inline") HRESULT {
         return self.vtable.IsDropOnSource(self, pDropTarget);
     }
-    pub fn GetDragPoint(self: *const IShellFolderView, ppt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn GetDragPoint(self: *const IShellFolderView, ppt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.GetDragPoint(self, ppt);
     }
-    pub fn GetDropPoint(self: *const IShellFolderView, ppt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn GetDropPoint(self: *const IShellFolderView, ppt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.GetDropPoint(self, ppt);
     }
-    pub fn MoveIcons(self: *const IShellFolderView, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn MoveIcons(self: *const IShellFolderView, pDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.MoveIcons(self, pDataObject);
     }
-    pub fn SetItemPos(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, ppt: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn SetItemPos(self: *const IShellFolderView, pidl: ?*ITEMIDLIST, ppt: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.SetItemPos(self, pidl, ppt);
     }
-    pub fn IsBkDropTarget(self: *const IShellFolderView, pDropTarget: ?*IDropTarget) callconv(.Inline) HRESULT {
+    pub fn IsBkDropTarget(self: *const IShellFolderView, pDropTarget: ?*IDropTarget) callconv(.@"inline") HRESULT {
         return self.vtable.IsBkDropTarget(self, pDropTarget);
     }
-    pub fn SetClipboard(self: *const IShellFolderView, bMove: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetClipboard(self: *const IShellFolderView, bMove: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipboard(self, bMove);
     }
-    pub fn SetPoints(self: *const IShellFolderView, pDataObject: ?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn SetPoints(self: *const IShellFolderView, pDataObject: ?*IDataObject) callconv(.@"inline") HRESULT {
         return self.vtable.SetPoints(self, pDataObject);
     }
-    pub fn GetItemSpacing(self: *const IShellFolderView, pSpacing: ?*ITEMSPACING) callconv(.Inline) HRESULT {
+    pub fn GetItemSpacing(self: *const IShellFolderView, pSpacing: ?*ITEMSPACING) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemSpacing(self, pSpacing);
     }
-    pub fn SetCallback(self: *const IShellFolderView, pNewCB: ?*IShellFolderViewCB, ppOldCB: ?*?*IShellFolderViewCB) callconv(.Inline) HRESULT {
+    pub fn SetCallback(self: *const IShellFolderView, pNewCB: ?*IShellFolderViewCB, ppOldCB: ?*?*IShellFolderViewCB) callconv(.@"inline") HRESULT {
         return self.vtable.SetCallback(self, pNewCB, ppOldCB);
     }
-    pub fn Select(self: *const IShellFolderView, dwFlags: SFVS_SELECT) callconv(.Inline) HRESULT {
+    pub fn Select(self: *const IShellFolderView, dwFlags: SFVS_SELECT) callconv(.@"inline") HRESULT {
         return self.vtable.Select(self, dwFlags);
     }
-    pub fn QuerySupport(self: *const IShellFolderView, pdwSupport: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QuerySupport(self: *const IShellFolderView, pdwSupport: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QuerySupport(self, pdwSupport);
     }
-    pub fn SetAutomationObject(self: *const IShellFolderView, pdisp: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn SetAutomationObject(self: *const IShellFolderView, pdisp: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SetAutomationObject(self, pdisp);
     }
 };
@@ -20919,13 +20919,13 @@ pub const INamedPropertyBag = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReadPropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16, pVar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn ReadPropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16, pVar: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.ReadPropertyNPB(self, pszBagname, pszPropName, pVar);
     }
-    pub fn WritePropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16, pVar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn WritePropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16, pVar: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.WritePropertyNPB(self, pszBagname, pszPropName, pVar);
     }
-    pub fn RemovePropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RemovePropertyNPB(self: *const INamedPropertyBag, pszBagname: ?[*:0]const u16, pszPropName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RemovePropertyNPB(self, pszBagname, pszPropName);
     }
 };
@@ -20979,22 +20979,22 @@ pub const INewShortcutHookA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetReferent(self: *const INewShortcutHookA, pcszReferent: ?[*:0]const u8, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetReferent(self: *const INewShortcutHookA, pcszReferent: ?[*:0]const u8, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetReferent(self, pcszReferent, hwnd);
     }
-    pub fn GetReferent(self: *const INewShortcutHookA, pszReferent: [*:0]u8, cchReferent: i32) callconv(.Inline) HRESULT {
+    pub fn GetReferent(self: *const INewShortcutHookA, pszReferent: [*:0]u8, cchReferent: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetReferent(self, pszReferent, cchReferent);
     }
-    pub fn SetFolder(self: *const INewShortcutHookA, pcszFolder: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn SetFolder(self: *const INewShortcutHookA, pcszFolder: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolder(self, pcszFolder);
     }
-    pub fn GetFolder(self: *const INewShortcutHookA, pszFolder: [*:0]u8, cchFolder: i32) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const INewShortcutHookA, pszFolder: [*:0]u8, cchFolder: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolder(self, pszFolder, cchFolder);
     }
-    pub fn GetName(self: *const INewShortcutHookA, pszName: [*:0]u8, cchName: i32) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const INewShortcutHookA, pszName: [*:0]u8, cchName: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, pszName, cchName);
     }
-    pub fn GetExtension(self: *const INewShortcutHookA, pszExtension: [*:0]u8, cchExtension: i32) callconv(.Inline) HRESULT {
+    pub fn GetExtension(self: *const INewShortcutHookA, pszExtension: [*:0]u8, cchExtension: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetExtension(self, pszExtension, cchExtension);
     }
 };
@@ -21037,22 +21037,22 @@ pub const INewShortcutHookW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetReferent(self: *const INewShortcutHookW, pcszReferent: ?[*:0]const u16, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetReferent(self: *const INewShortcutHookW, pcszReferent: ?[*:0]const u16, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetReferent(self, pcszReferent, hwnd);
     }
-    pub fn GetReferent(self: *const INewShortcutHookW, pszReferent: [*:0]u16, cchReferent: i32) callconv(.Inline) HRESULT {
+    pub fn GetReferent(self: *const INewShortcutHookW, pszReferent: [*:0]u16, cchReferent: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetReferent(self, pszReferent, cchReferent);
     }
-    pub fn SetFolder(self: *const INewShortcutHookW, pcszFolder: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFolder(self: *const INewShortcutHookW, pcszFolder: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFolder(self, pcszFolder);
     }
-    pub fn GetFolder(self: *const INewShortcutHookW, pszFolder: [*:0]u16, cchFolder: i32) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const INewShortcutHookW, pszFolder: [*:0]u16, cchFolder: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolder(self, pszFolder, cchFolder);
     }
-    pub fn GetName(self: *const INewShortcutHookW, pszName: [*:0]u16, cchName: i32) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const INewShortcutHookW, pszName: [*:0]u16, cchName: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, pszName, cchName);
     }
-    pub fn GetExtension(self: *const INewShortcutHookW, pszExtension: [*:0]u16, cchExtension: i32) callconv(.Inline) HRESULT {
+    pub fn GetExtension(self: *const INewShortcutHookW, pszExtension: [*:0]u16, cchExtension: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetExtension(self, pszExtension, cchExtension);
     }
 };
@@ -21075,7 +21075,7 @@ pub const ICopyHookA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CopyCallback(self: *const ICopyHookA, hwnd: ?HWND, wFunc: u32, wFlags: u32, pszSrcFile: ?[*:0]const u8, dwSrcAttribs: u32, pszDestFile: ?[*:0]const u8, dwDestAttribs: u32) callconv(.Inline) u32 {
+    pub fn CopyCallback(self: *const ICopyHookA, hwnd: ?HWND, wFunc: u32, wFlags: u32, pszSrcFile: ?[*:0]const u8, dwSrcAttribs: u32, pszDestFile: ?[*:0]const u8, dwDestAttribs: u32) callconv(.@"inline") u32 {
         return self.vtable.CopyCallback(self, hwnd, wFunc, wFlags, pszSrcFile, dwSrcAttribs, pszDestFile, dwDestAttribs);
     }
 };
@@ -21098,7 +21098,7 @@ pub const ICopyHookW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CopyCallback(self: *const ICopyHookW, hwnd: ?HWND, wFunc: u32, wFlags: u32, pszSrcFile: ?[*:0]const u16, dwSrcAttribs: u32, pszDestFile: ?[*:0]const u16, dwDestAttribs: u32) callconv(.Inline) u32 {
+    pub fn CopyCallback(self: *const ICopyHookW, hwnd: ?HWND, wFunc: u32, wFlags: u32, pszSrcFile: ?[*:0]const u16, dwSrcAttribs: u32, pszDestFile: ?[*:0]const u16, dwDestAttribs: u32) callconv(.@"inline") u32 {
         return self.vtable.CopyCallback(self, hwnd, wFunc, wFlags, pszSrcFile, dwSrcAttribs, pszDestFile, dwDestAttribs);
     }
 };
@@ -21121,10 +21121,10 @@ pub const ICurrentWorkingDirectory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDirectory(self: *const ICurrentWorkingDirectory, pwzPath: [*:0]u16, cchSize: u32) callconv(.Inline) HRESULT {
+    pub fn GetDirectory(self: *const ICurrentWorkingDirectory, pwzPath: [*:0]u16, cchSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDirectory(self, pwzPath, cchSize);
     }
-    pub fn SetDirectory(self: *const ICurrentWorkingDirectory, pwzPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDirectory(self: *const ICurrentWorkingDirectory, pwzPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDirectory(self, pwzPath);
     }
 };
@@ -21156,13 +21156,13 @@ pub const IDockingWindowFrame = extern union {
     vtable: *const VTable,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn AddToolbar(self: *const IDockingWindowFrame, punkSrc: ?*IUnknown, pwszItem: ?[*:0]const u16, dwAddFlags: u32) callconv(.Inline) HRESULT {
+    pub fn AddToolbar(self: *const IDockingWindowFrame, punkSrc: ?*IUnknown, pwszItem: ?[*:0]const u16, dwAddFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddToolbar(self, punkSrc, pwszItem, dwAddFlags);
     }
-    pub fn RemoveToolbar(self: *const IDockingWindowFrame, punkSrc: ?*IUnknown, dwRemoveFlags: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveToolbar(self: *const IDockingWindowFrame, punkSrc: ?*IUnknown, dwRemoveFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveToolbar(self, punkSrc, dwRemoveFlags);
     }
-    pub fn FindToolbar(self: *const IDockingWindowFrame, pwszItem: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn FindToolbar(self: *const IDockingWindowFrame, pwszItem: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.FindToolbar(self, pwszItem, riid, ppv);
     }
 };
@@ -21182,7 +21182,7 @@ pub const IThumbnailCapture = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CaptureThumbnail(self: *const IThumbnailCapture, pMaxSize: ?*const SIZE, pHTMLDoc2: ?*IUnknown, phbmThumbnail: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn CaptureThumbnail(self: *const IThumbnailCapture, pMaxSize: ?*const SIZE, pHTMLDoc2: ?*IUnknown, phbmThumbnail: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.CaptureThumbnail(self, pMaxSize, pHTMLDoc2, phbmThumbnail);
     }
 };
@@ -21222,13 +21222,13 @@ pub const IShellFolderBand = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitializeSFB(self: *const IShellFolderBand, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn InitializeSFB(self: *const IShellFolderBand, psf: ?*IShellFolder, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeSFB(self, psf, pidl);
     }
-    pub fn SetBandInfoSFB(self: *const IShellFolderBand, pbi: ?*BANDINFOSFB) callconv(.Inline) HRESULT {
+    pub fn SetBandInfoSFB(self: *const IShellFolderBand, pbi: ?*BANDINFOSFB) callconv(.@"inline") HRESULT {
         return self.vtable.SetBandInfoSFB(self, pbi);
     }
-    pub fn GetBandInfoSFB(self: *const IShellFolderBand, pbi: ?*BANDINFOSFB) callconv(.Inline) HRESULT {
+    pub fn GetBandInfoSFB(self: *const IShellFolderBand, pbi: ?*BANDINFOSFB) callconv(.@"inline") HRESULT {
         return self.vtable.GetBandInfoSFB(self, pbi);
     }
 };
@@ -21259,16 +21259,16 @@ pub const IDeskBarClient = extern union {
     vtable: *const VTable,
     IOleWindow: IOleWindow,
     IUnknown: IUnknown,
-    pub fn SetDeskBarSite(self: *const IDeskBarClient, punkSite: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetDeskBarSite(self: *const IDeskBarClient, punkSite: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetDeskBarSite(self, punkSite);
     }
-    pub fn SetModeDBC(self: *const IDeskBarClient, dwMode: u32) callconv(.Inline) HRESULT {
+    pub fn SetModeDBC(self: *const IDeskBarClient, dwMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetModeDBC(self, dwMode);
     }
-    pub fn UIActivateDBC(self: *const IDeskBarClient, dwState: u32) callconv(.Inline) HRESULT {
+    pub fn UIActivateDBC(self: *const IDeskBarClient, dwState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UIActivateDBC(self, dwState);
     }
-    pub fn GetSize(self: *const IDeskBarClient, dwWhich: u32, prc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IDeskBarClient, dwWhich: u32, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, dwWhich, prc);
     }
 };
@@ -21321,13 +21321,13 @@ pub const IColumnProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IColumnProvider, psci: ?*SHCOLUMNINIT) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IColumnProvider, psci: ?*SHCOLUMNINIT) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, psci);
     }
-    pub fn GetColumnInfo(self: *const IColumnProvider, dwIndex: u32, psci: ?*SHCOLUMNINFO) callconv(.Inline) HRESULT {
+    pub fn GetColumnInfo(self: *const IColumnProvider, dwIndex: u32, psci: ?*SHCOLUMNINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetColumnInfo(self, dwIndex, psci);
     }
-    pub fn GetItemData(self: *const IColumnProvider, pscid: ?*PROPERTYKEY, pscd: ?*SHCOLUMNDATA, pvarData: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetItemData(self: *const IColumnProvider, pscid: ?*PROPERTYKEY, pscd: ?*SHCOLUMNDATA, pvarData: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemData(self, pscid, pscd, pvarData);
     }
 };
@@ -21351,7 +21351,7 @@ pub const IDocViewSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnSetTitle(self: *const IDocViewSite, pvTitle: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn OnSetTitle(self: *const IDocViewSite, pvTitle: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.OnSetTitle(self, pvTitle);
     }
 };
@@ -21367,7 +21367,7 @@ pub const IInitializeObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IInitializeObject) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IInitializeObject) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self);
     }
 };
@@ -21396,16 +21396,16 @@ pub const IBanneredBar = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetIconSize(self: *const IBanneredBar, iIcon: u32) callconv(.Inline) HRESULT {
+    pub fn SetIconSize(self: *const IBanneredBar, iIcon: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconSize(self, iIcon);
     }
-    pub fn GetIconSize(self: *const IBanneredBar, piIcon: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetIconSize(self: *const IBanneredBar, piIcon: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconSize(self, piIcon);
     }
-    pub fn SetBitmap(self: *const IBanneredBar, hBitmap: ?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn SetBitmap(self: *const IBanneredBar, hBitmap: ?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.SetBitmap(self, hBitmap);
     }
-    pub fn GetBitmap(self: *const IBanneredBar, phBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn GetBitmap(self: *const IBanneredBar, phBitmap: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.GetBitmap(self, phBitmap);
     }
 };
@@ -22082,19 +22082,19 @@ pub const IQueryAssociations = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const IQueryAssociations, flags: u32, pszAssoc: ?[*:0]const u16, hkProgid: ?HKEY, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Init(self: *const IQueryAssociations, flags: u32, pszAssoc: ?[*:0]const u16, hkProgid: ?HKEY, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Init(self, flags, pszAssoc, hkProgid, hwnd);
     }
-    pub fn GetString(self: *const IQueryAssociations, flags: u32, str: ASSOCSTR, pszExtra: ?[*:0]const u16, pszOut: ?[*:0]u16, pcchOut: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetString(self: *const IQueryAssociations, flags: u32, str: ASSOCSTR, pszExtra: ?[*:0]const u16, pszOut: ?[*:0]u16, pcchOut: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetString(self, flags, str, pszExtra, pszOut, pcchOut);
     }
-    pub fn GetKey(self: *const IQueryAssociations, flags: u32, key: ASSOCKEY, pszExtra: ?[*:0]const u16, phkeyOut: ?*?HKEY) callconv(.Inline) HRESULT {
+    pub fn GetKey(self: *const IQueryAssociations, flags: u32, key: ASSOCKEY, pszExtra: ?[*:0]const u16, phkeyOut: ?*?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetKey(self, flags, key, pszExtra, phkeyOut);
     }
-    pub fn GetData(self: *const IQueryAssociations, flags: u32, data: ASSOCDATA, pszExtra: ?[*:0]const u16, pvOut: ?*anyopaque, pcbOut: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const IQueryAssociations, flags: u32, data: ASSOCDATA, pszExtra: ?[*:0]const u16, pvOut: ?*anyopaque, pcbOut: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, flags, data, pszExtra, pvOut, pcbOut);
     }
-    pub fn GetEnum(self: *const IQueryAssociations, flags: u32, assocenum: ASSOCENUM, pszExtra: ?[*:0]const u16, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetEnum(self: *const IQueryAssociations, flags: u32, assocenum: ASSOCENUM, pszExtra: ?[*:0]const u16, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnum(self, flags, assocenum, pszExtra, riid, ppvOut);
     }
 };
@@ -22363,19 +22363,19 @@ pub const IShellApp = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAppInfo(self: *const IShellApp, pai: ?*APPINFODATA) callconv(.Inline) HRESULT {
+    pub fn GetAppInfo(self: *const IShellApp, pai: ?*APPINFODATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppInfo(self, pai);
     }
-    pub fn GetPossibleActions(self: *const IShellApp, pdwActions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPossibleActions(self: *const IShellApp, pdwActions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPossibleActions(self, pdwActions);
     }
-    pub fn GetSlowAppInfo(self: *const IShellApp, psaid: ?*SLOWAPPINFO) callconv(.Inline) HRESULT {
+    pub fn GetSlowAppInfo(self: *const IShellApp, psaid: ?*SLOWAPPINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetSlowAppInfo(self, psaid);
     }
-    pub fn GetCachedSlowAppInfo(self: *const IShellApp, psaid: ?*SLOWAPPINFO) callconv(.Inline) HRESULT {
+    pub fn GetCachedSlowAppInfo(self: *const IShellApp, psaid: ?*SLOWAPPINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetCachedSlowAppInfo(self, psaid);
     }
-    pub fn IsInstalled(self: *const IShellApp) callconv(.Inline) HRESULT {
+    pub fn IsInstalled(self: *const IShellApp) callconv(.@"inline") HRESULT {
         return self.vtable.IsInstalled(self);
     }
 };
@@ -22424,13 +22424,13 @@ pub const IPublishedApp = extern union {
     vtable: *const VTable,
     IShellApp: IShellApp,
     IUnknown: IUnknown,
-    pub fn Install(self: *const IPublishedApp, pstInstall: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn Install(self: *const IPublishedApp, pstInstall: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.Install(self, pstInstall);
     }
-    pub fn GetPublishedAppInfo(self: *const IPublishedApp, ppai: ?*PUBAPPINFO) callconv(.Inline) HRESULT {
+    pub fn GetPublishedAppInfo(self: *const IPublishedApp, ppai: ?*PUBAPPINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublishedAppInfo(self, ppai);
     }
-    pub fn Unschedule(self: *const IPublishedApp) callconv(.Inline) HRESULT {
+    pub fn Unschedule(self: *const IPublishedApp) callconv(.@"inline") HRESULT {
         return self.vtable.Unschedule(self);
     }
 };
@@ -22451,7 +22451,7 @@ pub const IPublishedApp2 = extern union {
     IPublishedApp: IPublishedApp,
     IShellApp: IShellApp,
     IUnknown: IUnknown,
-    pub fn Install2(self: *const IPublishedApp2, pstInstall: ?*SYSTEMTIME, hwndParent: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Install2(self: *const IPublishedApp2, pstInstall: ?*SYSTEMTIME, hwndParent: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Install2(self, pstInstall, hwndParent);
     }
 };
@@ -22472,10 +22472,10 @@ pub const IEnumPublishedApps = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumPublishedApps, pia: ?*?*IPublishedApp) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumPublishedApps, pia: ?*?*IPublishedApp) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, pia);
     }
-    pub fn Reset(self: *const IEnumPublishedApps) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumPublishedApps) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -22506,16 +22506,16 @@ pub const IAppPublisher = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNumberOfCategories(self: *const IAppPublisher, pdwCat: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNumberOfCategories(self: *const IAppPublisher, pdwCat: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberOfCategories(self, pdwCat);
     }
-    pub fn GetCategories(self: *const IAppPublisher, pAppCategoryList: ?*APPCATEGORYINFOLIST) callconv(.Inline) HRESULT {
+    pub fn GetCategories(self: *const IAppPublisher, pAppCategoryList: ?*APPCATEGORYINFOLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategories(self, pAppCategoryList);
     }
-    pub fn GetNumberOfApps(self: *const IAppPublisher, pdwApps: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNumberOfApps(self: *const IAppPublisher, pdwApps: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberOfApps(self, pdwApps);
     }
-    pub fn EnumApps(self: *const IAppPublisher, pAppCategoryId: ?*Guid, ppepa: ?*?*IEnumPublishedApps) callconv(.Inline) HRESULT {
+    pub fn EnumApps(self: *const IAppPublisher, pAppCategoryId: ?*Guid, ppepa: ?*?*IEnumPublishedApps) callconv(.@"inline") HRESULT {
         return self.vtable.EnumApps(self, pAppCategoryId, ppepa);
     }
 };
@@ -22783,55 +22783,55 @@ pub const ICredentialProviderCredential = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Advise(self: *const ICredentialProviderCredential, pcpce: ?*ICredentialProviderCredentialEvents) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const ICredentialProviderCredential, pcpce: ?*ICredentialProviderCredentialEvents) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, pcpce);
     }
-    pub fn UnAdvise(self: *const ICredentialProviderCredential) callconv(.Inline) HRESULT {
+    pub fn UnAdvise(self: *const ICredentialProviderCredential) callconv(.@"inline") HRESULT {
         return self.vtable.UnAdvise(self);
     }
-    pub fn SetSelected(self: *const ICredentialProviderCredential, pbAutoLogon: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn SetSelected(self: *const ICredentialProviderCredential, pbAutoLogon: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetSelected(self, pbAutoLogon);
     }
-    pub fn SetDeselected(self: *const ICredentialProviderCredential) callconv(.Inline) HRESULT {
+    pub fn SetDeselected(self: *const ICredentialProviderCredential) callconv(.@"inline") HRESULT {
         return self.vtable.SetDeselected(self);
     }
-    pub fn GetFieldState(self: *const ICredentialProviderCredential, dwFieldID: u32, pcpfs: ?*CREDENTIAL_PROVIDER_FIELD_STATE, pcpfis: ?*CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE) callconv(.Inline) HRESULT {
+    pub fn GetFieldState(self: *const ICredentialProviderCredential, dwFieldID: u32, pcpfs: ?*CREDENTIAL_PROVIDER_FIELD_STATE, pcpfis: ?*CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetFieldState(self, dwFieldID, pcpfs, pcpfis);
     }
-    pub fn GetStringValue(self: *const ICredentialProviderCredential, dwFieldID: u32, ppsz: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringValue(self: *const ICredentialProviderCredential, dwFieldID: u32, ppsz: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringValue(self, dwFieldID, ppsz);
     }
-    pub fn GetBitmapValue(self: *const ICredentialProviderCredential, dwFieldID: u32, phbmp: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn GetBitmapValue(self: *const ICredentialProviderCredential, dwFieldID: u32, phbmp: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.GetBitmapValue(self, dwFieldID, phbmp);
     }
-    pub fn GetCheckboxValue(self: *const ICredentialProviderCredential, dwFieldID: u32, pbChecked: ?*BOOL, ppszLabel: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCheckboxValue(self: *const ICredentialProviderCredential, dwFieldID: u32, pbChecked: ?*BOOL, ppszLabel: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCheckboxValue(self, dwFieldID, pbChecked, ppszLabel);
     }
-    pub fn GetSubmitButtonValue(self: *const ICredentialProviderCredential, dwFieldID: u32, pdwAdjacentTo: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSubmitButtonValue(self: *const ICredentialProviderCredential, dwFieldID: u32, pdwAdjacentTo: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSubmitButtonValue(self, dwFieldID, pdwAdjacentTo);
     }
-    pub fn GetComboBoxValueCount(self: *const ICredentialProviderCredential, dwFieldID: u32, pcItems: ?*u32, pdwSelectedItem: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetComboBoxValueCount(self: *const ICredentialProviderCredential, dwFieldID: u32, pcItems: ?*u32, pdwSelectedItem: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetComboBoxValueCount(self, dwFieldID, pcItems, pdwSelectedItem);
     }
-    pub fn GetComboBoxValueAt(self: *const ICredentialProviderCredential, dwFieldID: u32, dwItem: u32, ppszItem: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetComboBoxValueAt(self: *const ICredentialProviderCredential, dwFieldID: u32, dwItem: u32, ppszItem: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetComboBoxValueAt(self, dwFieldID, dwItem, ppszItem);
     }
-    pub fn SetStringValue(self: *const ICredentialProviderCredential, dwFieldID: u32, psz: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetStringValue(self: *const ICredentialProviderCredential, dwFieldID: u32, psz: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStringValue(self, dwFieldID, psz);
     }
-    pub fn SetCheckboxValue(self: *const ICredentialProviderCredential, dwFieldID: u32, bChecked: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetCheckboxValue(self: *const ICredentialProviderCredential, dwFieldID: u32, bChecked: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetCheckboxValue(self, dwFieldID, bChecked);
     }
-    pub fn SetComboBoxSelectedValue(self: *const ICredentialProviderCredential, dwFieldID: u32, dwSelectedItem: u32) callconv(.Inline) HRESULT {
+    pub fn SetComboBoxSelectedValue(self: *const ICredentialProviderCredential, dwFieldID: u32, dwSelectedItem: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetComboBoxSelectedValue(self, dwFieldID, dwSelectedItem);
     }
-    pub fn CommandLinkClicked(self: *const ICredentialProviderCredential, dwFieldID: u32) callconv(.Inline) HRESULT {
+    pub fn CommandLinkClicked(self: *const ICredentialProviderCredential, dwFieldID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CommandLinkClicked(self, dwFieldID);
     }
-    pub fn GetSerialization(self: *const ICredentialProviderCredential, pcpgsr: ?*CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE, pcpcs: ?*CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION, ppszOptionalStatusText: ?*?PWSTR, pcpsiOptionalStatusIcon: ?*CREDENTIAL_PROVIDER_STATUS_ICON) callconv(.Inline) HRESULT {
+    pub fn GetSerialization(self: *const ICredentialProviderCredential, pcpgsr: ?*CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE, pcpcs: ?*CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION, ppszOptionalStatusText: ?*?PWSTR, pcpsiOptionalStatusIcon: ?*CREDENTIAL_PROVIDER_STATUS_ICON) callconv(.@"inline") HRESULT {
         return self.vtable.GetSerialization(self, pcpgsr, pcpcs, ppszOptionalStatusText, pcpsiOptionalStatusIcon);
     }
-    pub fn ReportResult(self: *const ICredentialProviderCredential, ntsStatus: NTSTATUS, ntsSubstatus: NTSTATUS, ppszOptionalStatusText: ?*?PWSTR, pcpsiOptionalStatusIcon: ?*CREDENTIAL_PROVIDER_STATUS_ICON) callconv(.Inline) HRESULT {
+    pub fn ReportResult(self: *const ICredentialProviderCredential, ntsStatus: NTSTATUS, ntsSubstatus: NTSTATUS, ppszOptionalStatusText: ?*?PWSTR, pcpsiOptionalStatusIcon: ?*CREDENTIAL_PROVIDER_STATUS_ICON) callconv(.@"inline") HRESULT {
         return self.vtable.ReportResult(self, ntsStatus, ntsSubstatus, ppszOptionalStatusText, pcpsiOptionalStatusIcon);
     }
 };
@@ -22850,7 +22850,7 @@ pub const IQueryContinueWithStatus = extern union {
     vtable: *const VTable,
     IQueryContinue: IQueryContinue,
     IUnknown: IUnknown,
-    pub fn SetStatusMessage(self: *const IQueryContinueWithStatus, psz: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetStatusMessage(self: *const IQueryContinueWithStatus, psz: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStatusMessage(self, psz);
     }
 };
@@ -22872,10 +22872,10 @@ pub const IConnectableCredentialProviderCredential = extern union {
     vtable: *const VTable,
     ICredentialProviderCredential: ICredentialProviderCredential,
     IUnknown: IUnknown,
-    pub fn Connect(self: *const IConnectableCredentialProviderCredential, pqcws: ?*IQueryContinueWithStatus) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IConnectableCredentialProviderCredential, pqcws: ?*IQueryContinueWithStatus) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, pqcws);
     }
-    pub fn Disconnect(self: *const IConnectableCredentialProviderCredential) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const IConnectableCredentialProviderCredential) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnect(self);
     }
 };
@@ -22948,34 +22948,34 @@ pub const ICredentialProviderCredentialEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetFieldState(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, cpfs: CREDENTIAL_PROVIDER_FIELD_STATE) callconv(.Inline) HRESULT {
+    pub fn SetFieldState(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, cpfs: CREDENTIAL_PROVIDER_FIELD_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.SetFieldState(self, pcpc, dwFieldID, cpfs);
     }
-    pub fn SetFieldInteractiveState(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, cpfis: CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE) callconv(.Inline) HRESULT {
+    pub fn SetFieldInteractiveState(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, cpfis: CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.SetFieldInteractiveState(self, pcpc, dwFieldID, cpfis);
     }
-    pub fn SetFieldString(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, psz: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFieldString(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, psz: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFieldString(self, pcpc, dwFieldID, psz);
     }
-    pub fn SetFieldCheckbox(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, bChecked: BOOL, pszLabel: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFieldCheckbox(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, bChecked: BOOL, pszLabel: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFieldCheckbox(self, pcpc, dwFieldID, bChecked, pszLabel);
     }
-    pub fn SetFieldBitmap(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, hbmp: ?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn SetFieldBitmap(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, hbmp: ?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.SetFieldBitmap(self, pcpc, dwFieldID, hbmp);
     }
-    pub fn SetFieldComboBoxSelectedItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwSelectedItem: u32) callconv(.Inline) HRESULT {
+    pub fn SetFieldComboBoxSelectedItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwSelectedItem: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFieldComboBoxSelectedItem(self, pcpc, dwFieldID, dwSelectedItem);
     }
-    pub fn DeleteFieldComboBoxItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwItem: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteFieldComboBoxItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwItem: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteFieldComboBoxItem(self, pcpc, dwFieldID, dwItem);
     }
-    pub fn AppendFieldComboBoxItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, pszItem: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AppendFieldComboBoxItem(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, pszItem: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AppendFieldComboBoxItem(self, pcpc, dwFieldID, pszItem);
     }
-    pub fn SetFieldSubmitButton(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwAdjacentTo: u32) callconv(.Inline) HRESULT {
+    pub fn SetFieldSubmitButton(self: *const ICredentialProviderCredentialEvents, pcpc: ?*ICredentialProviderCredential, dwFieldID: u32, dwAdjacentTo: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFieldSubmitButton(self, pcpc, dwFieldID, dwAdjacentTo);
     }
-    pub fn OnCreatingWindow(self: *const ICredentialProviderCredentialEvents, phwndOwner: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn OnCreatingWindow(self: *const ICredentialProviderCredentialEvents, phwndOwner: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.OnCreatingWindow(self, phwndOwner);
     }
 };
@@ -23026,28 +23026,28 @@ pub const ICredentialProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetUsageScenario(self: *const ICredentialProvider, cpus: CREDENTIAL_PROVIDER_USAGE_SCENARIO, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetUsageScenario(self: *const ICredentialProvider, cpus: CREDENTIAL_PROVIDER_USAGE_SCENARIO, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetUsageScenario(self, cpus, dwFlags);
     }
-    pub fn SetSerialization(self: *const ICredentialProvider, pcpcs: ?*const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION) callconv(.Inline) HRESULT {
+    pub fn SetSerialization(self: *const ICredentialProvider, pcpcs: ?*const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION) callconv(.@"inline") HRESULT {
         return self.vtable.SetSerialization(self, pcpcs);
     }
-    pub fn Advise(self: *const ICredentialProvider, pcpe: ?*ICredentialProviderEvents, upAdviseContext: usize) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const ICredentialProvider, pcpe: ?*ICredentialProviderEvents, upAdviseContext: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, pcpe, upAdviseContext);
     }
-    pub fn UnAdvise(self: *const ICredentialProvider) callconv(.Inline) HRESULT {
+    pub fn UnAdvise(self: *const ICredentialProvider) callconv(.@"inline") HRESULT {
         return self.vtable.UnAdvise(self);
     }
-    pub fn GetFieldDescriptorCount(self: *const ICredentialProvider, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFieldDescriptorCount(self: *const ICredentialProvider, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFieldDescriptorCount(self, pdwCount);
     }
-    pub fn GetFieldDescriptorAt(self: *const ICredentialProvider, dwIndex: u32, ppcpfd: ?*?*CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR) callconv(.Inline) HRESULT {
+    pub fn GetFieldDescriptorAt(self: *const ICredentialProvider, dwIndex: u32, ppcpfd: ?*?*CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFieldDescriptorAt(self, dwIndex, ppcpfd);
     }
-    pub fn GetCredentialCount(self: *const ICredentialProvider, pdwCount: ?*u32, pdwDefault: ?*u32, pbAutoLogonWithDefault: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetCredentialCount(self: *const ICredentialProvider, pdwCount: ?*u32, pdwDefault: ?*u32, pbAutoLogonWithDefault: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetCredentialCount(self, pdwCount, pdwDefault, pbAutoLogonWithDefault);
     }
-    pub fn GetCredentialAt(self: *const ICredentialProvider, dwIndex: u32, ppcpc: **ICredentialProviderCredential) callconv(.Inline) HRESULT {
+    pub fn GetCredentialAt(self: *const ICredentialProvider, dwIndex: u32, ppcpc: **ICredentialProviderCredential) callconv(.@"inline") HRESULT {
         return self.vtable.GetCredentialAt(self, dwIndex, ppcpc);
     }
 };
@@ -23065,7 +23065,7 @@ pub const ICredentialProviderEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CredentialsChanged(self: *const ICredentialProviderEvents, upAdviseContext: usize) callconv(.Inline) HRESULT {
+    pub fn CredentialsChanged(self: *const ICredentialProviderEvents, upAdviseContext: usize) callconv(.@"inline") HRESULT {
         return self.vtable.CredentialsChanged(self, upAdviseContext);
     }
 };
@@ -23092,10 +23092,10 @@ pub const ICredentialProviderFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Filter(self: *const ICredentialProviderFilter, cpus: CREDENTIAL_PROVIDER_USAGE_SCENARIO, dwFlags: u32, rgclsidProviders: [*]Guid, rgbAllow: [*]BOOL, cProviders: u32) callconv(.Inline) HRESULT {
+    pub fn Filter(self: *const ICredentialProviderFilter, cpus: CREDENTIAL_PROVIDER_USAGE_SCENARIO, dwFlags: u32, rgclsidProviders: [*]Guid, rgbAllow: [*]BOOL, cProviders: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Filter(self, cpus, dwFlags, rgclsidProviders, rgbAllow, cProviders);
     }
-    pub fn UpdateRemoteCredential(self: *const ICredentialProviderFilter, pcpcsIn: ?*const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION, pcpcsOut: ?*CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION) callconv(.Inline) HRESULT {
+    pub fn UpdateRemoteCredential(self: *const ICredentialProviderFilter, pcpcsIn: ?*const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION, pcpcsOut: ?*CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateRemoteCredential(self, pcpcsIn, pcpcsOut);
     }
 };
@@ -23114,7 +23114,7 @@ pub const ICredentialProviderCredential2 = extern union {
     vtable: *const VTable,
     ICredentialProviderCredential: ICredentialProviderCredential,
     IUnknown: IUnknown,
-    pub fn GetUserSid(self: *const ICredentialProviderCredential2, sid: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetUserSid(self: *const ICredentialProviderCredential2, sid: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserSid(self, sid);
     }
 };
@@ -23133,7 +23133,7 @@ pub const ICredentialProviderCredentialWithFieldOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFieldOptions(self: *const ICredentialProviderCredentialWithFieldOptions, fieldID: u32, options: ?*CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn GetFieldOptions(self: *const ICredentialProviderCredentialWithFieldOptions, fieldID: u32, options: ?*CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetFieldOptions(self, fieldID, options);
     }
 };
@@ -23160,13 +23160,13 @@ pub const ICredentialProviderCredentialEvents2 = extern union {
     vtable: *const VTable,
     ICredentialProviderCredentialEvents: ICredentialProviderCredentialEvents,
     IUnknown: IUnknown,
-    pub fn BeginFieldUpdates(self: *const ICredentialProviderCredentialEvents2) callconv(.Inline) HRESULT {
+    pub fn BeginFieldUpdates(self: *const ICredentialProviderCredentialEvents2) callconv(.@"inline") HRESULT {
         return self.vtable.BeginFieldUpdates(self);
     }
-    pub fn EndFieldUpdates(self: *const ICredentialProviderCredentialEvents2) callconv(.Inline) HRESULT {
+    pub fn EndFieldUpdates(self: *const ICredentialProviderCredentialEvents2) callconv(.@"inline") HRESULT {
         return self.vtable.EndFieldUpdates(self);
     }
-    pub fn SetFieldOptions(self: *const ICredentialProviderCredentialEvents2, credential: ?*ICredentialProviderCredential, fieldID: u32, options: CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn SetFieldOptions(self: *const ICredentialProviderCredentialEvents2, credential: ?*ICredentialProviderCredential, fieldID: u32, options: CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.SetFieldOptions(self, credential, fieldID, options);
     }
 };
@@ -23198,16 +23198,16 @@ pub const ICredentialProviderUser = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSid(self: *const ICredentialProviderUser, sid: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSid(self: *const ICredentialProviderUser, sid: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSid(self, sid);
     }
-    pub fn GetProviderID(self: *const ICredentialProviderUser, providerID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetProviderID(self: *const ICredentialProviderUser, providerID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetProviderID(self, providerID);
     }
-    pub fn GetStringValue(self: *const ICredentialProviderUser, key: ?*const PROPERTYKEY, stringValue: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringValue(self: *const ICredentialProviderUser, key: ?*const PROPERTYKEY, stringValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringValue(self, key, stringValue);
     }
-    pub fn GetValue(self: *const ICredentialProviderUser, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const ICredentialProviderUser, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, key, value);
     }
 };
@@ -23238,16 +23238,16 @@ pub const ICredentialProviderUserArray = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetProviderFilter(self: *const ICredentialProviderUserArray, guidProviderToFilterTo: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetProviderFilter(self: *const ICredentialProviderUserArray, guidProviderToFilterTo: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetProviderFilter(self, guidProviderToFilterTo);
     }
-    pub fn GetAccountOptions(self: *const ICredentialProviderUserArray, credentialProviderAccountOptions: ?*CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn GetAccountOptions(self: *const ICredentialProviderUserArray, credentialProviderAccountOptions: ?*CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetAccountOptions(self, credentialProviderAccountOptions);
     }
-    pub fn GetCount(self: *const ICredentialProviderUserArray, userCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ICredentialProviderUserArray, userCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, userCount);
     }
-    pub fn GetAt(self: *const ICredentialProviderUserArray, userIndex: u32, user: **ICredentialProviderUser) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const ICredentialProviderUserArray, userIndex: u32, user: **ICredentialProviderUser) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, userIndex, user);
     }
 };
@@ -23265,7 +23265,7 @@ pub const ICredentialProviderSetUserArray = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetUserArray(self: *const ICredentialProviderSetUserArray, users: ?*ICredentialProviderUserArray) callconv(.Inline) HRESULT {
+    pub fn SetUserArray(self: *const ICredentialProviderSetUserArray, users: ?*ICredentialProviderUserArray) callconv(.@"inline") HRESULT {
         return self.vtable.SetUserArray(self, users);
     }
 };
@@ -23313,10 +23313,10 @@ pub const ISyncMgrHandlerCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHandlerEnumerator(self: *const ISyncMgrHandlerCollection, ppenum: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn GetHandlerEnumerator(self: *const ISyncMgrHandlerCollection, ppenum: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.GetHandlerEnumerator(self, ppenum);
     }
-    pub fn BindToHandler(self: *const ISyncMgrHandlerCollection, pszHandlerID: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToHandler(self: *const ISyncMgrHandlerCollection, pszHandlerID: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToHandler(self, pszHandlerID, riid, ppv);
     }
 };
@@ -23430,28 +23430,28 @@ pub const ISyncMgrHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const ISyncMgrHandler, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const ISyncMgrHandler, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppszName);
     }
-    pub fn GetHandlerInfo(self: *const ISyncMgrHandler, ppHandlerInfo: ?*?*ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
+    pub fn GetHandlerInfo(self: *const ISyncMgrHandler, ppHandlerInfo: ?*?*ISyncMgrHandlerInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetHandlerInfo(self, ppHandlerInfo);
     }
-    pub fn GetObject(self: *const ISyncMgrHandler, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const ISyncMgrHandler, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, rguidObjectID, riid, ppv);
     }
-    pub fn GetCapabilities(self: *const ISyncMgrHandler, pmCapabilities: ?*SYNCMGR_HANDLER_CAPABILITIES) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const ISyncMgrHandler, pmCapabilities: ?*SYNCMGR_HANDLER_CAPABILITIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, pmCapabilities);
     }
-    pub fn GetPolicies(self: *const ISyncMgrHandler, pmPolicies: ?*SYNCMGR_HANDLER_POLICIES) callconv(.Inline) HRESULT {
+    pub fn GetPolicies(self: *const ISyncMgrHandler, pmPolicies: ?*SYNCMGR_HANDLER_POLICIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetPolicies(self, pmPolicies);
     }
-    pub fn Activate(self: *const ISyncMgrHandler, fActivate: BOOL) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const ISyncMgrHandler, fActivate: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, fActivate);
     }
-    pub fn Enable(self: *const ISyncMgrHandler, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const ISyncMgrHandler, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, fEnable);
     }
-    pub fn Synchronize(self: *const ISyncMgrHandler, ppszItemIDs: [*]?PWSTR, cItems: u32, hwndOwner: ?HWND, pSessionCreator: ?*ISyncMgrSessionCreator, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Synchronize(self: *const ISyncMgrHandler, ppszItemIDs: [*]?PWSTR, cItems: u32, hwndOwner: ?HWND, pSessionCreator: ?*ISyncMgrSessionCreator, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Synchronize(self, ppszItemIDs, cItems, hwndOwner, pSessionCreator, punk);
     }
 };
@@ -23509,25 +23509,25 @@ pub const ISyncMgrHandlerInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetType(self: *const ISyncMgrHandlerInfo, pnType: ?*SYNCMGR_HANDLER_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const ISyncMgrHandlerInfo, pnType: ?*SYNCMGR_HANDLER_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pnType);
     }
-    pub fn GetTypeLabel(self: *const ISyncMgrHandlerInfo, ppszTypeLabel: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTypeLabel(self: *const ISyncMgrHandlerInfo, ppszTypeLabel: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeLabel(self, ppszTypeLabel);
     }
-    pub fn GetComment(self: *const ISyncMgrHandlerInfo, ppszComment: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetComment(self: *const ISyncMgrHandlerInfo, ppszComment: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetComment(self, ppszComment);
     }
-    pub fn GetLastSyncTime(self: *const ISyncMgrHandlerInfo, pftLastSync: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetLastSyncTime(self: *const ISyncMgrHandlerInfo, pftLastSync: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastSyncTime(self, pftLastSync);
     }
-    pub fn IsActive(self: *const ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
+    pub fn IsActive(self: *const ISyncMgrHandlerInfo) callconv(.@"inline") HRESULT {
         return self.vtable.IsActive(self);
     }
-    pub fn IsEnabled(self: *const ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
+    pub fn IsEnabled(self: *const ISyncMgrHandlerInfo) callconv(.@"inline") HRESULT {
         return self.vtable.IsEnabled(self);
     }
-    pub fn IsConnected(self: *const ISyncMgrHandlerInfo) callconv(.Inline) HRESULT {
+    pub fn IsConnected(self: *const ISyncMgrHandlerInfo) callconv(.@"inline") HRESULT {
         return self.vtable.IsConnected(self);
     }
 };
@@ -23554,13 +23554,13 @@ pub const ISyncMgrSyncItemContainer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSyncItem(self: *const ISyncMgrSyncItemContainer, pszItemID: ?[*:0]const u16, ppItem: ?*?*ISyncMgrSyncItem) callconv(.Inline) HRESULT {
+    pub fn GetSyncItem(self: *const ISyncMgrSyncItemContainer, pszItemID: ?[*:0]const u16, ppItem: ?*?*ISyncMgrSyncItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetSyncItem(self, pszItemID, ppItem);
     }
-    pub fn GetSyncItemEnumerator(self: *const ISyncMgrSyncItemContainer, ppenum: ?*?*IEnumSyncMgrSyncItems) callconv(.Inline) HRESULT {
+    pub fn GetSyncItemEnumerator(self: *const ISyncMgrSyncItemContainer, ppenum: ?*?*IEnumSyncMgrSyncItems) callconv(.@"inline") HRESULT {
         return self.vtable.GetSyncItemEnumerator(self, ppenum);
     }
-    pub fn GetSyncItemCount(self: *const ISyncMgrSyncItemContainer, pcItems: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSyncItemCount(self: *const ISyncMgrSyncItemContainer, pcItems: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSyncItemCount(self, pcItems);
     }
 };
@@ -23659,28 +23659,28 @@ pub const ISyncMgrSyncItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemID(self: *const ISyncMgrSyncItem, ppszItemID: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetItemID(self: *const ISyncMgrSyncItem, ppszItemID: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemID(self, ppszItemID);
     }
-    pub fn GetName(self: *const ISyncMgrSyncItem, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const ISyncMgrSyncItem, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppszName);
     }
-    pub fn GetItemInfo(self: *const ISyncMgrSyncItem, ppItemInfo: ?*?*ISyncMgrSyncItemInfo) callconv(.Inline) HRESULT {
+    pub fn GetItemInfo(self: *const ISyncMgrSyncItem, ppItemInfo: ?*?*ISyncMgrSyncItemInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemInfo(self, ppItemInfo);
     }
-    pub fn GetObject(self: *const ISyncMgrSyncItem, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const ISyncMgrSyncItem, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, rguidObjectID, riid, ppv);
     }
-    pub fn GetCapabilities(self: *const ISyncMgrSyncItem, pmCapabilities: ?*SYNCMGR_ITEM_CAPABILITIES) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const ISyncMgrSyncItem, pmCapabilities: ?*SYNCMGR_ITEM_CAPABILITIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, pmCapabilities);
     }
-    pub fn GetPolicies(self: *const ISyncMgrSyncItem, pmPolicies: ?*SYNCMGR_ITEM_POLICIES) callconv(.Inline) HRESULT {
+    pub fn GetPolicies(self: *const ISyncMgrSyncItem, pmPolicies: ?*SYNCMGR_ITEM_POLICIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetPolicies(self, pmPolicies);
     }
-    pub fn Enable(self: *const ISyncMgrSyncItem, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const ISyncMgrSyncItem, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, fEnable);
     }
-    pub fn Delete(self: *const ISyncMgrSyncItem) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const ISyncMgrSyncItem) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
 };
@@ -23712,19 +23712,19 @@ pub const ISyncMgrSyncItemInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTypeLabel(self: *const ISyncMgrSyncItemInfo, ppszTypeLabel: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTypeLabel(self: *const ISyncMgrSyncItemInfo, ppszTypeLabel: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeLabel(self, ppszTypeLabel);
     }
-    pub fn GetComment(self: *const ISyncMgrSyncItemInfo, ppszComment: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetComment(self: *const ISyncMgrSyncItemInfo, ppszComment: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetComment(self, ppszComment);
     }
-    pub fn GetLastSyncTime(self: *const ISyncMgrSyncItemInfo, pftLastSync: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetLastSyncTime(self: *const ISyncMgrSyncItemInfo, pftLastSync: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastSyncTime(self, pftLastSync);
     }
-    pub fn IsEnabled(self: *const ISyncMgrSyncItemInfo) callconv(.Inline) HRESULT {
+    pub fn IsEnabled(self: *const ISyncMgrSyncItemInfo) callconv(.@"inline") HRESULT {
         return self.vtable.IsEnabled(self);
     }
-    pub fn IsConnected(self: *const ISyncMgrSyncItemInfo) callconv(.Inline) HRESULT {
+    pub fn IsConnected(self: *const ISyncMgrSyncItemInfo) callconv(.@"inline") HRESULT {
         return self.vtable.IsConnected(self);
     }
 };
@@ -23755,16 +23755,16 @@ pub const IEnumSyncMgrSyncItems = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSyncMgrSyncItems, celt: u32, rgelt: [*]?*ISyncMgrSyncItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSyncMgrSyncItems, celt: u32, rgelt: [*]?*ISyncMgrSyncItem, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumSyncMgrSyncItems, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSyncMgrSyncItems, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumSyncMgrSyncItems) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSyncMgrSyncItems) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSyncMgrSyncItems, ppenum: ?*?*IEnumSyncMgrSyncItems) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSyncMgrSyncItems, ppenum: ?*?*IEnumSyncMgrSyncItems) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -23831,7 +23831,7 @@ pub const ISyncMgrSessionCreator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateSession(self: *const ISyncMgrSessionCreator, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32, ppCallback: ?*?*ISyncMgrSyncCallback) callconv(.Inline) HRESULT {
+    pub fn CreateSession(self: *const ISyncMgrSessionCreator, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32, ppCallback: ?*?*ISyncMgrSyncCallback) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSession(self, pszHandlerID, ppszItemIDs, cItems, ppCallback);
     }
 };
@@ -23899,34 +23899,34 @@ pub const ISyncMgrSyncCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReportProgress(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16, pszProgressText: ?[*:0]const u16, nStatus: SYNCMGR_PROGRESS_STATUS, uCurrentStep: u32, uMaxStep: u32, pnCancelRequest: ?*SYNCMGR_CANCEL_REQUEST) callconv(.Inline) HRESULT {
+    pub fn ReportProgress(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16, pszProgressText: ?[*:0]const u16, nStatus: SYNCMGR_PROGRESS_STATUS, uCurrentStep: u32, uMaxStep: u32, pnCancelRequest: ?*SYNCMGR_CANCEL_REQUEST) callconv(.@"inline") HRESULT {
         return self.vtable.ReportProgress(self, pszItemID, pszProgressText, nStatus, uCurrentStep, uMaxStep, pnCancelRequest);
     }
-    pub fn SetHandlerProgressText(self: *const ISyncMgrSyncCallback, pszProgressText: ?[*:0]const u16, pnCancelRequest: ?*SYNCMGR_CANCEL_REQUEST) callconv(.Inline) HRESULT {
+    pub fn SetHandlerProgressText(self: *const ISyncMgrSyncCallback, pszProgressText: ?[*:0]const u16, pnCancelRequest: ?*SYNCMGR_CANCEL_REQUEST) callconv(.@"inline") HRESULT {
         return self.vtable.SetHandlerProgressText(self, pszProgressText, pnCancelRequest);
     }
-    pub fn ReportEvent(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16, nLevel: SYNCMGR_EVENT_LEVEL, nFlags: SYNCMGR_EVENT_FLAGS, pszName: ?[*:0]const u16, pszDescription: ?[*:0]const u16, pszLinkText: ?[*:0]const u16, pszLinkReference: ?[*:0]const u16, pszContext: ?[*:0]const u16, pguidEventID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn ReportEvent(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16, nLevel: SYNCMGR_EVENT_LEVEL, nFlags: SYNCMGR_EVENT_FLAGS, pszName: ?[*:0]const u16, pszDescription: ?[*:0]const u16, pszLinkText: ?[*:0]const u16, pszLinkReference: ?[*:0]const u16, pszContext: ?[*:0]const u16, pguidEventID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ReportEvent(self, pszItemID, nLevel, nFlags, pszName, pszDescription, pszLinkText, pszLinkReference, pszContext, pguidEventID);
     }
-    pub fn CanContinue(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn CanContinue(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.CanContinue(self, pszItemID);
     }
-    pub fn QueryForAdditionalItems(self: *const ISyncMgrSyncCallback, ppenumItemIDs: ?*?*IEnumString, ppenumPunks: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn QueryForAdditionalItems(self: *const ISyncMgrSyncCallback, ppenumItemIDs: ?*?*IEnumString, ppenumPunks: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.QueryForAdditionalItems(self, ppenumItemIDs, ppenumPunks);
     }
-    pub fn AddItemToSession(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddItemToSession(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddItemToSession(self, pszItemID);
     }
-    pub fn AddIUnknownToSession(self: *const ISyncMgrSyncCallback, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn AddIUnknownToSession(self: *const ISyncMgrSyncCallback, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.AddIUnknownToSession(self, punk);
     }
-    pub fn ProposeItem(self: *const ISyncMgrSyncCallback, pNewItem: ?*ISyncMgrSyncItem) callconv(.Inline) HRESULT {
+    pub fn ProposeItem(self: *const ISyncMgrSyncCallback, pNewItem: ?*ISyncMgrSyncItem) callconv(.@"inline") HRESULT {
         return self.vtable.ProposeItem(self, pNewItem);
     }
-    pub fn CommitItem(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn CommitItem(self: *const ISyncMgrSyncCallback, pszItemID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.CommitItem(self, pszItemID);
     }
-    pub fn ReportManualSync(self: *const ISyncMgrSyncCallback) callconv(.Inline) HRESULT {
+    pub fn ReportManualSync(self: *const ISyncMgrSyncCallback) callconv(.@"inline") HRESULT {
         return self.vtable.ReportManualSync(self);
     }
 };
@@ -23944,7 +23944,7 @@ pub const ISyncMgrUIOperation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Run(self: *const ISyncMgrUIOperation, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Run(self: *const ISyncMgrUIOperation, hwndOwner: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Run(self, hwndOwner);
     }
 };
@@ -23964,7 +23964,7 @@ pub const ISyncMgrEventLinkUIOperation = extern union {
     vtable: *const VTable,
     ISyncMgrUIOperation: ISyncMgrUIOperation,
     IUnknown: IUnknown,
-    pub fn Init(self: *const ISyncMgrEventLinkUIOperation, rguidEventID: ?*const Guid, pEvent: ?*ISyncMgrEvent) callconv(.Inline) HRESULT {
+    pub fn Init(self: *const ISyncMgrEventLinkUIOperation, rguidEventID: ?*const Guid, pEvent: ?*ISyncMgrEvent) callconv(.@"inline") HRESULT {
         return self.vtable.Init(self, rguidEventID, pEvent);
     }
 };
@@ -23983,7 +23983,7 @@ pub const ISyncMgrScheduleWizardUIOperation = extern union {
     vtable: *const VTable,
     ISyncMgrUIOperation: ISyncMgrUIOperation,
     IUnknown: IUnknown,
-    pub fn InitWizard(self: *const ISyncMgrScheduleWizardUIOperation, pszHandlerID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn InitWizard(self: *const ISyncMgrScheduleWizardUIOperation, pszHandlerID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.InitWizard(self, pszHandlerID);
     }
 };
@@ -24003,7 +24003,7 @@ pub const ISyncMgrSyncResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Result(self: *const ISyncMgrSyncResult, nStatus: SYNCMGR_PROGRESS_STATUS, cError: u32, cConflicts: u32) callconv(.Inline) HRESULT {
+    pub fn Result(self: *const ISyncMgrSyncResult, nStatus: SYNCMGR_PROGRESS_STATUS, cError: u32, cConflicts: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Result(self, nStatus, cError, cConflicts);
     }
 };
@@ -24142,49 +24142,49 @@ pub const ISyncMgrControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StartHandlerSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, punk: ?*IUnknown, nSyncControlFlags: SYNCMGR_SYNC_CONTROL_FLAGS, pResult: ?*ISyncMgrSyncResult) callconv(.Inline) HRESULT {
+    pub fn StartHandlerSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, punk: ?*IUnknown, nSyncControlFlags: SYNCMGR_SYNC_CONTROL_FLAGS, pResult: ?*ISyncMgrSyncResult) callconv(.@"inline") HRESULT {
         return self.vtable.StartHandlerSync(self, pszHandlerID, hwndOwner, punk, nSyncControlFlags, pResult);
     }
-    pub fn StartItemSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32, hwndOwner: ?HWND, punk: ?*IUnknown, nSyncControlFlags: SYNCMGR_SYNC_CONTROL_FLAGS, pResult: ?*ISyncMgrSyncResult) callconv(.Inline) HRESULT {
+    pub fn StartItemSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32, hwndOwner: ?HWND, punk: ?*IUnknown, nSyncControlFlags: SYNCMGR_SYNC_CONTROL_FLAGS, pResult: ?*ISyncMgrSyncResult) callconv(.@"inline") HRESULT {
         return self.vtable.StartItemSync(self, pszHandlerID, ppszItemIDs, cItems, hwndOwner, punk, nSyncControlFlags, pResult);
     }
-    pub fn StartSyncAll(self: *const ISyncMgrControl, hwndOwner: ?HWND) callconv(.Inline) HRESULT {
+    pub fn StartSyncAll(self: *const ISyncMgrControl, hwndOwner: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.StartSyncAll(self, hwndOwner);
     }
-    pub fn StopHandlerSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn StopHandlerSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.StopHandlerSync(self, pszHandlerID);
     }
-    pub fn StopItemSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32) callconv(.Inline) HRESULT {
+    pub fn StopItemSync(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, ppszItemIDs: [*]?PWSTR, cItems: u32) callconv(.@"inline") HRESULT {
         return self.vtable.StopItemSync(self, pszHandlerID, ppszItemIDs, cItems);
     }
-    pub fn StopSyncAll(self: *const ISyncMgrControl) callconv(.Inline) HRESULT {
+    pub fn StopSyncAll(self: *const ISyncMgrControl) callconv(.@"inline") HRESULT {
         return self.vtable.StopSyncAll(self);
     }
-    pub fn UpdateHandlerCollection(self: *const ISyncMgrControl, rclsidCollectionID: ?*const Guid, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn UpdateHandlerCollection(self: *const ISyncMgrControl, rclsidCollectionID: ?*const Guid, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateHandlerCollection(self, rclsidCollectionID, nControlFlags);
     }
-    pub fn UpdateHandler(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn UpdateHandler(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateHandler(self, pszHandlerID, nControlFlags);
     }
-    pub fn UpdateItem(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn UpdateItem(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateItem(self, pszHandlerID, pszItemID, nControlFlags);
     }
-    pub fn UpdateEvents(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn UpdateEvents(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateEvents(self, pszHandlerID, pszItemID, nControlFlags);
     }
-    pub fn UpdateConflict(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, pConflict: ?*ISyncMgrConflict, nReason: SYNCMGR_UPDATE_REASON) callconv(.Inline) HRESULT {
+    pub fn UpdateConflict(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, pConflict: ?*ISyncMgrConflict, nReason: SYNCMGR_UPDATE_REASON) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateConflict(self, pszHandlerID, pszItemID, pConflict, nReason);
     }
-    pub fn UpdateConflicts(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn UpdateConflicts(self: *const ISyncMgrControl, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateConflicts(self, pszHandlerID, pszItemID, nControlFlags);
     }
-    pub fn ActivateHandler(self: *const ISyncMgrControl, fActivate: BOOL, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn ActivateHandler(self: *const ISyncMgrControl, fActivate: BOOL, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateHandler(self, fActivate, pszHandlerID, hwndOwner, nControlFlags);
     }
-    pub fn EnableHandler(self: *const ISyncMgrControl, fEnable: BOOL, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn EnableHandler(self: *const ISyncMgrControl, fEnable: BOOL, pszHandlerID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.EnableHandler(self, fEnable, pszHandlerID, hwndOwner, nControlFlags);
     }
-    pub fn EnableItem(self: *const ISyncMgrControl, fEnable: BOOL, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+    pub fn EnableItem(self: *const ISyncMgrControl, fEnable: BOOL, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, hwndOwner: ?HWND, nControlFlags: SYNCMGR_CONTROL_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.EnableItem(self, fEnable, pszHandlerID, pszItemID, hwndOwner, nControlFlags);
     }
 };
@@ -24216,16 +24216,16 @@ pub const ISyncMgrEventStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetEventEnumerator(self: *const ISyncMgrEventStore, ppenum: ?*?*IEnumSyncMgrEvents) callconv(.Inline) HRESULT {
+    pub fn GetEventEnumerator(self: *const ISyncMgrEventStore, ppenum: ?*?*IEnumSyncMgrEvents) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventEnumerator(self, ppenum);
     }
-    pub fn GetEventCount(self: *const ISyncMgrEventStore, pcEvents: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEventCount(self: *const ISyncMgrEventStore, pcEvents: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventCount(self, pcEvents);
     }
-    pub fn GetEvent(self: *const ISyncMgrEventStore, rguidEventID: ?*const Guid, ppEvent: ?*?*ISyncMgrEvent) callconv(.Inline) HRESULT {
+    pub fn GetEvent(self: *const ISyncMgrEventStore, rguidEventID: ?*const Guid, ppEvent: ?*?*ISyncMgrEvent) callconv(.@"inline") HRESULT {
         return self.vtable.GetEvent(self, rguidEventID, ppEvent);
     }
-    pub fn RemoveEvent(self: *const ISyncMgrEventStore, pguidEventIDs: [*]Guid, cEvents: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveEvent(self: *const ISyncMgrEventStore, pguidEventIDs: [*]Guid, cEvents: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveEvent(self, pguidEventIDs, cEvents);
     }
 };
@@ -24283,37 +24283,37 @@ pub const ISyncMgrEvent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetEventID(self: *const ISyncMgrEvent, pguidEventID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetEventID(self: *const ISyncMgrEvent, pguidEventID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventID(self, pguidEventID);
     }
-    pub fn GetHandlerID(self: *const ISyncMgrEvent, ppszHandlerID: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetHandlerID(self: *const ISyncMgrEvent, ppszHandlerID: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetHandlerID(self, ppszHandlerID);
     }
-    pub fn GetItemID(self: *const ISyncMgrEvent, ppszItemID: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetItemID(self: *const ISyncMgrEvent, ppszItemID: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemID(self, ppszItemID);
     }
-    pub fn GetLevel(self: *const ISyncMgrEvent, pnLevel: ?*SYNCMGR_EVENT_LEVEL) callconv(.Inline) HRESULT {
+    pub fn GetLevel(self: *const ISyncMgrEvent, pnLevel: ?*SYNCMGR_EVENT_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.GetLevel(self, pnLevel);
     }
-    pub fn GetFlags(self: *const ISyncMgrEvent, pnFlags: ?*SYNCMGR_EVENT_FLAGS) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const ISyncMgrEvent, pnFlags: ?*SYNCMGR_EVENT_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlags(self, pnFlags);
     }
-    pub fn GetTime(self: *const ISyncMgrEvent, pfCreationTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetTime(self: *const ISyncMgrEvent, pfCreationTime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetTime(self, pfCreationTime);
     }
-    pub fn GetName(self: *const ISyncMgrEvent, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const ISyncMgrEvent, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppszName);
     }
-    pub fn GetDescription(self: *const ISyncMgrEvent, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const ISyncMgrEvent, ppszDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, ppszDescription);
     }
-    pub fn GetLinkText(self: *const ISyncMgrEvent, ppszLinkText: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetLinkText(self: *const ISyncMgrEvent, ppszLinkText: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLinkText(self, ppszLinkText);
     }
-    pub fn GetLinkReference(self: *const ISyncMgrEvent, ppszLinkReference: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetLinkReference(self: *const ISyncMgrEvent, ppszLinkReference: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLinkReference(self, ppszLinkReference);
     }
-    pub fn GetContext(self: *const ISyncMgrEvent, ppszContext: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetContext(self: *const ISyncMgrEvent, ppszContext: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetContext(self, ppszContext);
     }
 };
@@ -24344,16 +24344,16 @@ pub const IEnumSyncMgrEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSyncMgrEvents, celt: u32, rgelt: [*]?*ISyncMgrEvent, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSyncMgrEvents, celt: u32, rgelt: [*]?*ISyncMgrEvent, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumSyncMgrEvents, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSyncMgrEvents, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumSyncMgrEvents) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSyncMgrEvents) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSyncMgrEvents, ppenum: ?*?*IEnumSyncMgrEvents) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSyncMgrEvents, ppenum: ?*?*IEnumSyncMgrEvents) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -24395,16 +24395,16 @@ pub const ISyncMgrConflictStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumConflicts(self: *const ISyncMgrConflictStore, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, ppEnum: ?*?*IEnumSyncMgrConflict) callconv(.Inline) HRESULT {
+    pub fn EnumConflicts(self: *const ISyncMgrConflictStore, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, ppEnum: ?*?*IEnumSyncMgrConflict) callconv(.@"inline") HRESULT {
         return self.vtable.EnumConflicts(self, pszHandlerID, pszItemID, ppEnum);
     }
-    pub fn BindToConflict(self: *const ISyncMgrConflictStore, pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToConflict(self: *const ISyncMgrConflictStore, pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToConflict(self, pConflictIdInfo, riid, ppv);
     }
-    pub fn RemoveConflicts(self: *const ISyncMgrConflictStore, rgConflictIdInfo: [*]const SYNCMGR_CONFLICT_ID_INFO, cConflicts: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveConflicts(self: *const ISyncMgrConflictStore, rgConflictIdInfo: [*]const SYNCMGR_CONFLICT_ID_INFO, cConflicts: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveConflicts(self, rgConflictIdInfo, cConflicts);
     }
-    pub fn GetCount(self: *const ISyncMgrConflictStore, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, pnConflicts: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISyncMgrConflictStore, pszHandlerID: ?[*:0]const u16, pszItemID: ?[*:0]const u16, pnConflicts: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pszHandlerID, pszItemID, pnConflicts);
     }
 };
@@ -24435,16 +24435,16 @@ pub const IEnumSyncMgrConflict = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSyncMgrConflict, celt: u32, rgelt: [*]?*ISyncMgrConflict, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSyncMgrConflict, celt: u32, rgelt: [*]?*ISyncMgrConflict, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumSyncMgrConflict, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSyncMgrConflict, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumSyncMgrConflict) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSyncMgrConflict) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSyncMgrConflict, ppenum: ?*?*IEnumSyncMgrConflict) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSyncMgrConflict, ppenum: ?*?*IEnumSyncMgrConflict) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -24487,19 +24487,19 @@ pub const ISyncMgrConflict = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetProperty(self: *const ISyncMgrConflict, propkey: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const ISyncMgrConflict, propkey: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, propkey, ppropvar);
     }
-    pub fn GetConflictIdInfo(self: *const ISyncMgrConflict, pConflictIdInfo: ?*SYNCMGR_CONFLICT_ID_INFO) callconv(.Inline) HRESULT {
+    pub fn GetConflictIdInfo(self: *const ISyncMgrConflict, pConflictIdInfo: ?*SYNCMGR_CONFLICT_ID_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetConflictIdInfo(self, pConflictIdInfo);
     }
-    pub fn GetItemsArray(self: *const ISyncMgrConflict, ppArray: ?*?*ISyncMgrConflictItems) callconv(.Inline) HRESULT {
+    pub fn GetItemsArray(self: *const ISyncMgrConflict, ppArray: ?*?*ISyncMgrConflictItems) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemsArray(self, ppArray);
     }
-    pub fn Resolve(self: *const ISyncMgrConflict, pResolveInfo: ?*ISyncMgrConflictResolveInfo) callconv(.Inline) HRESULT {
+    pub fn Resolve(self: *const ISyncMgrConflict, pResolveInfo: ?*ISyncMgrConflictResolveInfo) callconv(.@"inline") HRESULT {
         return self.vtable.Resolve(self, pResolveInfo);
     }
-    pub fn GetResolutionHandler(self: *const ISyncMgrConflict, riid: ?*const Guid, ppvResolutionHandler: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetResolutionHandler(self: *const ISyncMgrConflict, riid: ?*const Guid, ppvResolutionHandler: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetResolutionHandler(self, riid, ppvResolutionHandler);
     }
 };
@@ -24559,19 +24559,19 @@ pub const ISyncMgrResolutionHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryAbilities(self: *const ISyncMgrResolutionHandler, pdwAbilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QueryAbilities(self: *const ISyncMgrResolutionHandler, pdwAbilities: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryAbilities(self, pdwAbilities);
     }
-    pub fn KeepOther(self: *const ISyncMgrResolutionHandler, psiOther: ?*IShellItem, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.Inline) HRESULT {
+    pub fn KeepOther(self: *const ISyncMgrResolutionHandler, psiOther: ?*IShellItem, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.@"inline") HRESULT {
         return self.vtable.KeepOther(self, psiOther, pFeedback);
     }
-    pub fn KeepRecent(self: *const ISyncMgrResolutionHandler, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.Inline) HRESULT {
+    pub fn KeepRecent(self: *const ISyncMgrResolutionHandler, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.@"inline") HRESULT {
         return self.vtable.KeepRecent(self, pFeedback);
     }
-    pub fn RemoveFromSyncSet(self: *const ISyncMgrResolutionHandler, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.Inline) HRESULT {
+    pub fn RemoveFromSyncSet(self: *const ISyncMgrResolutionHandler, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveFromSyncSet(self, pFeedback);
     }
-    pub fn KeepItems(self: *const ISyncMgrResolutionHandler, pArray: ?*ISyncMgrConflictResolutionItems, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.Inline) HRESULT {
+    pub fn KeepItems(self: *const ISyncMgrResolutionHandler, pArray: ?*ISyncMgrConflictResolutionItems, pFeedback: ?*SYNCMGR_RESOLUTION_FEEDBACK) callconv(.@"inline") HRESULT {
         return self.vtable.KeepItems(self, pArray, pFeedback);
     }
 };
@@ -24590,7 +24590,7 @@ pub const ISyncMgrConflictPresenter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PresentConflict(self: *const ISyncMgrConflictPresenter, pConflict: ?*ISyncMgrConflict, pResolveInfo: ?*ISyncMgrConflictResolveInfo) callconv(.Inline) HRESULT {
+    pub fn PresentConflict(self: *const ISyncMgrConflictPresenter, pConflict: ?*ISyncMgrConflict, pResolveInfo: ?*ISyncMgrConflictResolveInfo) callconv(.@"inline") HRESULT {
         return self.vtable.PresentConflict(self, pConflict, pResolveInfo);
     }
 };
@@ -24666,28 +24666,28 @@ pub const ISyncMgrConflictResolveInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIterationInfo(self: *const ISyncMgrConflictResolveInfo, pnCurrentConflict: ?*u32, pcConflicts: ?*u32, pcRemainingForApplyToAll: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetIterationInfo(self: *const ISyncMgrConflictResolveInfo, pnCurrentConflict: ?*u32, pcConflicts: ?*u32, pcRemainingForApplyToAll: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIterationInfo(self, pnCurrentConflict, pcConflicts, pcRemainingForApplyToAll);
     }
-    pub fn GetPresenterNextStep(self: *const ISyncMgrConflictResolveInfo, pnPresenterNextStep: ?*SYNCMGR_PRESENTER_NEXT_STEP) callconv(.Inline) HRESULT {
+    pub fn GetPresenterNextStep(self: *const ISyncMgrConflictResolveInfo, pnPresenterNextStep: ?*SYNCMGR_PRESENTER_NEXT_STEP) callconv(.@"inline") HRESULT {
         return self.vtable.GetPresenterNextStep(self, pnPresenterNextStep);
     }
-    pub fn GetPresenterChoice(self: *const ISyncMgrConflictResolveInfo, pnPresenterChoice: ?*SYNCMGR_PRESENTER_CHOICE, pfApplyToAll: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetPresenterChoice(self: *const ISyncMgrConflictResolveInfo, pnPresenterChoice: ?*SYNCMGR_PRESENTER_CHOICE, pfApplyToAll: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetPresenterChoice(self, pnPresenterChoice, pfApplyToAll);
     }
-    pub fn GetItemChoiceCount(self: *const ISyncMgrConflictResolveInfo, pcChoices: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetItemChoiceCount(self: *const ISyncMgrConflictResolveInfo, pcChoices: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemChoiceCount(self, pcChoices);
     }
-    pub fn GetItemChoice(self: *const ISyncMgrConflictResolveInfo, iChoice: u32, piChoiceIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetItemChoice(self: *const ISyncMgrConflictResolveInfo, iChoice: u32, piChoiceIndex: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemChoice(self, iChoice, piChoiceIndex);
     }
-    pub fn SetPresenterNextStep(self: *const ISyncMgrConflictResolveInfo, nPresenterNextStep: SYNCMGR_PRESENTER_NEXT_STEP) callconv(.Inline) HRESULT {
+    pub fn SetPresenterNextStep(self: *const ISyncMgrConflictResolveInfo, nPresenterNextStep: SYNCMGR_PRESENTER_NEXT_STEP) callconv(.@"inline") HRESULT {
         return self.vtable.SetPresenterNextStep(self, nPresenterNextStep);
     }
-    pub fn SetPresenterChoice(self: *const ISyncMgrConflictResolveInfo, nPresenterChoice: SYNCMGR_PRESENTER_CHOICE, fApplyToAll: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetPresenterChoice(self: *const ISyncMgrConflictResolveInfo, nPresenterChoice: SYNCMGR_PRESENTER_CHOICE, fApplyToAll: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetPresenterChoice(self, nPresenterChoice, fApplyToAll);
     }
-    pub fn SetItemChoices(self: *const ISyncMgrConflictResolveInfo, prgiConflictItemIndexes: ?*u32, cChoices: u32) callconv(.Inline) HRESULT {
+    pub fn SetItemChoices(self: *const ISyncMgrConflictResolveInfo, prgiConflictItemIndexes: ?*u32, cChoices: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetItemChoices(self, prgiConflictItemIndexes, cChoices);
     }
 };
@@ -24706,7 +24706,7 @@ pub const ISyncMgrConflictFolder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConflictIDList(self: *const ISyncMgrConflictFolder, pConflict: ?*ISyncMgrConflict, ppidlConflict: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetConflictIDList(self: *const ISyncMgrConflictFolder, pConflict: ?*ISyncMgrConflict, ppidlConflict: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetConflictIDList(self, pConflict, ppidlConflict);
     }
 };
@@ -24743,10 +24743,10 @@ pub const ISyncMgrConflictItems = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const ISyncMgrConflictItems, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISyncMgrConflictItems, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pCount);
     }
-    pub fn GetItem(self: *const ISyncMgrConflictItems, iIndex: u32, pItemInfo: ?*CONFIRM_CONFLICT_ITEM) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const ISyncMgrConflictItems, iIndex: u32, pItemInfo: ?*CONFIRM_CONFLICT_ITEM) callconv(.@"inline") HRESULT {
         return self.vtable.GetItem(self, iIndex, pItemInfo);
     }
 };
@@ -24769,10 +24769,10 @@ pub const ISyncMgrConflictResolutionItems = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const ISyncMgrConflictResolutionItems, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISyncMgrConflictResolutionItems, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pCount);
     }
-    pub fn GetItem(self: *const ISyncMgrConflictResolutionItems, iIndex: u32, pItemInfo: ?*CONFIRM_CONFLICT_RESULT_INFO) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const ISyncMgrConflictResolutionItems, iIndex: u32, pItemInfo: ?*CONFIRM_CONFLICT_RESULT_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetItem(self, iIndex, pItemInfo);
     }
 };
@@ -24792,7 +24792,7 @@ pub const IInputPanelConfiguration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnableFocusTracking(self: *const IInputPanelConfiguration) callconv(.Inline) HRESULT {
+    pub fn EnableFocusTracking(self: *const IInputPanelConfiguration) callconv(.@"inline") HRESULT {
         return self.vtable.EnableFocusTracking(self);
     }
 };
@@ -24809,7 +24809,7 @@ pub const IInputPanelInvocationConfiguration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequireTouchInEditControl(self: *const IInputPanelInvocationConfiguration) callconv(.Inline) HRESULT {
+    pub fn RequireTouchInEditControl(self: *const IInputPanelInvocationConfiguration) callconv(.@"inline") HRESULT {
         return self.vtable.RequireTouchInEditControl(self);
     }
 };
@@ -24922,19 +24922,19 @@ pub const ISharedBitmap = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSharedBitmap(self: *const ISharedBitmap, phbm: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn GetSharedBitmap(self: *const ISharedBitmap, phbm: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.GetSharedBitmap(self, phbm);
     }
-    pub fn GetSize(self: *const ISharedBitmap, pSize: ?*SIZE) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const ISharedBitmap, pSize: ?*SIZE) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, pSize);
     }
-    pub fn GetFormat(self: *const ISharedBitmap, pat: ?*WTS_ALPHATYPE) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const ISharedBitmap, pat: ?*WTS_ALPHATYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormat(self, pat);
     }
-    pub fn InitializeBitmap(self: *const ISharedBitmap, hbm: ?HBITMAP, wtsAT: WTS_ALPHATYPE) callconv(.Inline) HRESULT {
+    pub fn InitializeBitmap(self: *const ISharedBitmap, hbm: ?HBITMAP, wtsAT: WTS_ALPHATYPE) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeBitmap(self, hbm, wtsAT);
     }
-    pub fn Detach(self: *const ISharedBitmap, phbm: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn Detach(self: *const ISharedBitmap, phbm: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.Detach(self, phbm);
     }
 };
@@ -24964,10 +24964,10 @@ pub const IThumbnailCache = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetThumbnail(self: *const IThumbnailCache, pShellItem: ?*IShellItem, cxyRequestedThumbSize: u32, flags: WTS_FLAGS, ppvThumb: ?*?*ISharedBitmap, pOutFlags: ?*WTS_CACHEFLAGS, pThumbnailID: ?*WTS_THUMBNAILID) callconv(.Inline) HRESULT {
+    pub fn GetThumbnail(self: *const IThumbnailCache, pShellItem: ?*IShellItem, cxyRequestedThumbSize: u32, flags: WTS_FLAGS, ppvThumb: ?*?*ISharedBitmap, pOutFlags: ?*WTS_CACHEFLAGS, pThumbnailID: ?*WTS_THUMBNAILID) callconv(.@"inline") HRESULT {
         return self.vtable.GetThumbnail(self, pShellItem, cxyRequestedThumbSize, flags, ppvThumb, pOutFlags, pThumbnailID);
     }
-    pub fn GetThumbnailByID(self: *const IThumbnailCache, thumbnailID: WTS_THUMBNAILID, cxyRequestedThumbSize: u32, ppvThumb: ?*?*ISharedBitmap, pOutFlags: ?*WTS_CACHEFLAGS) callconv(.Inline) HRESULT {
+    pub fn GetThumbnailByID(self: *const IThumbnailCache, thumbnailID: WTS_THUMBNAILID, cxyRequestedThumbSize: u32, ppvThumb: ?*?*ISharedBitmap, pOutFlags: ?*WTS_CACHEFLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetThumbnailByID(self, thumbnailID, cxyRequestedThumbSize, ppvThumb, pOutFlags);
     }
 };
@@ -24987,7 +24987,7 @@ pub const IThumbnailProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetThumbnail(self: *const IThumbnailProvider, cx: u32, phbmp: ?*?HBITMAP, pdwAlpha: ?*WTS_ALPHATYPE) callconv(.Inline) HRESULT {
+    pub fn GetThumbnail(self: *const IThumbnailProvider, cx: u32, phbmp: ?*?HBITMAP, pdwAlpha: ?*WTS_ALPHATYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetThumbnail(self, cx, phbmp, pdwAlpha);
     }
 };
@@ -25005,7 +25005,7 @@ pub const IThumbnailSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetContext(self: *const IThumbnailSettings, dwContext: WTS_CONTEXTFLAGS) callconv(.Inline) HRESULT {
+    pub fn SetContext(self: *const IThumbnailSettings, dwContext: WTS_CONTEXTFLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.SetContext(self, dwContext);
     }
 };
@@ -25025,7 +25025,7 @@ pub const IThumbnailCachePrimer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PageInThumbnail(self: *const IThumbnailCachePrimer, psi: ?*IShellItem, wtsFlags: WTS_FLAGS, cxyRequestedThumbSize: u32) callconv(.Inline) HRESULT {
+    pub fn PageInThumbnail(self: *const IThumbnailCachePrimer, psi: ?*IShellItem, wtsFlags: WTS_FLAGS, cxyRequestedThumbSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageInThumbnail(self, psi, wtsFlags, cxyRequestedThumbSize);
     }
 };
@@ -25061,16 +25061,16 @@ pub const IShellImageDataFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateIShellImageData(self: *const IShellImageDataFactory, ppshimg: ?*?*IShellImageData) callconv(.Inline) HRESULT {
+    pub fn CreateIShellImageData(self: *const IShellImageDataFactory, ppshimg: ?*?*IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.CreateIShellImageData(self, ppshimg);
     }
-    pub fn CreateImageFromFile(self: *const IShellImageDataFactory, pszPath: ?[*:0]const u16, ppshimg: ?*?*IShellImageData) callconv(.Inline) HRESULT {
+    pub fn CreateImageFromFile(self: *const IShellImageDataFactory, pszPath: ?[*:0]const u16, ppshimg: ?*?*IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.CreateImageFromFile(self, pszPath, ppshimg);
     }
-    pub fn CreateImageFromStream(self: *const IShellImageDataFactory, pStream: ?*IStream, ppshimg: ?*?*IShellImageData) callconv(.Inline) HRESULT {
+    pub fn CreateImageFromStream(self: *const IShellImageDataFactory, pStream: ?*IStream, ppshimg: ?*?*IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.CreateImageFromStream(self, pStream, ppshimg);
     }
-    pub fn GetDataFormatFromPath(self: *const IShellImageDataFactory, pszPath: ?[*:0]const u16, pDataFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetDataFormatFromPath(self: *const IShellImageDataFactory, pszPath: ?[*:0]const u16, pDataFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataFormatFromPath(self, pszPath, pDataFormat);
     }
 };
@@ -25204,94 +25204,94 @@ pub const IShellImageData = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Decode(self: *const IShellImageData, dwFlags: u32, cxDesired: u32, cyDesired: u32) callconv(.Inline) HRESULT {
+    pub fn Decode(self: *const IShellImageData, dwFlags: u32, cxDesired: u32, cyDesired: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Decode(self, dwFlags, cxDesired, cyDesired);
     }
-    pub fn Draw(self: *const IShellImageData, hdc: ?HDC, prcDest: ?*RECT, prcSrc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn Draw(self: *const IShellImageData, hdc: ?HDC, prcDest: ?*RECT, prcSrc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.Draw(self, hdc, prcDest, prcSrc);
     }
-    pub fn NextFrame(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn NextFrame(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.NextFrame(self);
     }
-    pub fn NextPage(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn NextPage(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.NextPage(self);
     }
-    pub fn PrevPage(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn PrevPage(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.PrevPage(self);
     }
-    pub fn IsTransparent(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn IsTransparent(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.IsTransparent(self);
     }
-    pub fn IsAnimated(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn IsAnimated(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.IsAnimated(self);
     }
-    pub fn IsVector(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn IsVector(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.IsVector(self);
     }
-    pub fn IsMultipage(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn IsMultipage(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.IsMultipage(self);
     }
-    pub fn IsEditable(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn IsEditable(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.IsEditable(self);
     }
-    pub fn IsPrintable(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn IsPrintable(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.IsPrintable(self);
     }
-    pub fn IsDecoded(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn IsDecoded(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.IsDecoded(self);
     }
-    pub fn GetCurrentPage(self: *const IShellImageData, pnPage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPage(self: *const IShellImageData, pnPage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentPage(self, pnPage);
     }
-    pub fn GetPageCount(self: *const IShellImageData, pcPages: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPageCount(self: *const IShellImageData, pcPages: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPageCount(self, pcPages);
     }
-    pub fn SelectPage(self: *const IShellImageData, iPage: u32) callconv(.Inline) HRESULT {
+    pub fn SelectPage(self: *const IShellImageData, iPage: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SelectPage(self, iPage);
     }
-    pub fn GetSize(self: *const IShellImageData, pSize: ?*SIZE) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IShellImageData, pSize: ?*SIZE) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, pSize);
     }
-    pub fn GetRawDataFormat(self: *const IShellImageData, pDataFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetRawDataFormat(self: *const IShellImageData, pDataFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetRawDataFormat(self, pDataFormat);
     }
-    pub fn GetPixelFormat(self: *const IShellImageData, pFormat: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IShellImageData, pFormat: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormat(self, pFormat);
     }
-    pub fn GetDelay(self: *const IShellImageData, pdwDelay: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDelay(self: *const IShellImageData, pdwDelay: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDelay(self, pdwDelay);
     }
-    pub fn GetProperties(self: *const IShellImageData, dwMode: u32, ppPropSet: ?*?*IPropertySetStorage) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const IShellImageData, dwMode: u32, ppPropSet: ?*?*IPropertySetStorage) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperties(self, dwMode, ppPropSet);
     }
-    pub fn Rotate(self: *const IShellImageData, dwAngle: u32) callconv(.Inline) HRESULT {
+    pub fn Rotate(self: *const IShellImageData, dwAngle: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Rotate(self, dwAngle);
     }
-    pub fn Scale(self: *const IShellImageData, cx: u32, cy: u32, hints: u32) callconv(.Inline) HRESULT {
+    pub fn Scale(self: *const IShellImageData, cx: u32, cy: u32, hints: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Scale(self, cx, cy, hints);
     }
-    pub fn DiscardEdit(self: *const IShellImageData) callconv(.Inline) HRESULT {
+    pub fn DiscardEdit(self: *const IShellImageData) callconv(.@"inline") HRESULT {
         return self.vtable.DiscardEdit(self);
     }
-    pub fn SetEncoderParams(self: *const IShellImageData, pbagEnc: ?*IPropertyBag) callconv(.Inline) HRESULT {
+    pub fn SetEncoderParams(self: *const IShellImageData, pbagEnc: ?*IPropertyBag) callconv(.@"inline") HRESULT {
         return self.vtable.SetEncoderParams(self, pbagEnc);
     }
-    pub fn DisplayName(self: *const IShellImageData, wszName: ?PWSTR, cch: u32) callconv(.Inline) HRESULT {
+    pub fn DisplayName(self: *const IShellImageData, wszName: ?PWSTR, cch: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DisplayName(self, wszName, cch);
     }
-    pub fn GetResolution(self: *const IShellImageData, puResolutionX: ?*u32, puResolutionY: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetResolution(self: *const IShellImageData, puResolutionX: ?*u32, puResolutionY: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetResolution(self, puResolutionX, puResolutionY);
     }
-    pub fn GetEncoderParams(self: *const IShellImageData, pguidFmt: ?*Guid, ppEncParams: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetEncoderParams(self: *const IShellImageData, pguidFmt: ?*Guid, ppEncParams: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetEncoderParams(self, pguidFmt, ppEncParams);
     }
-    pub fn RegisterAbort(self: *const IShellImageData, pAbort: ?*IShellImageDataAbort, ppAbortPrev: ?*?*IShellImageDataAbort) callconv(.Inline) HRESULT {
+    pub fn RegisterAbort(self: *const IShellImageData, pAbort: ?*IShellImageDataAbort, ppAbortPrev: ?*?*IShellImageDataAbort) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterAbort(self, pAbort, ppAbortPrev);
     }
-    pub fn CloneFrame(self: *const IShellImageData, ppImg: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn CloneFrame(self: *const IShellImageData, ppImg: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.CloneFrame(self, ppImg);
     }
-    pub fn ReplaceFrame(self: *const IShellImageData, pImg: ?*u8) callconv(.Inline) HRESULT {
+    pub fn ReplaceFrame(self: *const IShellImageData, pImg: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.ReplaceFrame(self, pImg);
     }
 };
@@ -25308,7 +25308,7 @@ pub const IShellImageDataAbort = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryAbort(self: *const IShellImageDataAbort) callconv(.Inline) HRESULT {
+    pub fn QueryAbort(self: *const IShellImageDataAbort) callconv(.@"inline") HRESULT {
         return self.vtable.QueryAbort(self);
     }
 };
@@ -25331,10 +25331,10 @@ pub const IStorageProviderPropertyHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RetrieveProperties(self: *const IStorageProviderPropertyHandler, propertiesToRetrieve: [*]const PROPERTYKEY, propertiesToRetrieveCount: u32, retrievedProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn RetrieveProperties(self: *const IStorageProviderPropertyHandler, propertiesToRetrieve: [*]const PROPERTYKEY, propertiesToRetrieveCount: u32, retrievedProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.RetrieveProperties(self, propertiesToRetrieve, propertiesToRetrieveCount, retrievedProperties);
     }
-    pub fn SaveProperties(self: *const IStorageProviderPropertyHandler, propertiesToSave: ?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn SaveProperties(self: *const IStorageProviderPropertyHandler, propertiesToSave: ?*IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.SaveProperties(self, propertiesToSave);
     }
 };
@@ -25362,13 +25362,13 @@ pub const IStorageProviderHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPropertyHandlerFromPath(self: *const IStorageProviderHandler, path: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.Inline) HRESULT {
+    pub fn GetPropertyHandlerFromPath(self: *const IStorageProviderHandler, path: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyHandlerFromPath(self, path, propertyHandler);
     }
-    pub fn GetPropertyHandlerFromUri(self: *const IStorageProviderHandler, uri: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.Inline) HRESULT {
+    pub fn GetPropertyHandlerFromUri(self: *const IStorageProviderHandler, uri: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyHandlerFromUri(self, uri, propertyHandler);
     }
-    pub fn GetPropertyHandlerFromFileId(self: *const IStorageProviderHandler, fileId: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.Inline) HRESULT {
+    pub fn GetPropertyHandlerFromFileId(self: *const IStorageProviderHandler, fileId: ?[*:0]const u16, propertyHandler: ?*?*IStorageProviderPropertyHandler) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyHandlerFromFileId(self, fileId, propertyHandler);
     }
 };
@@ -25484,31 +25484,31 @@ pub const ISyncMgrSynchronizeCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowPropertiesCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn ShowPropertiesCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.ShowPropertiesCompleted(self, hr);
     }
-    pub fn PrepareForSyncCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn PrepareForSyncCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.PrepareForSyncCompleted(self, hr);
     }
-    pub fn SynchronizeCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn SynchronizeCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.SynchronizeCompleted(self, hr);
     }
-    pub fn ShowErrorCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT, cItems: u32, pItemIDs: [*]const Guid) callconv(.Inline) HRESULT {
+    pub fn ShowErrorCompleted(self: *const ISyncMgrSynchronizeCallback, hr: HRESULT, cItems: u32, pItemIDs: [*]const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ShowErrorCompleted(self, hr, cItems, pItemIDs);
     }
-    pub fn EnableModeless(self: *const ISyncMgrSynchronizeCallback, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn EnableModeless(self: *const ISyncMgrSynchronizeCallback, fEnable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EnableModeless(self, fEnable);
     }
-    pub fn Progress(self: *const ISyncMgrSynchronizeCallback, ItemID: ?*const Guid, pSyncProgressItem: ?*const SYNCMGRPROGRESSITEM) callconv(.Inline) HRESULT {
+    pub fn Progress(self: *const ISyncMgrSynchronizeCallback, ItemID: ?*const Guid, pSyncProgressItem: ?*const SYNCMGRPROGRESSITEM) callconv(.@"inline") HRESULT {
         return self.vtable.Progress(self, ItemID, pSyncProgressItem);
     }
-    pub fn LogError(self: *const ISyncMgrSynchronizeCallback, dwErrorLevel: u32, pszErrorText: ?[*:0]const u16, pSyncLogError: ?*const SYNCMGRLOGERRORINFO) callconv(.Inline) HRESULT {
+    pub fn LogError(self: *const ISyncMgrSynchronizeCallback, dwErrorLevel: u32, pszErrorText: ?[*:0]const u16, pSyncLogError: ?*const SYNCMGRLOGERRORINFO) callconv(.@"inline") HRESULT {
         return self.vtable.LogError(self, dwErrorLevel, pszErrorText, pSyncLogError);
     }
-    pub fn DeleteLogError(self: *const ISyncMgrSynchronizeCallback, ErrorID: ?*const Guid, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteLogError(self: *const ISyncMgrSynchronizeCallback, ErrorID: ?*const Guid, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteLogError(self, ErrorID, dwReserved);
     }
-    pub fn EstablishConnection(self: *const ISyncMgrSynchronizeCallback, pwszConnection: ?[*:0]const u16, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn EstablishConnection(self: *const ISyncMgrSynchronizeCallback, pwszConnection: ?[*:0]const u16, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EstablishConnection(self, pwszConnection, dwReserved);
     }
 };
@@ -25564,16 +25564,16 @@ pub const ISyncMgrEnumItems = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const ISyncMgrEnumItems, celt: u32, rgelt: [*]SYNCMGRITEM, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const ISyncMgrEnumItems, celt: u32, rgelt: [*]SYNCMGRITEM, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const ISyncMgrEnumItems, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const ISyncMgrEnumItems, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const ISyncMgrEnumItems) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const ISyncMgrEnumItems) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const ISyncMgrEnumItems, ppenum: ?*?*ISyncMgrEnumItems) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const ISyncMgrEnumItems, ppenum: ?*?*ISyncMgrEnumItems) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -25684,34 +25684,34 @@ pub const ISyncMgrSynchronize = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const ISyncMgrSynchronize, dwReserved: u32, dwSyncMgrFlags: u32, cbCookie: u32, lpCookie: [*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const ISyncMgrSynchronize, dwReserved: u32, dwSyncMgrFlags: u32, cbCookie: u32, lpCookie: [*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, dwReserved, dwSyncMgrFlags, cbCookie, lpCookie);
     }
-    pub fn GetHandlerInfo(self: *const ISyncMgrSynchronize, ppSyncMgrHandlerInfo: ?*?*SYNCMGRHANDLERINFO) callconv(.Inline) HRESULT {
+    pub fn GetHandlerInfo(self: *const ISyncMgrSynchronize, ppSyncMgrHandlerInfo: ?*?*SYNCMGRHANDLERINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetHandlerInfo(self, ppSyncMgrHandlerInfo);
     }
-    pub fn EnumSyncMgrItems(self: *const ISyncMgrSynchronize, ppSyncMgrEnumItems: ?*?*ISyncMgrEnumItems) callconv(.Inline) HRESULT {
+    pub fn EnumSyncMgrItems(self: *const ISyncMgrSynchronize, ppSyncMgrEnumItems: ?*?*ISyncMgrEnumItems) callconv(.@"inline") HRESULT {
         return self.vtable.EnumSyncMgrItems(self, ppSyncMgrEnumItems);
     }
-    pub fn GetItemObject(self: *const ISyncMgrSynchronize, ItemID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetItemObject(self: *const ISyncMgrSynchronize, ItemID: ?*const Guid, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemObject(self, ItemID, riid, ppv);
     }
-    pub fn ShowProperties(self: *const ISyncMgrSynchronize, hWndParent: ?HWND, ItemID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn ShowProperties(self: *const ISyncMgrSynchronize, hWndParent: ?HWND, ItemID: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ShowProperties(self, hWndParent, ItemID);
     }
-    pub fn SetProgressCallback(self: *const ISyncMgrSynchronize, lpCallBack: ?*ISyncMgrSynchronizeCallback) callconv(.Inline) HRESULT {
+    pub fn SetProgressCallback(self: *const ISyncMgrSynchronize, lpCallBack: ?*ISyncMgrSynchronizeCallback) callconv(.@"inline") HRESULT {
         return self.vtable.SetProgressCallback(self, lpCallBack);
     }
-    pub fn PrepareForSync(self: *const ISyncMgrSynchronize, cbNumItems: u32, pItemIDs: [*]Guid, hWndParent: ?HWND, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn PrepareForSync(self: *const ISyncMgrSynchronize, cbNumItems: u32, pItemIDs: [*]Guid, hWndParent: ?HWND, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PrepareForSync(self, cbNumItems, pItemIDs, hWndParent, dwReserved);
     }
-    pub fn Synchronize(self: *const ISyncMgrSynchronize, hWndParent: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Synchronize(self: *const ISyncMgrSynchronize, hWndParent: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Synchronize(self, hWndParent);
     }
-    pub fn SetItemStatus(self: *const ISyncMgrSynchronize, pItemID: ?*const Guid, dwSyncMgrStatus: u32) callconv(.Inline) HRESULT {
+    pub fn SetItemStatus(self: *const ISyncMgrSynchronize, pItemID: ?*const Guid, dwSyncMgrStatus: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetItemStatus(self, pItemID, dwSyncMgrStatus);
     }
-    pub fn ShowError(self: *const ISyncMgrSynchronize, hWndParent: ?HWND, ErrorID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn ShowError(self: *const ISyncMgrSynchronize, hWndParent: ?HWND, ErrorID: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ShowError(self, hWndParent, ErrorID);
     }
 };
@@ -25742,10 +25742,10 @@ pub const ISyncMgrSynchronizeInvoke = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn UpdateItems(self: *const ISyncMgrSynchronizeInvoke, dwInvokeFlags: u32, clsid: ?*const Guid, cbCookie: u32, pCookie: [*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn UpdateItems(self: *const ISyncMgrSynchronizeInvoke, dwInvokeFlags: u32, clsid: ?*const Guid, cbCookie: u32, pCookie: [*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateItems(self, dwInvokeFlags, clsid, cbCookie, pCookie);
     }
-    pub fn UpdateAll(self: *const ISyncMgrSynchronizeInvoke) callconv(.Inline) HRESULT {
+    pub fn UpdateAll(self: *const ISyncMgrSynchronizeInvoke) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateAll(self);
     }
 };
@@ -25784,13 +25784,13 @@ pub const ISyncMgrRegister = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterSyncMgrHandler(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, pwszDescription: ?[*:0]const u16, dwSyncMgrRegisterFlags: u32) callconv(.Inline) HRESULT {
+    pub fn RegisterSyncMgrHandler(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, pwszDescription: ?[*:0]const u16, dwSyncMgrRegisterFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterSyncMgrHandler(self, clsidHandler, pwszDescription, dwSyncMgrRegisterFlags);
     }
-    pub fn UnregisterSyncMgrHandler(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn UnregisterSyncMgrHandler(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterSyncMgrHandler(self, clsidHandler, dwReserved);
     }
-    pub fn GetHandlerRegistrationInfo(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, pdwSyncMgrRegisterFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetHandlerRegistrationInfo(self: *const ISyncMgrRegister, clsidHandler: ?*const Guid, pdwSyncMgrRegisterFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetHandlerRegistrationInfo(self, clsidHandler, pdwSyncMgrRegisterFlags);
     }
 };
@@ -25834,10 +25834,10 @@ pub const IThumbnailStreamCache = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetThumbnailStream(self: *const IThumbnailStreamCache, path: ?[*:0]const u16, cacheId: u64, options: ThumbnailStreamCacheOptions, requestedThumbnailSize: u32, thumbnailSize: ?*SIZE, thumbnailStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetThumbnailStream(self: *const IThumbnailStreamCache, path: ?[*:0]const u16, cacheId: u64, options: ThumbnailStreamCacheOptions, requestedThumbnailSize: u32, thumbnailSize: ?*SIZE, thumbnailStream: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.GetThumbnailStream(self, path, cacheId, options, requestedThumbnailSize, thumbnailSize, thumbnailStream);
     }
-    pub fn SetThumbnailStream(self: *const IThumbnailStreamCache, path: ?[*:0]const u16, cacheId: u64, thumbnailSize: SIZE, thumbnailStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn SetThumbnailStream(self: *const IThumbnailStreamCache, path: ?[*:0]const u16, cacheId: u64, thumbnailSize: SIZE, thumbnailStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.SetThumbnailStream(self, path, cacheId, thumbnailSize, thumbnailStream);
     }
 };
@@ -25870,10 +25870,10 @@ pub const ITravelLogEntry = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTitle(self: *const ITravelLogEntry, ppszTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTitle(self: *const ITravelLogEntry, ppszTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTitle(self, ppszTitle);
     }
-    pub fn GetURL(self: *const ITravelLogEntry, ppszURL: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetURL(self: *const ITravelLogEntry, ppszURL: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetURL(self, ppszURL);
     }
 };
@@ -25901,13 +25901,13 @@ pub const ITravelLogClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindWindowByIndex(self: *const ITravelLogClient, dwID: u32, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn FindWindowByIndex(self: *const ITravelLogClient, dwID: u32, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.FindWindowByIndex(self, dwID, ppunk);
     }
-    pub fn GetWindowData(self: *const ITravelLogClient, pStream: ?*IStream, pWinData: ?*WINDOWDATA) callconv(.Inline) HRESULT {
+    pub fn GetWindowData(self: *const ITravelLogClient, pStream: ?*IStream, pWinData: ?*WINDOWDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetWindowData(self, pStream, pWinData);
     }
-    pub fn LoadHistoryPosition(self: *const ITravelLogClient, pszUrlLocation: ?PWSTR, dwPosition: u32) callconv(.Inline) HRESULT {
+    pub fn LoadHistoryPosition(self: *const ITravelLogClient, pszUrlLocation: ?PWSTR, dwPosition: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LoadHistoryPosition(self, pszUrlLocation, dwPosition);
     }
 };
@@ -25937,16 +25937,16 @@ pub const IEnumTravelLogEntry = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumTravelLogEntry, cElt: u32, rgElt: [*]?*ITravelLogEntry, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumTravelLogEntry, cElt: u32, rgElt: [*]?*ITravelLogEntry, pcEltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
-    pub fn Skip(self: *const IEnumTravelLogEntry, cElt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumTravelLogEntry, cElt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cElt);
     }
-    pub fn Reset(self: *const IEnumTravelLogEntry) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumTravelLogEntry) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumTravelLogEntry, ppEnum: ?*?*IEnumTravelLogEntry) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumTravelLogEntry, ppEnum: ?*?*IEnumTravelLogEntry) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -26013,25 +26013,25 @@ pub const ITravelLogStg = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateEntry(self: *const ITravelLogStg, pszUrl: ?[*:0]const u16, pszTitle: ?[*:0]const u16, ptleRelativeTo: ?*ITravelLogEntry, fPrepend: BOOL, pptle: ?*?*ITravelLogEntry) callconv(.Inline) HRESULT {
+    pub fn CreateEntry(self: *const ITravelLogStg, pszUrl: ?[*:0]const u16, pszTitle: ?[*:0]const u16, ptleRelativeTo: ?*ITravelLogEntry, fPrepend: BOOL, pptle: ?*?*ITravelLogEntry) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEntry(self, pszUrl, pszTitle, ptleRelativeTo, fPrepend, pptle);
     }
-    pub fn TravelTo(self: *const ITravelLogStg, ptle: ?*ITravelLogEntry) callconv(.Inline) HRESULT {
+    pub fn TravelTo(self: *const ITravelLogStg, ptle: ?*ITravelLogEntry) callconv(.@"inline") HRESULT {
         return self.vtable.TravelTo(self, ptle);
     }
-    pub fn EnumEntries(self: *const ITravelLogStg, flags: TLENUMF, ppenum: ?*?*IEnumTravelLogEntry) callconv(.Inline) HRESULT {
+    pub fn EnumEntries(self: *const ITravelLogStg, flags: TLENUMF, ppenum: ?*?*IEnumTravelLogEntry) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEntries(self, flags, ppenum);
     }
-    pub fn FindEntries(self: *const ITravelLogStg, flags: TLENUMF, pszUrl: ?[*:0]const u16, ppenum: ?*?*IEnumTravelLogEntry) callconv(.Inline) HRESULT {
+    pub fn FindEntries(self: *const ITravelLogStg, flags: TLENUMF, pszUrl: ?[*:0]const u16, ppenum: ?*?*IEnumTravelLogEntry) callconv(.@"inline") HRESULT {
         return self.vtable.FindEntries(self, flags, pszUrl, ppenum);
     }
-    pub fn GetCount(self: *const ITravelLogStg, flags: TLENUMF, pcEntries: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ITravelLogStg, flags: TLENUMF, pcEntries: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, flags, pcEntries);
     }
-    pub fn RemoveEntry(self: *const ITravelLogStg, ptle: ?*ITravelLogEntry) callconv(.Inline) HRESULT {
+    pub fn RemoveEntry(self: *const ITravelLogStg, ptle: ?*ITravelLogEntry) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveEntry(self, ptle);
     }
-    pub fn GetRelativeEntry(self: *const ITravelLogStg, iOffset: i32, ptle: ?*?*ITravelLogEntry) callconv(.Inline) HRESULT {
+    pub fn GetRelativeEntry(self: *const ITravelLogStg, iOffset: i32, ptle: ?*?*ITravelLogEntry) callconv(.@"inline") HRESULT {
         return self.vtable.GetRelativeEntry(self, iOffset, ptle);
     }
 };
@@ -26245,46 +26245,46 @@ pub const IHlink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetHlinkSite(self: *const IHlink, pihlSite: ?*IHlinkSite, dwSiteData: u32) callconv(.Inline) HRESULT {
+    pub fn SetHlinkSite(self: *const IHlink, pihlSite: ?*IHlinkSite, dwSiteData: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetHlinkSite(self, pihlSite, dwSiteData);
     }
-    pub fn GetHlinkSite(self: *const IHlink, ppihlSite: ?*?*IHlinkSite, pdwSiteData: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetHlinkSite(self: *const IHlink, ppihlSite: ?*?*IHlinkSite, pdwSiteData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetHlinkSite(self, ppihlSite, pdwSiteData);
     }
-    pub fn SetMonikerReference(self: *const IHlink, grfHLSETF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetMonikerReference(self: *const IHlink, grfHLSETF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetMonikerReference(self, grfHLSETF, pimkTarget, pwzLocation);
     }
-    pub fn GetMonikerReference(self: *const IHlink, dwWhichRef: u32, ppimkTarget: ?*?*IMoniker, ppwzLocation: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMonikerReference(self: *const IHlink, dwWhichRef: u32, ppimkTarget: ?*?*IMoniker, ppwzLocation: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonikerReference(self, dwWhichRef, ppimkTarget, ppwzLocation);
     }
-    pub fn SetStringReference(self: *const IHlink, grfHLSETF: u32, pwzTarget: ?[*:0]const u16, pwzLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetStringReference(self: *const IHlink, grfHLSETF: u32, pwzTarget: ?[*:0]const u16, pwzLocation: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStringReference(self, grfHLSETF, pwzTarget, pwzLocation);
     }
-    pub fn GetStringReference(self: *const IHlink, dwWhichRef: u32, ppwzTarget: ?*?PWSTR, ppwzLocation: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringReference(self: *const IHlink, dwWhichRef: u32, ppwzTarget: ?*?PWSTR, ppwzLocation: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringReference(self, dwWhichRef, ppwzTarget, ppwzLocation);
     }
-    pub fn SetFriendlyName(self: *const IHlink, pwzFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFriendlyName(self: *const IHlink, pwzFriendlyName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFriendlyName(self, pwzFriendlyName);
     }
-    pub fn GetFriendlyName(self: *const IHlink, grfHLFNAMEF: u32, ppwzFriendlyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFriendlyName(self: *const IHlink, grfHLFNAMEF: u32, ppwzFriendlyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFriendlyName(self, grfHLFNAMEF, ppwzFriendlyName);
     }
-    pub fn SetTargetFrameName(self: *const IHlink, pwzTargetFrameName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTargetFrameName(self: *const IHlink, pwzTargetFrameName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetFrameName(self, pwzTargetFrameName);
     }
-    pub fn GetTargetFrameName(self: *const IHlink, ppwzTargetFrameName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTargetFrameName(self: *const IHlink, ppwzTargetFrameName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetFrameName(self, ppwzTargetFrameName);
     }
-    pub fn GetMiscStatus(self: *const IHlink, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMiscStatus(self: *const IHlink, pdwStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMiscStatus(self, pdwStatus);
     }
-    pub fn Navigate(self: *const IHlink, grfHLNF: u32, pibc: ?*IBindCtx, pibsc: ?*IBindStatusCallback, pihlbc: ?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
+    pub fn Navigate(self: *const IHlink, grfHLNF: u32, pibc: ?*IBindCtx, pibsc: ?*IBindStatusCallback, pihlbc: ?*IHlinkBrowseContext) callconv(.@"inline") HRESULT {
         return self.vtable.Navigate(self, grfHLNF, pibc, pibsc, pihlbc);
     }
-    pub fn SetAdditionalParams(self: *const IHlink, pwzAdditionalParams: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAdditionalParams(self: *const IHlink, pwzAdditionalParams: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAdditionalParams(self, pwzAdditionalParams);
     }
-    pub fn GetAdditionalParams(self: *const IHlink, ppwzAdditionalParams: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetAdditionalParams(self: *const IHlink, ppwzAdditionalParams: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAdditionalParams(self, ppwzAdditionalParams);
     }
 };
@@ -26330,16 +26330,16 @@ pub const IHlinkSite = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryService(self: *const IHlinkSite, dwSiteData: u32, guidService: ?*const Guid, riid: ?*const Guid, ppiunk: **IUnknown) callconv(.Inline) HRESULT {
+    pub fn QueryService(self: *const IHlinkSite, dwSiteData: u32, guidService: ?*const Guid, riid: ?*const Guid, ppiunk: **IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.QueryService(self, dwSiteData, guidService, riid, ppiunk);
     }
-    pub fn GetMoniker(self: *const IHlinkSite, dwSiteData: u32, dwAssign: u32, dwWhich: u32, ppimk: ?*?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn GetMoniker(self: *const IHlinkSite, dwSiteData: u32, dwAssign: u32, dwWhich: u32, ppimk: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.GetMoniker(self, dwSiteData, dwAssign, dwWhich, ppimk);
     }
-    pub fn ReadyToNavigate(self: *const IHlinkSite, dwSiteData: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn ReadyToNavigate(self: *const IHlinkSite, dwSiteData: u32, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReadyToNavigate(self, dwSiteData, dwReserved);
     }
-    pub fn OnNavigationComplete(self: *const IHlinkSite, dwSiteData: u32, dwreserved: u32, hrError: HRESULT, pwzError: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OnNavigationComplete(self: *const IHlinkSite, dwSiteData: u32, dwreserved: u32, hrError: HRESULT, pwzError: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnNavigationComplete(self, dwSiteData, dwreserved, hrError, pwzError);
     }
 };
@@ -26376,19 +26376,19 @@ pub const IHlinkTarget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetBrowseContext(self: *const IHlinkTarget, pihlbc: ?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
+    pub fn SetBrowseContext(self: *const IHlinkTarget, pihlbc: ?*IHlinkBrowseContext) callconv(.@"inline") HRESULT {
         return self.vtable.SetBrowseContext(self, pihlbc);
     }
-    pub fn GetBrowseContext(self: *const IHlinkTarget, ppihlbc: ?*?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
+    pub fn GetBrowseContext(self: *const IHlinkTarget, ppihlbc: ?*?*IHlinkBrowseContext) callconv(.@"inline") HRESULT {
         return self.vtable.GetBrowseContext(self, ppihlbc);
     }
-    pub fn Navigate(self: *const IHlinkTarget, grfHLNF: u32, pwzJumpLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Navigate(self: *const IHlinkTarget, grfHLNF: u32, pwzJumpLocation: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Navigate(self, grfHLNF, pwzJumpLocation);
     }
-    pub fn GetMoniker(self: *const IHlinkTarget, pwzLocation: ?[*:0]const u16, dwAssign: u32, ppimkLocation: ?*?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn GetMoniker(self: *const IHlinkTarget, pwzLocation: ?[*:0]const u16, dwAssign: u32, ppimkLocation: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.GetMoniker(self, pwzLocation, dwAssign, ppimkLocation);
     }
-    pub fn GetFriendlyName(self: *const IHlinkTarget, pwzLocation: ?[*:0]const u16, ppwzFriendlyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFriendlyName(self: *const IHlinkTarget, pwzLocation: ?[*:0]const u16, ppwzFriendlyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFriendlyName(self, pwzLocation, ppwzFriendlyName);
     }
 };
@@ -26431,19 +26431,19 @@ pub const IHlinkFrame = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetBrowseContext(self: *const IHlinkFrame, pihlbc: ?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
+    pub fn SetBrowseContext(self: *const IHlinkFrame, pihlbc: ?*IHlinkBrowseContext) callconv(.@"inline") HRESULT {
         return self.vtable.SetBrowseContext(self, pihlbc);
     }
-    pub fn GetBrowseContext(self: *const IHlinkFrame, ppihlbc: ?*?*IHlinkBrowseContext) callconv(.Inline) HRESULT {
+    pub fn GetBrowseContext(self: *const IHlinkFrame, ppihlbc: ?*?*IHlinkBrowseContext) callconv(.@"inline") HRESULT {
         return self.vtable.GetBrowseContext(self, ppihlbc);
     }
-    pub fn Navigate(self: *const IHlinkFrame, grfHLNF: u32, pbc: ?*IBindCtx, pibsc: ?*IBindStatusCallback, pihlNavigate: ?*IHlink) callconv(.Inline) HRESULT {
+    pub fn Navigate(self: *const IHlinkFrame, grfHLNF: u32, pbc: ?*IBindCtx, pibsc: ?*IBindStatusCallback, pihlNavigate: ?*IHlink) callconv(.@"inline") HRESULT {
         return self.vtable.Navigate(self, grfHLNF, pbc, pibsc, pihlNavigate);
     }
-    pub fn OnNavigate(self: *const IHlinkFrame, grfHLNF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16, dwreserved: u32) callconv(.Inline) HRESULT {
+    pub fn OnNavigate(self: *const IHlinkFrame, grfHLNF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16, dwreserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnNavigate(self, grfHLNF, pimkTarget, pwzLocation, pwzFriendlyName, dwreserved);
     }
-    pub fn UpdateHlink(self: *const IHlinkFrame, uHLID: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn UpdateHlink(self: *const IHlinkFrame, uHLID: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateHlink(self, uHLID, pimkTarget, pwzLocation, pwzFriendlyName);
     }
 };
@@ -26478,16 +26478,16 @@ pub const IEnumHLITEM = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumHLITEM, celt: u32, rgelt: ?*HLITEM, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumHLITEM, celt: u32, rgelt: ?*HLITEM, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumHLITEM, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumHLITEM, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumHLITEM) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumHLITEM) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumHLITEM, ppienumhlitem: ?*?*IEnumHLITEM) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumHLITEM, ppienumhlitem: ?*?*IEnumHLITEM) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppienumhlitem);
     }
 };
@@ -26665,46 +26665,46 @@ pub const IHlinkBrowseContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Register(self: *const IHlinkBrowseContext, reserved: u32, piunk: ?*IUnknown, pimk: ?*IMoniker, pdwRegister: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Register(self: *const IHlinkBrowseContext, reserved: u32, piunk: ?*IUnknown, pimk: ?*IMoniker, pdwRegister: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Register(self, reserved, piunk, pimk, pdwRegister);
     }
-    pub fn GetObject(self: *const IHlinkBrowseContext, pimk: ?*IMoniker, fBindIfRootRegistered: BOOL, ppiunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const IHlinkBrowseContext, pimk: ?*IMoniker, fBindIfRootRegistered: BOOL, ppiunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, pimk, fBindIfRootRegistered, ppiunk);
     }
-    pub fn Revoke(self: *const IHlinkBrowseContext, dwRegister: u32) callconv(.Inline) HRESULT {
+    pub fn Revoke(self: *const IHlinkBrowseContext, dwRegister: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Revoke(self, dwRegister);
     }
-    pub fn SetBrowseWindowInfo(self: *const IHlinkBrowseContext, phlbwi: ?*HLBWINFO) callconv(.Inline) HRESULT {
+    pub fn SetBrowseWindowInfo(self: *const IHlinkBrowseContext, phlbwi: ?*HLBWINFO) callconv(.@"inline") HRESULT {
         return self.vtable.SetBrowseWindowInfo(self, phlbwi);
     }
-    pub fn GetBrowseWindowInfo(self: *const IHlinkBrowseContext, phlbwi: ?*HLBWINFO) callconv(.Inline) HRESULT {
+    pub fn GetBrowseWindowInfo(self: *const IHlinkBrowseContext, phlbwi: ?*HLBWINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetBrowseWindowInfo(self, phlbwi);
     }
-    pub fn SetInitialHlink(self: *const IHlinkBrowseContext, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetInitialHlink(self: *const IHlinkBrowseContext, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialHlink(self, pimkTarget, pwzLocation, pwzFriendlyName);
     }
-    pub fn OnNavigateHlink(self: *const IHlinkBrowseContext, grfHLNF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16, puHLID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn OnNavigateHlink(self: *const IHlinkBrowseContext, grfHLNF: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16, puHLID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnNavigateHlink(self, grfHLNF, pimkTarget, pwzLocation, pwzFriendlyName, puHLID);
     }
-    pub fn UpdateHlink(self: *const IHlinkBrowseContext, uHLID: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn UpdateHlink(self: *const IHlinkBrowseContext, uHLID: u32, pimkTarget: ?*IMoniker, pwzLocation: ?[*:0]const u16, pwzFriendlyName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateHlink(self, uHLID, pimkTarget, pwzLocation, pwzFriendlyName);
     }
-    pub fn EnumNavigationStack(self: *const IHlinkBrowseContext, dwReserved: u32, grfHLFNAMEF: u32, ppienumhlitem: ?*?*IEnumHLITEM) callconv(.Inline) HRESULT {
+    pub fn EnumNavigationStack(self: *const IHlinkBrowseContext, dwReserved: u32, grfHLFNAMEF: u32, ppienumhlitem: ?*?*IEnumHLITEM) callconv(.@"inline") HRESULT {
         return self.vtable.EnumNavigationStack(self, dwReserved, grfHLFNAMEF, ppienumhlitem);
     }
-    pub fn QueryHlink(self: *const IHlinkBrowseContext, grfHLQF: u32, uHLID: u32) callconv(.Inline) HRESULT {
+    pub fn QueryHlink(self: *const IHlinkBrowseContext, grfHLQF: u32, uHLID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryHlink(self, grfHLQF, uHLID);
     }
-    pub fn GetHlink(self: *const IHlinkBrowseContext, uHLID: u32, ppihl: ?*?*IHlink) callconv(.Inline) HRESULT {
+    pub fn GetHlink(self: *const IHlinkBrowseContext, uHLID: u32, ppihl: ?*?*IHlink) callconv(.@"inline") HRESULT {
         return self.vtable.GetHlink(self, uHLID, ppihl);
     }
-    pub fn SetCurrentHlink(self: *const IHlinkBrowseContext, uHLID: u32) callconv(.Inline) HRESULT {
+    pub fn SetCurrentHlink(self: *const IHlinkBrowseContext, uHLID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCurrentHlink(self, uHLID);
     }
-    pub fn Clone(self: *const IHlinkBrowseContext, piunkOuter: ?*IUnknown, riid: ?*const Guid, ppiunkObj: **IUnknown) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IHlinkBrowseContext, piunkOuter: ?*IUnknown, riid: ?*const Guid, ppiunkObj: **IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, piunkOuter, riid, ppiunkObj);
     }
-    pub fn Close(self: *const IHlinkBrowseContext, reserved: u32) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IHlinkBrowseContext, reserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self, reserved);
     }
 };
@@ -26727,10 +26727,10 @@ pub const IExtensionServices = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAdditionalHeaders(self: *const IExtensionServices, pwzAdditionalHeaders: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAdditionalHeaders(self: *const IExtensionServices, pwzAdditionalHeaders: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAdditionalHeaders(self, pwzAdditionalHeaders);
     }
-    pub fn SetAuthenticateData(self: *const IExtensionServices, phwnd: ?HWND, pwzUsername: ?[*:0]const u16, pwzPassword: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAuthenticateData(self: *const IExtensionServices, phwnd: ?HWND, pwzUsername: ?[*:0]const u16, pwzPassword: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAuthenticateData(self, phwnd, pwzUsername, pwzPassword);
     }
 };
@@ -26756,13 +26756,13 @@ pub const ITravelEntry = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Invoke(self: *const ITravelEntry, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const ITravelEntry, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, punk);
     }
-    pub fn Update(self: *const ITravelEntry, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const ITravelEntry, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Update(self, punk, fIsLocalAnchor);
     }
-    pub fn GetPidl(self: *const ITravelEntry, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetPidl(self: *const ITravelEntry, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetPidl(self, ppidl);
     }
 };
@@ -26835,37 +26835,37 @@ pub const ITravelLog = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddEntry(self: *const ITravelLog, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddEntry(self: *const ITravelLog, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddEntry(self, punk, fIsLocalAnchor);
     }
-    pub fn UpdateEntry(self: *const ITravelLog, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.Inline) HRESULT {
+    pub fn UpdateEntry(self: *const ITravelLog, punk: ?*IUnknown, fIsLocalAnchor: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateEntry(self, punk, fIsLocalAnchor);
     }
-    pub fn UpdateExternal(self: *const ITravelLog, punk: ?*IUnknown, punkHLBrowseContext: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn UpdateExternal(self: *const ITravelLog, punk: ?*IUnknown, punkHLBrowseContext: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateExternal(self, punk, punkHLBrowseContext);
     }
-    pub fn Travel(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32) callconv(.Inline) HRESULT {
+    pub fn Travel(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Travel(self, punk, iOffset);
     }
-    pub fn GetTravelEntry(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32, ppte: ?*?*ITravelEntry) callconv(.Inline) HRESULT {
+    pub fn GetTravelEntry(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32, ppte: ?*?*ITravelEntry) callconv(.@"inline") HRESULT {
         return self.vtable.GetTravelEntry(self, punk, iOffset, ppte);
     }
-    pub fn FindTravelEntry(self: *const ITravelLog, punk: ?*IUnknown, pidl: ?*ITEMIDLIST, ppte: ?*?*ITravelEntry) callconv(.Inline) HRESULT {
+    pub fn FindTravelEntry(self: *const ITravelLog, punk: ?*IUnknown, pidl: ?*ITEMIDLIST, ppte: ?*?*ITravelEntry) callconv(.@"inline") HRESULT {
         return self.vtable.FindTravelEntry(self, punk, pidl, ppte);
     }
-    pub fn GetToolTipText(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32, idsTemplate: i32, pwzText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+    pub fn GetToolTipText(self: *const ITravelLog, punk: ?*IUnknown, iOffset: i32, idsTemplate: i32, pwzText: [*:0]u16, cchText: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetToolTipText(self, punk, iOffset, idsTemplate, pwzText, cchText);
     }
-    pub fn InsertMenuEntries(self: *const ITravelLog, punk: ?*IUnknown, hmenu: ?HMENU, nPos: i32, idFirst: i32, idLast: i32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn InsertMenuEntries(self: *const ITravelLog, punk: ?*IUnknown, hmenu: ?HMENU, nPos: i32, idFirst: i32, idLast: i32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InsertMenuEntries(self, punk, hmenu, nPos, idFirst, idLast, dwFlags);
     }
-    pub fn Clone(self: *const ITravelLog, pptl: ?*?*ITravelLog) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const ITravelLog, pptl: ?*?*ITravelLog) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, pptl);
     }
-    pub fn CountEntries(self: *const ITravelLog, punk: ?*IUnknown) callconv(.Inline) u32 {
+    pub fn CountEntries(self: *const ITravelLog, punk: ?*IUnknown) callconv(.@"inline") u32 {
         return self.vtable.CountEntries(self, punk);
     }
-    pub fn Revert(self: *const ITravelLog) callconv(.Inline) HRESULT {
+    pub fn Revert(self: *const ITravelLog) callconv(.@"inline") HRESULT {
         return self.vtable.Revert(self);
     }
 };
@@ -26890,10 +26890,10 @@ pub const CIE4ConnectionPoint = extern union {
     vtable: *const VTable,
     IConnectionPoint: IConnectionPoint,
     IUnknown: IUnknown,
-    pub fn DoInvokeIE4(self: *const CIE4ConnectionPoint, pf: ?*BOOL, ppv: ?*?*anyopaque, dispid: i32, pdispparams: ?*DISPPARAMS) callconv(.Inline) HRESULT {
+    pub fn DoInvokeIE4(self: *const CIE4ConnectionPoint, pf: ?*BOOL, ppv: ?*?*anyopaque, dispid: i32, pdispparams: ?*DISPPARAMS) callconv(.@"inline") HRESULT {
         return self.vtable.DoInvokeIE4(self, pf, ppv, dispid, pdispparams);
     }
-    pub fn DoInvokePIDLIE4(self: *const CIE4ConnectionPoint, dispid: i32, pidl: ?*ITEMIDLIST, fCanCancel: BOOL) callconv(.Inline) HRESULT {
+    pub fn DoInvokePIDLIE4(self: *const CIE4ConnectionPoint, dispid: i32, pidl: ?*ITEMIDLIST, fCanCancel: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoInvokePIDLIE4(self, dispid, pidl, fCanCancel);
     }
 };
@@ -26928,13 +26928,13 @@ pub const IExpDispSupportXP = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindCIE4ConnectionPoint(self: *const IExpDispSupportXP, riid: ?*const Guid, ppccp: ?*?*CIE4ConnectionPoint) callconv(.Inline) HRESULT {
+    pub fn FindCIE4ConnectionPoint(self: *const IExpDispSupportXP, riid: ?*const Guid, ppccp: ?*?*CIE4ConnectionPoint) callconv(.@"inline") HRESULT {
         return self.vtable.FindCIE4ConnectionPoint(self, riid, ppccp);
     }
-    pub fn OnTranslateAccelerator(self: *const IExpDispSupportXP, pMsg: ?*MSG, grfModifiers: u32) callconv(.Inline) HRESULT {
+    pub fn OnTranslateAccelerator(self: *const IExpDispSupportXP, pMsg: ?*MSG, grfModifiers: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnTranslateAccelerator(self, pMsg, grfModifiers);
     }
-    pub fn OnInvoke(self: *const IExpDispSupportXP, dispidMember: i32, iid: ?*const Guid, lcid: u32, wFlags: u16, pdispparams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
+    pub fn OnInvoke(self: *const IExpDispSupportXP, dispidMember: i32, iid: ?*const Guid, lcid: u32, wFlags: u16, pdispparams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnInvoke(self, dispidMember, iid, lcid, wFlags, pdispparams, pVarResult, pexcepinfo, puArgErr);
     }
 };
@@ -26968,13 +26968,13 @@ pub const IExpDispSupport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindConnectionPoint(self: *const IExpDispSupport, riid: ?*const Guid, ppccp: ?*?*IConnectionPoint) callconv(.Inline) HRESULT {
+    pub fn FindConnectionPoint(self: *const IExpDispSupport, riid: ?*const Guid, ppccp: ?*?*IConnectionPoint) callconv(.@"inline") HRESULT {
         return self.vtable.FindConnectionPoint(self, riid, ppccp);
     }
-    pub fn OnTranslateAccelerator(self: *const IExpDispSupport, pMsg: ?*MSG, grfModifiers: u32) callconv(.Inline) HRESULT {
+    pub fn OnTranslateAccelerator(self: *const IExpDispSupport, pMsg: ?*MSG, grfModifiers: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnTranslateAccelerator(self, pMsg, grfModifiers);
     }
-    pub fn OnInvoke(self: *const IExpDispSupport, dispidMember: i32, iid: ?*const Guid, lcid: u32, wFlags: u16, pdispparams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
+    pub fn OnInvoke(self: *const IExpDispSupport, dispidMember: i32, iid: ?*const Guid, lcid: u32, wFlags: u16, pdispparams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pexcepinfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnInvoke(self, dispidMember, iid, lcid, wFlags, pdispparams, pVarResult, pexcepinfo, puArgErr);
     }
 };
@@ -27146,94 +27146,94 @@ pub const IBrowserService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetParentSite(self: *const IBrowserService, ppipsite: ?*?*IOleInPlaceSite) callconv(.Inline) HRESULT {
+    pub fn GetParentSite(self: *const IBrowserService, ppipsite: ?*?*IOleInPlaceSite) callconv(.@"inline") HRESULT {
         return self.vtable.GetParentSite(self, ppipsite);
     }
-    pub fn SetTitle(self: *const IBrowserService, psv: ?*IShellView, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTitle(self: *const IBrowserService, psv: ?*IShellView, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetTitle(self, psv, pszName);
     }
-    pub fn GetTitle(self: *const IBrowserService, psv: ?*IShellView, pszName: [*:0]u16, cchName: u32) callconv(.Inline) HRESULT {
+    pub fn GetTitle(self: *const IBrowserService, psv: ?*IShellView, pszName: [*:0]u16, cchName: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTitle(self, psv, pszName, cchName);
     }
-    pub fn GetOleObject(self: *const IBrowserService, ppobjv: ?*?*IOleObject) callconv(.Inline) HRESULT {
+    pub fn GetOleObject(self: *const IBrowserService, ppobjv: ?*?*IOleObject) callconv(.@"inline") HRESULT {
         return self.vtable.GetOleObject(self, ppobjv);
     }
-    pub fn GetTravelLog(self: *const IBrowserService, pptl: ?*?*ITravelLog) callconv(.Inline) HRESULT {
+    pub fn GetTravelLog(self: *const IBrowserService, pptl: ?*?*ITravelLog) callconv(.@"inline") HRESULT {
         return self.vtable.GetTravelLog(self, pptl);
     }
-    pub fn ShowControlWindow(self: *const IBrowserService, id: u32, fShow: BOOL) callconv(.Inline) HRESULT {
+    pub fn ShowControlWindow(self: *const IBrowserService, id: u32, fShow: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ShowControlWindow(self, id, fShow);
     }
-    pub fn IsControlWindowShown(self: *const IBrowserService, id: u32, pfShown: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsControlWindowShown(self: *const IBrowserService, id: u32, pfShown: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsControlWindowShown(self, id, pfShown);
     }
-    pub fn IEGetDisplayName(self: *const IBrowserService, pidl: ?*ITEMIDLIST, pwszName: ?PWSTR, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn IEGetDisplayName(self: *const IBrowserService, pidl: ?*ITEMIDLIST, pwszName: ?PWSTR, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.IEGetDisplayName(self, pidl, pwszName, uFlags);
     }
-    pub fn IEParseDisplayName(self: *const IBrowserService, uiCP: u32, pwszPath: ?[*:0]const u16, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn IEParseDisplayName(self: *const IBrowserService, uiCP: u32, pwszPath: ?[*:0]const u16, ppidlOut: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.IEParseDisplayName(self, uiCP, pwszPath, ppidlOut);
     }
-    pub fn DisplayParseError(self: *const IBrowserService, hres: HRESULT, pwszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DisplayParseError(self: *const IBrowserService, hres: HRESULT, pwszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DisplayParseError(self, hres, pwszPath);
     }
-    pub fn NavigateToPidl(self: *const IBrowserService, pidl: ?*ITEMIDLIST, grfHLNF: u32) callconv(.Inline) HRESULT {
+    pub fn NavigateToPidl(self: *const IBrowserService, pidl: ?*ITEMIDLIST, grfHLNF: u32) callconv(.@"inline") HRESULT {
         return self.vtable.NavigateToPidl(self, pidl, grfHLNF);
     }
-    pub fn SetNavigateState(self: *const IBrowserService, bnstate: BNSTATE) callconv(.Inline) HRESULT {
+    pub fn SetNavigateState(self: *const IBrowserService, bnstate: BNSTATE) callconv(.@"inline") HRESULT {
         return self.vtable.SetNavigateState(self, bnstate);
     }
-    pub fn GetNavigateState(self: *const IBrowserService, pbnstate: ?*BNSTATE) callconv(.Inline) HRESULT {
+    pub fn GetNavigateState(self: *const IBrowserService, pbnstate: ?*BNSTATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetNavigateState(self, pbnstate);
     }
-    pub fn NotifyRedirect(self: *const IBrowserService, psv: ?*IShellView, pidl: ?*ITEMIDLIST, pfDidBrowse: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn NotifyRedirect(self: *const IBrowserService, psv: ?*IShellView, pidl: ?*ITEMIDLIST, pfDidBrowse: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyRedirect(self, psv, pidl, pfDidBrowse);
     }
-    pub fn UpdateWindowList(self: *const IBrowserService) callconv(.Inline) HRESULT {
+    pub fn UpdateWindowList(self: *const IBrowserService) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateWindowList(self);
     }
-    pub fn UpdateBackForwardState(self: *const IBrowserService) callconv(.Inline) HRESULT {
+    pub fn UpdateBackForwardState(self: *const IBrowserService) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateBackForwardState(self);
     }
-    pub fn SetFlags(self: *const IBrowserService, dwFlags: u32, dwFlagMask: u32) callconv(.Inline) HRESULT {
+    pub fn SetFlags(self: *const IBrowserService, dwFlags: u32, dwFlagMask: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFlags(self, dwFlags, dwFlagMask);
     }
-    pub fn GetFlags(self: *const IBrowserService, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const IBrowserService, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlags(self, pdwFlags);
     }
-    pub fn CanNavigateNow(self: *const IBrowserService) callconv(.Inline) HRESULT {
+    pub fn CanNavigateNow(self: *const IBrowserService) callconv(.@"inline") HRESULT {
         return self.vtable.CanNavigateNow(self);
     }
-    pub fn GetPidl(self: *const IBrowserService, ppidl: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn GetPidl(self: *const IBrowserService, ppidl: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.GetPidl(self, ppidl);
     }
-    pub fn SetReferrer(self: *const IBrowserService, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn SetReferrer(self: *const IBrowserService, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.SetReferrer(self, pidl);
     }
-    pub fn GetBrowserIndex(self: *const IBrowserService) callconv(.Inline) u32 {
+    pub fn GetBrowserIndex(self: *const IBrowserService) callconv(.@"inline") u32 {
         return self.vtable.GetBrowserIndex(self);
     }
-    pub fn GetBrowserByIndex(self: *const IBrowserService, dwID: u32, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetBrowserByIndex(self: *const IBrowserService, dwID: u32, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetBrowserByIndex(self, dwID, ppunk);
     }
-    pub fn GetHistoryObject(self: *const IBrowserService, ppole: ?*?*IOleObject, pstm: ?*?*IStream, ppbc: ?*?*IBindCtx) callconv(.Inline) HRESULT {
+    pub fn GetHistoryObject(self: *const IBrowserService, ppole: ?*?*IOleObject, pstm: ?*?*IStream, ppbc: ?*?*IBindCtx) callconv(.@"inline") HRESULT {
         return self.vtable.GetHistoryObject(self, ppole, pstm, ppbc);
     }
-    pub fn SetHistoryObject(self: *const IBrowserService, pole: ?*IOleObject, fIsLocalAnchor: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetHistoryObject(self: *const IBrowserService, pole: ?*IOleObject, fIsLocalAnchor: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetHistoryObject(self, pole, fIsLocalAnchor);
     }
-    pub fn CacheOLEServer(self: *const IBrowserService, pole: ?*IOleObject) callconv(.Inline) HRESULT {
+    pub fn CacheOLEServer(self: *const IBrowserService, pole: ?*IOleObject) callconv(.@"inline") HRESULT {
         return self.vtable.CacheOLEServer(self, pole);
     }
-    pub fn GetSetCodePage(self: *const IBrowserService, pvarIn: ?*VARIANT, pvarOut: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetSetCodePage(self: *const IBrowserService, pvarIn: ?*VARIANT, pvarOut: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetSetCodePage(self, pvarIn, pvarOut);
     }
-    pub fn OnHttpEquiv(self: *const IBrowserService, psv: ?*IShellView, fDone: BOOL, pvarargIn: ?*VARIANT, pvarargOut: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn OnHttpEquiv(self: *const IBrowserService, psv: ?*IShellView, fDone: BOOL, pvarargIn: ?*VARIANT, pvarargOut: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.OnHttpEquiv(self, psv, fDone, pvarargIn, pvarargOut);
     }
-    pub fn GetPalette(self: *const IBrowserService, hpal: ?*?HPALETTE) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IBrowserService, hpal: ?*?HPALETTE) callconv(.@"inline") HRESULT {
         return self.vtable.GetPalette(self, hpal);
     }
-    pub fn RegisterWindow(self: *const IBrowserService, fForceRegister: BOOL, swc: i32) callconv(.Inline) HRESULT {
+    pub fn RegisterWindow(self: *const IBrowserService, fForceRegister: BOOL, swc: i32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterWindow(self, fForceRegister, swc);
     }
 };
@@ -27250,7 +27250,7 @@ pub const IShellService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetOwner(self: *const IShellService, punkOwner: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetOwner(self: *const IShellService, punkOwner: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetOwner(self, punkOwner);
     }
 };
@@ -27640,190 +27640,190 @@ pub const IBrowserService2 = extern union {
     vtable: *const VTable,
     IBrowserService: IBrowserService,
     IUnknown: IUnknown,
-    pub fn WndProcBS(self: *const IBrowserService2, hwnd: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) LRESULT {
+    pub fn WndProcBS(self: *const IBrowserService2, hwnd: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") LRESULT {
         return self.vtable.WndProcBS(self, hwnd, uMsg, wParam, lParam);
     }
-    pub fn SetAsDefFolderSettings(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn SetAsDefFolderSettings(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.SetAsDefFolderSettings(self);
     }
-    pub fn GetViewRect(self: *const IBrowserService2, prc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetViewRect(self: *const IBrowserService2, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewRect(self, prc);
     }
-    pub fn OnSize(self: *const IBrowserService2, wParam: WPARAM) callconv(.Inline) HRESULT {
+    pub fn OnSize(self: *const IBrowserService2, wParam: WPARAM) callconv(.@"inline") HRESULT {
         return self.vtable.OnSize(self, wParam);
     }
-    pub fn OnCreate(self: *const IBrowserService2, pcs: ?*CREATESTRUCTW) callconv(.Inline) HRESULT {
+    pub fn OnCreate(self: *const IBrowserService2, pcs: ?*CREATESTRUCTW) callconv(.@"inline") HRESULT {
         return self.vtable.OnCreate(self, pcs);
     }
-    pub fn OnCommand(self: *const IBrowserService2, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) LRESULT {
+    pub fn OnCommand(self: *const IBrowserService2, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") LRESULT {
         return self.vtable.OnCommand(self, wParam, lParam);
     }
-    pub fn OnDestroy(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn OnDestroy(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.OnDestroy(self);
     }
-    pub fn OnNotify(self: *const IBrowserService2, pnm: ?*NMHDR) callconv(.Inline) LRESULT {
+    pub fn OnNotify(self: *const IBrowserService2, pnm: ?*NMHDR) callconv(.@"inline") LRESULT {
         return self.vtable.OnNotify(self, pnm);
     }
-    pub fn OnSetFocus(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn OnSetFocus(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.OnSetFocus(self);
     }
-    pub fn OnFrameWindowActivateBS(self: *const IBrowserService2, fActive: BOOL) callconv(.Inline) HRESULT {
+    pub fn OnFrameWindowActivateBS(self: *const IBrowserService2, fActive: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnFrameWindowActivateBS(self, fActive);
     }
-    pub fn ReleaseShellView(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn ReleaseShellView(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseShellView(self);
     }
-    pub fn ActivatePendingView(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn ActivatePendingView(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.ActivatePendingView(self);
     }
-    pub fn CreateViewWindow(self: *const IBrowserService2, psvNew: ?*IShellView, psvOld: ?*IShellView, prcView: ?*RECT, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn CreateViewWindow(self: *const IBrowserService2, psvNew: ?*IShellView, psvOld: ?*IShellView, prcView: ?*RECT, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.CreateViewWindow(self, psvNew, psvOld, prcView, phwnd);
     }
-    pub fn CreateBrowserPropSheetExt(self: *const IBrowserService2, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateBrowserPropSheetExt(self: *const IBrowserService2, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBrowserPropSheetExt(self, riid, ppv);
     }
-    pub fn GetViewWindow(self: *const IBrowserService2, phwndView: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn GetViewWindow(self: *const IBrowserService2, phwndView: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewWindow(self, phwndView);
     }
-    pub fn GetBaseBrowserData(self: *const IBrowserService2, pbbd: ?*?*BASEBROWSERDATALH) callconv(.Inline) HRESULT {
+    pub fn GetBaseBrowserData(self: *const IBrowserService2, pbbd: ?*?*BASEBROWSERDATALH) callconv(.@"inline") HRESULT {
         return self.vtable.GetBaseBrowserData(self, pbbd);
     }
-    pub fn PutBaseBrowserData(self: *const IBrowserService2) callconv(.Inline) ?*BASEBROWSERDATALH {
+    pub fn PutBaseBrowserData(self: *const IBrowserService2) callconv(.@"inline") ?*BASEBROWSERDATALH {
         return self.vtable.PutBaseBrowserData(self);
     }
-    pub fn InitializeTravelLog(self: *const IBrowserService2, ptl: ?*ITravelLog, dw: u32) callconv(.Inline) HRESULT {
+    pub fn InitializeTravelLog(self: *const IBrowserService2, ptl: ?*ITravelLog, dw: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeTravelLog(self, ptl, dw);
     }
-    pub fn SetTopBrowser(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn SetTopBrowser(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopBrowser(self);
     }
-    pub fn Offline(self: *const IBrowserService2, iCmd: i32) callconv(.Inline) HRESULT {
+    pub fn Offline(self: *const IBrowserService2, iCmd: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Offline(self, iCmd);
     }
-    pub fn AllowViewResize(self: *const IBrowserService2, f: BOOL) callconv(.Inline) HRESULT {
+    pub fn AllowViewResize(self: *const IBrowserService2, f: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AllowViewResize(self, f);
     }
-    pub fn SetActivateState(self: *const IBrowserService2, u: u32) callconv(.Inline) HRESULT {
+    pub fn SetActivateState(self: *const IBrowserService2, u: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetActivateState(self, u);
     }
-    pub fn UpdateSecureLockIcon(self: *const IBrowserService2, eSecureLock: i32) callconv(.Inline) HRESULT {
+    pub fn UpdateSecureLockIcon(self: *const IBrowserService2, eSecureLock: i32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateSecureLockIcon(self, eSecureLock);
     }
-    pub fn InitializeDownloadManager(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn InitializeDownloadManager(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeDownloadManager(self);
     }
-    pub fn InitializeTransitionSite(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn InitializeTransitionSite(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeTransitionSite(self);
     }
-    pub fn _Initialize(self: *const IBrowserService2, hwnd: ?HWND, pauto: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn _Initialize(self: *const IBrowserService2, hwnd: ?HWND, pauto: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable._Initialize(self, hwnd, pauto);
     }
-    pub fn _CancelPendingNavigationAsync(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn _CancelPendingNavigationAsync(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable._CancelPendingNavigationAsync(self);
     }
-    pub fn _CancelPendingView(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn _CancelPendingView(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable._CancelPendingView(self);
     }
-    pub fn _MaySaveChanges(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn _MaySaveChanges(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable._MaySaveChanges(self);
     }
-    pub fn _PauseOrResumeView(self: *const IBrowserService2, fPaused: BOOL) callconv(.Inline) HRESULT {
+    pub fn _PauseOrResumeView(self: *const IBrowserService2, fPaused: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable._PauseOrResumeView(self, fPaused);
     }
-    pub fn _DisableModeless(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn _DisableModeless(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable._DisableModeless(self);
     }
-    pub fn _NavigateToPidl2(self: *const IBrowserService2, pidl: ?*ITEMIDLIST, grfHLNF: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn _NavigateToPidl2(self: *const IBrowserService2, pidl: ?*ITEMIDLIST, grfHLNF: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable._NavigateToPidl2(self, pidl, grfHLNF, dwFlags);
     }
-    pub fn _TryShell2Rename(self: *const IBrowserService2, psv: ?*IShellView, pidlNew: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn _TryShell2Rename(self: *const IBrowserService2, psv: ?*IShellView, pidlNew: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable._TryShell2Rename(self, psv, pidlNew);
     }
-    pub fn _SwitchActivationNow(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn _SwitchActivationNow(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable._SwitchActivationNow(self);
     }
-    pub fn _ExecChildren(self: *const IBrowserService2, punkBar: ?*IUnknown, fBroadcast: BOOL, pguidCmdGroup: ?*const Guid, nCmdID: u32, nCmdexecopt: u32, pvarargIn: ?*VARIANT, pvarargOut: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn _ExecChildren(self: *const IBrowserService2, punkBar: ?*IUnknown, fBroadcast: BOOL, pguidCmdGroup: ?*const Guid, nCmdID: u32, nCmdexecopt: u32, pvarargIn: ?*VARIANT, pvarargOut: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable._ExecChildren(self, punkBar, fBroadcast, pguidCmdGroup, nCmdID, nCmdexecopt, pvarargIn, pvarargOut);
     }
-    pub fn _SendChildren(self: *const IBrowserService2, hwndBar: ?HWND, fBroadcast: BOOL, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn _SendChildren(self: *const IBrowserService2, hwndBar: ?HWND, fBroadcast: BOOL, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") HRESULT {
         return self.vtable._SendChildren(self, hwndBar, fBroadcast, uMsg, wParam, lParam);
     }
-    pub fn GetFolderSetData(self: *const IBrowserService2, pfsd: ?*FOLDERSETDATA) callconv(.Inline) HRESULT {
+    pub fn GetFolderSetData(self: *const IBrowserService2, pfsd: ?*FOLDERSETDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetFolderSetData(self, pfsd);
     }
-    pub fn _OnFocusChange(self: *const IBrowserService2, itb: u32) callconv(.Inline) HRESULT {
+    pub fn _OnFocusChange(self: *const IBrowserService2, itb: u32) callconv(.@"inline") HRESULT {
         return self.vtable._OnFocusChange(self, itb);
     }
-    pub fn v_ShowHideChildWindows(self: *const IBrowserService2, fChildOnly: BOOL) callconv(.Inline) HRESULT {
+    pub fn v_ShowHideChildWindows(self: *const IBrowserService2, fChildOnly: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.v_ShowHideChildWindows(self, fChildOnly);
     }
-    pub fn _get_itbLastFocus(self: *const IBrowserService2) callconv(.Inline) u32 {
+    pub fn _get_itbLastFocus(self: *const IBrowserService2) callconv(.@"inline") u32 {
         return self.vtable._get_itbLastFocus(self);
     }
-    pub fn _put_itbLastFocus(self: *const IBrowserService2, itbLastFocus: u32) callconv(.Inline) HRESULT {
+    pub fn _put_itbLastFocus(self: *const IBrowserService2, itbLastFocus: u32) callconv(.@"inline") HRESULT {
         return self.vtable._put_itbLastFocus(self, itbLastFocus);
     }
-    pub fn _UIActivateView(self: *const IBrowserService2, uState: u32) callconv(.Inline) HRESULT {
+    pub fn _UIActivateView(self: *const IBrowserService2, uState: u32) callconv(.@"inline") HRESULT {
         return self.vtable._UIActivateView(self, uState);
     }
-    pub fn _GetViewBorderRect(self: *const IBrowserService2, prc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn _GetViewBorderRect(self: *const IBrowserService2, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable._GetViewBorderRect(self, prc);
     }
-    pub fn _UpdateViewRectSize(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn _UpdateViewRectSize(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable._UpdateViewRectSize(self);
     }
-    pub fn _ResizeNextBorder(self: *const IBrowserService2, itb: u32) callconv(.Inline) HRESULT {
+    pub fn _ResizeNextBorder(self: *const IBrowserService2, itb: u32) callconv(.@"inline") HRESULT {
         return self.vtable._ResizeNextBorder(self, itb);
     }
-    pub fn _ResizeView(self: *const IBrowserService2) callconv(.Inline) HRESULT {
+    pub fn _ResizeView(self: *const IBrowserService2) callconv(.@"inline") HRESULT {
         return self.vtable._ResizeView(self);
     }
-    pub fn _GetEffectiveClientArea(self: *const IBrowserService2, lprectBorder: ?*RECT, hmon: ?HMONITOR) callconv(.Inline) HRESULT {
+    pub fn _GetEffectiveClientArea(self: *const IBrowserService2, lprectBorder: ?*RECT, hmon: ?HMONITOR) callconv(.@"inline") HRESULT {
         return self.vtable._GetEffectiveClientArea(self, lprectBorder, hmon);
     }
-    pub fn v_GetViewStream(self: *const IBrowserService2, pidl: ?*ITEMIDLIST, grfMode: u32, pwszName: ?[*:0]const u16) callconv(.Inline) ?*IStream {
+    pub fn v_GetViewStream(self: *const IBrowserService2, pidl: ?*ITEMIDLIST, grfMode: u32, pwszName: ?[*:0]const u16) callconv(.@"inline") ?*IStream {
         return self.vtable.v_GetViewStream(self, pidl, grfMode, pwszName);
     }
-    pub fn ForwardViewMsg(self: *const IBrowserService2, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) LRESULT {
+    pub fn ForwardViewMsg(self: *const IBrowserService2, uMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.@"inline") LRESULT {
         return self.vtable.ForwardViewMsg(self, uMsg, wParam, lParam);
     }
-    pub fn SetAcceleratorMenu(self: *const IBrowserService2, hacc: ?HACCEL) callconv(.Inline) HRESULT {
+    pub fn SetAcceleratorMenu(self: *const IBrowserService2, hacc: ?HACCEL) callconv(.@"inline") HRESULT {
         return self.vtable.SetAcceleratorMenu(self, hacc);
     }
-    pub fn _GetToolbarCount(self: *const IBrowserService2) callconv(.Inline) i32 {
+    pub fn _GetToolbarCount(self: *const IBrowserService2) callconv(.@"inline") i32 {
         return self.vtable._GetToolbarCount(self);
     }
-    pub fn _GetToolbarItem(self: *const IBrowserService2, itb: i32) callconv(.Inline) ?*TOOLBARITEM {
+    pub fn _GetToolbarItem(self: *const IBrowserService2, itb: i32) callconv(.@"inline") ?*TOOLBARITEM {
         return self.vtable._GetToolbarItem(self, itb);
     }
-    pub fn _SaveToolbars(self: *const IBrowserService2, pstm: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn _SaveToolbars(self: *const IBrowserService2, pstm: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable._SaveToolbars(self, pstm);
     }
-    pub fn _LoadToolbars(self: *const IBrowserService2, pstm: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn _LoadToolbars(self: *const IBrowserService2, pstm: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable._LoadToolbars(self, pstm);
     }
-    pub fn _CloseAndReleaseToolbars(self: *const IBrowserService2, fClose: BOOL) callconv(.Inline) HRESULT {
+    pub fn _CloseAndReleaseToolbars(self: *const IBrowserService2, fClose: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable._CloseAndReleaseToolbars(self, fClose);
     }
-    pub fn v_MayGetNextToolbarFocus(self: *const IBrowserService2, lpMsg: ?*MSG, itbNext: u32, citb: i32, pptbi: ?*?*TOOLBARITEM, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn v_MayGetNextToolbarFocus(self: *const IBrowserService2, lpMsg: ?*MSG, itbNext: u32, citb: i32, pptbi: ?*?*TOOLBARITEM, phwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.v_MayGetNextToolbarFocus(self, lpMsg, itbNext, citb, pptbi, phwnd);
     }
-    pub fn _ResizeNextBorderHelper(self: *const IBrowserService2, itb: u32, bUseHmonitor: BOOL) callconv(.Inline) HRESULT {
+    pub fn _ResizeNextBorderHelper(self: *const IBrowserService2, itb: u32, bUseHmonitor: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable._ResizeNextBorderHelper(self, itb, bUseHmonitor);
     }
-    pub fn _FindTBar(self: *const IBrowserService2, punkSrc: ?*IUnknown) callconv(.Inline) u32 {
+    pub fn _FindTBar(self: *const IBrowserService2, punkSrc: ?*IUnknown) callconv(.@"inline") u32 {
         return self.vtable._FindTBar(self, punkSrc);
     }
-    pub fn _SetFocus(self: *const IBrowserService2, ptbi: ?*TOOLBARITEM, hwnd: ?HWND, lpMsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn _SetFocus(self: *const IBrowserService2, ptbi: ?*TOOLBARITEM, hwnd: ?HWND, lpMsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable._SetFocus(self, ptbi, hwnd, lpMsg);
     }
-    pub fn v_MayTranslateAccelerator(self: *const IBrowserService2, pmsg: ?*MSG) callconv(.Inline) HRESULT {
+    pub fn v_MayTranslateAccelerator(self: *const IBrowserService2, pmsg: ?*MSG) callconv(.@"inline") HRESULT {
         return self.vtable.v_MayTranslateAccelerator(self, pmsg);
     }
-    pub fn _GetBorderDWHelper(self: *const IBrowserService2, punkSrc: ?*IUnknown, lprectBorder: ?*RECT, bUseHmonitor: BOOL) callconv(.Inline) HRESULT {
+    pub fn _GetBorderDWHelper(self: *const IBrowserService2, punkSrc: ?*IUnknown, lprectBorder: ?*RECT, bUseHmonitor: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable._GetBorderDWHelper(self, punkSrc, lprectBorder, bUseHmonitor);
     }
-    pub fn v_CheckZoneCrossing(self: *const IBrowserService2, pidl: ?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn v_CheckZoneCrossing(self: *const IBrowserService2, pidl: ?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.v_CheckZoneCrossing(self, pidl);
     }
 };
@@ -27856,10 +27856,10 @@ pub const IBrowserService3 = extern union {
     IBrowserService2: IBrowserService2,
     IBrowserService: IBrowserService,
     IUnknown: IUnknown,
-    pub fn _PositionViewWindow(self: *const IBrowserService3, hwnd: ?HWND, prc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn _PositionViewWindow(self: *const IBrowserService3, hwnd: ?HWND, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable._PositionViewWindow(self, hwnd, prc);
     }
-    pub fn IEParseDisplayNameEx(self: *const IBrowserService3, uiCP: u32, pwszPath: ?[*:0]const u16, dwFlags: u32, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+    pub fn IEParseDisplayNameEx(self: *const IBrowserService3, uiCP: u32, pwszPath: ?[*:0]const u16, dwFlags: u32, ppidlOut: ?*?*ITEMIDLIST) callconv(.@"inline") HRESULT {
         return self.vtable.IEParseDisplayNameEx(self, uiCP, pwszPath, dwFlags, ppidlOut);
     }
 };
@@ -27886,13 +27886,13 @@ pub const IBrowserService4 = extern union {
     IBrowserService2: IBrowserService2,
     IBrowserService: IBrowserService,
     IUnknown: IUnknown,
-    pub fn ActivateView(self: *const IBrowserService4, fPendingView: BOOL) callconv(.Inline) HRESULT {
+    pub fn ActivateView(self: *const IBrowserService4, fPendingView: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateView(self, fPendingView);
     }
-    pub fn SaveViewState(self: *const IBrowserService4) callconv(.Inline) HRESULT {
+    pub fn SaveViewState(self: *const IBrowserService4) callconv(.@"inline") HRESULT {
         return self.vtable.SaveViewState(self);
     }
-    pub fn _ResizeAllBorders(self: *const IBrowserService4) callconv(.Inline) HRESULT {
+    pub fn _ResizeAllBorders(self: *const IBrowserService4) callconv(.@"inline") HRESULT {
         return self.vtable._ResizeAllBorders(self);
     }
 };
@@ -27920,10 +27920,10 @@ pub const ITrackShellMenu = extern union {
     vtable: *const VTable,
     IShellMenu: IShellMenu,
     IUnknown: IUnknown,
-    pub fn SetObscured(self: *const ITrackShellMenu, hwndTB: ?HWND, punkBand: ?*IUnknown, dwSMSetFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetObscured(self: *const ITrackShellMenu, hwndTB: ?HWND, punkBand: ?*IUnknown, dwSMSetFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetObscured(self, hwndTB, punkBand, dwSMSetFlags);
     }
-    pub fn Popup(self: *const ITrackShellMenu, hwnd: ?HWND, ppt: ?*POINTL, prcExclude: ?*RECTL, dwFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Popup(self: *const ITrackShellMenu, hwnd: ?HWND, ppt: ?*POINTL, prcExclude: ?*RECTL, dwFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Popup(self, hwnd, ppt, prcExclude, dwFlags);
     }
 };
@@ -27957,7 +27957,7 @@ pub const ITranscodeImage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TranscodeImage(self: *const ITranscodeImage, pShellItem: ?*IShellItem, uiMaxWidth: u32, uiMaxHeight: u32, flags: u32, pvImage: ?*IStream, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.Inline) HRESULT {
+    pub fn TranscodeImage(self: *const ITranscodeImage, pShellItem: ?*IShellItem, uiMaxWidth: u32, uiMaxHeight: u32, flags: u32, pvImage: ?*IStream, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.TranscodeImage(self, pShellItem, uiMaxWidth, uiMaxHeight, flags, pvImage, puiWidth, puiHeight);
     }
 };
@@ -28118,13 +28118,13 @@ pub const IUniformResourceLocatorA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetURL(self: *const IUniformResourceLocatorA, pcszURL: ?[*:0]const u8, dwInFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetURL(self: *const IUniformResourceLocatorA, pcszURL: ?[*:0]const u8, dwInFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetURL(self, pcszURL, dwInFlags);
     }
-    pub fn GetURL(self: *const IUniformResourceLocatorA, ppszURL: ?*?PSTR) callconv(.Inline) HRESULT {
+    pub fn GetURL(self: *const IUniformResourceLocatorA, ppszURL: ?*?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetURL(self, ppszURL);
     }
-    pub fn InvokeCommand(self: *const IUniformResourceLocatorA, purlici: ?*urlinvokecommandinfoA) callconv(.Inline) HRESULT {
+    pub fn InvokeCommand(self: *const IUniformResourceLocatorA, purlici: ?*urlinvokecommandinfoA) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeCommand(self, purlici);
     }
 };
@@ -28150,13 +28150,13 @@ pub const IUniformResourceLocatorW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetURL(self: *const IUniformResourceLocatorW, pcszURL: ?[*:0]const u16, dwInFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetURL(self: *const IUniformResourceLocatorW, pcszURL: ?[*:0]const u16, dwInFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetURL(self, pcszURL, dwInFlags);
     }
-    pub fn GetURL(self: *const IUniformResourceLocatorW, ppszURL: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetURL(self: *const IUniformResourceLocatorW, ppszURL: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetURL(self, ppszURL);
     }
-    pub fn InvokeCommand(self: *const IUniformResourceLocatorW, purlici: ?*urlinvokecommandinfoW) callconv(.Inline) HRESULT {
+    pub fn InvokeCommand(self: *const IUniformResourceLocatorW, purlici: ?*urlinvokecommandinfoW) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeCommand(self, purlici);
     }
 };
@@ -28209,7 +28209,7 @@ pub const IInputPaneAnimationCoordinator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAnimation(self: *const IInputPaneAnimationCoordinator, device: ?*IUnknown, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn AddAnimation(self: *const IInputPaneAnimationCoordinator, device: ?*IUnknown, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.AddAnimation(self, device, animation);
     }
 };

@@ -1117,31 +1117,31 @@ pub const ISdoMachine = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Attach(self: *const ISdoMachine, bstrComputerName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Attach(self: *const ISdoMachine, bstrComputerName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Attach(self, bstrComputerName);
     }
-    pub fn GetDictionarySDO(self: *const ISdoMachine, ppDictionarySDO: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetDictionarySDO(self: *const ISdoMachine, ppDictionarySDO: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetDictionarySDO(self, ppDictionarySDO);
     }
-    pub fn GetServiceSDO(self: *const ISdoMachine, eDataStore: IASDATASTORE, bstrServiceName: ?BSTR, ppServiceSDO: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetServiceSDO(self: *const ISdoMachine, eDataStore: IASDATASTORE, bstrServiceName: ?BSTR, ppServiceSDO: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetServiceSDO(self, eDataStore, bstrServiceName, ppServiceSDO);
     }
-    pub fn GetUserSDO(self: *const ISdoMachine, eDataStore: IASDATASTORE, bstrUserName: ?BSTR, ppUserSDO: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetUserSDO(self: *const ISdoMachine, eDataStore: IASDATASTORE, bstrUserName: ?BSTR, ppUserSDO: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserSDO(self, eDataStore, bstrUserName, ppUserSDO);
     }
-    pub fn GetOSType(self: *const ISdoMachine, eOSType: ?*IASOSTYPE) callconv(.Inline) HRESULT {
+    pub fn GetOSType(self: *const ISdoMachine, eOSType: ?*IASOSTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetOSType(self, eOSType);
     }
-    pub fn GetDomainType(self: *const ISdoMachine, eDomainType: ?*IASDOMAINTYPE) callconv(.Inline) HRESULT {
+    pub fn GetDomainType(self: *const ISdoMachine, eDomainType: ?*IASDOMAINTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetDomainType(self, eDomainType);
     }
-    pub fn IsDirectoryAvailable(self: *const ISdoMachine, boolDirectoryAvailable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsDirectoryAvailable(self: *const ISdoMachine, boolDirectoryAvailable: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirectoryAvailable(self, boolDirectoryAvailable);
     }
-    pub fn GetAttachedComputer(self: *const ISdoMachine, bstrComputerName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetAttachedComputer(self: *const ISdoMachine, bstrComputerName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttachedComputer(self, bstrComputerName);
     }
-    pub fn GetSDOSchema(self: *const ISdoMachine, ppSDOSchema: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetSDOSchema(self: *const ISdoMachine, ppSDOSchema: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetSDOSchema(self, ppSDOSchema);
     }
 };
@@ -1179,19 +1179,19 @@ pub const ISdoMachine2 = extern union {
     ISdoMachine: ISdoMachine,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetTemplatesSDO(self: *const ISdoMachine2, bstrServiceName: ?BSTR, ppTemplatesSDO: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetTemplatesSDO(self: *const ISdoMachine2, bstrServiceName: ?BSTR, ppTemplatesSDO: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetTemplatesSDO(self, bstrServiceName, ppTemplatesSDO);
     }
-    pub fn EnableTemplates(self: *const ISdoMachine2) callconv(.Inline) HRESULT {
+    pub fn EnableTemplates(self: *const ISdoMachine2) callconv(.@"inline") HRESULT {
         return self.vtable.EnableTemplates(self);
     }
-    pub fn SyncConfigAgainstTemplates(self: *const ISdoMachine2, bstrServiceName: ?BSTR, ppConfigRoot: ?*?*IUnknown, ppTemplatesRoot: ?*?*IUnknown, bForcedSync: i16) callconv(.Inline) HRESULT {
+    pub fn SyncConfigAgainstTemplates(self: *const ISdoMachine2, bstrServiceName: ?BSTR, ppConfigRoot: ?*?*IUnknown, ppTemplatesRoot: ?*?*IUnknown, bForcedSync: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SyncConfigAgainstTemplates(self, bstrServiceName, ppConfigRoot, ppTemplatesRoot, bForcedSync);
     }
-    pub fn ImportRemoteTemplates(self: *const ISdoMachine2, pLocalTemplatesRoot: ?*IUnknown, bstrRemoteMachineName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ImportRemoteTemplates(self: *const ISdoMachine2, pLocalTemplatesRoot: ?*IUnknown, bstrRemoteMachineName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ImportRemoteTemplates(self, pLocalTemplatesRoot, bstrRemoteMachineName);
     }
-    pub fn Reload(self: *const ISdoMachine2) callconv(.Inline) HRESULT {
+    pub fn Reload(self: *const ISdoMachine2) callconv(.@"inline") HRESULT {
         return self.vtable.Reload(self);
     }
 };
@@ -1219,16 +1219,16 @@ pub const ISdoServiceControl = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn StartService(self: *const ISdoServiceControl) callconv(.Inline) HRESULT {
+    pub fn StartService(self: *const ISdoServiceControl) callconv(.@"inline") HRESULT {
         return self.vtable.StartService(self);
     }
-    pub fn StopService(self: *const ISdoServiceControl) callconv(.Inline) HRESULT {
+    pub fn StopService(self: *const ISdoServiceControl) callconv(.@"inline") HRESULT {
         return self.vtable.StopService(self);
     }
-    pub fn GetServiceStatus(self: *const ISdoServiceControl, status: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetServiceStatus(self: *const ISdoServiceControl, status: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetServiceStatus(self, status);
     }
-    pub fn ResetService(self: *const ISdoServiceControl) callconv(.Inline) HRESULT {
+    pub fn ResetService(self: *const ISdoServiceControl) callconv(.@"inline") HRESULT {
         return self.vtable.ResetService(self);
     }
 };
@@ -1273,25 +1273,25 @@ pub const ISdo = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetPropertyInfo(self: *const ISdo, Id: i32, ppPropertyInfo: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetPropertyInfo(self: *const ISdo, Id: i32, ppPropertyInfo: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyInfo(self, Id, ppPropertyInfo);
     }
-    pub fn GetProperty(self: *const ISdo, Id: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const ISdo, Id: i32, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, Id, pValue);
     }
-    pub fn PutProperty(self: *const ISdo, Id: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn PutProperty(self: *const ISdo, Id: i32, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.PutProperty(self, Id, pValue);
     }
-    pub fn ResetProperty(self: *const ISdo, Id: i32) callconv(.Inline) HRESULT {
+    pub fn ResetProperty(self: *const ISdo, Id: i32) callconv(.@"inline") HRESULT {
         return self.vtable.ResetProperty(self, Id);
     }
-    pub fn Apply(self: *const ISdo) callconv(.Inline) HRESULT {
+    pub fn Apply(self: *const ISdo) callconv(.@"inline") HRESULT {
         return self.vtable.Apply(self);
     }
-    pub fn Restore(self: *const ISdo) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const ISdo) callconv(.@"inline") HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn get__NewEnum(self: *const ISdo, ppEnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISdo, ppEnumVARIANT: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumVARIANT);
     }
 };
@@ -1341,28 +1341,28 @@ pub const ISdoCollection = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISdoCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISdoCollection, pCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn Add(self: *const ISdoCollection, bstrName: ?BSTR, ppItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISdoCollection, bstrName: ?BSTR, ppItem: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, bstrName, ppItem);
     }
-    pub fn Remove(self: *const ISdoCollection, pItem: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISdoCollection, pItem: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, pItem);
     }
-    pub fn RemoveAll(self: *const ISdoCollection) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const ISdoCollection) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAll(self);
     }
-    pub fn Reload(self: *const ISdoCollection) callconv(.Inline) HRESULT {
+    pub fn Reload(self: *const ISdoCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Reload(self);
     }
-    pub fn IsNameUnique(self: *const ISdoCollection, bstrName: ?BSTR, pBool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsNameUnique(self: *const ISdoCollection, bstrName: ?BSTR, pBool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsNameUnique(self, bstrName, pBool);
     }
-    pub fn Item(self: *const ISdoCollection, Name: ?*VARIANT, pItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISdoCollection, Name: ?*VARIANT, pItem: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, Name, pItem);
     }
-    pub fn get__NewEnum(self: *const ISdoCollection, ppEnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISdoCollection, ppEnumVARIANT: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumVARIANT);
     }
 };
@@ -1394,13 +1394,13 @@ pub const ITemplateSdo = extern union {
     ISdo: ISdo,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddToCollection(self: *const ITemplateSdo, bstrName: ?BSTR, pCollection: ?*IDispatch, ppItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn AddToCollection(self: *const ITemplateSdo, bstrName: ?BSTR, pCollection: ?*IDispatch, ppItem: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.AddToCollection(self, bstrName, pCollection, ppItem);
     }
-    pub fn AddToSdo(self: *const ITemplateSdo, bstrName: ?BSTR, pSdoTarget: ?*IDispatch, ppItem: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn AddToSdo(self: *const ITemplateSdo, bstrName: ?BSTR, pSdoTarget: ?*IDispatch, ppItem: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.AddToSdo(self, bstrName, pSdoTarget, ppItem);
     }
-    pub fn AddToSdoAsProperty(self: *const ITemplateSdo, pSdoTarget: ?*IDispatch, id: i32) callconv(.Inline) HRESULT {
+    pub fn AddToSdoAsProperty(self: *const ITemplateSdo, pSdoTarget: ?*IDispatch, id: i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddToSdoAsProperty(self, pSdoTarget, id);
     }
 };
@@ -1442,19 +1442,19 @@ pub const ISdoDictionaryOld = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn EnumAttributes(self: *const ISdoDictionaryOld, Id: ?*VARIANT, pValues: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn EnumAttributes(self: *const ISdoDictionaryOld, Id: ?*VARIANT, pValues: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAttributes(self, Id, pValues);
     }
-    pub fn GetAttributeInfo(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, pInfoIDs: ?*VARIANT, pInfoValues: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetAttributeInfo(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, pInfoIDs: ?*VARIANT, pInfoValues: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeInfo(self, Id, pInfoIDs, pInfoValues);
     }
-    pub fn EnumAttributeValues(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, pValueIds: ?*VARIANT, pValuesDesc: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn EnumAttributeValues(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, pValueIds: ?*VARIANT, pValuesDesc: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAttributeValues(self, Id, pValueIds, pValuesDesc);
     }
-    pub fn CreateAttribute(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, ppAttributeObject: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn CreateAttribute(self: *const ISdoDictionaryOld, Id: ATTRIBUTEID, ppAttributeObject: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAttribute(self, Id, ppAttributeObject);
     }
-    pub fn GetAttributeID(self: *const ISdoDictionaryOld, bstrAttributeName: ?BSTR, pId: ?*ATTRIBUTEID) callconv(.Inline) HRESULT {
+    pub fn GetAttributeID(self: *const ISdoDictionaryOld, bstrAttributeName: ?BSTR, pId: ?*ATTRIBUTEID) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttributeID(self, bstrAttributeName, pId);
     }
 };

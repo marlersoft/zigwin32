@@ -320,34 +320,34 @@ pub const IXAPO = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRegistrationProperties(self: *const IXAPO, ppRegistrationProperties: ?*?*XAPO_REGISTRATION_PROPERTIES) callconv(.Inline) HRESULT {
+    pub fn GetRegistrationProperties(self: *const IXAPO, ppRegistrationProperties: ?*?*XAPO_REGISTRATION_PROPERTIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetRegistrationProperties(self, ppRegistrationProperties);
     }
-    pub fn IsInputFormatSupported(self: *const IXAPO, pOutputFormat: ?*const WAVEFORMATEX, pRequestedInputFormat: ?*const WAVEFORMATEX, ppSupportedInputFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn IsInputFormatSupported(self: *const IXAPO, pOutputFormat: ?*const WAVEFORMATEX, pRequestedInputFormat: ?*const WAVEFORMATEX, ppSupportedInputFormat: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.IsInputFormatSupported(self, pOutputFormat, pRequestedInputFormat, ppSupportedInputFormat);
     }
-    pub fn IsOutputFormatSupported(self: *const IXAPO, pInputFormat: ?*const WAVEFORMATEX, pRequestedOutputFormat: ?*const WAVEFORMATEX, ppSupportedOutputFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn IsOutputFormatSupported(self: *const IXAPO, pInputFormat: ?*const WAVEFORMATEX, pRequestedOutputFormat: ?*const WAVEFORMATEX, ppSupportedOutputFormat: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.IsOutputFormatSupported(self, pInputFormat, pRequestedOutputFormat, ppSupportedOutputFormat);
     }
-    pub fn Initialize(self: *const IXAPO, pData: ?*const anyopaque, DataByteSize: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IXAPO, pData: ?*const anyopaque, DataByteSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pData, DataByteSize);
     }
-    pub fn Reset(self: *const IXAPO) callconv(.Inline) void {
+    pub fn Reset(self: *const IXAPO) callconv(.@"inline") void {
         return self.vtable.Reset(self);
     }
-    pub fn LockForProcess(self: *const IXAPO, InputLockedParameterCount: u32, pInputLockedParameters: ?[*]const XAPO_LOCKFORPROCESS_PARAMETERS, OutputLockedParameterCount: u32, pOutputLockedParameters: ?[*]const XAPO_LOCKFORPROCESS_PARAMETERS) callconv(.Inline) HRESULT {
+    pub fn LockForProcess(self: *const IXAPO, InputLockedParameterCount: u32, pInputLockedParameters: ?[*]const XAPO_LOCKFORPROCESS_PARAMETERS, OutputLockedParameterCount: u32, pOutputLockedParameters: ?[*]const XAPO_LOCKFORPROCESS_PARAMETERS) callconv(.@"inline") HRESULT {
         return self.vtable.LockForProcess(self, InputLockedParameterCount, pInputLockedParameters, OutputLockedParameterCount, pOutputLockedParameters);
     }
-    pub fn UnlockForProcess(self: *const IXAPO) callconv(.Inline) void {
+    pub fn UnlockForProcess(self: *const IXAPO) callconv(.@"inline") void {
         return self.vtable.UnlockForProcess(self);
     }
-    pub fn Process(self: *const IXAPO, InputProcessParameterCount: u32, pInputProcessParameters: ?[*]const XAPO_PROCESS_BUFFER_PARAMETERS, OutputProcessParameterCount: u32, pOutputProcessParameters: ?[*]XAPO_PROCESS_BUFFER_PARAMETERS, IsEnabled: BOOL) callconv(.Inline) void {
+    pub fn Process(self: *const IXAPO, InputProcessParameterCount: u32, pInputProcessParameters: ?[*]const XAPO_PROCESS_BUFFER_PARAMETERS, OutputProcessParameterCount: u32, pOutputProcessParameters: ?[*]XAPO_PROCESS_BUFFER_PARAMETERS, IsEnabled: BOOL) callconv(.@"inline") void {
         return self.vtable.Process(self, InputProcessParameterCount, pInputProcessParameters, OutputProcessParameterCount, pOutputProcessParameters, IsEnabled);
     }
-    pub fn CalcInputFrames(self: *const IXAPO, OutputFrameCount: u32) callconv(.Inline) u32 {
+    pub fn CalcInputFrames(self: *const IXAPO, OutputFrameCount: u32) callconv(.@"inline") u32 {
         return self.vtable.CalcInputFrames(self, OutputFrameCount);
     }
-    pub fn CalcOutputFrames(self: *const IXAPO, InputFrameCount: u32) callconv(.Inline) u32 {
+    pub fn CalcOutputFrames(self: *const IXAPO, InputFrameCount: u32) callconv(.@"inline") u32 {
         return self.vtable.CalcOutputFrames(self, InputFrameCount);
     }
 };
@@ -372,10 +372,10 @@ pub const IXAPOParameters = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetParameters(self: *const IXAPOParameters, pParameters: ?*const anyopaque, ParameterByteSize: u32) callconv(.Inline) void {
+    pub fn SetParameters(self: *const IXAPOParameters, pParameters: ?*const anyopaque, ParameterByteSize: u32) callconv(.@"inline") void {
         return self.vtable.SetParameters(self, pParameters, ParameterByteSize);
     }
-    pub fn GetParameters(self: *const IXAPOParameters, pParameters: ?*anyopaque, ParameterByteSize: u32) callconv(.Inline) void {
+    pub fn GetParameters(self: *const IXAPOParameters, pParameters: ?*anyopaque, ParameterByteSize: u32) callconv(.@"inline") void {
         return self.vtable.GetParameters(self, pParameters, ParameterByteSize);
     }
 };
@@ -590,34 +590,34 @@ pub const IXAudio2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterForCallbacks(self: *const IXAudio2, pCallback: ?*IXAudio2EngineCallback) callconv(.Inline) HRESULT {
+    pub fn RegisterForCallbacks(self: *const IXAudio2, pCallback: ?*IXAudio2EngineCallback) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterForCallbacks(self, pCallback);
     }
-    pub fn UnregisterForCallbacks(self: *const IXAudio2, pCallback: ?*IXAudio2EngineCallback) callconv(.Inline) void {
+    pub fn UnregisterForCallbacks(self: *const IXAudio2, pCallback: ?*IXAudio2EngineCallback) callconv(.@"inline") void {
         return self.vtable.UnregisterForCallbacks(self, pCallback);
     }
-    pub fn CreateSourceVoice(self: *const IXAudio2, ppSourceVoice: ?*?*IXAudio2SourceVoice, pSourceFormat: ?*const WAVEFORMATEX, Flags: u32, MaxFrequencyRatio: f32, pCallback: ?*IXAudio2VoiceCallback, pSendList: ?*const XAUDIO2_VOICE_SENDS, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.Inline) HRESULT {
+    pub fn CreateSourceVoice(self: *const IXAudio2, ppSourceVoice: ?*?*IXAudio2SourceVoice, pSourceFormat: ?*const WAVEFORMATEX, Flags: u32, MaxFrequencyRatio: f32, pCallback: ?*IXAudio2VoiceCallback, pSendList: ?*const XAUDIO2_VOICE_SENDS, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSourceVoice(self, ppSourceVoice, pSourceFormat, Flags, MaxFrequencyRatio, pCallback, pSendList, pEffectChain);
     }
-    pub fn CreateSubmixVoice(self: *const IXAudio2, ppSubmixVoice: ?*?*IXAudio2SubmixVoice, InputChannels: u32, InputSampleRate: u32, Flags: u32, ProcessingStage: u32, pSendList: ?*const XAUDIO2_VOICE_SENDS, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.Inline) HRESULT {
+    pub fn CreateSubmixVoice(self: *const IXAudio2, ppSubmixVoice: ?*?*IXAudio2SubmixVoice, InputChannels: u32, InputSampleRate: u32, Flags: u32, ProcessingStage: u32, pSendList: ?*const XAUDIO2_VOICE_SENDS, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSubmixVoice(self, ppSubmixVoice, InputChannels, InputSampleRate, Flags, ProcessingStage, pSendList, pEffectChain);
     }
-    pub fn CreateMasteringVoice(self: *const IXAudio2, ppMasteringVoice: ?*?*IXAudio2MasteringVoice, InputChannels: u32, InputSampleRate: u32, Flags: u32, szDeviceId: ?[*:0]const u16, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN, StreamCategory: AUDIO_STREAM_CATEGORY) callconv(.Inline) HRESULT {
+    pub fn CreateMasteringVoice(self: *const IXAudio2, ppMasteringVoice: ?*?*IXAudio2MasteringVoice, InputChannels: u32, InputSampleRate: u32, Flags: u32, szDeviceId: ?[*:0]const u16, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN, StreamCategory: AUDIO_STREAM_CATEGORY) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMasteringVoice(self, ppMasteringVoice, InputChannels, InputSampleRate, Flags, szDeviceId, pEffectChain, StreamCategory);
     }
-    pub fn StartEngine(self: *const IXAudio2) callconv(.Inline) HRESULT {
+    pub fn StartEngine(self: *const IXAudio2) callconv(.@"inline") HRESULT {
         return self.vtable.StartEngine(self);
     }
-    pub fn StopEngine(self: *const IXAudio2) callconv(.Inline) void {
+    pub fn StopEngine(self: *const IXAudio2) callconv(.@"inline") void {
         return self.vtable.StopEngine(self);
     }
-    pub fn CommitChanges(self: *const IXAudio2, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn CommitChanges(self: *const IXAudio2, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CommitChanges(self, OperationSet);
     }
-    pub fn GetPerformanceData(self: *const IXAudio2, pPerfData: ?*XAUDIO2_PERFORMANCE_DATA) callconv(.Inline) void {
+    pub fn GetPerformanceData(self: *const IXAudio2, pPerfData: ?*XAUDIO2_PERFORMANCE_DATA) callconv(.@"inline") void {
         return self.vtable.GetPerformanceData(self, pPerfData);
     }
-    pub fn SetDebugConfiguration(self: *const IXAudio2, pDebugConfiguration: ?*const XAUDIO2_DEBUG_CONFIGURATION, pReserved: ?*anyopaque) callconv(.Inline) void {
+    pub fn SetDebugConfiguration(self: *const IXAudio2, pDebugConfiguration: ?*const XAUDIO2_DEBUG_CONFIGURATION, pReserved: ?*anyopaque) callconv(.@"inline") void {
         return self.vtable.SetDebugConfiguration(self, pDebugConfiguration, pReserved);
     }
 };
@@ -639,10 +639,10 @@ pub const IXAudio2Extension = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetProcessingQuantum(self: *const IXAudio2Extension, quantumNumerator: ?*u32, quantumDenominator: ?*u32) callconv(.Inline) void {
+    pub fn GetProcessingQuantum(self: *const IXAudio2Extension, quantumNumerator: ?*u32, quantumDenominator: ?*u32) callconv(.@"inline") void {
         return self.vtable.GetProcessingQuantum(self, quantumNumerator, quantumDenominator);
     }
-    pub fn GetProcessor(self: *const IXAudio2Extension, processor: ?*u32) callconv(.Inline) void {
+    pub fn GetProcessor(self: *const IXAudio2Extension, processor: ?*u32) callconv(.@"inline") void {
         return self.vtable.GetProcessor(self, processor);
     }
 };
@@ -751,61 +751,61 @@ pub const IXAudio2Voice = extern union {
         ) callconv(.winapi) void,
     };
     vtable: *const VTable,
-    pub fn GetVoiceDetails(self: *const IXAudio2Voice, pVoiceDetails: ?*XAUDIO2_VOICE_DETAILS) callconv(.Inline) void {
+    pub fn GetVoiceDetails(self: *const IXAudio2Voice, pVoiceDetails: ?*XAUDIO2_VOICE_DETAILS) callconv(.@"inline") void {
         return self.vtable.GetVoiceDetails(self, pVoiceDetails);
     }
-    pub fn SetOutputVoices(self: *const IXAudio2Voice, pSendList: ?*const XAUDIO2_VOICE_SENDS) callconv(.Inline) HRESULT {
+    pub fn SetOutputVoices(self: *const IXAudio2Voice, pSendList: ?*const XAUDIO2_VOICE_SENDS) callconv(.@"inline") HRESULT {
         return self.vtable.SetOutputVoices(self, pSendList);
     }
-    pub fn SetEffectChain(self: *const IXAudio2Voice, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.Inline) HRESULT {
+    pub fn SetEffectChain(self: *const IXAudio2Voice, pEffectChain: ?*const XAUDIO2_EFFECT_CHAIN) callconv(.@"inline") HRESULT {
         return self.vtable.SetEffectChain(self, pEffectChain);
     }
-    pub fn EnableEffect(self: *const IXAudio2Voice, EffectIndex: u32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn EnableEffect(self: *const IXAudio2Voice, EffectIndex: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnableEffect(self, EffectIndex, OperationSet);
     }
-    pub fn DisableEffect(self: *const IXAudio2Voice, EffectIndex: u32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn DisableEffect(self: *const IXAudio2Voice, EffectIndex: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DisableEffect(self, EffectIndex, OperationSet);
     }
-    pub fn GetEffectState(self: *const IXAudio2Voice, EffectIndex: u32, pEnabled: ?*BOOL) callconv(.Inline) void {
+    pub fn GetEffectState(self: *const IXAudio2Voice, EffectIndex: u32, pEnabled: ?*BOOL) callconv(.@"inline") void {
         return self.vtable.GetEffectState(self, EffectIndex, pEnabled);
     }
-    pub fn SetEffectParameters(self: *const IXAudio2Voice, EffectIndex: u32, pParameters: ?*const anyopaque, ParametersByteSize: u32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn SetEffectParameters(self: *const IXAudio2Voice, EffectIndex: u32, pParameters: ?*const anyopaque, ParametersByteSize: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetEffectParameters(self, EffectIndex, pParameters, ParametersByteSize, OperationSet);
     }
-    pub fn GetEffectParameters(self: *const IXAudio2Voice, EffectIndex: u32, pParameters: ?*anyopaque, ParametersByteSize: u32) callconv(.Inline) HRESULT {
+    pub fn GetEffectParameters(self: *const IXAudio2Voice, EffectIndex: u32, pParameters: ?*anyopaque, ParametersByteSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectParameters(self, EffectIndex, pParameters, ParametersByteSize);
     }
-    pub fn SetFilterParameters(self: *const IXAudio2Voice, pParameters: ?*const XAUDIO2_FILTER_PARAMETERS, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn SetFilterParameters(self: *const IXAudio2Voice, pParameters: ?*const XAUDIO2_FILTER_PARAMETERS, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFilterParameters(self, pParameters, OperationSet);
     }
-    pub fn GetFilterParameters(self: *const IXAudio2Voice, pParameters: ?*XAUDIO2_FILTER_PARAMETERS) callconv(.Inline) void {
+    pub fn GetFilterParameters(self: *const IXAudio2Voice, pParameters: ?*XAUDIO2_FILTER_PARAMETERS) callconv(.@"inline") void {
         return self.vtable.GetFilterParameters(self, pParameters);
     }
-    pub fn SetOutputFilterParameters(self: *const IXAudio2Voice, pDestinationVoice: ?*IXAudio2Voice, pParameters: ?*const XAUDIO2_FILTER_PARAMETERS, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn SetOutputFilterParameters(self: *const IXAudio2Voice, pDestinationVoice: ?*IXAudio2Voice, pParameters: ?*const XAUDIO2_FILTER_PARAMETERS, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOutputFilterParameters(self, pDestinationVoice, pParameters, OperationSet);
     }
-    pub fn GetOutputFilterParameters(self: *const IXAudio2Voice, pDestinationVoice: ?*IXAudio2Voice, pParameters: ?*XAUDIO2_FILTER_PARAMETERS) callconv(.Inline) void {
+    pub fn GetOutputFilterParameters(self: *const IXAudio2Voice, pDestinationVoice: ?*IXAudio2Voice, pParameters: ?*XAUDIO2_FILTER_PARAMETERS) callconv(.@"inline") void {
         return self.vtable.GetOutputFilterParameters(self, pDestinationVoice, pParameters);
     }
-    pub fn SetVolume(self: *const IXAudio2Voice, Volume: f32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn SetVolume(self: *const IXAudio2Voice, Volume: f32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetVolume(self, Volume, OperationSet);
     }
-    pub fn GetVolume(self: *const IXAudio2Voice, pVolume: ?*f32) callconv(.Inline) void {
+    pub fn GetVolume(self: *const IXAudio2Voice, pVolume: ?*f32) callconv(.@"inline") void {
         return self.vtable.GetVolume(self, pVolume);
     }
-    pub fn SetChannelVolumes(self: *const IXAudio2Voice, Channels: u32, pVolumes: [*]const f32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn SetChannelVolumes(self: *const IXAudio2Voice, Channels: u32, pVolumes: [*]const f32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetChannelVolumes(self, Channels, pVolumes, OperationSet);
     }
-    pub fn GetChannelVolumes(self: *const IXAudio2Voice, Channels: u32, pVolumes: [*]f32) callconv(.Inline) void {
+    pub fn GetChannelVolumes(self: *const IXAudio2Voice, Channels: u32, pVolumes: [*]f32) callconv(.@"inline") void {
         return self.vtable.GetChannelVolumes(self, Channels, pVolumes);
     }
-    pub fn SetOutputMatrix(self: *const IXAudio2Voice, pDestinationVoice: ?*IXAudio2Voice, SourceChannels: u32, DestinationChannels: u32, pLevelMatrix: ?*const f32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn SetOutputMatrix(self: *const IXAudio2Voice, pDestinationVoice: ?*IXAudio2Voice, SourceChannels: u32, DestinationChannels: u32, pLevelMatrix: ?*const f32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOutputMatrix(self, pDestinationVoice, SourceChannels, DestinationChannels, pLevelMatrix, OperationSet);
     }
-    pub fn GetOutputMatrix(self: *const IXAudio2Voice, pDestinationVoice: ?*IXAudio2Voice, SourceChannels: u32, DestinationChannels: u32, pLevelMatrix: ?*f32) callconv(.Inline) void {
+    pub fn GetOutputMatrix(self: *const IXAudio2Voice, pDestinationVoice: ?*IXAudio2Voice, SourceChannels: u32, DestinationChannels: u32, pLevelMatrix: ?*f32) callconv(.@"inline") void {
         return self.vtable.GetOutputMatrix(self, pDestinationVoice, SourceChannels, DestinationChannels, pLevelMatrix);
     }
-    pub fn DestroyVoice(self: *const IXAudio2Voice) callconv(.Inline) void {
+    pub fn DestroyVoice(self: *const IXAudio2Voice) callconv(.@"inline") void {
         return self.vtable.DestroyVoice(self);
     }
 };
@@ -859,34 +859,34 @@ pub const IXAudio2SourceVoice = extern union {
     };
     vtable: *const VTable,
     IXAudio2Voice: IXAudio2Voice,
-    pub fn Start(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self, Flags, OperationSet);
     }
-    pub fn Stop(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IXAudio2SourceVoice, Flags: u32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self, Flags, OperationSet);
     }
-    pub fn SubmitSourceBuffer(self: *const IXAudio2SourceVoice, pBuffer: ?*const XAUDIO2_BUFFER, pBufferWMA: ?*const XAUDIO2_BUFFER_WMA) callconv(.Inline) HRESULT {
+    pub fn SubmitSourceBuffer(self: *const IXAudio2SourceVoice, pBuffer: ?*const XAUDIO2_BUFFER, pBufferWMA: ?*const XAUDIO2_BUFFER_WMA) callconv(.@"inline") HRESULT {
         return self.vtable.SubmitSourceBuffer(self, pBuffer, pBufferWMA);
     }
-    pub fn FlushSourceBuffers(self: *const IXAudio2SourceVoice) callconv(.Inline) HRESULT {
+    pub fn FlushSourceBuffers(self: *const IXAudio2SourceVoice) callconv(.@"inline") HRESULT {
         return self.vtable.FlushSourceBuffers(self);
     }
-    pub fn Discontinuity(self: *const IXAudio2SourceVoice) callconv(.Inline) HRESULT {
+    pub fn Discontinuity(self: *const IXAudio2SourceVoice) callconv(.@"inline") HRESULT {
         return self.vtable.Discontinuity(self);
     }
-    pub fn ExitLoop(self: *const IXAudio2SourceVoice, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn ExitLoop(self: *const IXAudio2SourceVoice, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ExitLoop(self, OperationSet);
     }
-    pub fn GetState(self: *const IXAudio2SourceVoice, pVoiceState: ?*XAUDIO2_VOICE_STATE, Flags: u32) callconv(.Inline) void {
+    pub fn GetState(self: *const IXAudio2SourceVoice, pVoiceState: ?*XAUDIO2_VOICE_STATE, Flags: u32) callconv(.@"inline") void {
         return self.vtable.GetState(self, pVoiceState, Flags);
     }
-    pub fn SetFrequencyRatio(self: *const IXAudio2SourceVoice, Ratio: f32, OperationSet: u32) callconv(.Inline) HRESULT {
+    pub fn SetFrequencyRatio(self: *const IXAudio2SourceVoice, Ratio: f32, OperationSet: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFrequencyRatio(self, Ratio, OperationSet);
     }
-    pub fn GetFrequencyRatio(self: *const IXAudio2SourceVoice, pRatio: ?*f32) callconv(.Inline) void {
+    pub fn GetFrequencyRatio(self: *const IXAudio2SourceVoice, pRatio: ?*f32) callconv(.@"inline") void {
         return self.vtable.GetFrequencyRatio(self, pRatio);
     }
-    pub fn SetSourceSampleRate(self: *const IXAudio2SourceVoice, NewSourceSampleRate: u32) callconv(.Inline) HRESULT {
+    pub fn SetSourceSampleRate(self: *const IXAudio2SourceVoice, NewSourceSampleRate: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSourceSampleRate(self, NewSourceSampleRate);
     }
 };
@@ -909,7 +909,7 @@ pub const IXAudio2MasteringVoice = extern union {
     };
     vtable: *const VTable,
     IXAudio2Voice: IXAudio2Voice,
-    pub fn GetChannelMask(self: *const IXAudio2MasteringVoice, pChannelmask: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelMask(self: *const IXAudio2MasteringVoice, pChannelmask: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelMask(self, pChannelmask);
     }
 };
@@ -928,13 +928,13 @@ pub const IXAudio2EngineCallback = extern union {
         ) callconv(.winapi) void,
     };
     vtable: *const VTable,
-    pub fn OnProcessingPassStart(self: *const IXAudio2EngineCallback) callconv(.Inline) void {
+    pub fn OnProcessingPassStart(self: *const IXAudio2EngineCallback) callconv(.@"inline") void {
         return self.vtable.OnProcessingPassStart(self);
     }
-    pub fn OnProcessingPassEnd(self: *const IXAudio2EngineCallback) callconv(.Inline) void {
+    pub fn OnProcessingPassEnd(self: *const IXAudio2EngineCallback) callconv(.@"inline") void {
         return self.vtable.OnProcessingPassEnd(self);
     }
-    pub fn OnCriticalError(self: *const IXAudio2EngineCallback, Error: HRESULT) callconv(.Inline) void {
+    pub fn OnCriticalError(self: *const IXAudio2EngineCallback, Error: HRESULT) callconv(.@"inline") void {
         return self.vtable.OnCriticalError(self, Error);
     }
 };
@@ -970,25 +970,25 @@ pub const IXAudio2VoiceCallback = extern union {
         ) callconv(.winapi) void,
     };
     vtable: *const VTable,
-    pub fn OnVoiceProcessingPassStart(self: *const IXAudio2VoiceCallback, BytesRequired: u32) callconv(.Inline) void {
+    pub fn OnVoiceProcessingPassStart(self: *const IXAudio2VoiceCallback, BytesRequired: u32) callconv(.@"inline") void {
         return self.vtable.OnVoiceProcessingPassStart(self, BytesRequired);
     }
-    pub fn OnVoiceProcessingPassEnd(self: *const IXAudio2VoiceCallback) callconv(.Inline) void {
+    pub fn OnVoiceProcessingPassEnd(self: *const IXAudio2VoiceCallback) callconv(.@"inline") void {
         return self.vtable.OnVoiceProcessingPassEnd(self);
     }
-    pub fn OnStreamEnd(self: *const IXAudio2VoiceCallback) callconv(.Inline) void {
+    pub fn OnStreamEnd(self: *const IXAudio2VoiceCallback) callconv(.@"inline") void {
         return self.vtable.OnStreamEnd(self);
     }
-    pub fn OnBufferStart(self: *const IXAudio2VoiceCallback, pBufferContext: ?*anyopaque) callconv(.Inline) void {
+    pub fn OnBufferStart(self: *const IXAudio2VoiceCallback, pBufferContext: ?*anyopaque) callconv(.@"inline") void {
         return self.vtable.OnBufferStart(self, pBufferContext);
     }
-    pub fn OnBufferEnd(self: *const IXAudio2VoiceCallback, pBufferContext: ?*anyopaque) callconv(.Inline) void {
+    pub fn OnBufferEnd(self: *const IXAudio2VoiceCallback, pBufferContext: ?*anyopaque) callconv(.@"inline") void {
         return self.vtable.OnBufferEnd(self, pBufferContext);
     }
-    pub fn OnLoopEnd(self: *const IXAudio2VoiceCallback, pBufferContext: ?*anyopaque) callconv(.Inline) void {
+    pub fn OnLoopEnd(self: *const IXAudio2VoiceCallback, pBufferContext: ?*anyopaque) callconv(.@"inline") void {
         return self.vtable.OnLoopEnd(self, pBufferContext);
     }
-    pub fn OnVoiceError(self: *const IXAudio2VoiceCallback, pBufferContext: ?*anyopaque, Error: HRESULT) callconv(.Inline) void {
+    pub fn OnVoiceError(self: *const IXAudio2VoiceCallback, pBufferContext: ?*anyopaque, Error: HRESULT) callconv(.@"inline") void {
         return self.vtable.OnVoiceError(self, pBufferContext, Error);
     }
 };
@@ -1139,16 +1139,16 @@ pub const IXAPOHrtfParameters = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSourcePosition(self: *const IXAPOHrtfParameters, position: ?*const HrtfPosition) callconv(.Inline) HRESULT {
+    pub fn SetSourcePosition(self: *const IXAPOHrtfParameters, position: ?*const HrtfPosition) callconv(.@"inline") HRESULT {
         return self.vtable.SetSourcePosition(self, position);
     }
-    pub fn SetSourceOrientation(self: *const IXAPOHrtfParameters, orientation: ?*const HrtfOrientation) callconv(.Inline) HRESULT {
+    pub fn SetSourceOrientation(self: *const IXAPOHrtfParameters, orientation: ?*const HrtfOrientation) callconv(.@"inline") HRESULT {
         return self.vtable.SetSourceOrientation(self, orientation);
     }
-    pub fn SetSourceGain(self: *const IXAPOHrtfParameters, gain: f32) callconv(.Inline) HRESULT {
+    pub fn SetSourceGain(self: *const IXAPOHrtfParameters, gain: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSourceGain(self, gain);
     }
-    pub fn SetEnvironment(self: *const IXAPOHrtfParameters, environment: HrtfEnvironment) callconv(.Inline) HRESULT {
+    pub fn SetEnvironment(self: *const IXAPOHrtfParameters, environment: HrtfEnvironment) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnvironment(self, environment);
     }
 };

@@ -1586,64 +1586,64 @@ pub const IDirectDraw = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compact(self: *const IDirectDraw) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectDraw) callconv(.@"inline") HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn CreateClipper(self: *const IDirectDraw, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateClipper(self: *const IDirectDraw, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateClipper(self, param0, param1, param2);
     }
-    pub fn CreatePalette(self: *const IDirectDraw, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IDirectDraw, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
-    pub fn CreateSurface(self: *const IDirectDraw, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDirectDraw, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurface(self, param0, param1, param2);
     }
-    pub fn DuplicateSurface(self: *const IDirectDraw, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn DuplicateSurface(self: *const IDirectDraw, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.DuplicateSurface(self, param0, param1);
     }
-    pub fn EnumDisplayModes(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumDisplayModes(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
-    pub fn EnumSurfaces(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumSurfaces(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
-    pub fn FlipToGDISurface(self: *const IDirectDraw) callconv(.Inline) HRESULT {
+    pub fn FlipToGDISurface(self: *const IDirectDraw) callconv(.@"inline") HRESULT {
         return self.vtable.FlipToGDISurface(self);
     }
-    pub fn GetCaps(self: *const IDirectDraw, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDraw, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0, param1);
     }
-    pub fn GetDisplayMode(self: *const IDirectDraw, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirectDraw, param0: ?*DDSURFACEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayMode(self, param0);
     }
-    pub fn GetFourCCCodes(self: *const IDirectDraw, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFourCCCodes(self: *const IDirectDraw, param0: ?*u32, param1: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFourCCCodes(self, param0, param1);
     }
-    pub fn GetGDISurface(self: *const IDirectDraw, param0: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn GetGDISurface(self: *const IDirectDraw, param0: ?*?*IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.GetGDISurface(self, param0);
     }
-    pub fn GetMonitorFrequency(self: *const IDirectDraw, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorFrequency(self: *const IDirectDraw, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitorFrequency(self, param0);
     }
-    pub fn GetScanLine(self: *const IDirectDraw, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScanLine(self: *const IDirectDraw, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetScanLine(self, param0);
     }
-    pub fn GetVerticalBlankStatus(self: *const IDirectDraw, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVerticalBlankStatus(self: *const IDirectDraw, param0: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVerticalBlankStatus(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDraw, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDraw, param0: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0);
     }
-    pub fn RestoreDisplayMode(self: *const IDirectDraw) callconv(.Inline) HRESULT {
+    pub fn RestoreDisplayMode(self: *const IDirectDraw) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreDisplayMode(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectDraw, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectDraw, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SetDisplayMode(self: *const IDirectDraw, param0: u32, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn SetDisplayMode(self: *const IDirectDraw, param0: u32, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayMode(self, param0, param1, param2);
     }
-    pub fn WaitForVerticalBlank(self: *const IDirectDraw, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn WaitForVerticalBlank(self: *const IDirectDraw, param0: u32, param1: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
 };
@@ -1761,67 +1761,67 @@ pub const IDirectDraw2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compact(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectDraw2) callconv(.@"inline") HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn CreateClipper(self: *const IDirectDraw2, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateClipper(self: *const IDirectDraw2, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateClipper(self, param0, param1, param2);
     }
-    pub fn CreatePalette(self: *const IDirectDraw2, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IDirectDraw2, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
-    pub fn CreateSurface(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurface(self, param0, param1, param2);
     }
-    pub fn DuplicateSurface(self: *const IDirectDraw2, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn DuplicateSurface(self: *const IDirectDraw2, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.DuplicateSurface(self, param0, param1);
     }
-    pub fn EnumDisplayModes(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumDisplayModes(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
-    pub fn EnumSurfaces(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumSurfaces(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
-    pub fn FlipToGDISurface(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
+    pub fn FlipToGDISurface(self: *const IDirectDraw2) callconv(.@"inline") HRESULT {
         return self.vtable.FlipToGDISurface(self);
     }
-    pub fn GetCaps(self: *const IDirectDraw2, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDraw2, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0, param1);
     }
-    pub fn GetDisplayMode(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayMode(self, param0);
     }
-    pub fn GetFourCCCodes(self: *const IDirectDraw2, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFourCCCodes(self: *const IDirectDraw2, param0: ?*u32, param1: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFourCCCodes(self, param0, param1);
     }
-    pub fn GetGDISurface(self: *const IDirectDraw2, param0: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn GetGDISurface(self: *const IDirectDraw2, param0: ?*?*IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.GetGDISurface(self, param0);
     }
-    pub fn GetMonitorFrequency(self: *const IDirectDraw2, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorFrequency(self: *const IDirectDraw2, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitorFrequency(self, param0);
     }
-    pub fn GetScanLine(self: *const IDirectDraw2, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScanLine(self: *const IDirectDraw2, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetScanLine(self, param0);
     }
-    pub fn GetVerticalBlankStatus(self: *const IDirectDraw2, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVerticalBlankStatus(self: *const IDirectDraw2, param0: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVerticalBlankStatus(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDraw2, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDraw2, param0: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0);
     }
-    pub fn RestoreDisplayMode(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
+    pub fn RestoreDisplayMode(self: *const IDirectDraw2) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreDisplayMode(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectDraw2, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectDraw2, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SetDisplayMode(self: *const IDirectDraw2, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
+    pub fn SetDisplayMode(self: *const IDirectDraw2, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
-    pub fn WaitForVerticalBlank(self: *const IDirectDraw2, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn WaitForVerticalBlank(self: *const IDirectDraw2, param0: u32, param1: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
-    pub fn GetAvailableVidMem(self: *const IDirectDraw2, param0: ?*DDSCAPS, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAvailableVidMem(self: *const IDirectDraw2, param0: ?*DDSCAPS, param1: ?*u32, param2: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
 };
@@ -1955,79 +1955,79 @@ pub const IDirectDraw4 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compact(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectDraw4) callconv(.@"inline") HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn CreateClipper(self: *const IDirectDraw4, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateClipper(self: *const IDirectDraw4, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateClipper(self, param0, param1, param2);
     }
-    pub fn CreatePalette(self: *const IDirectDraw4, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IDirectDraw4, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
-    pub fn CreateSurface(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface4, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface4, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurface(self, param0, param1, param2);
     }
-    pub fn DuplicateSurface(self: *const IDirectDraw4, param0: ?*IDirectDrawSurface4, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn DuplicateSurface(self: *const IDirectDraw4, param0: ?*IDirectDrawSurface4, param1: ?*?*IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.DuplicateSurface(self, param0, param1);
     }
-    pub fn EnumDisplayModes(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumDisplayModes(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
-    pub fn EnumSurfaces(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumSurfaces(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK2) callconv(.@"inline") HRESULT {
         return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
-    pub fn FlipToGDISurface(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn FlipToGDISurface(self: *const IDirectDraw4) callconv(.@"inline") HRESULT {
         return self.vtable.FlipToGDISurface(self);
     }
-    pub fn GetCaps(self: *const IDirectDraw4, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDraw4, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0, param1);
     }
-    pub fn GetDisplayMode(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayMode(self, param0);
     }
-    pub fn GetFourCCCodes(self: *const IDirectDraw4, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFourCCCodes(self: *const IDirectDraw4, param0: ?*u32, param1: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFourCCCodes(self, param0, param1);
     }
-    pub fn GetGDISurface(self: *const IDirectDraw4, param0: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn GetGDISurface(self: *const IDirectDraw4, param0: ?*?*IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.GetGDISurface(self, param0);
     }
-    pub fn GetMonitorFrequency(self: *const IDirectDraw4, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorFrequency(self: *const IDirectDraw4, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitorFrequency(self, param0);
     }
-    pub fn GetScanLine(self: *const IDirectDraw4, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScanLine(self: *const IDirectDraw4, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetScanLine(self, param0);
     }
-    pub fn GetVerticalBlankStatus(self: *const IDirectDraw4, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVerticalBlankStatus(self: *const IDirectDraw4, param0: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVerticalBlankStatus(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDraw4, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDraw4, param0: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0);
     }
-    pub fn RestoreDisplayMode(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn RestoreDisplayMode(self: *const IDirectDraw4) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreDisplayMode(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectDraw4, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectDraw4, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SetDisplayMode(self: *const IDirectDraw4, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
+    pub fn SetDisplayMode(self: *const IDirectDraw4, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
-    pub fn WaitForVerticalBlank(self: *const IDirectDraw4, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn WaitForVerticalBlank(self: *const IDirectDraw4, param0: u32, param1: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
-    pub fn GetAvailableVidMem(self: *const IDirectDraw4, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAvailableVidMem(self: *const IDirectDraw4, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
-    pub fn GetSurfaceFromDC(self: *const IDirectDraw4, param0: ?HDC, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceFromDC(self: *const IDirectDraw4, param0: ?HDC, param1: ?*?*IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurfaceFromDC(self, param0, param1);
     }
-    pub fn RestoreAllSurfaces(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn RestoreAllSurfaces(self: *const IDirectDraw4) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreAllSurfaces(self);
     }
-    pub fn TestCooperativeLevel(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn TestCooperativeLevel(self: *const IDirectDraw4) callconv(.@"inline") HRESULT {
         return self.vtable.TestCooperativeLevel(self);
     }
-    pub fn GetDeviceIdentifier(self: *const IDirectDraw4, param0: ?*DDDEVICEIDENTIFIER, param1: u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceIdentifier(self: *const IDirectDraw4, param0: ?*DDDEVICEIDENTIFIER, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceIdentifier(self, param0, param1);
     }
 };
@@ -2172,85 +2172,85 @@ pub const IDirectDraw7 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compact(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectDraw7) callconv(.@"inline") HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn CreateClipper(self: *const IDirectDraw7, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateClipper(self: *const IDirectDraw7, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateClipper(self, param0, param1, param2);
     }
-    pub fn CreatePalette(self: *const IDirectDraw7, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IDirectDraw7, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
-    pub fn CreateSurface(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface7, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface7, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurface(self, param0, param1, param2);
     }
-    pub fn DuplicateSurface(self: *const IDirectDraw7, param0: ?*IDirectDrawSurface7, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn DuplicateSurface(self: *const IDirectDraw7, param0: ?*IDirectDrawSurface7, param1: ?*?*IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.DuplicateSurface(self, param0, param1);
     }
-    pub fn EnumDisplayModes(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumDisplayModes(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
-    pub fn EnumSurfaces(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+    pub fn EnumSurfaces(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK7) callconv(.@"inline") HRESULT {
         return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
-    pub fn FlipToGDISurface(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn FlipToGDISurface(self: *const IDirectDraw7) callconv(.@"inline") HRESULT {
         return self.vtable.FlipToGDISurface(self);
     }
-    pub fn GetCaps(self: *const IDirectDraw7, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDraw7, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0, param1);
     }
-    pub fn GetDisplayMode(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayMode(self, param0);
     }
-    pub fn GetFourCCCodes(self: *const IDirectDraw7, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFourCCCodes(self: *const IDirectDraw7, param0: ?*u32, param1: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFourCCCodes(self, param0, param1);
     }
-    pub fn GetGDISurface(self: *const IDirectDraw7, param0: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn GetGDISurface(self: *const IDirectDraw7, param0: ?*?*IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.GetGDISurface(self, param0);
     }
-    pub fn GetMonitorFrequency(self: *const IDirectDraw7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorFrequency(self: *const IDirectDraw7, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMonitorFrequency(self, param0);
     }
-    pub fn GetScanLine(self: *const IDirectDraw7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScanLine(self: *const IDirectDraw7, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetScanLine(self, param0);
     }
-    pub fn GetVerticalBlankStatus(self: *const IDirectDraw7, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVerticalBlankStatus(self: *const IDirectDraw7, param0: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVerticalBlankStatus(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDraw7, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDraw7, param0: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0);
     }
-    pub fn RestoreDisplayMode(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn RestoreDisplayMode(self: *const IDirectDraw7) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreDisplayMode(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectDraw7, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectDraw7, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SetDisplayMode(self: *const IDirectDraw7, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
+    pub fn SetDisplayMode(self: *const IDirectDraw7, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
-    pub fn WaitForVerticalBlank(self: *const IDirectDraw7, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn WaitForVerticalBlank(self: *const IDirectDraw7, param0: u32, param1: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
-    pub fn GetAvailableVidMem(self: *const IDirectDraw7, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAvailableVidMem(self: *const IDirectDraw7, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
-    pub fn GetSurfaceFromDC(self: *const IDirectDraw7, param0: ?HDC, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceFromDC(self: *const IDirectDraw7, param0: ?HDC, param1: ?*?*IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurfaceFromDC(self, param0, param1);
     }
-    pub fn RestoreAllSurfaces(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn RestoreAllSurfaces(self: *const IDirectDraw7) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreAllSurfaces(self);
     }
-    pub fn TestCooperativeLevel(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn TestCooperativeLevel(self: *const IDirectDraw7) callconv(.@"inline") HRESULT {
         return self.vtable.TestCooperativeLevel(self);
     }
-    pub fn GetDeviceIdentifier(self: *const IDirectDraw7, param0: ?*DDDEVICEIDENTIFIER2, param1: u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceIdentifier(self: *const IDirectDraw7, param0: ?*DDDEVICEIDENTIFIER2, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceIdentifier(self, param0, param1);
     }
-    pub fn StartModeTest(self: *const IDirectDraw7, param0: ?*SIZE, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn StartModeTest(self: *const IDirectDraw7, param0: ?*SIZE, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.StartModeTest(self, param0, param1, param2);
     }
-    pub fn EvaluateMode(self: *const IDirectDraw7, param0: u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EvaluateMode(self: *const IDirectDraw7, param0: u32, param1: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EvaluateMode(self, param0, param1);
     }
 };
@@ -2287,16 +2287,16 @@ pub const IDirectDrawPalette = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCaps(self: *const IDirectDrawPalette, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawPalette, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
+    pub fn GetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
         return self.vtable.GetEntries(self, param0, param1, param2, param3);
     }
-    pub fn Initialize(self: *const IDirectDrawPalette, param0: ?*IDirectDraw, param1: u32, param2: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawPalette, param0: ?*IDirectDraw, param1: u32, param2: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1, param2);
     }
-    pub fn SetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
+    pub fn SetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
         return self.vtable.SetEntries(self, param0, param1, param2, param3);
     }
 };
@@ -2338,22 +2338,22 @@ pub const IDirectDrawClipper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClipList(self: *const IDirectDrawClipper, param0: ?*RECT, param1: ?*RGNDATA, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClipList(self: *const IDirectDrawClipper, param0: ?*RECT, param1: ?*RGNDATA, param2: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipList(self, param0, param1, param2);
     }
-    pub fn GetHWnd(self: *const IDirectDrawClipper, param0: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn GetHWnd(self: *const IDirectDrawClipper, param0: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetHWnd(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawClipper, param0: ?*IDirectDraw, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawClipper, param0: ?*IDirectDraw, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsClipListChanged(self: *const IDirectDrawClipper, param0: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsClipListChanged(self: *const IDirectDrawClipper, param0: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsClipListChanged(self, param0);
     }
-    pub fn SetClipList(self: *const IDirectDrawClipper, param0: ?*RGNDATA, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetClipList(self: *const IDirectDrawClipper, param0: ?*RGNDATA, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipList(self, param0, param1);
     }
-    pub fn SetHWnd(self: *const IDirectDrawClipper, param0: u32, param1: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetHWnd(self: *const IDirectDrawClipper, param0: u32, param1: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetHWnd(self, param0, param1);
     }
 };
@@ -2525,103 +2525,103 @@ pub const IDirectDrawSurface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface, param0: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.@"inline") HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface, param0: u32, param1: u32, param2: ?*IDirectDrawSurface, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface, param0: u32, param1: u32, param2: ?*IDirectDrawSurface, param3: ?*RECT, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface, param0: ?*DDSCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface, param0: ?*?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface, param0: ?*i32, param1: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface, param0: ?*DDPIXELFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface, param0: ?*DDSURFACEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface, param0: ?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface, param0: ?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface, param0: i32, param1: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface, param0: ?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface, param0: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface, param0: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
 };
@@ -2805,112 +2805,112 @@ pub const IDirectDrawSurface2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2) callconv(.@"inline") HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface2, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface2, param0: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.@"inline") HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface2, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface2, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface2, param0: u32, param1: u32, param2: ?*IDirectDrawSurface2, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface2, param0: u32, param1: u32, param2: ?*IDirectDrawSurface2, param3: ?*RECT, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface2, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface2, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface2, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface2, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface2) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface2, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface2, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface2, param0: ?*?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface2, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface2, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface2, param0: ?*i32, param1: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface2, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface2, param0: ?*DDPIXELFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface2, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface2, param0: ?*DDSURFACEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface2, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface2, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface2) callconv(.@"inline") HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface2, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface2, param0: ?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface2) callconv(.@"inline") HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface2, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface2, param0: i32, param1: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface2, param0: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface2, param0: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface2, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
-    pub fn GetDDInterface(self: *const IDirectDrawSurface2, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDDInterface(self: *const IDirectDrawSurface2, param0: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDDInterface(self, param0);
     }
-    pub fn PageLock(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageLock(self: *const IDirectDrawSurface2, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageLock(self, param0);
     }
-    pub fn PageUnlock(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageUnlock(self: *const IDirectDrawSurface2, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageUnlock(self, param0);
     }
 };
@@ -3099,115 +3099,115 @@ pub const IDirectDrawSurface3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3) callconv(.@"inline") HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface3, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface3, param0: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.@"inline") HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface3, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface3, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface3, param0: u32, param1: u32, param2: ?*IDirectDrawSurface3, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface3, param0: u32, param1: u32, param2: ?*IDirectDrawSurface3, param3: ?*RECT, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface3, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface3, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface3, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface3, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface3) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface3, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface3, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface3, param0: ?*?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface3, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface3, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface3, param0: ?*i32, param1: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface3, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface3, param0: ?*DDPIXELFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface3, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface3, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface3) callconv(.@"inline") HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface3, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface3, param0: ?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface3) callconv(.@"inline") HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface3, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface3, param0: i32, param1: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface3, param0: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface3, param0: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface3, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
-    pub fn GetDDInterface(self: *const IDirectDrawSurface3, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDDInterface(self: *const IDirectDrawSurface3, param0: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDDInterface(self, param0);
     }
-    pub fn PageLock(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageLock(self: *const IDirectDrawSurface3, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageLock(self, param0);
     }
-    pub fn PageUnlock(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageUnlock(self: *const IDirectDrawSurface3, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageUnlock(self, param0);
     }
-    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
 };
@@ -3420,130 +3420,130 @@ pub const IDirectDrawSurface4 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface4, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface4, param0: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.@"inline") HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface4, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface4, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface4, param0: u32, param1: u32, param2: ?*IDirectDrawSurface4, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface4, param0: u32, param1: u32, param2: ?*IDirectDrawSurface4, param3: ?*RECT, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface4, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface4, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK2) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface4, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface4, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK2) callconv(.@"inline") HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface4, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface4, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface4, param0: ?*?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface4, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface4, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface4, param0: ?*i32, param1: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface4, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface4, param0: ?*DDPIXELFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface4, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface4, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface4, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface4, param0: ?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface4, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface4, param0: i32, param1: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface4, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface4, param0: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface4, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
-    pub fn GetDDInterface(self: *const IDirectDrawSurface4, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDDInterface(self: *const IDirectDrawSurface4, param0: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDDInterface(self, param0);
     }
-    pub fn PageLock(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageLock(self: *const IDirectDrawSurface4, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageLock(self, param0);
     }
-    pub fn PageUnlock(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageUnlock(self: *const IDirectDrawSurface4, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageUnlock(self, param0);
     }
-    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
-    pub fn SetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateData(self, param0, param1, param2, param3);
     }
-    pub fn GetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivateData(self, param0, param1, param2);
     }
-    pub fn FreePrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn FreePrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FreePrivateData(self, param0);
     }
-    pub fn GetUniquenessValue(self: *const IDirectDrawSurface4, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUniquenessValue(self: *const IDirectDrawSurface4, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetUniquenessValue(self, param0);
     }
-    pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface4) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeUniquenessValue(self);
     }
 };
@@ -3772,142 +3772,142 @@ pub const IDirectDrawSurface7 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface7, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface7, param0: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.@"inline") HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface7, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface7, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface7, param0: u32, param1: u32, param2: ?*IDirectDrawSurface7, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface7, param0: u32, param1: u32, param2: ?*IDirectDrawSurface7, param3: ?*RECT, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface7, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface7, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK7) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface7, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface7, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK7) callconv(.@"inline") HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface7, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface7, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface7, param0: ?*?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface7, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface7, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface7, param0: ?*i32, param1: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface7, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface7, param0: ?*DDPIXELFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface7, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface7, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface7, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface7, param0: ?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawClipper) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface7, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface7, param0: i32, param1: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawPalette) callconv(.@"inline") HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface7, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface7, param0: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface7, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
-    pub fn GetDDInterface(self: *const IDirectDrawSurface7, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDDInterface(self: *const IDirectDrawSurface7, param0: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDDInterface(self, param0);
     }
-    pub fn PageLock(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageLock(self: *const IDirectDrawSurface7, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageLock(self, param0);
     }
-    pub fn PageUnlock(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageUnlock(self: *const IDirectDrawSurface7, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PageUnlock(self, param0);
     }
-    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
-    pub fn SetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateData(self, param0, param1, param2, param3);
     }
-    pub fn GetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivateData(self, param0, param1, param2);
     }
-    pub fn FreePrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn FreePrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FreePrivateData(self, param0);
     }
-    pub fn GetUniquenessValue(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUniquenessValue(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetUniquenessValue(self, param0);
     }
-    pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface7) callconv(.@"inline") HRESULT {
         return self.vtable.ChangeUniquenessValue(self);
     }
-    pub fn SetPriority(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn SetPriority(self: *const IDirectDrawSurface7, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPriority(self, param0);
     }
-    pub fn GetPriority(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPriority(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPriority(self, param0);
     }
-    pub fn SetLOD(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn SetLOD(self: *const IDirectDrawSurface7, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLOD(self, param0);
     }
-    pub fn GetLOD(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLOD(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLOD(self, param0);
     }
 };
@@ -3928,10 +3928,10 @@ pub const IDirectDrawColorControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
+    pub fn GetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorControls(self, param0);
     }
-    pub fn SetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
+    pub fn SetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorControls(self, param0);
     }
 };
@@ -3954,10 +3954,10 @@ pub const IDirectDrawGammaControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.Inline) HRESULT {
+    pub fn GetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.@"inline") HRESULT {
         return self.vtable.GetGammaRamp(self, param0, param1);
     }
-    pub fn SetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.Inline) HRESULT {
+    pub fn SetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.@"inline") HRESULT {
         return self.vtable.SetGammaRamp(self, param0, param1);
     }
 };
@@ -4096,16 +4096,16 @@ pub const IDDVideoPortContainer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateVideoPort(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTDESC, param2: ?*?*IDirectDrawVideoPort, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateVideoPort(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTDESC, param2: ?*?*IDirectDrawVideoPort, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVideoPort(self, param0, param1, param2, param3);
     }
-    pub fn EnumVideoPorts(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumVideoPorts(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) callconv(.@"inline") HRESULT {
         return self.vtable.EnumVideoPorts(self, param0, param1, param2, param3);
     }
-    pub fn GetVideoPortConnectInfo(self: *const IDDVideoPortContainer, param0: u32, pcInfo: ?*u32, param2: ?[*]DDVIDEOPORTCONNECT) callconv(.Inline) HRESULT {
+    pub fn GetVideoPortConnectInfo(self: *const IDDVideoPortContainer, param0: u32, pcInfo: ?*u32, param2: ?[*]DDVIDEOPORTCONNECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetVideoPortConnectInfo(self, param0, pcInfo, param2);
     }
-    pub fn QueryVideoPortStatus(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTSTATUS) callconv(.Inline) HRESULT {
+    pub fn QueryVideoPortStatus(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTSTATUS) callconv(.@"inline") HRESULT {
         return self.vtable.QueryVideoPortStatus(self, param0, param1);
     }
 };
@@ -4186,46 +4186,46 @@ pub const IDirectDrawVideoPort = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Flip(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetBandwidthInfo(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, param1: u32, param2: u32, param3: u32, param4: ?*DDVIDEOPORTBANDWIDTH) callconv(.Inline) HRESULT {
+    pub fn GetBandwidthInfo(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, param1: u32, param2: u32, param3: u32, param4: ?*DDVIDEOPORTBANDWIDTH) callconv(.@"inline") HRESULT {
         return self.vtable.GetBandwidthInfo(self, param0, param1, param2, param3, param4);
     }
-    pub fn GetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
+    pub fn GetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorControls(self, param0);
     }
-    pub fn GetInputFormats(self: *const IDirectDrawVideoPort, lpNumFormats: ?*u32, param1: ?[*]DDPIXELFORMAT, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetInputFormats(self: *const IDirectDrawVideoPort, lpNumFormats: ?*u32, param1: ?[*]DDPIXELFORMAT, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetInputFormats(self, lpNumFormats, param1, param2);
     }
-    pub fn GetOutputFormats(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, lpNumFormats: ?*u32, param2: ?[*]DDPIXELFORMAT, param3: u32) callconv(.Inline) HRESULT {
+    pub fn GetOutputFormats(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, lpNumFormats: ?*u32, param2: ?[*]DDPIXELFORMAT, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputFormats(self, param0, lpNumFormats, param2, param3);
     }
-    pub fn GetFieldPolarity(self: *const IDirectDrawVideoPort, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetFieldPolarity(self: *const IDirectDrawVideoPort, param0: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFieldPolarity(self, param0);
     }
-    pub fn GetVideoLine(self: *const IDirectDrawVideoPort, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVideoLine(self: *const IDirectDrawVideoPort, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVideoLine(self, param0);
     }
-    pub fn GetVideoSignalStatus(self: *const IDirectDrawVideoPort, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVideoSignalStatus(self: *const IDirectDrawVideoPort, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVideoSignalStatus(self, param0);
     }
-    pub fn SetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
+    pub fn SetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorControls(self, param0);
     }
-    pub fn SetTargetSurface(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetTargetSurface(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetSurface(self, param0, param1);
     }
-    pub fn StartVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) callconv(.Inline) HRESULT {
+    pub fn StartVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) callconv(.@"inline") HRESULT {
         return self.vtable.StartVideo(self, param0);
     }
-    pub fn StopVideo(self: *const IDirectDrawVideoPort) callconv(.Inline) HRESULT {
+    pub fn StopVideo(self: *const IDirectDrawVideoPort) callconv(.@"inline") HRESULT {
         return self.vtable.StopVideo(self);
     }
-    pub fn UpdateVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) callconv(.Inline) HRESULT {
+    pub fn UpdateVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateVideo(self, param0);
     }
-    pub fn WaitForSync(self: *const IDirectDrawVideoPort, param0: u32, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn WaitForSync(self: *const IDirectDrawVideoPort, param0: u32, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForSync(self, param0, param1, param2);
     }
 };
@@ -4247,10 +4247,10 @@ pub const IDirectDrawVideoPortNotify = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AcquireNotification(self: *const IDirectDrawVideoPortNotify, param0: ?*?HANDLE, param1: ?*DDVIDEOPORTNOTIFY) callconv(.Inline) HRESULT {
+    pub fn AcquireNotification(self: *const IDirectDrawVideoPortNotify, param0: ?*?HANDLE, param1: ?*DDVIDEOPORTNOTIFY) callconv(.@"inline") HRESULT {
         return self.vtable.AcquireNotification(self, param0, param1);
     }
-    pub fn ReleaseNotification(self: *const IDirectDrawVideoPortNotify, param0: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn ReleaseNotification(self: *const IDirectDrawVideoPortNotify, param0: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseNotification(self, param0);
     }
 };
@@ -4362,13 +4362,13 @@ pub const IDirectDrawKernel = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCaps(self: *const IDirectDrawKernel, param0: ?*DDKERNELCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawKernel, param0: ?*DDKERNELCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetKernelHandle(self: *const IDirectDrawKernel, param0: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetKernelHandle(self: *const IDirectDrawKernel, param0: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.GetKernelHandle(self, param0);
     }
-    pub fn ReleaseKernelHandle(self: *const IDirectDrawKernel) callconv(.Inline) HRESULT {
+    pub fn ReleaseKernelHandle(self: *const IDirectDrawKernel) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseKernelHandle(self);
     }
 };
@@ -4388,10 +4388,10 @@ pub const IDirectDrawSurfaceKernel = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetKernelHandle(self: *const IDirectDrawSurfaceKernel, param0: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetKernelHandle(self: *const IDirectDrawSurfaceKernel, param0: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.GetKernelHandle(self, param0);
     }
-    pub fn ReleaseKernelHandle(self: *const IDirectDrawSurfaceKernel) callconv(.Inline) HRESULT {
+    pub fn ReleaseKernelHandle(self: *const IDirectDrawSurfaceKernel) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseKernelHandle(self);
     }
 };

@@ -54,13 +54,13 @@ pub const ID3D11On12Device = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateWrappedResource(self: *const ID3D11On12Device, pResource12: ?*IUnknown, pFlags11: ?*const D3D11_RESOURCE_FLAGS, InState: D3D12_RESOURCE_STATES, OutState: D3D12_RESOURCE_STATES, riid: ?*const Guid, ppResource11: ?**anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateWrappedResource(self: *const ID3D11On12Device, pResource12: ?*IUnknown, pFlags11: ?*const D3D11_RESOURCE_FLAGS, InState: D3D12_RESOURCE_STATES, OutState: D3D12_RESOURCE_STATES, riid: ?*const Guid, ppResource11: ?**anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateWrappedResource(self, pResource12, pFlags11, InState, OutState, riid, ppResource11);
     }
-    pub fn ReleaseWrappedResources(self: *const ID3D11On12Device, ppResources: [*]?*ID3D11Resource, NumResources: u32) callconv(.Inline) void {
+    pub fn ReleaseWrappedResources(self: *const ID3D11On12Device, ppResources: [*]?*ID3D11Resource, NumResources: u32) callconv(.@"inline") void {
         return self.vtable.ReleaseWrappedResources(self, ppResources, NumResources);
     }
-    pub fn AcquireWrappedResources(self: *const ID3D11On12Device, ppResources: [*]?*ID3D11Resource, NumResources: u32) callconv(.Inline) void {
+    pub fn AcquireWrappedResources(self: *const ID3D11On12Device, ppResources: [*]?*ID3D11Resource, NumResources: u32) callconv(.@"inline") void {
         return self.vtable.AcquireWrappedResources(self, ppResources, NumResources);
     }
 };
@@ -81,7 +81,7 @@ pub const ID3D11On12Device1 = extern union {
     vtable: *const VTable,
     ID3D11On12Device: ID3D11On12Device,
     IUnknown: IUnknown,
-    pub fn GetD3D12Device(self: *const ID3D11On12Device1, riid: ?*const Guid, ppvDevice: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetD3D12Device(self: *const ID3D11On12Device1, riid: ?*const Guid, ppvDevice: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetD3D12Device(self, riid, ppvDevice);
     }
 };
@@ -112,10 +112,10 @@ pub const ID3D11On12Device2 = extern union {
     ID3D11On12Device1: ID3D11On12Device1,
     ID3D11On12Device: ID3D11On12Device,
     IUnknown: IUnknown,
-    pub fn UnwrapUnderlyingResource(self: *const ID3D11On12Device2, pResource11: ?*ID3D11Resource, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn UnwrapUnderlyingResource(self: *const ID3D11On12Device2, pResource11: ?*ID3D11Resource, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.UnwrapUnderlyingResource(self, pResource11, pCommandQueue, riid, ppvResource12);
     }
-    pub fn ReturnUnderlyingResource(self: *const ID3D11On12Device2, pResource11: ?*ID3D11Resource, NumSync: u32, pSignalValues: [*]u64, ppFences: [*]?*ID3D12Fence) callconv(.Inline) HRESULT {
+    pub fn ReturnUnderlyingResource(self: *const ID3D11On12Device2, pResource11: ?*ID3D11Resource, NumSync: u32, pSignalValues: [*]u64, ppFences: [*]?*ID3D12Fence) callconv(.@"inline") HRESULT {
         return self.vtable.ReturnUnderlyingResource(self, pResource11, NumSync, pSignalValues, ppFences);
     }
 };

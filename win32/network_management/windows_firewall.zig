@@ -38,13 +38,13 @@ pub const IUPnPNAT = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_StaticPortMappingCollection(self: *const IUPnPNAT, ppSPMs: ?*?*IStaticPortMappingCollection) callconv(.Inline) HRESULT {
+    pub fn get_StaticPortMappingCollection(self: *const IUPnPNAT, ppSPMs: ?*?*IStaticPortMappingCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_StaticPortMappingCollection(self, ppSPMs);
     }
-    pub fn get_DynamicPortMappingCollection(self: *const IUPnPNAT, ppDPMs: ?*?*IDynamicPortMappingCollection) callconv(.Inline) HRESULT {
+    pub fn get_DynamicPortMappingCollection(self: *const IUPnPNAT, ppDPMs: ?*?*IDynamicPortMappingCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_DynamicPortMappingCollection(self, ppDPMs);
     }
-    pub fn get_NATEventManager(self: *const IUPnPNAT, ppNEM: ?*?*INATEventManager) callconv(.Inline) HRESULT {
+    pub fn get_NATEventManager(self: *const IUPnPNAT, ppNEM: ?*?*INATEventManager) callconv(.@"inline") HRESULT {
         return self.vtable.get_NATEventManager(self, ppNEM);
     }
 };
@@ -69,10 +69,10 @@ pub const INATEventManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_ExternalIPAddressCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn put_ExternalIPAddressCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExternalIPAddressCallback(self, pUnk);
     }
-    pub fn put_NumberOfEntriesCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn put_NumberOfEntriesCallback(self: *const INATEventManager, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.put_NumberOfEntriesCallback(self, pUnk);
     }
 };
@@ -90,7 +90,7 @@ pub const INATExternalIPAddressCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NewExternalIPAddress(self: *const INATExternalIPAddressCallback, bstrNewExternalIPAddress: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn NewExternalIPAddress(self: *const INATExternalIPAddressCallback, bstrNewExternalIPAddress: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.NewExternalIPAddress(self, bstrNewExternalIPAddress);
     }
 };
@@ -108,7 +108,7 @@ pub const INATNumberOfEntriesCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NewNumberOfEntries(self: *const INATNumberOfEntriesCallback, lNewNumberOfEntries: i32) callconv(.Inline) HRESULT {
+    pub fn NewNumberOfEntries(self: *const INATNumberOfEntriesCallback, lNewNumberOfEntries: i32) callconv(.@"inline") HRESULT {
         return self.vtable.NewNumberOfEntries(self, lNewNumberOfEntries);
     }
 };
@@ -157,19 +157,19 @@ pub const IDynamicPortMappingCollection = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IDynamicPortMappingCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IDynamicPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pVal);
     }
-    pub fn get_Item(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, ppDPM: ?*?*IDynamicPortMapping) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, ppDPM: ?*?*IDynamicPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, bstrRemoteHost, lExternalPort, bstrProtocol, ppDPM);
     }
-    pub fn get_Count(self: *const IDynamicPortMappingCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IDynamicPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
-    pub fn Remove(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, bstrRemoteHost, lExternalPort, bstrProtocol);
     }
-    pub fn Add(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const IDynamicPortMappingCollection, bstrRemoteHost: ?BSTR, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, lLeaseDuration: i32, ppDPM: ?*?*IDynamicPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, bstrRemoteHost, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, lLeaseDuration, ppDPM);
     }
 };
@@ -249,46 +249,46 @@ pub const IDynamicPortMapping = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ExternalIPAddress(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ExternalIPAddress(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExternalIPAddress(self, pVal);
     }
-    pub fn get_RemoteHost(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteHost(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteHost(self, pVal);
     }
-    pub fn get_ExternalPort(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ExternalPort(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExternalPort(self, pVal);
     }
-    pub fn get_Protocol(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Protocol(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Protocol(self, pVal);
     }
-    pub fn get_InternalPort(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_InternalPort(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternalPort(self, pVal);
     }
-    pub fn get_InternalClient(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InternalClient(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternalClient(self, pVal);
     }
-    pub fn get_Enabled(self: *const IDynamicPortMapping, pVal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const IDynamicPortMapping, pVal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pVal);
     }
-    pub fn get_Description(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IDynamicPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pVal);
     }
-    pub fn get_LeaseDuration(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LeaseDuration(self: *const IDynamicPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_LeaseDuration(self, pVal);
     }
-    pub fn RenewLease(self: *const IDynamicPortMapping, lLeaseDurationDesired: i32, pLeaseDurationReturned: ?*i32) callconv(.Inline) HRESULT {
+    pub fn RenewLease(self: *const IDynamicPortMapping, lLeaseDurationDesired: i32, pLeaseDurationReturned: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.RenewLease(self, lLeaseDurationDesired, pLeaseDurationReturned);
     }
-    pub fn EditInternalClient(self: *const IDynamicPortMapping, bstrInternalClient: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn EditInternalClient(self: *const IDynamicPortMapping, bstrInternalClient: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EditInternalClient(self, bstrInternalClient);
     }
-    pub fn Enable(self: *const IDynamicPortMapping, vb: i16) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const IDynamicPortMapping, vb: i16) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, vb);
     }
-    pub fn EditDescription(self: *const IDynamicPortMapping, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn EditDescription(self: *const IDynamicPortMapping, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EditDescription(self, bstrDescription);
     }
-    pub fn EditInternalPort(self: *const IDynamicPortMapping, lInternalPort: i32) callconv(.Inline) HRESULT {
+    pub fn EditInternalPort(self: *const IDynamicPortMapping, lInternalPort: i32) callconv(.@"inline") HRESULT {
         return self.vtable.EditInternalPort(self, lInternalPort);
     }
 };
@@ -334,19 +334,19 @@ pub const IStaticPortMappingCollection = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IStaticPortMappingCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IStaticPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pVal);
     }
-    pub fn get_Item(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, lExternalPort, bstrProtocol, ppSPM);
     }
-    pub fn get_Count(self: *const IStaticPortMappingCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IStaticPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
-    pub fn Remove(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, lExternalPort, bstrProtocol);
     }
-    pub fn Add(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const IStaticPortMappingCollection, lExternalPort: i32, bstrProtocol: ?BSTR, lInternalPort: i32, bstrInternalClient: ?BSTR, bEnabled: i16, bstrDescription: ?BSTR, ppSPM: ?*?*IStaticPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, lExternalPort, bstrProtocol, lInternalPort, bstrInternalClient, bEnabled, bstrDescription, ppSPM);
     }
 };
@@ -412,37 +412,37 @@ pub const IStaticPortMapping = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ExternalIPAddress(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ExternalIPAddress(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExternalIPAddress(self, pVal);
     }
-    pub fn get_ExternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ExternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExternalPort(self, pVal);
     }
-    pub fn get_InternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_InternalPort(self: *const IStaticPortMapping, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternalPort(self, pVal);
     }
-    pub fn get_Protocol(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Protocol(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Protocol(self, pVal);
     }
-    pub fn get_InternalClient(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InternalClient(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternalClient(self, pVal);
     }
-    pub fn get_Enabled(self: *const IStaticPortMapping, pVal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const IStaticPortMapping, pVal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pVal);
     }
-    pub fn get_Description(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IStaticPortMapping, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pVal);
     }
-    pub fn EditInternalClient(self: *const IStaticPortMapping, bstrInternalClient: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn EditInternalClient(self: *const IStaticPortMapping, bstrInternalClient: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EditInternalClient(self, bstrInternalClient);
     }
-    pub fn Enable(self: *const IStaticPortMapping, vb: i16) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const IStaticPortMapping, vb: i16) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self, vb);
     }
-    pub fn EditDescription(self: *const IStaticPortMapping, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn EditDescription(self: *const IStaticPortMapping, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EditDescription(self, bstrDescription);
     }
-    pub fn EditInternalPort(self: *const IStaticPortMapping, lInternalPort: i32) callconv(.Inline) HRESULT {
+    pub fn EditInternalPort(self: *const IStaticPortMapping, lInternalPort: i32) callconv(.@"inline") HRESULT {
         return self.vtable.EditInternalPort(self, lInternalPort);
     }
 };
@@ -475,16 +475,16 @@ pub const IEnumNetConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetConnection, celt: u32, rgelt: [*]?*INetConnection, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumNetConnection, celt: u32, rgelt: [*]?*INetConnection, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumNetConnection, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumNetConnection, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumNetConnection) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumNetConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumNetConnection, ppenum: ?*?*IEnumNetConnection) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumNetConnection, ppenum: ?*?*IEnumNetConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -655,25 +655,25 @@ pub const INetConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Connect(self: *const INetConnection) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const INetConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self);
     }
-    pub fn Disconnect(self: *const INetConnection) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const INetConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnect(self);
     }
-    pub fn Delete(self: *const INetConnection) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const INetConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Duplicate(self: *const INetConnection, pszwDuplicateName: ?[*:0]const u16, ppCon: ?*?*INetConnection) callconv(.Inline) HRESULT {
+    pub fn Duplicate(self: *const INetConnection, pszwDuplicateName: ?[*:0]const u16, ppCon: ?*?*INetConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Duplicate(self, pszwDuplicateName, ppCon);
     }
-    pub fn GetProperties(self: *const INetConnection, ppProps: ?*?*NETCON_PROPERTIES) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const INetConnection, ppProps: ?*?*NETCON_PROPERTIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperties(self, ppProps);
     }
-    pub fn GetUiObjectClassId(self: *const INetConnection, pclsid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetUiObjectClassId(self: *const INetConnection, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetUiObjectClassId(self, pclsid);
     }
-    pub fn Rename(self: *const INetConnection, pszwNewName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Rename(self: *const INetConnection, pszwNewName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Rename(self, pszwNewName);
     }
 };
@@ -698,7 +698,7 @@ pub const INetConnectionManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumConnections(self: *const INetConnectionManager, Flags: NETCONMGR_ENUM_FLAGS, ppEnum: ?*?*IEnumNetConnection) callconv(.Inline) HRESULT {
+    pub fn EnumConnections(self: *const INetConnectionManager, Flags: NETCONMGR_ENUM_FLAGS, ppEnum: ?*?*IEnumNetConnection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumConnections(self, Flags, ppEnum);
     }
 };
@@ -734,13 +734,13 @@ pub const INetConnectionConnectUi = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetConnection(self: *const INetConnectionConnectUi, pCon: ?*INetConnection) callconv(.Inline) HRESULT {
+    pub fn SetConnection(self: *const INetConnectionConnectUi, pCon: ?*INetConnection) callconv(.@"inline") HRESULT {
         return self.vtable.SetConnection(self, pCon);
     }
-    pub fn Connect(self: *const INetConnectionConnectUi, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const INetConnectionConnectUi, hwndParent: ?HWND, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, hwndParent, dwFlags);
     }
-    pub fn Disconnect(self: *const INetConnectionConnectUi, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const INetConnectionConnectUi, hwndParent: ?HWND, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnect(self, hwndParent, dwFlags);
     }
 };
@@ -771,16 +771,16 @@ pub const IEnumNetSharingPortMapping = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetSharingPortMapping, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumNetSharingPortMapping, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgVar, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumNetSharingPortMapping, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumNetSharingPortMapping, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumNetSharingPortMapping) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumNetSharingPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumNetSharingPortMapping, ppenum: ?*?*IEnumNetSharingPortMapping) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumNetSharingPortMapping, ppenum: ?*?*IEnumNetSharingPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -835,28 +835,28 @@ pub const INetSharingPortMappingProps = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetSharingPortMappingProps, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const INetSharingPortMappingProps, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_IPProtocol(self: *const INetSharingPortMappingProps, pucIPProt: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_IPProtocol(self: *const INetSharingPortMappingProps, pucIPProt: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.get_IPProtocol(self, pucIPProt);
     }
-    pub fn get_ExternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ExternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExternalPort(self, pusPort);
     }
-    pub fn get_InternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_InternalPort(self: *const INetSharingPortMappingProps, pusPort: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternalPort(self, pusPort);
     }
-    pub fn get_Options(self: *const INetSharingPortMappingProps, pdwOptions: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Options(self: *const INetSharingPortMappingProps, pdwOptions: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Options(self, pdwOptions);
     }
-    pub fn get_TargetName(self: *const INetSharingPortMappingProps, pbstrTargetName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetName(self: *const INetSharingPortMappingProps, pbstrTargetName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetName(self, pbstrTargetName);
     }
-    pub fn get_TargetIPAddress(self: *const INetSharingPortMappingProps, pbstrTargetIPAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetIPAddress(self: *const INetSharingPortMappingProps, pbstrTargetIPAddress: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetIPAddress(self, pbstrTargetIPAddress);
     }
-    pub fn get_Enabled(self: *const INetSharingPortMappingProps, pbool: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const INetSharingPortMappingProps, pbool: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pbool);
     }
 };
@@ -885,16 +885,16 @@ pub const INetSharingPortMapping = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Disable(self: *const INetSharingPortMapping) callconv(.Inline) HRESULT {
+    pub fn Disable(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Disable(self);
     }
-    pub fn Enable(self: *const INetSharingPortMapping) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self);
     }
-    pub fn get_Properties(self: *const INetSharingPortMapping, ppNSPMP: ?*?*INetSharingPortMappingProps) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const INetSharingPortMapping, ppNSPMP: ?*?*INetSharingPortMappingProps) callconv(.@"inline") HRESULT {
         return self.vtable.get_Properties(self, ppNSPMP);
     }
-    pub fn Delete(self: *const INetSharingPortMapping) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const INetSharingPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
 };
@@ -925,16 +925,16 @@ pub const IEnumNetSharingEveryConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetSharingEveryConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumNetSharingEveryConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgVar, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumNetSharingEveryConnection, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumNetSharingEveryConnection, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumNetSharingEveryConnection) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumNetSharingEveryConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumNetSharingEveryConnection, ppenum: ?*?*IEnumNetSharingEveryConnection) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumNetSharingEveryConnection, ppenum: ?*?*IEnumNetSharingEveryConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -965,16 +965,16 @@ pub const IEnumNetSharingPublicConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetSharingPublicConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumNetSharingPublicConnection, celt: u32, rgVar: [*]VARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgVar, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumNetSharingPublicConnection, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumNetSharingPublicConnection, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumNetSharingPublicConnection) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumNetSharingPublicConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumNetSharingPublicConnection, ppenum: ?*?*IEnumNetSharingPublicConnection) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumNetSharingPublicConnection, ppenum: ?*?*IEnumNetSharingPublicConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -1005,16 +1005,16 @@ pub const IEnumNetSharingPrivateConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumNetSharingPrivateConnection, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumNetSharingPrivateConnection, celt: u32, rgVar: [*]VARIANT, pCeltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgVar, pCeltFetched);
     }
-    pub fn Skip(self: *const IEnumNetSharingPrivateConnection, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumNetSharingPrivateConnection, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumNetSharingPrivateConnection) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumNetSharingPrivateConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumNetSharingPrivateConnection, ppenum: ?*?*IEnumNetSharingPrivateConnection) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumNetSharingPrivateConnection, ppenum: ?*?*IEnumNetSharingPrivateConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -1039,10 +1039,10 @@ pub const INetSharingPortMappingCollection = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const INetSharingPortMappingCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetSharingPortMappingCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pVal);
     }
-    pub fn get_Count(self: *const INetSharingPortMappingCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetSharingPortMappingCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
 };
@@ -1087,22 +1087,22 @@ pub const INetConnectionProps = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Guid(self: *const INetConnectionProps, pbstrGuid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Guid(self: *const INetConnectionProps, pbstrGuid: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Guid(self, pbstrGuid);
     }
-    pub fn get_Name(self: *const INetConnectionProps, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const INetConnectionProps, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_DeviceName(self: *const INetConnectionProps, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DeviceName(self: *const INetConnectionProps, pbstrDeviceName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DeviceName(self, pbstrDeviceName);
     }
-    pub fn get_Status(self: *const INetConnectionProps, pStatus: ?*NETCON_STATUS) callconv(.Inline) HRESULT {
+    pub fn get_Status(self: *const INetConnectionProps, pStatus: ?*NETCON_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_Status(self, pStatus);
     }
-    pub fn get_MediaType(self: *const INetConnectionProps, pMediaType: ?*NETCON_MEDIATYPE) callconv(.Inline) HRESULT {
+    pub fn get_MediaType(self: *const INetConnectionProps, pMediaType: ?*NETCON_MEDIATYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_MediaType(self, pMediaType);
     }
-    pub fn get_Characteristics(self: *const INetConnectionProps, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Characteristics(self: *const INetConnectionProps, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Characteristics(self, pdwFlags);
     }
 };
@@ -1186,34 +1186,34 @@ pub const INetSharingConfiguration = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_SharingEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_SharingEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_SharingEnabled(self, pbEnabled);
     }
-    pub fn get_SharingConnectionType(self: *const INetSharingConfiguration, pType: ?*SHARINGCONNECTIONTYPE) callconv(.Inline) HRESULT {
+    pub fn get_SharingConnectionType(self: *const INetSharingConfiguration, pType: ?*SHARINGCONNECTIONTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_SharingConnectionType(self, pType);
     }
-    pub fn DisableSharing(self: *const INetSharingConfiguration) callconv(.Inline) HRESULT {
+    pub fn DisableSharing(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
         return self.vtable.DisableSharing(self);
     }
-    pub fn EnableSharing(self: *const INetSharingConfiguration, Type: SHARINGCONNECTIONTYPE) callconv(.Inline) HRESULT {
+    pub fn EnableSharing(self: *const INetSharingConfiguration, Type: SHARINGCONNECTIONTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.EnableSharing(self, Type);
     }
-    pub fn get_InternetFirewallEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_InternetFirewallEnabled(self: *const INetSharingConfiguration, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_InternetFirewallEnabled(self, pbEnabled);
     }
-    pub fn DisableInternetFirewall(self: *const INetSharingConfiguration) callconv(.Inline) HRESULT {
+    pub fn DisableInternetFirewall(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
         return self.vtable.DisableInternetFirewall(self);
     }
-    pub fn EnableInternetFirewall(self: *const INetSharingConfiguration) callconv(.Inline) HRESULT {
+    pub fn EnableInternetFirewall(self: *const INetSharingConfiguration) callconv(.@"inline") HRESULT {
         return self.vtable.EnableInternetFirewall(self);
     }
-    pub fn get_EnumPortMappings(self: *const INetSharingConfiguration, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPortMappingCollection) callconv(.Inline) HRESULT {
+    pub fn get_EnumPortMappings(self: *const INetSharingConfiguration, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPortMappingCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnumPortMappings(self, Flags, ppColl);
     }
-    pub fn AddPortMapping(self: *const INetSharingConfiguration, bstrName: ?BSTR, ucIPProtocol: u8, usExternalPort: u16, usInternalPort: u16, dwOptions: u32, bstrTargetNameOrIPAddress: ?BSTR, eTargetType: ICS_TARGETTYPE, ppMapping: ?*?*INetSharingPortMapping) callconv(.Inline) HRESULT {
+    pub fn AddPortMapping(self: *const INetSharingConfiguration, bstrName: ?BSTR, ucIPProtocol: u8, usExternalPort: u16, usInternalPort: u16, dwOptions: u32, bstrTargetNameOrIPAddress: ?BSTR, eTargetType: ICS_TARGETTYPE, ppMapping: ?*?*INetSharingPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.AddPortMapping(self, bstrName, ucIPProtocol, usExternalPort, usInternalPort, dwOptions, bstrTargetNameOrIPAddress, eTargetType, ppMapping);
     }
-    pub fn RemovePortMapping(self: *const INetSharingConfiguration, pMapping: ?*INetSharingPortMapping) callconv(.Inline) HRESULT {
+    pub fn RemovePortMapping(self: *const INetSharingConfiguration, pMapping: ?*INetSharingPortMapping) callconv(.@"inline") HRESULT {
         return self.vtable.RemovePortMapping(self, pMapping);
     }
 };
@@ -1238,10 +1238,10 @@ pub const INetSharingEveryConnectionCollection = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const INetSharingEveryConnectionCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetSharingEveryConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pVal);
     }
-    pub fn get_Count(self: *const INetSharingEveryConnectionCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetSharingEveryConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
 };
@@ -1266,10 +1266,10 @@ pub const INetSharingPublicConnectionCollection = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const INetSharingPublicConnectionCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetSharingPublicConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pVal);
     }
-    pub fn get_Count(self: *const INetSharingPublicConnectionCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetSharingPublicConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
 };
@@ -1294,10 +1294,10 @@ pub const INetSharingPrivateConnectionCollection = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const INetSharingPrivateConnectionCollection, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetSharingPrivateConnectionCollection, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pVal);
     }
-    pub fn get_Count(self: *const INetSharingPrivateConnectionCollection, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetSharingPrivateConnectionCollection, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pVal);
     }
 };
@@ -1342,22 +1342,22 @@ pub const INetSharingManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_SharingInstalled(self: *const INetSharingManager, pbInstalled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_SharingInstalled(self: *const INetSharingManager, pbInstalled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_SharingInstalled(self, pbInstalled);
     }
-    pub fn get_EnumPublicConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPublicConnectionCollection) callconv(.Inline) HRESULT {
+    pub fn get_EnumPublicConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPublicConnectionCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnumPublicConnections(self, Flags, ppColl);
     }
-    pub fn get_EnumPrivateConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPrivateConnectionCollection) callconv(.Inline) HRESULT {
+    pub fn get_EnumPrivateConnections(self: *const INetSharingManager, Flags: SHARINGCONNECTION_ENUM_FLAGS, ppColl: ?*?*INetSharingPrivateConnectionCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnumPrivateConnections(self, Flags, ppColl);
     }
-    pub fn get_INetSharingConfigurationForINetConnection(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppNetSharingConfiguration: ?*?*INetSharingConfiguration) callconv(.Inline) HRESULT {
+    pub fn get_INetSharingConfigurationForINetConnection(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppNetSharingConfiguration: ?*?*INetSharingConfiguration) callconv(.@"inline") HRESULT {
         return self.vtable.get_INetSharingConfigurationForINetConnection(self, pNetConnection, ppNetSharingConfiguration);
     }
-    pub fn get_EnumEveryConnection(self: *const INetSharingManager, ppColl: ?*?*INetSharingEveryConnectionCollection) callconv(.Inline) HRESULT {
+    pub fn get_EnumEveryConnection(self: *const INetSharingManager, ppColl: ?*?*INetSharingEveryConnectionCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnumEveryConnection(self, ppColl);
     }
-    pub fn get_NetConnectionProps(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppProps: ?*?*INetConnectionProps) callconv(.Inline) HRESULT {
+    pub fn get_NetConnectionProps(self: *const INetSharingManager, pNetConnection: ?*INetConnection, ppProps: ?*?*INetConnectionProps) callconv(.@"inline") HRESULT {
         return self.vtable.get_NetConnectionProps(self, pNetConnection, ppProps);
     }
 };
@@ -1726,28 +1726,28 @@ pub const INetFwRemoteAdminSettings = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+    pub fn get_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.get_IpVersion(self, ipVersion);
     }
-    pub fn put_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+    pub fn put_IpVersion(self: *const INetFwRemoteAdminSettings, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.put_IpVersion(self, ipVersion);
     }
-    pub fn get_Scope(self: *const INetFwRemoteAdminSettings, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
+    pub fn get_Scope(self: *const INetFwRemoteAdminSettings, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scope(self, scope);
     }
-    pub fn put_Scope(self: *const INetFwRemoteAdminSettings, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
+    pub fn put_Scope(self: *const INetFwRemoteAdminSettings, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.put_Scope(self, scope);
     }
-    pub fn get_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn put_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RemoteAddresses(self: *const INetFwRemoteAdminSettings, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwRemoteAdminSettings, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const INetFwRemoteAdminSettings, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwRemoteAdminSettings, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const INetFwRemoteAdminSettings, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
 };
@@ -1862,64 +1862,64 @@ pub const INetFwIcmpSettings = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundDestinationUnreachable(self, allow);
     }
-    pub fn put_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowOutboundDestinationUnreachable(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundDestinationUnreachable(self, allow);
     }
-    pub fn get_AllowRedirect(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowRedirect(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowRedirect(self, allow);
     }
-    pub fn put_AllowRedirect(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowRedirect(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowRedirect(self, allow);
     }
-    pub fn get_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowInboundEchoRequest(self, allow);
     }
-    pub fn put_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowInboundEchoRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowInboundEchoRequest(self, allow);
     }
-    pub fn get_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundTimeExceeded(self, allow);
     }
-    pub fn put_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowOutboundTimeExceeded(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundTimeExceeded(self, allow);
     }
-    pub fn get_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundParameterProblem(self, allow);
     }
-    pub fn put_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowOutboundParameterProblem(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundParameterProblem(self, allow);
     }
-    pub fn get_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundSourceQuench(self, allow);
     }
-    pub fn put_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowOutboundSourceQuench(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundSourceQuench(self, allow);
     }
-    pub fn get_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowInboundRouterRequest(self, allow);
     }
-    pub fn put_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowInboundRouterRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowInboundRouterRequest(self, allow);
     }
-    pub fn get_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowInboundTimestampRequest(self, allow);
     }
-    pub fn put_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowInboundTimestampRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowInboundTimestampRequest(self, allow);
     }
-    pub fn get_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowInboundMaskRequest(self, allow);
     }
-    pub fn put_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowInboundMaskRequest(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowInboundMaskRequest(self, allow);
     }
-    pub fn get_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowOutboundPacketTooBig(self, allow);
     }
-    pub fn put_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowOutboundPacketTooBig(self: *const INetFwIcmpSettings, allow: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowOutboundPacketTooBig(self, allow);
     }
 };
@@ -2009,49 +2009,49 @@ pub const INetFwOpenPort = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetFwOpenPort, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const INetFwOpenPort, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const INetFwOpenPort, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const INetFwOpenPort, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_IpVersion(self: *const INetFwOpenPort, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+    pub fn get_IpVersion(self: *const INetFwOpenPort, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.get_IpVersion(self, ipVersion);
     }
-    pub fn put_IpVersion(self: *const INetFwOpenPort, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+    pub fn put_IpVersion(self: *const INetFwOpenPort, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.put_IpVersion(self, ipVersion);
     }
-    pub fn get_Protocol(self: *const INetFwOpenPort, ipProtocol: ?*NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
+    pub fn get_Protocol(self: *const INetFwOpenPort, ipProtocol: ?*NET_FW_IP_PROTOCOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Protocol(self, ipProtocol);
     }
-    pub fn put_Protocol(self: *const INetFwOpenPort, ipProtocol: NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
+    pub fn put_Protocol(self: *const INetFwOpenPort, ipProtocol: NET_FW_IP_PROTOCOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_Protocol(self, ipProtocol);
     }
-    pub fn get_Port(self: *const INetFwOpenPort, portNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Port(self: *const INetFwOpenPort, portNumber: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Port(self, portNumber);
     }
-    pub fn put_Port(self: *const INetFwOpenPort, portNumber: i32) callconv(.Inline) HRESULT {
+    pub fn put_Port(self: *const INetFwOpenPort, portNumber: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Port(self, portNumber);
     }
-    pub fn get_Scope(self: *const INetFwOpenPort, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
+    pub fn get_Scope(self: *const INetFwOpenPort, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scope(self, scope);
     }
-    pub fn put_Scope(self: *const INetFwOpenPort, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
+    pub fn put_Scope(self: *const INetFwOpenPort, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.put_Scope(self, scope);
     }
-    pub fn get_RemoteAddresses(self: *const INetFwOpenPort, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteAddresses(self: *const INetFwOpenPort, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn put_RemoteAddresses(self: *const INetFwOpenPort, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RemoteAddresses(self: *const INetFwOpenPort, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwOpenPort, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const INetFwOpenPort, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwOpenPort, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const INetFwOpenPort, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_BuiltIn(self: *const INetFwOpenPort, builtIn: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_BuiltIn(self: *const INetFwOpenPort, builtIn: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_BuiltIn(self, builtIn);
     }
 };
@@ -2091,19 +2091,19 @@ pub const INetFwOpenPorts = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const INetFwOpenPorts, count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetFwOpenPorts, count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn Add(self: *const INetFwOpenPorts, port: ?*INetFwOpenPort) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const INetFwOpenPorts, port: ?*INetFwOpenPort) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, port);
     }
-    pub fn Remove(self: *const INetFwOpenPorts, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const INetFwOpenPorts, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, portNumber, ipProtocol);
     }
-    pub fn Item(self: *const INetFwOpenPorts, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL, openPort: ?*?*INetFwOpenPort) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const INetFwOpenPorts, portNumber: i32, ipProtocol: NET_FW_IP_PROTOCOL, openPort: ?*?*INetFwOpenPort) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, portNumber, ipProtocol, openPort);
     }
-    pub fn get__NewEnum(self: *const INetFwOpenPorts, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetFwOpenPorts, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, newEnum);
     }
 };
@@ -2178,40 +2178,40 @@ pub const INetFwService = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetFwService, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const INetFwService, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn get_Type(self: *const INetFwService, @"type": ?*NET_FW_SERVICE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const INetFwService, @"type": ?*NET_FW_SERVICE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, @"type");
     }
-    pub fn get_Customized(self: *const INetFwService, customized: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Customized(self: *const INetFwService, customized: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Customized(self, customized);
     }
-    pub fn get_IpVersion(self: *const INetFwService, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+    pub fn get_IpVersion(self: *const INetFwService, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.get_IpVersion(self, ipVersion);
     }
-    pub fn put_IpVersion(self: *const INetFwService, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+    pub fn put_IpVersion(self: *const INetFwService, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.put_IpVersion(self, ipVersion);
     }
-    pub fn get_Scope(self: *const INetFwService, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
+    pub fn get_Scope(self: *const INetFwService, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scope(self, scope);
     }
-    pub fn put_Scope(self: *const INetFwService, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
+    pub fn put_Scope(self: *const INetFwService, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.put_Scope(self, scope);
     }
-    pub fn get_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn put_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RemoteAddresses(self: *const INetFwService, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwService, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const INetFwService, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwService, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const INetFwService, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_GloballyOpenPorts(self: *const INetFwService, openPorts: ?*?*INetFwOpenPorts) callconv(.Inline) HRESULT {
+    pub fn get_GloballyOpenPorts(self: *const INetFwService, openPorts: ?*?*INetFwOpenPorts) callconv(.@"inline") HRESULT {
         return self.vtable.get_GloballyOpenPorts(self, openPorts);
     }
 };
@@ -2241,13 +2241,13 @@ pub const INetFwServices = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const INetFwServices, count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetFwServices, count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn Item(self: *const INetFwServices, svcType: NET_FW_SERVICE_TYPE, service: ?*?*INetFwService) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const INetFwServices, svcType: NET_FW_SERVICE_TYPE, service: ?*?*INetFwService) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, svcType, service);
     }
-    pub fn get__NewEnum(self: *const INetFwServices, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetFwServices, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, newEnum);
     }
 };
@@ -2322,40 +2322,40 @@ pub const INetFwAuthorizedApplication = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetFwAuthorizedApplication, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const INetFwAuthorizedApplication, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const INetFwAuthorizedApplication, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const INetFwAuthorizedApplication, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProcessImageFileName(self, imageFileName);
     }
-    pub fn put_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ProcessImageFileName(self: *const INetFwAuthorizedApplication, imageFileName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ProcessImageFileName(self, imageFileName);
     }
-    pub fn get_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: ?*NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+    pub fn get_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: ?*NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.get_IpVersion(self, ipVersion);
     }
-    pub fn put_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: NET_FW_IP_VERSION) callconv(.Inline) HRESULT {
+    pub fn put_IpVersion(self: *const INetFwAuthorizedApplication, ipVersion: NET_FW_IP_VERSION) callconv(.@"inline") HRESULT {
         return self.vtable.put_IpVersion(self, ipVersion);
     }
-    pub fn get_Scope(self: *const INetFwAuthorizedApplication, scope: ?*NET_FW_SCOPE) callconv(.Inline) HRESULT {
+    pub fn get_Scope(self: *const INetFwAuthorizedApplication, scope: ?*NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scope(self, scope);
     }
-    pub fn put_Scope(self: *const INetFwAuthorizedApplication, scope: NET_FW_SCOPE) callconv(.Inline) HRESULT {
+    pub fn put_Scope(self: *const INetFwAuthorizedApplication, scope: NET_FW_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.put_Scope(self, scope);
     }
-    pub fn get_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn put_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RemoteAddresses(self: *const INetFwAuthorizedApplication, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_Enabled(self: *const INetFwAuthorizedApplication, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const INetFwAuthorizedApplication, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwAuthorizedApplication, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const INetFwAuthorizedApplication, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
 };
@@ -2393,19 +2393,19 @@ pub const INetFwAuthorizedApplications = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const INetFwAuthorizedApplications, count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetFwAuthorizedApplications, count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn Add(self: *const INetFwAuthorizedApplications, app: ?*INetFwAuthorizedApplication) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const INetFwAuthorizedApplications, app: ?*INetFwAuthorizedApplication) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, app);
     }
-    pub fn Remove(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, imageFileName);
     }
-    pub fn Item(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR, app: ?*?*INetFwAuthorizedApplication) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const INetFwAuthorizedApplications, imageFileName: ?BSTR, app: ?*?*INetFwAuthorizedApplication) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, imageFileName, app);
     }
-    pub fn get__NewEnum(self: *const INetFwAuthorizedApplications, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetFwAuthorizedApplications, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, newEnum);
     }
 };
@@ -2600,112 +2600,112 @@ pub const INetFwRule = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetFwRule, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const INetFwRule, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const INetFwRule, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const INetFwRule, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Description(self: *const INetFwRule, desc: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const INetFwRule, desc: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, desc);
     }
-    pub fn put_Description(self: *const INetFwRule, desc: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const INetFwRule, desc: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, desc);
     }
-    pub fn get_ApplicationName(self: *const INetFwRule, imageFileName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationName(self: *const INetFwRule, imageFileName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationName(self, imageFileName);
     }
-    pub fn put_ApplicationName(self: *const INetFwRule, imageFileName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationName(self: *const INetFwRule, imageFileName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplicationName(self, imageFileName);
     }
-    pub fn get_ServiceName(self: *const INetFwRule, serviceName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ServiceName(self: *const INetFwRule, serviceName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ServiceName(self, serviceName);
     }
-    pub fn put_ServiceName(self: *const INetFwRule, serviceName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ServiceName(self: *const INetFwRule, serviceName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ServiceName(self, serviceName);
     }
-    pub fn get_Protocol(self: *const INetFwRule, protocol: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Protocol(self: *const INetFwRule, protocol: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Protocol(self, protocol);
     }
-    pub fn put_Protocol(self: *const INetFwRule, protocol: i32) callconv(.Inline) HRESULT {
+    pub fn put_Protocol(self: *const INetFwRule, protocol: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Protocol(self, protocol);
     }
-    pub fn get_LocalPorts(self: *const INetFwRule, portNumbers: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocalPorts(self: *const INetFwRule, portNumbers: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalPorts(self, portNumbers);
     }
-    pub fn put_LocalPorts(self: *const INetFwRule, portNumbers: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LocalPorts(self: *const INetFwRule, portNumbers: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_LocalPorts(self, portNumbers);
     }
-    pub fn get_RemotePorts(self: *const INetFwRule, portNumbers: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemotePorts(self: *const INetFwRule, portNumbers: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemotePorts(self, portNumbers);
     }
-    pub fn put_RemotePorts(self: *const INetFwRule, portNumbers: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RemotePorts(self: *const INetFwRule, portNumbers: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemotePorts(self, portNumbers);
     }
-    pub fn get_LocalAddresses(self: *const INetFwRule, localAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocalAddresses(self: *const INetFwRule, localAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalAddresses(self, localAddrs);
     }
-    pub fn put_LocalAddresses(self: *const INetFwRule, localAddrs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LocalAddresses(self: *const INetFwRule, localAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_LocalAddresses(self, localAddrs);
     }
-    pub fn get_RemoteAddresses(self: *const INetFwRule, remoteAddrs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteAddresses(self: *const INetFwRule, remoteAddrs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn put_RemoteAddresses(self: *const INetFwRule, remoteAddrs: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RemoteAddresses(self: *const INetFwRule, remoteAddrs: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteAddresses(self, remoteAddrs);
     }
-    pub fn get_IcmpTypesAndCodes(self: *const INetFwRule, icmpTypesAndCodes: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_IcmpTypesAndCodes(self: *const INetFwRule, icmpTypesAndCodes: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_IcmpTypesAndCodes(self, icmpTypesAndCodes);
     }
-    pub fn put_IcmpTypesAndCodes(self: *const INetFwRule, icmpTypesAndCodes: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_IcmpTypesAndCodes(self: *const INetFwRule, icmpTypesAndCodes: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_IcmpTypesAndCodes(self, icmpTypesAndCodes);
     }
-    pub fn get_Direction(self: *const INetFwRule, dir: ?*NET_FW_RULE_DIRECTION) callconv(.Inline) HRESULT {
+    pub fn get_Direction(self: *const INetFwRule, dir: ?*NET_FW_RULE_DIRECTION) callconv(.@"inline") HRESULT {
         return self.vtable.get_Direction(self, dir);
     }
-    pub fn put_Direction(self: *const INetFwRule, dir: NET_FW_RULE_DIRECTION) callconv(.Inline) HRESULT {
+    pub fn put_Direction(self: *const INetFwRule, dir: NET_FW_RULE_DIRECTION) callconv(.@"inline") HRESULT {
         return self.vtable.put_Direction(self, dir);
     }
-    pub fn get_Interfaces(self: *const INetFwRule, interfaces: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Interfaces(self: *const INetFwRule, interfaces: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Interfaces(self, interfaces);
     }
-    pub fn put_Interfaces(self: *const INetFwRule, interfaces: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Interfaces(self: *const INetFwRule, interfaces: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Interfaces(self, interfaces);
     }
-    pub fn get_InterfaceTypes(self: *const INetFwRule, interfaceTypes: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InterfaceTypes(self: *const INetFwRule, interfaceTypes: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InterfaceTypes(self, interfaceTypes);
     }
-    pub fn put_InterfaceTypes(self: *const INetFwRule, interfaceTypes: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_InterfaceTypes(self: *const INetFwRule, interfaceTypes: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_InterfaceTypes(self, interfaceTypes);
     }
-    pub fn get_Enabled(self: *const INetFwRule, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const INetFwRule, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const INetFwRule, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const INetFwRule, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_Grouping(self: *const INetFwRule, context: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Grouping(self: *const INetFwRule, context: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Grouping(self, context);
     }
-    pub fn put_Grouping(self: *const INetFwRule, context: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Grouping(self: *const INetFwRule, context: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Grouping(self, context);
     }
-    pub fn get_Profiles(self: *const INetFwRule, profileTypesBitmask: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Profiles(self: *const INetFwRule, profileTypesBitmask: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Profiles(self, profileTypesBitmask);
     }
-    pub fn put_Profiles(self: *const INetFwRule, profileTypesBitmask: i32) callconv(.Inline) HRESULT {
+    pub fn put_Profiles(self: *const INetFwRule, profileTypesBitmask: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Profiles(self, profileTypesBitmask);
     }
-    pub fn get_EdgeTraversal(self: *const INetFwRule, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_EdgeTraversal(self: *const INetFwRule, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_EdgeTraversal(self, enabled);
     }
-    pub fn put_EdgeTraversal(self: *const INetFwRule, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_EdgeTraversal(self: *const INetFwRule, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_EdgeTraversal(self, enabled);
     }
-    pub fn get_Action(self: *const INetFwRule, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
+    pub fn get_Action(self: *const INetFwRule, action: ?*NET_FW_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.get_Action(self, action);
     }
-    pub fn put_Action(self: *const INetFwRule, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
+    pub fn put_Action(self: *const INetFwRule, action: NET_FW_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.put_Action(self, action);
     }
 };
@@ -2731,10 +2731,10 @@ pub const INetFwRule2 = extern union {
     INetFwRule: INetFwRule,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_EdgeTraversalOptions(self: *const INetFwRule2, lOptions: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EdgeTraversalOptions(self: *const INetFwRule2, lOptions: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_EdgeTraversalOptions(self, lOptions);
     }
-    pub fn put_EdgeTraversalOptions(self: *const INetFwRule2, lOptions: i32) callconv(.Inline) HRESULT {
+    pub fn put_EdgeTraversalOptions(self: *const INetFwRule2, lOptions: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_EdgeTraversalOptions(self, lOptions);
     }
 };
@@ -2811,40 +2811,40 @@ pub const INetFwRule3 = extern union {
     INetFwRule: INetFwRule,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LocalAppPackageId(self: *const INetFwRule3, wszPackageId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocalAppPackageId(self: *const INetFwRule3, wszPackageId: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalAppPackageId(self, wszPackageId);
     }
-    pub fn put_LocalAppPackageId(self: *const INetFwRule3, wszPackageId: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LocalAppPackageId(self: *const INetFwRule3, wszPackageId: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_LocalAppPackageId(self, wszPackageId);
     }
-    pub fn get_LocalUserOwner(self: *const INetFwRule3, wszUserOwner: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocalUserOwner(self: *const INetFwRule3, wszUserOwner: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalUserOwner(self, wszUserOwner);
     }
-    pub fn put_LocalUserOwner(self: *const INetFwRule3, wszUserOwner: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LocalUserOwner(self: *const INetFwRule3, wszUserOwner: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_LocalUserOwner(self, wszUserOwner);
     }
-    pub fn get_LocalUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocalUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalUserAuthorizedList(self, wszUserAuthList);
     }
-    pub fn put_LocalUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LocalUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_LocalUserAuthorizedList(self, wszUserAuthList);
     }
-    pub fn get_RemoteUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteUserAuthorizedList(self, wszUserAuthList);
     }
-    pub fn put_RemoteUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RemoteUserAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteUserAuthorizedList(self, wszUserAuthList);
     }
-    pub fn get_RemoteMachineAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteMachineAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteMachineAuthorizedList(self, wszUserAuthList);
     }
-    pub fn put_RemoteMachineAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RemoteMachineAuthorizedList(self: *const INetFwRule3, wszUserAuthList: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RemoteMachineAuthorizedList(self, wszUserAuthList);
     }
-    pub fn get_SecureFlags(self: *const INetFwRule3, lOptions: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SecureFlags(self: *const INetFwRule3, lOptions: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_SecureFlags(self, lOptions);
     }
-    pub fn put_SecureFlags(self: *const INetFwRule3, lOptions: i32) callconv(.Inline) HRESULT {
+    pub fn put_SecureFlags(self: *const INetFwRule3, lOptions: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_SecureFlags(self, lOptions);
     }
 };
@@ -2882,19 +2882,19 @@ pub const INetFwRules = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const INetFwRules, count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetFwRules, count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn Add(self: *const INetFwRules, rule: ?*INetFwRule) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const INetFwRules, rule: ?*INetFwRule) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, rule);
     }
-    pub fn Remove(self: *const INetFwRules, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const INetFwRules, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, name);
     }
-    pub fn Item(self: *const INetFwRules, name: ?BSTR, rule: ?*?*INetFwRule) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const INetFwRules, name: ?BSTR, rule: ?*?*INetFwRule) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, name, rule);
     }
-    pub fn get__NewEnum(self: *const INetFwRules, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetFwRules, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, newEnum);
     }
 };
@@ -2927,13 +2927,13 @@ pub const INetFwServiceRestriction = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RestrictService(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, restrictService: i16, serviceSidRestricted: i16) callconv(.Inline) HRESULT {
+    pub fn RestrictService(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, restrictService: i16, serviceSidRestricted: i16) callconv(.@"inline") HRESULT {
         return self.vtable.RestrictService(self, serviceName, appName, restrictService, serviceSidRestricted);
     }
-    pub fn ServiceRestricted(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, serviceRestricted: ?*i16) callconv(.Inline) HRESULT {
+    pub fn ServiceRestricted(self: *const INetFwServiceRestriction, serviceName: ?BSTR, appName: ?BSTR, serviceRestricted: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.ServiceRestricted(self, serviceName, appName, serviceRestricted);
     }
-    pub fn get_Rules(self: *const INetFwServiceRestriction, rules: ?*?*INetFwRules) callconv(.Inline) HRESULT {
+    pub fn get_Rules(self: *const INetFwServiceRestriction, rules: ?*?*INetFwRules) callconv(.@"inline") HRESULT {
         return self.vtable.get_Rules(self, rules);
     }
 };
@@ -3018,46 +3018,46 @@ pub const INetFwProfile = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const INetFwProfile, @"type": ?*NET_FW_PROFILE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const INetFwProfile, @"type": ?*NET_FW_PROFILE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, @"type");
     }
-    pub fn get_FirewallEnabled(self: *const INetFwProfile, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_FirewallEnabled(self: *const INetFwProfile, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_FirewallEnabled(self, enabled);
     }
-    pub fn put_FirewallEnabled(self: *const INetFwProfile, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_FirewallEnabled(self: *const INetFwProfile, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_FirewallEnabled(self, enabled);
     }
-    pub fn get_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExceptionsNotAllowed(self, notAllowed);
     }
-    pub fn put_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: i16) callconv(.Inline) HRESULT {
+    pub fn put_ExceptionsNotAllowed(self: *const INetFwProfile, notAllowed: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExceptionsNotAllowed(self, notAllowed);
     }
-    pub fn get_NotificationsDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_NotificationsDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_NotificationsDisabled(self, disabled);
     }
-    pub fn put_NotificationsDisabled(self: *const INetFwProfile, disabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_NotificationsDisabled(self: *const INetFwProfile, disabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_NotificationsDisabled(self, disabled);
     }
-    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_UnicastResponsesToMulticastBroadcastDisabled(self, disabled);
     }
-    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwProfile, disabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_UnicastResponsesToMulticastBroadcastDisabled(self, disabled);
     }
-    pub fn get_RemoteAdminSettings(self: *const INetFwProfile, remoteAdminSettings: ?*?*INetFwRemoteAdminSettings) callconv(.Inline) HRESULT {
+    pub fn get_RemoteAdminSettings(self: *const INetFwProfile, remoteAdminSettings: ?*?*INetFwRemoteAdminSettings) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteAdminSettings(self, remoteAdminSettings);
     }
-    pub fn get_IcmpSettings(self: *const INetFwProfile, icmpSettings: ?*?*INetFwIcmpSettings) callconv(.Inline) HRESULT {
+    pub fn get_IcmpSettings(self: *const INetFwProfile, icmpSettings: ?*?*INetFwIcmpSettings) callconv(.@"inline") HRESULT {
         return self.vtable.get_IcmpSettings(self, icmpSettings);
     }
-    pub fn get_GloballyOpenPorts(self: *const INetFwProfile, openPorts: ?*?*INetFwOpenPorts) callconv(.Inline) HRESULT {
+    pub fn get_GloballyOpenPorts(self: *const INetFwProfile, openPorts: ?*?*INetFwOpenPorts) callconv(.@"inline") HRESULT {
         return self.vtable.get_GloballyOpenPorts(self, openPorts);
     }
-    pub fn get_Services(self: *const INetFwProfile, services: ?*?*INetFwServices) callconv(.Inline) HRESULT {
+    pub fn get_Services(self: *const INetFwProfile, services: ?*?*INetFwServices) callconv(.@"inline") HRESULT {
         return self.vtable.get_Services(self, services);
     }
-    pub fn get_AuthorizedApplications(self: *const INetFwProfile, apps: ?*?*INetFwAuthorizedApplications) callconv(.Inline) HRESULT {
+    pub fn get_AuthorizedApplications(self: *const INetFwProfile, apps: ?*?*INetFwAuthorizedApplications) callconv(.@"inline") HRESULT {
         return self.vtable.get_AuthorizedApplications(self, apps);
     }
 };
@@ -3082,10 +3082,10 @@ pub const INetFwPolicy = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CurrentProfile(self: *const INetFwPolicy, profile: ?*?*INetFwProfile) callconv(.Inline) HRESULT {
+    pub fn get_CurrentProfile(self: *const INetFwPolicy, profile: ?*?*INetFwProfile) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentProfile(self, profile);
     }
-    pub fn GetProfileByType(self: *const INetFwPolicy, profileType: NET_FW_PROFILE_TYPE, profile: ?*?*INetFwProfile) callconv(.Inline) HRESULT {
+    pub fn GetProfileByType(self: *const INetFwPolicy, profileType: NET_FW_PROFILE_TYPE, profile: ?*?*INetFwProfile) callconv(.@"inline") HRESULT {
         return self.vtable.GetProfileByType(self, profileType, profile);
     }
 };
@@ -3210,70 +3210,70 @@ pub const INetFwPolicy2 = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CurrentProfileTypes(self: *const INetFwPolicy2, profileTypesBitmask: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_CurrentProfileTypes(self: *const INetFwPolicy2, profileTypesBitmask: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentProfileTypes(self, profileTypesBitmask);
     }
-    pub fn get_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_FirewallEnabled(self, profileType, enabled);
     }
-    pub fn put_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_FirewallEnabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_FirewallEnabled(self, profileType, enabled);
     }
-    pub fn get_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExcludedInterfaces(self, profileType, interfaces);
     }
-    pub fn put_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_ExcludedInterfaces(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, interfaces: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExcludedInterfaces(self, profileType, interfaces);
     }
-    pub fn get_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_BlockAllInboundTraffic(self, profileType, Block);
     }
-    pub fn put_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: i16) callconv(.Inline) HRESULT {
+    pub fn put_BlockAllInboundTraffic(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, Block: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_BlockAllInboundTraffic(self, profileType, Block);
     }
-    pub fn get_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_NotificationsDisabled(self, profileType, disabled);
     }
-    pub fn put_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_NotificationsDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_NotificationsDisabled(self, profileType, disabled);
     }
-    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_UnicastResponsesToMulticastBroadcastDisabled(self, profileType, disabled);
     }
-    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_UnicastResponsesToMulticastBroadcastDisabled(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, disabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_UnicastResponsesToMulticastBroadcastDisabled(self, profileType, disabled);
     }
-    pub fn get_Rules(self: *const INetFwPolicy2, rules: ?*?*INetFwRules) callconv(.Inline) HRESULT {
+    pub fn get_Rules(self: *const INetFwPolicy2, rules: ?*?*INetFwRules) callconv(.@"inline") HRESULT {
         return self.vtable.get_Rules(self, rules);
     }
-    pub fn get_ServiceRestriction(self: *const INetFwPolicy2, ServiceRestriction: ?*?*INetFwServiceRestriction) callconv(.Inline) HRESULT {
+    pub fn get_ServiceRestriction(self: *const INetFwPolicy2, ServiceRestriction: ?*?*INetFwServiceRestriction) callconv(.@"inline") HRESULT {
         return self.vtable.get_ServiceRestriction(self, ServiceRestriction);
     }
-    pub fn EnableRuleGroup(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enable: i16) callconv(.Inline) HRESULT {
+    pub fn EnableRuleGroup(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enable: i16) callconv(.@"inline") HRESULT {
         return self.vtable.EnableRuleGroup(self, profileTypesBitmask, group, enable);
     }
-    pub fn IsRuleGroupEnabled(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsRuleGroupEnabled(self: *const INetFwPolicy2, profileTypesBitmask: i32, group: ?BSTR, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsRuleGroupEnabled(self, profileTypesBitmask, group, enabled);
     }
-    pub fn RestoreLocalFirewallDefaults(self: *const INetFwPolicy2) callconv(.Inline) HRESULT {
+    pub fn RestoreLocalFirewallDefaults(self: *const INetFwPolicy2) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreLocalFirewallDefaults(self);
     }
-    pub fn get_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
+    pub fn get_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.get_DefaultInboundAction(self, profileType, action);
     }
-    pub fn put_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
+    pub fn put_DefaultInboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.put_DefaultInboundAction(self, profileType, action);
     }
-    pub fn get_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.Inline) HRESULT {
+    pub fn get_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: ?*NET_FW_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.get_DefaultOutboundAction(self, profileType, action);
     }
-    pub fn put_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.Inline) HRESULT {
+    pub fn put_DefaultOutboundAction(self: *const INetFwPolicy2, profileType: NET_FW_PROFILE_TYPE2, action: NET_FW_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.put_DefaultOutboundAction(self, profileType, action);
     }
-    pub fn get_IsRuleGroupCurrentlyEnabled(self: *const INetFwPolicy2, group: ?BSTR, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsRuleGroupCurrentlyEnabled(self: *const INetFwPolicy2, group: ?BSTR, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRuleGroupCurrentlyEnabled(self, group, enabled);
     }
-    pub fn get_LocalPolicyModifyState(self: *const INetFwPolicy2, modifyState: ?*NET_FW_MODIFY_STATE) callconv(.Inline) HRESULT {
+    pub fn get_LocalPolicyModifyState(self: *const INetFwPolicy2, modifyState: ?*NET_FW_MODIFY_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalPolicyModifyState(self, modifyState);
     }
 };
@@ -3319,19 +3319,19 @@ pub const INetFwMgr = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LocalPolicy(self: *const INetFwMgr, localPolicy: ?*?*INetFwPolicy) callconv(.Inline) HRESULT {
+    pub fn get_LocalPolicy(self: *const INetFwMgr, localPolicy: ?*?*INetFwPolicy) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalPolicy(self, localPolicy);
     }
-    pub fn get_CurrentProfileType(self: *const INetFwMgr, profileType: ?*NET_FW_PROFILE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_CurrentProfileType(self: *const INetFwMgr, profileType: ?*NET_FW_PROFILE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_CurrentProfileType(self, profileType);
     }
-    pub fn RestoreDefaults(self: *const INetFwMgr) callconv(.Inline) HRESULT {
+    pub fn RestoreDefaults(self: *const INetFwMgr) callconv(.@"inline") HRESULT {
         return self.vtable.RestoreDefaults(self);
     }
-    pub fn IsPortAllowed(self: *const INetFwMgr, imageFileName: ?BSTR, ipVersion: NET_FW_IP_VERSION, portNumber: i32, localAddress: ?BSTR, ipProtocol: NET_FW_IP_PROTOCOL, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn IsPortAllowed(self: *const INetFwMgr, imageFileName: ?BSTR, ipVersion: NET_FW_IP_VERSION, portNumber: i32, localAddress: ?BSTR, ipProtocol: NET_FW_IP_PROTOCOL, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.IsPortAllowed(self, imageFileName, ipVersion, portNumber, localAddress, ipProtocol, allowed, restricted);
     }
-    pub fn IsIcmpTypeAllowed(self: *const INetFwMgr, ipVersion: NET_FW_IP_VERSION, localAddress: ?BSTR, @"type": u8, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn IsIcmpTypeAllowed(self: *const INetFwMgr, ipVersion: NET_FW_IP_VERSION, localAddress: ?BSTR, @"type": u8, allowed: ?*VARIANT, restricted: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.IsIcmpTypeAllowed(self, ipVersion, localAddress, @"type", allowed, restricted);
     }
 };
@@ -3371,19 +3371,19 @@ pub const INetFwProduct = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RuleCategories(self: *const INetFwProduct, ruleCategories: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_RuleCategories(self: *const INetFwProduct, ruleCategories: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_RuleCategories(self, ruleCategories);
     }
-    pub fn put_RuleCategories(self: *const INetFwProduct, ruleCategories: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_RuleCategories(self: *const INetFwProduct, ruleCategories: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_RuleCategories(self, ruleCategories);
     }
-    pub fn get_DisplayName(self: *const INetFwProduct, displayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const INetFwProduct, displayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, displayName);
     }
-    pub fn put_DisplayName(self: *const INetFwProduct, displayName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_DisplayName(self: *const INetFwProduct, displayName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisplayName(self, displayName);
     }
-    pub fn get_PathToSignedProductExe(self: *const INetFwProduct, path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathToSignedProductExe(self: *const INetFwProduct, path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_PathToSignedProductExe(self, path);
     }
 };
@@ -3418,16 +3418,16 @@ pub const INetFwProducts = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const INetFwProducts, count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const INetFwProducts, count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn Register(self: *const INetFwProducts, product: ?*INetFwProduct, registration: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Register(self: *const INetFwProducts, product: ?*INetFwProduct, registration: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Register(self, product, registration);
     }
-    pub fn Item(self: *const INetFwProducts, index: i32, product: ?*?*INetFwProduct) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const INetFwProducts, index: i32, product: ?*?*INetFwProduct) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, index, product);
     }
-    pub fn get__NewEnum(self: *const INetFwProducts, newEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const INetFwProducts, newEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, newEnum);
     }
 };

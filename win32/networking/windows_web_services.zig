@@ -4165,10 +4165,10 @@ pub const IContentPrefetcherTaskTrigger = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn TriggerContentPrefetcherTask(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn TriggerContentPrefetcherTask(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.TriggerContentPrefetcherTask(self, packageFullName);
     }
-    pub fn IsRegisteredForContentPrefetch(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) callconv(.Inline) HRESULT {
+    pub fn IsRegisteredForContentPrefetch(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.IsRegisteredForContentPrefetch(self, packageFullName, isRegistered);
     }
 };

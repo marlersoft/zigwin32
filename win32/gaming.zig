@@ -51,16 +51,16 @@ pub const IGameExplorer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddGame(self: *const IGameExplorer, bstrGDFBinaryPath: ?BSTR, bstrGameInstallDirectory: ?BSTR, installScope: GAME_INSTALL_SCOPE, pguidInstanceID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn AddGame(self: *const IGameExplorer, bstrGDFBinaryPath: ?BSTR, bstrGameInstallDirectory: ?BSTR, installScope: GAME_INSTALL_SCOPE, pguidInstanceID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.AddGame(self, bstrGDFBinaryPath, bstrGameInstallDirectory, installScope, pguidInstanceID);
     }
-    pub fn RemoveGame(self: *const IGameExplorer, guidInstanceID: Guid) callconv(.Inline) HRESULT {
+    pub fn RemoveGame(self: *const IGameExplorer, guidInstanceID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveGame(self, guidInstanceID);
     }
-    pub fn UpdateGame(self: *const IGameExplorer, guidInstanceID: Guid) callconv(.Inline) HRESULT {
+    pub fn UpdateGame(self: *const IGameExplorer, guidInstanceID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateGame(self, guidInstanceID);
     }
-    pub fn VerifyAccess(self: *const IGameExplorer, bstrGDFBinaryPath: ?BSTR, pfHasAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn VerifyAccess(self: *const IGameExplorer, bstrGDFBinaryPath: ?BSTR, pfHasAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.VerifyAccess(self, bstrGDFBinaryPath, pfHasAccess);
     }
 };
@@ -143,40 +143,40 @@ pub const IGameStatistics = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMaxCategoryLength(self: *const IGameStatistics, cch: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxCategoryLength(self: *const IGameStatistics, cch: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxCategoryLength(self, cch);
     }
-    pub fn GetMaxNameLength(self: *const IGameStatistics, cch: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxNameLength(self: *const IGameStatistics, cch: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxNameLength(self, cch);
     }
-    pub fn GetMaxValueLength(self: *const IGameStatistics, cch: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxValueLength(self: *const IGameStatistics, cch: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxValueLength(self, cch);
     }
-    pub fn GetMaxCategories(self: *const IGameStatistics, pMax: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetMaxCategories(self: *const IGameStatistics, pMax: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxCategories(self, pMax);
     }
-    pub fn GetMaxStatsPerCategory(self: *const IGameStatistics, pMax: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetMaxStatsPerCategory(self: *const IGameStatistics, pMax: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxStatsPerCategory(self, pMax);
     }
-    pub fn SetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, title: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, title: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCategoryTitle(self, categoryIndex, title);
     }
-    pub fn GetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, pTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCategoryTitle(self: *const IGameStatistics, categoryIndex: u16, pTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategoryTitle(self, categoryIndex, pTitle);
     }
-    pub fn GetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, pName: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, pName: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatistic(self, categoryIndex, statIndex, pName, pValue);
     }
-    pub fn SetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, name: ?[*:0]const u16, value: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetStatistic(self: *const IGameStatistics, categoryIndex: u16, statIndex: u16, name: ?[*:0]const u16, value: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetStatistic(self, categoryIndex, statIndex, name, value);
     }
-    pub fn Save(self: *const IGameStatistics, trackChanges: BOOL) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IGameStatistics, trackChanges: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, trackChanges);
     }
-    pub fn SetLastPlayedCategory(self: *const IGameStatistics, categoryIndex: u32) callconv(.Inline) HRESULT {
+    pub fn SetLastPlayedCategory(self: *const IGameStatistics, categoryIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLastPlayedCategory(self, categoryIndex);
     }
-    pub fn GetLastPlayedCategory(self: *const IGameStatistics, pCategoryIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLastPlayedCategory(self: *const IGameStatistics, pCategoryIndex: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastPlayedCategory(self, pCategoryIndex);
     }
 };
@@ -200,10 +200,10 @@ pub const IGameStatisticsMgr = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGameStatistics(self: *const IGameStatisticsMgr, GDFBinaryPath: ?[*:0]const u16, openType: GAMESTATS_OPEN_TYPE, pOpenResult: ?*GAMESTATS_OPEN_RESULT, ppiStats: ?*?*IGameStatistics) callconv(.Inline) HRESULT {
+    pub fn GetGameStatistics(self: *const IGameStatisticsMgr, GDFBinaryPath: ?[*:0]const u16, openType: GAMESTATS_OPEN_TYPE, pOpenResult: ?*GAMESTATS_OPEN_RESULT, ppiStats: ?*?*IGameStatistics) callconv(.@"inline") HRESULT {
         return self.vtable.GetGameStatistics(self, GDFBinaryPath, openType, pOpenResult, ppiStats);
     }
-    pub fn RemoveGameStatistics(self: *const IGameStatisticsMgr, GDFBinaryPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RemoveGameStatistics(self: *const IGameStatisticsMgr, GDFBinaryPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveGameStatistics(self, GDFBinaryPath);
     }
 };
@@ -231,13 +231,13 @@ pub const IGameExplorer2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, installDirectory: ?[*:0]const u16, installScope: GAME_INSTALL_SCOPE) callconv(.Inline) HRESULT {
+    pub fn InstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, installDirectory: ?[*:0]const u16, installScope: GAME_INSTALL_SCOPE) callconv(.@"inline") HRESULT {
         return self.vtable.InstallGame(self, binaryGDFPath, installDirectory, installScope);
     }
-    pub fn UninstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn UninstallGame(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.UninstallGame(self, binaryGDFPath);
     }
-    pub fn CheckAccess(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, pHasAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn CheckAccess(self: *const IGameExplorer2, binaryGDFPath: ?[*:0]const u16, pHasAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CheckAccess(self, binaryGDFPath, pHasAccess);
     }
 };
@@ -398,22 +398,22 @@ pub const IXblIdpAuthManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, xuid: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, xuid: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetGamerAccount(self, msaAccountId, xuid);
     }
-    pub fn GetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?*?PWSTR, xuid: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetGamerAccount(self: *const IXblIdpAuthManager, msaAccountId: ?*?PWSTR, xuid: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetGamerAccount(self, msaAccountId, xuid);
     }
-    pub fn SetAppViewInitialized(self: *const IXblIdpAuthManager, appSid: ?[*:0]const u16, msaAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAppViewInitialized(self: *const IXblIdpAuthManager, appSid: ?[*:0]const u16, msaAccountId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetAppViewInitialized(self, appSid, msaAccountId);
     }
-    pub fn GetEnvironment(self: *const IXblIdpAuthManager, environment: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetEnvironment(self: *const IXblIdpAuthManager, environment: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnvironment(self, environment);
     }
-    pub fn GetSandbox(self: *const IXblIdpAuthManager, sandbox: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSandbox(self: *const IXblIdpAuthManager, sandbox: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSandbox(self, sandbox);
     }
-    pub fn GetTokenAndSignatureWithTokenResult(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, appSid: ?[*:0]const u16, msaTarget: ?[*:0]const u16, msaPolicy: ?[*:0]const u16, httpMethod: ?[*:0]const u16, uri: ?[*:0]const u16, headers: ?[*:0]const u16, body: [*:0]u8, bodySize: u32, forceRefresh: BOOL, result: ?*?*IXblIdpAuthTokenResult) callconv(.Inline) HRESULT {
+    pub fn GetTokenAndSignatureWithTokenResult(self: *const IXblIdpAuthManager, msaAccountId: ?[*:0]const u16, appSid: ?[*:0]const u16, msaTarget: ?[*:0]const u16, msaPolicy: ?[*:0]const u16, httpMethod: ?[*:0]const u16, uri: ?[*:0]const u16, headers: ?[*:0]const u16, body: [*:0]u8, bodySize: u32, forceRefresh: BOOL, result: ?*?*IXblIdpAuthTokenResult) callconv(.@"inline") HRESULT {
         return self.vtable.GetTokenAndSignatureWithTokenResult(self, msaAccountId, appSid, msaTarget, msaPolicy, httpMethod, uri, headers, body, bodySize, forceRefresh, result);
     }
 };
@@ -506,64 +506,64 @@ pub const IXblIdpAuthTokenResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IXblIdpAuthTokenResult, status: ?*XBL_IDP_AUTH_TOKEN_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IXblIdpAuthTokenResult, status: ?*XBL_IDP_AUTH_TOKEN_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, status);
     }
-    pub fn GetErrorCode(self: *const IXblIdpAuthTokenResult, errorCode: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn GetErrorCode(self: *const IXblIdpAuthTokenResult, errorCode: ?*HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorCode(self, errorCode);
     }
-    pub fn GetToken(self: *const IXblIdpAuthTokenResult, token: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetToken(self: *const IXblIdpAuthTokenResult, token: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetToken(self, token);
     }
-    pub fn GetSignature(self: *const IXblIdpAuthTokenResult, signature: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSignature(self: *const IXblIdpAuthTokenResult, signature: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignature(self, signature);
     }
-    pub fn GetSandbox(self: *const IXblIdpAuthTokenResult, sandbox: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSandbox(self: *const IXblIdpAuthTokenResult, sandbox: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSandbox(self, sandbox);
     }
-    pub fn GetEnvironment(self: *const IXblIdpAuthTokenResult, environment: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetEnvironment(self: *const IXblIdpAuthTokenResult, environment: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnvironment(self, environment);
     }
-    pub fn GetMsaAccountId(self: *const IXblIdpAuthTokenResult, msaAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMsaAccountId(self: *const IXblIdpAuthTokenResult, msaAccountId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMsaAccountId(self, msaAccountId);
     }
-    pub fn GetXuid(self: *const IXblIdpAuthTokenResult, xuid: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetXuid(self: *const IXblIdpAuthTokenResult, xuid: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetXuid(self, xuid);
     }
-    pub fn GetGamertag(self: *const IXblIdpAuthTokenResult, gamertag: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetGamertag(self: *const IXblIdpAuthTokenResult, gamertag: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetGamertag(self, gamertag);
     }
-    pub fn GetAgeGroup(self: *const IXblIdpAuthTokenResult, ageGroup: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetAgeGroup(self: *const IXblIdpAuthTokenResult, ageGroup: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAgeGroup(self, ageGroup);
     }
-    pub fn GetPrivileges(self: *const IXblIdpAuthTokenResult, privileges: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPrivileges(self: *const IXblIdpAuthTokenResult, privileges: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivileges(self, privileges);
     }
-    pub fn GetMsaTarget(self: *const IXblIdpAuthTokenResult, msaTarget: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMsaTarget(self: *const IXblIdpAuthTokenResult, msaTarget: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMsaTarget(self, msaTarget);
     }
-    pub fn GetMsaPolicy(self: *const IXblIdpAuthTokenResult, msaPolicy: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMsaPolicy(self: *const IXblIdpAuthTokenResult, msaPolicy: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMsaPolicy(self, msaPolicy);
     }
-    pub fn GetMsaAppId(self: *const IXblIdpAuthTokenResult, msaAppId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMsaAppId(self: *const IXblIdpAuthTokenResult, msaAppId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMsaAppId(self, msaAppId);
     }
-    pub fn GetRedirect(self: *const IXblIdpAuthTokenResult, redirect: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetRedirect(self: *const IXblIdpAuthTokenResult, redirect: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetRedirect(self, redirect);
     }
-    pub fn GetMessage(self: *const IXblIdpAuthTokenResult, message: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMessage(self: *const IXblIdpAuthTokenResult, message: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMessage(self, message);
     }
-    pub fn GetHelpId(self: *const IXblIdpAuthTokenResult, helpId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetHelpId(self: *const IXblIdpAuthTokenResult, helpId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelpId(self, helpId);
     }
-    pub fn GetEnforcementBans(self: *const IXblIdpAuthTokenResult, enforcementBans: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetEnforcementBans(self: *const IXblIdpAuthTokenResult, enforcementBans: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnforcementBans(self, enforcementBans);
     }
-    pub fn GetRestrictions(self: *const IXblIdpAuthTokenResult, restrictions: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetRestrictions(self: *const IXblIdpAuthTokenResult, restrictions: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetRestrictions(self, restrictions);
     }
-    pub fn GetTitleRestrictions(self: *const IXblIdpAuthTokenResult, titleRestrictions: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTitleRestrictions(self: *const IXblIdpAuthTokenResult, titleRestrictions: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTitleRestrictions(self, titleRestrictions);
     }
 };
@@ -588,13 +588,13 @@ pub const IXblIdpAuthTokenResult2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetModernGamertag(self, value);
     }
-    pub fn GetModernGamertagSuffix(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetModernGamertagSuffix(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetModernGamertagSuffix(self, value);
     }
-    pub fn GetUniqueModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetUniqueModernGamertag(self: *const IXblIdpAuthTokenResult2, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetUniqueModernGamertag(self, value);
     }
 };

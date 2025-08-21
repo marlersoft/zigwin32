@@ -324,13 +324,13 @@ pub const ITransaction = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Commit(self: *const ITransaction, fRetaining: BOOL, grfTC: u32, grfRM: u32) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const ITransaction, fRetaining: BOOL, grfTC: u32, grfRM: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self, fRetaining, grfTC, grfRM);
     }
-    pub fn Abort(self: *const ITransaction, pboidReason: ?*BOID, fRetaining: BOOL, fAsync: BOOL) callconv(.Inline) HRESULT {
+    pub fn Abort(self: *const ITransaction, pboidReason: ?*BOID, fRetaining: BOOL, fAsync: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Abort(self, pboidReason, fRetaining, fAsync);
     }
-    pub fn GetTransactionInfo(self: *const ITransaction, pinfo: ?*XACTTRANSINFO) callconv(.Inline) HRESULT {
+    pub fn GetTransactionInfo(self: *const ITransaction, pinfo: ?*XACTTRANSINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransactionInfo(self, pinfo);
     }
 };
@@ -348,7 +348,7 @@ pub const ITransactionCloner = extern union {
     vtable: *const VTable,
     ITransaction: ITransaction,
     IUnknown: IUnknown,
-    pub fn CloneWithCommitDisabled(self: *const ITransactionCloner, ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn CloneWithCommitDisabled(self: *const ITransactionCloner, ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.CloneWithCommitDisabled(self, ppITransaction);
     }
 };
@@ -367,7 +367,7 @@ pub const ITransaction2 = extern union {
     ITransactionCloner: ITransactionCloner,
     ITransaction: ITransaction,
     IUnknown: IUnknown,
-    pub fn GetTransactionInfo2(self: *const ITransaction2, pinfo: ?*XACTTRANSINFO) callconv(.Inline) HRESULT {
+    pub fn GetTransactionInfo2(self: *const ITransaction2, pinfo: ?*XACTTRANSINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransactionInfo2(self, pinfo);
     }
 };
@@ -392,10 +392,10 @@ pub const ITransactionDispenser = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOptionsObject(self: *const ITransactionDispenser, ppOptions: ?*?*ITransactionOptions) callconv(.Inline) HRESULT {
+    pub fn GetOptionsObject(self: *const ITransactionDispenser, ppOptions: ?*?*ITransactionOptions) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionsObject(self, ppOptions);
     }
-    pub fn BeginTransaction(self: *const ITransactionDispenser, punkOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn BeginTransaction(self: *const ITransactionDispenser, punkOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.BeginTransaction(self, punkOuter, isoLevel, isoFlags, pOptions, ppTransaction);
     }
 };
@@ -416,10 +416,10 @@ pub const ITransactionOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetOptions(self: *const ITransactionOptions, pOptions: ?*XACTOPT) callconv(.Inline) HRESULT {
+    pub fn SetOptions(self: *const ITransactionOptions, pOptions: ?*XACTOPT) callconv(.@"inline") HRESULT {
         return self.vtable.SetOptions(self, pOptions);
     }
-    pub fn GetOptions(self: *const ITransactionOptions, pOptions: ?*XACTOPT) callconv(.Inline) HRESULT {
+    pub fn GetOptions(self: *const ITransactionOptions, pOptions: ?*XACTOPT) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptions(self, pOptions);
     }
 };
@@ -454,16 +454,16 @@ pub const ITransactionOutcomeEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Committed(self: *const ITransactionOutcomeEvents, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn Committed(self: *const ITransactionOutcomeEvents, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Committed(self, fRetaining, pNewUOW, hr);
     }
-    pub fn Aborted(self: *const ITransactionOutcomeEvents, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn Aborted(self: *const ITransactionOutcomeEvents, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Aborted(self, pboidReason, fRetaining, pNewUOW, hr);
     }
-    pub fn HeuristicDecision(self: *const ITransactionOutcomeEvents, dwDecision: u32, pboidReason: ?*BOID, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn HeuristicDecision(self: *const ITransactionOutcomeEvents, dwDecision: u32, pboidReason: ?*BOID, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.HeuristicDecision(self, dwDecision, pboidReason, hr);
     }
-    pub fn Indoubt(self: *const ITransactionOutcomeEvents) callconv(.Inline) HRESULT {
+    pub fn Indoubt(self: *const ITransactionOutcomeEvents) callconv(.@"inline") HRESULT {
         return self.vtable.Indoubt(self);
     }
 };
@@ -485,10 +485,10 @@ pub const ITmNodeName = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNodeNameSize(self: *const ITmNodeName, pcbNodeNameSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNodeNameSize(self: *const ITmNodeName, pcbNodeNameSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNodeNameSize(self, pcbNodeNameSize);
     }
-    pub fn GetNodeName(self: *const ITmNodeName, cbNodeNameBufferSize: u32, pNodeNameBuffer: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetNodeName(self: *const ITmNodeName, cbNodeNameBufferSize: u32, pNodeNameBuffer: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetNodeName(self, cbNodeNameBufferSize, pNodeNameBuffer);
     }
 };
@@ -505,7 +505,7 @@ pub const IKernelTransaction = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHandle(self: *const IKernelTransaction, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn GetHandle(self: *const IKernelTransaction, pHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetHandle(self, pHandle);
     }
 };
@@ -539,16 +539,16 @@ pub const ITransactionResourceAsync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PrepareRequest(self: *const ITransactionResourceAsync, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.Inline) HRESULT {
+    pub fn PrepareRequest(self: *const ITransactionResourceAsync, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PrepareRequest(self, fRetaining, grfRM, fWantMoniker, fSinglePhase);
     }
-    pub fn CommitRequest(self: *const ITransactionResourceAsync, grfRM: u32, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
+    pub fn CommitRequest(self: *const ITransactionResourceAsync, grfRM: u32, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
         return self.vtable.CommitRequest(self, grfRM, pNewUOW);
     }
-    pub fn AbortRequest(self: *const ITransactionResourceAsync, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
+    pub fn AbortRequest(self: *const ITransactionResourceAsync, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
         return self.vtable.AbortRequest(self, pboidReason, fRetaining, pNewUOW);
     }
-    pub fn TMDown(self: *const ITransactionResourceAsync) callconv(.Inline) HRESULT {
+    pub fn TMDown(self: *const ITransactionResourceAsync) callconv(.@"inline") HRESULT {
         return self.vtable.TMDown(self);
     }
 };
@@ -569,10 +569,10 @@ pub const ITransactionLastResourceAsync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DelegateCommit(self: *const ITransactionLastResourceAsync, grfRM: u32) callconv(.Inline) HRESULT {
+    pub fn DelegateCommit(self: *const ITransactionLastResourceAsync, grfRM: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DelegateCommit(self, grfRM);
     }
-    pub fn ForgetRequest(self: *const ITransactionLastResourceAsync, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
+    pub fn ForgetRequest(self: *const ITransactionLastResourceAsync, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
         return self.vtable.ForgetRequest(self, pNewUOW);
     }
 };
@@ -606,16 +606,16 @@ pub const ITransactionResource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PrepareRequest(self: *const ITransactionResource, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.Inline) HRESULT {
+    pub fn PrepareRequest(self: *const ITransactionResource, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.PrepareRequest(self, fRetaining, grfRM, fWantMoniker, fSinglePhase);
     }
-    pub fn CommitRequest(self: *const ITransactionResource, grfRM: u32, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
+    pub fn CommitRequest(self: *const ITransactionResource, grfRM: u32, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
         return self.vtable.CommitRequest(self, grfRM, pNewUOW);
     }
-    pub fn AbortRequest(self: *const ITransactionResource, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
+    pub fn AbortRequest(self: *const ITransactionResource, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.@"inline") HRESULT {
         return self.vtable.AbortRequest(self, pboidReason, fRetaining, pNewUOW);
     }
-    pub fn TMDown(self: *const ITransactionResource) callconv(.Inline) HRESULT {
+    pub fn TMDown(self: *const ITransactionResource) callconv(.@"inline") HRESULT {
         return self.vtable.TMDown(self);
     }
 };
@@ -642,13 +642,13 @@ pub const ITransactionEnlistmentAsync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PrepareRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT, pmk: ?*IMoniker, pboidReason: ?*BOID) callconv(.Inline) HRESULT {
+    pub fn PrepareRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT, pmk: ?*IMoniker, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
         return self.vtable.PrepareRequestDone(self, hr, pmk, pboidReason);
     }
-    pub fn CommitRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn CommitRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.CommitRequestDone(self, hr);
     }
-    pub fn AbortRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn AbortRequestDone(self: *const ITransactionEnlistmentAsync, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.AbortRequestDone(self, hr);
     }
 };
@@ -666,7 +666,7 @@ pub const ITransactionLastEnlistmentAsync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TransactionOutcome(self: *const ITransactionLastEnlistmentAsync, XactStat: XACTSTAT, pboidReason: ?*BOID) callconv(.Inline) HRESULT {
+    pub fn TransactionOutcome(self: *const ITransactionLastEnlistmentAsync, XactStat: XACTSTAT, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
         return self.vtable.TransactionOutcome(self, XactStat, pboidReason);
     }
 };
@@ -689,10 +689,10 @@ pub const ITransactionExportFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRemoteClassId(self: *const ITransactionExportFactory, pclsid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetRemoteClassId(self: *const ITransactionExportFactory, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetRemoteClassId(self, pclsid);
     }
-    pub fn Create(self: *const ITransactionExportFactory, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, ppExport: ?*?*ITransactionExport) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const ITransactionExportFactory, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, ppExport: ?*?*ITransactionExport) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, cbWhereabouts, rgbWhereabouts, ppExport);
     }
 };
@@ -715,10 +715,10 @@ pub const ITransactionImportWhereabouts = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetWhereaboutsSize(self: *const ITransactionImportWhereabouts, pcbWhereabouts: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetWhereaboutsSize(self: *const ITransactionImportWhereabouts, pcbWhereabouts: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetWhereaboutsSize(self, pcbWhereabouts);
     }
-    pub fn GetWhereabouts(self: *const ITransactionImportWhereabouts, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, pcbUsed: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetWhereabouts(self: *const ITransactionImportWhereabouts, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetWhereabouts(self, cbWhereabouts, rgbWhereabouts, pcbUsed);
     }
 };
@@ -743,10 +743,10 @@ pub const ITransactionExport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Export(self: *const ITransactionExport, punkTransaction: ?*IUnknown, pcbTransactionCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Export(self: *const ITransactionExport, punkTransaction: ?*IUnknown, pcbTransactionCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Export(self, punkTransaction, pcbTransactionCookie);
     }
-    pub fn GetTransactionCookie(self: *const ITransactionExport, punkTransaction: ?*IUnknown, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, pcbUsed: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTransactionCookie(self: *const ITransactionExport, punkTransaction: ?*IUnknown, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransactionCookie(self, punkTransaction, cbTransactionCookie, rgbTransactionCookie, pcbUsed);
     }
 };
@@ -766,7 +766,7 @@ pub const ITransactionImport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Import(self: *const ITransactionImport, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn Import(self: *const ITransactionImport, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Import(self, cbTransactionCookie, rgbTransactionCookie, piid, ppvTransaction);
     }
 };
@@ -788,10 +788,10 @@ pub const ITipTransaction = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Push(self: *const ITipTransaction, i_pszRemoteTmUrl: ?*u8, o_ppszRemoteTxUrl: ?*?PSTR) callconv(.Inline) HRESULT {
+    pub fn Push(self: *const ITipTransaction, i_pszRemoteTmUrl: ?*u8, o_ppszRemoteTxUrl: ?*?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Push(self, i_pszRemoteTmUrl, o_ppszRemoteTxUrl);
     }
-    pub fn GetTransactionUrl(self: *const ITipTransaction, o_ppszLocalTxUrl: ?*?PSTR) callconv(.Inline) HRESULT {
+    pub fn GetTransactionUrl(self: *const ITipTransaction, o_ppszLocalTxUrl: ?*?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransactionUrl(self, o_ppszLocalTxUrl);
     }
 };
@@ -819,13 +819,13 @@ pub const ITipHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Pull(self: *const ITipHelper, i_pszTxUrl: ?*u8, o_ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn Pull(self: *const ITipHelper, i_pszTxUrl: ?*u8, o_ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.Pull(self, i_pszTxUrl, o_ppITransaction);
     }
-    pub fn PullAsync(self: *const ITipHelper, i_pszTxUrl: ?*u8, i_pTipPullSink: ?*ITipPullSink, o_ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn PullAsync(self: *const ITipHelper, i_pszTxUrl: ?*u8, i_pTipPullSink: ?*ITipPullSink, o_ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.PullAsync(self, i_pszTxUrl, i_pTipPullSink, o_ppITransaction);
     }
-    pub fn GetLocalTmUrl(self: *const ITipHelper, o_ppszLocalTmUrl: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetLocalTmUrl(self: *const ITipHelper, o_ppszLocalTmUrl: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalTmUrl(self, o_ppszLocalTmUrl);
     }
 };
@@ -842,7 +842,7 @@ pub const ITipPullSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PullComplete(self: *const ITipPullSink, i_hrPull: HRESULT) callconv(.Inline) HRESULT {
+    pub fn PullComplete(self: *const ITipPullSink, i_hrPull: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.PullComplete(self, i_hrPull);
     }
 };
@@ -906,43 +906,43 @@ pub const IDtcNetworkAccessConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAnyNetworkAccess(self: *const IDtcNetworkAccessConfig, pbAnyNetworkAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetAnyNetworkAccess(self: *const IDtcNetworkAccessConfig, pbAnyNetworkAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetAnyNetworkAccess(self, pbAnyNetworkAccess);
     }
-    pub fn SetAnyNetworkAccess(self: *const IDtcNetworkAccessConfig, bAnyNetworkAccess: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetAnyNetworkAccess(self: *const IDtcNetworkAccessConfig, bAnyNetworkAccess: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetAnyNetworkAccess(self, bAnyNetworkAccess);
     }
-    pub fn GetNetworkAdministrationAccess(self: *const IDtcNetworkAccessConfig, pbNetworkAdministrationAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetNetworkAdministrationAccess(self: *const IDtcNetworkAccessConfig, pbNetworkAdministrationAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetworkAdministrationAccess(self, pbNetworkAdministrationAccess);
     }
-    pub fn SetNetworkAdministrationAccess(self: *const IDtcNetworkAccessConfig, bNetworkAdministrationAccess: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNetworkAdministrationAccess(self: *const IDtcNetworkAccessConfig, bNetworkAdministrationAccess: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNetworkAdministrationAccess(self, bNetworkAdministrationAccess);
     }
-    pub fn GetNetworkTransactionAccess(self: *const IDtcNetworkAccessConfig, pbNetworkTransactionAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetNetworkTransactionAccess(self: *const IDtcNetworkAccessConfig, pbNetworkTransactionAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetworkTransactionAccess(self, pbNetworkTransactionAccess);
     }
-    pub fn SetNetworkTransactionAccess(self: *const IDtcNetworkAccessConfig, bNetworkTransactionAccess: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNetworkTransactionAccess(self: *const IDtcNetworkAccessConfig, bNetworkTransactionAccess: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNetworkTransactionAccess(self, bNetworkTransactionAccess);
     }
-    pub fn GetNetworkClientAccess(self: *const IDtcNetworkAccessConfig, pbNetworkClientAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetNetworkClientAccess(self: *const IDtcNetworkAccessConfig, pbNetworkClientAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetworkClientAccess(self, pbNetworkClientAccess);
     }
-    pub fn SetNetworkClientAccess(self: *const IDtcNetworkAccessConfig, bNetworkClientAccess: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNetworkClientAccess(self: *const IDtcNetworkAccessConfig, bNetworkClientAccess: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNetworkClientAccess(self, bNetworkClientAccess);
     }
-    pub fn GetNetworkTIPAccess(self: *const IDtcNetworkAccessConfig, pbNetworkTIPAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetNetworkTIPAccess(self: *const IDtcNetworkAccessConfig, pbNetworkTIPAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetworkTIPAccess(self, pbNetworkTIPAccess);
     }
-    pub fn SetNetworkTIPAccess(self: *const IDtcNetworkAccessConfig, bNetworkTIPAccess: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNetworkTIPAccess(self: *const IDtcNetworkAccessConfig, bNetworkTIPAccess: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNetworkTIPAccess(self, bNetworkTIPAccess);
     }
-    pub fn GetXAAccess(self: *const IDtcNetworkAccessConfig, pbXAAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetXAAccess(self: *const IDtcNetworkAccessConfig, pbXAAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetXAAccess(self, pbXAAccess);
     }
-    pub fn SetXAAccess(self: *const IDtcNetworkAccessConfig, bXAAccess: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetXAAccess(self: *const IDtcNetworkAccessConfig, bXAAccess: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetXAAccess(self, bXAAccess);
     }
-    pub fn RestartDtcService(self: *const IDtcNetworkAccessConfig) callconv(.Inline) HRESULT {
+    pub fn RestartDtcService(self: *const IDtcNetworkAccessConfig) callconv(.@"inline") HRESULT {
         return self.vtable.RestartDtcService(self);
     }
 };
@@ -989,22 +989,22 @@ pub const IDtcNetworkAccessConfig2 = extern union {
     vtable: *const VTable,
     IDtcNetworkAccessConfig: IDtcNetworkAccessConfig,
     IUnknown: IUnknown,
-    pub fn GetNetworkInboundAccess(self: *const IDtcNetworkAccessConfig2, pbInbound: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetNetworkInboundAccess(self: *const IDtcNetworkAccessConfig2, pbInbound: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetworkInboundAccess(self, pbInbound);
     }
-    pub fn GetNetworkOutboundAccess(self: *const IDtcNetworkAccessConfig2, pbOutbound: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetNetworkOutboundAccess(self: *const IDtcNetworkAccessConfig2, pbOutbound: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetworkOutboundAccess(self, pbOutbound);
     }
-    pub fn SetNetworkInboundAccess(self: *const IDtcNetworkAccessConfig2, bInbound: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNetworkInboundAccess(self: *const IDtcNetworkAccessConfig2, bInbound: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNetworkInboundAccess(self, bInbound);
     }
-    pub fn SetNetworkOutboundAccess(self: *const IDtcNetworkAccessConfig2, bOutbound: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetNetworkOutboundAccess(self: *const IDtcNetworkAccessConfig2, bOutbound: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetNetworkOutboundAccess(self, bOutbound);
     }
-    pub fn GetAuthenticationLevel(self: *const IDtcNetworkAccessConfig2, pAuthLevel: ?*AUTHENTICATION_LEVEL) callconv(.Inline) HRESULT {
+    pub fn GetAuthenticationLevel(self: *const IDtcNetworkAccessConfig2, pAuthLevel: ?*AUTHENTICATION_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.GetAuthenticationLevel(self, pAuthLevel);
     }
-    pub fn SetAuthenticationLevel(self: *const IDtcNetworkAccessConfig2, AuthLevel: AUTHENTICATION_LEVEL) callconv(.Inline) HRESULT {
+    pub fn SetAuthenticationLevel(self: *const IDtcNetworkAccessConfig2, AuthLevel: AUTHENTICATION_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.SetAuthenticationLevel(self, AuthLevel);
     }
 };
@@ -1027,10 +1027,10 @@ pub const IDtcNetworkAccessConfig3 = extern union {
     IDtcNetworkAccessConfig2: IDtcNetworkAccessConfig2,
     IDtcNetworkAccessConfig: IDtcNetworkAccessConfig,
     IUnknown: IUnknown,
-    pub fn GetLUAccess(self: *const IDtcNetworkAccessConfig3, pbLUAccess: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetLUAccess(self: *const IDtcNetworkAccessConfig3, pbLUAccess: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetLUAccess(self, pbLUAccess);
     }
-    pub fn SetLUAccess(self: *const IDtcNetworkAccessConfig3, bLUAccess: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetLUAccess(self: *const IDtcNetworkAccessConfig3, bLUAccess: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetLUAccess(self, bLUAccess);
     }
 };
@@ -1149,16 +1149,16 @@ pub const IDtcToXaMapper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestNewResourceManager(self: *const IDtcToXaMapper, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pdwRMCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RequestNewResourceManager(self: *const IDtcToXaMapper, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestNewResourceManager(self, pszDSN, pszClientDllName, pdwRMCookie);
     }
-    pub fn TranslateTridToXid(self: *const IDtcToXaMapper, pdwITransaction: ?*u32, dwRMCookie: u32, pXid: ?*xid_t) callconv(.Inline) HRESULT {
+    pub fn TranslateTridToXid(self: *const IDtcToXaMapper, pdwITransaction: ?*u32, dwRMCookie: u32, pXid: ?*xid_t) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateTridToXid(self, pdwITransaction, dwRMCookie, pXid);
     }
-    pub fn EnlistResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32, pdwITransaction: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EnlistResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32, pdwITransaction: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnlistResourceManager(self, dwRMCookie, pdwITransaction);
     }
-    pub fn ReleaseResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32) callconv(.Inline) HRESULT {
+    pub fn ReleaseResourceManager(self: *const IDtcToXaMapper, dwRMCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseResourceManager(self, dwRMCookie);
     }
 };
@@ -1178,7 +1178,7 @@ pub const IDtcToXaHelperFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IDtcToXaHelperFactory, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pguidRm: ?*Guid, ppXaHelper: ?*?*IDtcToXaHelper) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IDtcToXaHelperFactory, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pguidRm: ?*Guid, ppXaHelper: ?*?*IDtcToXaHelper) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pszDSN, pszClientDllName, pguidRm, ppXaHelper);
     }
 };
@@ -1201,10 +1201,10 @@ pub const IDtcToXaHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Close(self: *const IDtcToXaHelper, i_fDoRecovery: BOOL) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IDtcToXaHelper, i_fDoRecovery: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self, i_fDoRecovery);
     }
-    pub fn TranslateTridToXid(self: *const IDtcToXaHelper, pITransaction: ?*ITransaction, pguidBqual: ?*Guid, pXid: ?*xid_t) callconv(.Inline) HRESULT {
+    pub fn TranslateTridToXid(self: *const IDtcToXaHelper, pITransaction: ?*ITransaction, pguidBqual: ?*Guid, pXid: ?*xid_t) callconv(.@"inline") HRESULT {
         return self.vtable.TranslateTridToXid(self, pITransaction, pguidBqual, pXid);
     }
 };
@@ -1241,16 +1241,16 @@ pub const IDtcToXaHelperSinglePipe = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn XARMCreate(self: *const IDtcToXaHelperSinglePipe, pszDSN: ?PSTR, pszClientDll: ?PSTR, pdwRMCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn XARMCreate(self: *const IDtcToXaHelperSinglePipe, pszDSN: ?PSTR, pszClientDll: ?PSTR, pdwRMCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.XARMCreate(self, pszDSN, pszClientDll, pdwRMCookie);
     }
-    pub fn ConvertTridToXID(self: *const IDtcToXaHelperSinglePipe, pdwITrans: ?*u32, dwRMCookie: u32, pxid: ?*xid_t) callconv(.Inline) HRESULT {
+    pub fn ConvertTridToXID(self: *const IDtcToXaHelperSinglePipe, pdwITrans: ?*u32, dwRMCookie: u32, pxid: ?*xid_t) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertTridToXID(self, pdwITrans, dwRMCookie, pxid);
     }
-    pub fn EnlistWithRM(self: *const IDtcToXaHelperSinglePipe, dwRMCookie: u32, i_pITransaction: ?*ITransaction, i_pITransRes: ?*ITransactionResourceAsync, o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
+    pub fn EnlistWithRM(self: *const IDtcToXaHelperSinglePipe, dwRMCookie: u32, i_pITransaction: ?*ITransaction, i_pITransRes: ?*ITransactionResourceAsync, o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.EnlistWithRM(self, dwRMCookie, i_pITransaction, i_pITransRes, o_ppITransEnslitment);
     }
-    pub fn ReleaseRMCookie(self: *const IDtcToXaHelperSinglePipe, i_dwRMCookie: u32, i_fNormal: BOOL) callconv(.Inline) void {
+    pub fn ReleaseRMCookie(self: *const IDtcToXaHelperSinglePipe, i_dwRMCookie: u32, i_fNormal: BOOL) callconv(.@"inline") void {
         return self.vtable.ReleaseRMCookie(self, i_dwRMCookie, i_fNormal);
     }
 };
@@ -1335,7 +1335,7 @@ pub const IXATransLookup = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Lookup(self: *const IXATransLookup, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn Lookup(self: *const IXATransLookup, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.Lookup(self, ppTransaction);
     }
 };
@@ -1353,7 +1353,7 @@ pub const IXATransLookup2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Lookup(self: *const IXATransLookup2, pXID: ?*xid_t, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn Lookup(self: *const IXATransLookup2, pXID: ?*xid_t, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.Lookup(self, pXID, ppTransaction);
     }
 };
@@ -1369,7 +1369,7 @@ pub const IResourceManagerSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TMDown(self: *const IResourceManagerSink) callconv(.Inline) HRESULT {
+    pub fn TMDown(self: *const IResourceManagerSink) callconv(.@"inline") HRESULT {
         return self.vtable.TMDown(self);
     }
 };
@@ -1406,16 +1406,16 @@ pub const IResourceManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Enlist(self: *const IResourceManager, pTransaction: ?*ITransaction, pRes: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
+    pub fn Enlist(self: *const IResourceManager, pTransaction: ?*ITransaction, pRes: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Enlist(self, pTransaction, pRes, pUOW, pisoLevel, ppEnlist);
     }
-    pub fn Reenlist(self: *const IResourceManager, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.Inline) HRESULT {
+    pub fn Reenlist(self: *const IResourceManager, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
         return self.vtable.Reenlist(self, pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
     }
-    pub fn ReenlistmentComplete(self: *const IResourceManager) callconv(.Inline) HRESULT {
+    pub fn ReenlistmentComplete(self: *const IResourceManager) callconv(.@"inline") HRESULT {
         return self.vtable.ReenlistmentComplete(self);
     }
-    pub fn GetDistributedTransactionManager(self: *const IResourceManager, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDistributedTransactionManager(self: *const IResourceManager, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDistributedTransactionManager(self, iid, ppvObject);
     }
 };
@@ -1436,10 +1436,10 @@ pub const ILastResourceManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TransactionCommitted(self: *const ILastResourceManager, pPrepInfo: [*:0]u8, cbPrepInfo: u32) callconv(.Inline) HRESULT {
+    pub fn TransactionCommitted(self: *const ILastResourceManager, pPrepInfo: [*:0]u8, cbPrepInfo: u32) callconv(.@"inline") HRESULT {
         return self.vtable.TransactionCommitted(self, pPrepInfo, cbPrepInfo);
     }
-    pub fn RecoveryDone(self: *const ILastResourceManager) callconv(.Inline) HRESULT {
+    pub fn RecoveryDone(self: *const ILastResourceManager) callconv(.@"inline") HRESULT {
         return self.vtable.RecoveryDone(self);
     }
 };
@@ -1468,10 +1468,10 @@ pub const IResourceManager2 = extern union {
     vtable: *const VTable,
     IResourceManager: IResourceManager,
     IUnknown: IUnknown,
-    pub fn Enlist2(self: *const IResourceManager2, pTransaction: ?*ITransaction, pResAsync: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, pXid: ?*xid_t, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
+    pub fn Enlist2(self: *const IResourceManager2, pTransaction: ?*ITransaction, pResAsync: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, pXid: ?*xid_t, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Enlist2(self, pTransaction, pResAsync, pUOW, pisoLevel, pXid, ppEnlist);
     }
-    pub fn Reenlist2(self: *const IResourceManager2, pXid: ?*xid_t, dwTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.Inline) HRESULT {
+    pub fn Reenlist2(self: *const IResourceManager2, pXid: ?*xid_t, dwTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
         return self.vtable.Reenlist2(self, pXid, dwTimeout, pXactStat);
     }
 };
@@ -1493,7 +1493,7 @@ pub const IResourceManagerRejoinable = extern union {
     IResourceManager2: IResourceManager2,
     IResourceManager: IResourceManager,
     IUnknown: IUnknown,
-    pub fn Rejoin(self: *const IResourceManagerRejoinable, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.Inline) HRESULT {
+    pub fn Rejoin(self: *const IResourceManagerRejoinable, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.@"inline") HRESULT {
         return self.vtable.Rejoin(self, pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
     }
 };
@@ -1513,10 +1513,10 @@ pub const IXAConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IXAConfig, clsidHelperDll: Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IXAConfig, clsidHelperDll: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, clsidHelperDll);
     }
-    pub fn Terminate(self: *const IXAConfig) callconv(.Inline) HRESULT {
+    pub fn Terminate(self: *const IXAConfig) callconv(.@"inline") HRESULT {
         return self.vtable.Terminate(self);
     }
 };
@@ -1541,10 +1541,10 @@ pub const IRMHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RMCount(self: *const IRMHelper, dwcTotalNumberOfRMs: u32) callconv(.Inline) HRESULT {
+    pub fn RMCount(self: *const IRMHelper, dwcTotalNumberOfRMs: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RMCount(self, dwcTotalNumberOfRMs);
     }
-    pub fn RMInfo(self: *const IRMHelper, pXa_Switch: ?*xa_switch_t, fCDeclCallingConv: BOOL, pszOpenString: ?PSTR, pszCloseString: ?PSTR, guidRMRecovery: Guid) callconv(.Inline) HRESULT {
+    pub fn RMInfo(self: *const IRMHelper, pXa_Switch: ?*xa_switch_t, fCDeclCallingConv: BOOL, pszOpenString: ?PSTR, pszCloseString: ?PSTR, guidRMRecovery: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RMInfo(self, pXa_Switch, fCDeclCallingConv, pszOpenString, pszCloseString, guidRMRecovery);
     }
 };
@@ -1561,7 +1561,7 @@ pub const IXAObtainRMInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ObtainRMInfo(self: *const IXAObtainRMInfo, pIRMHelper: ?*IRMHelper) callconv(.Inline) HRESULT {
+    pub fn ObtainRMInfo(self: *const IXAObtainRMInfo, pIRMHelper: ?*IRMHelper) callconv(.@"inline") HRESULT {
         return self.vtable.ObtainRMInfo(self, pIRMHelper);
     }
 };
@@ -1581,7 +1581,7 @@ pub const IResourceManagerFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IResourceManagerFactory, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?*?*IResourceManager) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IResourceManagerFactory, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?*?*IResourceManager) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pguidRM, pszRMName, pIResMgrSink, ppResMgr);
     }
 };
@@ -1603,7 +1603,7 @@ pub const IResourceManagerFactory2 = extern union {
     vtable: *const VTable,
     IResourceManagerFactory: IResourceManagerFactory,
     IUnknown: IUnknown,
-    pub fn CreateEx(self: *const IResourceManagerFactory2, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateEx(self: *const IResourceManagerFactory2, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEx(self, pguidRM, pszRMName, pIResMgrSink, riidRequested, ppvResMgr);
     }
 };
@@ -1624,10 +1624,10 @@ pub const IPrepareInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPrepareInfoSize(self: *const IPrepareInfo, pcbPrepInfo: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPrepareInfoSize(self: *const IPrepareInfo, pcbPrepInfo: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrepareInfoSize(self, pcbPrepInfo);
     }
-    pub fn GetPrepareInfo(self: *const IPrepareInfo, pPrepInfo: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetPrepareInfo(self: *const IPrepareInfo, pPrepInfo: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrepareInfo(self, pPrepInfo);
     }
 };
@@ -1649,10 +1649,10 @@ pub const IPrepareInfo2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPrepareInfoSize(self: *const IPrepareInfo2, pcbPrepInfo: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPrepareInfoSize(self: *const IPrepareInfo2, pcbPrepInfo: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrepareInfoSize(self, pcbPrepInfo);
     }
-    pub fn GetPrepareInfo(self: *const IPrepareInfo2, cbPrepareInfo: u32, pPrepInfo: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn GetPrepareInfo(self: *const IPrepareInfo2, cbPrepareInfo: u32, pPrepInfo: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrepareInfo(self, cbPrepareInfo, pPrepInfo);
     }
 };
@@ -1670,7 +1670,7 @@ pub const IGetDispenser = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDispenser(self: *const IGetDispenser, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDispenser(self: *const IGetDispenser, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDispenser(self, iid, ppvObject);
     }
 };
@@ -1688,7 +1688,7 @@ pub const ITransactionVoterBallotAsync2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn VoteRequestDone(self: *const ITransactionVoterBallotAsync2, hr: HRESULT, pboidReason: ?*BOID) callconv(.Inline) HRESULT {
+    pub fn VoteRequestDone(self: *const ITransactionVoterBallotAsync2, hr: HRESULT, pboidReason: ?*BOID) callconv(.@"inline") HRESULT {
         return self.vtable.VoteRequestDone(self, hr, pboidReason);
     }
 };
@@ -1705,7 +1705,7 @@ pub const ITransactionVoterNotifyAsync2 = extern union {
     vtable: *const VTable,
     ITransactionOutcomeEvents: ITransactionOutcomeEvents,
     IUnknown: IUnknown,
-    pub fn VoteRequest(self: *const ITransactionVoterNotifyAsync2) callconv(.Inline) HRESULT {
+    pub fn VoteRequest(self: *const ITransactionVoterNotifyAsync2) callconv(.@"inline") HRESULT {
         return self.vtable.VoteRequest(self);
     }
 };
@@ -1724,7 +1724,7 @@ pub const ITransactionVoterFactory2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const ITransactionVoterFactory2, pTransaction: ?*ITransaction, pVoterNotify: ?*ITransactionVoterNotifyAsync2, ppVoterBallot: ?*?*ITransactionVoterBallotAsync2) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const ITransactionVoterFactory2, pTransaction: ?*ITransaction, pVoterNotify: ?*ITransactionVoterNotifyAsync2, ppVoterBallot: ?*?*ITransactionVoterBallotAsync2) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pTransaction, pVoterNotify, ppVoterBallot);
     }
 };
@@ -1753,19 +1753,19 @@ pub const ITransactionPhase0EnlistmentAsync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Enable(self: *const ITransactionPhase0EnlistmentAsync) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self);
     }
-    pub fn WaitForEnlistment(self: *const ITransactionPhase0EnlistmentAsync) callconv(.Inline) HRESULT {
+    pub fn WaitForEnlistment(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForEnlistment(self);
     }
-    pub fn Phase0Done(self: *const ITransactionPhase0EnlistmentAsync) callconv(.Inline) HRESULT {
+    pub fn Phase0Done(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Phase0Done(self);
     }
-    pub fn Unenlist(self: *const ITransactionPhase0EnlistmentAsync) callconv(.Inline) HRESULT {
+    pub fn Unenlist(self: *const ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Unenlist(self);
     }
-    pub fn GetTransaction(self: *const ITransactionPhase0EnlistmentAsync, ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn GetTransaction(self: *const ITransactionPhase0EnlistmentAsync, ppITransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransaction(self, ppITransaction);
     }
 };
@@ -1786,10 +1786,10 @@ pub const ITransactionPhase0NotifyAsync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Phase0Request(self: *const ITransactionPhase0NotifyAsync, fAbortingHint: BOOL) callconv(.Inline) HRESULT {
+    pub fn Phase0Request(self: *const ITransactionPhase0NotifyAsync, fAbortingHint: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Phase0Request(self, fAbortingHint);
     }
-    pub fn EnlistCompleted(self: *const ITransactionPhase0NotifyAsync, status: HRESULT) callconv(.Inline) HRESULT {
+    pub fn EnlistCompleted(self: *const ITransactionPhase0NotifyAsync, status: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.EnlistCompleted(self, status);
     }
 };
@@ -1807,7 +1807,7 @@ pub const ITransactionPhase0Factory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const ITransactionPhase0Factory, pPhase0Notify: ?*ITransactionPhase0NotifyAsync, ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const ITransactionPhase0Factory, pPhase0Notify: ?*ITransactionPhase0NotifyAsync, ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pPhase0Notify, ppPhase0Enlistment);
     }
 };
@@ -1842,19 +1842,19 @@ pub const ITransactionTransmitter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Set(self: *const ITransactionTransmitter, pTransaction: ?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn Set(self: *const ITransactionTransmitter, pTransaction: ?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.Set(self, pTransaction);
     }
-    pub fn GetPropagationTokenSize(self: *const ITransactionTransmitter, pcbToken: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPropagationTokenSize(self: *const ITransactionTransmitter, pcbToken: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropagationTokenSize(self, pcbToken);
     }
-    pub fn MarshalPropagationToken(self: *const ITransactionTransmitter, cbToken: u32, rgbToken: [*:0]u8, pcbUsed: ?*u32) callconv(.Inline) HRESULT {
+    pub fn MarshalPropagationToken(self: *const ITransactionTransmitter, cbToken: u32, rgbToken: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.MarshalPropagationToken(self, cbToken, rgbToken, pcbUsed);
     }
-    pub fn UnmarshalReturnToken(self: *const ITransactionTransmitter, cbReturnToken: u32, rgbReturnToken: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn UnmarshalReturnToken(self: *const ITransactionTransmitter, cbReturnToken: u32, rgbReturnToken: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.UnmarshalReturnToken(self, cbReturnToken, rgbReturnToken);
     }
-    pub fn Reset(self: *const ITransactionTransmitter) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const ITransactionTransmitter) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -1871,7 +1871,7 @@ pub const ITransactionTransmitterFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const ITransactionTransmitterFactory, ppTransmitter: ?*?*ITransactionTransmitter) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const ITransactionTransmitterFactory, ppTransmitter: ?*?*ITransactionTransmitter) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, ppTransmitter);
     }
 };
@@ -1903,16 +1903,16 @@ pub const ITransactionReceiver = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn UnmarshalPropagationToken(self: *const ITransactionReceiver, cbToken: u32, rgbToken: [*:0]u8, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
+    pub fn UnmarshalPropagationToken(self: *const ITransactionReceiver, cbToken: u32, rgbToken: [*:0]u8, ppTransaction: ?*?*ITransaction) callconv(.@"inline") HRESULT {
         return self.vtable.UnmarshalPropagationToken(self, cbToken, rgbToken, ppTransaction);
     }
-    pub fn GetReturnTokenSize(self: *const ITransactionReceiver, pcbReturnToken: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetReturnTokenSize(self: *const ITransactionReceiver, pcbReturnToken: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetReturnTokenSize(self, pcbReturnToken);
     }
-    pub fn MarshalReturnToken(self: *const ITransactionReceiver, cbReturnToken: u32, rgbReturnToken: [*:0]u8, pcbUsed: ?*u32) callconv(.Inline) HRESULT {
+    pub fn MarshalReturnToken(self: *const ITransactionReceiver, cbReturnToken: u32, rgbReturnToken: [*:0]u8, pcbUsed: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.MarshalReturnToken(self, cbReturnToken, rgbReturnToken, pcbUsed);
     }
-    pub fn Reset(self: *const ITransactionReceiver) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const ITransactionReceiver) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -1929,7 +1929,7 @@ pub const ITransactionReceiverFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const ITransactionReceiverFactory, ppReceiver: ?*?*ITransactionReceiver) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const ITransactionReceiverFactory, ppReceiver: ?*?*ITransactionReceiver) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, ppReceiver);
     }
 };
@@ -1956,10 +1956,10 @@ pub const IDtcLuConfigure = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Add(self: *const IDtcLuConfigure, pucLuPair: [*:0]u8, cbLuPair: u32) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const IDtcLuConfigure, pucLuPair: [*:0]u8, cbLuPair: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, pucLuPair, cbLuPair);
     }
-    pub fn Delete(self: *const IDtcLuConfigure, pucLuPair: [*:0]u8, cbLuPair: u32) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IDtcLuConfigure, pucLuPair: [*:0]u8, cbLuPair: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, pucLuPair, cbLuPair);
     }
 };
@@ -1988,7 +1988,7 @@ pub const IDtcLuRecoveryFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IDtcLuRecoveryFactory, pucLuPair: [*:0]u8, cbLuPair: u32, ppRecovery: ?*?*IDtcLuRecovery) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IDtcLuRecoveryFactory, pucLuPair: [*:0]u8, cbLuPair: u32, ppRecovery: ?*?*IDtcLuRecovery) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pucLuPair, cbLuPair, ppRecovery);
     }
 };
@@ -2143,43 +2143,43 @@ pub const IDtcLuRecoveryInitiatedByDtcTransWork = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLogNameSizes(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pcbOurLogName: ?*u32, pcbRemoteLogName: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLogNameSizes(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pcbOurLogName: ?*u32, pcbRemoteLogName: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLogNameSizes(self, pcbOurLogName, pcbRemoteLogName);
     }
-    pub fn GetOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pXln: ?*_DtcLu_Xln, pOurLogName: ?*u8, pRemoteLogName: ?*u8, pdwProtocol: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pXln: ?*_DtcLu_Xln, pOurLogName: ?*u8, pRemoteLogName: ?*u8, pdwProtocol: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurXln(self, pXln, pOurLogName, pRemoteLogName, pdwProtocol);
     }
-    pub fn HandleConfirmationFromOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Confirmation: _DtcLu_Xln_Confirmation) callconv(.Inline) HRESULT {
+    pub fn HandleConfirmationFromOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Confirmation: _DtcLu_Xln_Confirmation) callconv(.@"inline") HRESULT {
         return self.vtable.HandleConfirmationFromOurXln(self, Confirmation);
     }
-    pub fn HandleTheirXlnResponse(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Xln: _DtcLu_Xln, pRemoteLogName: ?*u8, cbRemoteLogName: u32, dwProtocol: u32, pConfirmation: ?*_DtcLu_Xln_Confirmation) callconv(.Inline) HRESULT {
+    pub fn HandleTheirXlnResponse(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Xln: _DtcLu_Xln, pRemoteLogName: ?*u8, cbRemoteLogName: u32, dwProtocol: u32, pConfirmation: ?*_DtcLu_Xln_Confirmation) callconv(.@"inline") HRESULT {
         return self.vtable.HandleTheirXlnResponse(self, Xln, pRemoteLogName, cbRemoteLogName, dwProtocol, pConfirmation);
     }
-    pub fn HandleErrorFromOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Error: _DtcLu_Xln_Error) callconv(.Inline) HRESULT {
+    pub fn HandleErrorFromOurXln(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Error: _DtcLu_Xln_Error) callconv(.@"inline") HRESULT {
         return self.vtable.HandleErrorFromOurXln(self, Error);
     }
-    pub fn CheckForCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, fCompareStates: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn CheckForCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, fCompareStates: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CheckForCompareStates(self, fCompareStates);
     }
-    pub fn GetOurTransIdSize(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pcbOurTransId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOurTransIdSize(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pcbOurTransId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurTransIdSize(self, pcbOurTransId);
     }
-    pub fn GetOurCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pOurTransId: ?*u8, pCompareState: ?*_DtcLu_CompareState) callconv(.Inline) HRESULT {
+    pub fn GetOurCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, pOurTransId: ?*u8, pCompareState: ?*_DtcLu_CompareState) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurCompareStates(self, pOurTransId, pCompareState);
     }
-    pub fn HandleTheirCompareStatesResponse(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, CompareState: _DtcLu_CompareState, pConfirmation: ?*_DtcLu_CompareStates_Confirmation) callconv(.Inline) HRESULT {
+    pub fn HandleTheirCompareStatesResponse(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, CompareState: _DtcLu_CompareState, pConfirmation: ?*_DtcLu_CompareStates_Confirmation) callconv(.@"inline") HRESULT {
         return self.vtable.HandleTheirCompareStatesResponse(self, CompareState, pConfirmation);
     }
-    pub fn HandleErrorFromOurCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Error: _DtcLu_CompareStates_Error) callconv(.Inline) HRESULT {
+    pub fn HandleErrorFromOurCompareStates(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, Error: _DtcLu_CompareStates_Error) callconv(.@"inline") HRESULT {
         return self.vtable.HandleErrorFromOurCompareStates(self, Error);
     }
-    pub fn ConversationLost(self: *const IDtcLuRecoveryInitiatedByDtcTransWork) callconv(.Inline) HRESULT {
+    pub fn ConversationLost(self: *const IDtcLuRecoveryInitiatedByDtcTransWork) callconv(.@"inline") HRESULT {
         return self.vtable.ConversationLost(self);
     }
-    pub fn GetRecoverySeqNum(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, plRecoverySeqNum: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetRecoverySeqNum(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, plRecoverySeqNum: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRecoverySeqNum(self, plRecoverySeqNum);
     }
-    pub fn ObsoleteRecoverySeqNum(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, lNewRecoverySeqNum: i32) callconv(.Inline) HRESULT {
+    pub fn ObsoleteRecoverySeqNum(self: *const IDtcLuRecoveryInitiatedByDtcTransWork, lNewRecoverySeqNum: i32) callconv(.@"inline") HRESULT {
         return self.vtable.ObsoleteRecoverySeqNum(self, lNewRecoverySeqNum);
     }
 };
@@ -2196,7 +2196,7 @@ pub const IDtcLuRecoveryInitiatedByDtcStatusWork = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HandleCheckLuStatus(self: *const IDtcLuRecoveryInitiatedByDtcStatusWork, lRecoverySeqNum: i32) callconv(.Inline) HRESULT {
+    pub fn HandleCheckLuStatus(self: *const IDtcLuRecoveryInitiatedByDtcStatusWork, lRecoverySeqNum: i32) callconv(.@"inline") HRESULT {
         return self.vtable.HandleCheckLuStatus(self, lRecoverySeqNum);
     }
 };
@@ -2214,7 +2214,7 @@ pub const IDtcLuRecoveryInitiatedByDtc = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetWork(self: *const IDtcLuRecoveryInitiatedByDtc, pWork: ?*_DtcLu_LocalRecovery_Work, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetWork(self: *const IDtcLuRecoveryInitiatedByDtc, pWork: ?*_DtcLu_LocalRecovery_Work, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetWork(self, pWork, ppv);
     }
 };
@@ -2271,28 +2271,28 @@ pub const IDtcLuRecoveryInitiatedByLuWork = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HandleTheirXln(self: *const IDtcLuRecoveryInitiatedByLuWork, lRecoverySeqNum: i32, Xln: _DtcLu_Xln, pRemoteLogName: ?*u8, cbRemoteLogName: u32, pOurLogName: ?*u8, cbOurLogName: u32, dwProtocol: u32, pResponse: ?*_DtcLu_Xln_Response) callconv(.Inline) HRESULT {
+    pub fn HandleTheirXln(self: *const IDtcLuRecoveryInitiatedByLuWork, lRecoverySeqNum: i32, Xln: _DtcLu_Xln, pRemoteLogName: ?*u8, cbRemoteLogName: u32, pOurLogName: ?*u8, cbOurLogName: u32, dwProtocol: u32, pResponse: ?*_DtcLu_Xln_Response) callconv(.@"inline") HRESULT {
         return self.vtable.HandleTheirXln(self, lRecoverySeqNum, Xln, pRemoteLogName, cbRemoteLogName, pOurLogName, cbOurLogName, dwProtocol, pResponse);
     }
-    pub fn GetOurLogNameSize(self: *const IDtcLuRecoveryInitiatedByLuWork, pcbOurLogName: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOurLogNameSize(self: *const IDtcLuRecoveryInitiatedByLuWork, pcbOurLogName: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurLogNameSize(self, pcbOurLogName);
     }
-    pub fn GetOurXln(self: *const IDtcLuRecoveryInitiatedByLuWork, pXln: ?*_DtcLu_Xln, pOurLogName: ?*u8, pdwProtocol: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOurXln(self: *const IDtcLuRecoveryInitiatedByLuWork, pXln: ?*_DtcLu_Xln, pOurLogName: ?*u8, pdwProtocol: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOurXln(self, pXln, pOurLogName, pdwProtocol);
     }
-    pub fn HandleConfirmationOfOurXln(self: *const IDtcLuRecoveryInitiatedByLuWork, Confirmation: _DtcLu_Xln_Confirmation) callconv(.Inline) HRESULT {
+    pub fn HandleConfirmationOfOurXln(self: *const IDtcLuRecoveryInitiatedByLuWork, Confirmation: _DtcLu_Xln_Confirmation) callconv(.@"inline") HRESULT {
         return self.vtable.HandleConfirmationOfOurXln(self, Confirmation);
     }
-    pub fn HandleTheirCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, pRemoteTransId: ?*u8, cbRemoteTransId: u32, CompareState: _DtcLu_CompareState, pResponse: ?*_DtcLu_CompareStates_Response, pCompareState: ?*_DtcLu_CompareState) callconv(.Inline) HRESULT {
+    pub fn HandleTheirCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, pRemoteTransId: ?*u8, cbRemoteTransId: u32, CompareState: _DtcLu_CompareState, pResponse: ?*_DtcLu_CompareStates_Response, pCompareState: ?*_DtcLu_CompareState) callconv(.@"inline") HRESULT {
         return self.vtable.HandleTheirCompareStates(self, pRemoteTransId, cbRemoteTransId, CompareState, pResponse, pCompareState);
     }
-    pub fn HandleConfirmationOfOurCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, Confirmation: _DtcLu_CompareStates_Confirmation) callconv(.Inline) HRESULT {
+    pub fn HandleConfirmationOfOurCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, Confirmation: _DtcLu_CompareStates_Confirmation) callconv(.@"inline") HRESULT {
         return self.vtable.HandleConfirmationOfOurCompareStates(self, Confirmation);
     }
-    pub fn HandleErrorFromOurCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, Error: _DtcLu_CompareStates_Error) callconv(.Inline) HRESULT {
+    pub fn HandleErrorFromOurCompareStates(self: *const IDtcLuRecoveryInitiatedByLuWork, Error: _DtcLu_CompareStates_Error) callconv(.@"inline") HRESULT {
         return self.vtable.HandleErrorFromOurCompareStates(self, Error);
     }
-    pub fn ConversationLost(self: *const IDtcLuRecoveryInitiatedByLuWork) callconv(.Inline) HRESULT {
+    pub fn ConversationLost(self: *const IDtcLuRecoveryInitiatedByLuWork) callconv(.@"inline") HRESULT {
         return self.vtable.ConversationLost(self);
     }
 };
@@ -2309,7 +2309,7 @@ pub const IDtcLuRecoveryInitiatedByLu = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetObjectToHandleWorkFromLu(self: *const IDtcLuRecoveryInitiatedByLu, ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork) callconv(.Inline) HRESULT {
+    pub fn GetObjectToHandleWorkFromLu(self: *const IDtcLuRecoveryInitiatedByLu, ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectToHandleWorkFromLu(self, ppWork);
     }
 };
@@ -2341,22 +2341,22 @@ pub const IDtcLuRmEnlistment = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Unplug(self: *const IDtcLuRmEnlistment, fConversationLost: BOOL) callconv(.Inline) HRESULT {
+    pub fn Unplug(self: *const IDtcLuRmEnlistment, fConversationLost: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Unplug(self, fConversationLost);
     }
-    pub fn BackedOut(self: *const IDtcLuRmEnlistment) callconv(.Inline) HRESULT {
+    pub fn BackedOut(self: *const IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
         return self.vtable.BackedOut(self);
     }
-    pub fn BackOut(self: *const IDtcLuRmEnlistment) callconv(.Inline) HRESULT {
+    pub fn BackOut(self: *const IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
         return self.vtable.BackOut(self);
     }
-    pub fn Committed(self: *const IDtcLuRmEnlistment) callconv(.Inline) HRESULT {
+    pub fn Committed(self: *const IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
         return self.vtable.Committed(self);
     }
-    pub fn Forget(self: *const IDtcLuRmEnlistment) callconv(.Inline) HRESULT {
+    pub fn Forget(self: *const IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
         return self.vtable.Forget(self);
     }
-    pub fn RequestCommit(self: *const IDtcLuRmEnlistment) callconv(.Inline) HRESULT {
+    pub fn RequestCommit(self: *const IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
         return self.vtable.RequestCommit(self);
     }
 };
@@ -2396,31 +2396,31 @@ pub const IDtcLuRmEnlistmentSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AckUnplug(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn AckUnplug(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.AckUnplug(self);
     }
-    pub fn TmDown(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn TmDown(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.TmDown(self);
     }
-    pub fn SessionLost(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn SessionLost(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.SessionLost(self);
     }
-    pub fn BackedOut(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn BackedOut(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.BackedOut(self);
     }
-    pub fn BackOut(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn BackOut(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.BackOut(self);
     }
-    pub fn Committed(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn Committed(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.Committed(self);
     }
-    pub fn Forget(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn Forget(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.Forget(self);
     }
-    pub fn Prepare(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn Prepare(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.Prepare(self);
     }
-    pub fn RequestCommit(self: *const IDtcLuRmEnlistmentSink) callconv(.Inline) HRESULT {
+    pub fn RequestCommit(self: *const IDtcLuRmEnlistmentSink) callconv(.@"inline") HRESULT {
         return self.vtable.RequestCommit(self);
     }
 };
@@ -2443,7 +2443,7 @@ pub const IDtcLuRmEnlistmentFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IDtcLuRmEnlistmentFactory, pucLuPair: ?*u8, cbLuPair: u32, pITransaction: ?*ITransaction, pTransId: ?*u8, cbTransId: u32, pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink, ppRmEnlistment: ?*?*IDtcLuRmEnlistment) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IDtcLuRmEnlistmentFactory, pucLuPair: ?*u8, cbLuPair: u32, pITransaction: ?*ITransaction, pTransId: ?*u8, cbTransId: u32, pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink, ppRmEnlistment: ?*?*IDtcLuRmEnlistment) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pucLuPair, cbLuPair, pITransaction, pTransId, cbTransId, pRmEnlistmentSink, ppRmEnlistment);
     }
 };
@@ -2478,25 +2478,25 @@ pub const IDtcLuSubordinateDtc = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Unplug(self: *const IDtcLuSubordinateDtc, fConversationLost: BOOL) callconv(.Inline) HRESULT {
+    pub fn Unplug(self: *const IDtcLuSubordinateDtc, fConversationLost: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Unplug(self, fConversationLost);
     }
-    pub fn BackedOut(self: *const IDtcLuSubordinateDtc) callconv(.Inline) HRESULT {
+    pub fn BackedOut(self: *const IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
         return self.vtable.BackedOut(self);
     }
-    pub fn BackOut(self: *const IDtcLuSubordinateDtc) callconv(.Inline) HRESULT {
+    pub fn BackOut(self: *const IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
         return self.vtable.BackOut(self);
     }
-    pub fn Committed(self: *const IDtcLuSubordinateDtc) callconv(.Inline) HRESULT {
+    pub fn Committed(self: *const IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
         return self.vtable.Committed(self);
     }
-    pub fn Forget(self: *const IDtcLuSubordinateDtc) callconv(.Inline) HRESULT {
+    pub fn Forget(self: *const IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
         return self.vtable.Forget(self);
     }
-    pub fn Prepare(self: *const IDtcLuSubordinateDtc) callconv(.Inline) HRESULT {
+    pub fn Prepare(self: *const IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
         return self.vtable.Prepare(self);
     }
-    pub fn RequestCommit(self: *const IDtcLuSubordinateDtc) callconv(.Inline) HRESULT {
+    pub fn RequestCommit(self: *const IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
         return self.vtable.RequestCommit(self);
     }
 };
@@ -2533,28 +2533,28 @@ pub const IDtcLuSubordinateDtcSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AckUnplug(self: *const IDtcLuSubordinateDtcSink) callconv(.Inline) HRESULT {
+    pub fn AckUnplug(self: *const IDtcLuSubordinateDtcSink) callconv(.@"inline") HRESULT {
         return self.vtable.AckUnplug(self);
     }
-    pub fn TmDown(self: *const IDtcLuSubordinateDtcSink) callconv(.Inline) HRESULT {
+    pub fn TmDown(self: *const IDtcLuSubordinateDtcSink) callconv(.@"inline") HRESULT {
         return self.vtable.TmDown(self);
     }
-    pub fn SessionLost(self: *const IDtcLuSubordinateDtcSink) callconv(.Inline) HRESULT {
+    pub fn SessionLost(self: *const IDtcLuSubordinateDtcSink) callconv(.@"inline") HRESULT {
         return self.vtable.SessionLost(self);
     }
-    pub fn BackedOut(self: *const IDtcLuSubordinateDtcSink) callconv(.Inline) HRESULT {
+    pub fn BackedOut(self: *const IDtcLuSubordinateDtcSink) callconv(.@"inline") HRESULT {
         return self.vtable.BackedOut(self);
     }
-    pub fn BackOut(self: *const IDtcLuSubordinateDtcSink) callconv(.Inline) HRESULT {
+    pub fn BackOut(self: *const IDtcLuSubordinateDtcSink) callconv(.@"inline") HRESULT {
         return self.vtable.BackOut(self);
     }
-    pub fn Committed(self: *const IDtcLuSubordinateDtcSink) callconv(.Inline) HRESULT {
+    pub fn Committed(self: *const IDtcLuSubordinateDtcSink) callconv(.@"inline") HRESULT {
         return self.vtable.Committed(self);
     }
-    pub fn Forget(self: *const IDtcLuSubordinateDtcSink) callconv(.Inline) HRESULT {
+    pub fn Forget(self: *const IDtcLuSubordinateDtcSink) callconv(.@"inline") HRESULT {
         return self.vtable.Forget(self);
     }
-    pub fn RequestCommit(self: *const IDtcLuSubordinateDtcSink) callconv(.Inline) HRESULT {
+    pub fn RequestCommit(self: *const IDtcLuSubordinateDtcSink) callconv(.@"inline") HRESULT {
         return self.vtable.RequestCommit(self);
     }
 };
@@ -2581,7 +2581,7 @@ pub const IDtcLuSubordinateDtcFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IDtcLuSubordinateDtcFactory, pucLuPair: ?*u8, cbLuPair: u32, punkTransactionOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction, pTransId: ?*u8, cbTransId: u32, pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink, ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IDtcLuSubordinateDtcFactory, pucLuPair: ?*u8, cbLuPair: u32, punkTransactionOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction, pTransId: ?*u8, cbTransId: u32, pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink, ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, pucLuPair, cbLuPair, punkTransactionOuter, isoLevel, isoFlags, pOptions, ppTransaction, pTransId, cbTransId, pSubordinateDtcSink, ppSubordinateDtc);
     }
 };

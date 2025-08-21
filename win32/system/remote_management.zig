@@ -1117,16 +1117,16 @@ pub const IWSMan = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateSession(self: *const IWSMan, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn CreateSession(self: *const IWSMan, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSession(self, connection, flags, connectionOptions, session);
     }
-    pub fn CreateConnectionOptions(self: *const IWSMan, connectionOptions: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn CreateConnectionOptions(self: *const IWSMan, connectionOptions: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.CreateConnectionOptions(self, connectionOptions);
     }
-    pub fn get_CommandLine(self: *const IWSMan, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_CommandLine(self: *const IWSMan, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_CommandLine(self, value);
     }
-    pub fn get_Error(self: *const IWSMan, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Error(self: *const IWSMan, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Error(self, value);
     }
 };
@@ -1224,64 +1224,64 @@ pub const IWSManEx = extern union {
     IWSMan: IWSMan,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateResourceLocator(self: *const IWSManEx, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn CreateResourceLocator(self: *const IWSManEx, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.CreateResourceLocator(self, strResourceLocator, newResourceLocator);
     }
-    pub fn SessionFlagUTF8(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUTF8(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUTF8(self, flags);
     }
-    pub fn SessionFlagCredUsernamePassword(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagCredUsernamePassword(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagCredUsernamePassword(self, flags);
     }
-    pub fn SessionFlagSkipCACheck(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagSkipCACheck(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagSkipCACheck(self, flags);
     }
-    pub fn SessionFlagSkipCNCheck(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagSkipCNCheck(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagSkipCNCheck(self, flags);
     }
-    pub fn SessionFlagUseDigest(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseDigest(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUseDigest(self, flags);
     }
-    pub fn SessionFlagUseNegotiate(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseNegotiate(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUseNegotiate(self, flags);
     }
-    pub fn SessionFlagUseBasic(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseBasic(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUseBasic(self, flags);
     }
-    pub fn SessionFlagUseKerberos(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseKerberos(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUseKerberos(self, flags);
     }
-    pub fn SessionFlagNoEncryption(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagNoEncryption(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagNoEncryption(self, flags);
     }
-    pub fn SessionFlagEnableSPNServerPort(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagEnableSPNServerPort(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagEnableSPNServerPort(self, flags);
     }
-    pub fn SessionFlagUseNoAuthentication(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseNoAuthentication(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUseNoAuthentication(self, flags);
     }
-    pub fn EnumerationFlagNonXmlText(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagNonXmlText(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagNonXmlText(self, flags);
     }
-    pub fn EnumerationFlagReturnEPR(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagReturnEPR(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagReturnEPR(self, flags);
     }
-    pub fn EnumerationFlagReturnObjectAndEPR(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagReturnObjectAndEPR(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagReturnObjectAndEPR(self, flags);
     }
-    pub fn GetErrorMessage(self: *const IWSManEx, errorNumber: u32, errorMessage: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetErrorMessage(self: *const IWSManEx, errorNumber: u32, errorMessage: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorMessage(self, errorNumber, errorMessage);
     }
-    pub fn EnumerationFlagHierarchyDeep(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagHierarchyDeep(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagHierarchyDeep(self, flags);
     }
-    pub fn EnumerationFlagHierarchyShallow(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagHierarchyShallow(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagHierarchyShallow(self, flags);
     }
-    pub fn EnumerationFlagHierarchyDeepBasePropsOnly(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagHierarchyDeepBasePropsOnly(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagHierarchyDeepBasePropsOnly(self, flags);
     }
-    pub fn EnumerationFlagReturnObject(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagReturnObject(self: *const IWSManEx, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagReturnObject(self, flags);
     }
 };
@@ -1302,7 +1302,7 @@ pub const IWSManEx2 = extern union {
     IWSMan: IWSMan,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SessionFlagUseClientCertificate(self: *const IWSManEx2, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseClientCertificate(self: *const IWSManEx2, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUseClientCertificate(self, flags);
     }
 };
@@ -1348,25 +1348,25 @@ pub const IWSManEx3 = extern union {
     IWSMan: IWSMan,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SessionFlagUTF16(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUTF16(self: *const IWSManEx3, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUTF16(self, flags);
     }
-    pub fn SessionFlagUseCredSsp(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseCredSsp(self: *const IWSManEx3, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUseCredSsp(self, flags);
     }
-    pub fn EnumerationFlagAssociationInstance(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagAssociationInstance(self: *const IWSManEx3, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagAssociationInstance(self, flags);
     }
-    pub fn EnumerationFlagAssociatedInstance(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagAssociatedInstance(self: *const IWSManEx3, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerationFlagAssociatedInstance(self, flags);
     }
-    pub fn SessionFlagSkipRevocationCheck(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagSkipRevocationCheck(self: *const IWSManEx3, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagSkipRevocationCheck(self, flags);
     }
-    pub fn SessionFlagAllowNegotiateImplicitCredentials(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagAllowNegotiateImplicitCredentials(self: *const IWSManEx3, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagAllowNegotiateImplicitCredentials(self, flags);
     }
-    pub fn SessionFlagUseSsl(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseSsl(self: *const IWSManEx3, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionFlagUseSsl(self, flags);
     }
 };
@@ -1396,13 +1396,13 @@ pub const IWSManConnectionOptions = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_UserName(self: *const IWSManConnectionOptions, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserName(self: *const IWSManConnectionOptions, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserName(self, name);
     }
-    pub fn put_UserName(self: *const IWSManConnectionOptions, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_UserName(self: *const IWSManConnectionOptions, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_UserName(self, name);
     }
-    pub fn put_Password(self: *const IWSManConnectionOptions, password: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Password(self: *const IWSManConnectionOptions, password: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Password(self, password);
     }
 };
@@ -1428,10 +1428,10 @@ pub const IWSManConnectionOptionsEx = extern union {
     IWSManConnectionOptions: IWSManConnectionOptions,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_CertificateThumbprint(self, thumbprint);
     }
-    pub fn put_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_CertificateThumbprint(self, thumbprint);
     }
 };
@@ -1483,28 +1483,28 @@ pub const IWSManConnectionOptionsEx2 = extern union {
     IWSManConnectionOptions: IWSManConnectionOptions,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetProxy(self: *const IWSManConnectionOptionsEx2, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetProxy(self: *const IWSManConnectionOptionsEx2, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetProxy(self, accessType, authenticationMechanism, userName, password);
     }
-    pub fn ProxyIEConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyIEConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ProxyIEConfig(self, value);
     }
-    pub fn ProxyWinHttpConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyWinHttpConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ProxyWinHttpConfig(self, value);
     }
-    pub fn ProxyAutoDetect(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyAutoDetect(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ProxyAutoDetect(self, value);
     }
-    pub fn ProxyNoProxyServer(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyNoProxyServer(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ProxyNoProxyServer(self, value);
     }
-    pub fn ProxyAuthenticationUseNegotiate(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyAuthenticationUseNegotiate(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ProxyAuthenticationUseNegotiate(self, value);
     }
-    pub fn ProxyAuthenticationUseBasic(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyAuthenticationUseBasic(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ProxyAuthenticationUseBasic(self, value);
     }
-    pub fn ProxyAuthenticationUseDigest(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyAuthenticationUseDigest(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ProxyAuthenticationUseDigest(self, value);
     }
 };
@@ -1590,40 +1590,40 @@ pub const IWSManSession = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Get(self: *const IWSManSession, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Get(self: *const IWSManSession, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Get(self, resourceUri, flags, resource);
     }
-    pub fn Put(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Put(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Put(self, resourceUri, resource, flags, resultResource);
     }
-    pub fn Create(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Create(self, resourceUri, resource, flags, newUri);
     }
-    pub fn Delete(self: *const IWSManSession, resourceUri: VARIANT, flags: i32) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IWSManSession, resourceUri: VARIANT, flags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, resourceUri, flags);
     }
-    pub fn Invoke(self: *const IWSManSession, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IWSManSession, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, actionUri, resourceUri, parameters, flags, result);
     }
-    pub fn Enumerate(self: *const IWSManSession, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Enumerate(self: *const IWSManSession, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Enumerate(self, resourceUri, filter, dialect, flags, resultSet);
     }
-    pub fn Identify(self: *const IWSManSession, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Identify(self: *const IWSManSession, flags: i32, result: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Identify(self, flags, result);
     }
-    pub fn get_Error(self: *const IWSManSession, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Error(self: *const IWSManSession, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Error(self, value);
     }
-    pub fn get_BatchItems(self: *const IWSManSession, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BatchItems(self: *const IWSManSession, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_BatchItems(self, value);
     }
-    pub fn put_BatchItems(self: *const IWSManSession, value: i32) callconv(.Inline) HRESULT {
+    pub fn put_BatchItems(self: *const IWSManSession, value: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_BatchItems(self, value);
     }
-    pub fn get_Timeout(self: *const IWSManSession, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Timeout(self: *const IWSManSession, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Timeout(self, value);
     }
-    pub fn put_Timeout(self: *const IWSManSession, value: i32) callconv(.Inline) HRESULT {
+    pub fn put_Timeout(self: *const IWSManSession, value: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Timeout(self, value);
     }
 };
@@ -1652,13 +1652,13 @@ pub const IWSManEnumerator = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ReadItem(self: *const IWSManEnumerator, resource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ReadItem(self: *const IWSManEnumerator, resource: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ReadItem(self, resource);
     }
-    pub fn get_AtEndOfStream(self: *const IWSManEnumerator, eos: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AtEndOfStream(self: *const IWSManEnumerator, eos: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AtEndOfStream(self, eos);
     }
-    pub fn get_Error(self: *const IWSManEnumerator, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Error(self: *const IWSManEnumerator, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Error(self, value);
     }
 };
@@ -1735,43 +1735,43 @@ pub const IWSManResourceLocator = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_ResourceURI(self: *const IWSManResourceLocator, uri: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ResourceURI(self: *const IWSManResourceLocator, uri: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ResourceURI(self, uri);
     }
-    pub fn get_ResourceURI(self: *const IWSManResourceLocator, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ResourceURI(self: *const IWSManResourceLocator, uri: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ResourceURI(self, uri);
     }
-    pub fn AddSelector(self: *const IWSManResourceLocator, resourceSelName: ?BSTR, selValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddSelector(self: *const IWSManResourceLocator, resourceSelName: ?BSTR, selValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddSelector(self, resourceSelName, selValue);
     }
-    pub fn ClearSelectors(self: *const IWSManResourceLocator) callconv(.Inline) HRESULT {
+    pub fn ClearSelectors(self: *const IWSManResourceLocator) callconv(.@"inline") HRESULT {
         return self.vtable.ClearSelectors(self);
     }
-    pub fn get_FragmentPath(self: *const IWSManResourceLocator, text: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FragmentPath(self: *const IWSManResourceLocator, text: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_FragmentPath(self, text);
     }
-    pub fn put_FragmentPath(self: *const IWSManResourceLocator, text: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FragmentPath(self: *const IWSManResourceLocator, text: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_FragmentPath(self, text);
     }
-    pub fn get_FragmentDialect(self: *const IWSManResourceLocator, text: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FragmentDialect(self: *const IWSManResourceLocator, text: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_FragmentDialect(self, text);
     }
-    pub fn put_FragmentDialect(self: *const IWSManResourceLocator, text: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FragmentDialect(self: *const IWSManResourceLocator, text: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_FragmentDialect(self, text);
     }
-    pub fn AddOption(self: *const IWSManResourceLocator, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddOption(self: *const IWSManResourceLocator, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddOption(self, OptionName, OptionValue, mustComply);
     }
-    pub fn put_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_MustUnderstandOptions(self, mustUnderstand);
     }
-    pub fn get_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_MustUnderstandOptions(self, mustUnderstand);
     }
-    pub fn ClearOptions(self: *const IWSManResourceLocator) callconv(.Inline) HRESULT {
+    pub fn ClearOptions(self: *const IWSManResourceLocator) callconv(.@"inline") HRESULT {
         return self.vtable.ClearOptions(self);
     }
-    pub fn get_Error(self: *const IWSManResourceLocator, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Error(self: *const IWSManResourceLocator, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Error(self, value);
     }
 };
@@ -1802,7 +1802,7 @@ pub const IWSManInternal = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ConfigSDDL(self: *const IWSManInternal, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ConfigSDDL(self: *const IWSManInternal, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ConfigSDDL(self, session, resourceUri, flags, resource);
     }
 };

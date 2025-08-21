@@ -133,10 +133,10 @@ pub const IWPCProviderState = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Enable(self: *const IWPCProviderState) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const IWPCProviderState) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self);
     }
-    pub fn Disable(self: *const IWPCProviderState) callconv(.Inline) HRESULT {
+    pub fn Disable(self: *const IWPCProviderState) callconv(.@"inline") HRESULT {
         return self.vtable.Disable(self);
     }
 };
@@ -171,13 +171,13 @@ pub const IWPCProviderConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUserSummary(self: *const IWPCProviderConfig, bstrSID: ?BSTR, pbstrUserSummary: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetUserSummary(self: *const IWPCProviderConfig, bstrSID: ?BSTR, pbstrUserSummary: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserSummary(self, bstrSID, pbstrUserSummary);
     }
-    pub fn Configure(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrSID: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Configure(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrSID: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Configure(self, hWnd, bstrSID);
     }
-    pub fn RequestOverride(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrPath: ?BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
+    pub fn RequestOverride(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrPath: ?BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.@"inline") HRESULT {
         return self.vtable.RequestOverride(self, hWnd, bstrPath, dwFlags);
     }
 };
@@ -222,13 +222,13 @@ pub const IWPCSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsLoggingRequired(self: *const IWPCSettings, pfRequired: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsLoggingRequired(self: *const IWPCSettings, pfRequired: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsLoggingRequired(self, pfRequired);
     }
-    pub fn GetLastSettingsChangeTime(self: *const IWPCSettings, pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn GetLastSettingsChangeTime(self: *const IWPCSettings, pTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastSettingsChangeTime(self, pTime);
     }
-    pub fn GetRestrictions(self: *const IWPCSettings, pdwRestrictions: ?*WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
+    pub fn GetRestrictions(self: *const IWPCSettings, pdwRestrictions: ?*WPCFLAG_RESTRICTION) callconv(.@"inline") HRESULT {
         return self.vtable.GetRestrictions(self, pdwRestrictions);
     }
 };
@@ -248,7 +248,7 @@ pub const IWPCGamesSettings = extern union {
     vtable: *const VTable,
     IWPCSettings: IWPCSettings,
     IUnknown: IUnknown,
-    pub fn IsBlocked(self: *const IWPCGamesSettings, guidAppID: Guid, pdwReasons: ?*u32) callconv(.Inline) HRESULT {
+    pub fn IsBlocked(self: *const IWPCGamesSettings, guidAppID: Guid, pdwReasons: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsBlocked(self, guidAppID, pdwReasons);
     }
 };
@@ -282,10 +282,10 @@ pub const IWPCWebSettings = extern union {
     vtable: *const VTable,
     IWPCSettings: IWPCSettings,
     IUnknown: IUnknown,
-    pub fn GetSettings(self: *const IWPCWebSettings, pdwSettings: ?*WPCFLAG_WEB_SETTING) callconv(.Inline) HRESULT {
+    pub fn GetSettings(self: *const IWPCWebSettings, pdwSettings: ?*WPCFLAG_WEB_SETTING) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettings(self, pdwSettings);
     }
-    pub fn RequestURLOverride(self: *const IWPCWebSettings, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn RequestURLOverride(self: *const IWPCWebSettings, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RequestURLOverride(self, hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
     }
 };
@@ -325,16 +325,16 @@ pub const IWindowsParentalControlsCore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetVisibility(self: *const IWindowsParentalControlsCore, peVisibility: ?*WPCFLAG_VISIBILITY) callconv(.Inline) HRESULT {
+    pub fn GetVisibility(self: *const IWindowsParentalControlsCore, peVisibility: ?*WPCFLAG_VISIBILITY) callconv(.@"inline") HRESULT {
         return self.vtable.GetVisibility(self, peVisibility);
     }
-    pub fn GetUserSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCSettings) callconv(.Inline) HRESULT {
+    pub fn GetUserSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCSettings) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserSettings(self, pcszSID, ppSettings);
     }
-    pub fn GetWebSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCWebSettings) callconv(.Inline) HRESULT {
+    pub fn GetWebSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCWebSettings) callconv(.@"inline") HRESULT {
         return self.vtable.GetWebSettings(self, pcszSID, ppSettings);
     }
-    pub fn GetWebFilterInfo(self: *const IWindowsParentalControlsCore, pguidID: ?*Guid, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetWebFilterInfo(self: *const IWindowsParentalControlsCore, pguidID: ?*Guid, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetWebFilterInfo(self, pguidID, ppszName);
     }
 };
@@ -354,7 +354,7 @@ pub const IWindowsParentalControls = extern union {
     vtable: *const VTable,
     IWindowsParentalControlsCore: IWindowsParentalControlsCore,
     IUnknown: IUnknown,
-    pub fn GetGamesSettings(self: *const IWindowsParentalControls, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.Inline) HRESULT {
+    pub fn GetGamesSettings(self: *const IWindowsParentalControls, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.@"inline") HRESULT {
         return self.vtable.GetGamesSettings(self, pcszSID, ppSettings);
     }
 };
@@ -372,7 +372,7 @@ pub const IWPCProviderSupport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IWPCProviderSupport, pguidProvider: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IWPCProviderSupport, pguidProvider: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, pguidProvider);
     }
 };

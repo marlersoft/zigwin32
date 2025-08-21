@@ -4032,19 +4032,19 @@ pub const IDot11AdHocManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateNetwork(self: *const IDot11AdHocManager, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn CreateNetwork(self: *const IDot11AdHocManager, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) callconv(.@"inline") HRESULT {
         return self.vtable.CreateNetwork(self, Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
     }
-    pub fn CommitCreatedNetwork(self: *const IDot11AdHocManager, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
+    pub fn CommitCreatedNetwork(self: *const IDot11AdHocManager, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.@"inline") HRESULT {
         return self.vtable.CommitCreatedNetwork(self, pIAdHoc, fSaveProfile, fMakeSavedProfileUserSpecific);
     }
-    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocManager, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocManager, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.@"inline") HRESULT {
         return self.vtable.GetIEnumDot11AdHocNetworks(self, pContextGuid, ppEnum);
     }
-    pub fn GetIEnumDot11AdHocInterfaces(self: *const IDot11AdHocManager, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+    pub fn GetIEnumDot11AdHocInterfaces(self: *const IDot11AdHocManager, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.@"inline") HRESULT {
         return self.vtable.GetIEnumDot11AdHocInterfaces(self, ppEnum);
     }
-    pub fn GetNetwork(self: *const IDot11AdHocManager, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn GetNetwork(self: *const IDot11AdHocManager, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) callconv(.@"inline") HRESULT {
         return self.vtable.GetNetwork(self, NetworkSignature, pNetwork);
     }
 };
@@ -4074,16 +4074,16 @@ pub const IDot11AdHocManagerNotificationSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnNetworkAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocNetwork: ?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn OnNetworkAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocNetwork: ?*IDot11AdHocNetwork) callconv(.@"inline") HRESULT {
         return self.vtable.OnNetworkAdd(self, pIAdHocNetwork);
     }
-    pub fn OnNetworkRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn OnNetworkRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnNetworkRemove(self, Signature);
     }
-    pub fn OnInterfaceAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocInterface: ?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
+    pub fn OnInterfaceAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocInterface: ?*IDot11AdHocInterface) callconv(.@"inline") HRESULT {
         return self.vtable.OnInterfaceAdd(self, pIAdHocInterface);
     }
-    pub fn OnInterfaceRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn OnInterfaceRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnInterfaceRemove(self, Signature);
     }
 };
@@ -4114,16 +4114,16 @@ pub const IEnumDot11AdHocNetworks = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumDot11AdHocNetworks, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumDot11AdHocNetworks, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
-    pub fn Skip(self: *const IEnumDot11AdHocNetworks, cElt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumDot11AdHocNetworks, cElt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cElt);
     }
-    pub fn Reset(self: *const IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumDot11AdHocNetworks) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumDot11AdHocNetworks, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumDot11AdHocNetworks, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -4187,40 +4187,40 @@ pub const IDot11AdHocNetwork = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IDot11AdHocNetwork, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDot11AdHocNetwork, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, eStatus);
     }
-    pub fn GetSSID(self: *const IDot11AdHocNetwork, ppszwSSID: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSSID(self: *const IDot11AdHocNetwork, ppszwSSID: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSSID(self, ppszwSSID);
     }
-    pub fn HasProfile(self: *const IDot11AdHocNetwork, pf11d: ?*u8) callconv(.Inline) HRESULT {
+    pub fn HasProfile(self: *const IDot11AdHocNetwork, pf11d: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.HasProfile(self, pf11d);
     }
-    pub fn GetProfileName(self: *const IDot11AdHocNetwork, ppszwProfileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetProfileName(self: *const IDot11AdHocNetwork, ppszwProfileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetProfileName(self, ppszwProfileName);
     }
-    pub fn DeleteProfile(self: *const IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn DeleteProfile(self: *const IDot11AdHocNetwork) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteProfile(self);
     }
-    pub fn GetSignalQuality(self: *const IDot11AdHocNetwork, puStrengthValue: ?*u32, puStrengthMax: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSignalQuality(self: *const IDot11AdHocNetwork, puStrengthValue: ?*u32, puStrengthMax: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignalQuality(self, puStrengthValue, puStrengthMax);
     }
-    pub fn GetSecuritySetting(self: *const IDot11AdHocNetwork, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+    pub fn GetSecuritySetting(self: *const IDot11AdHocNetwork, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) callconv(.@"inline") HRESULT {
         return self.vtable.GetSecuritySetting(self, pAdHocSecuritySetting);
     }
-    pub fn GetContextGuid(self: *const IDot11AdHocNetwork, pContextGuid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetContextGuid(self: *const IDot11AdHocNetwork, pContextGuid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetContextGuid(self, pContextGuid);
     }
-    pub fn GetSignature(self: *const IDot11AdHocNetwork, pSignature: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetSignature(self: *const IDot11AdHocNetwork, pSignature: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignature(self, pSignature);
     }
-    pub fn GetInterface(self: *const IDot11AdHocNetwork, pAdHocInterface: ?*?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
+    pub fn GetInterface(self: *const IDot11AdHocNetwork, pAdHocInterface: ?*?*IDot11AdHocInterface) callconv(.@"inline") HRESULT {
         return self.vtable.GetInterface(self, pAdHocInterface);
     }
-    pub fn Connect(self: *const IDot11AdHocNetwork, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IDot11AdHocNetwork, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, Passphrase, GeographicalId, fSaveProfile, fMakeSavedProfileUserSpecific);
     }
-    pub fn Disconnect(self: *const IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const IDot11AdHocNetwork) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnect(self);
     }
 };
@@ -4242,10 +4242,10 @@ pub const IDot11AdHocNetworkNotificationSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStatusChange(self: *const IDot11AdHocNetworkNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnStatusChange(self: *const IDot11AdHocNetworkNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnStatusChange(self, eStatus);
     }
-    pub fn OnConnectFail(self: *const IDot11AdHocNetworkNotificationSink, eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON) callconv(.Inline) HRESULT {
+    pub fn OnConnectFail(self: *const IDot11AdHocNetworkNotificationSink, eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON) callconv(.@"inline") HRESULT {
         return self.vtable.OnConnectFail(self, eFailReason);
     }
 };
@@ -4296,31 +4296,31 @@ pub const IDot11AdHocInterface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDeviceSignature(self: *const IDot11AdHocInterface, pSignature: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetDeviceSignature(self: *const IDot11AdHocInterface, pSignature: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceSignature(self, pSignature);
     }
-    pub fn GetFriendlyName(self: *const IDot11AdHocInterface, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFriendlyName(self: *const IDot11AdHocInterface, ppszName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFriendlyName(self, ppszName);
     }
-    pub fn IsDot11d(self: *const IDot11AdHocInterface, pf11d: ?*u8) callconv(.Inline) HRESULT {
+    pub fn IsDot11d(self: *const IDot11AdHocInterface, pf11d: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.IsDot11d(self, pf11d);
     }
-    pub fn IsAdHocCapable(self: *const IDot11AdHocInterface, pfAdHocCapable: ?*u8) callconv(.Inline) HRESULT {
+    pub fn IsAdHocCapable(self: *const IDot11AdHocInterface, pfAdHocCapable: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.IsAdHocCapable(self, pfAdHocCapable);
     }
-    pub fn IsRadioOn(self: *const IDot11AdHocInterface, pfIsRadioOn: ?*u8) callconv(.Inline) HRESULT {
+    pub fn IsRadioOn(self: *const IDot11AdHocInterface, pfIsRadioOn: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.IsRadioOn(self, pfIsRadioOn);
     }
-    pub fn GetActiveNetwork(self: *const IDot11AdHocInterface, ppNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn GetActiveNetwork(self: *const IDot11AdHocInterface, ppNetwork: ?*?*IDot11AdHocNetwork) callconv(.@"inline") HRESULT {
         return self.vtable.GetActiveNetwork(self, ppNetwork);
     }
-    pub fn GetIEnumSecuritySettings(self: *const IDot11AdHocInterface, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+    pub fn GetIEnumSecuritySettings(self: *const IDot11AdHocInterface, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.@"inline") HRESULT {
         return self.vtable.GetIEnumSecuritySettings(self, ppEnum);
     }
-    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocInterface, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocInterface, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.@"inline") HRESULT {
         return self.vtable.GetIEnumDot11AdHocNetworks(self, pFilterGuid, ppEnum);
     }
-    pub fn GetStatus(self: *const IDot11AdHocInterface, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDot11AdHocInterface, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, pState);
     }
 };
@@ -4351,16 +4351,16 @@ pub const IEnumDot11AdHocInterfaces = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumDot11AdHocInterfaces, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumDot11AdHocInterfaces, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
-    pub fn Skip(self: *const IEnumDot11AdHocInterfaces, cElt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumDot11AdHocInterfaces, cElt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cElt);
     }
-    pub fn Reset(self: *const IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumDot11AdHocInterfaces) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumDot11AdHocInterfaces, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumDot11AdHocInterfaces, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -4391,16 +4391,16 @@ pub const IEnumDot11AdHocSecuritySettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
-    pub fn Skip(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cElt);
     }
-    pub fn Reset(self: *const IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumDot11AdHocSecuritySettings) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumDot11AdHocSecuritySettings, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumDot11AdHocSecuritySettings, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -4422,10 +4422,10 @@ pub const IDot11AdHocSecuritySettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDot11AuthAlgorithm(self: *const IDot11AdHocSecuritySettings, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) callconv(.Inline) HRESULT {
+    pub fn GetDot11AuthAlgorithm(self: *const IDot11AdHocSecuritySettings, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) callconv(.@"inline") HRESULT {
         return self.vtable.GetDot11AuthAlgorithm(self, pAuth);
     }
-    pub fn GetDot11CipherAlgorithm(self: *const IDot11AdHocSecuritySettings, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) callconv(.Inline) HRESULT {
+    pub fn GetDot11CipherAlgorithm(self: *const IDot11AdHocSecuritySettings, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) callconv(.@"inline") HRESULT {
         return self.vtable.GetDot11CipherAlgorithm(self, pCipher);
     }
 };
@@ -4443,7 +4443,7 @@ pub const IDot11AdHocInterfaceNotificationSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnConnectionStatusChange(self: *const IDot11AdHocInterfaceNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnConnectionStatusChange(self: *const IDot11AdHocInterfaceNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnConnectionStatusChange(self, eStatus);
     }
 };

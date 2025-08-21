@@ -151,13 +151,13 @@ pub const ISceSvcAttachmentPersistInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Save(self: *const ISceSvcAttachmentPersistInfo, lpTemplateName: ?*i8, scesvcHandle: ?*?*anyopaque, ppvData: ?*?*anyopaque, pbOverwriteAll: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const ISceSvcAttachmentPersistInfo, lpTemplateName: ?*i8, scesvcHandle: ?*?*anyopaque, ppvData: ?*?*anyopaque, pbOverwriteAll: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, lpTemplateName, scesvcHandle, ppvData, pbOverwriteAll);
     }
-    pub fn IsDirty(self: *const ISceSvcAttachmentPersistInfo, lpTemplateName: ?*i8) callconv(.Inline) HRESULT {
+    pub fn IsDirty(self: *const ISceSvcAttachmentPersistInfo, lpTemplateName: ?*i8) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirty(self, lpTemplateName);
     }
-    pub fn FreeBuffer(self: *const ISceSvcAttachmentPersistInfo, pvData: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn FreeBuffer(self: *const ISceSvcAttachmentPersistInfo, pvData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBuffer(self, pvData);
     }
 };
@@ -193,16 +193,16 @@ pub const ISceSvcAttachmentData = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetData(self: *const ISceSvcAttachmentData, scesvcHandle: ?*anyopaque, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*anyopaque, psceEnumHandle: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const ISceSvcAttachmentData, scesvcHandle: ?*anyopaque, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*anyopaque, psceEnumHandle: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, scesvcHandle, sceType, ppvData, psceEnumHandle);
     }
-    pub fn Initialize(self: *const ISceSvcAttachmentData, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const ISceSvcAttachmentData, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, lpServiceName, lpTemplateName, lpSceSvcPersistInfo, pscesvcHandle);
     }
-    pub fn FreeBuffer(self: *const ISceSvcAttachmentData, pvData: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn FreeBuffer(self: *const ISceSvcAttachmentData, pvData: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBuffer(self, pvData);
     }
-    pub fn CloseHandle(self: *const ISceSvcAttachmentData, scesvcHandle: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CloseHandle(self: *const ISceSvcAttachmentData, scesvcHandle: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CloseHandle(self, scesvcHandle);
     }
 };

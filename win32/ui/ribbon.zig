@@ -127,7 +127,7 @@ pub const IUISimplePropertySet = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetValue(self: *const IUISimplePropertySet, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IUISimplePropertySet, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, key, value);
     }
 };
@@ -153,13 +153,13 @@ pub const IUIRibbon = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHeight(self: *const IUIRibbon, cy: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetHeight(self: *const IUIRibbon, cy: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetHeight(self, cy);
     }
-    pub fn LoadSettingsFromStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn LoadSettingsFromStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.LoadSettingsFromStream(self, pStream);
     }
-    pub fn SaveSettingsToStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn SaveSettingsToStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.SaveSettingsToStream(self, pStream);
     }
 };
@@ -228,31 +228,31 @@ pub const IUIFramework = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IUIFramework, frameWnd: ?HWND, application: ?*IUIApplication) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IUIFramework, frameWnd: ?HWND, application: ?*IUIApplication) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, frameWnd, application);
     }
-    pub fn Destroy(self: *const IUIFramework) callconv(.Inline) HRESULT {
+    pub fn Destroy(self: *const IUIFramework) callconv(.@"inline") HRESULT {
         return self.vtable.Destroy(self);
     }
-    pub fn LoadUI(self: *const IUIFramework, instance: ?HINSTANCE, resourceName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn LoadUI(self: *const IUIFramework, instance: ?HINSTANCE, resourceName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.LoadUI(self, instance, resourceName);
     }
-    pub fn GetView(self: *const IUIFramework, viewId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetView(self: *const IUIFramework, viewId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetView(self, viewId, riid, ppv);
     }
-    pub fn GetUICommandProperty(self: *const IUIFramework, commandId: u32, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetUICommandProperty(self: *const IUIFramework, commandId: u32, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetUICommandProperty(self, commandId, key, value);
     }
-    pub fn SetUICommandProperty(self: *const IUIFramework, commandId: u32, key: ?*const PROPERTYKEY, value: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn SetUICommandProperty(self: *const IUIFramework, commandId: u32, key: ?*const PROPERTYKEY, value: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetUICommandProperty(self, commandId, key, value);
     }
-    pub fn InvalidateUICommand(self: *const IUIFramework, commandId: u32, flags: UI_INVALIDATIONS, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn InvalidateUICommand(self: *const IUIFramework, commandId: u32, flags: UI_INVALIDATIONS, key: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.InvalidateUICommand(self, commandId, flags, key);
     }
-    pub fn FlushPendingInvalidations(self: *const IUIFramework) callconv(.Inline) HRESULT {
+    pub fn FlushPendingInvalidations(self: *const IUIFramework) callconv(.@"inline") HRESULT {
         return self.vtable.FlushPendingInvalidations(self);
     }
-    pub fn SetModes(self: *const IUIFramework, iModes: i32) callconv(.Inline) HRESULT {
+    pub fn SetModes(self: *const IUIFramework, iModes: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetModes(self, iModes);
     }
 };
@@ -287,7 +287,7 @@ pub const IUIEventLogger = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnUIEvent(self: *const IUIEventLogger, pEventParams: ?*UI_EVENTPARAMS) callconv(.Inline) void {
+    pub fn OnUIEvent(self: *const IUIEventLogger, pEventParams: ?*UI_EVENTPARAMS) callconv(.@"inline") void {
         return self.vtable.OnUIEvent(self, pEventParams);
     }
 };
@@ -305,7 +305,7 @@ pub const IUIEventingManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetEventLogger(self: *const IUIEventingManager, eventLogger: ?*IUIEventLogger) callconv(.Inline) HRESULT {
+    pub fn SetEventLogger(self: *const IUIEventingManager, eventLogger: ?*IUIEventLogger) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventLogger(self, eventLogger);
     }
 };
@@ -324,7 +324,7 @@ pub const IUIContextualUI = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ShowAtLocation(self: *const IUIContextualUI, x: i32, y: i32) callconv(.Inline) HRESULT {
+    pub fn ShowAtLocation(self: *const IUIContextualUI, x: i32, y: i32) callconv(.@"inline") HRESULT {
         return self.vtable.ShowAtLocation(self, x, y);
     }
 };
@@ -368,25 +368,25 @@ pub const IUICollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IUICollection, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IUICollection, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, count);
     }
-    pub fn GetItem(self: *const IUICollection, index: u32, item: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetItem(self: *const IUICollection, index: u32, item: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetItem(self, index, item);
     }
-    pub fn Add(self: *const IUICollection, item: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const IUICollection, item: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, item);
     }
-    pub fn Insert(self: *const IUICollection, index: u32, item: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Insert(self: *const IUICollection, index: u32, item: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Insert(self, index, item);
     }
-    pub fn RemoveAt(self: *const IUICollection, index: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveAt(self: *const IUICollection, index: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAt(self, index);
     }
-    pub fn Replace(self: *const IUICollection, indexReplaced: u32, itemReplaceWith: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Replace(self: *const IUICollection, indexReplaced: u32, itemReplaceWith: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Replace(self, indexReplaced, itemReplaceWith);
     }
-    pub fn Clear(self: *const IUICollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const IUICollection) callconv(.@"inline") HRESULT {
         return self.vtable.Clear(self);
     }
 };
@@ -419,7 +419,7 @@ pub const IUICollectionChangedEvent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnChanged(self: *const IUICollectionChangedEvent, action: UI_COLLECTIONCHANGE, oldIndex: u32, oldItem: ?*IUnknown, newIndex: u32, newItem: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn OnChanged(self: *const IUICollectionChangedEvent, action: UI_COLLECTIONCHANGE, oldIndex: u32, oldItem: ?*IUnknown, newIndex: u32, newItem: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OnChanged(self, action, oldIndex, oldItem, newIndex, newItem);
     }
 };
@@ -457,10 +457,10 @@ pub const IUICommandHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Execute(self: *const IUICommandHandler, commandId: u32, verb: UI_EXECUTIONVERB, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, commandExecutionProperties: ?*IUISimplePropertySet) callconv(.Inline) HRESULT {
+    pub fn Execute(self: *const IUICommandHandler, commandId: u32, verb: UI_EXECUTIONVERB, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, commandExecutionProperties: ?*IUISimplePropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.Execute(self, commandId, verb, key, currentValue, commandExecutionProperties);
     }
-    pub fn UpdateProperty(self: *const IUICommandHandler, commandId: u32, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, newValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn UpdateProperty(self: *const IUICommandHandler, commandId: u32, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, newValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateProperty(self, commandId, key, currentValue, newValue);
     }
 };
@@ -539,13 +539,13 @@ pub const IUIApplication = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnViewChanged(self: *const IUIApplication, viewId: u32, typeID: UI_VIEWTYPE, view: ?*IUnknown, verb: UI_VIEWVERB, uReasonCode: i32) callconv(.Inline) HRESULT {
+    pub fn OnViewChanged(self: *const IUIApplication, viewId: u32, typeID: UI_VIEWTYPE, view: ?*IUnknown, verb: UI_VIEWVERB, uReasonCode: i32) callconv(.@"inline") HRESULT {
         return self.vtable.OnViewChanged(self, viewId, typeID, view, verb, uReasonCode);
     }
-    pub fn OnCreateUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*?*IUICommandHandler) callconv(.Inline) HRESULT {
+    pub fn OnCreateUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*?*IUICommandHandler) callconv(.@"inline") HRESULT {
         return self.vtable.OnCreateUICommand(self, commandId, typeID, commandHandler);
     }
-    pub fn OnDestroyUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*IUICommandHandler) callconv(.Inline) HRESULT {
+    pub fn OnDestroyUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*IUICommandHandler) callconv(.@"inline") HRESULT {
         return self.vtable.OnDestroyUICommand(self, commandId, typeID, commandHandler);
     }
 };
@@ -563,7 +563,7 @@ pub const IUIImage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBitmap(self: *const IUIImage, bitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn GetBitmap(self: *const IUIImage, bitmap: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.GetBitmap(self, bitmap);
     }
 };
@@ -590,7 +590,7 @@ pub const IUIImageFromBitmap = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateImage(self: *const IUIImageFromBitmap, bitmap: ?HBITMAP, options: UI_OWNERSHIP, image: ?*?*IUIImage) callconv(.Inline) HRESULT {
+    pub fn CreateImage(self: *const IUIImageFromBitmap, bitmap: ?HBITMAP, options: UI_OWNERSHIP, image: ?*?*IUIImage) callconv(.@"inline") HRESULT {
         return self.vtable.CreateImage(self, bitmap, options, image);
     }
 };

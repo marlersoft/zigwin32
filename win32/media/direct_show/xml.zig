@@ -32,13 +32,13 @@ pub const IXMLGraphBuilder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BuildFromXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pxml: ?*IXMLElement) callconv(.Inline) HRESULT {
+    pub fn BuildFromXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pxml: ?*IXMLElement) callconv(.@"inline") HRESULT {
         return self.vtable.BuildFromXML(self, pGraph, pxml);
     }
-    pub fn SaveToXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pbstrxml: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn SaveToXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pbstrxml: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SaveToXML(self, pGraph, pbstrxml);
     }
-    pub fn BuildFromXMLFile(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, wszFileName: ?[*:0]const u16, wszBaseURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn BuildFromXMLFile(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, wszFileName: ?[*:0]const u16, wszBaseURL: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.BuildFromXMLFile(self, pGraph, wszFileName, wszBaseURL);
     }
 };

@@ -763,25 +763,25 @@ pub const IValidate = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OpenDatabase(self: *const IValidate, szDatabase: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OpenDatabase(self: *const IValidate, szDatabase: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OpenDatabase(self, szDatabase);
     }
-    pub fn OpenCUB(self: *const IValidate, szCUBFile: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OpenCUB(self: *const IValidate, szCUBFile: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OpenCUB(self, szCUBFile);
     }
-    pub fn CloseDatabase(self: *const IValidate) callconv(.Inline) HRESULT {
+    pub fn CloseDatabase(self: *const IValidate) callconv(.@"inline") HRESULT {
         return self.vtable.CloseDatabase(self);
     }
-    pub fn CloseCUB(self: *const IValidate) callconv(.Inline) HRESULT {
+    pub fn CloseCUB(self: *const IValidate) callconv(.@"inline") HRESULT {
         return self.vtable.CloseCUB(self);
     }
-    pub fn SetDisplay(self: *const IValidate, pDisplayFunction: ?LPDISPLAYVAL, pContext: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetDisplay(self: *const IValidate, pDisplayFunction: ?LPDISPLAYVAL, pContext: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplay(self, pDisplayFunction, pContext);
     }
-    pub fn SetStatus(self: *const IValidate, pStatusFunction: ?LPEVALCOMCALLBACK, pContext: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetStatus(self: *const IValidate, pStatusFunction: ?LPEVALCOMCALLBACK, pContext: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetStatus(self, pStatusFunction, pContext);
     }
-    pub fn Validate(self: *const IValidate, wzICEs: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Validate(self: *const IValidate, wzICEs: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Validate(self, wzICEs);
     }
 };
@@ -833,16 +833,16 @@ pub const IEnumMsmString = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumMsmString, cFetch: u32, rgbstrStrings: ?*?BSTR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumMsmString, cFetch: u32, rgbstrStrings: ?*?BSTR, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cFetch, rgbstrStrings, pcFetched);
     }
-    pub fn Skip(self: *const IEnumMsmString, cSkip: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumMsmString, cSkip: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cSkip);
     }
-    pub fn Reset(self: *const IEnumMsmString) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumMsmString) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumMsmString, pemsmStrings: ?*?*IEnumMsmString) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumMsmString, pemsmStrings: ?*?*IEnumMsmString) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, pemsmStrings);
     }
 };
@@ -871,13 +871,13 @@ pub const IMsmStrings = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IMsmStrings, Item: i32, Return: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IMsmStrings, Item: i32, Return: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Item, Return);
     }
-    pub fn get_Count(self: *const IMsmStrings, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IMsmStrings, Count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn get__NewEnum(self: *const IMsmStrings, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IMsmStrings, NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, NewEnum);
     }
 };
@@ -926,25 +926,25 @@ pub const IMsmError = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const IMsmError, ErrorType: ?*msmErrorType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IMsmError, ErrorType: ?*msmErrorType) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, ErrorType);
     }
-    pub fn get_Path(self: *const IMsmError, ErrorPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IMsmError, ErrorPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, ErrorPath);
     }
-    pub fn get_Language(self: *const IMsmError, ErrorLanguage: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Language(self: *const IMsmError, ErrorLanguage: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Language(self, ErrorLanguage);
     }
-    pub fn get_DatabaseTable(self: *const IMsmError, ErrorTable: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DatabaseTable(self: *const IMsmError, ErrorTable: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DatabaseTable(self, ErrorTable);
     }
-    pub fn get_DatabaseKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+    pub fn get_DatabaseKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) callconv(.@"inline") HRESULT {
         return self.vtable.get_DatabaseKeys(self, ErrorKeys);
     }
-    pub fn get_ModuleTable(self: *const IMsmError, ErrorTable: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ModuleTable(self: *const IMsmError, ErrorTable: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleTable(self, ErrorTable);
     }
-    pub fn get_ModuleKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+    pub fn get_ModuleKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleKeys(self, ErrorKeys);
     }
 };
@@ -974,16 +974,16 @@ pub const IEnumMsmError = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumMsmError, cFetch: u32, rgmsmErrors: ?*?*IMsmError, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumMsmError, cFetch: u32, rgmsmErrors: ?*?*IMsmError, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cFetch, rgmsmErrors, pcFetched);
     }
-    pub fn Skip(self: *const IEnumMsmError, cSkip: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumMsmError, cSkip: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cSkip);
     }
-    pub fn Reset(self: *const IEnumMsmError) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumMsmError) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumMsmError, pemsmErrors: ?*?*IEnumMsmError) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumMsmError, pemsmErrors: ?*?*IEnumMsmError) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, pemsmErrors);
     }
 };
@@ -1012,13 +1012,13 @@ pub const IMsmErrors = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IMsmErrors, Item: i32, Return: ?*?*IMsmError) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IMsmErrors, Item: i32, Return: ?*?*IMsmError) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Item, Return);
     }
-    pub fn get_Count(self: *const IMsmErrors, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IMsmErrors, Count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn get__NewEnum(self: *const IMsmErrors, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IMsmErrors, NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, NewEnum);
     }
 };
@@ -1047,13 +1047,13 @@ pub const IMsmDependency = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Module(self: *const IMsmDependency, Module: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Module(self: *const IMsmDependency, Module: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Module(self, Module);
     }
-    pub fn get_Language(self: *const IMsmDependency, Language: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Language(self: *const IMsmDependency, Language: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Language(self, Language);
     }
-    pub fn get_Version(self: *const IMsmDependency, Version: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IMsmDependency, Version: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Version(self, Version);
     }
 };
@@ -1083,16 +1083,16 @@ pub const IEnumMsmDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumMsmDependency, cFetch: u32, rgmsmDependencies: ?*?*IMsmDependency, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumMsmDependency, cFetch: u32, rgmsmDependencies: ?*?*IMsmDependency, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cFetch, rgmsmDependencies, pcFetched);
     }
-    pub fn Skip(self: *const IEnumMsmDependency, cSkip: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumMsmDependency, cSkip: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cSkip);
     }
-    pub fn Reset(self: *const IEnumMsmDependency) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumMsmDependency) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumMsmDependency, pemsmDependencies: ?*?*IEnumMsmDependency) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumMsmDependency, pemsmDependencies: ?*?*IEnumMsmDependency) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, pemsmDependencies);
     }
 };
@@ -1121,13 +1121,13 @@ pub const IMsmDependencies = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IMsmDependencies, Item: i32, Return: ?*?*IMsmDependency) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IMsmDependencies, Item: i32, Return: ?*?*IMsmDependency) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Item, Return);
     }
-    pub fn get_Count(self: *const IMsmDependencies, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IMsmDependencies, Count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn get__NewEnum(self: *const IMsmDependencies, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IMsmDependencies, NewEnum: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, NewEnum);
     }
 };
@@ -1195,43 +1195,43 @@ pub const IMsmMerge = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OpenDatabase(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OpenDatabase(self: *const IMsmMerge, Path: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OpenDatabase(self, Path);
     }
-    pub fn OpenModule(self: *const IMsmMerge, Path: ?BSTR, Language: i16) callconv(.Inline) HRESULT {
+    pub fn OpenModule(self: *const IMsmMerge, Path: ?BSTR, Language: i16) callconv(.@"inline") HRESULT {
         return self.vtable.OpenModule(self, Path, Language);
     }
-    pub fn CloseDatabase(self: *const IMsmMerge, Commit: i16) callconv(.Inline) HRESULT {
+    pub fn CloseDatabase(self: *const IMsmMerge, Commit: i16) callconv(.@"inline") HRESULT {
         return self.vtable.CloseDatabase(self, Commit);
     }
-    pub fn CloseModule(self: *const IMsmMerge) callconv(.Inline) HRESULT {
+    pub fn CloseModule(self: *const IMsmMerge) callconv(.@"inline") HRESULT {
         return self.vtable.CloseModule(self);
     }
-    pub fn OpenLog(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OpenLog(self: *const IMsmMerge, Path: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OpenLog(self, Path);
     }
-    pub fn CloseLog(self: *const IMsmMerge) callconv(.Inline) HRESULT {
+    pub fn CloseLog(self: *const IMsmMerge) callconv(.@"inline") HRESULT {
         return self.vtable.CloseLog(self);
     }
-    pub fn Log(self: *const IMsmMerge, Message: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Log(self: *const IMsmMerge, Message: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Log(self, Message);
     }
-    pub fn get_Errors(self: *const IMsmMerge, Errors: ?*?*IMsmErrors) callconv(.Inline) HRESULT {
+    pub fn get_Errors(self: *const IMsmMerge, Errors: ?*?*IMsmErrors) callconv(.@"inline") HRESULT {
         return self.vtable.get_Errors(self, Errors);
     }
-    pub fn get_Dependencies(self: *const IMsmMerge, Dependencies: ?*?*IMsmDependencies) callconv(.Inline) HRESULT {
+    pub fn get_Dependencies(self: *const IMsmMerge, Dependencies: ?*?*IMsmDependencies) callconv(.@"inline") HRESULT {
         return self.vtable.get_Dependencies(self, Dependencies);
     }
-    pub fn Merge(self: *const IMsmMerge, Feature: ?BSTR, RedirectDir: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Merge(self: *const IMsmMerge, Feature: ?BSTR, RedirectDir: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Merge(self, Feature, RedirectDir);
     }
-    pub fn Connect(self: *const IMsmMerge, Feature: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IMsmMerge, Feature: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, Feature);
     }
-    pub fn ExtractCAB(self: *const IMsmMerge, FileName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExtractCAB(self: *const IMsmMerge, FileName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExtractCAB(self, FileName);
     }
-    pub fn ExtractFiles(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExtractFiles(self: *const IMsmMerge, Path: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExtractFiles(self, Path);
     }
 };
@@ -1250,7 +1250,7 @@ pub const IMsmGetFiles = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ModuleFiles(self: *const IMsmGetFiles, Files: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+    pub fn get_ModuleFiles(self: *const IMsmGetFiles, Files: ?*?*IMsmStrings) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleFiles(self, Files);
     }
 };
@@ -2080,31 +2080,31 @@ pub const IAssemblyName = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, cbProperty: u32) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, cbProperty: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, PropertyId, pvProperty, cbProperty);
     }
-    pub fn GetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, pcbProperty: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, pcbProperty: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, PropertyId, pvProperty, pcbProperty);
     }
-    pub fn Finalize(self: *const IAssemblyName) callconv(.Inline) HRESULT {
+    pub fn Finalize(self: *const IAssemblyName) callconv(.@"inline") HRESULT {
         return self.vtable.Finalize(self);
     }
-    pub fn GetDisplayName(self: *const IAssemblyName, szDisplayName: ?[*:0]u16, pccDisplayName: ?*u32, dwDisplayFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetDisplayName(self: *const IAssemblyName, szDisplayName: ?[*:0]u16, pccDisplayName: ?*u32, dwDisplayFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, szDisplayName, pccDisplayName, dwDisplayFlags);
     }
-    pub fn Reserved(self: *const IAssemblyName, refIID: ?*const Guid, pUnkReserved1: ?*IUnknown, pUnkReserved2: ?*IUnknown, szReserved: ?[*:0]const u16, llReserved: i64, pvReserved: ?*anyopaque, cbReserved: u32, ppReserved: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Reserved(self: *const IAssemblyName, refIID: ?*const Guid, pUnkReserved1: ?*IUnknown, pUnkReserved2: ?*IUnknown, szReserved: ?[*:0]const u16, llReserved: i64, pvReserved: ?*anyopaque, cbReserved: u32, ppReserved: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Reserved(self, refIID, pUnkReserved1, pUnkReserved2, szReserved, llReserved, pvReserved, cbReserved, ppReserved);
     }
-    pub fn GetName(self: *const IAssemblyName, lpcwBuffer: ?*u32, pwzName: ?[*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAssemblyName, lpcwBuffer: ?*u32, pwzName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, lpcwBuffer, pwzName);
     }
-    pub fn GetVersion(self: *const IAssemblyName, pdwVersionHi: ?*u32, pdwVersionLow: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IAssemblyName, pdwVersionHi: ?*u32, pdwVersionLow: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVersion(self, pdwVersionHi, pdwVersionLow);
     }
-    pub fn IsEqual(self: *const IAssemblyName, pName: ?*IAssemblyName, dwCmpFlags: u32) callconv(.Inline) HRESULT {
+    pub fn IsEqual(self: *const IAssemblyName, pName: ?*IAssemblyName, dwCmpFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsEqual(self, pName, dwCmpFlags);
     }
-    pub fn Clone(self: *const IAssemblyName, pName: ?*?*IAssemblyName) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IAssemblyName, pName: ?*?*IAssemblyName) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, pName);
     }
 };
@@ -2135,13 +2135,13 @@ pub const IAssemblyCacheItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateStream(self: *const IAssemblyCacheItem, dwFlags: u32, pszStreamName: ?[*:0]const u16, dwFormat: u32, dwFormatFlags: u32, ppIStream: ?*?*IStream, puliMaxSize: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn CreateStream(self: *const IAssemblyCacheItem, dwFlags: u32, pszStreamName: ?[*:0]const u16, dwFormat: u32, dwFormatFlags: u32, ppIStream: ?*?*IStream, puliMaxSize: ?*ULARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStream(self, dwFlags, pszStreamName, dwFormat, dwFormatFlags, ppIStream, puliMaxSize);
     }
-    pub fn Commit(self: *const IAssemblyCacheItem, dwFlags: u32, pulDisposition: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IAssemblyCacheItem, dwFlags: u32, pulDisposition: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self, dwFlags, pulDisposition);
     }
-    pub fn AbortItem(self: *const IAssemblyCacheItem) callconv(.Inline) HRESULT {
+    pub fn AbortItem(self: *const IAssemblyCacheItem) callconv(.@"inline") HRESULT {
         return self.vtable.AbortItem(self);
     }
 };
@@ -2185,19 +2185,19 @@ pub const IAssemblyCache = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn UninstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszAssemblyName: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE, pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION) callconv(.Inline) HRESULT {
+    pub fn UninstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszAssemblyName: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE, pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION) callconv(.@"inline") HRESULT {
         return self.vtable.UninstallAssembly(self, dwFlags, pszAssemblyName, pRefData, pulDisposition);
     }
-    pub fn QueryAssemblyInfo(self: *const IAssemblyCache, dwFlags: QUERYASMINFO_FLAGS, pszAssemblyName: ?[*:0]const u16, pAsmInfo: ?*ASSEMBLY_INFO) callconv(.Inline) HRESULT {
+    pub fn QueryAssemblyInfo(self: *const IAssemblyCache, dwFlags: QUERYASMINFO_FLAGS, pszAssemblyName: ?[*:0]const u16, pAsmInfo: ?*ASSEMBLY_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.QueryAssemblyInfo(self, dwFlags, pszAssemblyName, pAsmInfo);
     }
-    pub fn CreateAssemblyCacheItem(self: *const IAssemblyCache, dwFlags: u32, pvReserved: ?*anyopaque, ppAsmItem: ?*?*IAssemblyCacheItem, pszAssemblyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn CreateAssemblyCacheItem(self: *const IAssemblyCache, dwFlags: u32, pvReserved: ?*anyopaque, ppAsmItem: ?*?*IAssemblyCacheItem, pszAssemblyName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAssemblyCacheItem(self, dwFlags, pvReserved, ppAsmItem, pszAssemblyName);
     }
-    pub fn Reserved(self: *const IAssemblyCache, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Reserved(self: *const IAssemblyCache, ppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Reserved(self, ppUnk);
     }
-    pub fn InstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszManifestFilePath: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE) callconv(.Inline) HRESULT {
+    pub fn InstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszManifestFilePath: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE) callconv(.@"inline") HRESULT {
         return self.vtable.InstallAssembly(self, dwFlags, pszManifestFilePath, pRefData);
     }
 };
@@ -3422,169 +3422,169 @@ pub const IPMApplicationInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMApplicationInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMApplicationInfo, pProductID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_InstanceID(self: *const IPMApplicationInfo, pInstanceID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_InstanceID(self: *const IPMApplicationInfo, pInstanceID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_InstanceID(self, pInstanceID);
     }
-    pub fn get_OfferID(self: *const IPMApplicationInfo, pOfferID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_OfferID(self: *const IPMApplicationInfo, pOfferID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_OfferID(self, pOfferID);
     }
-    pub fn get_DefaultTask(self: *const IPMApplicationInfo, pDefaultTask: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DefaultTask(self: *const IPMApplicationInfo, pDefaultTask: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DefaultTask(self, pDefaultTask);
     }
-    pub fn get_AppTitle(self: *const IPMApplicationInfo, pAppTitle: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AppTitle(self: *const IPMApplicationInfo, pAppTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppTitle(self, pAppTitle);
     }
-    pub fn get_IconPath(self: *const IPMApplicationInfo, pAppIconPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_IconPath(self: *const IPMApplicationInfo, pAppIconPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_IconPath(self, pAppIconPath);
     }
-    pub fn get_NotificationState(self: *const IPMApplicationInfo, pIsNotified: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_NotificationState(self: *const IPMApplicationInfo, pIsNotified: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_NotificationState(self, pIsNotified);
     }
-    pub fn get_AppInstallType(self: *const IPMApplicationInfo, pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_AppInstallType(self: *const IPMApplicationInfo, pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppInstallType(self, pAppInstallType);
     }
-    pub fn get_State(self: *const IPMApplicationInfo, pState: ?*PM_APPLICATION_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const IPMApplicationInfo, pState: ?*PM_APPLICATION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_State(self, pState);
     }
-    pub fn get_IsRevoked(self: *const IPMApplicationInfo, pIsRevoked: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsRevoked(self: *const IPMApplicationInfo, pIsRevoked: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRevoked(self, pIsRevoked);
     }
-    pub fn get_UpdateAvailable(self: *const IPMApplicationInfo, pIsUpdateAvailable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_UpdateAvailable(self: *const IPMApplicationInfo, pIsUpdateAvailable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_UpdateAvailable(self, pIsUpdateAvailable);
     }
-    pub fn get_InstallDate(self: *const IPMApplicationInfo, pInstallDate: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_InstallDate(self: *const IPMApplicationInfo, pInstallDate: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_InstallDate(self, pInstallDate);
     }
-    pub fn get_IsUninstallable(self: *const IPMApplicationInfo, pIsUninstallable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsUninstallable(self: *const IPMApplicationInfo, pIsUninstallable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsUninstallable(self, pIsUninstallable);
     }
-    pub fn get_IsThemable(self: *const IPMApplicationInfo, pIsThemable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsThemable(self: *const IPMApplicationInfo, pIsThemable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsThemable(self, pIsThemable);
     }
-    pub fn get_IsTrial(self: *const IPMApplicationInfo, pIsTrial: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsTrial(self: *const IPMApplicationInfo, pIsTrial: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsTrial(self, pIsTrial);
     }
-    pub fn get_InstallPath(self: *const IPMApplicationInfo, pInstallPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InstallPath(self: *const IPMApplicationInfo, pInstallPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InstallPath(self, pInstallPath);
     }
-    pub fn get_DataRoot(self: *const IPMApplicationInfo, pDataRoot: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DataRoot(self: *const IPMApplicationInfo, pDataRoot: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DataRoot(self, pDataRoot);
     }
-    pub fn get_Genre(self: *const IPMApplicationInfo, pGenre: ?*PM_APP_GENRE) callconv(.Inline) HRESULT {
+    pub fn get_Genre(self: *const IPMApplicationInfo, pGenre: ?*PM_APP_GENRE) callconv(.@"inline") HRESULT {
         return self.vtable.get_Genre(self, pGenre);
     }
-    pub fn get_Publisher(self: *const IPMApplicationInfo, pPublisher: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Publisher(self: *const IPMApplicationInfo, pPublisher: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Publisher(self, pPublisher);
     }
-    pub fn get_Author(self: *const IPMApplicationInfo, pAuthor: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Author(self: *const IPMApplicationInfo, pAuthor: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Author(self, pAuthor);
     }
-    pub fn get_Description(self: *const IPMApplicationInfo, pDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IPMApplicationInfo, pDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pDescription);
     }
-    pub fn get_Version(self: *const IPMApplicationInfo, pVersion: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IPMApplicationInfo, pVersion: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Version(self, pVersion);
     }
-    pub fn get_InvocationInfo(self: *const IPMApplicationInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMApplicationInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
-    pub fn get_AppPlatMajorVersion(self: *const IPMApplicationInfo, pMajorVer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_AppPlatMajorVersion(self: *const IPMApplicationInfo, pMajorVer: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppPlatMajorVersion(self, pMajorVer);
     }
-    pub fn get_AppPlatMinorVersion(self: *const IPMApplicationInfo, pMinorVer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_AppPlatMinorVersion(self: *const IPMApplicationInfo, pMinorVer: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppPlatMinorVersion(self, pMinorVer);
     }
-    pub fn get_PublisherID(self: *const IPMApplicationInfo, pPublisherID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_PublisherID(self: *const IPMApplicationInfo, pPublisherID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_PublisherID(self, pPublisherID);
     }
-    pub fn get_IsMultiCore(self: *const IPMApplicationInfo, pIsMultiCore: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsMultiCore(self: *const IPMApplicationInfo, pIsMultiCore: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsMultiCore(self, pIsMultiCore);
     }
-    pub fn get_SID(self: *const IPMApplicationInfo, pSID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SID(self: *const IPMApplicationInfo, pSID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SID(self, pSID);
     }
-    pub fn get_AppPlatMajorVersionLightUp(self: *const IPMApplicationInfo, pMajorVer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_AppPlatMajorVersionLightUp(self: *const IPMApplicationInfo, pMajorVer: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppPlatMajorVersionLightUp(self, pMajorVer);
     }
-    pub fn get_AppPlatMinorVersionLightUp(self: *const IPMApplicationInfo, pMinorVer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_AppPlatMinorVersionLightUp(self: *const IPMApplicationInfo, pMinorVer: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppPlatMinorVersionLightUp(self, pMinorVer);
     }
-    pub fn set_UpdateAvailable(self: *const IPMApplicationInfo, IsUpdateAvailable: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_UpdateAvailable(self: *const IPMApplicationInfo, IsUpdateAvailable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_UpdateAvailable(self, IsUpdateAvailable);
     }
-    pub fn set_NotificationState(self: *const IPMApplicationInfo, IsNotified: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_NotificationState(self: *const IPMApplicationInfo, IsNotified: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_NotificationState(self, IsNotified);
     }
-    pub fn set_IconPath(self: *const IPMApplicationInfo, AppIconPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn set_IconPath(self: *const IPMApplicationInfo, AppIconPath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.set_IconPath(self, AppIconPath);
     }
-    pub fn set_UninstallableState(self: *const IPMApplicationInfo, IsUninstallable: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_UninstallableState(self: *const IPMApplicationInfo, IsUninstallable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_UninstallableState(self, IsUninstallable);
     }
-    pub fn get_IsPinableOnKidZone(self: *const IPMApplicationInfo, pIsPinable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsPinableOnKidZone(self: *const IPMApplicationInfo, pIsPinable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsPinableOnKidZone(self, pIsPinable);
     }
-    pub fn get_IsOriginallyPreInstalled(self: *const IPMApplicationInfo, pIsPreinstalled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOriginallyPreInstalled(self: *const IPMApplicationInfo, pIsPreinstalled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOriginallyPreInstalled(self, pIsPreinstalled);
     }
-    pub fn get_IsInstallOnSD(self: *const IPMApplicationInfo, pIsInstallOnSD: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsInstallOnSD(self: *const IPMApplicationInfo, pIsInstallOnSD: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsInstallOnSD(self, pIsInstallOnSD);
     }
-    pub fn get_IsOptoutOnSD(self: *const IPMApplicationInfo, pIsOptoutOnSD: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOptoutOnSD(self: *const IPMApplicationInfo, pIsOptoutOnSD: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOptoutOnSD(self, pIsOptoutOnSD);
     }
-    pub fn get_IsOptoutBackupRestore(self: *const IPMApplicationInfo, pIsOptoutBackupRestore: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOptoutBackupRestore(self: *const IPMApplicationInfo, pIsOptoutBackupRestore: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOptoutBackupRestore(self, pIsOptoutBackupRestore);
     }
-    pub fn set_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_EnterpriseDisabled(self, IsDisabled);
     }
-    pub fn set_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_EnterpriseUninstallable(self, IsUninstallable);
     }
-    pub fn get_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnterpriseDisabled(self, IsDisabled);
     }
-    pub fn get_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnterpriseUninstallable(self, IsUninstallable);
     }
-    pub fn get_IsVisibleOnAppList(self: *const IPMApplicationInfo, pIsVisible: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsVisibleOnAppList(self: *const IPMApplicationInfo, pIsVisible: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsVisibleOnAppList(self, pIsVisible);
     }
-    pub fn get_IsInboxApp(self: *const IPMApplicationInfo, pIsInboxApp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsInboxApp(self: *const IPMApplicationInfo, pIsInboxApp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsInboxApp(self, pIsInboxApp);
     }
-    pub fn get_StorageID(self: *const IPMApplicationInfo, pStorageID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_StorageID(self: *const IPMApplicationInfo, pStorageID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_StorageID(self, pStorageID);
     }
-    pub fn get_StartAppBlob(self: *const IPMApplicationInfo, pBlob: ?*PM_STARTAPPBLOB) callconv(.Inline) HRESULT {
+    pub fn get_StartAppBlob(self: *const IPMApplicationInfo, pBlob: ?*PM_STARTAPPBLOB) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartAppBlob(self, pBlob);
     }
-    pub fn get_IsMovable(self: *const IPMApplicationInfo, pIsMovable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsMovable(self: *const IPMApplicationInfo, pIsMovable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsMovable(self, pIsMovable);
     }
-    pub fn get_DeploymentAppEnumerationHubFilter(self: *const IPMApplicationInfo, HubType: ?*PM_TILE_HUBTYPE) callconv(.Inline) HRESULT {
+    pub fn get_DeploymentAppEnumerationHubFilter(self: *const IPMApplicationInfo, HubType: ?*PM_TILE_HUBTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_DeploymentAppEnumerationHubFilter(self, HubType);
     }
-    pub fn get_ModifiedDate(self: *const IPMApplicationInfo, pModifiedDate: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_ModifiedDate(self: *const IPMApplicationInfo, pModifiedDate: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModifiedDate(self, pModifiedDate);
     }
-    pub fn get_IsOriginallyRestored(self: *const IPMApplicationInfo, pIsRestored: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOriginallyRestored(self: *const IPMApplicationInfo, pIsRestored: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOriginallyRestored(self, pIsRestored);
     }
-    pub fn get_ShouldDeferMdilBind(self: *const IPMApplicationInfo, pfDeferMdilBind: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_ShouldDeferMdilBind(self: *const IPMApplicationInfo, pfDeferMdilBind: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ShouldDeferMdilBind(self, pfDeferMdilBind);
     }
-    pub fn get_IsFullyPreInstall(self: *const IPMApplicationInfo, pfIsFullyPreInstall: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsFullyPreInstall(self: *const IPMApplicationInfo, pfIsFullyPreInstall: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFullyPreInstall(self, pfIsFullyPreInstall);
     }
-    pub fn set_IsMdilMaintenanceNeeded(self: *const IPMApplicationInfo, fIsMdilMaintenanceNeeded: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsMdilMaintenanceNeeded(self: *const IPMApplicationInfo, fIsMdilMaintenanceNeeded: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_IsMdilMaintenanceNeeded(self, fIsMdilMaintenanceNeeded);
     }
-    pub fn set_Title(self: *const IPMApplicationInfo, AppTitle: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn set_Title(self: *const IPMApplicationInfo, AppTitle: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.set_Title(self, AppTitle);
     }
 };
@@ -3611,13 +3611,13 @@ pub const IPMTilePropertyInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_PropertyID(self: *const IPMTilePropertyInfo, pPropID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_PropertyID(self: *const IPMTilePropertyInfo, pPropID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyID(self, pPropID);
     }
-    pub fn get_PropertyValue(self: *const IPMTilePropertyInfo, pPropValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PropertyValue(self: *const IPMTilePropertyInfo, pPropValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyValue(self, pPropValue);
     }
-    pub fn set_Property(self: *const IPMTilePropertyInfo, PropValue: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn set_Property(self: *const IPMTilePropertyInfo, PropValue: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.set_Property(self, PropValue);
     }
 };
@@ -3635,7 +3635,7 @@ pub const IPMTilePropertyEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMTilePropertyEnumerator, ppPropInfo: ?*?*IPMTilePropertyInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMTilePropertyEnumerator, ppPropInfo: ?*?*IPMTilePropertyInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_Next(self, ppPropInfo);
     }
 };
@@ -3765,76 +3765,76 @@ pub const IPMTileInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMTileInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMTileInfo, pProductID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TileID(self: *const IPMTileInfo, pTileID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TileID(self: *const IPMTileInfo, pTileID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TileID(self, pTileID);
     }
-    pub fn get_TemplateType(self: *const IPMTileInfo, pTemplateType: ?*TILE_TEMPLATE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_TemplateType(self: *const IPMTileInfo, pTemplateType: ?*TILE_TEMPLATE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_TemplateType(self, pTemplateType);
     }
-    pub fn get_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPinned: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPinned: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_HubPinnedState(self, HubType, pPinned);
     }
-    pub fn get_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPosition: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPosition: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_HubPosition(self, HubType, pPosition);
     }
-    pub fn get_IsNotified(self: *const IPMTileInfo, pIsNotified: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsNotified(self: *const IPMTileInfo, pIsNotified: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsNotified(self, pIsNotified);
     }
-    pub fn get_IsDefault(self: *const IPMTileInfo, pIsDefault: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsDefault(self: *const IPMTileInfo, pIsDefault: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsDefault(self, pIsDefault);
     }
-    pub fn get_TaskID(self: *const IPMTileInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TaskID(self: *const IPMTileInfo, pTaskID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TaskID(self, pTaskID);
     }
-    pub fn get_TileType(self: *const IPMTileInfo, pStartTileType: ?*PM_STARTTILE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_TileType(self: *const IPMTileInfo, pStartTileType: ?*PM_STARTTILE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_TileType(self, pStartTileType);
     }
-    pub fn get_IsThemable(self: *const IPMTileInfo, pIsThemable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsThemable(self: *const IPMTileInfo, pIsThemable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsThemable(self, pIsThemable);
     }
-    pub fn get_PropertyById(self: *const IPMTileInfo, PropID: u32, ppPropInfo: ?*?*IPMTilePropertyInfo) callconv(.Inline) HRESULT {
+    pub fn get_PropertyById(self: *const IPMTileInfo, PropID: u32, ppPropInfo: ?*?*IPMTilePropertyInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyById(self, PropID, ppPropInfo);
     }
-    pub fn get_InvocationInfo(self: *const IPMTileInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMTileInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
-    pub fn get_PropertyEnum(self: *const IPMTileInfo, ppTilePropEnum: ?*?*IPMTilePropertyEnumerator) callconv(.Inline) HRESULT {
+    pub fn get_PropertyEnum(self: *const IPMTileInfo, ppTilePropEnum: ?*?*IPMTilePropertyEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyEnum(self, ppTilePropEnum);
     }
-    pub fn get_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pSize: ?*PM_TILE_SIZE) callconv(.Inline) HRESULT {
+    pub fn get_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pSize: ?*PM_TILE_SIZE) callconv(.@"inline") HRESULT {
         return self.vtable.get_HubTileSize(self, HubType, pSize);
     }
-    pub fn set_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Position: u32) callconv(.Inline) HRESULT {
+    pub fn set_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Position: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_HubPosition(self, HubType, Position);
     }
-    pub fn set_NotifiedState(self: *const IPMTileInfo, Notified: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_NotifiedState(self: *const IPMTileInfo, Notified: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_NotifiedState(self, Notified);
     }
-    pub fn set_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Pinned: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Pinned: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_HubPinnedState(self, HubType, Pinned);
     }
-    pub fn set_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Size: PM_TILE_SIZE) callconv(.Inline) HRESULT {
+    pub fn set_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Size: PM_TILE_SIZE) callconv(.@"inline") HRESULT {
         return self.vtable.set_HubTileSize(self, HubType, Size);
     }
-    pub fn set_InvocationInfo(self: *const IPMTileInfo, TaskName: ?BSTR, TaskParameters: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn set_InvocationInfo(self: *const IPMTileInfo, TaskName: ?BSTR, TaskParameters: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.set_InvocationInfo(self, TaskName, TaskParameters);
     }
-    pub fn get_StartTileBlob(self: *const IPMTileInfo, pBlob: ?*PM_STARTTILEBLOB) callconv(.Inline) HRESULT {
+    pub fn get_StartTileBlob(self: *const IPMTileInfo, pBlob: ?*PM_STARTTILEBLOB) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartTileBlob(self, pBlob);
     }
-    pub fn get_IsRestoring(self: *const IPMTileInfo, pIsRestoring: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsRestoring(self: *const IPMTileInfo, pIsRestoring: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRestoring(self, pIsRestoring);
     }
-    pub fn get_IsAutoRestoreDisabled(self: *const IPMTileInfo, pIsAutoRestoreDisabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsAutoRestoreDisabled(self: *const IPMTileInfo, pIsAutoRestoreDisabled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsAutoRestoreDisabled(self, pIsAutoRestoreDisabled);
     }
-    pub fn set_IsRestoring(self: *const IPMTileInfo, Restoring: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsRestoring(self: *const IPMTileInfo, Restoring: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_IsRestoring(self, Restoring);
     }
-    pub fn set_IsAutoRestoreDisabled(self: *const IPMTileInfo, AutoRestoreDisabled: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsAutoRestoreDisabled(self: *const IPMTileInfo, AutoRestoreDisabled: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_IsAutoRestoreDisabled(self, AutoRestoreDisabled);
     }
 };
@@ -3852,7 +3852,7 @@ pub const IPMTileInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMTileInfoEnumerator, ppTileInfo: ?*?*IPMTileInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMTileInfoEnumerator, ppTileInfo: ?*?*IPMTileInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_Next(self, ppTileInfo);
     }
 };
@@ -3870,7 +3870,7 @@ pub const IPMApplicationInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMApplicationInfoEnumerator, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMApplicationInfoEnumerator, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_Next(self, ppAppInfo);
     }
 };
@@ -3994,76 +3994,76 @@ pub const IPMLiveTileJobInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMLiveTileJobInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMLiveTileJobInfo, pProductID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TileID(self: *const IPMLiveTileJobInfo, pTileID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TileID(self: *const IPMLiveTileJobInfo, pTileID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TileID(self, pTileID);
     }
-    pub fn get_NextSchedule(self: *const IPMLiveTileJobInfo, pNextSchedule: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_NextSchedule(self: *const IPMLiveTileJobInfo, pNextSchedule: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_NextSchedule(self, pNextSchedule);
     }
-    pub fn set_NextSchedule(self: *const IPMLiveTileJobInfo, ftNextSchedule: FILETIME) callconv(.Inline) HRESULT {
+    pub fn set_NextSchedule(self: *const IPMLiveTileJobInfo, ftNextSchedule: FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.set_NextSchedule(self, ftNextSchedule);
     }
-    pub fn get_StartSchedule(self: *const IPMLiveTileJobInfo, pStartSchedule: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_StartSchedule(self: *const IPMLiveTileJobInfo, pStartSchedule: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartSchedule(self, pStartSchedule);
     }
-    pub fn set_StartSchedule(self: *const IPMLiveTileJobInfo, ftStartSchedule: FILETIME) callconv(.Inline) HRESULT {
+    pub fn set_StartSchedule(self: *const IPMLiveTileJobInfo, ftStartSchedule: FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.set_StartSchedule(self, ftStartSchedule);
     }
-    pub fn get_IntervalDuration(self: *const IPMLiveTileJobInfo, pIntervalDuration: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_IntervalDuration(self: *const IPMLiveTileJobInfo, pIntervalDuration: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_IntervalDuration(self, pIntervalDuration);
     }
-    pub fn set_IntervalDuration(self: *const IPMLiveTileJobInfo, ulIntervalDuration: u32) callconv(.Inline) HRESULT {
+    pub fn set_IntervalDuration(self: *const IPMLiveTileJobInfo, ulIntervalDuration: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_IntervalDuration(self, ulIntervalDuration);
     }
-    pub fn get_RunForever(self: *const IPMLiveTileJobInfo, IsRunForever: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_RunForever(self: *const IPMLiveTileJobInfo, IsRunForever: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunForever(self, IsRunForever);
     }
-    pub fn set_RunForever(self: *const IPMLiveTileJobInfo, fRunForever: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_RunForever(self: *const IPMLiveTileJobInfo, fRunForever: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_RunForever(self, fRunForever);
     }
-    pub fn get_MaxRunCount(self: *const IPMLiveTileJobInfo, pMaxRunCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_MaxRunCount(self: *const IPMLiveTileJobInfo, pMaxRunCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MaxRunCount(self, pMaxRunCount);
     }
-    pub fn set_MaxRunCount(self: *const IPMLiveTileJobInfo, ulMaxRunCount: u32) callconv(.Inline) HRESULT {
+    pub fn set_MaxRunCount(self: *const IPMLiveTileJobInfo, ulMaxRunCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_MaxRunCount(self, ulMaxRunCount);
     }
-    pub fn get_RunCount(self: *const IPMLiveTileJobInfo, pRunCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_RunCount(self: *const IPMLiveTileJobInfo, pRunCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunCount(self, pRunCount);
     }
-    pub fn set_RunCount(self: *const IPMLiveTileJobInfo, ulRunCount: u32) callconv(.Inline) HRESULT {
+    pub fn set_RunCount(self: *const IPMLiveTileJobInfo, ulRunCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_RunCount(self, ulRunCount);
     }
-    pub fn get_RecurrenceType(self: *const IPMLiveTileJobInfo, pRecurrenceType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_RecurrenceType(self: *const IPMLiveTileJobInfo, pRecurrenceType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RecurrenceType(self, pRecurrenceType);
     }
-    pub fn set_RecurrenceType(self: *const IPMLiveTileJobInfo, ulRecurrenceType: u32) callconv(.Inline) HRESULT {
+    pub fn set_RecurrenceType(self: *const IPMLiveTileJobInfo, ulRecurrenceType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_RecurrenceType(self, ulRecurrenceType);
     }
-    pub fn get_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*]?*u8, pcbTileXml: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*]?*u8, pcbTileXml: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_TileXML(self, pTileXml, pcbTileXml);
     }
-    pub fn set_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*:0]u8, cbTileXml: u32) callconv(.Inline) HRESULT {
+    pub fn set_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*:0]u8, cbTileXml: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_TileXML(self, pTileXml, cbTileXml);
     }
-    pub fn get_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*]?*u8, pcbUrlXML: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*]?*u8, pcbUrlXML: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_UrlXML(self, pUrlXML, pcbUrlXML);
     }
-    pub fn set_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*:0]u8, cbUrlXML: u32) callconv(.Inline) HRESULT {
+    pub fn set_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*:0]u8, cbUrlXML: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_UrlXML(self, pUrlXML, cbUrlXML);
     }
-    pub fn get_AttemptCount(self: *const IPMLiveTileJobInfo, pAttemptCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_AttemptCount(self: *const IPMLiveTileJobInfo, pAttemptCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AttemptCount(self, pAttemptCount);
     }
-    pub fn set_AttemptCount(self: *const IPMLiveTileJobInfo, ulAttemptCount: u32) callconv(.Inline) HRESULT {
+    pub fn set_AttemptCount(self: *const IPMLiveTileJobInfo, ulAttemptCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_AttemptCount(self, ulAttemptCount);
     }
-    pub fn get_DownloadState(self: *const IPMLiveTileJobInfo, pDownloadState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_DownloadState(self: *const IPMLiveTileJobInfo, pDownloadState: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_DownloadState(self, pDownloadState);
     }
-    pub fn set_DownloadState(self: *const IPMLiveTileJobInfo, ulDownloadState: u32) callconv(.Inline) HRESULT {
+    pub fn set_DownloadState(self: *const IPMLiveTileJobInfo, ulDownloadState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.set_DownloadState(self, ulDownloadState);
     }
 };
@@ -4081,7 +4081,7 @@ pub const IPMLiveTileJobInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMLiveTileJobInfoEnumerator, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMLiveTileJobInfoEnumerator, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_Next(self, ppLiveTileJobInfo);
     }
 };
@@ -4271,109 +4271,109 @@ pub const IPMDeploymentManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReportDownloadBegin(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+    pub fn ReportDownloadBegin(self: *const IPMDeploymentManager, productID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ReportDownloadBegin(self, productID);
     }
-    pub fn ReportDownloadProgress(self: *const IPMDeploymentManager, productID: Guid, usProgress: u16) callconv(.Inline) HRESULT {
+    pub fn ReportDownloadProgress(self: *const IPMDeploymentManager, productID: Guid, usProgress: u16) callconv(.@"inline") HRESULT {
         return self.vtable.ReportDownloadProgress(self, productID, usProgress);
     }
-    pub fn ReportDownloadComplete(self: *const IPMDeploymentManager, productID: Guid, hrResult: HRESULT) callconv(.Inline) HRESULT {
+    pub fn ReportDownloadComplete(self: *const IPMDeploymentManager, productID: Guid, hrResult: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.ReportDownloadComplete(self, productID, hrResult);
     }
-    pub fn BeginInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+    pub fn BeginInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.@"inline") HRESULT {
         return self.vtable.BeginInstall(self, pInstallInfo);
     }
-    pub fn BeginUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+    pub fn BeginUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.BeginUpdate(self, pUpdateInfo);
     }
-    pub fn BeginDeployPackage(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+    pub fn BeginDeployPackage(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.@"inline") HRESULT {
         return self.vtable.BeginDeployPackage(self, pInstallInfo);
     }
-    pub fn BeginUpdateDeployedPackageLegacy(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO_LEGACY) callconv(.Inline) HRESULT {
+    pub fn BeginUpdateDeployedPackageLegacy(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO_LEGACY) callconv(.@"inline") HRESULT {
         return self.vtable.BeginUpdateDeployedPackageLegacy(self, pUpdateInfo);
     }
-    pub fn BeginUninstall(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+    pub fn BeginUninstall(self: *const IPMDeploymentManager, productID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.BeginUninstall(self, productID);
     }
-    pub fn BeginEnterpriseAppInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+    pub fn BeginEnterpriseAppInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.@"inline") HRESULT {
         return self.vtable.BeginEnterpriseAppInstall(self, pInstallInfo);
     }
-    pub fn BeginEnterpriseAppUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+    pub fn BeginEnterpriseAppUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.BeginEnterpriseAppUpdate(self, pUpdateInfo);
     }
-    pub fn BeginUpdateLicense(self: *const IPMDeploymentManager, productID: Guid, offerID: Guid, pbLicense: [*:0]u8, cbLicense: u32) callconv(.Inline) HRESULT {
+    pub fn BeginUpdateLicense(self: *const IPMDeploymentManager, productID: Guid, offerID: Guid, pbLicense: [*:0]u8, cbLicense: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BeginUpdateLicense(self, productID, offerID, pbLicense, cbLicense);
     }
-    pub fn GetLicenseChallenge(self: *const IPMDeploymentManager, PackagePath: ?BSTR, ppbChallenge: [*]?*u8, pcbChallenge: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLicenseChallenge(self: *const IPMDeploymentManager, PackagePath: ?BSTR, ppbChallenge: [*]?*u8, pcbChallenge: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLicenseChallenge(self, PackagePath, ppbChallenge, pcbChallenge, ppbKID, pcbKID, ppbDeviceID, pcbDeviceID, ppbSaltValue, pcbSaltValue, ppbKGVValue, pcbKGVValue);
     }
-    pub fn GetLicenseChallengeByProductID(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLicenseChallengeByProductID(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLicenseChallengeByProductID(self, ProductID, ppbChallenge, pcbLicense);
     }
-    pub fn GetLicenseChallengeByProductID2(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLicenseChallengeByProductID2(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLicenseChallengeByProductID2(self, ProductID, ppbChallenge, pcbLicense, ppbKID, pcbKID, ppbDeviceID, pcbDeviceID, ppbSaltValue, pcbSaltValue, ppbKGVValue, pcbKGVValue);
     }
-    pub fn RevokeLicense(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+    pub fn RevokeLicense(self: *const IPMDeploymentManager, productID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RevokeLicense(self, productID);
     }
-    pub fn RebindMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, FileNames: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn RebindMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, FileNames: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.RebindMdilBinaries(self, ProductID, FileNames);
     }
-    pub fn RebindAllMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, InstanceID: Guid) callconv(.Inline) HRESULT {
+    pub fn RebindAllMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, InstanceID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RebindAllMdilBinaries(self, ProductID, InstanceID);
     }
-    pub fn RegenerateXbf(self: *const IPMDeploymentManager, ProductID: Guid, AssemblyPaths: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn RegenerateXbf(self: *const IPMDeploymentManager, ProductID: Guid, AssemblyPaths: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.RegenerateXbf(self, ProductID, AssemblyPaths);
     }
-    pub fn GenerateXbfForCurrentLocale(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+    pub fn GenerateXbfForCurrentLocale(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GenerateXbfForCurrentLocale(self, ProductID);
     }
-    pub fn BeginProvision(self: *const IPMDeploymentManager, ProductID: Guid, XMLpath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn BeginProvision(self: *const IPMDeploymentManager, ProductID: Guid, XMLpath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.BeginProvision(self, ProductID, XMLpath);
     }
-    pub fn BeginDeprovision(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+    pub fn BeginDeprovision(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.BeginDeprovision(self, ProductID);
     }
-    pub fn ReindexSQLCEDatabases(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+    pub fn ReindexSQLCEDatabases(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ReindexSQLCEDatabases(self, ProductID);
     }
-    pub fn SetApplicationsNeedMaintenance(self: *const IPMDeploymentManager, RequiredMaintenanceOperations: u32, pcApplications: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetApplicationsNeedMaintenance(self: *const IPMDeploymentManager, RequiredMaintenanceOperations: u32, pcApplications: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetApplicationsNeedMaintenance(self, RequiredMaintenanceOperations, pcApplications);
     }
-    pub fn UpdateChamberProfile(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+    pub fn UpdateChamberProfile(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateChamberProfile(self, ProductID);
     }
-    pub fn EnterprisePolicyIsApplicationAllowed(self: *const IPMDeploymentManager, productId: Guid, publisherName: ?[*:0]const u16, pIsAllowed: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn EnterprisePolicyIsApplicationAllowed(self: *const IPMDeploymentManager, productId: Guid, publisherName: ?[*:0]const u16, pIsAllowed: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EnterprisePolicyIsApplicationAllowed(self, productId, publisherName, pIsAllowed);
     }
-    pub fn BeginUpdateDeployedPackage(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+    pub fn BeginUpdateDeployedPackage(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.BeginUpdateDeployedPackage(self, pUpdateInfo);
     }
-    pub fn ReportRestoreCancelled(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+    pub fn ReportRestoreCancelled(self: *const IPMDeploymentManager, productID: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ReportRestoreCancelled(self, productID);
     }
-    pub fn ResolveResourceString(self: *const IPMDeploymentManager, resourceString: ?[*:0]const u16, pResolvedResourceString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ResolveResourceString(self: *const IPMDeploymentManager, resourceString: ?[*:0]const u16, pResolvedResourceString: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveResourceString(self, resourceString, pResolvedResourceString);
     }
-    pub fn UpdateCapabilitiesForModernApps(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+    pub fn UpdateCapabilitiesForModernApps(self: *const IPMDeploymentManager) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateCapabilitiesForModernApps(self);
     }
-    pub fn ReportDownloadStatusUpdate(self: *const IPMDeploymentManager, productId: Guid) callconv(.Inline) HRESULT {
+    pub fn ReportDownloadStatusUpdate(self: *const IPMDeploymentManager, productId: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ReportDownloadStatusUpdate(self, productId);
     }
-    pub fn BeginUninstallWithOptions(self: *const IPMDeploymentManager, productID: Guid, removalOptions: u32) callconv(.Inline) HRESULT {
+    pub fn BeginUninstallWithOptions(self: *const IPMDeploymentManager, productID: Guid, removalOptions: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BeginUninstallWithOptions(self, productID, removalOptions);
     }
-    pub fn BindDeferredMdilBinaries(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+    pub fn BindDeferredMdilBinaries(self: *const IPMDeploymentManager) callconv(.@"inline") HRESULT {
         return self.vtable.BindDeferredMdilBinaries(self);
     }
-    pub fn GenerateXamlLightupXbfForCurrentLocale(self: *const IPMDeploymentManager, PackageFamilyName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn GenerateXamlLightupXbfForCurrentLocale(self: *const IPMDeploymentManager, PackageFamilyName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GenerateXamlLightupXbfForCurrentLocale(self, PackageFamilyName);
     }
-    pub fn AddLicenseForAppx(self: *const IPMDeploymentManager, productID: Guid, pbLicense: [*:0]u8, cbLicense: u32, pbPlayReadyHeader: ?[*:0]u8, cbPlayReadyHeader: u32) callconv(.Inline) HRESULT {
+    pub fn AddLicenseForAppx(self: *const IPMDeploymentManager, productID: Guid, pbLicense: [*:0]u8, cbLicense: u32, pbPlayReadyHeader: ?[*:0]u8, cbPlayReadyHeader: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddLicenseForAppx(self, productID, pbLicense, cbLicense, pbPlayReadyHeader, cbPlayReadyHeader);
     }
-    pub fn FixJunctionsForAppsOnSDCard(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+    pub fn FixJunctionsForAppsOnSDCard(self: *const IPMDeploymentManager) callconv(.@"inline") HRESULT {
         return self.vtable.FixJunctionsForAppsOnSDCard(self);
     }
 };
@@ -4485,58 +4485,58 @@ pub const IPMEnumerationManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AllApplications(self: *const IPMEnumerationManager, ppAppEnum: ?*?*IPMApplicationInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllApplications(self: *const IPMEnumerationManager, ppAppEnum: ?*?*IPMApplicationInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllApplications(self, ppAppEnum, Filter);
     }
-    pub fn get_AllTiles(self: *const IPMEnumerationManager, ppTileEnum: ?*?*IPMTileInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllTiles(self: *const IPMEnumerationManager, ppTileEnum: ?*?*IPMTileInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllTiles(self, ppTileEnum, Filter);
     }
-    pub fn get_AllTasks(self: *const IPMEnumerationManager, ppTaskEnum: ?*?*IPMTaskInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllTasks(self: *const IPMEnumerationManager, ppTaskEnum: ?*?*IPMTaskInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllTasks(self, ppTaskEnum, Filter);
     }
-    pub fn get_AllExtensions(self: *const IPMEnumerationManager, ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllExtensions(self: *const IPMEnumerationManager, ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllExtensions(self, ppExtensionEnum, Filter);
     }
-    pub fn get_AllBackgroundServiceAgents(self: *const IPMEnumerationManager, ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllBackgroundServiceAgents(self: *const IPMEnumerationManager, ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllBackgroundServiceAgents(self, ppBSAEnum, Filter);
     }
-    pub fn get_AllBackgroundWorkers(self: *const IPMEnumerationManager, ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllBackgroundWorkers(self: *const IPMEnumerationManager, ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllBackgroundWorkers(self, ppBSWEnum, Filter);
     }
-    pub fn get_ApplicationInfo(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationInfo(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationInfo(self, ProductID, ppAppInfo);
     }
-    pub fn get_TileInfo(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, ppTileInfo: ?*?*IPMTileInfo) callconv(.Inline) HRESULT {
+    pub fn get_TileInfo(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, ppTileInfo: ?*?*IPMTileInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_TileInfo(self, ProductID, TileID, ppTileInfo);
     }
-    pub fn get_TaskInfo(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?BSTR, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+    pub fn get_TaskInfo(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?BSTR, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_TaskInfo(self, ProductID, TaskID, ppTaskInfo);
     }
-    pub fn get_TaskInfoEx(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?[*:0]const u16, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+    pub fn get_TaskInfoEx(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?[*:0]const u16, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_TaskInfoEx(self, ProductID, TaskID, ppTaskInfo);
     }
-    pub fn get_BackgroundServiceAgentInfo(self: *const IPMEnumerationManager, BSAID: u32, ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo) callconv(.Inline) HRESULT {
+    pub fn get_BackgroundServiceAgentInfo(self: *const IPMEnumerationManager, BSAID: u32, ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_BackgroundServiceAgentInfo(self, BSAID, ppTaskInfo);
     }
-    pub fn get_AllLiveTileJobs(self: *const IPMEnumerationManager, ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator) callconv(.Inline) HRESULT {
+    pub fn get_AllLiveTileJobs(self: *const IPMEnumerationManager, ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllLiveTileJobs(self, ppLiveTileJobEnum);
     }
-    pub fn get_LiveTileJob(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) callconv(.Inline) HRESULT {
+    pub fn get_LiveTileJob(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_LiveTileJob(self, ProductID, TileID, RecurrenceType, ppLiveTileJobInfo);
     }
-    pub fn get_ApplicationInfoExternal(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationInfoExternal(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationInfoExternal(self, ProductID, ppAppInfo);
     }
-    pub fn get_FileHandlerGenericLogo(self: *const IPMEnumerationManager, FileType: ?BSTR, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FileHandlerGenericLogo(self: *const IPMEnumerationManager, FileType: ?BSTR, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_FileHandlerGenericLogo(self, FileType, LogoSize, pLogo);
     }
-    pub fn get_ApplicationInfoFromAccessClaims(self: *const IPMEnumerationManager, SysAppID0: ?BSTR, SysAppID1: ?BSTR, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationInfoFromAccessClaims(self: *const IPMEnumerationManager, SysAppID0: ?BSTR, SysAppID1: ?BSTR, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationInfoFromAccessClaims(self, SysAppID0, SysAppID1, ppAppInfo);
     }
-    pub fn get_StartTileEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcTiles: ?*u32, ppTileBlobs: [*]?*PM_STARTTILEBLOB) callconv(.Inline) HRESULT {
+    pub fn get_StartTileEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcTiles: ?*u32, ppTileBlobs: [*]?*PM_STARTTILEBLOB) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartTileEnumeratorBlob(self, Filter, pcTiles, ppTileBlobs);
     }
-    pub fn get_StartAppEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcApps: ?*u32, ppAppBlobs: [*]?*PM_STARTAPPBLOB) callconv(.Inline) HRESULT {
+    pub fn get_StartAppEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcApps: ?*u32, ppAppBlobs: [*]?*PM_STARTAPPBLOB) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartAppEnumeratorBlob(self, Filter, pcApps, ppAppBlobs);
     }
 };
@@ -4654,67 +4654,67 @@ pub const IPMTaskInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMTaskInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMTaskInfo, pProductID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TaskID(self: *const IPMTaskInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TaskID(self: *const IPMTaskInfo, pTaskID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TaskID(self, pTaskID);
     }
-    pub fn get_NavigationPage(self: *const IPMTaskInfo, pNavigationPage: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_NavigationPage(self: *const IPMTaskInfo, pNavigationPage: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_NavigationPage(self, pNavigationPage);
     }
-    pub fn get_TaskTransition(self: *const IPMTaskInfo, pTaskTransition: ?*PM_TASK_TRANSITION) callconv(.Inline) HRESULT {
+    pub fn get_TaskTransition(self: *const IPMTaskInfo, pTaskTransition: ?*PM_TASK_TRANSITION) callconv(.@"inline") HRESULT {
         return self.vtable.get_TaskTransition(self, pTaskTransition);
     }
-    pub fn get_RuntimeType(self: *const IPMTaskInfo, pRuntimetype: ?*PACKMAN_RUNTIME) callconv(.Inline) HRESULT {
+    pub fn get_RuntimeType(self: *const IPMTaskInfo, pRuntimetype: ?*PACKMAN_RUNTIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_RuntimeType(self, pRuntimetype);
     }
-    pub fn get_ActivationPolicy(self: *const IPMTaskInfo, pActivationPolicy: ?*PM_ACTIVATION_POLICY) callconv(.Inline) HRESULT {
+    pub fn get_ActivationPolicy(self: *const IPMTaskInfo, pActivationPolicy: ?*PM_ACTIVATION_POLICY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActivationPolicy(self, pActivationPolicy);
     }
-    pub fn get_TaskType(self: *const IPMTaskInfo, pTaskType: ?*PM_TASK_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_TaskType(self: *const IPMTaskInfo, pTaskType: ?*PM_TASK_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_TaskType(self, pTaskType);
     }
-    pub fn get_InvocationInfo(self: *const IPMTaskInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMTaskInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
-    pub fn get_ImagePath(self: *const IPMTaskInfo, pImagePath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ImagePath(self: *const IPMTaskInfo, pImagePath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ImagePath(self, pImagePath);
     }
-    pub fn get_ImageParams(self: *const IPMTaskInfo, pImageParams: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ImageParams(self: *const IPMTaskInfo, pImageParams: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ImageParams(self, pImageParams);
     }
-    pub fn get_InstallRootFolder(self: *const IPMTaskInfo, pInstallRootFolder: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InstallRootFolder(self: *const IPMTaskInfo, pInstallRootFolder: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InstallRootFolder(self, pInstallRootFolder);
     }
-    pub fn get_DataRootFolder(self: *const IPMTaskInfo, pDataRootFolder: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DataRootFolder(self: *const IPMTaskInfo, pDataRootFolder: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DataRootFolder(self, pDataRootFolder);
     }
-    pub fn get_IsSingleInstanceHost(self: *const IPMTaskInfo, pIsSingleInstanceHost: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsSingleInstanceHost(self: *const IPMTaskInfo, pIsSingleInstanceHost: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSingleInstanceHost(self, pIsSingleInstanceHost);
     }
-    pub fn get_IsInteropEnabled(self: *const IPMTaskInfo, pIsInteropEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsInteropEnabled(self: *const IPMTaskInfo, pIsInteropEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsInteropEnabled(self, pIsInteropEnabled);
     }
-    pub fn get_ApplicationState(self: *const IPMTaskInfo, pApplicationState: ?*PM_APPLICATION_STATE) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationState(self: *const IPMTaskInfo, pApplicationState: ?*PM_APPLICATION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationState(self, pApplicationState);
     }
-    pub fn get_InstallType(self: *const IPMTaskInfo, pInstallType: ?*PM_APPLICATION_INSTALL_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_InstallType(self: *const IPMTaskInfo, pInstallType: ?*PM_APPLICATION_INSTALL_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_InstallType(self, pInstallType);
     }
-    pub fn get_Version(self: *const IPMTaskInfo, pTargetMajorVersion: ?*u8, pTargetMinorVersion: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IPMTaskInfo, pTargetMajorVersion: ?*u8, pTargetMinorVersion: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.get_Version(self, pTargetMajorVersion, pTargetMinorVersion);
     }
-    pub fn get_BitsPerPixel(self: *const IPMTaskInfo, pBitsPerPixel: ?*u16) callconv(.Inline) HRESULT {
+    pub fn get_BitsPerPixel(self: *const IPMTaskInfo, pBitsPerPixel: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.get_BitsPerPixel(self, pBitsPerPixel);
     }
-    pub fn get_SuppressesDehydration(self: *const IPMTaskInfo, pSuppressesDehydration: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SuppressesDehydration(self: *const IPMTaskInfo, pSuppressesDehydration: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SuppressesDehydration(self, pSuppressesDehydration);
     }
-    pub fn get_BackgroundExecutionAbilities(self: *const IPMTaskInfo, pBackgroundExecutionAbilities: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BackgroundExecutionAbilities(self: *const IPMTaskInfo, pBackgroundExecutionAbilities: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BackgroundExecutionAbilities(self, pBackgroundExecutionAbilities);
     }
-    pub fn get_IsOptedForExtendedMem(self: *const IPMTaskInfo, pIsOptedIn: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOptedForExtendedMem(self: *const IPMTaskInfo, pIsOptedIn: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOptedForExtendedMem(self, pIsOptedIn);
     }
 };
@@ -4732,7 +4732,7 @@ pub const IPMTaskInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMTaskInfoEnumerator, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMTaskInfoEnumerator, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_Next(self, ppTaskInfo);
     }
 };
@@ -4775,22 +4775,22 @@ pub const IPMExtensionInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SupplierPID(self: *const IPMExtensionInfo, pSupplierPID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_SupplierPID(self: *const IPMExtensionInfo, pSupplierPID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupplierPID(self, pSupplierPID);
     }
-    pub fn get_SupplierTaskID(self: *const IPMExtensionInfo, pSupplierTID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SupplierTaskID(self: *const IPMExtensionInfo, pSupplierTID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupplierTaskID(self, pSupplierTID);
     }
-    pub fn get_Title(self: *const IPMExtensionInfo, pTitle: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Title(self: *const IPMExtensionInfo, pTitle: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Title(self, pTitle);
     }
-    pub fn get_IconPath(self: *const IPMExtensionInfo, pIconPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_IconPath(self: *const IPMExtensionInfo, pIconPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_IconPath(self, pIconPath);
     }
-    pub fn get_ExtraFile(self: *const IPMExtensionInfo, pFilePath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ExtraFile(self: *const IPMExtensionInfo, pFilePath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExtraFile(self, pFilePath);
     }
-    pub fn get_InvocationInfo(self: *const IPMExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
 };
@@ -4838,25 +4838,25 @@ pub const IPMExtensionFileExtensionInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IPMExtensionFileExtensionInfo, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IPMExtensionFileExtensionInfo, pName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pName);
     }
-    pub fn get_DisplayName(self: *const IPMExtensionFileExtensionInfo, pDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const IPMExtensionFileExtensionInfo, pDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, pDisplayName);
     }
-    pub fn get_Logo(self: *const IPMExtensionFileExtensionInfo, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Logo(self: *const IPMExtensionFileExtensionInfo, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Logo(self, LogoSize, pLogo);
     }
-    pub fn get_ContentType(self: *const IPMExtensionFileExtensionInfo, FileType: ?BSTR, pContentType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ContentType(self: *const IPMExtensionFileExtensionInfo, FileType: ?BSTR, pContentType: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ContentType(self, FileType, pContentType);
     }
-    pub fn get_FileType(self: *const IPMExtensionFileExtensionInfo, ContentType: ?BSTR, pFileType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FileType(self: *const IPMExtensionFileExtensionInfo, ContentType: ?BSTR, pFileType: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_FileType(self, ContentType, pFileType);
     }
-    pub fn get_InvocationInfo(self: *const IPMExtensionFileExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMExtensionFileExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
-    pub fn get_AllFileTypes(self: *const IPMExtensionFileExtensionInfo, pcbTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileExtensionInfo, pcbTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllFileTypes(self, pcbTypes, ppTypes);
     }
 };
@@ -4879,10 +4879,10 @@ pub const IPMExtensionProtocolInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Protocol(self: *const IPMExtensionProtocolInfo, pProtocol: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Protocol(self: *const IPMExtensionProtocolInfo, pProtocol: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Protocol(self, pProtocol);
     }
-    pub fn get_InvocationInfo(self: *const IPMExtensionProtocolInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMExtensionProtocolInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
 };
@@ -4910,13 +4910,13 @@ pub const IPMExtensionShareTargetInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AllFileTypes(self: *const IPMExtensionShareTargetInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllFileTypes(self: *const IPMExtensionShareTargetInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllFileTypes(self, pcTypes, ppTypes);
     }
-    pub fn get_AllDataFormats(self: *const IPMExtensionShareTargetInfo, pcDataFormats: ?*u32, ppDataFormats: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllDataFormats(self: *const IPMExtensionShareTargetInfo, pcDataFormats: ?*u32, ppDataFormats: [*]?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllDataFormats(self, pcDataFormats, ppDataFormats);
     }
-    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionShareTargetInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionShareTargetInfo, pSupportsAllTypes: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupportsAllFileTypes(self, pSupportsAllTypes);
     }
 };
@@ -4934,7 +4934,7 @@ pub const IPMExtensionContractInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_InvocationInfo(self: *const IPMExtensionContractInfo, pAUMID: ?*?BSTR, pArgs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMExtensionContractInfo, pAUMID: ?*?BSTR, pArgs: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InvocationInfo(self, pAUMID, pArgs);
     }
 };
@@ -4957,10 +4957,10 @@ pub const IPMExtensionFileOpenPickerInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllFileTypes(self, pcTypes, ppTypes);
     }
-    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pSupportsAllTypes: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupportsAllFileTypes(self, pSupportsAllTypes);
     }
 };
@@ -4983,10 +4983,10 @@ pub const IPMExtensionFileSavePickerInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllFileTypes(self, pcTypes, ppTypes);
     }
-    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pSupportsAllTypes: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupportsAllFileTypes(self, pSupportsAllTypes);
     }
 };
@@ -5004,7 +5004,7 @@ pub const IPMExtensionCachedFileUpdaterInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SupportsUpdates(self: *const IPMExtensionCachedFileUpdaterInfo, pSupportsUpdates: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SupportsUpdates(self: *const IPMExtensionCachedFileUpdaterInfo, pSupportsUpdates: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupportsUpdates(self, pSupportsUpdates);
     }
 };
@@ -5022,7 +5022,7 @@ pub const IPMExtensionInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMExtensionInfoEnumerator, ppExtensionInfo: ?*?*IPMExtensionInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMExtensionInfoEnumerator, ppExtensionInfo: ?*?*IPMExtensionInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_Next(self, ppExtensionInfo);
     }
 };
@@ -5103,46 +5103,46 @@ pub const IPMBackgroundServiceAgentInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMBackgroundServiceAgentInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMBackgroundServiceAgentInfo, pProductID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TaskID(self: *const IPMBackgroundServiceAgentInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TaskID(self: *const IPMBackgroundServiceAgentInfo, pTaskID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TaskID(self, pTaskID);
     }
-    pub fn get_BSAID(self: *const IPMBackgroundServiceAgentInfo, pBSAID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_BSAID(self: *const IPMBackgroundServiceAgentInfo, pBSAID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_BSAID(self, pBSAID);
     }
-    pub fn get_BGSpecifier(self: *const IPMBackgroundServiceAgentInfo, pBGSpecifier: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGSpecifier(self: *const IPMBackgroundServiceAgentInfo, pBGSpecifier: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BGSpecifier(self, pBGSpecifier);
     }
-    pub fn get_BGName(self: *const IPMBackgroundServiceAgentInfo, pBGName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGName(self: *const IPMBackgroundServiceAgentInfo, pBGName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BGName(self, pBGName);
     }
-    pub fn get_BGSource(self: *const IPMBackgroundServiceAgentInfo, pBGSource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGSource(self: *const IPMBackgroundServiceAgentInfo, pBGSource: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BGSource(self, pBGSource);
     }
-    pub fn get_BGType(self: *const IPMBackgroundServiceAgentInfo, pBGType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGType(self: *const IPMBackgroundServiceAgentInfo, pBGType: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BGType(self, pBGType);
     }
-    pub fn get_IsPeriodic(self: *const IPMBackgroundServiceAgentInfo, pIsPeriodic: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsPeriodic(self: *const IPMBackgroundServiceAgentInfo, pIsPeriodic: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsPeriodic(self, pIsPeriodic);
     }
-    pub fn get_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, pIsScheduled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, pIsScheduled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsScheduled(self, pIsScheduled);
     }
-    pub fn get_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, pIsScheduleAllowed: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, pIsScheduleAllowed: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsScheduleAllowed(self, pIsScheduleAllowed);
     }
-    pub fn get_Description(self: *const IPMBackgroundServiceAgentInfo, pDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IPMBackgroundServiceAgentInfo, pDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pDescription);
     }
-    pub fn get_IsLaunchOnBoot(self: *const IPMBackgroundServiceAgentInfo, pLaunchOnBoot: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsLaunchOnBoot(self: *const IPMBackgroundServiceAgentInfo, pLaunchOnBoot: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLaunchOnBoot(self, pLaunchOnBoot);
     }
-    pub fn set_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, IsScheduled: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, IsScheduled: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_IsScheduled(self, IsScheduled);
     }
-    pub fn set_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, IsScheduleAllowed: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, IsScheduleAllowed: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.set_IsScheduleAllowed(self, IsScheduleAllowed);
     }
 };
@@ -5185,22 +5185,22 @@ pub const IPMBackgroundWorkerInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMBackgroundWorkerInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMBackgroundWorkerInfo, pProductID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TaskID(self: *const IPMBackgroundWorkerInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TaskID(self: *const IPMBackgroundWorkerInfo, pTaskID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TaskID(self, pTaskID);
     }
-    pub fn get_BGName(self: *const IPMBackgroundWorkerInfo, pBGName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGName(self: *const IPMBackgroundWorkerInfo, pBGName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BGName(self, pBGName);
     }
-    pub fn get_MaxStartupLatency(self: *const IPMBackgroundWorkerInfo, pMaxStartupLatency: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_MaxStartupLatency(self: *const IPMBackgroundWorkerInfo, pMaxStartupLatency: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MaxStartupLatency(self, pMaxStartupLatency);
     }
-    pub fn get_ExpectedRuntime(self: *const IPMBackgroundWorkerInfo, pExpectedRuntime: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ExpectedRuntime(self: *const IPMBackgroundWorkerInfo, pExpectedRuntime: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExpectedRuntime(self, pExpectedRuntime);
     }
-    pub fn get_IsBootWorker(self: *const IPMBackgroundWorkerInfo, pIsBootWorker: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsBootWorker(self: *const IPMBackgroundWorkerInfo, pIsBootWorker: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsBootWorker(self, pIsBootWorker);
     }
 };
@@ -5218,7 +5218,7 @@ pub const IPMBackgroundServiceAgentInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMBackgroundServiceAgentInfoEnumerator, ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMBackgroundServiceAgentInfoEnumerator, ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_Next(self, ppBSAInfo);
     }
 };
@@ -5236,7 +5236,7 @@ pub const IPMBackgroundWorkerInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMBackgroundWorkerInfoEnumerator, ppBWInfo: ?*?*IPMBackgroundWorkerInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMBackgroundWorkerInfoEnumerator, ppBWInfo: ?*?*IPMBackgroundWorkerInfo) callconv(.@"inline") HRESULT {
         return self.vtable.get_Next(self, ppBWInfo);
     }
 };

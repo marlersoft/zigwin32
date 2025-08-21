@@ -1711,7 +1711,7 @@ pub const IDialEventSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnEvent(self: *const IDialEventSink, dwEvent: u32, dwStatus: u32) callconv(.Inline) HRESULT {
+    pub fn OnEvent(self: *const IDialEventSink, dwEvent: u32, dwStatus: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnEvent(self, dwEvent, dwStatus);
     }
 };
@@ -1754,25 +1754,25 @@ pub const IDialEngine = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IDialEngine, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDialEngine, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pwzConnectoid, pIDES);
     }
-    pub fn GetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, pwzProperty, pwzValue, dwBufSize);
     }
-    pub fn SetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, pwzProperty, pwzValue);
     }
-    pub fn Dial(self: *const IDialEngine) callconv(.Inline) HRESULT {
+    pub fn Dial(self: *const IDialEngine) callconv(.@"inline") HRESULT {
         return self.vtable.Dial(self);
     }
-    pub fn HangUp(self: *const IDialEngine) callconv(.Inline) HRESULT {
+    pub fn HangUp(self: *const IDialEngine) callconv(.@"inline") HRESULT {
         return self.vtable.HangUp(self);
     }
-    pub fn GetConnectedState(self: *const IDialEngine, pdwState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetConnectedState(self: *const IDialEngine, pdwState: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectedState(self, pdwState);
     }
-    pub fn GetConnectHandle(self: *const IDialEngine, pdwHandle: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetConnectHandle(self: *const IDialEngine, pdwHandle: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectHandle(self, pdwHandle);
     }
 };
@@ -1794,10 +1794,10 @@ pub const IDialBranding = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IDialBranding, pwzConnectoid: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDialBranding, pwzConnectoid: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pwzConnectoid);
     }
-    pub fn GetBitmap(self: *const IDialBranding, dwIndex: u32, phBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn GetBitmap(self: *const IDialBranding, dwIndex: u32, phBitmap: ?*?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.GetBitmap(self, dwIndex, phBitmap);
     }
 };
@@ -2228,7 +2228,7 @@ pub const IProofOfPossessionCookieInfoManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCookieInfoForUri(self: *const IProofOfPossessionCookieInfoManager, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
+    pub fn GetCookieInfoForUri(self: *const IProofOfPossessionCookieInfoManager, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetCookieInfoForUri(self, uri, cookieInfoCount, cookieInfo);
     }
 };
@@ -2248,7 +2248,7 @@ pub const IProofOfPossessionCookieInfoManager2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCookieInfoWithUriForAccount(self: *const IProofOfPossessionCookieInfoManager2, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
+    pub fn GetCookieInfoWithUriForAccount(self: *const IProofOfPossessionCookieInfoManager2, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetCookieInfoWithUriForAccount(self, webAccount, uri, cookieInfoCount, cookieInfo);
     }
 };

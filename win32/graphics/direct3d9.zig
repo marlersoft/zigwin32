@@ -2433,46 +2433,46 @@ pub const IDirect3D9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterSoftwareDevice(self: *const IDirect3D9, pInitializeFunction: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn RegisterSoftwareDevice(self: *const IDirect3D9, pInitializeFunction: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterSoftwareDevice(self, pInitializeFunction);
     }
-    pub fn GetAdapterCount(self: *const IDirect3D9) callconv(.Inline) u32 {
+    pub fn GetAdapterCount(self: *const IDirect3D9) callconv(.@"inline") u32 {
         return self.vtable.GetAdapterCount(self);
     }
-    pub fn GetAdapterIdentifier(self: *const IDirect3D9, Adapter: u32, Flags: u32, pIdentifier: ?*D3DADAPTER_IDENTIFIER9) callconv(.Inline) HRESULT {
+    pub fn GetAdapterIdentifier(self: *const IDirect3D9, Adapter: u32, Flags: u32, pIdentifier: ?*D3DADAPTER_IDENTIFIER9) callconv(.@"inline") HRESULT {
         return self.vtable.GetAdapterIdentifier(self, Adapter, Flags, pIdentifier);
     }
-    pub fn GetAdapterModeCount(self: *const IDirect3D9, Adapter: u32, Format: D3DFORMAT) callconv(.Inline) u32 {
+    pub fn GetAdapterModeCount(self: *const IDirect3D9, Adapter: u32, Format: D3DFORMAT) callconv(.@"inline") u32 {
         return self.vtable.GetAdapterModeCount(self, Adapter, Format);
     }
-    pub fn EnumAdapterModes(self: *const IDirect3D9, Adapter: u32, Format: D3DFORMAT, Mode: u32, pMode: ?*D3DDISPLAYMODE) callconv(.Inline) HRESULT {
+    pub fn EnumAdapterModes(self: *const IDirect3D9, Adapter: u32, Format: D3DFORMAT, Mode: u32, pMode: ?*D3DDISPLAYMODE) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAdapterModes(self, Adapter, Format, Mode, pMode);
     }
-    pub fn GetAdapterDisplayMode(self: *const IDirect3D9, Adapter: u32, pMode: ?*D3DDISPLAYMODE) callconv(.Inline) HRESULT {
+    pub fn GetAdapterDisplayMode(self: *const IDirect3D9, Adapter: u32, pMode: ?*D3DDISPLAYMODE) callconv(.@"inline") HRESULT {
         return self.vtable.GetAdapterDisplayMode(self, Adapter, pMode);
     }
-    pub fn CheckDeviceType(self: *const IDirect3D9, Adapter: u32, DevType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, BackBufferFormat: D3DFORMAT, bWindowed: BOOL) callconv(.Inline) HRESULT {
+    pub fn CheckDeviceType(self: *const IDirect3D9, Adapter: u32, DevType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, BackBufferFormat: D3DFORMAT, bWindowed: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CheckDeviceType(self, Adapter, DevType, AdapterFormat, BackBufferFormat, bWindowed);
     }
-    pub fn CheckDeviceFormat(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, Usage: u32, RType: D3DRESOURCETYPE, CheckFormat: D3DFORMAT) callconv(.Inline) HRESULT {
+    pub fn CheckDeviceFormat(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, Usage: u32, RType: D3DRESOURCETYPE, CheckFormat: D3DFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.CheckDeviceFormat(self, Adapter, DeviceType, AdapterFormat, Usage, RType, CheckFormat);
     }
-    pub fn CheckDeviceMultiSampleType(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, SurfaceFormat: D3DFORMAT, Windowed: BOOL, MultiSampleType: D3DMULTISAMPLE_TYPE, pQualityLevels: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CheckDeviceMultiSampleType(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, SurfaceFormat: D3DFORMAT, Windowed: BOOL, MultiSampleType: D3DMULTISAMPLE_TYPE, pQualityLevels: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CheckDeviceMultiSampleType(self, Adapter, DeviceType, SurfaceFormat, Windowed, MultiSampleType, pQualityLevels);
     }
-    pub fn CheckDepthStencilMatch(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, RenderTargetFormat: D3DFORMAT, DepthStencilFormat: D3DFORMAT) callconv(.Inline) HRESULT {
+    pub fn CheckDepthStencilMatch(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, RenderTargetFormat: D3DFORMAT, DepthStencilFormat: D3DFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.CheckDepthStencilMatch(self, Adapter, DeviceType, AdapterFormat, RenderTargetFormat, DepthStencilFormat);
     }
-    pub fn CheckDeviceFormatConversion(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, SourceFormat: D3DFORMAT, TargetFormat: D3DFORMAT) callconv(.Inline) HRESULT {
+    pub fn CheckDeviceFormatConversion(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, SourceFormat: D3DFORMAT, TargetFormat: D3DFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.CheckDeviceFormatConversion(self, Adapter, DeviceType, SourceFormat, TargetFormat);
     }
-    pub fn GetDeviceCaps(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, pCaps: ?*D3DCAPS9) callconv(.Inline) HRESULT {
+    pub fn GetDeviceCaps(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, pCaps: ?*D3DCAPS9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceCaps(self, Adapter, DeviceType, pCaps);
     }
-    pub fn GetAdapterMonitor(self: *const IDirect3D9, Adapter: u32) callconv(.Inline) ?HMONITOR {
+    pub fn GetAdapterMonitor(self: *const IDirect3D9, Adapter: u32) callconv(.@"inline") ?HMONITOR {
         return self.vtable.GetAdapterMonitor(self, Adapter);
     }
-    pub fn CreateDevice(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, hFocusWindow: ?HWND, BehaviorFlags: u32, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, ppReturnedDeviceInterface: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn CreateDevice(self: *const IDirect3D9, Adapter: u32, DeviceType: D3DDEVTYPE, hFocusWindow: ?HWND, BehaviorFlags: u32, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, ppReturnedDeviceInterface: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDevice(self, Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
     }
 };
@@ -3112,352 +3112,352 @@ pub const IDirect3DDevice9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TestCooperativeLevel(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn TestCooperativeLevel(self: *const IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.TestCooperativeLevel(self);
     }
-    pub fn GetAvailableTextureMem(self: *const IDirect3DDevice9) callconv(.Inline) u32 {
+    pub fn GetAvailableTextureMem(self: *const IDirect3DDevice9) callconv(.@"inline") u32 {
         return self.vtable.GetAvailableTextureMem(self);
     }
-    pub fn EvictManagedResources(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn EvictManagedResources(self: *const IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.EvictManagedResources(self);
     }
-    pub fn GetDirect3D(self: *const IDirect3DDevice9, ppD3D9: ?*?*IDirect3D9) callconv(.Inline) HRESULT {
+    pub fn GetDirect3D(self: *const IDirect3DDevice9, ppD3D9: ?*?*IDirect3D9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDirect3D(self, ppD3D9);
     }
-    pub fn GetDeviceCaps(self: *const IDirect3DDevice9, pCaps: ?*D3DCAPS9) callconv(.Inline) HRESULT {
+    pub fn GetDeviceCaps(self: *const IDirect3DDevice9, pCaps: ?*D3DCAPS9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceCaps(self, pCaps);
     }
-    pub fn GetDisplayMode(self: *const IDirect3DDevice9, iSwapChain: u32, pMode: ?*D3DDISPLAYMODE) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirect3DDevice9, iSwapChain: u32, pMode: ?*D3DDISPLAYMODE) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayMode(self, iSwapChain, pMode);
     }
-    pub fn GetCreationParameters(self: *const IDirect3DDevice9, pParameters: ?*D3DDEVICE_CREATION_PARAMETERS) callconv(.Inline) HRESULT {
+    pub fn GetCreationParameters(self: *const IDirect3DDevice9, pParameters: ?*D3DDEVICE_CREATION_PARAMETERS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCreationParameters(self, pParameters);
     }
-    pub fn SetCursorProperties(self: *const IDirect3DDevice9, XHotSpot: u32, YHotSpot: u32, pCursorBitmap: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn SetCursorProperties(self: *const IDirect3DDevice9, XHotSpot: u32, YHotSpot: u32, pCursorBitmap: ?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.SetCursorProperties(self, XHotSpot, YHotSpot, pCursorBitmap);
     }
-    pub fn SetCursorPosition(self: *const IDirect3DDevice9, X: i32, Y: i32, Flags: u32) callconv(.Inline) void {
+    pub fn SetCursorPosition(self: *const IDirect3DDevice9, X: i32, Y: i32, Flags: u32) callconv(.@"inline") void {
         return self.vtable.SetCursorPosition(self, X, Y, Flags);
     }
-    pub fn ShowCursor(self: *const IDirect3DDevice9, bShow: BOOL) callconv(.Inline) BOOL {
+    pub fn ShowCursor(self: *const IDirect3DDevice9, bShow: BOOL) callconv(.@"inline") BOOL {
         return self.vtable.ShowCursor(self, bShow);
     }
-    pub fn CreateAdditionalSwapChain(self: *const IDirect3DDevice9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pSwapChain: ?*?*IDirect3DSwapChain9) callconv(.Inline) HRESULT {
+    pub fn CreateAdditionalSwapChain(self: *const IDirect3DDevice9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pSwapChain: ?*?*IDirect3DSwapChain9) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAdditionalSwapChain(self, pPresentationParameters, pSwapChain);
     }
-    pub fn GetSwapChain(self: *const IDirect3DDevice9, iSwapChain: u32, pSwapChain: ?*?*IDirect3DSwapChain9) callconv(.Inline) HRESULT {
+    pub fn GetSwapChain(self: *const IDirect3DDevice9, iSwapChain: u32, pSwapChain: ?*?*IDirect3DSwapChain9) callconv(.@"inline") HRESULT {
         return self.vtable.GetSwapChain(self, iSwapChain, pSwapChain);
     }
-    pub fn GetNumberOfSwapChains(self: *const IDirect3DDevice9) callconv(.Inline) u32 {
+    pub fn GetNumberOfSwapChains(self: *const IDirect3DDevice9) callconv(.@"inline") u32 {
         return self.vtable.GetNumberOfSwapChains(self);
     }
-    pub fn Reset(self: *const IDirect3DDevice9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IDirect3DDevice9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self, pPresentationParameters);
     }
-    pub fn Present(self: *const IDirect3DDevice9, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA) callconv(.Inline) HRESULT {
+    pub fn Present(self: *const IDirect3DDevice9, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA) callconv(.@"inline") HRESULT {
         return self.vtable.Present(self, pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
     }
-    pub fn GetBackBuffer(self: *const IDirect3DDevice9, iSwapChain: u32, iBackBuffer: u32, Type: D3DBACKBUFFER_TYPE, ppBackBuffer: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetBackBuffer(self: *const IDirect3DDevice9, iSwapChain: u32, iBackBuffer: u32, Type: D3DBACKBUFFER_TYPE, ppBackBuffer: ?*?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetBackBuffer(self, iSwapChain, iBackBuffer, Type, ppBackBuffer);
     }
-    pub fn GetRasterStatus(self: *const IDirect3DDevice9, iSwapChain: u32, pRasterStatus: ?*D3DRASTER_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetRasterStatus(self: *const IDirect3DDevice9, iSwapChain: u32, pRasterStatus: ?*D3DRASTER_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetRasterStatus(self, iSwapChain, pRasterStatus);
     }
-    pub fn SetDialogBoxMode(self: *const IDirect3DDevice9, bEnableDialogs: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetDialogBoxMode(self: *const IDirect3DDevice9, bEnableDialogs: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetDialogBoxMode(self, bEnableDialogs);
     }
-    pub fn SetGammaRamp(self: *const IDirect3DDevice9, iSwapChain: u32, Flags: u32, pRamp: ?*const D3DGAMMARAMP) callconv(.Inline) void {
+    pub fn SetGammaRamp(self: *const IDirect3DDevice9, iSwapChain: u32, Flags: u32, pRamp: ?*const D3DGAMMARAMP) callconv(.@"inline") void {
         return self.vtable.SetGammaRamp(self, iSwapChain, Flags, pRamp);
     }
-    pub fn GetGammaRamp(self: *const IDirect3DDevice9, iSwapChain: u32, pRamp: ?*D3DGAMMARAMP) callconv(.Inline) void {
+    pub fn GetGammaRamp(self: *const IDirect3DDevice9, iSwapChain: u32, pRamp: ?*D3DGAMMARAMP) callconv(.@"inline") void {
         return self.vtable.GetGammaRamp(self, iSwapChain, pRamp);
     }
-    pub fn CreateTexture(self: *const IDirect3DDevice9, Width: u32, Height: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppTexture: ?*?*IDirect3DTexture9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateTexture(self: *const IDirect3DDevice9, Width: u32, Height: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppTexture: ?*?*IDirect3DTexture9, pSharedHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTexture(self, Width, Height, Levels, Usage, Format, Pool, ppTexture, pSharedHandle);
     }
-    pub fn CreateVolumeTexture(self: *const IDirect3DDevice9, Width: u32, Height: u32, Depth: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppVolumeTexture: ?*?*IDirect3DVolumeTexture9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateVolumeTexture(self: *const IDirect3DDevice9, Width: u32, Height: u32, Depth: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppVolumeTexture: ?*?*IDirect3DVolumeTexture9, pSharedHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVolumeTexture(self, Width, Height, Depth, Levels, Usage, Format, Pool, ppVolumeTexture, pSharedHandle);
     }
-    pub fn CreateCubeTexture(self: *const IDirect3DDevice9, EdgeLength: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppCubeTexture: ?*?*IDirect3DCubeTexture9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateCubeTexture(self: *const IDirect3DDevice9, EdgeLength: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppCubeTexture: ?*?*IDirect3DCubeTexture9, pSharedHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCubeTexture(self, EdgeLength, Levels, Usage, Format, Pool, ppCubeTexture, pSharedHandle);
     }
-    pub fn CreateVertexBuffer(self: *const IDirect3DDevice9, Length: u32, Usage: u32, FVF: u32, Pool: D3DPOOL, ppVertexBuffer: ?*?*IDirect3DVertexBuffer9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateVertexBuffer(self: *const IDirect3DDevice9, Length: u32, Usage: u32, FVF: u32, Pool: D3DPOOL, ppVertexBuffer: ?*?*IDirect3DVertexBuffer9, pSharedHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVertexBuffer(self, Length, Usage, FVF, Pool, ppVertexBuffer, pSharedHandle);
     }
-    pub fn CreateIndexBuffer(self: *const IDirect3DDevice9, Length: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppIndexBuffer: ?*?*IDirect3DIndexBuffer9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateIndexBuffer(self: *const IDirect3DDevice9, Length: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppIndexBuffer: ?*?*IDirect3DIndexBuffer9, pSharedHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateIndexBuffer(self, Length, Usage, Format, Pool, ppIndexBuffer, pSharedHandle);
     }
-    pub fn CreateRenderTarget(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Lockable: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateRenderTarget(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Lockable: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRenderTarget(self, Width, Height, Format, MultiSample, MultisampleQuality, Lockable, ppSurface, pSharedHandle);
     }
-    pub fn CreateDepthStencilSurface(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Discard: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateDepthStencilSurface(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Discard: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDepthStencilSurface(self, Width, Height, Format, MultiSample, MultisampleQuality, Discard, ppSurface, pSharedHandle);
     }
-    pub fn UpdateSurface(self: *const IDirect3DDevice9, pSourceSurface: ?*IDirect3DSurface9, pSourceRect: ?*const RECT, pDestinationSurface: ?*IDirect3DSurface9, pDestPoint: ?*const POINT) callconv(.Inline) HRESULT {
+    pub fn UpdateSurface(self: *const IDirect3DDevice9, pSourceSurface: ?*IDirect3DSurface9, pSourceRect: ?*const RECT, pDestinationSurface: ?*IDirect3DSurface9, pDestPoint: ?*const POINT) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateSurface(self, pSourceSurface, pSourceRect, pDestinationSurface, pDestPoint);
     }
-    pub fn UpdateTexture(self: *const IDirect3DDevice9, pSourceTexture: ?*IDirect3DBaseTexture9, pDestinationTexture: ?*IDirect3DBaseTexture9) callconv(.Inline) HRESULT {
+    pub fn UpdateTexture(self: *const IDirect3DDevice9, pSourceTexture: ?*IDirect3DBaseTexture9, pDestinationTexture: ?*IDirect3DBaseTexture9) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateTexture(self, pSourceTexture, pDestinationTexture);
     }
-    pub fn GetRenderTargetData(self: *const IDirect3DDevice9, pRenderTarget: ?*IDirect3DSurface9, pDestSurface: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetRenderTargetData(self: *const IDirect3DDevice9, pRenderTarget: ?*IDirect3DSurface9, pDestSurface: ?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetRenderTargetData(self, pRenderTarget, pDestSurface);
     }
-    pub fn GetFrontBufferData(self: *const IDirect3DDevice9, iSwapChain: u32, pDestSurface: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetFrontBufferData(self: *const IDirect3DDevice9, iSwapChain: u32, pDestSurface: ?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrontBufferData(self, iSwapChain, pDestSurface);
     }
-    pub fn StretchRect(self: *const IDirect3DDevice9, pSourceSurface: ?*IDirect3DSurface9, pSourceRect: ?*const RECT, pDestSurface: ?*IDirect3DSurface9, pDestRect: ?*const RECT, Filter: D3DTEXTUREFILTERTYPE) callconv(.Inline) HRESULT {
+    pub fn StretchRect(self: *const IDirect3DDevice9, pSourceSurface: ?*IDirect3DSurface9, pSourceRect: ?*const RECT, pDestSurface: ?*IDirect3DSurface9, pDestRect: ?*const RECT, Filter: D3DTEXTUREFILTERTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.StretchRect(self, pSourceSurface, pSourceRect, pDestSurface, pDestRect, Filter);
     }
-    pub fn ColorFill(self: *const IDirect3DDevice9, pSurface: ?*IDirect3DSurface9, pRect: ?*const RECT, color: u32) callconv(.Inline) HRESULT {
+    pub fn ColorFill(self: *const IDirect3DDevice9, pSurface: ?*IDirect3DSurface9, pRect: ?*const RECT, color: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ColorFill(self, pSurface, pRect, color);
     }
-    pub fn CreateOffscreenPlainSurface(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn CreateOffscreenPlainSurface(self: *const IDirect3DDevice9, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.CreateOffscreenPlainSurface(self, Width, Height, Format, Pool, ppSurface, pSharedHandle);
     }
-    pub fn SetRenderTarget(self: *const IDirect3DDevice9, RenderTargetIndex: u32, pRenderTarget: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn SetRenderTarget(self: *const IDirect3DDevice9, RenderTargetIndex: u32, pRenderTarget: ?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.SetRenderTarget(self, RenderTargetIndex, pRenderTarget);
     }
-    pub fn GetRenderTarget(self: *const IDirect3DDevice9, RenderTargetIndex: u32, ppRenderTarget: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetRenderTarget(self: *const IDirect3DDevice9, RenderTargetIndex: u32, ppRenderTarget: ?*?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetRenderTarget(self, RenderTargetIndex, ppRenderTarget);
     }
-    pub fn SetDepthStencilSurface(self: *const IDirect3DDevice9, pNewZStencil: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn SetDepthStencilSurface(self: *const IDirect3DDevice9, pNewZStencil: ?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.SetDepthStencilSurface(self, pNewZStencil);
     }
-    pub fn GetDepthStencilSurface(self: *const IDirect3DDevice9, ppZStencilSurface: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetDepthStencilSurface(self: *const IDirect3DDevice9, ppZStencilSurface: ?*?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDepthStencilSurface(self, ppZStencilSurface);
     }
-    pub fn BeginScene(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn BeginScene(self: *const IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.BeginScene(self);
     }
-    pub fn EndScene(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn EndScene(self: *const IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.EndScene(self);
     }
-    pub fn Clear(self: *const IDirect3DDevice9, Count: u32, pRects: ?*const D3DRECT, Flags: u32, Color: u32, Z: f32, Stencil: u32) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const IDirect3DDevice9, Count: u32, pRects: ?*const D3DRECT, Flags: u32, Color: u32, Z: f32, Stencil: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Clear(self, Count, pRects, Flags, Color, Z, Stencil);
     }
-    pub fn SetTransform(self: *const IDirect3DDevice9, State: D3DTRANSFORMSTATETYPE, pMatrix: ?*const D3DMATRIX) callconv(.Inline) HRESULT {
+    pub fn SetTransform(self: *const IDirect3DDevice9, State: D3DTRANSFORMSTATETYPE, pMatrix: ?*const D3DMATRIX) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransform(self, State, pMatrix);
     }
-    pub fn GetTransform(self: *const IDirect3DDevice9, State: D3DTRANSFORMSTATETYPE, pMatrix: ?*D3DMATRIX) callconv(.Inline) HRESULT {
+    pub fn GetTransform(self: *const IDirect3DDevice9, State: D3DTRANSFORMSTATETYPE, pMatrix: ?*D3DMATRIX) callconv(.@"inline") HRESULT {
         return self.vtable.GetTransform(self, State, pMatrix);
     }
-    pub fn MultiplyTransform(self: *const IDirect3DDevice9, param0: D3DTRANSFORMSTATETYPE, param1: ?*const D3DMATRIX) callconv(.Inline) HRESULT {
+    pub fn MultiplyTransform(self: *const IDirect3DDevice9, param0: D3DTRANSFORMSTATETYPE, param1: ?*const D3DMATRIX) callconv(.@"inline") HRESULT {
         return self.vtable.MultiplyTransform(self, param0, param1);
     }
-    pub fn SetViewport(self: *const IDirect3DDevice9, pViewport: ?*const D3DVIEWPORT9) callconv(.Inline) HRESULT {
+    pub fn SetViewport(self: *const IDirect3DDevice9, pViewport: ?*const D3DVIEWPORT9) callconv(.@"inline") HRESULT {
         return self.vtable.SetViewport(self, pViewport);
     }
-    pub fn GetViewport(self: *const IDirect3DDevice9, pViewport: ?*D3DVIEWPORT9) callconv(.Inline) HRESULT {
+    pub fn GetViewport(self: *const IDirect3DDevice9, pViewport: ?*D3DVIEWPORT9) callconv(.@"inline") HRESULT {
         return self.vtable.GetViewport(self, pViewport);
     }
-    pub fn SetMaterial(self: *const IDirect3DDevice9, pMaterial: ?*const D3DMATERIAL9) callconv(.Inline) HRESULT {
+    pub fn SetMaterial(self: *const IDirect3DDevice9, pMaterial: ?*const D3DMATERIAL9) callconv(.@"inline") HRESULT {
         return self.vtable.SetMaterial(self, pMaterial);
     }
-    pub fn GetMaterial(self: *const IDirect3DDevice9, pMaterial: ?*D3DMATERIAL9) callconv(.Inline) HRESULT {
+    pub fn GetMaterial(self: *const IDirect3DDevice9, pMaterial: ?*D3DMATERIAL9) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaterial(self, pMaterial);
     }
-    pub fn SetLight(self: *const IDirect3DDevice9, Index: u32, param1: ?*const D3DLIGHT9) callconv(.Inline) HRESULT {
+    pub fn SetLight(self: *const IDirect3DDevice9, Index: u32, param1: ?*const D3DLIGHT9) callconv(.@"inline") HRESULT {
         return self.vtable.SetLight(self, Index, param1);
     }
-    pub fn GetLight(self: *const IDirect3DDevice9, Index: u32, param1: ?*D3DLIGHT9) callconv(.Inline) HRESULT {
+    pub fn GetLight(self: *const IDirect3DDevice9, Index: u32, param1: ?*D3DLIGHT9) callconv(.@"inline") HRESULT {
         return self.vtable.GetLight(self, Index, param1);
     }
-    pub fn LightEnable(self: *const IDirect3DDevice9, Index: u32, Enable: BOOL) callconv(.Inline) HRESULT {
+    pub fn LightEnable(self: *const IDirect3DDevice9, Index: u32, Enable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.LightEnable(self, Index, Enable);
     }
-    pub fn GetLightEnable(self: *const IDirect3DDevice9, Index: u32, pEnable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetLightEnable(self: *const IDirect3DDevice9, Index: u32, pEnable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetLightEnable(self, Index, pEnable);
     }
-    pub fn SetClipPlane(self: *const IDirect3DDevice9, Index: u32, pPlane: ?*const f32) callconv(.Inline) HRESULT {
+    pub fn SetClipPlane(self: *const IDirect3DDevice9, Index: u32, pPlane: ?*const f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipPlane(self, Index, pPlane);
     }
-    pub fn GetClipPlane(self: *const IDirect3DDevice9, Index: u32, pPlane: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetClipPlane(self: *const IDirect3DDevice9, Index: u32, pPlane: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipPlane(self, Index, pPlane);
     }
-    pub fn SetRenderState(self: *const IDirect3DDevice9, State: D3DRENDERSTATETYPE, Value: u32) callconv(.Inline) HRESULT {
+    pub fn SetRenderState(self: *const IDirect3DDevice9, State: D3DRENDERSTATETYPE, Value: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRenderState(self, State, Value);
     }
-    pub fn GetRenderState(self: *const IDirect3DDevice9, State: D3DRENDERSTATETYPE, pValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRenderState(self: *const IDirect3DDevice9, State: D3DRENDERSTATETYPE, pValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRenderState(self, State, pValue);
     }
-    pub fn CreateStateBlock(self: *const IDirect3DDevice9, Type: D3DSTATEBLOCKTYPE, ppSB: ?*?*IDirect3DStateBlock9) callconv(.Inline) HRESULT {
+    pub fn CreateStateBlock(self: *const IDirect3DDevice9, Type: D3DSTATEBLOCKTYPE, ppSB: ?*?*IDirect3DStateBlock9) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStateBlock(self, Type, ppSB);
     }
-    pub fn BeginStateBlock(self: *const IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn BeginStateBlock(self: *const IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.BeginStateBlock(self);
     }
-    pub fn EndStateBlock(self: *const IDirect3DDevice9, ppSB: ?*?*IDirect3DStateBlock9) callconv(.Inline) HRESULT {
+    pub fn EndStateBlock(self: *const IDirect3DDevice9, ppSB: ?*?*IDirect3DStateBlock9) callconv(.@"inline") HRESULT {
         return self.vtable.EndStateBlock(self, ppSB);
     }
-    pub fn SetClipStatus(self: *const IDirect3DDevice9, pClipStatus: ?*const D3DCLIPSTATUS9) callconv(.Inline) HRESULT {
+    pub fn SetClipStatus(self: *const IDirect3DDevice9, pClipStatus: ?*const D3DCLIPSTATUS9) callconv(.@"inline") HRESULT {
         return self.vtable.SetClipStatus(self, pClipStatus);
     }
-    pub fn GetClipStatus(self: *const IDirect3DDevice9, pClipStatus: ?*D3DCLIPSTATUS9) callconv(.Inline) HRESULT {
+    pub fn GetClipStatus(self: *const IDirect3DDevice9, pClipStatus: ?*D3DCLIPSTATUS9) callconv(.@"inline") HRESULT {
         return self.vtable.GetClipStatus(self, pClipStatus);
     }
-    pub fn GetTexture(self: *const IDirect3DDevice9, Stage: u32, ppTexture: ?*?*IDirect3DBaseTexture9) callconv(.Inline) HRESULT {
+    pub fn GetTexture(self: *const IDirect3DDevice9, Stage: u32, ppTexture: ?*?*IDirect3DBaseTexture9) callconv(.@"inline") HRESULT {
         return self.vtable.GetTexture(self, Stage, ppTexture);
     }
-    pub fn SetTexture(self: *const IDirect3DDevice9, Stage: u32, pTexture: ?*IDirect3DBaseTexture9) callconv(.Inline) HRESULT {
+    pub fn SetTexture(self: *const IDirect3DDevice9, Stage: u32, pTexture: ?*IDirect3DBaseTexture9) callconv(.@"inline") HRESULT {
         return self.vtable.SetTexture(self, Stage, pTexture);
     }
-    pub fn GetTextureStageState(self: *const IDirect3DDevice9, Stage: u32, Type: D3DTEXTURESTAGESTATETYPE, pValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTextureStageState(self: *const IDirect3DDevice9, Stage: u32, Type: D3DTEXTURESTAGESTATETYPE, pValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTextureStageState(self, Stage, Type, pValue);
     }
-    pub fn SetTextureStageState(self: *const IDirect3DDevice9, Stage: u32, Type: D3DTEXTURESTAGESTATETYPE, Value: u32) callconv(.Inline) HRESULT {
+    pub fn SetTextureStageState(self: *const IDirect3DDevice9, Stage: u32, Type: D3DTEXTURESTAGESTATETYPE, Value: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTextureStageState(self, Stage, Type, Value);
     }
-    pub fn GetSamplerState(self: *const IDirect3DDevice9, Sampler: u32, Type: D3DSAMPLERSTATETYPE, pValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSamplerState(self: *const IDirect3DDevice9, Sampler: u32, Type: D3DSAMPLERSTATETYPE, pValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSamplerState(self, Sampler, Type, pValue);
     }
-    pub fn SetSamplerState(self: *const IDirect3DDevice9, Sampler: u32, Type: D3DSAMPLERSTATETYPE, Value: u32) callconv(.Inline) HRESULT {
+    pub fn SetSamplerState(self: *const IDirect3DDevice9, Sampler: u32, Type: D3DSAMPLERSTATETYPE, Value: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSamplerState(self, Sampler, Type, Value);
     }
-    pub fn ValidateDevice(self: *const IDirect3DDevice9, pNumPasses: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ValidateDevice(self: *const IDirect3DDevice9, pNumPasses: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ValidateDevice(self, pNumPasses);
     }
-    pub fn SetPaletteEntries(self: *const IDirect3DDevice9, PaletteNumber: u32, pEntries: ?*const PALETTEENTRY) callconv(.Inline) HRESULT {
+    pub fn SetPaletteEntries(self: *const IDirect3DDevice9, PaletteNumber: u32, pEntries: ?*const PALETTEENTRY) callconv(.@"inline") HRESULT {
         return self.vtable.SetPaletteEntries(self, PaletteNumber, pEntries);
     }
-    pub fn GetPaletteEntries(self: *const IDirect3DDevice9, PaletteNumber: u32, pEntries: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
+    pub fn GetPaletteEntries(self: *const IDirect3DDevice9, PaletteNumber: u32, pEntries: ?*PALETTEENTRY) callconv(.@"inline") HRESULT {
         return self.vtable.GetPaletteEntries(self, PaletteNumber, pEntries);
     }
-    pub fn SetCurrentTexturePalette(self: *const IDirect3DDevice9, PaletteNumber: u32) callconv(.Inline) HRESULT {
+    pub fn SetCurrentTexturePalette(self: *const IDirect3DDevice9, PaletteNumber: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCurrentTexturePalette(self, PaletteNumber);
     }
-    pub fn GetCurrentTexturePalette(self: *const IDirect3DDevice9, PaletteNumber: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentTexturePalette(self: *const IDirect3DDevice9, PaletteNumber: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentTexturePalette(self, PaletteNumber);
     }
-    pub fn SetScissorRect(self: *const IDirect3DDevice9, pRect: ?*const RECT) callconv(.Inline) HRESULT {
+    pub fn SetScissorRect(self: *const IDirect3DDevice9, pRect: ?*const RECT) callconv(.@"inline") HRESULT {
         return self.vtable.SetScissorRect(self, pRect);
     }
-    pub fn GetScissorRect(self: *const IDirect3DDevice9, pRect: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetScissorRect(self: *const IDirect3DDevice9, pRect: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetScissorRect(self, pRect);
     }
-    pub fn SetSoftwareVertexProcessing(self: *const IDirect3DDevice9, bSoftware: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetSoftwareVertexProcessing(self: *const IDirect3DDevice9, bSoftware: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetSoftwareVertexProcessing(self, bSoftware);
     }
-    pub fn GetSoftwareVertexProcessing(self: *const IDirect3DDevice9) callconv(.Inline) BOOL {
+    pub fn GetSoftwareVertexProcessing(self: *const IDirect3DDevice9) callconv(.@"inline") BOOL {
         return self.vtable.GetSoftwareVertexProcessing(self);
     }
-    pub fn SetNPatchMode(self: *const IDirect3DDevice9, nSegments: f32) callconv(.Inline) HRESULT {
+    pub fn SetNPatchMode(self: *const IDirect3DDevice9, nSegments: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetNPatchMode(self, nSegments);
     }
-    pub fn GetNPatchMode(self: *const IDirect3DDevice9) callconv(.Inline) f32 {
+    pub fn GetNPatchMode(self: *const IDirect3DDevice9) callconv(.@"inline") f32 {
         return self.vtable.GetNPatchMode(self);
     }
-    pub fn DrawPrimitive(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, StartVertex: u32, PrimitiveCount: u32) callconv(.Inline) HRESULT {
+    pub fn DrawPrimitive(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, StartVertex: u32, PrimitiveCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DrawPrimitive(self, PrimitiveType, StartVertex, PrimitiveCount);
     }
-    pub fn DrawIndexedPrimitive(self: *const IDirect3DDevice9, param0: D3DPRIMITIVETYPE, BaseVertexIndex: i32, MinVertexIndex: u32, NumVertices: u32, startIndex: u32, primCount: u32) callconv(.Inline) HRESULT {
+    pub fn DrawIndexedPrimitive(self: *const IDirect3DDevice9, param0: D3DPRIMITIVETYPE, BaseVertexIndex: i32, MinVertexIndex: u32, NumVertices: u32, startIndex: u32, primCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DrawIndexedPrimitive(self, param0, BaseVertexIndex, MinVertexIndex, NumVertices, startIndex, primCount);
     }
-    pub fn DrawPrimitiveUP(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, PrimitiveCount: u32, pVertexStreamZeroData: ?*const anyopaque, VertexStreamZeroStride: u32) callconv(.Inline) HRESULT {
+    pub fn DrawPrimitiveUP(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, PrimitiveCount: u32, pVertexStreamZeroData: ?*const anyopaque, VertexStreamZeroStride: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DrawPrimitiveUP(self, PrimitiveType, PrimitiveCount, pVertexStreamZeroData, VertexStreamZeroStride);
     }
-    pub fn DrawIndexedPrimitiveUP(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, MinVertexIndex: u32, NumVertices: u32, PrimitiveCount: u32, pIndexData: ?*const anyopaque, IndexDataFormat: D3DFORMAT, pVertexStreamZeroData: ?*const anyopaque, VertexStreamZeroStride: u32) callconv(.Inline) HRESULT {
+    pub fn DrawIndexedPrimitiveUP(self: *const IDirect3DDevice9, PrimitiveType: D3DPRIMITIVETYPE, MinVertexIndex: u32, NumVertices: u32, PrimitiveCount: u32, pIndexData: ?*const anyopaque, IndexDataFormat: D3DFORMAT, pVertexStreamZeroData: ?*const anyopaque, VertexStreamZeroStride: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DrawIndexedPrimitiveUP(self, PrimitiveType, MinVertexIndex, NumVertices, PrimitiveCount, pIndexData, IndexDataFormat, pVertexStreamZeroData, VertexStreamZeroStride);
     }
-    pub fn ProcessVertices(self: *const IDirect3DDevice9, SrcStartIndex: u32, DestIndex: u32, VertexCount: u32, pDestBuffer: ?*IDirect3DVertexBuffer9, pVertexDecl: ?*IDirect3DVertexDeclaration9, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn ProcessVertices(self: *const IDirect3DDevice9, SrcStartIndex: u32, DestIndex: u32, VertexCount: u32, pDestBuffer: ?*IDirect3DVertexBuffer9, pVertexDecl: ?*IDirect3DVertexDeclaration9, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessVertices(self, SrcStartIndex, DestIndex, VertexCount, pDestBuffer, pVertexDecl, Flags);
     }
-    pub fn CreateVertexDeclaration(self: *const IDirect3DDevice9, pVertexElements: ?*const D3DVERTEXELEMENT9, ppDecl: ?*?*IDirect3DVertexDeclaration9) callconv(.Inline) HRESULT {
+    pub fn CreateVertexDeclaration(self: *const IDirect3DDevice9, pVertexElements: ?*const D3DVERTEXELEMENT9, ppDecl: ?*?*IDirect3DVertexDeclaration9) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVertexDeclaration(self, pVertexElements, ppDecl);
     }
-    pub fn SetVertexDeclaration(self: *const IDirect3DDevice9, pDecl: ?*IDirect3DVertexDeclaration9) callconv(.Inline) HRESULT {
+    pub fn SetVertexDeclaration(self: *const IDirect3DDevice9, pDecl: ?*IDirect3DVertexDeclaration9) callconv(.@"inline") HRESULT {
         return self.vtable.SetVertexDeclaration(self, pDecl);
     }
-    pub fn GetVertexDeclaration(self: *const IDirect3DDevice9, ppDecl: ?*?*IDirect3DVertexDeclaration9) callconv(.Inline) HRESULT {
+    pub fn GetVertexDeclaration(self: *const IDirect3DDevice9, ppDecl: ?*?*IDirect3DVertexDeclaration9) callconv(.@"inline") HRESULT {
         return self.vtable.GetVertexDeclaration(self, ppDecl);
     }
-    pub fn SetFVF(self: *const IDirect3DDevice9, FVF: u32) callconv(.Inline) HRESULT {
+    pub fn SetFVF(self: *const IDirect3DDevice9, FVF: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFVF(self, FVF);
     }
-    pub fn GetFVF(self: *const IDirect3DDevice9, pFVF: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFVF(self: *const IDirect3DDevice9, pFVF: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFVF(self, pFVF);
     }
-    pub fn CreateVertexShader(self: *const IDirect3DDevice9, pFunction: ?*const u32, ppShader: ?*?*IDirect3DVertexShader9) callconv(.Inline) HRESULT {
+    pub fn CreateVertexShader(self: *const IDirect3DDevice9, pFunction: ?*const u32, ppShader: ?*?*IDirect3DVertexShader9) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVertexShader(self, pFunction, ppShader);
     }
-    pub fn SetVertexShader(self: *const IDirect3DDevice9, pShader: ?*IDirect3DVertexShader9) callconv(.Inline) HRESULT {
+    pub fn SetVertexShader(self: *const IDirect3DDevice9, pShader: ?*IDirect3DVertexShader9) callconv(.@"inline") HRESULT {
         return self.vtable.SetVertexShader(self, pShader);
     }
-    pub fn GetVertexShader(self: *const IDirect3DDevice9, ppShader: ?*?*IDirect3DVertexShader9) callconv(.Inline) HRESULT {
+    pub fn GetVertexShader(self: *const IDirect3DDevice9, ppShader: ?*?*IDirect3DVertexShader9) callconv(.@"inline") HRESULT {
         return self.vtable.GetVertexShader(self, ppShader);
     }
-    pub fn SetVertexShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const f32, Vector4fCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetVertexShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const f32, Vector4fCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetVertexShaderConstantF(self, StartRegister, pConstantData, Vector4fCount);
     }
-    pub fn GetVertexShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*f32, Vector4fCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetVertexShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*f32, Vector4fCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVertexShaderConstantF(self, StartRegister, pConstantData, Vector4fCount);
     }
-    pub fn SetVertexShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const i32, Vector4iCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetVertexShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const i32, Vector4iCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetVertexShaderConstantI(self, StartRegister, pConstantData, Vector4iCount);
     }
-    pub fn GetVertexShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*i32, Vector4iCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetVertexShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*i32, Vector4iCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVertexShaderConstantI(self, StartRegister, pConstantData, Vector4iCount);
     }
-    pub fn SetVertexShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const BOOL, BoolCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetVertexShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const BOOL, BoolCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetVertexShaderConstantB(self, StartRegister, pConstantData, BoolCount);
     }
-    pub fn GetVertexShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*BOOL, BoolCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetVertexShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*BOOL, BoolCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVertexShaderConstantB(self, StartRegister, pConstantData, BoolCount);
     }
-    pub fn SetStreamSource(self: *const IDirect3DDevice9, StreamNumber: u32, pStreamData: ?*IDirect3DVertexBuffer9, OffsetInBytes: u32, Stride: u32) callconv(.Inline) HRESULT {
+    pub fn SetStreamSource(self: *const IDirect3DDevice9, StreamNumber: u32, pStreamData: ?*IDirect3DVertexBuffer9, OffsetInBytes: u32, Stride: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStreamSource(self, StreamNumber, pStreamData, OffsetInBytes, Stride);
     }
-    pub fn GetStreamSource(self: *const IDirect3DDevice9, StreamNumber: u32, ppStreamData: ?*?*IDirect3DVertexBuffer9, pOffsetInBytes: ?*u32, pStride: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStreamSource(self: *const IDirect3DDevice9, StreamNumber: u32, ppStreamData: ?*?*IDirect3DVertexBuffer9, pOffsetInBytes: ?*u32, pStride: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStreamSource(self, StreamNumber, ppStreamData, pOffsetInBytes, pStride);
     }
-    pub fn SetStreamSourceFreq(self: *const IDirect3DDevice9, StreamNumber: u32, Setting: u32) callconv(.Inline) HRESULT {
+    pub fn SetStreamSourceFreq(self: *const IDirect3DDevice9, StreamNumber: u32, Setting: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStreamSourceFreq(self, StreamNumber, Setting);
     }
-    pub fn GetStreamSourceFreq(self: *const IDirect3DDevice9, StreamNumber: u32, pSetting: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStreamSourceFreq(self: *const IDirect3DDevice9, StreamNumber: u32, pSetting: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStreamSourceFreq(self, StreamNumber, pSetting);
     }
-    pub fn SetIndices(self: *const IDirect3DDevice9, pIndexData: ?*IDirect3DIndexBuffer9) callconv(.Inline) HRESULT {
+    pub fn SetIndices(self: *const IDirect3DDevice9, pIndexData: ?*IDirect3DIndexBuffer9) callconv(.@"inline") HRESULT {
         return self.vtable.SetIndices(self, pIndexData);
     }
-    pub fn GetIndices(self: *const IDirect3DDevice9, ppIndexData: ?*?*IDirect3DIndexBuffer9) callconv(.Inline) HRESULT {
+    pub fn GetIndices(self: *const IDirect3DDevice9, ppIndexData: ?*?*IDirect3DIndexBuffer9) callconv(.@"inline") HRESULT {
         return self.vtable.GetIndices(self, ppIndexData);
     }
-    pub fn CreatePixelShader(self: *const IDirect3DDevice9, pFunction: ?*const u32, ppShader: ?*?*IDirect3DPixelShader9) callconv(.Inline) HRESULT {
+    pub fn CreatePixelShader(self: *const IDirect3DDevice9, pFunction: ?*const u32, ppShader: ?*?*IDirect3DPixelShader9) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePixelShader(self, pFunction, ppShader);
     }
-    pub fn SetPixelShader(self: *const IDirect3DDevice9, pShader: ?*IDirect3DPixelShader9) callconv(.Inline) HRESULT {
+    pub fn SetPixelShader(self: *const IDirect3DDevice9, pShader: ?*IDirect3DPixelShader9) callconv(.@"inline") HRESULT {
         return self.vtable.SetPixelShader(self, pShader);
     }
-    pub fn GetPixelShader(self: *const IDirect3DDevice9, ppShader: ?*?*IDirect3DPixelShader9) callconv(.Inline) HRESULT {
+    pub fn GetPixelShader(self: *const IDirect3DDevice9, ppShader: ?*?*IDirect3DPixelShader9) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelShader(self, ppShader);
     }
-    pub fn SetPixelShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const f32, Vector4fCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetPixelShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const f32, Vector4fCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPixelShaderConstantF(self, StartRegister, pConstantData, Vector4fCount);
     }
-    pub fn GetPixelShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*f32, Vector4fCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetPixelShaderConstantF(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*f32, Vector4fCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelShaderConstantF(self, StartRegister, pConstantData, Vector4fCount);
     }
-    pub fn SetPixelShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const i32, Vector4iCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetPixelShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const i32, Vector4iCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPixelShaderConstantI(self, StartRegister, pConstantData, Vector4iCount);
     }
-    pub fn GetPixelShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*i32, Vector4iCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetPixelShaderConstantI(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*i32, Vector4iCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelShaderConstantI(self, StartRegister, pConstantData, Vector4iCount);
     }
-    pub fn SetPixelShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const BOOL, BoolCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetPixelShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*const BOOL, BoolCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPixelShaderConstantB(self, StartRegister, pConstantData, BoolCount);
     }
-    pub fn GetPixelShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*BOOL, BoolCount: u32) callconv(.Inline) HRESULT {
+    pub fn GetPixelShaderConstantB(self: *const IDirect3DDevice9, StartRegister: u32, pConstantData: ?*BOOL, BoolCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelShaderConstantB(self, StartRegister, pConstantData, BoolCount);
     }
-    pub fn DrawRectPatch(self: *const IDirect3DDevice9, Handle: u32, pNumSegs: ?*const f32, pRectPatchInfo: ?*const D3DRECTPATCH_INFO) callconv(.Inline) HRESULT {
+    pub fn DrawRectPatch(self: *const IDirect3DDevice9, Handle: u32, pNumSegs: ?*const f32, pRectPatchInfo: ?*const D3DRECTPATCH_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.DrawRectPatch(self, Handle, pNumSegs, pRectPatchInfo);
     }
-    pub fn DrawTriPatch(self: *const IDirect3DDevice9, Handle: u32, pNumSegs: ?*const f32, pTriPatchInfo: ?*const D3DTRIPATCH_INFO) callconv(.Inline) HRESULT {
+    pub fn DrawTriPatch(self: *const IDirect3DDevice9, Handle: u32, pNumSegs: ?*const f32, pTriPatchInfo: ?*const D3DTRIPATCH_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.DrawTriPatch(self, Handle, pNumSegs, pTriPatchInfo);
     }
-    pub fn DeletePatch(self: *const IDirect3DDevice9, Handle: u32) callconv(.Inline) HRESULT {
+    pub fn DeletePatch(self: *const IDirect3DDevice9, Handle: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePatch(self, Handle);
     }
-    pub fn CreateQuery(self: *const IDirect3DDevice9, Type: D3DQUERYTYPE, ppQuery: ?*?*IDirect3DQuery9) callconv(.Inline) HRESULT {
+    pub fn CreateQuery(self: *const IDirect3DDevice9, Type: D3DQUERYTYPE, ppQuery: ?*?*IDirect3DQuery9) callconv(.@"inline") HRESULT {
         return self.vtable.CreateQuery(self, Type, ppQuery);
     }
 };
@@ -3480,13 +3480,13 @@ pub const IDirect3DStateBlock9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDirect3DStateBlock9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDirect3DStateBlock9, ppDevice: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn Capture(self: *const IDirect3DStateBlock9) callconv(.Inline) HRESULT {
+    pub fn Capture(self: *const IDirect3DStateBlock9) callconv(.@"inline") HRESULT {
         return self.vtable.Capture(self);
     }
-    pub fn Apply(self: *const IDirect3DStateBlock9) callconv(.Inline) HRESULT {
+    pub fn Apply(self: *const IDirect3DStateBlock9) callconv(.@"inline") HRESULT {
         return self.vtable.Apply(self);
     }
 };
@@ -3533,25 +3533,25 @@ pub const IDirect3DSwapChain9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Present(self: *const IDirect3DSwapChain9, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Present(self: *const IDirect3DSwapChain9, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Present(self, pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
     }
-    pub fn GetFrontBufferData(self: *const IDirect3DSwapChain9, pDestSurface: ?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetFrontBufferData(self: *const IDirect3DSwapChain9, pDestSurface: ?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrontBufferData(self, pDestSurface);
     }
-    pub fn GetBackBuffer(self: *const IDirect3DSwapChain9, iBackBuffer: u32, Type: D3DBACKBUFFER_TYPE, ppBackBuffer: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetBackBuffer(self: *const IDirect3DSwapChain9, iBackBuffer: u32, Type: D3DBACKBUFFER_TYPE, ppBackBuffer: ?*?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetBackBuffer(self, iBackBuffer, Type, ppBackBuffer);
     }
-    pub fn GetRasterStatus(self: *const IDirect3DSwapChain9, pRasterStatus: ?*D3DRASTER_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetRasterStatus(self: *const IDirect3DSwapChain9, pRasterStatus: ?*D3DRASTER_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetRasterStatus(self, pRasterStatus);
     }
-    pub fn GetDisplayMode(self: *const IDirect3DSwapChain9, pMode: ?*D3DDISPLAYMODE) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirect3DSwapChain9, pMode: ?*D3DDISPLAYMODE) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayMode(self, pMode);
     }
-    pub fn GetDevice(self: *const IDirect3DSwapChain9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDirect3DSwapChain9, ppDevice: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn GetPresentParameters(self: *const IDirect3DSwapChain9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS) callconv(.Inline) HRESULT {
+    pub fn GetPresentParameters(self: *const IDirect3DSwapChain9, pPresentationParameters: ?*D3DPRESENT_PARAMETERS) callconv(.@"inline") HRESULT {
         return self.vtable.GetPresentParameters(self, pPresentationParameters);
     }
 };
@@ -3598,28 +3598,28 @@ pub const IDirect3DResource9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDirect3DResource9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDirect3DResource9, ppDevice: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn SetPrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid, pData: ?*const anyopaque, SizeOfData: u32, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid, pData: ?*const anyopaque, SizeOfData: u32, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateData(self, refguid, pData, SizeOfData, Flags);
     }
-    pub fn GetPrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid, pData: ?*anyopaque, pSizeOfData: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid, pData: ?*anyopaque, pSizeOfData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivateData(self, refguid, pData, pSizeOfData);
     }
-    pub fn FreePrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn FreePrivateData(self: *const IDirect3DResource9, refguid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FreePrivateData(self, refguid);
     }
-    pub fn SetPriority(self: *const IDirect3DResource9, PriorityNew: u32) callconv(.Inline) u32 {
+    pub fn SetPriority(self: *const IDirect3DResource9, PriorityNew: u32) callconv(.@"inline") u32 {
         return self.vtable.SetPriority(self, PriorityNew);
     }
-    pub fn GetPriority(self: *const IDirect3DResource9) callconv(.Inline) u32 {
+    pub fn GetPriority(self: *const IDirect3DResource9) callconv(.@"inline") u32 {
         return self.vtable.GetPriority(self);
     }
-    pub fn PreLoad(self: *const IDirect3DResource9) callconv(.Inline) void {
+    pub fn PreLoad(self: *const IDirect3DResource9) callconv(.@"inline") void {
         return self.vtable.PreLoad(self);
     }
-    pub fn GetType(self: *const IDirect3DResource9) callconv(.Inline) D3DRESOURCETYPE {
+    pub fn GetType(self: *const IDirect3DResource9) callconv(.@"inline") D3DRESOURCETYPE {
         return self.vtable.GetType(self);
     }
 };
@@ -3641,10 +3641,10 @@ pub const IDirect3DVertexDeclaration9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDirect3DVertexDeclaration9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDirect3DVertexDeclaration9, ppDevice: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn GetDeclaration(self: *const IDirect3DVertexDeclaration9, pElement: ?*D3DVERTEXELEMENT9, pNumElements: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeclaration(self: *const IDirect3DVertexDeclaration9, pElement: ?*D3DVERTEXELEMENT9, pNumElements: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeclaration(self, pElement, pNumElements);
     }
 };
@@ -3666,10 +3666,10 @@ pub const IDirect3DVertexShader9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDirect3DVertexShader9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDirect3DVertexShader9, ppDevice: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn GetFunction(self: *const IDirect3DVertexShader9, param0: ?*anyopaque, pSizeOfData: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFunction(self: *const IDirect3DVertexShader9, param0: ?*anyopaque, pSizeOfData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFunction(self, param0, pSizeOfData);
     }
 };
@@ -3691,10 +3691,10 @@ pub const IDirect3DPixelShader9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDirect3DPixelShader9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDirect3DPixelShader9, ppDevice: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn GetFunction(self: *const IDirect3DPixelShader9, param0: ?*anyopaque, pSizeOfData: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFunction(self: *const IDirect3DPixelShader9, param0: ?*anyopaque, pSizeOfData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFunction(self, param0, pSizeOfData);
     }
 };
@@ -3728,22 +3728,22 @@ pub const IDirect3DBaseTexture9 = extern union {
     vtable: *const VTable,
     IDirect3DResource9: IDirect3DResource9,
     IUnknown: IUnknown,
-    pub fn SetLOD(self: *const IDirect3DBaseTexture9, LODNew: u32) callconv(.Inline) u32 {
+    pub fn SetLOD(self: *const IDirect3DBaseTexture9, LODNew: u32) callconv(.@"inline") u32 {
         return self.vtable.SetLOD(self, LODNew);
     }
-    pub fn GetLOD(self: *const IDirect3DBaseTexture9) callconv(.Inline) u32 {
+    pub fn GetLOD(self: *const IDirect3DBaseTexture9) callconv(.@"inline") u32 {
         return self.vtable.GetLOD(self);
     }
-    pub fn GetLevelCount(self: *const IDirect3DBaseTexture9) callconv(.Inline) u32 {
+    pub fn GetLevelCount(self: *const IDirect3DBaseTexture9) callconv(.@"inline") u32 {
         return self.vtable.GetLevelCount(self);
     }
-    pub fn SetAutoGenFilterType(self: *const IDirect3DBaseTexture9, FilterType: D3DTEXTUREFILTERTYPE) callconv(.Inline) HRESULT {
+    pub fn SetAutoGenFilterType(self: *const IDirect3DBaseTexture9, FilterType: D3DTEXTUREFILTERTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.SetAutoGenFilterType(self, FilterType);
     }
-    pub fn GetAutoGenFilterType(self: *const IDirect3DBaseTexture9) callconv(.Inline) D3DTEXTUREFILTERTYPE {
+    pub fn GetAutoGenFilterType(self: *const IDirect3DBaseTexture9) callconv(.@"inline") D3DTEXTUREFILTERTYPE {
         return self.vtable.GetAutoGenFilterType(self);
     }
-    pub fn GenerateMipSubLevels(self: *const IDirect3DBaseTexture9) callconv(.Inline) void {
+    pub fn GenerateMipSubLevels(self: *const IDirect3DBaseTexture9) callconv(.@"inline") void {
         return self.vtable.GenerateMipSubLevels(self);
     }
 };
@@ -3783,19 +3783,19 @@ pub const IDirect3DTexture9 = extern union {
     IDirect3DBaseTexture9: IDirect3DBaseTexture9,
     IDirect3DResource9: IDirect3DResource9,
     IUnknown: IUnknown,
-    pub fn GetLevelDesc(self: *const IDirect3DTexture9, Level: u32, pDesc: ?*D3DSURFACE_DESC) callconv(.Inline) HRESULT {
+    pub fn GetLevelDesc(self: *const IDirect3DTexture9, Level: u32, pDesc: ?*D3DSURFACE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetLevelDesc(self, Level, pDesc);
     }
-    pub fn GetSurfaceLevel(self: *const IDirect3DTexture9, Level: u32, ppSurfaceLevel: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceLevel(self: *const IDirect3DTexture9, Level: u32, ppSurfaceLevel: ?*?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetSurfaceLevel(self, Level, ppSurfaceLevel);
     }
-    pub fn LockRect(self: *const IDirect3DTexture9, Level: u32, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn LockRect(self: *const IDirect3DTexture9, Level: u32, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LockRect(self, Level, pLockedRect, pRect, Flags);
     }
-    pub fn UnlockRect(self: *const IDirect3DTexture9, Level: u32) callconv(.Inline) HRESULT {
+    pub fn UnlockRect(self: *const IDirect3DTexture9, Level: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockRect(self, Level);
     }
-    pub fn AddDirtyRect(self: *const IDirect3DTexture9, pDirtyRect: ?*const RECT) callconv(.Inline) HRESULT {
+    pub fn AddDirtyRect(self: *const IDirect3DTexture9, pDirtyRect: ?*const RECT) callconv(.@"inline") HRESULT {
         return self.vtable.AddDirtyRect(self, pDirtyRect);
     }
 };
@@ -3835,19 +3835,19 @@ pub const IDirect3DVolumeTexture9 = extern union {
     IDirect3DBaseTexture9: IDirect3DBaseTexture9,
     IDirect3DResource9: IDirect3DResource9,
     IUnknown: IUnknown,
-    pub fn GetLevelDesc(self: *const IDirect3DVolumeTexture9, Level: u32, pDesc: ?*D3DVOLUME_DESC) callconv(.Inline) HRESULT {
+    pub fn GetLevelDesc(self: *const IDirect3DVolumeTexture9, Level: u32, pDesc: ?*D3DVOLUME_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetLevelDesc(self, Level, pDesc);
     }
-    pub fn GetVolumeLevel(self: *const IDirect3DVolumeTexture9, Level: u32, ppVolumeLevel: ?*?*IDirect3DVolume9) callconv(.Inline) HRESULT {
+    pub fn GetVolumeLevel(self: *const IDirect3DVolumeTexture9, Level: u32, ppVolumeLevel: ?*?*IDirect3DVolume9) callconv(.@"inline") HRESULT {
         return self.vtable.GetVolumeLevel(self, Level, ppVolumeLevel);
     }
-    pub fn LockBox(self: *const IDirect3DVolumeTexture9, Level: u32, pLockedVolume: ?*D3DLOCKED_BOX, pBox: ?*const D3DBOX, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn LockBox(self: *const IDirect3DVolumeTexture9, Level: u32, pLockedVolume: ?*D3DLOCKED_BOX, pBox: ?*const D3DBOX, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LockBox(self, Level, pLockedVolume, pBox, Flags);
     }
-    pub fn UnlockBox(self: *const IDirect3DVolumeTexture9, Level: u32) callconv(.Inline) HRESULT {
+    pub fn UnlockBox(self: *const IDirect3DVolumeTexture9, Level: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockBox(self, Level);
     }
-    pub fn AddDirtyBox(self: *const IDirect3DVolumeTexture9, pDirtyBox: ?*const D3DBOX) callconv(.Inline) HRESULT {
+    pub fn AddDirtyBox(self: *const IDirect3DVolumeTexture9, pDirtyBox: ?*const D3DBOX) callconv(.@"inline") HRESULT {
         return self.vtable.AddDirtyBox(self, pDirtyBox);
     }
 };
@@ -3891,19 +3891,19 @@ pub const IDirect3DCubeTexture9 = extern union {
     IDirect3DBaseTexture9: IDirect3DBaseTexture9,
     IDirect3DResource9: IDirect3DResource9,
     IUnknown: IUnknown,
-    pub fn GetLevelDesc(self: *const IDirect3DCubeTexture9, Level: u32, pDesc: ?*D3DSURFACE_DESC) callconv(.Inline) HRESULT {
+    pub fn GetLevelDesc(self: *const IDirect3DCubeTexture9, Level: u32, pDesc: ?*D3DSURFACE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetLevelDesc(self, Level, pDesc);
     }
-    pub fn GetCubeMapSurface(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32, ppCubeMapSurface: ?*?*IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn GetCubeMapSurface(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32, ppCubeMapSurface: ?*?*IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.GetCubeMapSurface(self, FaceType, Level, ppCubeMapSurface);
     }
-    pub fn LockRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn LockRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LockRect(self, FaceType, Level, pLockedRect, pRect, Flags);
     }
-    pub fn UnlockRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32) callconv(.Inline) HRESULT {
+    pub fn UnlockRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, Level: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockRect(self, FaceType, Level);
     }
-    pub fn AddDirtyRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, pDirtyRect: ?*const RECT) callconv(.Inline) HRESULT {
+    pub fn AddDirtyRect(self: *const IDirect3DCubeTexture9, FaceType: D3DCUBEMAP_FACES, pDirtyRect: ?*const RECT) callconv(.@"inline") HRESULT {
         return self.vtable.AddDirtyRect(self, FaceType, pDirtyRect);
     }
 };
@@ -3931,13 +3931,13 @@ pub const IDirect3DVertexBuffer9 = extern union {
     vtable: *const VTable,
     IDirect3DResource9: IDirect3DResource9,
     IUnknown: IUnknown,
-    pub fn Lock(self: *const IDirect3DVertexBuffer9, OffsetToLock: u32, SizeToLock: u32, ppbData: ?*?*anyopaque, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirect3DVertexBuffer9, OffsetToLock: u32, SizeToLock: u32, ppbData: ?*?*anyopaque, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, OffsetToLock, SizeToLock, ppbData, Flags);
     }
-    pub fn Unlock(self: *const IDirect3DVertexBuffer9) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirect3DVertexBuffer9) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self);
     }
-    pub fn GetDesc(self: *const IDirect3DVertexBuffer9, pDesc: ?*D3DVERTEXBUFFER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const IDirect3DVertexBuffer9, pDesc: ?*D3DVERTEXBUFFER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -3965,13 +3965,13 @@ pub const IDirect3DIndexBuffer9 = extern union {
     vtable: *const VTable,
     IDirect3DResource9: IDirect3DResource9,
     IUnknown: IUnknown,
-    pub fn Lock(self: *const IDirect3DIndexBuffer9, OffsetToLock: u32, SizeToLock: u32, ppbData: ?*?*anyopaque, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirect3DIndexBuffer9, OffsetToLock: u32, SizeToLock: u32, ppbData: ?*?*anyopaque, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, OffsetToLock, SizeToLock, ppbData, Flags);
     }
-    pub fn Unlock(self: *const IDirect3DIndexBuffer9) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirect3DIndexBuffer9) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self);
     }
-    pub fn GetDesc(self: *const IDirect3DIndexBuffer9, pDesc: ?*D3DINDEXBUFFER_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const IDirect3DIndexBuffer9, pDesc: ?*D3DINDEXBUFFER_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
 };
@@ -4011,22 +4011,22 @@ pub const IDirect3DSurface9 = extern union {
     vtable: *const VTable,
     IDirect3DResource9: IDirect3DResource9,
     IUnknown: IUnknown,
-    pub fn GetContainer(self: *const IDirect3DSurface9, riid: ?*const Guid, ppContainer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetContainer(self: *const IDirect3DSurface9, riid: ?*const Guid, ppContainer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainer(self, riid, ppContainer);
     }
-    pub fn GetDesc(self: *const IDirect3DSurface9, pDesc: ?*D3DSURFACE_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const IDirect3DSurface9, pDesc: ?*D3DSURFACE_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn LockRect(self: *const IDirect3DSurface9, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn LockRect(self: *const IDirect3DSurface9, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LockRect(self, pLockedRect, pRect, Flags);
     }
-    pub fn UnlockRect(self: *const IDirect3DSurface9) callconv(.Inline) HRESULT {
+    pub fn UnlockRect(self: *const IDirect3DSurface9) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockRect(self);
     }
-    pub fn GetDC(self: *const IDirect3DSurface9, phdc: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirect3DSurface9, phdc: ?*?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDC(self, phdc);
     }
-    pub fn ReleaseDC(self: *const IDirect3DSurface9, hdc: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirect3DSurface9, hdc: ?HDC) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseDC(self, hdc);
     }
 };
@@ -4078,28 +4078,28 @@ pub const IDirect3DVolume9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDirect3DVolume9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDirect3DVolume9, ppDevice: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn SetPrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid, pData: ?*const anyopaque, SizeOfData: u32, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid, pData: ?*const anyopaque, SizeOfData: u32, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPrivateData(self, refguid, pData, SizeOfData, Flags);
     }
-    pub fn GetPrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid, pData: ?*anyopaque, pSizeOfData: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid, pData: ?*anyopaque, pSizeOfData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrivateData(self, refguid, pData, pSizeOfData);
     }
-    pub fn FreePrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn FreePrivateData(self: *const IDirect3DVolume9, refguid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FreePrivateData(self, refguid);
     }
-    pub fn GetContainer(self: *const IDirect3DVolume9, riid: ?*const Guid, ppContainer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetContainer(self: *const IDirect3DVolume9, riid: ?*const Guid, ppContainer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainer(self, riid, ppContainer);
     }
-    pub fn GetDesc(self: *const IDirect3DVolume9, pDesc: ?*D3DVOLUME_DESC) callconv(.Inline) HRESULT {
+    pub fn GetDesc(self: *const IDirect3DVolume9, pDesc: ?*D3DVOLUME_DESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesc(self, pDesc);
     }
-    pub fn LockBox(self: *const IDirect3DVolume9, pLockedVolume: ?*D3DLOCKED_BOX, pBox: ?*const D3DBOX, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn LockBox(self: *const IDirect3DVolume9, pLockedVolume: ?*D3DLOCKED_BOX, pBox: ?*const D3DBOX, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LockBox(self, pLockedVolume, pBox, Flags);
     }
-    pub fn UnlockBox(self: *const IDirect3DVolume9) callconv(.Inline) HRESULT {
+    pub fn UnlockBox(self: *const IDirect3DVolume9) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockBox(self);
     }
 };
@@ -4132,19 +4132,19 @@ pub const IDirect3DQuery9 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevice(self: *const IDirect3DQuery9, ppDevice: ?*?*IDirect3DDevice9) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IDirect3DQuery9, ppDevice: ?*?*IDirect3DDevice9) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn GetType(self: *const IDirect3DQuery9) callconv(.Inline) D3DQUERYTYPE {
+    pub fn GetType(self: *const IDirect3DQuery9) callconv(.@"inline") D3DQUERYTYPE {
         return self.vtable.GetType(self);
     }
-    pub fn GetDataSize(self: *const IDirect3DQuery9) callconv(.Inline) u32 {
+    pub fn GetDataSize(self: *const IDirect3DQuery9) callconv(.@"inline") u32 {
         return self.vtable.GetDataSize(self);
     }
-    pub fn Issue(self: *const IDirect3DQuery9, dwIssueFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Issue(self: *const IDirect3DQuery9, dwIssueFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Issue(self, dwIssueFlags);
     }
-    pub fn GetData(self: *const IDirect3DQuery9, pData: ?*anyopaque, dwSize: u32, dwGetDataFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const IDirect3DQuery9, pData: ?*anyopaque, dwSize: u32, dwGetDataFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, pData, dwSize, dwGetDataFlags);
     }
 };
@@ -4191,19 +4191,19 @@ pub const IDirect3D9Ex = extern union {
     vtable: *const VTable,
     IDirect3D9: IDirect3D9,
     IUnknown: IUnknown,
-    pub fn GetAdapterModeCountEx(self: *const IDirect3D9Ex, Adapter: u32, pFilter: ?*const D3DDISPLAYMODEFILTER) callconv(.Inline) u32 {
+    pub fn GetAdapterModeCountEx(self: *const IDirect3D9Ex, Adapter: u32, pFilter: ?*const D3DDISPLAYMODEFILTER) callconv(.@"inline") u32 {
         return self.vtable.GetAdapterModeCountEx(self, Adapter, pFilter);
     }
-    pub fn EnumAdapterModesEx(self: *const IDirect3D9Ex, Adapter: u32, pFilter: ?*const D3DDISPLAYMODEFILTER, Mode: u32, pMode: ?*D3DDISPLAYMODEEX) callconv(.Inline) HRESULT {
+    pub fn EnumAdapterModesEx(self: *const IDirect3D9Ex, Adapter: u32, pFilter: ?*const D3DDISPLAYMODEFILTER, Mode: u32, pMode: ?*D3DDISPLAYMODEEX) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAdapterModesEx(self, Adapter, pFilter, Mode, pMode);
     }
-    pub fn GetAdapterDisplayModeEx(self: *const IDirect3D9Ex, Adapter: u32, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.Inline) HRESULT {
+    pub fn GetAdapterDisplayModeEx(self: *const IDirect3D9Ex, Adapter: u32, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.@"inline") HRESULT {
         return self.vtable.GetAdapterDisplayModeEx(self, Adapter, pMode, pRotation);
     }
-    pub fn CreateDeviceEx(self: *const IDirect3D9Ex, Adapter: u32, DeviceType: D3DDEVTYPE, hFocusWindow: ?HWND, BehaviorFlags: u32, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pFullscreenDisplayMode: ?*D3DDISPLAYMODEEX, ppReturnedDeviceInterface: ?*?*IDirect3DDevice9Ex) callconv(.Inline) HRESULT {
+    pub fn CreateDeviceEx(self: *const IDirect3D9Ex, Adapter: u32, DeviceType: D3DDEVTYPE, hFocusWindow: ?HWND, BehaviorFlags: u32, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pFullscreenDisplayMode: ?*D3DDISPLAYMODEEX, ppReturnedDeviceInterface: ?*?*IDirect3DDevice9Ex) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDeviceEx(self, Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, pFullscreenDisplayMode, ppReturnedDeviceInterface);
     }
-    pub fn GetAdapterLUID(self: *const IDirect3D9Ex, Adapter: u32, pLUID: ?*LUID) callconv(.Inline) HRESULT {
+    pub fn GetAdapterLUID(self: *const IDirect3D9Ex, Adapter: u32, pLUID: ?*LUID) callconv(.@"inline") HRESULT {
         return self.vtable.GetAdapterLUID(self, Adapter, pLUID);
     }
 };
@@ -4317,49 +4317,49 @@ pub const IDirect3DDevice9Ex = extern union {
     vtable: *const VTable,
     IDirect3DDevice9: IDirect3DDevice9,
     IUnknown: IUnknown,
-    pub fn SetConvolutionMonoKernel(self: *const IDirect3DDevice9Ex, width: u32, height: u32, rows: ?*f32, columns: ?*f32) callconv(.Inline) HRESULT {
+    pub fn SetConvolutionMonoKernel(self: *const IDirect3DDevice9Ex, width: u32, height: u32, rows: ?*f32, columns: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetConvolutionMonoKernel(self, width, height, rows, columns);
     }
-    pub fn ComposeRects(self: *const IDirect3DDevice9Ex, pSrc: ?*IDirect3DSurface9, pDst: ?*IDirect3DSurface9, pSrcRectDescs: ?*IDirect3DVertexBuffer9, NumRects: u32, pDstRectDescs: ?*IDirect3DVertexBuffer9, Operation: D3DCOMPOSERECTSOP, Xoffset: i32, Yoffset: i32) callconv(.Inline) HRESULT {
+    pub fn ComposeRects(self: *const IDirect3DDevice9Ex, pSrc: ?*IDirect3DSurface9, pDst: ?*IDirect3DSurface9, pSrcRectDescs: ?*IDirect3DVertexBuffer9, NumRects: u32, pDstRectDescs: ?*IDirect3DVertexBuffer9, Operation: D3DCOMPOSERECTSOP, Xoffset: i32, Yoffset: i32) callconv(.@"inline") HRESULT {
         return self.vtable.ComposeRects(self, pSrc, pDst, pSrcRectDescs, NumRects, pDstRectDescs, Operation, Xoffset, Yoffset);
     }
-    pub fn PresentEx(self: *const IDirect3DDevice9Ex, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn PresentEx(self: *const IDirect3DDevice9Ex, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PresentEx(self, pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
     }
-    pub fn GetGPUThreadPriority(self: *const IDirect3DDevice9Ex, pPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetGPUThreadPriority(self: *const IDirect3DDevice9Ex, pPriority: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGPUThreadPriority(self, pPriority);
     }
-    pub fn SetGPUThreadPriority(self: *const IDirect3DDevice9Ex, Priority: i32) callconv(.Inline) HRESULT {
+    pub fn SetGPUThreadPriority(self: *const IDirect3DDevice9Ex, Priority: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGPUThreadPriority(self, Priority);
     }
-    pub fn WaitForVBlank(self: *const IDirect3DDevice9Ex, iSwapChain: u32) callconv(.Inline) HRESULT {
+    pub fn WaitForVBlank(self: *const IDirect3DDevice9Ex, iSwapChain: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForVBlank(self, iSwapChain);
     }
-    pub fn CheckResourceResidency(self: *const IDirect3DDevice9Ex, pResourceArray: ?*?*IDirect3DResource9, NumResources: u32) callconv(.Inline) HRESULT {
+    pub fn CheckResourceResidency(self: *const IDirect3DDevice9Ex, pResourceArray: ?*?*IDirect3DResource9, NumResources: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CheckResourceResidency(self, pResourceArray, NumResources);
     }
-    pub fn SetMaximumFrameLatency(self: *const IDirect3DDevice9Ex, MaxLatency: u32) callconv(.Inline) HRESULT {
+    pub fn SetMaximumFrameLatency(self: *const IDirect3DDevice9Ex, MaxLatency: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMaximumFrameLatency(self, MaxLatency);
     }
-    pub fn GetMaximumFrameLatency(self: *const IDirect3DDevice9Ex, pMaxLatency: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaximumFrameLatency(self: *const IDirect3DDevice9Ex, pMaxLatency: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaximumFrameLatency(self, pMaxLatency);
     }
-    pub fn CheckDeviceState(self: *const IDirect3DDevice9Ex, hDestinationWindow: ?HWND) callconv(.Inline) HRESULT {
+    pub fn CheckDeviceState(self: *const IDirect3DDevice9Ex, hDestinationWindow: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.CheckDeviceState(self, hDestinationWindow);
     }
-    pub fn CreateRenderTargetEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Lockable: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.Inline) HRESULT {
+    pub fn CreateRenderTargetEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Lockable: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRenderTargetEx(self, Width, Height, Format, MultiSample, MultisampleQuality, Lockable, ppSurface, pSharedHandle, Usage);
     }
-    pub fn CreateOffscreenPlainSurfaceEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.Inline) HRESULT {
+    pub fn CreateOffscreenPlainSurfaceEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateOffscreenPlainSurfaceEx(self, Width, Height, Format, Pool, ppSurface, pSharedHandle, Usage);
     }
-    pub fn CreateDepthStencilSurfaceEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Discard: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.Inline) HRESULT {
+    pub fn CreateDepthStencilSurfaceEx(self: *const IDirect3DDevice9Ex, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Discard: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDepthStencilSurfaceEx(self, Width, Height, Format, MultiSample, MultisampleQuality, Discard, ppSurface, pSharedHandle, Usage);
     }
-    pub fn ResetEx(self: *const IDirect3DDevice9Ex, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pFullscreenDisplayMode: ?*D3DDISPLAYMODEEX) callconv(.Inline) HRESULT {
+    pub fn ResetEx(self: *const IDirect3DDevice9Ex, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pFullscreenDisplayMode: ?*D3DDISPLAYMODEEX) callconv(.@"inline") HRESULT {
         return self.vtable.ResetEx(self, pPresentationParameters, pFullscreenDisplayMode);
     }
-    pub fn GetDisplayModeEx(self: *const IDirect3DDevice9Ex, iSwapChain: u32, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.Inline) HRESULT {
+    pub fn GetDisplayModeEx(self: *const IDirect3DDevice9Ex, iSwapChain: u32, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayModeEx(self, iSwapChain, pMode, pRotation);
     }
 };
@@ -4386,13 +4386,13 @@ pub const IDirect3DSwapChain9Ex = extern union {
     vtable: *const VTable,
     IDirect3DSwapChain9: IDirect3DSwapChain9,
     IUnknown: IUnknown,
-    pub fn GetLastPresentCount(self: *const IDirect3DSwapChain9Ex, pLastPresentCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLastPresentCount(self: *const IDirect3DSwapChain9Ex, pLastPresentCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastPresentCount(self, pLastPresentCount);
     }
-    pub fn GetPresentStats(self: *const IDirect3DSwapChain9Ex, pPresentationStatistics: ?*D3DPRESENTSTATS) callconv(.Inline) HRESULT {
+    pub fn GetPresentStats(self: *const IDirect3DSwapChain9Ex, pPresentationStatistics: ?*D3DPRESENTSTATS) callconv(.@"inline") HRESULT {
         return self.vtable.GetPresentStats(self, pPresentationStatistics);
     }
-    pub fn GetDisplayModeEx(self: *const IDirect3DSwapChain9Ex, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.Inline) HRESULT {
+    pub fn GetDisplayModeEx(self: *const IDirect3DSwapChain9Ex, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayModeEx(self, pMode, pRotation);
     }
 };

@@ -6107,91 +6107,91 @@ pub const IImageList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Add(self: *const IImageList, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, pi: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const IImageList, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, pi: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, hbmImage, hbmMask, pi);
     }
-    pub fn ReplaceIcon(self: *const IImageList, i: i32, hicon: ?HICON, pi: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ReplaceIcon(self: *const IImageList, i: i32, hicon: ?HICON, pi: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.ReplaceIcon(self, i, hicon, pi);
     }
-    pub fn SetOverlayImage(self: *const IImageList, iImage: i32, iOverlay: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayImage(self: *const IImageList, iImage: i32, iOverlay: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOverlayImage(self, iImage, iOverlay);
     }
-    pub fn Replace(self: *const IImageList, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn Replace(self: *const IImageList, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP) callconv(.@"inline") HRESULT {
         return self.vtable.Replace(self, i, hbmImage, hbmMask);
     }
-    pub fn AddMasked(self: *const IImageList, hbmImage: ?HBITMAP, crMask: u32, pi: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AddMasked(self: *const IImageList, hbmImage: ?HBITMAP, crMask: u32, pi: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddMasked(self, hbmImage, crMask, pi);
     }
-    pub fn Draw(self: *const IImageList, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.Inline) HRESULT {
+    pub fn Draw(self: *const IImageList, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.@"inline") HRESULT {
         return self.vtable.Draw(self, pimldp);
     }
-    pub fn Remove(self: *const IImageList, i: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IImageList, i: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, i);
     }
-    pub fn GetIcon(self: *const IImageList, i: i32, flags: u32, picon: ?*?HICON) callconv(.Inline) HRESULT {
+    pub fn GetIcon(self: *const IImageList, i: i32, flags: u32, picon: ?*?HICON) callconv(.@"inline") HRESULT {
         return self.vtable.GetIcon(self, i, flags, picon);
     }
-    pub fn GetImageInfo(self: *const IImageList, i: i32, pImageInfo: ?*IMAGEINFO) callconv(.Inline) HRESULT {
+    pub fn GetImageInfo(self: *const IImageList, i: i32, pImageInfo: ?*IMAGEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetImageInfo(self, i, pImageInfo);
     }
-    pub fn Copy(self: *const IImageList, iDst: i32, punkSrc: ?*IUnknown, iSrc: i32, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Copy(self: *const IImageList, iDst: i32, punkSrc: ?*IUnknown, iSrc: i32, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Copy(self, iDst, punkSrc, iSrc, uFlags);
     }
-    pub fn Merge(self: *const IImageList, @"i1": i32, punk2: ?*IUnknown, @"i2": i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Merge(self: *const IImageList, @"i1": i32, punk2: ?*IUnknown, @"i2": i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Merge(self, @"i1", punk2, @"i2", dx, dy, riid, ppv);
     }
-    pub fn Clone(self: *const IImageList, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IImageList, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, riid, ppv);
     }
-    pub fn GetImageRect(self: *const IImageList, i: i32, prc: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn GetImageRect(self: *const IImageList, i: i32, prc: ?*RECT) callconv(.@"inline") HRESULT {
         return self.vtable.GetImageRect(self, i, prc);
     }
-    pub fn GetIconSize(self: *const IImageList, cx: ?*i32, cy: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIconSize(self: *const IImageList, cx: ?*i32, cy: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconSize(self, cx, cy);
     }
-    pub fn SetIconSize(self: *const IImageList, cx: i32, cy: i32) callconv(.Inline) HRESULT {
+    pub fn SetIconSize(self: *const IImageList, cx: i32, cy: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconSize(self, cx, cy);
     }
-    pub fn GetImageCount(self: *const IImageList, pi: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetImageCount(self: *const IImageList, pi: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetImageCount(self, pi);
     }
-    pub fn SetImageCount(self: *const IImageList, uNewCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetImageCount(self: *const IImageList, uNewCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetImageCount(self, uNewCount);
     }
-    pub fn SetBkColor(self: *const IImageList, clrBk: u32, pclr: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetBkColor(self: *const IImageList, clrBk: u32, pclr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBkColor(self, clrBk, pclr);
     }
-    pub fn GetBkColor(self: *const IImageList, pclr: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBkColor(self: *const IImageList, pclr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBkColor(self, pclr);
     }
-    pub fn BeginDrag(self: *const IImageList, iTrack: i32, dxHotspot: i32, dyHotspot: i32) callconv(.Inline) HRESULT {
+    pub fn BeginDrag(self: *const IImageList, iTrack: i32, dxHotspot: i32, dyHotspot: i32) callconv(.@"inline") HRESULT {
         return self.vtable.BeginDrag(self, iTrack, dxHotspot, dyHotspot);
     }
-    pub fn EndDrag(self: *const IImageList) callconv(.Inline) HRESULT {
+    pub fn EndDrag(self: *const IImageList) callconv(.@"inline") HRESULT {
         return self.vtable.EndDrag(self);
     }
-    pub fn DragEnter(self: *const IImageList, hwndLock: ?HWND, x: i32, y: i32) callconv(.Inline) HRESULT {
+    pub fn DragEnter(self: *const IImageList, hwndLock: ?HWND, x: i32, y: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DragEnter(self, hwndLock, x, y);
     }
-    pub fn DragLeave(self: *const IImageList, hwndLock: ?HWND) callconv(.Inline) HRESULT {
+    pub fn DragLeave(self: *const IImageList, hwndLock: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.DragLeave(self, hwndLock);
     }
-    pub fn DragMove(self: *const IImageList, x: i32, y: i32) callconv(.Inline) HRESULT {
+    pub fn DragMove(self: *const IImageList, x: i32, y: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DragMove(self, x, y);
     }
-    pub fn SetDragCursorImage(self: *const IImageList, punk: ?*IUnknown, iDrag: i32, dxHotspot: i32, dyHotspot: i32) callconv(.Inline) HRESULT {
+    pub fn SetDragCursorImage(self: *const IImageList, punk: ?*IUnknown, iDrag: i32, dxHotspot: i32, dyHotspot: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDragCursorImage(self, punk, iDrag, dxHotspot, dyHotspot);
     }
-    pub fn DragShowNolock(self: *const IImageList, fShow: BOOL) callconv(.Inline) HRESULT {
+    pub fn DragShowNolock(self: *const IImageList, fShow: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DragShowNolock(self, fShow);
     }
-    pub fn GetDragImage(self: *const IImageList, ppt: ?*POINT, pptHotspot: ?*POINT, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDragImage(self: *const IImageList, ppt: ?*POINT, pptHotspot: ?*POINT, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDragImage(self, ppt, pptHotspot, riid, ppv);
     }
-    pub fn GetItemFlags(self: *const IImageList, i: i32, dwFlags: ?*IMAGE_LIST_ITEM_FLAGS) callconv(.Inline) HRESULT {
+    pub fn GetItemFlags(self: *const IImageList, i: i32, dwFlags: ?*IMAGE_LIST_ITEM_FLAGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemFlags(self, i, dwFlags);
     }
-    pub fn GetOverlayImage(self: *const IImageList, iOverlay: i32, piIndex: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayImage(self: *const IImageList, iOverlay: i32, piIndex: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOverlayImage(self, iOverlay, piIndex);
     }
 };
@@ -6283,40 +6283,40 @@ pub const IImageList2 = extern union {
     vtable: *const VTable,
     IImageList: IImageList,
     IUnknown: IUnknown,
-    pub fn Resize(self: *const IImageList2, cxNewIconSize: i32, cyNewIconSize: i32) callconv(.Inline) HRESULT {
+    pub fn Resize(self: *const IImageList2, cxNewIconSize: i32, cyNewIconSize: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Resize(self, cxNewIconSize, cyNewIconSize);
     }
-    pub fn GetOriginalSize(self: *const IImageList2, iImage: i32, dwFlags: u32, pcx: ?*i32, pcy: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOriginalSize(self: *const IImageList2, iImage: i32, dwFlags: u32, pcx: ?*i32, pcy: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOriginalSize(self, iImage, dwFlags, pcx, pcy);
     }
-    pub fn SetOriginalSize(self: *const IImageList2, iImage: i32, cx: i32, cy: i32) callconv(.Inline) HRESULT {
+    pub fn SetOriginalSize(self: *const IImageList2, iImage: i32, cx: i32, cy: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOriginalSize(self, iImage, cx, cy);
     }
-    pub fn SetCallback(self: *const IImageList2, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetCallback(self: *const IImageList2, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetCallback(self, punk);
     }
-    pub fn GetCallback(self: *const IImageList2, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCallback(self: *const IImageList2, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCallback(self, riid, ppv);
     }
-    pub fn ForceImagePresent(self: *const IImageList2, iImage: i32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn ForceImagePresent(self: *const IImageList2, iImage: i32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ForceImagePresent(self, iImage, dwFlags);
     }
-    pub fn DiscardImages(self: *const IImageList2, iFirstImage: i32, iLastImage: i32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DiscardImages(self: *const IImageList2, iFirstImage: i32, iLastImage: i32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DiscardImages(self, iFirstImage, iLastImage, dwFlags);
     }
-    pub fn PreloadImages(self: *const IImageList2, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.Inline) HRESULT {
+    pub fn PreloadImages(self: *const IImageList2, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.@"inline") HRESULT {
         return self.vtable.PreloadImages(self, pimldp);
     }
-    pub fn GetStatistics(self: *const IImageList2, pils: ?*IMAGELISTSTATS) callconv(.Inline) HRESULT {
+    pub fn GetStatistics(self: *const IImageList2, pils: ?*IMAGELISTSTATS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatistics(self, pils);
     }
-    pub fn Initialize(self: *const IImageList2, cx: i32, cy: i32, flags: IMAGELIST_CREATION_FLAGS, cInitial: i32, cGrow: i32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IImageList2, cx: i32, cy: i32, flags: IMAGELIST_CREATION_FLAGS, cInitial: i32, cGrow: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, cx, cy, flags, cInitial, cGrow);
     }
-    pub fn Replace2(self: *const IImageList2, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Replace2(self: *const IImageList2, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, punk: ?*IUnknown, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Replace2(self, i, hbmImage, hbmMask, punk, dwFlags);
     }
-    pub fn ReplaceFromImageList(self: *const IImageList2, i: i32, pil: ?*IImageList, iSrc: i32, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn ReplaceFromImageList(self: *const IImageList2, i: i32, pil: ?*IImageList, iSrc: i32, punk: ?*IUnknown, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReplaceFromImageList(self, i, pil, iSrc, punk, dwFlags);
     }
 };

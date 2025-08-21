@@ -81,19 +81,19 @@ pub const ISensNetwork = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ConnectionMade(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.Inline) HRESULT {
+    pub fn ConnectionMade(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectionMade(self, bstrConnection, ulType, lpQOCInfo);
     }
-    pub fn ConnectionMadeNoQOCInfo(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: u32) callconv(.Inline) HRESULT {
+    pub fn ConnectionMadeNoQOCInfo(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectionMadeNoQOCInfo(self, bstrConnection, ulType);
     }
-    pub fn ConnectionLost(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: SENS_CONNECTION_TYPE) callconv(.Inline) HRESULT {
+    pub fn ConnectionLost(self: *const ISensNetwork, bstrConnection: ?BSTR, ulType: SENS_CONNECTION_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectionLost(self, bstrConnection, ulType);
     }
-    pub fn DestinationReachable(self: *const ISensNetwork, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.Inline) HRESULT {
+    pub fn DestinationReachable(self: *const ISensNetwork, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) callconv(.@"inline") HRESULT {
         return self.vtable.DestinationReachable(self, bstrDestination, bstrConnection, ulType, lpQOCInfo);
     }
-    pub fn DestinationReachableNoQOCInfo(self: *const ISensNetwork, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32) callconv(.Inline) HRESULT {
+    pub fn DestinationReachableNoQOCInfo(self: *const ISensNetwork, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DestinationReachableNoQOCInfo(self, bstrDestination, bstrConnection, ulType);
     }
 };
@@ -119,13 +119,13 @@ pub const ISensOnNow = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OnACPower(self: *const ISensOnNow) callconv(.Inline) HRESULT {
+    pub fn OnACPower(self: *const ISensOnNow) callconv(.@"inline") HRESULT {
         return self.vtable.OnACPower(self);
     }
-    pub fn OnBatteryPower(self: *const ISensOnNow, dwBatteryLifePercent: u32) callconv(.Inline) HRESULT {
+    pub fn OnBatteryPower(self: *const ISensOnNow, dwBatteryLifePercent: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnBatteryPower(self, dwBatteryLifePercent);
     }
-    pub fn BatteryLow(self: *const ISensOnNow, dwBatteryLifePercent: u32) callconv(.Inline) HRESULT {
+    pub fn BatteryLow(self: *const ISensOnNow, dwBatteryLifePercent: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BatteryLow(self, dwBatteryLifePercent);
     }
 };
@@ -168,25 +168,25 @@ pub const ISensLogon = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Logon(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Logon(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Logon(self, bstrUserName);
     }
-    pub fn Logoff(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Logoff(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Logoff(self, bstrUserName);
     }
-    pub fn StartShell(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn StartShell(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.StartShell(self, bstrUserName);
     }
-    pub fn DisplayLock(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DisplayLock(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DisplayLock(self, bstrUserName);
     }
-    pub fn DisplayUnlock(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DisplayUnlock(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DisplayUnlock(self, bstrUserName);
     }
-    pub fn StartScreenSaver(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn StartScreenSaver(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.StartScreenSaver(self, bstrUserName);
     }
-    pub fn StopScreenSaver(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn StopScreenSaver(self: *const ISensLogon, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.StopScreenSaver(self, bstrUserName);
     }
 };
@@ -226,19 +226,19 @@ pub const ISensLogon2 = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Logon(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+    pub fn Logon(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Logon(self, bstrUserName, dwSessionId);
     }
-    pub fn Logoff(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+    pub fn Logoff(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Logoff(self, bstrUserName, dwSessionId);
     }
-    pub fn SessionDisconnect(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+    pub fn SessionDisconnect(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionDisconnect(self, bstrUserName, dwSessionId);
     }
-    pub fn SessionReconnect(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+    pub fn SessionReconnect(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionReconnect(self, bstrUserName, dwSessionId);
     }
-    pub fn PostShell(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.Inline) HRESULT {
+    pub fn PostShell(self: *const ISensLogon2, bstrUserName: ?BSTR, dwSessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PostShell(self, bstrUserName, dwSessionId);
     }
 };

@@ -1676,16 +1676,16 @@ pub const ISpellingError = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_StartIndex(self: *const ISpellingError, value: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_StartIndex(self: *const ISpellingError, value: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartIndex(self, value);
     }
-    pub fn get_Length(self: *const ISpellingError, value: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Length(self: *const ISpellingError, value: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Length(self, value);
     }
-    pub fn get_CorrectiveAction(self: *const ISpellingError, value: ?*CORRECTIVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn get_CorrectiveAction(self: *const ISpellingError, value: ?*CORRECTIVE_ACTION) callconv(.@"inline") HRESULT {
         return self.vtable.get_CorrectiveAction(self, value);
     }
-    pub fn get_Replacement(self: *const ISpellingError, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Replacement(self: *const ISpellingError, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Replacement(self, value);
     }
 };
@@ -1703,7 +1703,7 @@ pub const IEnumSpellingError = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSpellingError, value: ?*?*ISpellingError) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSpellingError, value: ?*?*ISpellingError) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, value);
     }
 };
@@ -1737,16 +1737,16 @@ pub const IOptionDescription = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, value);
     }
-    pub fn get_Heading(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Heading(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Heading(self, value);
     }
-    pub fn get_Description(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IOptionDescription, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, value);
     }
-    pub fn get_Labels(self: *const IOptionDescription, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn get_Labels(self: *const IOptionDescription, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.get_Labels(self, value);
     }
 };
@@ -1764,7 +1764,7 @@ pub const ISpellCheckerChangedEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Invoke(self: *const ISpellCheckerChangedEventHandler, sender: ?*ISpellChecker) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const ISpellCheckerChangedEventHandler, sender: ?*ISpellChecker) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, sender);
     }
 };
@@ -1845,46 +1845,46 @@ pub const ISpellChecker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_LanguageTag(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_LanguageTag(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LanguageTag(self, value);
     }
-    pub fn Check(self: *const ISpellChecker, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
+    pub fn Check(self: *const ISpellChecker, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.@"inline") HRESULT {
         return self.vtable.Check(self, text, value);
     }
-    pub fn Suggest(self: *const ISpellChecker, word: ?[*:0]const u16, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn Suggest(self: *const ISpellChecker, word: ?[*:0]const u16, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.Suggest(self, word, value);
     }
-    pub fn Add(self: *const ISpellChecker, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISpellChecker, word: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, word);
     }
-    pub fn Ignore(self: *const ISpellChecker, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Ignore(self: *const ISpellChecker, word: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Ignore(self, word);
     }
-    pub fn AutoCorrect(self: *const ISpellChecker, from: ?[*:0]const u16, to: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AutoCorrect(self: *const ISpellChecker, from: ?[*:0]const u16, to: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AutoCorrect(self, from, to);
     }
-    pub fn GetOptionValue(self: *const ISpellChecker, optionId: ?[*:0]const u16, value: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetOptionValue(self: *const ISpellChecker, optionId: ?[*:0]const u16, value: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionValue(self, optionId, value);
     }
-    pub fn get_OptionIds(self: *const ISpellChecker, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn get_OptionIds(self: *const ISpellChecker, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.get_OptionIds(self, value);
     }
-    pub fn get_Id(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, value);
     }
-    pub fn get_LocalizedName(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocalizedName(self: *const ISpellChecker, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalizedName(self, value);
     }
-    pub fn add_SpellCheckerChanged(self: *const ISpellChecker, handler: ?*ISpellCheckerChangedEventHandler, eventCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn add_SpellCheckerChanged(self: *const ISpellChecker, handler: ?*ISpellCheckerChangedEventHandler, eventCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.add_SpellCheckerChanged(self, handler, eventCookie);
     }
-    pub fn remove_SpellCheckerChanged(self: *const ISpellChecker, eventCookie: u32) callconv(.Inline) HRESULT {
+    pub fn remove_SpellCheckerChanged(self: *const ISpellChecker, eventCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.remove_SpellCheckerChanged(self, eventCookie);
     }
-    pub fn GetOptionDescription(self: *const ISpellChecker, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.Inline) HRESULT {
+    pub fn GetOptionDescription(self: *const ISpellChecker, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionDescription(self, optionId, value);
     }
-    pub fn ComprehensiveCheck(self: *const ISpellChecker, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
+    pub fn ComprehensiveCheck(self: *const ISpellChecker, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.@"inline") HRESULT {
         return self.vtable.ComprehensiveCheck(self, text, value);
     }
 };
@@ -1903,7 +1903,7 @@ pub const ISpellChecker2 = extern union {
     vtable: *const VTable,
     ISpellChecker: ISpellChecker,
     IUnknown: IUnknown,
-    pub fn Remove(self: *const ISpellChecker2, word: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISpellChecker2, word: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, word);
     }
 };
@@ -1932,13 +1932,13 @@ pub const ISpellCheckerFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SupportedLanguages(self: *const ISpellCheckerFactory, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn get_SupportedLanguages(self: *const ISpellCheckerFactory, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupportedLanguages(self, value);
     }
-    pub fn IsSupported(self: *const ISpellCheckerFactory, languageTag: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsSupported(self: *const ISpellCheckerFactory, languageTag: ?[*:0]const u16, value: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSupported(self, languageTag, value);
     }
-    pub fn CreateSpellChecker(self: *const ISpellCheckerFactory, languageTag: ?[*:0]const u16, value: ?*?*ISpellChecker) callconv(.Inline) HRESULT {
+    pub fn CreateSpellChecker(self: *const ISpellCheckerFactory, languageTag: ?[*:0]const u16, value: ?*?*ISpellChecker) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSpellChecker(self, languageTag, value);
     }
 };
@@ -1962,10 +1962,10 @@ pub const IUserDictionariesRegistrar = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RegisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterUserDictionary(self, dictionaryPath, languageTag);
     }
-    pub fn UnregisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn UnregisterUserDictionary(self: *const IUserDictionariesRegistrar, dictionaryPath: ?[*:0]const u16, languageTag: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterUserDictionary(self, dictionaryPath, languageTag);
     }
 };
@@ -2029,34 +2029,34 @@ pub const ISpellCheckProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_LanguageTag(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_LanguageTag(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LanguageTag(self, value);
     }
-    pub fn Check(self: *const ISpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
+    pub fn Check(self: *const ISpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.@"inline") HRESULT {
         return self.vtable.Check(self, text, value);
     }
-    pub fn Suggest(self: *const ISpellCheckProvider, word: ?[*:0]const u16, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn Suggest(self: *const ISpellCheckProvider, word: ?[*:0]const u16, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.Suggest(self, word, value);
     }
-    pub fn GetOptionValue(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetOptionValue(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionValue(self, optionId, value);
     }
-    pub fn SetOptionValue(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: u8) callconv(.Inline) HRESULT {
+    pub fn SetOptionValue(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetOptionValue(self, optionId, value);
     }
-    pub fn get_OptionIds(self: *const ISpellCheckProvider, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn get_OptionIds(self: *const ISpellCheckProvider, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.get_OptionIds(self, value);
     }
-    pub fn get_Id(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, value);
     }
-    pub fn get_LocalizedName(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocalizedName(self: *const ISpellCheckProvider, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalizedName(self, value);
     }
-    pub fn GetOptionDescription(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.Inline) HRESULT {
+    pub fn GetOptionDescription(self: *const ISpellCheckProvider, optionId: ?[*:0]const u16, value: ?*?*IOptionDescription) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionDescription(self, optionId, value);
     }
-    pub fn InitializeWordlist(self: *const ISpellCheckProvider, wordlistType: WORDLIST_TYPE, words: ?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn InitializeWordlist(self: *const ISpellCheckProvider, wordlistType: WORDLIST_TYPE, words: ?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeWordlist(self, wordlistType, words);
     }
 };
@@ -2074,7 +2074,7 @@ pub const IComprehensiveSpellCheckProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ComprehensiveCheck(self: *const IComprehensiveSpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.Inline) HRESULT {
+    pub fn ComprehensiveCheck(self: *const IComprehensiveSpellCheckProvider, text: ?[*:0]const u16, value: ?*?*IEnumSpellingError) callconv(.@"inline") HRESULT {
         return self.vtable.ComprehensiveCheck(self, text, value);
     }
 };
@@ -2103,13 +2103,13 @@ pub const ISpellCheckProviderFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SupportedLanguages(self: *const ISpellCheckProviderFactory, value: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn get_SupportedLanguages(self: *const ISpellCheckProviderFactory, value: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupportedLanguages(self, value);
     }
-    pub fn IsSupported(self: *const ISpellCheckProviderFactory, languageTag: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsSupported(self: *const ISpellCheckProviderFactory, languageTag: ?[*:0]const u16, value: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsSupported(self, languageTag, value);
     }
-    pub fn CreateSpellCheckProvider(self: *const ISpellCheckProviderFactory, languageTag: ?[*:0]const u16, value: ?*?*ISpellCheckProvider) callconv(.Inline) HRESULT {
+    pub fn CreateSpellCheckProvider(self: *const ISpellCheckProviderFactory, languageTag: ?[*:0]const u16, value: ?*?*ISpellCheckProvider) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSpellCheckProvider(self, languageTag, value);
     }
 };
@@ -7092,19 +7092,19 @@ pub const IMLangStringBufW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IMLangStringBufW, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IMLangStringBufW, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, plFlags, pcchBuf);
     }
-    pub fn LockBuf(self: *const IMLangStringBufW, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*u16, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
+    pub fn LockBuf(self: *const IMLangStringBufW, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*u16, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.LockBuf(self, cchOffset, cchMaxLock, ppszBuf, pcchBuf);
     }
-    pub fn UnlockBuf(self: *const IMLangStringBufW, pszBuf: ?[*:0]const u16, cchOffset: i32, cchWrite: i32) callconv(.Inline) HRESULT {
+    pub fn UnlockBuf(self: *const IMLangStringBufW, pszBuf: ?[*:0]const u16, cchOffset: i32, cchWrite: i32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockBuf(self, pszBuf, cchOffset, cchWrite);
     }
-    pub fn Insert(self: *const IMLangStringBufW, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Insert(self: *const IMLangStringBufW, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Insert(self, cchOffset, cchMaxInsert, pcchActual);
     }
-    pub fn Delete(self: *const IMLangStringBufW, cchOffset: i32, cchDelete: i32) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IMLangStringBufW, cchOffset: i32, cchDelete: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, cchOffset, cchDelete);
     }
 };
@@ -7146,19 +7146,19 @@ pub const IMLangStringBufA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IMLangStringBufA, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IMLangStringBufA, plFlags: ?*i32, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, plFlags, pcchBuf);
     }
-    pub fn LockBuf(self: *const IMLangStringBufA, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*CHAR, pcchBuf: ?*i32) callconv(.Inline) HRESULT {
+    pub fn LockBuf(self: *const IMLangStringBufA, cchOffset: i32, cchMaxLock: i32, ppszBuf: ?*?*CHAR, pcchBuf: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.LockBuf(self, cchOffset, cchMaxLock, ppszBuf, pcchBuf);
     }
-    pub fn UnlockBuf(self: *const IMLangStringBufA, pszBuf: ?[*:0]const u8, cchOffset: i32, cchWrite: i32) callconv(.Inline) HRESULT {
+    pub fn UnlockBuf(self: *const IMLangStringBufA, pszBuf: ?[*:0]const u8, cchOffset: i32, cchWrite: i32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockBuf(self, pszBuf, cchOffset, cchWrite);
     }
-    pub fn Insert(self: *const IMLangStringBufA, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Insert(self: *const IMLangStringBufA, cchOffset: i32, cchMaxInsert: i32, pcchActual: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Insert(self, cchOffset, cchMaxInsert, pcchActual);
     }
-    pub fn Delete(self: *const IMLangStringBufA, cchOffset: i32, cchDelete: i32) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IMLangStringBufA, cchOffset: i32, cchDelete: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, cchOffset, cchDelete);
     }
 };
@@ -7198,16 +7198,16 @@ pub const IMLangString = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Sync(self: *const IMLangString, fNoAccess: BOOL) callconv(.Inline) HRESULT {
+    pub fn Sync(self: *const IMLangString, fNoAccess: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Sync(self, fNoAccess);
     }
-    pub fn GetLength(self: *const IMLangString, plLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetLength(self: *const IMLangString, plLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLength(self, plLen);
     }
-    pub fn SetMLStr(self: *const IMLangString, lDestPos: i32, lDestLen: i32, pSrcMLStr: ?*IUnknown, lSrcPos: i32, lSrcLen: i32) callconv(.Inline) HRESULT {
+    pub fn SetMLStr(self: *const IMLangString, lDestPos: i32, lDestLen: i32, pSrcMLStr: ?*IUnknown, lSrcPos: i32, lSrcLen: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMLStr(self, lDestPos, lDestLen, pSrcMLStr, lSrcPos, lSrcLen);
     }
-    pub fn GetMLStr(self: *const IMLangString, lSrcPos: i32, lSrcLen: i32, pUnkOuter: ?*IUnknown, dwClsContext: u32, piid: ?*const Guid, ppDestMLStr: ?*?*IUnknown, plDestPos: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetMLStr(self: *const IMLangString, lSrcPos: i32, lSrcLen: i32, pUnkOuter: ?*IUnknown, dwClsContext: u32, piid: ?*const Guid, ppDestMLStr: ?*?*IUnknown, plDestPos: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMLStr(self, lSrcPos, lSrcLen, pUnkOuter, dwClsContext, piid, ppDestMLStr, plDestPos, plDestLen);
     }
 };
@@ -7285,28 +7285,28 @@ pub const IMLangStringWStr = extern union {
     vtable: *const VTable,
     IMLangString: IMLangString,
     IUnknown: IUnknown,
-    pub fn SetWStr(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SetWStr(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetWStr(self, lDestPos, lDestLen, pszSrc, cchSrc, pcchActual, plActualLen);
     }
-    pub fn SetStrBufW(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pSrcBuf: ?*IMLangStringBufW, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SetStrBufW(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, pSrcBuf: ?*IMLangStringBufW, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStrBufW(self, lDestPos, lDestLen, pSrcBuf, pcchActual, plActualLen);
     }
-    pub fn GetWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, pszDest: ?[*:0]u16, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, pszDest: ?[*:0]u16, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetWStr(self, lSrcPos, lSrcLen, pszDest, cchDest, pcchActual, plActualLen);
     }
-    pub fn GetStrBufW(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, ppDestBuf: ?*?*IMLangStringBufW, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetStrBufW(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, ppDestBuf: ?*?*IMLangStringBufW, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStrBufW(self, lSrcPos, lSrcMaxLen, ppDestBuf, plDestLen);
     }
-    pub fn LockWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, cchRequest: i32, ppszDest: ?*?PWSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn LockWStr(self: *const IMLangStringWStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, cchRequest: i32, ppszDest: ?*?PWSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.LockWStr(self, lSrcPos, lSrcLen, lFlags, cchRequest, ppszDest, pcchDest, plDestLen);
     }
-    pub fn UnlockWStr(self: *const IMLangStringWStr, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn UnlockWStr(self: *const IMLangStringWStr, pszSrc: [*:0]const u16, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockWStr(self, pszSrc, cchSrc, pcchActual, plActualLen);
     }
-    pub fn SetLocale(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.Inline) HRESULT {
+    pub fn SetLocale(self: *const IMLangStringWStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLocale(self, lDestPos, lDestLen, locale);
     }
-    pub fn GetLocale(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetLocale(self: *const IMLangStringWStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocale(self, lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
     }
 };
@@ -7391,28 +7391,28 @@ pub const IMLangStringAStr = extern union {
     vtable: *const VTable,
     IMLangString: IMLangString,
     IUnknown: IUnknown,
-    pub fn SetAStr(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SetAStr(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAStr(self, lDestPos, lDestLen, uCodePage, pszSrc, cchSrc, pcchActual, plActualLen);
     }
-    pub fn SetStrBufA(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pSrcBuf: ?*IMLangStringBufA, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SetStrBufA(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, uCodePage: u32, pSrcBuf: ?*IMLangStringBufA, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStrBufA(self, lDestPos, lDestLen, uCodePage, pSrcBuf, pcchActual, plActualLen);
     }
-    pub fn GetAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, uCodePageIn: u32, puCodePageOut: ?*u32, pszDest: ?[*:0]u8, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, uCodePageIn: u32, puCodePageOut: ?*u32, pszDest: ?[*:0]u8, cchDest: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAStr(self, lSrcPos, lSrcLen, uCodePageIn, puCodePageOut, pszDest, cchDest, pcchActual, plActualLen);
     }
-    pub fn GetStrBufA(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, puDestCodePage: ?*u32, ppDestBuf: ?*?*IMLangStringBufA, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetStrBufA(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, puDestCodePage: ?*u32, ppDestBuf: ?*?*IMLangStringBufA, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStrBufA(self, lSrcPos, lSrcMaxLen, puDestCodePage, ppDestBuf, plDestLen);
     }
-    pub fn LockAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, uCodePageIn: u32, cchRequest: i32, puCodePageOut: ?*u32, ppszDest: ?*?PSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn LockAStr(self: *const IMLangStringAStr, lSrcPos: i32, lSrcLen: i32, lFlags: i32, uCodePageIn: u32, cchRequest: i32, puCodePageOut: ?*u32, ppszDest: ?*?PSTR, pcchDest: ?*i32, plDestLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.LockAStr(self, lSrcPos, lSrcLen, lFlags, uCodePageIn, cchRequest, puCodePageOut, ppszDest, pcchDest, plDestLen);
     }
-    pub fn UnlockAStr(self: *const IMLangStringAStr, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn UnlockAStr(self: *const IMLangStringAStr, pszSrc: [*:0]const u8, cchSrc: i32, pcchActual: ?*i32, plActualLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockAStr(self, pszSrc, cchSrc, pcchActual, plActualLen);
     }
-    pub fn SetLocale(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.Inline) HRESULT {
+    pub fn SetLocale(self: *const IMLangStringAStr, lDestPos: i32, lDestLen: i32, locale: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLocale(self, lDestPos, lDestLen, locale);
     }
-    pub fn GetLocale(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetLocale(self: *const IMLangStringAStr, lSrcPos: i32, lSrcMaxLen: i32, plocale: ?*u32, plLocalePos: ?*i32, plLocaleLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocale(self, lSrcPos, lSrcMaxLen, plocale, plLocalePos, plLocaleLen);
     }
 };
@@ -7454,13 +7454,13 @@ pub const IMLangLineBreakConsole = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BreakLineML(self: *const IMLangLineBreakConsole, pSrcMLStr: ?*IMLangString, lSrcPos: i32, lSrcLen: i32, cMinColumns: i32, cMaxColumns: i32, plLineLen: ?*i32, plSkipLen: ?*i32) callconv(.Inline) HRESULT {
+    pub fn BreakLineML(self: *const IMLangLineBreakConsole, pSrcMLStr: ?*IMLangString, lSrcPos: i32, lSrcLen: i32, cMinColumns: i32, cMaxColumns: i32, plLineLen: ?*i32, plSkipLen: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.BreakLineML(self, pSrcMLStr, lSrcPos, lSrcLen, cMinColumns, cMaxColumns, plLineLen, plSkipLen);
     }
-    pub fn BreakLineW(self: *const IMLangLineBreakConsole, locale: u32, pszSrc: [*:0]const u16, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.Inline) HRESULT {
+    pub fn BreakLineW(self: *const IMLangLineBreakConsole, locale: u32, pszSrc: [*:0]const u16, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.BreakLineW(self, locale, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
     }
-    pub fn BreakLineA(self: *const IMLangLineBreakConsole, locale: u32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.Inline) HRESULT {
+    pub fn BreakLineA(self: *const IMLangLineBreakConsole, locale: u32, uCodePage: u32, pszSrc: [*:0]const u8, cchSrc: i32, cMaxColumns: i32, pcchLine: ?*i32, pcchSkip: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.BreakLineA(self, locale, uCodePage, pszSrc, cchSrc, cMaxColumns, pcchLine, pcchSkip);
     }
 };
@@ -7538,16 +7538,16 @@ pub const IEnumCodePage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumCodePage, ppEnum: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumCodePage, ppEnum: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
-    pub fn Next(self: *const IEnumCodePage, celt: u32, rgelt: ?*MIMECPINFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumCodePage, celt: u32, rgelt: ?*MIMECPINFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Reset(self: *const IEnumCodePage) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumCodePage) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Skip(self: *const IEnumCodePage, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumCodePage, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
 };
@@ -7583,16 +7583,16 @@ pub const IEnumRfc1766 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumRfc1766, ppEnum: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumRfc1766, ppEnum: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
-    pub fn Next(self: *const IEnumRfc1766, celt: u32, rgelt: ?*RFC1766INFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumRfc1766, celt: u32, rgelt: ?*RFC1766INFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Reset(self: *const IEnumRfc1766) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumRfc1766) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Skip(self: *const IEnumRfc1766, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumRfc1766, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
 };
@@ -7721,16 +7721,16 @@ pub const IEnumScript = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IEnumScript, ppEnum: ?*?*IEnumScript) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumScript, ppEnum: ?*?*IEnumScript) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
-    pub fn Next(self: *const IEnumScript, celt: u32, rgelt: ?*SCRIPTINFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumScript, celt: u32, rgelt: ?*SCRIPTINFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Reset(self: *const IEnumScript) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumScript) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Skip(self: *const IEnumScript, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumScript, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
 };
@@ -7822,25 +7822,25 @@ pub const IMLangConvertCharset = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IMLangConvertCharset, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IMLangConvertCharset, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, uiSrcCodePage, uiDstCodePage, dwProperty);
     }
-    pub fn GetSourceCodePage(self: *const IMLangConvertCharset, puiSrcCodePage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSourceCodePage(self: *const IMLangConvertCharset, puiSrcCodePage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceCodePage(self, puiSrcCodePage);
     }
-    pub fn GetDestinationCodePage(self: *const IMLangConvertCharset, puiDstCodePage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDestinationCodePage(self: *const IMLangConvertCharset, puiDstCodePage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDestinationCodePage(self, puiDstCodePage);
     }
-    pub fn GetProperty(self: *const IMLangConvertCharset, pdwProperty: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IMLangConvertCharset, pdwProperty: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, pdwProperty);
     }
-    pub fn DoConversion(self: *const IMLangConvertCharset, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn DoConversion(self: *const IMLangConvertCharset, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DoConversion(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn DoConversionToUnicode(self: *const IMLangConvertCharset, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn DoConversionToUnicode(self: *const IMLangConvertCharset, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DoConversionToUnicode(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn DoConversionFromUnicode(self: *const IMLangConvertCharset, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn DoConversionFromUnicode(self: *const IMLangConvertCharset, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DoConversionFromUnicode(self, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
 };
@@ -7943,49 +7943,49 @@ pub const IMultiLanguage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage, pcCodePage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage, pcCodePage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberOfCodePageInfo(self, pcCodePage);
     }
-    pub fn GetCodePageInfo(self: *const IMultiLanguage, uiCodePage: u32, pCodePageInfo: ?*MIMECPINFO) callconv(.Inline) HRESULT {
+    pub fn GetCodePageInfo(self: *const IMultiLanguage, uiCodePage: u32, pCodePageInfo: ?*MIMECPINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetCodePageInfo(self, uiCodePage, pCodePageInfo);
     }
-    pub fn GetFamilyCodePage(self: *const IMultiLanguage, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFamilyCodePage(self: *const IMultiLanguage, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFamilyCodePage(self, uiCodePage, puiFamilyCodePage);
     }
-    pub fn EnumCodePages(self: *const IMultiLanguage, grfFlags: u32, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
+    pub fn EnumCodePages(self: *const IMultiLanguage, grfFlags: u32, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCodePages(self, grfFlags, ppEnumCodePage);
     }
-    pub fn GetCharsetInfo(self: *const IMultiLanguage, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.Inline) HRESULT {
+    pub fn GetCharsetInfo(self: *const IMultiLanguage, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetCharsetInfo(self, Charset, pCharsetInfo);
     }
-    pub fn IsConvertible(self: *const IMultiLanguage, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.Inline) HRESULT {
+    pub fn IsConvertible(self: *const IMultiLanguage, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsConvertible(self, dwSrcEncoding, dwDstEncoding);
     }
-    pub fn ConvertString(self: *const IMultiLanguage, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ConvertString(self: *const IMultiLanguage, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertString(self, pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringToUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ConvertStringToUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringToUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringFromUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringReset(self: *const IMultiLanguage) callconv(.Inline) HRESULT {
+    pub fn ConvertStringReset(self: *const IMultiLanguage) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringReset(self);
     }
-    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetRfc1766FromLcid(self, Locale, pbstrRfc1766);
     }
-    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLcidFromRfc1766(self, pLocale, bstrRfc1766);
     }
-    pub fn EnumRfc1766(self: *const IMultiLanguage, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
+    pub fn EnumRfc1766(self: *const IMultiLanguage, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRfc1766(self, ppEnumRfc1766);
     }
-    pub fn GetRfc1766Info(self: *const IMultiLanguage, Locale: u32, pRfc1766Info: ?*RFC1766INFO) callconv(.Inline) HRESULT {
+    pub fn GetRfc1766Info(self: *const IMultiLanguage, Locale: u32, pRfc1766Info: ?*RFC1766INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetRfc1766Info(self, Locale, pRfc1766Info);
     }
-    pub fn CreateConvertCharset(self: *const IMultiLanguage, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.Inline) HRESULT {
+    pub fn CreateConvertCharset(self: *const IMultiLanguage, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.@"inline") HRESULT {
         return self.vtable.CreateConvertCharset(self, uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
     }
 };
@@ -8220,85 +8220,85 @@ pub const IMultiLanguage2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage2, pcCodePage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNumberOfCodePageInfo(self: *const IMultiLanguage2, pcCodePage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberOfCodePageInfo(self, pcCodePage);
     }
-    pub fn GetCodePageInfo(self: *const IMultiLanguage2, uiCodePage: u32, LangId: u16, pCodePageInfo: ?*MIMECPINFO) callconv(.Inline) HRESULT {
+    pub fn GetCodePageInfo(self: *const IMultiLanguage2, uiCodePage: u32, LangId: u16, pCodePageInfo: ?*MIMECPINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetCodePageInfo(self, uiCodePage, LangId, pCodePageInfo);
     }
-    pub fn GetFamilyCodePage(self: *const IMultiLanguage2, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFamilyCodePage(self: *const IMultiLanguage2, uiCodePage: u32, puiFamilyCodePage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFamilyCodePage(self, uiCodePage, puiFamilyCodePage);
     }
-    pub fn EnumCodePages(self: *const IMultiLanguage2, grfFlags: u32, LangId: u16, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.Inline) HRESULT {
+    pub fn EnumCodePages(self: *const IMultiLanguage2, grfFlags: u32, LangId: u16, ppEnumCodePage: ?*?*IEnumCodePage) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCodePages(self, grfFlags, LangId, ppEnumCodePage);
     }
-    pub fn GetCharsetInfo(self: *const IMultiLanguage2, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.Inline) HRESULT {
+    pub fn GetCharsetInfo(self: *const IMultiLanguage2, Charset: ?BSTR, pCharsetInfo: ?*MIMECSETINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetCharsetInfo(self, Charset, pCharsetInfo);
     }
-    pub fn IsConvertible(self: *const IMultiLanguage2, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.Inline) HRESULT {
+    pub fn IsConvertible(self: *const IMultiLanguage2, dwSrcEncoding: u32, dwDstEncoding: u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsConvertible(self, dwSrcEncoding, dwDstEncoding);
     }
-    pub fn ConvertString(self: *const IMultiLanguage2, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ConvertString(self: *const IMultiLanguage2, pdwMode: ?*u32, dwSrcEncoding: u32, dwDstEncoding: u32, pSrcStr: ?*u8, pcSrcSize: ?*u32, pDstStr: ?*u8, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertString(self, pdwMode, dwSrcEncoding, dwDstEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringToUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ConvertStringToUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: ?[*:0]u16, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringToUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ConvertStringFromUnicode(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?[*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringFromUnicode(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize);
     }
-    pub fn ConvertStringReset(self: *const IMultiLanguage2) callconv(.Inline) HRESULT {
+    pub fn ConvertStringReset(self: *const IMultiLanguage2) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringReset(self);
     }
-    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage2, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetRfc1766FromLcid(self: *const IMultiLanguage2, Locale: u32, pbstrRfc1766: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetRfc1766FromLcid(self, Locale, pbstrRfc1766);
     }
-    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage2, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetLcidFromRfc1766(self: *const IMultiLanguage2, pLocale: ?*u32, bstrRfc1766: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLcidFromRfc1766(self, pLocale, bstrRfc1766);
     }
-    pub fn EnumRfc1766(self: *const IMultiLanguage2, LangId: u16, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.Inline) HRESULT {
+    pub fn EnumRfc1766(self: *const IMultiLanguage2, LangId: u16, ppEnumRfc1766: ?*?*IEnumRfc1766) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRfc1766(self, LangId, ppEnumRfc1766);
     }
-    pub fn GetRfc1766Info(self: *const IMultiLanguage2, Locale: u32, LangId: u16, pRfc1766Info: ?*RFC1766INFO) callconv(.Inline) HRESULT {
+    pub fn GetRfc1766Info(self: *const IMultiLanguage2, Locale: u32, LangId: u16, pRfc1766Info: ?*RFC1766INFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetRfc1766Info(self, Locale, LangId, pRfc1766Info);
     }
-    pub fn CreateConvertCharset(self: *const IMultiLanguage2, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.Inline) HRESULT {
+    pub fn CreateConvertCharset(self: *const IMultiLanguage2, uiSrcCodePage: u32, uiDstCodePage: u32, dwProperty: u32, ppMLangConvertCharset: ?*?*IMLangConvertCharset) callconv(.@"inline") HRESULT {
         return self.vtable.CreateConvertCharset(self, uiSrcCodePage, uiDstCodePage, dwProperty, ppMLangConvertCharset);
     }
-    pub fn ConvertStringInIStream(self: *const IMultiLanguage2, pdwMode: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR, dwSrcEncoding: u32, dwDstEncoding: u32, pstmIn: ?*IStream, pstmOut: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn ConvertStringInIStream(self: *const IMultiLanguage2, pdwMode: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR, dwSrcEncoding: u32, dwDstEncoding: u32, pstmIn: ?*IStream, pstmOut: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringInIStream(self, pdwMode, dwFlag, lpFallBack, dwSrcEncoding, dwDstEncoding, pstmIn, pstmOut);
     }
-    pub fn ConvertStringToUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn ConvertStringToUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: ?PSTR, pcSrcSize: ?*u32, pDstStr: [*:0]u16, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringToUnicodeEx(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
     }
-    pub fn ConvertStringFromUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn ConvertStringFromUnicodeEx(self: *const IMultiLanguage2, pdwMode: ?*u32, dwEncoding: u32, pSrcStr: [*:0]u16, pcSrcSize: ?*u32, pDstStr: ?PSTR, pcDstSize: ?*u32, dwFlag: u32, lpFallBack: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ConvertStringFromUnicodeEx(self, pdwMode, dwEncoding, pSrcStr, pcSrcSize, pDstStr, pcDstSize, dwFlag, lpFallBack);
     }
-    pub fn DetectCodepageInIStream(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pstmIn: ?*IStream, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.Inline) HRESULT {
+    pub fn DetectCodepageInIStream(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pstmIn: ?*IStream, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.DetectCodepageInIStream(self, dwFlag, dwPrefWinCodePage, pstmIn, lpEncoding, pnScores);
     }
-    pub fn DetectInputCodepage(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pSrcStr: ?PSTR, pcSrcSize: ?*i32, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.Inline) HRESULT {
+    pub fn DetectInputCodepage(self: *const IMultiLanguage2, dwFlag: u32, dwPrefWinCodePage: u32, pSrcStr: ?PSTR, pcSrcSize: ?*i32, lpEncoding: ?*DetectEncodingInfo, pnScores: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.DetectInputCodepage(self, dwFlag, dwPrefWinCodePage, pSrcStr, pcSrcSize, lpEncoding, pnScores);
     }
-    pub fn ValidateCodePage(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn ValidateCodePage(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.ValidateCodePage(self, uiCodePage, hwnd);
     }
-    pub fn GetCodePageDescription(self: *const IMultiLanguage2, uiCodePage: u32, lcid: u32, lpWideCharStr: [*:0]u16, cchWideChar: i32) callconv(.Inline) HRESULT {
+    pub fn GetCodePageDescription(self: *const IMultiLanguage2, uiCodePage: u32, lcid: u32, lpWideCharStr: [*:0]u16, cchWideChar: i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCodePageDescription(self, uiCodePage, lcid, lpWideCharStr, cchWideChar);
     }
-    pub fn IsCodePageInstallable(self: *const IMultiLanguage2, uiCodePage: u32) callconv(.Inline) HRESULT {
+    pub fn IsCodePageInstallable(self: *const IMultiLanguage2, uiCodePage: u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsCodePageInstallable(self, uiCodePage);
     }
-    pub fn SetMimeDBSource(self: *const IMultiLanguage2, dwSource: MIMECONTF) callconv(.Inline) HRESULT {
+    pub fn SetMimeDBSource(self: *const IMultiLanguage2, dwSource: MIMECONTF) callconv(.@"inline") HRESULT {
         return self.vtable.SetMimeDBSource(self, dwSource);
     }
-    pub fn GetNumberOfScripts(self: *const IMultiLanguage2, pnScripts: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNumberOfScripts(self: *const IMultiLanguage2, pnScripts: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumberOfScripts(self, pnScripts);
     }
-    pub fn EnumScripts(self: *const IMultiLanguage2, dwFlags: u32, LangId: u16, ppEnumScript: ?*?*IEnumScript) callconv(.Inline) HRESULT {
+    pub fn EnumScripts(self: *const IMultiLanguage2, dwFlags: u32, LangId: u16, ppEnumScript: ?*?*IEnumScript) callconv(.@"inline") HRESULT {
         return self.vtable.EnumScripts(self, dwFlags, LangId, ppEnumScript);
     }
-    pub fn ValidateCodePageEx(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND, dwfIODControl: u32) callconv(.Inline) HRESULT {
+    pub fn ValidateCodePageEx(self: *const IMultiLanguage2, uiCodePage: u32, hwnd: ?HWND, dwfIODControl: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ValidateCodePageEx(self, uiCodePage, hwnd, dwfIODControl);
     }
 };
@@ -8335,16 +8335,16 @@ pub const IMLangCodePages = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCharCodePages(self: *const IMLangCodePages, chSrc: u16, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCharCodePages(self: *const IMLangCodePages, chSrc: u16, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCharCodePages(self, chSrc, pdwCodePages);
     }
-    pub fn GetStrCodePages(self: *const IMLangCodePages, pszSrc: [*:0]const u16, cchSrc: i32, dwPriorityCodePages: u32, pdwCodePages: ?*u32, pcchCodePages: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetStrCodePages(self: *const IMLangCodePages, pszSrc: [*:0]const u16, cchSrc: i32, dwPriorityCodePages: u32, pdwCodePages: ?*u32, pcchCodePages: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStrCodePages(self, pszSrc, cchSrc, dwPriorityCodePages, pdwCodePages, pcchCodePages);
     }
-    pub fn CodePageToCodePages(self: *const IMLangCodePages, uCodePage: u32, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CodePageToCodePages(self: *const IMLangCodePages, uCodePage: u32, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CodePageToCodePages(self, uCodePage, pdwCodePages);
     }
-    pub fn CodePagesToCodePage(self: *const IMLangCodePages, dwCodePages: u32, uDefaultCodePage: u32, puCodePage: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CodePagesToCodePage(self: *const IMLangCodePages, dwCodePages: u32, uDefaultCodePage: u32, puCodePage: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CodePagesToCodePage(self, dwCodePages, uDefaultCodePage, puCodePage);
     }
 };
@@ -8378,16 +8378,16 @@ pub const IMLangFontLink = extern union {
     vtable: *const VTable,
     IMLangCodePages: IMLangCodePages,
     IUnknown: IUnknown,
-    pub fn GetFontCodePages(self: *const IMLangFontLink, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFontCodePages(self: *const IMLangFontLink, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFontCodePages(self, hDC, hFont, pdwCodePages);
     }
-    pub fn MapFont(self: *const IMLangFontLink, hDC: ?HDC, dwCodePages: u32, hSrcFont: ?HFONT, phDestFont: ?*?HFONT) callconv(.Inline) HRESULT {
+    pub fn MapFont(self: *const IMLangFontLink, hDC: ?HDC, dwCodePages: u32, hSrcFont: ?HFONT, phDestFont: ?*?HFONT) callconv(.@"inline") HRESULT {
         return self.vtable.MapFont(self, hDC, dwCodePages, hSrcFont, phDestFont);
     }
-    pub fn ReleaseFont(self: *const IMLangFontLink, hFont: ?HFONT) callconv(.Inline) HRESULT {
+    pub fn ReleaseFont(self: *const IMLangFontLink, hFont: ?HFONT) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseFont(self, hFont);
     }
-    pub fn ResetFontMapping(self: *const IMLangFontLink) callconv(.Inline) HRESULT {
+    pub fn ResetFontMapping(self: *const IMLangFontLink) callconv(.@"inline") HRESULT {
         return self.vtable.ResetFontMapping(self);
     }
 };
@@ -8444,25 +8444,25 @@ pub const IMLangFontLink2 = extern union {
     vtable: *const VTable,
     IMLangCodePages: IMLangCodePages,
     IUnknown: IUnknown,
-    pub fn GetFontCodePages(self: *const IMLangFontLink2, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFontCodePages(self: *const IMLangFontLink2, hDC: ?HDC, hFont: ?HFONT, pdwCodePages: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFontCodePages(self, hDC, hFont, pdwCodePages);
     }
-    pub fn ReleaseFont(self: *const IMLangFontLink2, hFont: ?HFONT) callconv(.Inline) HRESULT {
+    pub fn ReleaseFont(self: *const IMLangFontLink2, hFont: ?HFONT) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseFont(self, hFont);
     }
-    pub fn ResetFontMapping(self: *const IMLangFontLink2) callconv(.Inline) HRESULT {
+    pub fn ResetFontMapping(self: *const IMLangFontLink2) callconv(.@"inline") HRESULT {
         return self.vtable.ResetFontMapping(self);
     }
-    pub fn MapFont(self: *const IMLangFontLink2, hDC: ?HDC, dwCodePages: u32, chSrc: u16, pFont: ?*?HFONT) callconv(.Inline) HRESULT {
+    pub fn MapFont(self: *const IMLangFontLink2, hDC: ?HDC, dwCodePages: u32, chSrc: u16, pFont: ?*?HFONT) callconv(.@"inline") HRESULT {
         return self.vtable.MapFont(self, hDC, dwCodePages, chSrc, pFont);
     }
-    pub fn GetFontUnicodeRanges(self: *const IMLangFontLink2, hDC: ?HDC, puiRanges: ?*u32, pUranges: ?*UNICODERANGE) callconv(.Inline) HRESULT {
+    pub fn GetFontUnicodeRanges(self: *const IMLangFontLink2, hDC: ?HDC, puiRanges: ?*u32, pUranges: ?*UNICODERANGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetFontUnicodeRanges(self, hDC, puiRanges, pUranges);
     }
-    pub fn GetScriptFontInfo(self: *const IMLangFontLink2, sid: u8, dwFlags: u32, puiFonts: ?*u32, pScriptFont: ?*tagSCRIPFONTINFO) callconv(.Inline) HRESULT {
+    pub fn GetScriptFontInfo(self: *const IMLangFontLink2, sid: u8, dwFlags: u32, puiFonts: ?*u32, pScriptFont: ?*tagSCRIPFONTINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetScriptFontInfo(self, sid, dwFlags, puiFonts, pScriptFont);
     }
-    pub fn CodePageToScriptID(self: *const IMLangFontLink2, uiCodePage: u32, pSid: ?*u8) callconv(.Inline) HRESULT {
+    pub fn CodePageToScriptID(self: *const IMLangFontLink2, uiCodePage: u32, pSid: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.CodePageToScriptID(self, uiCodePage, pSid);
     }
 };
@@ -8497,10 +8497,10 @@ pub const IMultiLanguage3 = extern union {
     vtable: *const VTable,
     IMultiLanguage2: IMultiLanguage2,
     IUnknown: IUnknown,
-    pub fn DetectOutboundCodePage(self: *const IMultiLanguage3, dwFlags: u32, lpWideCharStr: [*:0]const u16, cchWideChar: u32, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DetectOutboundCodePage(self: *const IMultiLanguage3, dwFlags: u32, lpWideCharStr: [*:0]const u16, cchWideChar: u32, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DetectOutboundCodePage(self, dwFlags, lpWideCharStr, cchWideChar, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
     }
-    pub fn DetectOutboundCodePageInIStream(self: *const IMultiLanguage3, dwFlags: u32, pStrIn: ?*IStream, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DetectOutboundCodePageInIStream(self: *const IMultiLanguage3, dwFlags: u32, pStrIn: ?*IStream, puiPreferredCodePages: ?[*]const u32, nPreferredCodePages: u32, puiDetectedCodePages: [*]u32, pnDetectedCodePages: ?*u32, lpSpecialChar: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DetectOutboundCodePageInIStream(self, dwFlags, pStrIn, puiPreferredCodePages, nPreferredCodePages, puiDetectedCodePages, pnDetectedCodePages, lpSpecialChar);
     }
 };

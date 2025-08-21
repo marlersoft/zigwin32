@@ -729,13 +729,13 @@ pub const IMessageFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HandleInComingCall(self: *const IMessageFilter, dwCallType: u32, htaskCaller: ?HTASK, dwTickCount: u32, lpInterfaceInfo: ?*INTERFACEINFO) callconv(.Inline) u32 {
+    pub fn HandleInComingCall(self: *const IMessageFilter, dwCallType: u32, htaskCaller: ?HTASK, dwTickCount: u32, lpInterfaceInfo: ?*INTERFACEINFO) callconv(.@"inline") u32 {
         return self.vtable.HandleInComingCall(self, dwCallType, htaskCaller, dwTickCount, lpInterfaceInfo);
     }
-    pub fn RetryRejectedCall(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwRejectType: u32) callconv(.Inline) u32 {
+    pub fn RetryRejectedCall(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwRejectType: u32) callconv(.@"inline") u32 {
         return self.vtable.RetryRejectedCall(self, htaskCallee, dwTickCount, dwRejectType);
     }
-    pub fn MessagePending(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwPendingType: u32) callconv(.Inline) u32 {
+    pub fn MessagePending(self: *const IMessageFilter, htaskCallee: ?HTASK, dwTickCount: u32, dwPendingType: u32) callconv(.@"inline") u32 {
         return self.vtable.MessagePending(self, htaskCallee, dwTickCount, dwPendingType);
     }
 };
@@ -1437,40 +1437,40 @@ pub const IAudioClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IAudioClient, ShareMode: AUDCLNT_SHAREMODE, StreamFlags: u32, hnsBufferDuration: i64, hnsPeriodicity: i64, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IAudioClient, ShareMode: AUDCLNT_SHAREMODE, StreamFlags: u32, hnsBufferDuration: i64, hnsPeriodicity: i64, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, ShareMode, StreamFlags, hnsBufferDuration, hnsPeriodicity, pFormat, AudioSessionGuid);
     }
-    pub fn GetBufferSize(self: *const IAudioClient, pNumBufferFrames: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBufferSize(self: *const IAudioClient, pNumBufferFrames: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBufferSize(self, pNumBufferFrames);
     }
-    pub fn GetStreamLatency(self: *const IAudioClient, phnsLatency: ?*i64) callconv(.Inline) HRESULT {
+    pub fn GetStreamLatency(self: *const IAudioClient, phnsLatency: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetStreamLatency(self, phnsLatency);
     }
-    pub fn GetCurrentPadding(self: *const IAudioClient, pNumPaddingFrames: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPadding(self: *const IAudioClient, pNumPaddingFrames: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentPadding(self, pNumPaddingFrames);
     }
-    pub fn IsFormatSupported(self: *const IAudioClient, ShareMode: AUDCLNT_SHAREMODE, pFormat: ?*const WAVEFORMATEX, ppClosestMatch: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn IsFormatSupported(self: *const IAudioClient, ShareMode: AUDCLNT_SHAREMODE, pFormat: ?*const WAVEFORMATEX, ppClosestMatch: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.IsFormatSupported(self, ShareMode, pFormat, ppClosestMatch);
     }
-    pub fn GetMixFormat(self: *const IAudioClient, ppDeviceFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetMixFormat(self: *const IAudioClient, ppDeviceFormat: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.GetMixFormat(self, ppDeviceFormat);
     }
-    pub fn GetDevicePeriod(self: *const IAudioClient, phnsDefaultDevicePeriod: ?*i64, phnsMinimumDevicePeriod: ?*i64) callconv(.Inline) HRESULT {
+    pub fn GetDevicePeriod(self: *const IAudioClient, phnsDefaultDevicePeriod: ?*i64, phnsMinimumDevicePeriod: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevicePeriod(self, phnsDefaultDevicePeriod, phnsMinimumDevicePeriod);
     }
-    pub fn Start(self: *const IAudioClient) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IAudioClient) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self);
     }
-    pub fn Stop(self: *const IAudioClient) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IAudioClient) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn Reset(self: *const IAudioClient) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IAudioClient) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn SetEventHandle(self: *const IAudioClient, eventHandle: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn SetEventHandle(self: *const IAudioClient, eventHandle: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventHandle(self, eventHandle);
     }
-    pub fn GetService(self: *const IAudioClient, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetService(self: *const IAudioClient, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetService(self, riid, ppv);
     }
 };
@@ -1501,13 +1501,13 @@ pub const IAudioClient2 = extern union {
     vtable: *const VTable,
     IAudioClient: IAudioClient,
     IUnknown: IUnknown,
-    pub fn IsOffloadCapable(self: *const IAudioClient2, Category: AUDIO_STREAM_CATEGORY, pbOffloadCapable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsOffloadCapable(self: *const IAudioClient2, Category: AUDIO_STREAM_CATEGORY, pbOffloadCapable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsOffloadCapable(self, Category, pbOffloadCapable);
     }
-    pub fn SetClientProperties(self: *const IAudioClient2, pProperties: ?*const AudioClientProperties) callconv(.Inline) HRESULT {
+    pub fn SetClientProperties(self: *const IAudioClient2, pProperties: ?*const AudioClientProperties) callconv(.@"inline") HRESULT {
         return self.vtable.SetClientProperties(self, pProperties);
     }
-    pub fn GetBufferSizeLimits(self: *const IAudioClient2, pFormat: ?*const WAVEFORMATEX, bEventDriven: BOOL, phnsMinBufferDuration: ?*i64, phnsMaxBufferDuration: ?*i64) callconv(.Inline) HRESULT {
+    pub fn GetBufferSizeLimits(self: *const IAudioClient2, pFormat: ?*const WAVEFORMATEX, bEventDriven: BOOL, phnsMinBufferDuration: ?*i64, phnsMaxBufferDuration: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetBufferSizeLimits(self, pFormat, bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
     }
 };
@@ -1547,13 +1547,13 @@ pub const IAudioClient3 = extern union {
     IAudioClient2: IAudioClient2,
     IAudioClient: IAudioClient,
     IUnknown: IUnknown,
-    pub fn GetSharedModeEnginePeriod(self: *const IAudioClient3, pFormat: ?*const WAVEFORMATEX, pDefaultPeriodInFrames: ?*u32, pFundamentalPeriodInFrames: ?*u32, pMinPeriodInFrames: ?*u32, pMaxPeriodInFrames: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSharedModeEnginePeriod(self: *const IAudioClient3, pFormat: ?*const WAVEFORMATEX, pDefaultPeriodInFrames: ?*u32, pFundamentalPeriodInFrames: ?*u32, pMinPeriodInFrames: ?*u32, pMaxPeriodInFrames: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSharedModeEnginePeriod(self, pFormat, pDefaultPeriodInFrames, pFundamentalPeriodInFrames, pMinPeriodInFrames, pMaxPeriodInFrames);
     }
-    pub fn GetCurrentSharedModeEnginePeriod(self: *const IAudioClient3, ppFormat: ?*?*WAVEFORMATEX, pCurrentPeriodInFrames: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentSharedModeEnginePeriod(self: *const IAudioClient3, ppFormat: ?*?*WAVEFORMATEX, pCurrentPeriodInFrames: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentSharedModeEnginePeriod(self, ppFormat, pCurrentPeriodInFrames);
     }
-    pub fn InitializeSharedAudioStream(self: *const IAudioClient3, StreamFlags: u32, PeriodInFrames: u32, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn InitializeSharedAudioStream(self: *const IAudioClient3, StreamFlags: u32, PeriodInFrames: u32, pFormat: ?*const WAVEFORMATEX, AudioSessionGuid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeSharedAudioStream(self, StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
     }
 };
@@ -1577,10 +1577,10 @@ pub const IAudioRenderClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const IAudioRenderClient, NumFramesRequested: u32, ppData: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const IAudioRenderClient, NumFramesRequested: u32, ppData: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetBuffer(self, NumFramesRequested, ppData);
     }
-    pub fn ReleaseBuffer(self: *const IAudioRenderClient, NumFramesWritten: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn ReleaseBuffer(self: *const IAudioRenderClient, NumFramesWritten: u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseBuffer(self, NumFramesWritten, dwFlags);
     }
 };
@@ -1610,13 +1610,13 @@ pub const IAudioCaptureClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const IAudioCaptureClient, ppData: ?*?*u8, pNumFramesToRead: ?*u32, pdwFlags: ?*u32, pu64DevicePosition: ?*u64, pu64QPCPosition: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const IAudioCaptureClient, ppData: ?*?*u8, pNumFramesToRead: ?*u32, pdwFlags: ?*u32, pu64DevicePosition: ?*u64, pu64QPCPosition: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetBuffer(self, ppData, pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
     }
-    pub fn ReleaseBuffer(self: *const IAudioCaptureClient, NumFramesRead: u32) callconv(.Inline) HRESULT {
+    pub fn ReleaseBuffer(self: *const IAudioCaptureClient, NumFramesRead: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseBuffer(self, NumFramesRead);
     }
-    pub fn GetNextPacketSize(self: *const IAudioCaptureClient, pNumFramesInNextPacket: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNextPacketSize(self: *const IAudioCaptureClient, pNumFramesInNextPacket: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNextPacketSize(self, pNumFramesInNextPacket);
     }
 };
@@ -1643,13 +1643,13 @@ pub const IAudioClock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFrequency(self: *const IAudioClock, pu64Frequency: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetFrequency(self: *const IAudioClock, pu64Frequency: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrequency(self, pu64Frequency);
     }
-    pub fn GetPosition(self: *const IAudioClock, pu64Position: ?*u64, pu64QPCPosition: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetPosition(self: *const IAudioClock, pu64Position: ?*u64, pu64QPCPosition: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetPosition(self, pu64Position, pu64QPCPosition);
     }
-    pub fn GetCharacteristics(self: *const IAudioClock, pdwCharacteristics: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCharacteristics(self: *const IAudioClock, pdwCharacteristics: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCharacteristics(self, pdwCharacteristics);
     }
 };
@@ -1668,7 +1668,7 @@ pub const IAudioClock2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDevicePosition(self: *const IAudioClock2, DevicePosition: ?*u64, QPCPosition: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetDevicePosition(self: *const IAudioClock2, DevicePosition: ?*u64, QPCPosition: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevicePosition(self, DevicePosition, QPCPosition);
     }
 };
@@ -1686,7 +1686,7 @@ pub const IAudioClockAdjustment = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSampleRate(self: *const IAudioClockAdjustment, flSampleRate: f32) callconv(.Inline) HRESULT {
+    pub fn SetSampleRate(self: *const IAudioClockAdjustment, flSampleRate: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSampleRate(self, flSampleRate);
     }
 };
@@ -1718,16 +1718,16 @@ pub const ISimpleAudioVolume = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetMasterVolume(self: *const ISimpleAudioVolume, fLevel: f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetMasterVolume(self: *const ISimpleAudioVolume, fLevel: f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetMasterVolume(self, fLevel, EventContext);
     }
-    pub fn GetMasterVolume(self: *const ISimpleAudioVolume, pfLevel: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetMasterVolume(self: *const ISimpleAudioVolume, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMasterVolume(self, pfLevel);
     }
-    pub fn SetMute(self: *const ISimpleAudioVolume, bMute: BOOL, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetMute(self: *const ISimpleAudioVolume, bMute: BOOL, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetMute(self, bMute, EventContext);
     }
-    pub fn GetMute(self: *const ISimpleAudioVolume, pbMute: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetMute(self: *const ISimpleAudioVolume, pbMute: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetMute(self, pbMute);
     }
 };
@@ -1781,7 +1781,7 @@ pub const IAudioClientDuckingControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetDuckingOptionsForCurrentStream(self: *const IAudioClientDuckingControl, options: AUDIO_DUCKING_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn SetDuckingOptionsForCurrentStream(self: *const IAudioClientDuckingControl, options: AUDIO_DUCKING_OPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.SetDuckingOptionsForCurrentStream(self, options);
     }
 };
@@ -1810,7 +1810,7 @@ pub const IAudioEffectsChangedNotificationClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnAudioEffectsChanged(self: *const IAudioEffectsChangedNotificationClient) callconv(.Inline) HRESULT {
+    pub fn OnAudioEffectsChanged(self: *const IAudioEffectsChangedNotificationClient) callconv(.@"inline") HRESULT {
         return self.vtable.OnAudioEffectsChanged(self);
     }
 };
@@ -1841,16 +1841,16 @@ pub const IAudioEffectsManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterAudioEffectsChangedNotificationCallback(self: *const IAudioEffectsManager, client: ?*IAudioEffectsChangedNotificationClient) callconv(.Inline) HRESULT {
+    pub fn RegisterAudioEffectsChangedNotificationCallback(self: *const IAudioEffectsManager, client: ?*IAudioEffectsChangedNotificationClient) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterAudioEffectsChangedNotificationCallback(self, client);
     }
-    pub fn UnregisterAudioEffectsChangedNotificationCallback(self: *const IAudioEffectsManager, client: ?*IAudioEffectsChangedNotificationClient) callconv(.Inline) HRESULT {
+    pub fn UnregisterAudioEffectsChangedNotificationCallback(self: *const IAudioEffectsManager, client: ?*IAudioEffectsChangedNotificationClient) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterAudioEffectsChangedNotificationCallback(self, client);
     }
-    pub fn GetAudioEffects(self: *const IAudioEffectsManager, effects: ?*?*AUDIO_EFFECT, numEffects: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAudioEffects(self: *const IAudioEffectsManager, effects: ?*?*AUDIO_EFFECT, numEffects: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAudioEffects(self, effects, numEffects);
     }
-    pub fn SetAudioEffectState(self: *const IAudioEffectsManager, effectId: Guid, state: AUDIO_EFFECT_STATE) callconv(.Inline) HRESULT {
+    pub fn SetAudioEffectState(self: *const IAudioEffectsManager, effectId: Guid, state: AUDIO_EFFECT_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.SetAudioEffectState(self, effectId, state);
     }
 };
@@ -1888,19 +1888,19 @@ pub const IAudioStreamVolume = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetChannelCount(self: *const IAudioStreamVolume, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelCount(self: *const IAudioStreamVolume, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelCount(self, pdwCount);
     }
-    pub fn SetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, fLevel: f32) callconv(.Inline) HRESULT {
+    pub fn SetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, fLevel: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetChannelVolume(self, dwIndex, fLevel);
     }
-    pub fn GetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetChannelVolume(self: *const IAudioStreamVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelVolume(self, dwIndex, pfLevel);
     }
-    pub fn SetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]const f32) callconv(.Inline) HRESULT {
+    pub fn SetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]const f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAllVolumes(self, dwCount, pfVolumes);
     }
-    pub fn GetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.Inline) HRESULT {
+    pub fn GetAllVolumes(self: *const IAudioStreamVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllVolumes(self, dwCount, pfVolumes);
     }
 };
@@ -1961,16 +1961,16 @@ pub const IAudioAmbisonicsControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetData(self: *const IAudioAmbisonicsControl, pAmbisonicsParams: [*]const AMBISONICS_PARAMS, cbAmbisonicsParams: u32) callconv(.Inline) HRESULT {
+    pub fn SetData(self: *const IAudioAmbisonicsControl, pAmbisonicsParams: [*]const AMBISONICS_PARAMS, cbAmbisonicsParams: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetData(self, pAmbisonicsParams, cbAmbisonicsParams);
     }
-    pub fn SetHeadTracking(self: *const IAudioAmbisonicsControl, bEnableHeadTracking: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetHeadTracking(self: *const IAudioAmbisonicsControl, bEnableHeadTracking: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetHeadTracking(self, bEnableHeadTracking);
     }
-    pub fn GetHeadTracking(self: *const IAudioAmbisonicsControl, pbEnableHeadTracking: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHeadTracking(self: *const IAudioAmbisonicsControl, pbEnableHeadTracking: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHeadTracking(self, pbEnableHeadTracking);
     }
-    pub fn SetRotation(self: *const IAudioAmbisonicsControl, X: f32, Y: f32, Z: f32, W: f32) callconv(.Inline) HRESULT {
+    pub fn SetRotation(self: *const IAudioAmbisonicsControl, X: f32, Y: f32, Z: f32, W: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRotation(self, X, Y, Z, W);
     }
 };
@@ -2010,19 +2010,19 @@ pub const IChannelAudioVolume = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetChannelCount(self: *const IChannelAudioVolume, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelCount(self: *const IChannelAudioVolume, pdwCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelCount(self, pdwCount);
     }
-    pub fn SetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, fLevel: f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, fLevel: f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetChannelVolume(self, dwIndex, fLevel, EventContext);
     }
-    pub fn GetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetChannelVolume(self: *const IChannelAudioVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelVolume(self, dwIndex, pfLevel);
     }
-    pub fn SetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]const f32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]const f32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetAllVolumes(self, dwCount, pfVolumes, EventContext);
     }
-    pub fn GetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.Inline) HRESULT {
+    pub fn GetAllVolumes(self: *const IChannelAudioVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllVolumes(self, dwCount, pfVolumes);
     }
 };
@@ -2156,10 +2156,10 @@ pub const IAudioFormatEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IAudioFormatEnumerator, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IAudioFormatEnumerator, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, count);
     }
-    pub fn GetFormat(self: *const IAudioFormatEnumerator, index: u32, format: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const IAudioFormatEnumerator, index: u32, format: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormat(self, index, format);
     }
 };
@@ -2190,16 +2190,16 @@ pub const ISpatialAudioObjectBase = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const ISpatialAudioObjectBase, buffer: ?*?*u8, bufferLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const ISpatialAudioObjectBase, buffer: ?*?*u8, bufferLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBuffer(self, buffer, bufferLength);
     }
-    pub fn SetEndOfStream(self: *const ISpatialAudioObjectBase, frameCount: u32) callconv(.Inline) HRESULT {
+    pub fn SetEndOfStream(self: *const ISpatialAudioObjectBase, frameCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetEndOfStream(self, frameCount);
     }
-    pub fn IsActive(self: *const ISpatialAudioObjectBase, isActive: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsActive(self: *const ISpatialAudioObjectBase, isActive: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsActive(self, isActive);
     }
-    pub fn GetAudioObjectType(self: *const ISpatialAudioObjectBase, audioObjectType: ?*AudioObjectType) callconv(.Inline) HRESULT {
+    pub fn GetAudioObjectType(self: *const ISpatialAudioObjectBase, audioObjectType: ?*AudioObjectType) callconv(.@"inline") HRESULT {
         return self.vtable.GetAudioObjectType(self, audioObjectType);
     }
 };
@@ -2224,10 +2224,10 @@ pub const ISpatialAudioObject = extern union {
     vtable: *const VTable,
     ISpatialAudioObjectBase: ISpatialAudioObjectBase,
     IUnknown: IUnknown,
-    pub fn SetPosition(self: *const ISpatialAudioObject, x: f32, y: f32, z: f32) callconv(.Inline) HRESULT {
+    pub fn SetPosition(self: *const ISpatialAudioObject, x: f32, y: f32, z: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPosition(self, x, y, z);
     }
-    pub fn SetVolume(self: *const ISpatialAudioObject, volume: f32) callconv(.Inline) HRESULT {
+    pub fn SetVolume(self: *const ISpatialAudioObject, volume: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetVolume(self, volume);
     }
 };
@@ -2267,25 +2267,25 @@ pub const ISpatialAudioObjectRenderStreamBase = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAvailableDynamicObjectCount(self: *const ISpatialAudioObjectRenderStreamBase, value: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAvailableDynamicObjectCount(self: *const ISpatialAudioObjectRenderStreamBase, value: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAvailableDynamicObjectCount(self, value);
     }
-    pub fn GetService(self: *const ISpatialAudioObjectRenderStreamBase, riid: ?*const Guid, service: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetService(self: *const ISpatialAudioObjectRenderStreamBase, riid: ?*const Guid, service: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetService(self, riid, service);
     }
-    pub fn Start(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self);
     }
-    pub fn Stop(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn Reset(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn BeginUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase, availableDynamicObjectCount: ?*u32, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
+    pub fn BeginUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase, availableDynamicObjectCount: ?*u32, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.BeginUpdatingAudioObjects(self, availableDynamicObjectCount, frameCountPerBuffer);
     }
-    pub fn EndUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.Inline) HRESULT {
+    pub fn EndUpdatingAudioObjects(self: *const ISpatialAudioObjectRenderStreamBase) callconv(.@"inline") HRESULT {
         return self.vtable.EndUpdatingAudioObjects(self);
     }
 };
@@ -2305,7 +2305,7 @@ pub const ISpatialAudioObjectRenderStream = extern union {
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
     IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioObject(self: *const ISpatialAudioObjectRenderStream, @"type": AudioObjectType, audioObject: **ISpatialAudioObject) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioObject(self: *const ISpatialAudioObjectRenderStream, @"type": AudioObjectType, audioObject: **ISpatialAudioObject) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioObject(self, @"type", audioObject);
     }
 };
@@ -2325,7 +2325,7 @@ pub const ISpatialAudioObjectRenderStreamNotify = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnAvailableDynamicObjectCountChange(self: *const ISpatialAudioObjectRenderStreamNotify, sender: ?*ISpatialAudioObjectRenderStreamBase, hnsComplianceDeadlineTime: i64, availableDynamicObjectCountChange: u32) callconv(.Inline) HRESULT {
+    pub fn OnAvailableDynamicObjectCountChange(self: *const ISpatialAudioObjectRenderStreamNotify, sender: ?*ISpatialAudioObjectRenderStreamBase, hnsComplianceDeadlineTime: i64, availableDynamicObjectCountChange: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnAvailableDynamicObjectCountChange(self, sender, hnsComplianceDeadlineTime, availableDynamicObjectCountChange);
     }
 };
@@ -2378,28 +2378,28 @@ pub const ISpatialAudioClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStaticObjectPosition(self: *const ISpatialAudioClient, @"type": AudioObjectType, x: ?*f32, y: ?*f32, z: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetStaticObjectPosition(self: *const ISpatialAudioClient, @"type": AudioObjectType, x: ?*f32, y: ?*f32, z: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStaticObjectPosition(self, @"type", x, y, z);
     }
-    pub fn GetNativeStaticObjectTypeMask(self: *const ISpatialAudioClient, mask: ?*AudioObjectType) callconv(.Inline) HRESULT {
+    pub fn GetNativeStaticObjectTypeMask(self: *const ISpatialAudioClient, mask: ?*AudioObjectType) callconv(.@"inline") HRESULT {
         return self.vtable.GetNativeStaticObjectTypeMask(self, mask);
     }
-    pub fn GetMaxDynamicObjectCount(self: *const ISpatialAudioClient, value: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxDynamicObjectCount(self: *const ISpatialAudioClient, value: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxDynamicObjectCount(self, value);
     }
-    pub fn GetSupportedAudioObjectFormatEnumerator(self: *const ISpatialAudioClient, enumerator: **IAudioFormatEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetSupportedAudioObjectFormatEnumerator(self: *const ISpatialAudioClient, enumerator: **IAudioFormatEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetSupportedAudioObjectFormatEnumerator(self, enumerator);
     }
-    pub fn GetMaxFrameCount(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxFrameCount(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxFrameCount(self, objectFormat, frameCountPerBuffer);
     }
-    pub fn IsAudioObjectFormatSupported(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn IsAudioObjectFormatSupported(self: *const ISpatialAudioClient, objectFormat: ?*const WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.IsAudioObjectFormatSupported(self, objectFormat);
     }
-    pub fn IsSpatialAudioStreamAvailable(self: *const ISpatialAudioClient, streamUuid: ?*const Guid, auxiliaryInfo: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn IsSpatialAudioStreamAvailable(self: *const ISpatialAudioClient, streamUuid: ?*const Guid, auxiliaryInfo: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.IsSpatialAudioStreamAvailable(self, streamUuid, auxiliaryInfo);
     }
-    pub fn ActivateSpatialAudioStream(self: *const ISpatialAudioClient, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioStream(self: *const ISpatialAudioClient, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioStream(self, activationParams, riid, stream);
     }
 };
@@ -2425,10 +2425,10 @@ pub const ISpatialAudioClient2 = extern union {
     vtable: *const VTable,
     ISpatialAudioClient: ISpatialAudioClient,
     IUnknown: IUnknown,
-    pub fn IsOffloadCapable(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, isOffloadCapable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsOffloadCapable(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, isOffloadCapable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsOffloadCapable(self, category, isOffloadCapable);
     }
-    pub fn GetMaxFrameCountForCategory(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, offloadEnabled: BOOL, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxFrameCountForCategory(self: *const ISpatialAudioClient2, category: AUDIO_STREAM_CATEGORY, offloadEnabled: BOOL, objectFormat: ?*const WAVEFORMATEX, frameCountPerBuffer: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxFrameCountForCategory(self, category, offloadEnabled, objectFormat, frameCountPerBuffer);
     }
 };
@@ -2566,22 +2566,22 @@ pub const ISpatialAudioObjectForHrtf = extern union {
     vtable: *const VTable,
     ISpatialAudioObjectBase: ISpatialAudioObjectBase,
     IUnknown: IUnknown,
-    pub fn SetPosition(self: *const ISpatialAudioObjectForHrtf, x: f32, y: f32, z: f32) callconv(.Inline) HRESULT {
+    pub fn SetPosition(self: *const ISpatialAudioObjectForHrtf, x: f32, y: f32, z: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPosition(self, x, y, z);
     }
-    pub fn SetGain(self: *const ISpatialAudioObjectForHrtf, gain: f32) callconv(.Inline) HRESULT {
+    pub fn SetGain(self: *const ISpatialAudioObjectForHrtf, gain: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGain(self, gain);
     }
-    pub fn SetOrientation(self: *const ISpatialAudioObjectForHrtf, orientation: ?*const ?*f32) callconv(.Inline) HRESULT {
+    pub fn SetOrientation(self: *const ISpatialAudioObjectForHrtf, orientation: ?*const ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOrientation(self, orientation);
     }
-    pub fn SetEnvironment(self: *const ISpatialAudioObjectForHrtf, environment: SpatialAudioHrtfEnvironmentType) callconv(.Inline) HRESULT {
+    pub fn SetEnvironment(self: *const ISpatialAudioObjectForHrtf, environment: SpatialAudioHrtfEnvironmentType) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnvironment(self, environment);
     }
-    pub fn SetDistanceDecay(self: *const ISpatialAudioObjectForHrtf, distanceDecay: ?*SpatialAudioHrtfDistanceDecay) callconv(.Inline) HRESULT {
+    pub fn SetDistanceDecay(self: *const ISpatialAudioObjectForHrtf, distanceDecay: ?*SpatialAudioHrtfDistanceDecay) callconv(.@"inline") HRESULT {
         return self.vtable.SetDistanceDecay(self, distanceDecay);
     }
-    pub fn SetDirectivity(self: *const ISpatialAudioObjectForHrtf, directivity: ?*SpatialAudioHrtfDirectivityUnion) callconv(.Inline) HRESULT {
+    pub fn SetDirectivity(self: *const ISpatialAudioObjectForHrtf, directivity: ?*SpatialAudioHrtfDirectivityUnion) callconv(.@"inline") HRESULT {
         return self.vtable.SetDirectivity(self, directivity);
     }
 };
@@ -2601,7 +2601,7 @@ pub const ISpatialAudioObjectRenderStreamForHrtf = extern union {
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
     IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioObjectForHrtf(self: *const ISpatialAudioObjectRenderStreamForHrtf, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForHrtf) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioObjectForHrtf(self: *const ISpatialAudioObjectRenderStreamForHrtf, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForHrtf) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioObjectForHrtf(self, @"type", audioObject);
     }
 };
@@ -2697,19 +2697,19 @@ pub const IMMNotificationClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnDeviceStateChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, dwNewState: u32) callconv(.Inline) HRESULT {
+    pub fn OnDeviceStateChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, dwNewState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnDeviceStateChanged(self, pwstrDeviceId, dwNewState);
     }
-    pub fn OnDeviceAdded(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OnDeviceAdded(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnDeviceAdded(self, pwstrDeviceId);
     }
-    pub fn OnDeviceRemoved(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OnDeviceRemoved(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnDeviceRemoved(self, pwstrDeviceId);
     }
-    pub fn OnDefaultDeviceChanged(self: *const IMMNotificationClient, flow: EDataFlow, role: ERole, pwstrDefaultDeviceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OnDefaultDeviceChanged(self: *const IMMNotificationClient, flow: EDataFlow, role: ERole, pwstrDefaultDeviceId: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnDefaultDeviceChanged(self, flow, role, pwstrDefaultDeviceId);
     }
-    pub fn OnPropertyValueChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, key: PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn OnPropertyValueChanged(self: *const IMMNotificationClient, pwstrDeviceId: ?[*:0]const u16, key: PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.OnPropertyValueChanged(self, pwstrDeviceId, key);
     }
 };
@@ -2743,16 +2743,16 @@ pub const IMMDevice = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Activate(self: *const IMMDevice, iid: ?*const Guid, dwClsCtx: CLSCTX, pActivationParams: ?*PROPVARIANT, ppInterface: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IMMDevice, iid: ?*const Guid, dwClsCtx: CLSCTX, pActivationParams: ?*PROPVARIANT, ppInterface: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, iid, dwClsCtx, pActivationParams, ppInterface);
     }
-    pub fn OpenPropertyStore(self: *const IMMDevice, stgmAccess: STGM, ppProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn OpenPropertyStore(self: *const IMMDevice, stgmAccess: STGM, ppProperties: ?*?*IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.OpenPropertyStore(self, stgmAccess, ppProperties);
     }
-    pub fn GetId(self: *const IMMDevice, ppstrId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetId(self: *const IMMDevice, ppstrId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, ppstrId);
     }
-    pub fn GetState(self: *const IMMDevice, pdwState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IMMDevice, pdwState: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, pdwState);
     }
 };
@@ -2775,10 +2775,10 @@ pub const IMMDeviceCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IMMDeviceCollection, pcDevices: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IMMDeviceCollection, pcDevices: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pcDevices);
     }
-    pub fn Item(self: *const IMMDeviceCollection, nDevice: u32, ppDevice: ?*?*IMMDevice) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const IMMDeviceCollection, nDevice: u32, ppDevice: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, nDevice, ppDevice);
     }
 };
@@ -2796,7 +2796,7 @@ pub const IMMEndpoint = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDataFlow(self: *const IMMEndpoint, pDataFlow: ?*EDataFlow) callconv(.Inline) HRESULT {
+    pub fn GetDataFlow(self: *const IMMEndpoint, pDataFlow: ?*EDataFlow) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataFlow(self, pDataFlow);
     }
 };
@@ -2835,19 +2835,19 @@ pub const IMMDeviceEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumAudioEndpoints(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, dwStateMask: u32, ppDevices: ?*?*IMMDeviceCollection) callconv(.Inline) HRESULT {
+    pub fn EnumAudioEndpoints(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, dwStateMask: u32, ppDevices: ?*?*IMMDeviceCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAudioEndpoints(self, dataFlow, dwStateMask, ppDevices);
     }
-    pub fn GetDefaultAudioEndpoint(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, role: ERole, ppEndpoint: ?*?*IMMDevice) callconv(.Inline) HRESULT {
+    pub fn GetDefaultAudioEndpoint(self: *const IMMDeviceEnumerator, dataFlow: EDataFlow, role: ERole, ppEndpoint: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultAudioEndpoint(self, dataFlow, role, ppEndpoint);
     }
-    pub fn GetDevice(self: *const IMMDeviceEnumerator, pwstrId: ?[*:0]const u16, ppDevice: ?*?*IMMDevice) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IMMDeviceEnumerator, pwstrId: ?[*:0]const u16, ppDevice: ?*?*IMMDevice) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevice(self, pwstrId, ppDevice);
     }
-    pub fn RegisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.Inline) HRESULT {
+    pub fn RegisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterEndpointNotificationCallback(self, pClient);
     }
-    pub fn UnregisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.Inline) HRESULT {
+    pub fn UnregisterEndpointNotificationCallback(self: *const IMMDeviceEnumerator, pClient: ?*IMMNotificationClient) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterEndpointNotificationCallback(self, pClient);
     }
 };
@@ -2867,7 +2867,7 @@ pub const IMMDeviceActivator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Activate(self: *const IMMDeviceActivator, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IMMDeviceActivator, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, iid, pDevice, pActivationParams, ppInterface);
     }
 };
@@ -2885,7 +2885,7 @@ pub const IActivateAudioInterfaceCompletionHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ActivateCompleted(self: *const IActivateAudioInterfaceCompletionHandler, activateOperation: ?*IActivateAudioInterfaceAsyncOperation) callconv(.Inline) HRESULT {
+    pub fn ActivateCompleted(self: *const IActivateAudioInterfaceCompletionHandler, activateOperation: ?*IActivateAudioInterfaceAsyncOperation) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateCompleted(self, activateOperation);
     }
 };
@@ -2904,7 +2904,7 @@ pub const IActivateAudioInterfaceAsyncOperation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetActivateResult(self: *const IActivateAudioInterfaceAsyncOperation, activateResult: ?*HRESULT, activatedInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetActivateResult(self: *const IActivateAudioInterfaceAsyncOperation, activateResult: ?*HRESULT, activatedInterface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetActivateResult(self, activateResult, activatedInterface);
     }
 };
@@ -2940,7 +2940,7 @@ pub const IAudioSystemEffectsPropertyChangeNotificationClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPropertyChanged(self: *const IAudioSystemEffectsPropertyChangeNotificationClient, @"type": AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE, key: PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn OnPropertyChanged(self: *const IAudioSystemEffectsPropertyChangeNotificationClient, @"type": AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE, key: PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.OnPropertyChanged(self, @"type", key);
     }
 };
@@ -2982,25 +2982,25 @@ pub const IAudioSystemEffectsPropertyStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OpenDefaultPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn OpenDefaultPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.OpenDefaultPropertyStore(self, stgmAccess, propStore);
     }
-    pub fn OpenUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn OpenUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.OpenUserPropertyStore(self, stgmAccess, propStore);
     }
-    pub fn OpenVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn OpenVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore, stgmAccess: u32, propStore: **IPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.OpenVolatilePropertyStore(self, stgmAccess, propStore);
     }
-    pub fn ResetUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.Inline) HRESULT {
+    pub fn ResetUserPropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.ResetUserPropertyStore(self);
     }
-    pub fn ResetVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.Inline) HRESULT {
+    pub fn ResetVolatilePropertyStore(self: *const IAudioSystemEffectsPropertyStore) callconv(.@"inline") HRESULT {
         return self.vtable.ResetVolatilePropertyStore(self);
     }
-    pub fn RegisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.Inline) HRESULT {
+    pub fn RegisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterPropertyChangeNotification(self, callback);
     }
-    pub fn UnregisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.Inline) HRESULT {
+    pub fn UnregisterPropertyChangeNotification(self: *const IAudioSystemEffectsPropertyStore, callback: ?*IAudioSystemEffectsPropertyChangeNotificationClient) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterPropertyChangeNotification(self, callback);
     }
 };
@@ -3074,22 +3074,22 @@ pub const IPerChannelDbLevel = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetChannelCount(self: *const IPerChannelDbLevel, pcChannels: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelCount(self: *const IPerChannelDbLevel, pcChannels: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelCount(self, pcChannels);
     }
-    pub fn GetLevelRange(self: *const IPerChannelDbLevel, nChannel: u32, pfMinLevelDB: ?*f32, pfMaxLevelDB: ?*f32, pfStepping: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetLevelRange(self: *const IPerChannelDbLevel, nChannel: u32, pfMinLevelDB: ?*f32, pfMaxLevelDB: ?*f32, pfStepping: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLevelRange(self, nChannel, pfMinLevelDB, pfMaxLevelDB, pfStepping);
     }
-    pub fn GetLevel(self: *const IPerChannelDbLevel, nChannel: u32, pfLevelDB: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetLevel(self: *const IPerChannelDbLevel, nChannel: u32, pfLevelDB: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLevel(self, nChannel, pfLevelDB);
     }
-    pub fn SetLevel(self: *const IPerChannelDbLevel, nChannel: u32, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetLevel(self: *const IPerChannelDbLevel, nChannel: u32, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetLevel(self, nChannel, fLevelDB, pguidEventContext);
     }
-    pub fn SetLevelUniform(self: *const IPerChannelDbLevel, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetLevelUniform(self: *const IPerChannelDbLevel, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetLevelUniform(self, fLevelDB, pguidEventContext);
     }
-    pub fn SetLevelAllChannels(self: *const IPerChannelDbLevel, aLevelsDB: [*]f32, cChannels: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetLevelAllChannels(self: *const IPerChannelDbLevel, aLevelsDB: [*]f32, cChannels: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetLevelAllChannels(self, aLevelsDB, cChannels, pguidEventContext);
     }
 };
@@ -3124,10 +3124,10 @@ pub const IAudioChannelConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetChannelConfig(self: *const IAudioChannelConfig, dwConfig: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetChannelConfig(self: *const IAudioChannelConfig, dwConfig: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetChannelConfig(self, dwConfig, pguidEventContext);
     }
-    pub fn GetChannelConfig(self: *const IAudioChannelConfig, pdwConfig: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelConfig(self: *const IAudioChannelConfig, pdwConfig: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelConfig(self, pdwConfig);
     }
 };
@@ -3150,10 +3150,10 @@ pub const IAudioLoudness = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetEnabled(self: *const IAudioLoudness, pbEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetEnabled(self: *const IAudioLoudness, pbEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnabled(self, pbEnabled);
     }
-    pub fn SetEnabled(self: *const IAudioLoudness, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetEnabled(self: *const IAudioLoudness, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnabled(self, bEnable, pguidEventContext);
     }
 };
@@ -3176,10 +3176,10 @@ pub const IAudioInputSelector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSelection(self: *const IAudioInputSelector, pnIdSelected: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSelection(self: *const IAudioInputSelector, pnIdSelected: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelection(self, pnIdSelected);
     }
-    pub fn SetSelection(self: *const IAudioInputSelector, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetSelection(self: *const IAudioInputSelector, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetSelection(self, nIdSelect, pguidEventContext);
     }
 };
@@ -3202,10 +3202,10 @@ pub const IAudioOutputSelector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSelection(self: *const IAudioOutputSelector, pnIdSelected: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSelection(self: *const IAudioOutputSelector, pnIdSelected: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSelection(self, pnIdSelected);
     }
-    pub fn SetSelection(self: *const IAudioOutputSelector, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetSelection(self: *const IAudioOutputSelector, nIdSelect: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetSelection(self, nIdSelect, pguidEventContext);
     }
 };
@@ -3228,10 +3228,10 @@ pub const IAudioMute = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetMute(self: *const IAudioMute, bMuted: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetMute(self: *const IAudioMute, bMuted: BOOL, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetMute(self, bMuted, pguidEventContext);
     }
-    pub fn GetMute(self: *const IAudioMute, pbMuted: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetMute(self: *const IAudioMute, pbMuted: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetMute(self, pbMuted);
     }
 };
@@ -3290,10 +3290,10 @@ pub const IAudioAutoGainControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetEnabled(self: *const IAudioAutoGainControl, pbEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetEnabled(self: *const IAudioAutoGainControl, pbEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnabled(self, pbEnabled);
     }
-    pub fn SetEnabled(self: *const IAudioAutoGainControl, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetEnabled(self: *const IAudioAutoGainControl, bEnable: BOOL, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnabled(self, bEnable, pguidEventContext);
     }
 };
@@ -3316,10 +3316,10 @@ pub const IAudioPeakMeter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetChannelCount(self: *const IAudioPeakMeter, pcChannels: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelCount(self: *const IAudioPeakMeter, pcChannels: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelCount(self, pcChannels);
     }
-    pub fn GetLevel(self: *const IAudioPeakMeter, nChannel: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetLevel(self: *const IAudioPeakMeter, nChannel: u32, pfLevel: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLevel(self, nChannel, pfLevel);
     }
 };
@@ -3354,16 +3354,16 @@ pub const IDeviceSpecificProperty = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetType(self: *const IDeviceSpecificProperty, pVType: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const IDeviceSpecificProperty, pVType: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pVType);
     }
-    pub fn GetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, pcbValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, pcbValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, pvValue, pcbValue);
     }
-    pub fn SetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, cbValue: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetValue(self: *const IDeviceSpecificProperty, pvValue: ?*anyopaque, cbValue: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetValue(self, pvValue, cbValue, pguidEventContext);
     }
-    pub fn Get4BRange(self: *const IDeviceSpecificProperty, plMin: ?*i32, plMax: ?*i32, plStepping: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Get4BRange(self: *const IDeviceSpecificProperty, plMin: ?*i32, plMax: ?*i32, plStepping: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Get4BRange(self, plMin, plMax, plStepping);
     }
 };
@@ -3386,10 +3386,10 @@ pub const IPartsList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IPartsList, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IPartsList, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pCount);
     }
-    pub fn GetPart(self: *const IPartsList, nIndex: u32, ppPart: ?*?*IPart) callconv(.Inline) HRESULT {
+    pub fn GetPart(self: *const IPartsList, nIndex: u32, ppPart: ?*?*IPart) callconv(.@"inline") HRESULT {
         return self.vtable.GetPart(self, nIndex, ppPart);
     }
 };
@@ -3459,43 +3459,43 @@ pub const IPart = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IPart, ppwstrName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IPart, ppwstrName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppwstrName);
     }
-    pub fn GetLocalId(self: *const IPart, pnId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLocalId(self: *const IPart, pnId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalId(self, pnId);
     }
-    pub fn GetGlobalId(self: *const IPart, ppwstrGlobalId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetGlobalId(self: *const IPart, ppwstrGlobalId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetGlobalId(self, ppwstrGlobalId);
     }
-    pub fn GetPartType(self: *const IPart, pPartType: ?*PartType) callconv(.Inline) HRESULT {
+    pub fn GetPartType(self: *const IPart, pPartType: ?*PartType) callconv(.@"inline") HRESULT {
         return self.vtable.GetPartType(self, pPartType);
     }
-    pub fn GetSubType(self: *const IPart, pSubType: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetSubType(self: *const IPart, pSubType: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetSubType(self, pSubType);
     }
-    pub fn GetControlInterfaceCount(self: *const IPart, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetControlInterfaceCount(self: *const IPart, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetControlInterfaceCount(self, pCount);
     }
-    pub fn GetControlInterface(self: *const IPart, nIndex: u32, ppInterfaceDesc: ?*?*IControlInterface) callconv(.Inline) HRESULT {
+    pub fn GetControlInterface(self: *const IPart, nIndex: u32, ppInterfaceDesc: ?*?*IControlInterface) callconv(.@"inline") HRESULT {
         return self.vtable.GetControlInterface(self, nIndex, ppInterfaceDesc);
     }
-    pub fn EnumPartsIncoming(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
+    pub fn EnumPartsIncoming(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
         return self.vtable.EnumPartsIncoming(self, ppParts);
     }
-    pub fn EnumPartsOutgoing(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
+    pub fn EnumPartsOutgoing(self: *const IPart, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
         return self.vtable.EnumPartsOutgoing(self, ppParts);
     }
-    pub fn GetTopologyObject(self: *const IPart, ppTopology: ?*?*IDeviceTopology) callconv(.Inline) HRESULT {
+    pub fn GetTopologyObject(self: *const IPart, ppTopology: ?*?*IDeviceTopology) callconv(.@"inline") HRESULT {
         return self.vtable.GetTopologyObject(self, ppTopology);
     }
-    pub fn Activate(self: *const IPart, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IPart, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, dwClsContext, refiid, ppvObject);
     }
-    pub fn RegisterControlChangeCallback(self: *const IPart, riid: ?*const Guid, pNotify: ?*IControlChangeNotify) callconv(.Inline) HRESULT {
+    pub fn RegisterControlChangeCallback(self: *const IPart, riid: ?*const Guid, pNotify: ?*IControlChangeNotify) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterControlChangeCallback(self, riid, pNotify);
     }
-    pub fn UnregisterControlChangeCallback(self: *const IPart, pNotify: ?*IControlChangeNotify) callconv(.Inline) HRESULT {
+    pub fn UnregisterControlChangeCallback(self: *const IPart, pNotify: ?*IControlChangeNotify) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterControlChangeCallback(self, pNotify);
     }
 };
@@ -3540,28 +3540,28 @@ pub const IConnector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetType(self: *const IConnector, pType: ?*ConnectorType) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const IConnector, pType: ?*ConnectorType) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pType);
     }
-    pub fn GetDataFlow(self: *const IConnector, pFlow: ?*DataFlow) callconv(.Inline) HRESULT {
+    pub fn GetDataFlow(self: *const IConnector, pFlow: ?*DataFlow) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataFlow(self, pFlow);
     }
-    pub fn ConnectTo(self: *const IConnector, pConnectTo: ?*IConnector) callconv(.Inline) HRESULT {
+    pub fn ConnectTo(self: *const IConnector, pConnectTo: ?*IConnector) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectTo(self, pConnectTo);
     }
-    pub fn Disconnect(self: *const IConnector) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const IConnector) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnect(self);
     }
-    pub fn IsConnected(self: *const IConnector, pbConnected: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsConnected(self: *const IConnector, pbConnected: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsConnected(self, pbConnected);
     }
-    pub fn GetConnectedTo(self: *const IConnector, ppConTo: ?*?*IConnector) callconv(.Inline) HRESULT {
+    pub fn GetConnectedTo(self: *const IConnector, ppConTo: ?*?*IConnector) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectedTo(self, ppConTo);
     }
-    pub fn GetConnectorIdConnectedTo(self: *const IConnector, ppwstrConnectorId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetConnectorIdConnectedTo(self: *const IConnector, ppwstrConnectorId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectorIdConnectedTo(self, ppwstrConnectorId);
     }
-    pub fn GetDeviceIdConnectedTo(self: *const IConnector, ppwstrDeviceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDeviceIdConnectedTo(self: *const IConnector, ppwstrDeviceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceIdConnectedTo(self, ppwstrDeviceId);
     }
 };
@@ -3594,10 +3594,10 @@ pub const IControlInterface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IControlInterface, ppwstrName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IControlInterface, ppwstrName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, ppwstrName);
     }
-    pub fn GetIID(self: *const IControlInterface, pIID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetIID(self: *const IControlInterface, pIID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetIID(self, pIID);
     }
 };
@@ -3616,7 +3616,7 @@ pub const IControlChangeNotify = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnNotify(self: *const IControlChangeNotify, dwSenderProcessId: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn OnNotify(self: *const IControlChangeNotify, dwSenderProcessId: u32, pguidEventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnNotify(self, dwSenderProcessId, pguidEventContext);
     }
 };
@@ -3664,25 +3664,25 @@ pub const IDeviceTopology = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConnectorCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetConnectorCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectorCount(self, pCount);
     }
-    pub fn GetConnector(self: *const IDeviceTopology, nIndex: u32, ppConnector: ?*?*IConnector) callconv(.Inline) HRESULT {
+    pub fn GetConnector(self: *const IDeviceTopology, nIndex: u32, ppConnector: ?*?*IConnector) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnector(self, nIndex, ppConnector);
     }
-    pub fn GetSubunitCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSubunitCount(self: *const IDeviceTopology, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSubunitCount(self, pCount);
     }
-    pub fn GetSubunit(self: *const IDeviceTopology, nIndex: u32, ppSubunit: ?*?*ISubunit) callconv(.Inline) HRESULT {
+    pub fn GetSubunit(self: *const IDeviceTopology, nIndex: u32, ppSubunit: ?*?*ISubunit) callconv(.@"inline") HRESULT {
         return self.vtable.GetSubunit(self, nIndex, ppSubunit);
     }
-    pub fn GetPartById(self: *const IDeviceTopology, nId: u32, ppPart: ?*?*IPart) callconv(.Inline) HRESULT {
+    pub fn GetPartById(self: *const IDeviceTopology, nId: u32, ppPart: ?*?*IPart) callconv(.@"inline") HRESULT {
         return self.vtable.GetPartById(self, nId, ppPart);
     }
-    pub fn GetDeviceId(self: *const IDeviceTopology, ppwstrDeviceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDeviceId(self: *const IDeviceTopology, ppwstrDeviceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceId(self, ppwstrDeviceId);
     }
-    pub fn GetSignalPath(self: *const IDeviceTopology, pIPartFrom: ?*IPart, pIPartTo: ?*IPart, bRejectMixedPaths: BOOL, ppParts: ?*?*IPartsList) callconv(.Inline) HRESULT {
+    pub fn GetSignalPath(self: *const IDeviceTopology, pIPartFrom: ?*IPart, pIPartTo: ?*IPart, bRejectMixedPaths: BOOL, ppParts: ?*?*IPartsList) callconv(.@"inline") HRESULT {
         return self.vtable.GetSignalPath(self, pIPartFrom, pIPartTo, bRejectMixedPaths, ppParts);
     }
 };
@@ -3747,25 +3747,25 @@ pub const IAudioSessionEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnDisplayNameChanged(self: *const IAudioSessionEvents, NewDisplayName: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn OnDisplayNameChanged(self: *const IAudioSessionEvents, NewDisplayName: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnDisplayNameChanged(self, NewDisplayName, EventContext);
     }
-    pub fn OnIconPathChanged(self: *const IAudioSessionEvents, NewIconPath: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn OnIconPathChanged(self: *const IAudioSessionEvents, NewIconPath: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnIconPathChanged(self, NewIconPath, EventContext);
     }
-    pub fn OnSimpleVolumeChanged(self: *const IAudioSessionEvents, NewVolume: f32, NewMute: BOOL, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn OnSimpleVolumeChanged(self: *const IAudioSessionEvents, NewVolume: f32, NewMute: BOOL, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnSimpleVolumeChanged(self, NewVolume, NewMute, EventContext);
     }
-    pub fn OnChannelVolumeChanged(self: *const IAudioSessionEvents, ChannelCount: u32, NewChannelVolumeArray: [*]f32, ChangedChannel: u32, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn OnChannelVolumeChanged(self: *const IAudioSessionEvents, ChannelCount: u32, NewChannelVolumeArray: [*]f32, ChangedChannel: u32, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnChannelVolumeChanged(self, ChannelCount, NewChannelVolumeArray, ChangedChannel, EventContext);
     }
-    pub fn OnGroupingParamChanged(self: *const IAudioSessionEvents, NewGroupingParam: ?*const Guid, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn OnGroupingParamChanged(self: *const IAudioSessionEvents, NewGroupingParam: ?*const Guid, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.OnGroupingParamChanged(self, NewGroupingParam, EventContext);
     }
-    pub fn OnStateChanged(self: *const IAudioSessionEvents, NewState: AudioSessionState) callconv(.Inline) HRESULT {
+    pub fn OnStateChanged(self: *const IAudioSessionEvents, NewState: AudioSessionState) callconv(.@"inline") HRESULT {
         return self.vtable.OnStateChanged(self, NewState);
     }
-    pub fn OnSessionDisconnected(self: *const IAudioSessionEvents, DisconnectReason: AudioSessionDisconnectReason) callconv(.Inline) HRESULT {
+    pub fn OnSessionDisconnected(self: *const IAudioSessionEvents, DisconnectReason: AudioSessionDisconnectReason) callconv(.@"inline") HRESULT {
         return self.vtable.OnSessionDisconnected(self, DisconnectReason);
     }
 };
@@ -3818,31 +3818,31 @@ pub const IAudioSessionControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetState(self: *const IAudioSessionControl, pRetVal: ?*AudioSessionState) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IAudioSessionControl, pRetVal: ?*AudioSessionState) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, pRetVal);
     }
-    pub fn GetDisplayName(self: *const IAudioSessionControl, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDisplayName(self: *const IAudioSessionControl, pRetVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pRetVal);
     }
-    pub fn SetDisplayName(self: *const IAudioSessionControl, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetDisplayName(self: *const IAudioSessionControl, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayName(self, Value, EventContext);
     }
-    pub fn GetIconPath(self: *const IAudioSessionControl, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetIconPath(self: *const IAudioSessionControl, pRetVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetIconPath(self, pRetVal);
     }
-    pub fn SetIconPath(self: *const IAudioSessionControl, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetIconPath(self: *const IAudioSessionControl, Value: ?[*:0]const u16, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetIconPath(self, Value, EventContext);
     }
-    pub fn GetGroupingParam(self: *const IAudioSessionControl, pRetVal: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetGroupingParam(self: *const IAudioSessionControl, pRetVal: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetGroupingParam(self, pRetVal);
     }
-    pub fn SetGroupingParam(self: *const IAudioSessionControl, Override: ?*const Guid, EventContext: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetGroupingParam(self: *const IAudioSessionControl, Override: ?*const Guid, EventContext: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetGroupingParam(self, Override, EventContext);
     }
-    pub fn RegisterAudioSessionNotification(self: *const IAudioSessionControl, NewNotifications: ?*IAudioSessionEvents) callconv(.Inline) HRESULT {
+    pub fn RegisterAudioSessionNotification(self: *const IAudioSessionControl, NewNotifications: ?*IAudioSessionEvents) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterAudioSessionNotification(self, NewNotifications);
     }
-    pub fn UnregisterAudioSessionNotification(self: *const IAudioSessionControl, NewNotifications: ?*IAudioSessionEvents) callconv(.Inline) HRESULT {
+    pub fn UnregisterAudioSessionNotification(self: *const IAudioSessionControl, NewNotifications: ?*IAudioSessionEvents) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterAudioSessionNotification(self, NewNotifications);
     }
 };
@@ -3876,19 +3876,19 @@ pub const IAudioSessionControl2 = extern union {
     vtable: *const VTable,
     IAudioSessionControl: IAudioSessionControl,
     IUnknown: IUnknown,
-    pub fn GetSessionIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSessionIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSessionIdentifier(self, pRetVal);
     }
-    pub fn GetSessionInstanceIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSessionInstanceIdentifier(self: *const IAudioSessionControl2, pRetVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSessionInstanceIdentifier(self, pRetVal);
     }
-    pub fn GetProcessId(self: *const IAudioSessionControl2, pRetVal: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProcessId(self: *const IAudioSessionControl2, pRetVal: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProcessId(self, pRetVal);
     }
-    pub fn IsSystemSoundsSession(self: *const IAudioSessionControl2) callconv(.Inline) HRESULT {
+    pub fn IsSystemSoundsSession(self: *const IAudioSessionControl2) callconv(.@"inline") HRESULT {
         return self.vtable.IsSystemSoundsSession(self);
     }
-    pub fn SetDuckingPreference(self: *const IAudioSessionControl2, optOut: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetDuckingPreference(self: *const IAudioSessionControl2, optOut: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetDuckingPreference(self, optOut);
     }
 };
@@ -3914,10 +3914,10 @@ pub const IAudioSessionManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAudioSessionControl(self: *const IAudioSessionManager, AudioSessionGuid: ?*const Guid, StreamFlags: u32, SessionControl: ?*?*IAudioSessionControl) callconv(.Inline) HRESULT {
+    pub fn GetAudioSessionControl(self: *const IAudioSessionManager, AudioSessionGuid: ?*const Guid, StreamFlags: u32, SessionControl: ?*?*IAudioSessionControl) callconv(.@"inline") HRESULT {
         return self.vtable.GetAudioSessionControl(self, AudioSessionGuid, StreamFlags, SessionControl);
     }
-    pub fn GetSimpleAudioVolume(self: *const IAudioSessionManager, AudioSessionGuid: ?*const Guid, StreamFlags: u32, AudioVolume: ?*?*ISimpleAudioVolume) callconv(.Inline) HRESULT {
+    pub fn GetSimpleAudioVolume(self: *const IAudioSessionManager, AudioSessionGuid: ?*const Guid, StreamFlags: u32, AudioVolume: ?*?*ISimpleAudioVolume) callconv(.@"inline") HRESULT {
         return self.vtable.GetSimpleAudioVolume(self, AudioSessionGuid, StreamFlags, AudioVolume);
     }
 };
@@ -3940,10 +3940,10 @@ pub const IAudioVolumeDuckNotification = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnVolumeDuckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16, countCommunicationSessions: u32) callconv(.Inline) HRESULT {
+    pub fn OnVolumeDuckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16, countCommunicationSessions: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnVolumeDuckNotification(self, sessionID, countCommunicationSessions);
     }
-    pub fn OnVolumeUnduckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OnVolumeUnduckNotification(self: *const IAudioVolumeDuckNotification, sessionID: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnVolumeUnduckNotification(self, sessionID);
     }
 };
@@ -3961,7 +3961,7 @@ pub const IAudioSessionNotification = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnSessionCreated(self: *const IAudioSessionNotification, NewSession: ?*IAudioSessionControl) callconv(.Inline) HRESULT {
+    pub fn OnSessionCreated(self: *const IAudioSessionNotification, NewSession: ?*IAudioSessionControl) callconv(.@"inline") HRESULT {
         return self.vtable.OnSessionCreated(self, NewSession);
     }
 };
@@ -3984,10 +3984,10 @@ pub const IAudioSessionEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IAudioSessionEnumerator, SessionCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IAudioSessionEnumerator, SessionCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, SessionCount);
     }
-    pub fn GetSession(self: *const IAudioSessionEnumerator, SessionCount: i32, Session: ?*?*IAudioSessionControl) callconv(.Inline) HRESULT {
+    pub fn GetSession(self: *const IAudioSessionEnumerator, SessionCount: i32, Session: ?*?*IAudioSessionControl) callconv(.@"inline") HRESULT {
         return self.vtable.GetSession(self, SessionCount, Session);
     }
 };
@@ -4023,19 +4023,19 @@ pub const IAudioSessionManager2 = extern union {
     vtable: *const VTable,
     IAudioSessionManager: IAudioSessionManager,
     IUnknown: IUnknown,
-    pub fn GetSessionEnumerator(self: *const IAudioSessionManager2, SessionEnum: ?*?*IAudioSessionEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetSessionEnumerator(self: *const IAudioSessionManager2, SessionEnum: ?*?*IAudioSessionEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetSessionEnumerator(self, SessionEnum);
     }
-    pub fn RegisterSessionNotification(self: *const IAudioSessionManager2, SessionNotification: ?*IAudioSessionNotification) callconv(.Inline) HRESULT {
+    pub fn RegisterSessionNotification(self: *const IAudioSessionManager2, SessionNotification: ?*IAudioSessionNotification) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterSessionNotification(self, SessionNotification);
     }
-    pub fn UnregisterSessionNotification(self: *const IAudioSessionManager2, SessionNotification: ?*IAudioSessionNotification) callconv(.Inline) HRESULT {
+    pub fn UnregisterSessionNotification(self: *const IAudioSessionManager2, SessionNotification: ?*IAudioSessionNotification) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterSessionNotification(self, SessionNotification);
     }
-    pub fn RegisterDuckNotification(self: *const IAudioSessionManager2, sessionID: ?[*:0]const u16, duckNotification: ?*IAudioVolumeDuckNotification) callconv(.Inline) HRESULT {
+    pub fn RegisterDuckNotification(self: *const IAudioSessionManager2, sessionID: ?[*:0]const u16, duckNotification: ?*IAudioVolumeDuckNotification) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterDuckNotification(self, sessionID, duckNotification);
     }
-    pub fn UnregisterDuckNotification(self: *const IAudioSessionManager2, duckNotification: ?*IAudioVolumeDuckNotification) callconv(.Inline) HRESULT {
+    pub fn UnregisterDuckNotification(self: *const IAudioSessionManager2, duckNotification: ?*IAudioVolumeDuckNotification) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterDuckNotification(self, duckNotification);
     }
 };
@@ -4123,19 +4123,19 @@ pub const ISpatialAudioMetadataItems = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFrameCount(self: *const ISpatialAudioMetadataItems, frameCount: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetFrameCount(self: *const ISpatialAudioMetadataItems, frameCount: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameCount(self, frameCount);
     }
-    pub fn GetItemCount(self: *const ISpatialAudioMetadataItems, itemCount: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetItemCount(self: *const ISpatialAudioMetadataItems, itemCount: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetItemCount(self, itemCount);
     }
-    pub fn GetMaxItemCount(self: *const ISpatialAudioMetadataItems, maxItemCount: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetMaxItemCount(self: *const ISpatialAudioMetadataItems, maxItemCount: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxItemCount(self, maxItemCount);
     }
-    pub fn GetMaxValueBufferLength(self: *const ISpatialAudioMetadataItems, maxValueBufferLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxValueBufferLength(self: *const ISpatialAudioMetadataItems, maxValueBufferLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxValueBufferLength(self, maxValueBufferLength);
     }
-    pub fn GetInfo(self: *const ISpatialAudioMetadataItems, info: ?*SpatialAudioMetadataItemsInfo) callconv(.Inline) HRESULT {
+    pub fn GetInfo(self: *const ISpatialAudioMetadataItems, info: ?*SpatialAudioMetadataItemsInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetInfo(self, info);
     }
 };
@@ -4167,16 +4167,16 @@ pub const ISpatialAudioMetadataWriter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const ISpatialAudioMetadataWriter, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const ISpatialAudioMetadataWriter, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, metadataItems);
     }
-    pub fn WriteNextItem(self: *const ISpatialAudioMetadataWriter, frameOffset: u16) callconv(.Inline) HRESULT {
+    pub fn WriteNextItem(self: *const ISpatialAudioMetadataWriter, frameOffset: u16) callconv(.@"inline") HRESULT {
         return self.vtable.WriteNextItem(self, frameOffset);
     }
-    pub fn WriteNextItemCommand(self: *const ISpatialAudioMetadataWriter, commandID: u8, valueBuffer: ?*const anyopaque, valueBufferLength: u32) callconv(.Inline) HRESULT {
+    pub fn WriteNextItemCommand(self: *const ISpatialAudioMetadataWriter, commandID: u8, valueBuffer: ?*const anyopaque, valueBufferLength: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteNextItemCommand(self, commandID, valueBuffer, valueBufferLength);
     }
-    pub fn Close(self: *const ISpatialAudioMetadataWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ISpatialAudioMetadataWriter) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -4210,16 +4210,16 @@ pub const ISpatialAudioMetadataReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const ISpatialAudioMetadataReader, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const ISpatialAudioMetadataReader, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, metadataItems);
     }
-    pub fn ReadNextItem(self: *const ISpatialAudioMetadataReader, commandCount: ?*u8, frameOffset: ?*u16) callconv(.Inline) HRESULT {
+    pub fn ReadNextItem(self: *const ISpatialAudioMetadataReader, commandCount: ?*u8, frameOffset: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.ReadNextItem(self, commandCount, frameOffset);
     }
-    pub fn ReadNextItemCommand(self: *const ISpatialAudioMetadataReader, commandID: ?*u8, valueBuffer: ?*anyopaque, maxValueBufferLength: u32, valueBufferLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ReadNextItemCommand(self: *const ISpatialAudioMetadataReader, commandID: ?*u8, valueBuffer: ?*anyopaque, maxValueBufferLength: u32, valueBufferLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReadNextItemCommand(self, commandID, valueBuffer, maxValueBufferLength, valueBufferLength);
     }
-    pub fn Close(self: *const ISpatialAudioMetadataReader) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ISpatialAudioMetadataReader) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -4247,13 +4247,13 @@ pub const ISpatialAudioMetadataCopier = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const ISpatialAudioMetadataCopier, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const ISpatialAudioMetadataCopier, metadataItems: ?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, metadataItems);
     }
-    pub fn CopyMetadataForFrames(self: *const ISpatialAudioMetadataCopier, copyFrameCount: u16, copyMode: SpatialAudioMetadataCopyMode, dstMetadataItems: ?*ISpatialAudioMetadataItems, itemsCopied: ?*u16) callconv(.Inline) HRESULT {
+    pub fn CopyMetadataForFrames(self: *const ISpatialAudioMetadataCopier, copyFrameCount: u16, copyMode: SpatialAudioMetadataCopyMode, dstMetadataItems: ?*ISpatialAudioMetadataItems, itemsCopied: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.CopyMetadataForFrames(self, copyFrameCount, copyMode, dstMetadataItems, itemsCopied);
     }
-    pub fn Close(self: *const ISpatialAudioMetadataCopier) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ISpatialAudioMetadataCopier) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -4282,13 +4282,13 @@ pub const ISpatialAudioMetadataItemsBuffer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AttachToBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.Inline) HRESULT {
+    pub fn AttachToBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachToBuffer(self, buffer, bufferLength);
     }
-    pub fn AttachToPopulatedBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.Inline) HRESULT {
+    pub fn AttachToPopulatedBuffer(self: *const ISpatialAudioMetadataItemsBuffer, buffer: ?*u8, bufferLength: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AttachToPopulatedBuffer(self, buffer, bufferLength);
     }
-    pub fn DetachBuffer(self: *const ISpatialAudioMetadataItemsBuffer) callconv(.Inline) HRESULT {
+    pub fn DetachBuffer(self: *const ISpatialAudioMetadataItemsBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.DetachBuffer(self);
     }
 };
@@ -4327,19 +4327,19 @@ pub const ISpatialAudioMetadataClient = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioMetadataItems(self: *const ISpatialAudioMetadataClient, maxItemCount: u16, frameCount: u16, metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer, metadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioMetadataItems(self: *const ISpatialAudioMetadataClient, maxItemCount: u16, frameCount: u16, metadataItemsBuffer: ?*?*ISpatialAudioMetadataItemsBuffer, metadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioMetadataItems(self, maxItemCount, frameCount, metadataItemsBuffer, metadataItems);
     }
-    pub fn GetSpatialAudioMetadataItemsBufferLength(self: *const ISpatialAudioMetadataClient, maxItemCount: u16, bufferLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSpatialAudioMetadataItemsBufferLength(self: *const ISpatialAudioMetadataClient, maxItemCount: u16, bufferLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSpatialAudioMetadataItemsBufferLength(self, maxItemCount, bufferLength);
     }
-    pub fn ActivateSpatialAudioMetadataWriter(self: *const ISpatialAudioMetadataClient, overflowMode: SpatialAudioMetadataWriterOverflowMode, metadataWriter: ?*?*ISpatialAudioMetadataWriter) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioMetadataWriter(self: *const ISpatialAudioMetadataClient, overflowMode: SpatialAudioMetadataWriterOverflowMode, metadataWriter: ?*?*ISpatialAudioMetadataWriter) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioMetadataWriter(self, overflowMode, metadataWriter);
     }
-    pub fn ActivateSpatialAudioMetadataCopier(self: *const ISpatialAudioMetadataClient, metadataCopier: ?*?*ISpatialAudioMetadataCopier) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioMetadataCopier(self: *const ISpatialAudioMetadataClient, metadataCopier: ?*?*ISpatialAudioMetadataCopier) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioMetadataCopier(self, metadataCopier);
     }
-    pub fn ActivateSpatialAudioMetadataReader(self: *const ISpatialAudioMetadataClient, metadataReader: ?*?*ISpatialAudioMetadataReader) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioMetadataReader(self: *const ISpatialAudioMetadataClient, metadataReader: ?*?*ISpatialAudioMetadataReader) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioMetadataReader(self, metadataReader);
     }
 };
@@ -4361,7 +4361,7 @@ pub const ISpatialAudioObjectForMetadataCommands = extern union {
     vtable: *const VTable,
     ISpatialAudioObjectBase: ISpatialAudioObjectBase,
     IUnknown: IUnknown,
-    pub fn WriteNextMetadataCommand(self: *const ISpatialAudioObjectForMetadataCommands, commandID: u8, valueBuffer: ?*anyopaque, valueBufferLength: u32) callconv(.Inline) HRESULT {
+    pub fn WriteNextMetadataCommand(self: *const ISpatialAudioObjectForMetadataCommands, commandID: u8, valueBuffer: ?*anyopaque, valueBufferLength: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteNextMetadataCommand(self, commandID, valueBuffer, valueBufferLength);
     }
 };
@@ -4380,7 +4380,7 @@ pub const ISpatialAudioObjectForMetadataItems = extern union {
     vtable: *const VTable,
     ISpatialAudioObjectBase: ISpatialAudioObjectBase,
     IUnknown: IUnknown,
-    pub fn GetSpatialAudioMetadataItems(self: *const ISpatialAudioObjectForMetadataItems, metadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
+    pub fn GetSpatialAudioMetadataItems(self: *const ISpatialAudioObjectForMetadataItems, metadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.@"inline") HRESULT {
         return self.vtable.GetSpatialAudioMetadataItems(self, metadataItems);
     }
 };
@@ -4405,10 +4405,10 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern union {
     vtable: *const VTable,
     ISpatialAudioObjectRenderStreamBase: ISpatialAudioObjectRenderStreamBase,
     IUnknown: IUnknown,
-    pub fn ActivateSpatialAudioObjectForMetadataCommands(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataCommands) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioObjectForMetadataCommands(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataCommands) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioObjectForMetadataCommands(self, @"type", audioObject);
     }
-    pub fn ActivateSpatialAudioObjectForMetadataItems(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataItems) callconv(.Inline) HRESULT {
+    pub fn ActivateSpatialAudioObjectForMetadataItems(self: *const ISpatialAudioObjectRenderStreamForMetadata, @"type": AudioObjectType, audioObject: **ISpatialAudioObjectForMetadataItems) callconv(.@"inline") HRESULT {
         return self.vtable.ActivateSpatialAudioObjectForMetadataItems(self, @"type", audioObject);
     }
 };
@@ -4472,13 +4472,13 @@ pub const IAudioStateMonitor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterCallback(self: *const IAudioStateMonitor, callback: ?PAudioStateMonitorCallback, context: ?*anyopaque, registration: ?*i64) callconv(.Inline) HRESULT {
+    pub fn RegisterCallback(self: *const IAudioStateMonitor, callback: ?PAudioStateMonitorCallback, context: ?*anyopaque, registration: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterCallback(self, callback, context, registration);
     }
-    pub fn UnregisterCallback(self: *const IAudioStateMonitor, registration: i64) callconv(.Inline) void {
+    pub fn UnregisterCallback(self: *const IAudioStateMonitor, registration: i64) callconv(.@"inline") void {
         return self.vtable.UnregisterCallback(self, registration);
     }
-    pub fn GetSoundLevel(self: *const IAudioStateMonitor) callconv(.Inline) AudioStateMonitorSoundLevel {
+    pub fn GetSoundLevel(self: *const IAudioStateMonitor) callconv(.@"inline") AudioStateMonitorSoundLevel {
         return self.vtable.GetSoundLevel(self);
     }
 };

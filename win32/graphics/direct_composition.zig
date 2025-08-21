@@ -156,22 +156,22 @@ pub const IDCompositionAnimation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn SetAbsoluteBeginTime(self: *const IDCompositionAnimation, beginTime: LARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn SetAbsoluteBeginTime(self: *const IDCompositionAnimation, beginTime: LARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.SetAbsoluteBeginTime(self, beginTime);
     }
-    pub fn AddCubic(self: *const IDCompositionAnimation, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) callconv(.Inline) HRESULT {
+    pub fn AddCubic(self: *const IDCompositionAnimation, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) callconv(.@"inline") HRESULT {
         return self.vtable.AddCubic(self, beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
     }
-    pub fn AddSinusoidal(self: *const IDCompositionAnimation, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) callconv(.Inline) HRESULT {
+    pub fn AddSinusoidal(self: *const IDCompositionAnimation, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) callconv(.@"inline") HRESULT {
         return self.vtable.AddSinusoidal(self, beginOffset, bias, amplitude, frequency, phase);
     }
-    pub fn AddRepeat(self: *const IDCompositionAnimation, beginOffset: f64, durationToRepeat: f64) callconv(.Inline) HRESULT {
+    pub fn AddRepeat(self: *const IDCompositionAnimation, beginOffset: f64, durationToRepeat: f64) callconv(.@"inline") HRESULT {
         return self.vtable.AddRepeat(self, beginOffset, durationToRepeat);
     }
-    pub fn End(self: *const IDCompositionAnimation, endOffset: f64, endValue: f32) callconv(.Inline) HRESULT {
+    pub fn End(self: *const IDCompositionAnimation, endOffset: f64, endValue: f32) callconv(.@"inline") HRESULT {
         return self.vtable.End(self, endOffset, endValue);
     }
 };
@@ -295,76 +295,76 @@ pub const IDCompositionDevice = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Commit(self: *const IDCompositionDevice) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IDCompositionDevice) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn WaitForCommitCompletion(self: *const IDCompositionDevice) callconv(.Inline) HRESULT {
+    pub fn WaitForCommitCompletion(self: *const IDCompositionDevice) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCommitCompletion(self);
     }
-    pub fn GetFrameStatistics(self: *const IDCompositionDevice, statistics: ?*DCOMPOSITION_FRAME_STATISTICS) callconv(.Inline) HRESULT {
+    pub fn GetFrameStatistics(self: *const IDCompositionDevice, statistics: ?*DCOMPOSITION_FRAME_STATISTICS) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameStatistics(self, statistics);
     }
-    pub fn CreateTargetForHwnd(self: *const IDCompositionDevice, hwnd: ?HWND, topmost: BOOL, target: ?*?*IDCompositionTarget) callconv(.Inline) HRESULT {
+    pub fn CreateTargetForHwnd(self: *const IDCompositionDevice, hwnd: ?HWND, topmost: BOOL, target: ?*?*IDCompositionTarget) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTargetForHwnd(self, hwnd, topmost, target);
     }
-    pub fn CreateVisual(self: *const IDCompositionDevice, visual: ?*?*IDCompositionVisual) callconv(.Inline) HRESULT {
+    pub fn CreateVisual(self: *const IDCompositionDevice, visual: ?*?*IDCompositionVisual) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVisual(self, visual);
     }
-    pub fn CreateSurface(self: *const IDCompositionDevice, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDCompositionDevice, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurface(self, width, height, pixelFormat, alphaMode, surface);
     }
-    pub fn CreateVirtualSurface(self: *const IDCompositionDevice, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.Inline) HRESULT {
+    pub fn CreateVirtualSurface(self: *const IDCompositionDevice, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualSurface(self, initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
     }
-    pub fn CreateSurfaceFromHandle(self: *const IDCompositionDevice, handle: ?HANDLE, surface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurfaceFromHandle(self: *const IDCompositionDevice, handle: ?HANDLE, surface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurfaceFromHandle(self, handle, surface);
     }
-    pub fn CreateSurfaceFromHwnd(self: *const IDCompositionDevice, hwnd: ?HWND, surface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurfaceFromHwnd(self: *const IDCompositionDevice, hwnd: ?HWND, surface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurfaceFromHwnd(self, hwnd, surface);
     }
-    pub fn CreateTranslateTransform(self: *const IDCompositionDevice, translateTransform: ?*?*IDCompositionTranslateTransform) callconv(.Inline) HRESULT {
+    pub fn CreateTranslateTransform(self: *const IDCompositionDevice, translateTransform: ?*?*IDCompositionTranslateTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTranslateTransform(self, translateTransform);
     }
-    pub fn CreateScaleTransform(self: *const IDCompositionDevice, scaleTransform: ?*?*IDCompositionScaleTransform) callconv(.Inline) HRESULT {
+    pub fn CreateScaleTransform(self: *const IDCompositionDevice, scaleTransform: ?*?*IDCompositionScaleTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateScaleTransform(self, scaleTransform);
     }
-    pub fn CreateRotateTransform(self: *const IDCompositionDevice, rotateTransform: ?*?*IDCompositionRotateTransform) callconv(.Inline) HRESULT {
+    pub fn CreateRotateTransform(self: *const IDCompositionDevice, rotateTransform: ?*?*IDCompositionRotateTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRotateTransform(self, rotateTransform);
     }
-    pub fn CreateSkewTransform(self: *const IDCompositionDevice, skewTransform: ?*?*IDCompositionSkewTransform) callconv(.Inline) HRESULT {
+    pub fn CreateSkewTransform(self: *const IDCompositionDevice, skewTransform: ?*?*IDCompositionSkewTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSkewTransform(self, skewTransform);
     }
-    pub fn CreateMatrixTransform(self: *const IDCompositionDevice, matrixTransform: ?*?*IDCompositionMatrixTransform) callconv(.Inline) HRESULT {
+    pub fn CreateMatrixTransform(self: *const IDCompositionDevice, matrixTransform: ?*?*IDCompositionMatrixTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMatrixTransform(self, matrixTransform);
     }
-    pub fn CreateTransformGroup(self: *const IDCompositionDevice, transforms: [*]?*IDCompositionTransform, elements: u32, transformGroup: ?*?*IDCompositionTransform) callconv(.Inline) HRESULT {
+    pub fn CreateTransformGroup(self: *const IDCompositionDevice, transforms: [*]?*IDCompositionTransform, elements: u32, transformGroup: ?*?*IDCompositionTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTransformGroup(self, transforms, elements, transformGroup);
     }
-    pub fn CreateTranslateTransform3D(self: *const IDCompositionDevice, translateTransform3D: ?*?*IDCompositionTranslateTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateTranslateTransform3D(self: *const IDCompositionDevice, translateTransform3D: ?*?*IDCompositionTranslateTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTranslateTransform3D(self, translateTransform3D);
     }
-    pub fn CreateScaleTransform3D(self: *const IDCompositionDevice, scaleTransform3D: ?*?*IDCompositionScaleTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateScaleTransform3D(self: *const IDCompositionDevice, scaleTransform3D: ?*?*IDCompositionScaleTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateScaleTransform3D(self, scaleTransform3D);
     }
-    pub fn CreateRotateTransform3D(self: *const IDCompositionDevice, rotateTransform3D: ?*?*IDCompositionRotateTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateRotateTransform3D(self: *const IDCompositionDevice, rotateTransform3D: ?*?*IDCompositionRotateTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRotateTransform3D(self, rotateTransform3D);
     }
-    pub fn CreateMatrixTransform3D(self: *const IDCompositionDevice, matrixTransform3D: ?*?*IDCompositionMatrixTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateMatrixTransform3D(self: *const IDCompositionDevice, matrixTransform3D: ?*?*IDCompositionMatrixTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMatrixTransform3D(self, matrixTransform3D);
     }
-    pub fn CreateTransform3DGroup(self: *const IDCompositionDevice, transforms3D: [*]?*IDCompositionTransform3D, elements: u32, transform3DGroup: ?*?*IDCompositionTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateTransform3DGroup(self: *const IDCompositionDevice, transforms3D: [*]?*IDCompositionTransform3D, elements: u32, transform3DGroup: ?*?*IDCompositionTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTransform3DGroup(self, transforms3D, elements, transform3DGroup);
     }
-    pub fn CreateEffectGroup(self: *const IDCompositionDevice, effectGroup: ?*?*IDCompositionEffectGroup) callconv(.Inline) HRESULT {
+    pub fn CreateEffectGroup(self: *const IDCompositionDevice, effectGroup: ?*?*IDCompositionEffectGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEffectGroup(self, effectGroup);
     }
-    pub fn CreateRectangleClip(self: *const IDCompositionDevice, clip: ?*?*IDCompositionRectangleClip) callconv(.Inline) HRESULT {
+    pub fn CreateRectangleClip(self: *const IDCompositionDevice, clip: ?*?*IDCompositionRectangleClip) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRectangleClip(self, clip);
     }
-    pub fn CreateAnimation(self: *const IDCompositionDevice, animation: ?*?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn CreateAnimation(self: *const IDCompositionDevice, animation: ?*?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAnimation(self, animation);
     }
-    pub fn CheckDeviceState(self: *const IDCompositionDevice, pfValid: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn CheckDeviceState(self: *const IDCompositionDevice, pfValid: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CheckDeviceState(self, pfValid);
     }
 };
@@ -382,7 +382,7 @@ pub const IDCompositionTarget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetRoot(self: *const IDCompositionTarget, visual: ?*IDCompositionVisual) callconv(.Inline) HRESULT {
+    pub fn SetRoot(self: *const IDCompositionTarget, visual: ?*IDCompositionVisual) callconv(.@"inline") HRESULT {
         return self.vtable.SetRoot(self, visual);
     }
 };
@@ -469,55 +469,55 @@ pub const IDCompositionVisual = extern union {
     pub const SetClip = @compileError("COM method 'SetClip' must be called using one of the following overload names: SetClip_TODO_B, SetClip_TODO_A");
     pub const SetTransform = @compileError("COM method 'SetTransform' must be called using one of the following overload names: SetTransform_TODO_A, SetTransform_TODO_B");
     pub const SetOffsetX = @compileError("COM method 'SetOffsetX' must be called using one of the following overload names: SetOffsetX_TODO_A, SetOffsetX_TODO_B");
-    pub fn SetOffsetX_TODO_A(self: *const IDCompositionVisual, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOffsetX_TODO_A(self: *const IDCompositionVisual, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetX_TODO_A(self, animation);
     }
-    pub fn SetOffsetX_TODO_B(self: *const IDCompositionVisual, offsetX: f32) callconv(.Inline) HRESULT {
+    pub fn SetOffsetX_TODO_B(self: *const IDCompositionVisual, offsetX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetX_TODO_B(self, offsetX);
     }
-    pub fn SetOffsetY_TODO_A(self: *const IDCompositionVisual, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOffsetY_TODO_A(self: *const IDCompositionVisual, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetY_TODO_A(self, animation);
     }
-    pub fn SetOffsetY_TODO_B(self: *const IDCompositionVisual, offsetY: f32) callconv(.Inline) HRESULT {
+    pub fn SetOffsetY_TODO_B(self: *const IDCompositionVisual, offsetY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetY_TODO_B(self, offsetY);
     }
-    pub fn SetTransform_TODO_A(self: *const IDCompositionVisual, transform: ?*IDCompositionTransform) callconv(.Inline) HRESULT {
+    pub fn SetTransform_TODO_A(self: *const IDCompositionVisual, transform: ?*IDCompositionTransform) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransform_TODO_A(self, transform);
     }
-    pub fn SetTransform_TODO_B(self: *const IDCompositionVisual, matrix: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+    pub fn SetTransform_TODO_B(self: *const IDCompositionVisual, matrix: ?*const D2D_MATRIX_3X2_F) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransform_TODO_B(self, matrix);
     }
-    pub fn SetTransformParent(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual) callconv(.Inline) HRESULT {
+    pub fn SetTransformParent(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformParent(self, visual);
     }
-    pub fn SetEffect(self: *const IDCompositionVisual, effect: ?*IDCompositionEffect) callconv(.Inline) HRESULT {
+    pub fn SetEffect(self: *const IDCompositionVisual, effect: ?*IDCompositionEffect) callconv(.@"inline") HRESULT {
         return self.vtable.SetEffect(self, effect);
     }
-    pub fn SetBitmapInterpolationMode(self: *const IDCompositionVisual, interpolationMode: DCOMPOSITION_BITMAP_INTERPOLATION_MODE) callconv(.Inline) HRESULT {
+    pub fn SetBitmapInterpolationMode(self: *const IDCompositionVisual, interpolationMode: DCOMPOSITION_BITMAP_INTERPOLATION_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetBitmapInterpolationMode(self, interpolationMode);
     }
-    pub fn SetBorderMode(self: *const IDCompositionVisual, borderMode: DCOMPOSITION_BORDER_MODE) callconv(.Inline) HRESULT {
+    pub fn SetBorderMode(self: *const IDCompositionVisual, borderMode: DCOMPOSITION_BORDER_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetBorderMode(self, borderMode);
     }
-    pub fn SetClip_TODO_A(self: *const IDCompositionVisual, clip: ?*IDCompositionClip) callconv(.Inline) HRESULT {
+    pub fn SetClip_TODO_A(self: *const IDCompositionVisual, clip: ?*IDCompositionClip) callconv(.@"inline") HRESULT {
         return self.vtable.SetClip_TODO_A(self, clip);
     }
-    pub fn SetClip_TODO_B(self: *const IDCompositionVisual, rect: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
+    pub fn SetClip_TODO_B(self: *const IDCompositionVisual, rect: ?*const D2D_RECT_F) callconv(.@"inline") HRESULT {
         return self.vtable.SetClip_TODO_B(self, rect);
     }
-    pub fn SetContent(self: *const IDCompositionVisual, content: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetContent(self: *const IDCompositionVisual, content: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetContent(self, content);
     }
-    pub fn AddVisual(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual, insertAbove: BOOL, referenceVisual: ?*IDCompositionVisual) callconv(.Inline) HRESULT {
+    pub fn AddVisual(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual, insertAbove: BOOL, referenceVisual: ?*IDCompositionVisual) callconv(.@"inline") HRESULT {
         return self.vtable.AddVisual(self, visual, insertAbove, referenceVisual);
     }
-    pub fn RemoveVisual(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual) callconv(.Inline) HRESULT {
+    pub fn RemoveVisual(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveVisual(self, visual);
     }
-    pub fn RemoveAllVisuals(self: *const IDCompositionVisual) callconv(.Inline) HRESULT {
+    pub fn RemoveAllVisuals(self: *const IDCompositionVisual) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAllVisuals(self);
     }
-    pub fn SetCompositeMode(self: *const IDCompositionVisual, compositeMode: DCOMPOSITION_COMPOSITE_MODE) callconv(.Inline) HRESULT {
+    pub fn SetCompositeMode(self: *const IDCompositionVisual, compositeMode: DCOMPOSITION_COMPOSITE_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetCompositeMode(self, compositeMode);
     }
 };
@@ -588,16 +588,16 @@ pub const IDCompositionTranslateTransform = extern union {
     IUnknown: IUnknown,
     pub const SetOffsetY = @compileError("COM method 'SetOffsetY' must be called using one of the following overload names: SetOffsetY_TODO_B, SetOffsetY_TODO_A");
     pub const SetOffsetX = @compileError("COM method 'SetOffsetX' must be called using one of the following overload names: SetOffsetX_TODO_A, SetOffsetX_TODO_B");
-    pub fn SetOffsetX_TODO_A(self: *const IDCompositionTranslateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOffsetX_TODO_A(self: *const IDCompositionTranslateTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetX_TODO_A(self, animation);
     }
-    pub fn SetOffsetX_TODO_B(self: *const IDCompositionTranslateTransform, offsetX: f32) callconv(.Inline) HRESULT {
+    pub fn SetOffsetX_TODO_B(self: *const IDCompositionTranslateTransform, offsetX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetX_TODO_B(self, offsetX);
     }
-    pub fn SetOffsetY_TODO_A(self: *const IDCompositionTranslateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOffsetY_TODO_A(self: *const IDCompositionTranslateTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetY_TODO_A(self, animation);
     }
-    pub fn SetOffsetY_TODO_B(self: *const IDCompositionTranslateTransform, offsetY: f32) callconv(.Inline) HRESULT {
+    pub fn SetOffsetY_TODO_B(self: *const IDCompositionTranslateTransform, offsetY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetY_TODO_B(self, offsetY);
     }
 };
@@ -650,28 +650,28 @@ pub const IDCompositionScaleTransform = extern union {
     pub const SetCenterY = @compileError("COM method 'SetCenterY' must be called using one of the following overload names: SetCenterY_TODO_A, SetCenterY_TODO_B");
     pub const SetScaleX = @compileError("COM method 'SetScaleX' must be called using one of the following overload names: SetScaleX_TODO_A, SetScaleX_TODO_B");
     pub const SetCenterX = @compileError("COM method 'SetCenterX' must be called using one of the following overload names: SetCenterX_TODO_A, SetCenterX_TODO_B");
-    pub fn SetScaleX_TODO_A(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetScaleX_TODO_A(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleX_TODO_A(self, animation);
     }
-    pub fn SetScaleX_TODO_B(self: *const IDCompositionScaleTransform, scaleX: f32) callconv(.Inline) HRESULT {
+    pub fn SetScaleX_TODO_B(self: *const IDCompositionScaleTransform, scaleX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleX_TODO_B(self, scaleX);
     }
-    pub fn SetScaleY_TODO_A(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetScaleY_TODO_A(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleY_TODO_A(self, animation);
     }
-    pub fn SetScaleY_TODO_B(self: *const IDCompositionScaleTransform, scaleY: f32) callconv(.Inline) HRESULT {
+    pub fn SetScaleY_TODO_B(self: *const IDCompositionScaleTransform, scaleY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleY_TODO_B(self, scaleY);
     }
-    pub fn SetCenterX_TODO_A(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_A(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_A(self, animation);
     }
-    pub fn SetCenterX_TODO_B(self: *const IDCompositionScaleTransform, centerX: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_B(self: *const IDCompositionScaleTransform, centerX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_B(self, centerX);
     }
-    pub fn SetCenterY_TODO_A(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_A(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_A(self, animation);
     }
-    pub fn SetCenterY_TODO_B(self: *const IDCompositionScaleTransform, centerY: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_B(self: *const IDCompositionScaleTransform, centerY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_B(self, centerY);
     }
 };
@@ -715,22 +715,22 @@ pub const IDCompositionRotateTransform = extern union {
     pub const SetAngle = @compileError("COM method 'SetAngle' must be called using one of the following overload names: SetAngle_TODO_A, SetAngle_TODO_B");
     pub const SetCenterY = @compileError("COM method 'SetCenterY' must be called using one of the following overload names: SetCenterY_TODO_A, SetCenterY_TODO_B");
     pub const SetCenterX = @compileError("COM method 'SetCenterX' must be called using one of the following overload names: SetCenterX_TODO_B, SetCenterX_TODO_A");
-    pub fn SetAngle_TODO_A(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAngle_TODO_A(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngle_TODO_A(self, animation);
     }
-    pub fn SetAngle_TODO_B(self: *const IDCompositionRotateTransform, angle: f32) callconv(.Inline) HRESULT {
+    pub fn SetAngle_TODO_B(self: *const IDCompositionRotateTransform, angle: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngle_TODO_B(self, angle);
     }
-    pub fn SetCenterX_TODO_A(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_A(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_A(self, animation);
     }
-    pub fn SetCenterX_TODO_B(self: *const IDCompositionRotateTransform, centerX: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_B(self: *const IDCompositionRotateTransform, centerX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_B(self, centerX);
     }
-    pub fn SetCenterY_TODO_A(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_A(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_A(self, animation);
     }
-    pub fn SetCenterY_TODO_B(self: *const IDCompositionRotateTransform, centerY: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_B(self: *const IDCompositionRotateTransform, centerY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_B(self, centerY);
     }
 };
@@ -783,28 +783,28 @@ pub const IDCompositionSkewTransform = extern union {
     pub const SetCenterY = @compileError("COM method 'SetCenterY' must be called using one of the following overload names: SetCenterY_TODO_A, SetCenterY_TODO_B");
     pub const SetCenterX = @compileError("COM method 'SetCenterX' must be called using one of the following overload names: SetCenterX_TODO_A, SetCenterX_TODO_B");
     pub const SetAngleY = @compileError("COM method 'SetAngleY' must be called using one of the following overload names: SetAngleY_TODO_B, SetAngleY_TODO_A");
-    pub fn SetAngleX_TODO_A(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAngleX_TODO_A(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngleX_TODO_A(self, animation);
     }
-    pub fn SetAngleX_TODO_B(self: *const IDCompositionSkewTransform, angleX: f32) callconv(.Inline) HRESULT {
+    pub fn SetAngleX_TODO_B(self: *const IDCompositionSkewTransform, angleX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngleX_TODO_B(self, angleX);
     }
-    pub fn SetAngleY_TODO_A(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAngleY_TODO_A(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngleY_TODO_A(self, animation);
     }
-    pub fn SetAngleY_TODO_B(self: *const IDCompositionSkewTransform, angleY: f32) callconv(.Inline) HRESULT {
+    pub fn SetAngleY_TODO_B(self: *const IDCompositionSkewTransform, angleY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngleY_TODO_B(self, angleY);
     }
-    pub fn SetCenterX_TODO_A(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_A(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_A(self, animation);
     }
-    pub fn SetCenterX_TODO_B(self: *const IDCompositionSkewTransform, centerX: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_B(self: *const IDCompositionSkewTransform, centerX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_B(self, centerX);
     }
-    pub fn SetCenterY_TODO_A(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_A(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_A(self, animation);
     }
-    pub fn SetCenterY_TODO_B(self: *const IDCompositionSkewTransform, centerY: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_B(self: *const IDCompositionSkewTransform, centerY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_B(self, centerY);
     }
 };
@@ -838,13 +838,13 @@ pub const IDCompositionMatrixTransform = extern union {
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
     pub const SetMatrixElement = @compileError("COM method 'SetMatrixElement' must be called using one of the following overload names: SetMatrixElement_TODO_B, SetMatrixElement_TODO_A");
-    pub fn SetMatrix(self: *const IDCompositionMatrixTransform, matrix: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+    pub fn SetMatrix(self: *const IDCompositionMatrixTransform, matrix: ?*const D2D_MATRIX_3X2_F) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrix(self, matrix);
     }
-    pub fn SetMatrixElement_TODO_A(self: *const IDCompositionMatrixTransform, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetMatrixElement_TODO_A(self: *const IDCompositionMatrixTransform, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixElement_TODO_A(self, row, column, animation);
     }
-    pub fn SetMatrixElement_TODO_B(self: *const IDCompositionMatrixTransform, row: i32, column: i32, value: f32) callconv(.Inline) HRESULT {
+    pub fn SetMatrixElement_TODO_B(self: *const IDCompositionMatrixTransform, row: i32, column: i32, value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixElement_TODO_B(self, row, column, value);
     }
 };
@@ -872,13 +872,13 @@ pub const IDCompositionEffectGroup = extern union {
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
     pub const SetOpacity = @compileError("COM method 'SetOpacity' must be called using one of the following overload names: SetOpacity_TODO_A, SetOpacity_TODO_B");
-    pub fn SetOpacity_TODO_A(self: *const IDCompositionEffectGroup, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOpacity_TODO_A(self: *const IDCompositionEffectGroup, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOpacity_TODO_A(self, animation);
     }
-    pub fn SetOpacity_TODO_B(self: *const IDCompositionEffectGroup, opacity: f32) callconv(.Inline) HRESULT {
+    pub fn SetOpacity_TODO_B(self: *const IDCompositionEffectGroup, opacity: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOpacity_TODO_B(self, opacity);
     }
-    pub fn SetTransform3D(self: *const IDCompositionEffectGroup, transform3D: ?*IDCompositionTransform3D) callconv(.Inline) HRESULT {
+    pub fn SetTransform3D(self: *const IDCompositionEffectGroup, transform3D: ?*IDCompositionTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransform3D(self, transform3D);
     }
 };
@@ -921,22 +921,22 @@ pub const IDCompositionTranslateTransform3D = extern union {
     pub const SetOffsetY = @compileError("COM method 'SetOffsetY' must be called using one of the following overload names: SetOffsetY_TODO_B, SetOffsetY_TODO_A");
     pub const SetOffsetZ = @compileError("COM method 'SetOffsetZ' must be called using one of the following overload names: SetOffsetZ_TODO_A, SetOffsetZ_TODO_B");
     pub const SetOffsetX = @compileError("COM method 'SetOffsetX' must be called using one of the following overload names: SetOffsetX_TODO_A, SetOffsetX_TODO_B");
-    pub fn SetOffsetX_TODO_A(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOffsetX_TODO_A(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetX_TODO_A(self, animation);
     }
-    pub fn SetOffsetX_TODO_B(self: *const IDCompositionTranslateTransform3D, offsetX: f32) callconv(.Inline) HRESULT {
+    pub fn SetOffsetX_TODO_B(self: *const IDCompositionTranslateTransform3D, offsetX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetX_TODO_B(self, offsetX);
     }
-    pub fn SetOffsetY_TODO_A(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOffsetY_TODO_A(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetY_TODO_A(self, animation);
     }
-    pub fn SetOffsetY_TODO_B(self: *const IDCompositionTranslateTransform3D, offsetY: f32) callconv(.Inline) HRESULT {
+    pub fn SetOffsetY_TODO_B(self: *const IDCompositionTranslateTransform3D, offsetY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetY_TODO_B(self, offsetY);
     }
-    pub fn SetOffsetZ_TODO_A(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOffsetZ_TODO_A(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetZ_TODO_A(self, animation);
     }
-    pub fn SetOffsetZ_TODO_B(self: *const IDCompositionTranslateTransform3D, offsetZ: f32) callconv(.Inline) HRESULT {
+    pub fn SetOffsetZ_TODO_B(self: *const IDCompositionTranslateTransform3D, offsetZ: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetZ_TODO_B(self, offsetZ);
     }
 };
@@ -1006,40 +1006,40 @@ pub const IDCompositionScaleTransform3D = extern union {
     pub const SetScaleY = @compileError("COM method 'SetScaleY' must be called using one of the following overload names: SetScaleY_TODO_B, SetScaleY_TODO_A");
     pub const SetCenterY = @compileError("COM method 'SetCenterY' must be called using one of the following overload names: SetCenterY_TODO_A, SetCenterY_TODO_B");
     pub const SetScaleZ = @compileError("COM method 'SetScaleZ' must be called using one of the following overload names: SetScaleZ_TODO_A, SetScaleZ_TODO_B");
-    pub fn SetScaleX_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetScaleX_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleX_TODO_A(self, animation);
     }
-    pub fn SetScaleX_TODO_B(self: *const IDCompositionScaleTransform3D, scaleX: f32) callconv(.Inline) HRESULT {
+    pub fn SetScaleX_TODO_B(self: *const IDCompositionScaleTransform3D, scaleX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleX_TODO_B(self, scaleX);
     }
-    pub fn SetScaleY_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetScaleY_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleY_TODO_A(self, animation);
     }
-    pub fn SetScaleY_TODO_B(self: *const IDCompositionScaleTransform3D, scaleY: f32) callconv(.Inline) HRESULT {
+    pub fn SetScaleY_TODO_B(self: *const IDCompositionScaleTransform3D, scaleY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleY_TODO_B(self, scaleY);
     }
-    pub fn SetScaleZ_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetScaleZ_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleZ_TODO_A(self, animation);
     }
-    pub fn SetScaleZ_TODO_B(self: *const IDCompositionScaleTransform3D, scaleZ: f32) callconv(.Inline) HRESULT {
+    pub fn SetScaleZ_TODO_B(self: *const IDCompositionScaleTransform3D, scaleZ: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetScaleZ_TODO_B(self, scaleZ);
     }
-    pub fn SetCenterX_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_A(self, animation);
     }
-    pub fn SetCenterX_TODO_B(self: *const IDCompositionScaleTransform3D, centerX: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_B(self: *const IDCompositionScaleTransform3D, centerX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_B(self, centerX);
     }
-    pub fn SetCenterY_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_A(self, animation);
     }
-    pub fn SetCenterY_TODO_B(self: *const IDCompositionScaleTransform3D, centerY: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_B(self: *const IDCompositionScaleTransform3D, centerY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_B(self, centerY);
     }
-    pub fn SetCenterZ_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterZ_TODO_A(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterZ_TODO_A(self, animation);
     }
-    pub fn SetCenterZ_TODO_B(self: *const IDCompositionScaleTransform3D, centerZ: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterZ_TODO_B(self: *const IDCompositionScaleTransform3D, centerZ: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterZ_TODO_B(self, centerZ);
     }
 };
@@ -1118,46 +1118,46 @@ pub const IDCompositionRotateTransform3D = extern union {
     pub const SetAxisX = @compileError("COM method 'SetAxisX' must be called using one of the following overload names: SetAxisX_TODO_B, SetAxisX_TODO_A");
     pub const SetAxisY = @compileError("COM method 'SetAxisY' must be called using one of the following overload names: SetAxisY_TODO_A, SetAxisY_TODO_B");
     pub const SetCenterY = @compileError("COM method 'SetCenterY' must be called using one of the following overload names: SetCenterY_TODO_B, SetCenterY_TODO_A");
-    pub fn SetAngle_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAngle_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngle_TODO_A(self, animation);
     }
-    pub fn SetAngle_TODO_B(self: *const IDCompositionRotateTransform3D, angle: f32) callconv(.Inline) HRESULT {
+    pub fn SetAngle_TODO_B(self: *const IDCompositionRotateTransform3D, angle: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngle_TODO_B(self, angle);
     }
-    pub fn SetAxisX_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAxisX_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAxisX_TODO_A(self, animation);
     }
-    pub fn SetAxisX_TODO_B(self: *const IDCompositionRotateTransform3D, axisX: f32) callconv(.Inline) HRESULT {
+    pub fn SetAxisX_TODO_B(self: *const IDCompositionRotateTransform3D, axisX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAxisX_TODO_B(self, axisX);
     }
-    pub fn SetAxisY_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAxisY_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAxisY_TODO_A(self, animation);
     }
-    pub fn SetAxisY_TODO_B(self: *const IDCompositionRotateTransform3D, axisY: f32) callconv(.Inline) HRESULT {
+    pub fn SetAxisY_TODO_B(self: *const IDCompositionRotateTransform3D, axisY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAxisY_TODO_B(self, axisY);
     }
-    pub fn SetAxisZ_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAxisZ_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAxisZ_TODO_A(self, animation);
     }
-    pub fn SetAxisZ_TODO_B(self: *const IDCompositionRotateTransform3D, axisZ: f32) callconv(.Inline) HRESULT {
+    pub fn SetAxisZ_TODO_B(self: *const IDCompositionRotateTransform3D, axisZ: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAxisZ_TODO_B(self, axisZ);
     }
-    pub fn SetCenterX_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_A(self, animation);
     }
-    pub fn SetCenterX_TODO_B(self: *const IDCompositionRotateTransform3D, centerX: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterX_TODO_B(self: *const IDCompositionRotateTransform3D, centerX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterX_TODO_B(self, centerX);
     }
-    pub fn SetCenterY_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_A(self, animation);
     }
-    pub fn SetCenterY_TODO_B(self: *const IDCompositionRotateTransform3D, centerY: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterY_TODO_B(self: *const IDCompositionRotateTransform3D, centerY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterY_TODO_B(self, centerY);
     }
-    pub fn SetCenterZ_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCenterZ_TODO_A(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterZ_TODO_A(self, animation);
     }
-    pub fn SetCenterZ_TODO_B(self: *const IDCompositionRotateTransform3D, centerZ: f32) callconv(.Inline) HRESULT {
+    pub fn SetCenterZ_TODO_B(self: *const IDCompositionRotateTransform3D, centerZ: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCenterZ_TODO_B(self, centerZ);
     }
 };
@@ -1190,13 +1190,13 @@ pub const IDCompositionMatrixTransform3D = extern union {
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
     pub const SetMatrixElement = @compileError("COM method 'SetMatrixElement' must be called using one of the following overload names: SetMatrixElement_TODO_B, SetMatrixElement_TODO_A");
-    pub fn SetMatrix(self: *const IDCompositionMatrixTransform3D, matrix: ?*const D3DMATRIX) callconv(.Inline) HRESULT {
+    pub fn SetMatrix(self: *const IDCompositionMatrixTransform3D, matrix: ?*const D3DMATRIX) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrix(self, matrix);
     }
-    pub fn SetMatrixElement_TODO_A(self: *const IDCompositionMatrixTransform3D, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetMatrixElement_TODO_A(self: *const IDCompositionMatrixTransform3D, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixElement_TODO_A(self, row, column, animation);
     }
-    pub fn SetMatrixElement_TODO_B(self: *const IDCompositionMatrixTransform3D, row: i32, column: i32, value: f32) callconv(.Inline) HRESULT {
+    pub fn SetMatrixElement_TODO_B(self: *const IDCompositionMatrixTransform3D, row: i32, column: i32, value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixElement_TODO_B(self, row, column, value);
     }
 };
@@ -1330,76 +1330,76 @@ pub const IDCompositionRectangleClip = extern union {
     pub const SetRight = @compileError("COM method 'SetRight' must be called using one of the following overload names: SetRight_TODO_A, SetRight_TODO_B");
     pub const SetTopLeftRadiusX = @compileError("COM method 'SetTopLeftRadiusX' must be called using one of the following overload names: SetTopLeftRadiusX_TODO_A, SetTopLeftRadiusX_TODO_B");
     pub const SetTopRightRadiusX = @compileError("COM method 'SetTopRightRadiusX' must be called using one of the following overload names: SetTopRightRadiusX_TODO_A, SetTopRightRadiusX_TODO_B");
-    pub fn SetLeft_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetLeft_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetLeft_TODO_A(self, animation);
     }
-    pub fn SetLeft_TODO_B(self: *const IDCompositionRectangleClip, left: f32) callconv(.Inline) HRESULT {
+    pub fn SetLeft_TODO_B(self: *const IDCompositionRectangleClip, left: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLeft_TODO_B(self, left);
     }
-    pub fn SetTop_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetTop_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetTop_TODO_A(self, animation);
     }
-    pub fn SetTop_TODO_B(self: *const IDCompositionRectangleClip, top: f32) callconv(.Inline) HRESULT {
+    pub fn SetTop_TODO_B(self: *const IDCompositionRectangleClip, top: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTop_TODO_B(self, top);
     }
-    pub fn SetRight_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetRight_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetRight_TODO_A(self, animation);
     }
-    pub fn SetRight_TODO_B(self: *const IDCompositionRectangleClip, right: f32) callconv(.Inline) HRESULT {
+    pub fn SetRight_TODO_B(self: *const IDCompositionRectangleClip, right: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRight_TODO_B(self, right);
     }
-    pub fn SetBottom_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBottom_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottom_TODO_A(self, animation);
     }
-    pub fn SetBottom_TODO_B(self: *const IDCompositionRectangleClip, bottom: f32) callconv(.Inline) HRESULT {
+    pub fn SetBottom_TODO_B(self: *const IDCompositionRectangleClip, bottom: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottom_TODO_B(self, bottom);
     }
-    pub fn SetTopLeftRadiusX_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetTopLeftRadiusX_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopLeftRadiusX_TODO_A(self, animation);
     }
-    pub fn SetTopLeftRadiusX_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
+    pub fn SetTopLeftRadiusX_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopLeftRadiusX_TODO_B(self, radius);
     }
-    pub fn SetTopLeftRadiusY_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetTopLeftRadiusY_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopLeftRadiusY_TODO_A(self, animation);
     }
-    pub fn SetTopLeftRadiusY_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
+    pub fn SetTopLeftRadiusY_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopLeftRadiusY_TODO_B(self, radius);
     }
-    pub fn SetTopRightRadiusX_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetTopRightRadiusX_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopRightRadiusX_TODO_A(self, animation);
     }
-    pub fn SetTopRightRadiusX_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
+    pub fn SetTopRightRadiusX_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopRightRadiusX_TODO_B(self, radius);
     }
-    pub fn SetTopRightRadiusY_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetTopRightRadiusY_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopRightRadiusY_TODO_A(self, animation);
     }
-    pub fn SetTopRightRadiusY_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
+    pub fn SetTopRightRadiusY_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTopRightRadiusY_TODO_B(self, radius);
     }
-    pub fn SetBottomLeftRadiusX_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBottomLeftRadiusX_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottomLeftRadiusX_TODO_A(self, animation);
     }
-    pub fn SetBottomLeftRadiusX_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
+    pub fn SetBottomLeftRadiusX_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottomLeftRadiusX_TODO_B(self, radius);
     }
-    pub fn SetBottomLeftRadiusY_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBottomLeftRadiusY_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottomLeftRadiusY_TODO_A(self, animation);
     }
-    pub fn SetBottomLeftRadiusY_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
+    pub fn SetBottomLeftRadiusY_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottomLeftRadiusY_TODO_B(self, radius);
     }
-    pub fn SetBottomRightRadiusX_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBottomRightRadiusX_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottomRightRadiusX_TODO_A(self, animation);
     }
-    pub fn SetBottomRightRadiusX_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
+    pub fn SetBottomRightRadiusX_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottomRightRadiusX_TODO_B(self, radius);
     }
-    pub fn SetBottomRightRadiusY_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBottomRightRadiusY_TODO_A(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottomRightRadiusY_TODO_A(self, animation);
     }
-    pub fn SetBottomRightRadiusY_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
+    pub fn SetBottomRightRadiusY_TODO_B(self: *const IDCompositionRectangleClip, radius: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBottomRightRadiusY_TODO_B(self, radius);
     }
 };
@@ -1436,19 +1436,19 @@ pub const IDCompositionSurface = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeginDraw(self: *const IDCompositionSurface, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn BeginDraw(self: *const IDCompositionSurface, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.BeginDraw(self, updateRect, iid, updateObject, updateOffset);
     }
-    pub fn EndDraw(self: *const IDCompositionSurface) callconv(.Inline) HRESULT {
+    pub fn EndDraw(self: *const IDCompositionSurface) callconv(.@"inline") HRESULT {
         return self.vtable.EndDraw(self);
     }
-    pub fn SuspendDraw(self: *const IDCompositionSurface) callconv(.Inline) HRESULT {
+    pub fn SuspendDraw(self: *const IDCompositionSurface) callconv(.@"inline") HRESULT {
         return self.vtable.SuspendDraw(self);
     }
-    pub fn ResumeDraw(self: *const IDCompositionSurface) callconv(.Inline) HRESULT {
+    pub fn ResumeDraw(self: *const IDCompositionSurface) callconv(.@"inline") HRESULT {
         return self.vtable.ResumeDraw(self);
     }
-    pub fn Scroll(self: *const IDCompositionSurface, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) callconv(.Inline) HRESULT {
+    pub fn Scroll(self: *const IDCompositionSurface, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Scroll(self, scrollRect, clipRect, offsetX, offsetY);
     }
 };
@@ -1473,10 +1473,10 @@ pub const IDCompositionVirtualSurface = extern union {
     vtable: *const VTable,
     IDCompositionSurface: IDCompositionSurface,
     IUnknown: IUnknown,
-    pub fn Resize(self: *const IDCompositionVirtualSurface, width: u32, height: u32) callconv(.Inline) HRESULT {
+    pub fn Resize(self: *const IDCompositionVirtualSurface, width: u32, height: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Resize(self, width, height);
     }
-    pub fn Trim(self: *const IDCompositionVirtualSurface, rectangles: ?[*]const RECT, count: u32) callconv(.Inline) HRESULT {
+    pub fn Trim(self: *const IDCompositionVirtualSurface, rectangles: ?[*]const RECT, count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Trim(self, rectangles, count);
     }
 };
@@ -1585,67 +1585,67 @@ pub const IDCompositionDevice2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Commit(self: *const IDCompositionDevice2) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IDCompositionDevice2) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn WaitForCommitCompletion(self: *const IDCompositionDevice2) callconv(.Inline) HRESULT {
+    pub fn WaitForCommitCompletion(self: *const IDCompositionDevice2) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCommitCompletion(self);
     }
-    pub fn GetFrameStatistics(self: *const IDCompositionDevice2, statistics: ?*DCOMPOSITION_FRAME_STATISTICS) callconv(.Inline) HRESULT {
+    pub fn GetFrameStatistics(self: *const IDCompositionDevice2, statistics: ?*DCOMPOSITION_FRAME_STATISTICS) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameStatistics(self, statistics);
     }
-    pub fn CreateVisual(self: *const IDCompositionDevice2, visual: ?*?*IDCompositionVisual2) callconv(.Inline) HRESULT {
+    pub fn CreateVisual(self: *const IDCompositionDevice2, visual: ?*?*IDCompositionVisual2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVisual(self, visual);
     }
-    pub fn CreateSurfaceFactory(self: *const IDCompositionDevice2, renderingDevice: ?*IUnknown, surfaceFactory: ?*?*IDCompositionSurfaceFactory) callconv(.Inline) HRESULT {
+    pub fn CreateSurfaceFactory(self: *const IDCompositionDevice2, renderingDevice: ?*IUnknown, surfaceFactory: ?*?*IDCompositionSurfaceFactory) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurfaceFactory(self, renderingDevice, surfaceFactory);
     }
-    pub fn CreateSurface(self: *const IDCompositionDevice2, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDCompositionDevice2, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurface(self, width, height, pixelFormat, alphaMode, surface);
     }
-    pub fn CreateVirtualSurface(self: *const IDCompositionDevice2, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.Inline) HRESULT {
+    pub fn CreateVirtualSurface(self: *const IDCompositionDevice2, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualSurface(self, initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
     }
-    pub fn CreateTranslateTransform(self: *const IDCompositionDevice2, translateTransform: ?*?*IDCompositionTranslateTransform) callconv(.Inline) HRESULT {
+    pub fn CreateTranslateTransform(self: *const IDCompositionDevice2, translateTransform: ?*?*IDCompositionTranslateTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTranslateTransform(self, translateTransform);
     }
-    pub fn CreateScaleTransform(self: *const IDCompositionDevice2, scaleTransform: ?*?*IDCompositionScaleTransform) callconv(.Inline) HRESULT {
+    pub fn CreateScaleTransform(self: *const IDCompositionDevice2, scaleTransform: ?*?*IDCompositionScaleTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateScaleTransform(self, scaleTransform);
     }
-    pub fn CreateRotateTransform(self: *const IDCompositionDevice2, rotateTransform: ?*?*IDCompositionRotateTransform) callconv(.Inline) HRESULT {
+    pub fn CreateRotateTransform(self: *const IDCompositionDevice2, rotateTransform: ?*?*IDCompositionRotateTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRotateTransform(self, rotateTransform);
     }
-    pub fn CreateSkewTransform(self: *const IDCompositionDevice2, skewTransform: ?*?*IDCompositionSkewTransform) callconv(.Inline) HRESULT {
+    pub fn CreateSkewTransform(self: *const IDCompositionDevice2, skewTransform: ?*?*IDCompositionSkewTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSkewTransform(self, skewTransform);
     }
-    pub fn CreateMatrixTransform(self: *const IDCompositionDevice2, matrixTransform: ?*?*IDCompositionMatrixTransform) callconv(.Inline) HRESULT {
+    pub fn CreateMatrixTransform(self: *const IDCompositionDevice2, matrixTransform: ?*?*IDCompositionMatrixTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMatrixTransform(self, matrixTransform);
     }
-    pub fn CreateTransformGroup(self: *const IDCompositionDevice2, transforms: [*]?*IDCompositionTransform, elements: u32, transformGroup: ?*?*IDCompositionTransform) callconv(.Inline) HRESULT {
+    pub fn CreateTransformGroup(self: *const IDCompositionDevice2, transforms: [*]?*IDCompositionTransform, elements: u32, transformGroup: ?*?*IDCompositionTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTransformGroup(self, transforms, elements, transformGroup);
     }
-    pub fn CreateTranslateTransform3D(self: *const IDCompositionDevice2, translateTransform3D: ?*?*IDCompositionTranslateTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateTranslateTransform3D(self: *const IDCompositionDevice2, translateTransform3D: ?*?*IDCompositionTranslateTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTranslateTransform3D(self, translateTransform3D);
     }
-    pub fn CreateScaleTransform3D(self: *const IDCompositionDevice2, scaleTransform3D: ?*?*IDCompositionScaleTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateScaleTransform3D(self: *const IDCompositionDevice2, scaleTransform3D: ?*?*IDCompositionScaleTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateScaleTransform3D(self, scaleTransform3D);
     }
-    pub fn CreateRotateTransform3D(self: *const IDCompositionDevice2, rotateTransform3D: ?*?*IDCompositionRotateTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateRotateTransform3D(self: *const IDCompositionDevice2, rotateTransform3D: ?*?*IDCompositionRotateTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRotateTransform3D(self, rotateTransform3D);
     }
-    pub fn CreateMatrixTransform3D(self: *const IDCompositionDevice2, matrixTransform3D: ?*?*IDCompositionMatrixTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateMatrixTransform3D(self: *const IDCompositionDevice2, matrixTransform3D: ?*?*IDCompositionMatrixTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMatrixTransform3D(self, matrixTransform3D);
     }
-    pub fn CreateTransform3DGroup(self: *const IDCompositionDevice2, transforms3D: [*]?*IDCompositionTransform3D, elements: u32, transform3DGroup: ?*?*IDCompositionTransform3D) callconv(.Inline) HRESULT {
+    pub fn CreateTransform3DGroup(self: *const IDCompositionDevice2, transforms3D: [*]?*IDCompositionTransform3D, elements: u32, transform3DGroup: ?*?*IDCompositionTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTransform3DGroup(self, transforms3D, elements, transform3DGroup);
     }
-    pub fn CreateEffectGroup(self: *const IDCompositionDevice2, effectGroup: ?*?*IDCompositionEffectGroup) callconv(.Inline) HRESULT {
+    pub fn CreateEffectGroup(self: *const IDCompositionDevice2, effectGroup: ?*?*IDCompositionEffectGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEffectGroup(self, effectGroup);
     }
-    pub fn CreateRectangleClip(self: *const IDCompositionDevice2, clip: ?*?*IDCompositionRectangleClip) callconv(.Inline) HRESULT {
+    pub fn CreateRectangleClip(self: *const IDCompositionDevice2, clip: ?*?*IDCompositionRectangleClip) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRectangleClip(self, clip);
     }
-    pub fn CreateAnimation(self: *const IDCompositionDevice2, animation: ?*?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn CreateAnimation(self: *const IDCompositionDevice2, animation: ?*?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAnimation(self, animation);
     }
 };
@@ -1676,13 +1676,13 @@ pub const IDCompositionDesktopDevice = extern union {
     vtable: *const VTable,
     IDCompositionDevice2: IDCompositionDevice2,
     IUnknown: IUnknown,
-    pub fn CreateTargetForHwnd(self: *const IDCompositionDesktopDevice, hwnd: ?HWND, topmost: BOOL, target: ?*?*IDCompositionTarget) callconv(.Inline) HRESULT {
+    pub fn CreateTargetForHwnd(self: *const IDCompositionDesktopDevice, hwnd: ?HWND, topmost: BOOL, target: ?*?*IDCompositionTarget) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTargetForHwnd(self, hwnd, topmost, target);
     }
-    pub fn CreateSurfaceFromHandle(self: *const IDCompositionDesktopDevice, handle: ?HANDLE, surface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurfaceFromHandle(self: *const IDCompositionDesktopDevice, handle: ?HANDLE, surface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurfaceFromHandle(self, handle, surface);
     }
-    pub fn CreateSurfaceFromHwnd(self: *const IDCompositionDesktopDevice, hwnd: ?HWND, surface: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurfaceFromHwnd(self: *const IDCompositionDesktopDevice, hwnd: ?HWND, surface: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurfaceFromHwnd(self, hwnd, surface);
     }
 };
@@ -1701,10 +1701,10 @@ pub const IDCompositionDeviceDebug = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnableDebugCounters(self: *const IDCompositionDeviceDebug) callconv(.Inline) HRESULT {
+    pub fn EnableDebugCounters(self: *const IDCompositionDeviceDebug) callconv(.@"inline") HRESULT {
         return self.vtable.EnableDebugCounters(self);
     }
-    pub fn DisableDebugCounters(self: *const IDCompositionDeviceDebug) callconv(.Inline) HRESULT {
+    pub fn DisableDebugCounters(self: *const IDCompositionDeviceDebug) callconv(.@"inline") HRESULT {
         return self.vtable.DisableDebugCounters(self);
     }
 };
@@ -1734,10 +1734,10 @@ pub const IDCompositionSurfaceFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateSurface(self: *const IDCompositionSurfaceFactory, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDCompositionSurfaceFactory, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSurface(self, width, height, pixelFormat, alphaMode, surface);
     }
-    pub fn CreateVirtualSurface(self: *const IDCompositionSurfaceFactory, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.Inline) HRESULT {
+    pub fn CreateVirtualSurface(self: *const IDCompositionSurfaceFactory, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualSurface(self, initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
     }
 };
@@ -1760,10 +1760,10 @@ pub const IDCompositionVisual2 = extern union {
     vtable: *const VTable,
     IDCompositionVisual: IDCompositionVisual,
     IUnknown: IUnknown,
-    pub fn SetOpacityMode(self: *const IDCompositionVisual2, mode: DCOMPOSITION_OPACITY_MODE) callconv(.Inline) HRESULT {
+    pub fn SetOpacityMode(self: *const IDCompositionVisual2, mode: DCOMPOSITION_OPACITY_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetOpacityMode(self, mode);
     }
-    pub fn SetBackFaceVisibility(self: *const IDCompositionVisual2, visibility: DCOMPOSITION_BACKFACE_VISIBILITY) callconv(.Inline) HRESULT {
+    pub fn SetBackFaceVisibility(self: *const IDCompositionVisual2, visibility: DCOMPOSITION_BACKFACE_VISIBILITY) callconv(.@"inline") HRESULT {
         return self.vtable.SetBackFaceVisibility(self, visibility);
     }
 };
@@ -1792,16 +1792,16 @@ pub const IDCompositionVisualDebug = extern union {
     IDCompositionVisual2: IDCompositionVisual2,
     IDCompositionVisual: IDCompositionVisual,
     IUnknown: IUnknown,
-    pub fn EnableHeatMap(self: *const IDCompositionVisualDebug, color: ?*const D2D_COLOR_F) callconv(.Inline) HRESULT {
+    pub fn EnableHeatMap(self: *const IDCompositionVisualDebug, color: ?*const D2D_COLOR_F) callconv(.@"inline") HRESULT {
         return self.vtable.EnableHeatMap(self, color);
     }
-    pub fn DisableHeatMap(self: *const IDCompositionVisualDebug) callconv(.Inline) HRESULT {
+    pub fn DisableHeatMap(self: *const IDCompositionVisualDebug) callconv(.@"inline") HRESULT {
         return self.vtable.DisableHeatMap(self);
     }
-    pub fn EnableRedrawRegions(self: *const IDCompositionVisualDebug) callconv(.Inline) HRESULT {
+    pub fn EnableRedrawRegions(self: *const IDCompositionVisualDebug) callconv(.@"inline") HRESULT {
         return self.vtable.EnableRedrawRegions(self);
     }
-    pub fn DisableRedrawRegions(self: *const IDCompositionVisualDebug) callconv(.Inline) HRESULT {
+    pub fn DisableRedrawRegions(self: *const IDCompositionVisualDebug) callconv(.@"inline") HRESULT {
         return self.vtable.DisableRedrawRegions(self);
     }
 };
@@ -1853,28 +1853,28 @@ pub const IDCompositionVisual3 = extern union {
     pub const SetTransform = @compileError("COM method 'SetTransform' must be called using one of the following overload names: SetTransform_TODO_B, SetTransform_TODO_A");
     pub const SetOffsetZ = @compileError("COM method 'SetOffsetZ' must be called using one of the following overload names: SetOffsetZ_TODO_B, SetOffsetZ_TODO_A");
     pub const SetOpacity = @compileError("COM method 'SetOpacity' must be called using one of the following overload names: SetOpacity_TODO_A, SetOpacity_TODO_B");
-    pub fn SetDepthMode(self: *const IDCompositionVisual3, mode: DCOMPOSITION_DEPTH_MODE) callconv(.Inline) HRESULT {
+    pub fn SetDepthMode(self: *const IDCompositionVisual3, mode: DCOMPOSITION_DEPTH_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetDepthMode(self, mode);
     }
-    pub fn SetOffsetZ_TODO_A(self: *const IDCompositionVisual3, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOffsetZ_TODO_A(self: *const IDCompositionVisual3, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetZ_TODO_A(self, animation);
     }
-    pub fn SetOffsetZ_TODO_B(self: *const IDCompositionVisual3, offsetZ: f32) callconv(.Inline) HRESULT {
+    pub fn SetOffsetZ_TODO_B(self: *const IDCompositionVisual3, offsetZ: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffsetZ_TODO_B(self, offsetZ);
     }
-    pub fn SetOpacity_TODO_A(self: *const IDCompositionVisual3, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetOpacity_TODO_A(self: *const IDCompositionVisual3, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetOpacity_TODO_A(self, animation);
     }
-    pub fn SetOpacity_TODO_B(self: *const IDCompositionVisual3, opacity: f32) callconv(.Inline) HRESULT {
+    pub fn SetOpacity_TODO_B(self: *const IDCompositionVisual3, opacity: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetOpacity_TODO_B(self, opacity);
     }
-    pub fn SetTransform_TODO_A(self: *const IDCompositionVisual3, transform: ?*IDCompositionTransform3D) callconv(.Inline) HRESULT {
+    pub fn SetTransform_TODO_A(self: *const IDCompositionVisual3, transform: ?*IDCompositionTransform3D) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransform_TODO_A(self, transform);
     }
-    pub fn SetTransform_TODO_B(self: *const IDCompositionVisual3, matrix: ?*const D2D_MATRIX_4X4_F) callconv(.Inline) HRESULT {
+    pub fn SetTransform_TODO_B(self: *const IDCompositionVisual3, matrix: ?*const D2D_MATRIX_4X4_F) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransform_TODO_B(self, matrix);
     }
-    pub fn SetVisible(self: *const IDCompositionVisual3, visible: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetVisible(self: *const IDCompositionVisual3, visible: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetVisible(self, visible);
     }
 };
@@ -1941,43 +1941,43 @@ pub const IDCompositionDevice3 = extern union {
     vtable: *const VTable,
     IDCompositionDevice2: IDCompositionDevice2,
     IUnknown: IUnknown,
-    pub fn CreateGaussianBlurEffect(self: *const IDCompositionDevice3, gaussianBlurEffect: ?*?*IDCompositionGaussianBlurEffect) callconv(.Inline) HRESULT {
+    pub fn CreateGaussianBlurEffect(self: *const IDCompositionDevice3, gaussianBlurEffect: ?*?*IDCompositionGaussianBlurEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateGaussianBlurEffect(self, gaussianBlurEffect);
     }
-    pub fn CreateBrightnessEffect(self: *const IDCompositionDevice3, brightnessEffect: ?*?*IDCompositionBrightnessEffect) callconv(.Inline) HRESULT {
+    pub fn CreateBrightnessEffect(self: *const IDCompositionDevice3, brightnessEffect: ?*?*IDCompositionBrightnessEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBrightnessEffect(self, brightnessEffect);
     }
-    pub fn CreateColorMatrixEffect(self: *const IDCompositionDevice3, colorMatrixEffect: ?*?*IDCompositionColorMatrixEffect) callconv(.Inline) HRESULT {
+    pub fn CreateColorMatrixEffect(self: *const IDCompositionDevice3, colorMatrixEffect: ?*?*IDCompositionColorMatrixEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateColorMatrixEffect(self, colorMatrixEffect);
     }
-    pub fn CreateShadowEffect(self: *const IDCompositionDevice3, shadowEffect: ?*?*IDCompositionShadowEffect) callconv(.Inline) HRESULT {
+    pub fn CreateShadowEffect(self: *const IDCompositionDevice3, shadowEffect: ?*?*IDCompositionShadowEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateShadowEffect(self, shadowEffect);
     }
-    pub fn CreateHueRotationEffect(self: *const IDCompositionDevice3, hueRotationEffect: ?*?*IDCompositionHueRotationEffect) callconv(.Inline) HRESULT {
+    pub fn CreateHueRotationEffect(self: *const IDCompositionDevice3, hueRotationEffect: ?*?*IDCompositionHueRotationEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateHueRotationEffect(self, hueRotationEffect);
     }
-    pub fn CreateSaturationEffect(self: *const IDCompositionDevice3, saturationEffect: ?*?*IDCompositionSaturationEffect) callconv(.Inline) HRESULT {
+    pub fn CreateSaturationEffect(self: *const IDCompositionDevice3, saturationEffect: ?*?*IDCompositionSaturationEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSaturationEffect(self, saturationEffect);
     }
-    pub fn CreateTurbulenceEffect(self: *const IDCompositionDevice3, turbulenceEffect: ?*?*IDCompositionTurbulenceEffect) callconv(.Inline) HRESULT {
+    pub fn CreateTurbulenceEffect(self: *const IDCompositionDevice3, turbulenceEffect: ?*?*IDCompositionTurbulenceEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTurbulenceEffect(self, turbulenceEffect);
     }
-    pub fn CreateLinearTransferEffect(self: *const IDCompositionDevice3, linearTransferEffect: ?*?*IDCompositionLinearTransferEffect) callconv(.Inline) HRESULT {
+    pub fn CreateLinearTransferEffect(self: *const IDCompositionDevice3, linearTransferEffect: ?*?*IDCompositionLinearTransferEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLinearTransferEffect(self, linearTransferEffect);
     }
-    pub fn CreateTableTransferEffect(self: *const IDCompositionDevice3, tableTransferEffect: ?*?*IDCompositionTableTransferEffect) callconv(.Inline) HRESULT {
+    pub fn CreateTableTransferEffect(self: *const IDCompositionDevice3, tableTransferEffect: ?*?*IDCompositionTableTransferEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTableTransferEffect(self, tableTransferEffect);
     }
-    pub fn CreateCompositeEffect(self: *const IDCompositionDevice3, compositeEffect: ?*?*IDCompositionCompositeEffect) callconv(.Inline) HRESULT {
+    pub fn CreateCompositeEffect(self: *const IDCompositionDevice3, compositeEffect: ?*?*IDCompositionCompositeEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCompositeEffect(self, compositeEffect);
     }
-    pub fn CreateBlendEffect(self: *const IDCompositionDevice3, blendEffect: ?*?*IDCompositionBlendEffect) callconv(.Inline) HRESULT {
+    pub fn CreateBlendEffect(self: *const IDCompositionDevice3, blendEffect: ?*?*IDCompositionBlendEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBlendEffect(self, blendEffect);
     }
-    pub fn CreateArithmeticCompositeEffect(self: *const IDCompositionDevice3, arithmeticCompositeEffect: ?*?*IDCompositionArithmeticCompositeEffect) callconv(.Inline) HRESULT {
+    pub fn CreateArithmeticCompositeEffect(self: *const IDCompositionDevice3, arithmeticCompositeEffect: ?*?*IDCompositionArithmeticCompositeEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateArithmeticCompositeEffect(self, arithmeticCompositeEffect);
     }
-    pub fn CreateAffineTransform2DEffect(self: *const IDCompositionDevice3, affineTransform2dEffect: ?*?*IDCompositionAffineTransform2DEffect) callconv(.Inline) HRESULT {
+    pub fn CreateAffineTransform2DEffect(self: *const IDCompositionDevice3, affineTransform2dEffect: ?*?*IDCompositionAffineTransform2DEffect) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAffineTransform2DEffect(self, affineTransform2dEffect);
     }
 };
@@ -1998,7 +1998,7 @@ pub const IDCompositionFilterEffect = extern union {
     vtable: *const VTable,
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
-    pub fn SetInput(self: *const IDCompositionFilterEffect, index: u32, input: ?*IUnknown, flags: u32) callconv(.Inline) HRESULT {
+    pub fn SetInput(self: *const IDCompositionFilterEffect, index: u32, input: ?*IUnknown, flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetInput(self, index, input, flags);
     }
 };
@@ -2026,13 +2026,13 @@ pub const IDCompositionGaussianBlurEffect = extern union {
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
     pub const SetStandardDeviation = @compileError("COM method 'SetStandardDeviation' must be called using one of the following overload names: SetStandardDeviation_TODO_A, SetStandardDeviation_TODO_B");
-    pub fn SetStandardDeviation_TODO_A(self: *const IDCompositionGaussianBlurEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetStandardDeviation_TODO_A(self: *const IDCompositionGaussianBlurEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetStandardDeviation_TODO_A(self, animation);
     }
-    pub fn SetStandardDeviation_TODO_B(self: *const IDCompositionGaussianBlurEffect, amount: f32) callconv(.Inline) HRESULT {
+    pub fn SetStandardDeviation_TODO_B(self: *const IDCompositionGaussianBlurEffect, amount: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStandardDeviation_TODO_B(self, amount);
     }
-    pub fn SetBorderMode(self: *const IDCompositionGaussianBlurEffect, mode: D2D1_BORDER_MODE) callconv(.Inline) HRESULT {
+    pub fn SetBorderMode(self: *const IDCompositionGaussianBlurEffect, mode: D2D1_BORDER_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetBorderMode(self, mode);
     }
 };
@@ -2091,34 +2091,34 @@ pub const IDCompositionBrightnessEffect = extern union {
     pub const SetBlackPointX = @compileError("COM method 'SetBlackPointX' must be called using one of the following overload names: SetBlackPointX_TODO_A, SetBlackPointX_TODO_B");
     pub const SetWhitePointX = @compileError("COM method 'SetWhitePointX' must be called using one of the following overload names: SetWhitePointX_TODO_B, SetWhitePointX_TODO_A");
     pub const SetBlackPointY = @compileError("COM method 'SetBlackPointY' must be called using one of the following overload names: SetBlackPointY_TODO_A, SetBlackPointY_TODO_B");
-    pub fn SetWhitePoint(self: *const IDCompositionBrightnessEffect, whitePoint: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
+    pub fn SetWhitePoint(self: *const IDCompositionBrightnessEffect, whitePoint: ?*const D2D_VECTOR_2F) callconv(.@"inline") HRESULT {
         return self.vtable.SetWhitePoint(self, whitePoint);
     }
-    pub fn SetBlackPoint(self: *const IDCompositionBrightnessEffect, blackPoint: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
+    pub fn SetBlackPoint(self: *const IDCompositionBrightnessEffect, blackPoint: ?*const D2D_VECTOR_2F) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlackPoint(self, blackPoint);
     }
-    pub fn SetWhitePointX_TODO_A(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetWhitePointX_TODO_A(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetWhitePointX_TODO_A(self, animation);
     }
-    pub fn SetWhitePointX_TODO_B(self: *const IDCompositionBrightnessEffect, whitePointX: f32) callconv(.Inline) HRESULT {
+    pub fn SetWhitePointX_TODO_B(self: *const IDCompositionBrightnessEffect, whitePointX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetWhitePointX_TODO_B(self, whitePointX);
     }
-    pub fn SetWhitePointY_TODO_A(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetWhitePointY_TODO_A(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetWhitePointY_TODO_A(self, animation);
     }
-    pub fn SetWhitePointY_TODO_B(self: *const IDCompositionBrightnessEffect, whitePointY: f32) callconv(.Inline) HRESULT {
+    pub fn SetWhitePointY_TODO_B(self: *const IDCompositionBrightnessEffect, whitePointY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetWhitePointY_TODO_B(self, whitePointY);
     }
-    pub fn SetBlackPointX_TODO_A(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBlackPointX_TODO_A(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlackPointX_TODO_A(self, animation);
     }
-    pub fn SetBlackPointX_TODO_B(self: *const IDCompositionBrightnessEffect, blackPointX: f32) callconv(.Inline) HRESULT {
+    pub fn SetBlackPointX_TODO_B(self: *const IDCompositionBrightnessEffect, blackPointX: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlackPointX_TODO_B(self, blackPointX);
     }
-    pub fn SetBlackPointY_TODO_A(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBlackPointY_TODO_A(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlackPointY_TODO_A(self, animation);
     }
-    pub fn SetBlackPointY_TODO_B(self: *const IDCompositionBrightnessEffect, blackPointY: f32) callconv(.Inline) HRESULT {
+    pub fn SetBlackPointY_TODO_B(self: *const IDCompositionBrightnessEffect, blackPointY: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlackPointY_TODO_B(self, blackPointY);
     }
 };
@@ -2158,19 +2158,19 @@ pub const IDCompositionColorMatrixEffect = extern union {
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
     pub const SetMatrixElement = @compileError("COM method 'SetMatrixElement' must be called using one of the following overload names: SetMatrixElement_TODO_B, SetMatrixElement_TODO_A");
-    pub fn SetMatrix(self: *const IDCompositionColorMatrixEffect, matrix: ?*const D2D_MATRIX_5X4_F) callconv(.Inline) HRESULT {
+    pub fn SetMatrix(self: *const IDCompositionColorMatrixEffect, matrix: ?*const D2D_MATRIX_5X4_F) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrix(self, matrix);
     }
-    pub fn SetMatrixElement_TODO_A(self: *const IDCompositionColorMatrixEffect, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetMatrixElement_TODO_A(self: *const IDCompositionColorMatrixEffect, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixElement_TODO_A(self, row, column, animation);
     }
-    pub fn SetMatrixElement_TODO_B(self: *const IDCompositionColorMatrixEffect, row: i32, column: i32, value: f32) callconv(.Inline) HRESULT {
+    pub fn SetMatrixElement_TODO_B(self: *const IDCompositionColorMatrixEffect, row: i32, column: i32, value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMatrixElement_TODO_B(self, row, column, value);
     }
-    pub fn SetAlphaMode(self: *const IDCompositionColorMatrixEffect, mode: D2D1_COLORMATRIX_ALPHA_MODE) callconv(.Inline) HRESULT {
+    pub fn SetAlphaMode(self: *const IDCompositionColorMatrixEffect, mode: D2D1_COLORMATRIX_ALPHA_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaMode(self, mode);
     }
-    pub fn SetClampOutput(self: *const IDCompositionColorMatrixEffect, clamp: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetClampOutput(self: *const IDCompositionColorMatrixEffect, clamp: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetClampOutput(self, clamp);
     }
 };
@@ -2234,37 +2234,37 @@ pub const IDCompositionShadowEffect = extern union {
     pub const SetStandardDeviation = @compileError("COM method 'SetStandardDeviation' must be called using one of the following overload names: SetStandardDeviation_TODO_A, SetStandardDeviation_TODO_B");
     pub const SetRed = @compileError("COM method 'SetRed' must be called using one of the following overload names: SetRed_TODO_A, SetRed_TODO_B");
     pub const SetAlpha = @compileError("COM method 'SetAlpha' must be called using one of the following overload names: SetAlpha_TODO_A, SetAlpha_TODO_B");
-    pub fn SetStandardDeviation_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetStandardDeviation_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetStandardDeviation_TODO_A(self, animation);
     }
-    pub fn SetStandardDeviation_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
+    pub fn SetStandardDeviation_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStandardDeviation_TODO_B(self, amount);
     }
-    pub fn SetColor(self: *const IDCompositionShadowEffect, color: ?*const D2D_VECTOR_4F) callconv(.Inline) HRESULT {
+    pub fn SetColor(self: *const IDCompositionShadowEffect, color: ?*const D2D_VECTOR_4F) callconv(.@"inline") HRESULT {
         return self.vtable.SetColor(self, color);
     }
-    pub fn SetRed_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetRed_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetRed_TODO_A(self, animation);
     }
-    pub fn SetRed_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
+    pub fn SetRed_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRed_TODO_B(self, amount);
     }
-    pub fn SetGreen_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetGreen_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreen_TODO_A(self, animation);
     }
-    pub fn SetGreen_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
+    pub fn SetGreen_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreen_TODO_B(self, amount);
     }
-    pub fn SetBlue_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBlue_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlue_TODO_A(self, animation);
     }
-    pub fn SetBlue_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
+    pub fn SetBlue_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlue_TODO_B(self, amount);
     }
-    pub fn SetAlpha_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAlpha_TODO_A(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlpha_TODO_A(self, animation);
     }
-    pub fn SetAlpha_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
+    pub fn SetAlpha_TODO_B(self: *const IDCompositionShadowEffect, amount: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlpha_TODO_B(self, amount);
     }
 };
@@ -2288,10 +2288,10 @@ pub const IDCompositionHueRotationEffect = extern union {
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
     pub const SetAngle = @compileError("COM method 'SetAngle' must be called using one of the following overload names: SetAngle_TODO_A, SetAngle_TODO_B");
-    pub fn SetAngle_TODO_A(self: *const IDCompositionHueRotationEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAngle_TODO_A(self: *const IDCompositionHueRotationEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngle_TODO_A(self, animation);
     }
-    pub fn SetAngle_TODO_B(self: *const IDCompositionHueRotationEffect, amountDegrees: f32) callconv(.Inline) HRESULT {
+    pub fn SetAngle_TODO_B(self: *const IDCompositionHueRotationEffect, amountDegrees: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAngle_TODO_B(self, amountDegrees);
     }
 };
@@ -2315,10 +2315,10 @@ pub const IDCompositionSaturationEffect = extern union {
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
     pub const SetSaturation = @compileError("COM method 'SetSaturation' must be called using one of the following overload names: SetSaturation_TODO_A, SetSaturation_TODO_B");
-    pub fn SetSaturation_TODO_A(self: *const IDCompositionSaturationEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetSaturation_TODO_A(self: *const IDCompositionSaturationEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetSaturation_TODO_A(self, animation);
     }
-    pub fn SetSaturation_TODO_B(self: *const IDCompositionSaturationEffect, ratio: f32) callconv(.Inline) HRESULT {
+    pub fn SetSaturation_TODO_B(self: *const IDCompositionSaturationEffect, ratio: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSaturation_TODO_B(self, ratio);
     }
 };
@@ -2361,25 +2361,25 @@ pub const IDCompositionTurbulenceEffect = extern union {
     IDCompositionFilterEffect: IDCompositionFilterEffect,
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
-    pub fn SetOffset(self: *const IDCompositionTurbulenceEffect, offset: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
+    pub fn SetOffset(self: *const IDCompositionTurbulenceEffect, offset: ?*const D2D_VECTOR_2F) callconv(.@"inline") HRESULT {
         return self.vtable.SetOffset(self, offset);
     }
-    pub fn SetBaseFrequency(self: *const IDCompositionTurbulenceEffect, frequency: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
+    pub fn SetBaseFrequency(self: *const IDCompositionTurbulenceEffect, frequency: ?*const D2D_VECTOR_2F) callconv(.@"inline") HRESULT {
         return self.vtable.SetBaseFrequency(self, frequency);
     }
-    pub fn SetSize(self: *const IDCompositionTurbulenceEffect, size: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
+    pub fn SetSize(self: *const IDCompositionTurbulenceEffect, size: ?*const D2D_VECTOR_2F) callconv(.@"inline") HRESULT {
         return self.vtable.SetSize(self, size);
     }
-    pub fn SetNumOctaves(self: *const IDCompositionTurbulenceEffect, numOctaves: u32) callconv(.Inline) HRESULT {
+    pub fn SetNumOctaves(self: *const IDCompositionTurbulenceEffect, numOctaves: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetNumOctaves(self, numOctaves);
     }
-    pub fn SetSeed(self: *const IDCompositionTurbulenceEffect, seed: u32) callconv(.Inline) HRESULT {
+    pub fn SetSeed(self: *const IDCompositionTurbulenceEffect, seed: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSeed(self, seed);
     }
-    pub fn SetNoise(self: *const IDCompositionTurbulenceEffect, noise: D2D1_TURBULENCE_NOISE) callconv(.Inline) HRESULT {
+    pub fn SetNoise(self: *const IDCompositionTurbulenceEffect, noise: D2D1_TURBULENCE_NOISE) callconv(.@"inline") HRESULT {
         return self.vtable.SetNoise(self, noise);
     }
-    pub fn SetStitchable(self: *const IDCompositionTurbulenceEffect, stitchable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetStitchable(self: *const IDCompositionTurbulenceEffect, stitchable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetStitchable(self, stitchable);
     }
 };
@@ -2486,67 +2486,67 @@ pub const IDCompositionLinearTransferEffect = extern union {
     pub const SetAlphaSlope = @compileError("COM method 'SetAlphaSlope' must be called using one of the following overload names: SetAlphaSlope_TODO_B, SetAlphaSlope_TODO_A");
     pub const SetRedSlope = @compileError("COM method 'SetRedSlope' must be called using one of the following overload names: SetRedSlope_TODO_B, SetRedSlope_TODO_A");
     pub const SetBlueYIntercept = @compileError("COM method 'SetBlueYIntercept' must be called using one of the following overload names: SetBlueYIntercept_TODO_B, SetBlueYIntercept_TODO_A");
-    pub fn SetRedYIntercept_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetRedYIntercept_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedYIntercept_TODO_A(self, animation);
     }
-    pub fn SetRedYIntercept_TODO_B(self: *const IDCompositionLinearTransferEffect, redYIntercept: f32) callconv(.Inline) HRESULT {
+    pub fn SetRedYIntercept_TODO_B(self: *const IDCompositionLinearTransferEffect, redYIntercept: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedYIntercept_TODO_B(self, redYIntercept);
     }
-    pub fn SetRedSlope_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetRedSlope_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedSlope_TODO_A(self, animation);
     }
-    pub fn SetRedSlope_TODO_B(self: *const IDCompositionLinearTransferEffect, redSlope: f32) callconv(.Inline) HRESULT {
+    pub fn SetRedSlope_TODO_B(self: *const IDCompositionLinearTransferEffect, redSlope: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedSlope_TODO_B(self, redSlope);
     }
-    pub fn SetRedDisable(self: *const IDCompositionLinearTransferEffect, redDisable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetRedDisable(self: *const IDCompositionLinearTransferEffect, redDisable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedDisable(self, redDisable);
     }
-    pub fn SetGreenYIntercept_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetGreenYIntercept_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenYIntercept_TODO_A(self, animation);
     }
-    pub fn SetGreenYIntercept_TODO_B(self: *const IDCompositionLinearTransferEffect, greenYIntercept: f32) callconv(.Inline) HRESULT {
+    pub fn SetGreenYIntercept_TODO_B(self: *const IDCompositionLinearTransferEffect, greenYIntercept: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenYIntercept_TODO_B(self, greenYIntercept);
     }
-    pub fn SetGreenSlope_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetGreenSlope_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenSlope_TODO_A(self, animation);
     }
-    pub fn SetGreenSlope_TODO_B(self: *const IDCompositionLinearTransferEffect, greenSlope: f32) callconv(.Inline) HRESULT {
+    pub fn SetGreenSlope_TODO_B(self: *const IDCompositionLinearTransferEffect, greenSlope: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenSlope_TODO_B(self, greenSlope);
     }
-    pub fn SetGreenDisable(self: *const IDCompositionLinearTransferEffect, greenDisable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetGreenDisable(self: *const IDCompositionLinearTransferEffect, greenDisable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenDisable(self, greenDisable);
     }
-    pub fn SetBlueYIntercept_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBlueYIntercept_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueYIntercept_TODO_A(self, animation);
     }
-    pub fn SetBlueYIntercept_TODO_B(self: *const IDCompositionLinearTransferEffect, blueYIntercept: f32) callconv(.Inline) HRESULT {
+    pub fn SetBlueYIntercept_TODO_B(self: *const IDCompositionLinearTransferEffect, blueYIntercept: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueYIntercept_TODO_B(self, blueYIntercept);
     }
-    pub fn SetBlueSlope_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBlueSlope_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueSlope_TODO_A(self, animation);
     }
-    pub fn SetBlueSlope_TODO_B(self: *const IDCompositionLinearTransferEffect, blueSlope: f32) callconv(.Inline) HRESULT {
+    pub fn SetBlueSlope_TODO_B(self: *const IDCompositionLinearTransferEffect, blueSlope: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueSlope_TODO_B(self, blueSlope);
     }
-    pub fn SetBlueDisable(self: *const IDCompositionLinearTransferEffect, blueDisable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBlueDisable(self: *const IDCompositionLinearTransferEffect, blueDisable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueDisable(self, blueDisable);
     }
-    pub fn SetAlphaYIntercept_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAlphaYIntercept_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaYIntercept_TODO_A(self, animation);
     }
-    pub fn SetAlphaYIntercept_TODO_B(self: *const IDCompositionLinearTransferEffect, alphaYIntercept: f32) callconv(.Inline) HRESULT {
+    pub fn SetAlphaYIntercept_TODO_B(self: *const IDCompositionLinearTransferEffect, alphaYIntercept: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaYIntercept_TODO_B(self, alphaYIntercept);
     }
-    pub fn SetAlphaSlope_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAlphaSlope_TODO_A(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaSlope_TODO_A(self, animation);
     }
-    pub fn SetAlphaSlope_TODO_B(self: *const IDCompositionLinearTransferEffect, alphaSlope: f32) callconv(.Inline) HRESULT {
+    pub fn SetAlphaSlope_TODO_B(self: *const IDCompositionLinearTransferEffect, alphaSlope: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaSlope_TODO_B(self, alphaSlope);
     }
-    pub fn SetAlphaDisable(self: *const IDCompositionLinearTransferEffect, alphaDisable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetAlphaDisable(self: *const IDCompositionLinearTransferEffect, alphaDisable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaDisable(self, alphaDisable);
     }
-    pub fn SetClampOutput(self: *const IDCompositionLinearTransferEffect, clampOutput: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetClampOutput(self: *const IDCompositionLinearTransferEffect, clampOutput: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetClampOutput(self, clampOutput);
     }
 };
@@ -2645,55 +2645,55 @@ pub const IDCompositionTableTransferEffect = extern union {
     pub const SetRedTableValue = @compileError("COM method 'SetRedTableValue' must be called using one of the following overload names: SetRedTableValue_TODO_A, SetRedTableValue_TODO_B");
     pub const SetBlueTableValue = @compileError("COM method 'SetBlueTableValue' must be called using one of the following overload names: SetBlueTableValue_TODO_A, SetBlueTableValue_TODO_B");
     pub const SetAlphaTableValue = @compileError("COM method 'SetAlphaTableValue' must be called using one of the following overload names: SetAlphaTableValue_TODO_A, SetAlphaTableValue_TODO_B");
-    pub fn SetRedTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.Inline) HRESULT {
+    pub fn SetRedTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedTable(self, tableValues, count);
     }
-    pub fn SetGreenTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.Inline) HRESULT {
+    pub fn SetGreenTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenTable(self, tableValues, count);
     }
-    pub fn SetBlueTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.Inline) HRESULT {
+    pub fn SetBlueTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueTable(self, tableValues, count);
     }
-    pub fn SetAlphaTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.Inline) HRESULT {
+    pub fn SetAlphaTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaTable(self, tableValues, count);
     }
-    pub fn SetRedDisable(self: *const IDCompositionTableTransferEffect, redDisable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetRedDisable(self: *const IDCompositionTableTransferEffect, redDisable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedDisable(self, redDisable);
     }
-    pub fn SetGreenDisable(self: *const IDCompositionTableTransferEffect, greenDisable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetGreenDisable(self: *const IDCompositionTableTransferEffect, greenDisable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenDisable(self, greenDisable);
     }
-    pub fn SetBlueDisable(self: *const IDCompositionTableTransferEffect, blueDisable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBlueDisable(self: *const IDCompositionTableTransferEffect, blueDisable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueDisable(self, blueDisable);
     }
-    pub fn SetAlphaDisable(self: *const IDCompositionTableTransferEffect, alphaDisable: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetAlphaDisable(self: *const IDCompositionTableTransferEffect, alphaDisable: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaDisable(self, alphaDisable);
     }
-    pub fn SetClampOutput(self: *const IDCompositionTableTransferEffect, clampOutput: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetClampOutput(self: *const IDCompositionTableTransferEffect, clampOutput: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetClampOutput(self, clampOutput);
     }
-    pub fn SetRedTableValue_TODO_A(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetRedTableValue_TODO_A(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedTableValue_TODO_A(self, index, animation);
     }
-    pub fn SetRedTableValue_TODO_B(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.Inline) HRESULT {
+    pub fn SetRedTableValue_TODO_B(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetRedTableValue_TODO_B(self, index, value);
     }
-    pub fn SetGreenTableValue_TODO_A(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetGreenTableValue_TODO_A(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenTableValue_TODO_A(self, index, animation);
     }
-    pub fn SetGreenTableValue_TODO_B(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.Inline) HRESULT {
+    pub fn SetGreenTableValue_TODO_B(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGreenTableValue_TODO_B(self, index, value);
     }
-    pub fn SetBlueTableValue_TODO_A(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetBlueTableValue_TODO_A(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueTableValue_TODO_A(self, index, animation);
     }
-    pub fn SetBlueTableValue_TODO_B(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.Inline) HRESULT {
+    pub fn SetBlueTableValue_TODO_B(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlueTableValue_TODO_B(self, index, value);
     }
-    pub fn SetAlphaTableValue_TODO_A(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetAlphaTableValue_TODO_A(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaTableValue_TODO_A(self, index, animation);
     }
-    pub fn SetAlphaTableValue_TODO_B(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.Inline) HRESULT {
+    pub fn SetAlphaTableValue_TODO_B(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetAlphaTableValue_TODO_B(self, index, value);
     }
 };
@@ -2712,7 +2712,7 @@ pub const IDCompositionCompositeEffect = extern union {
     IDCompositionFilterEffect: IDCompositionFilterEffect,
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
-    pub fn SetMode(self: *const IDCompositionCompositeEffect, mode: D2D1_COMPOSITE_MODE) callconv(.Inline) HRESULT {
+    pub fn SetMode(self: *const IDCompositionCompositeEffect, mode: D2D1_COMPOSITE_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetMode(self, mode);
     }
 };
@@ -2731,7 +2731,7 @@ pub const IDCompositionBlendEffect = extern union {
     IDCompositionFilterEffect: IDCompositionFilterEffect,
     IDCompositionEffect: IDCompositionEffect,
     IUnknown: IUnknown,
-    pub fn SetMode(self: *const IDCompositionBlendEffect, mode: D2D1_BLEND_MODE) callconv(.Inline) HRESULT {
+    pub fn SetMode(self: *const IDCompositionBlendEffect, mode: D2D1_BLEND_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetMode(self, mode);
     }
 };
@@ -2790,34 +2790,34 @@ pub const IDCompositionArithmeticCompositeEffect = extern union {
     pub const SetCoefficient1 = @compileError("COM method 'SetCoefficient1' must be called using one of the following overload names: SetCoefficient1_TODO_B, SetCoefficient1_TODO_A");
     pub const SetCoefficient3 = @compileError("COM method 'SetCoefficient3' must be called using one of the following overload names: SetCoefficient3_TODO_A, SetCoefficient3_TODO_B");
     pub const SetCoefficient4 = @compileError("COM method 'SetCoefficient4' must be called using one of the following overload names: SetCoefficient4_TODO_A, SetCoefficient4_TODO_B");
-    pub fn SetCoefficients(self: *const IDCompositionArithmeticCompositeEffect, coefficients: ?*const D2D_VECTOR_4F) callconv(.Inline) HRESULT {
+    pub fn SetCoefficients(self: *const IDCompositionArithmeticCompositeEffect, coefficients: ?*const D2D_VECTOR_4F) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficients(self, coefficients);
     }
-    pub fn SetClampOutput(self: *const IDCompositionArithmeticCompositeEffect, clampoutput: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetClampOutput(self: *const IDCompositionArithmeticCompositeEffect, clampoutput: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetClampOutput(self, clampoutput);
     }
-    pub fn SetCoefficient1_TODO_A(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCoefficient1_TODO_A(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficient1_TODO_A(self, animation);
     }
-    pub fn SetCoefficient1_TODO_B(self: *const IDCompositionArithmeticCompositeEffect, Coeffcient1: f32) callconv(.Inline) HRESULT {
+    pub fn SetCoefficient1_TODO_B(self: *const IDCompositionArithmeticCompositeEffect, Coeffcient1: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficient1_TODO_B(self, Coeffcient1);
     }
-    pub fn SetCoefficient2_TODO_A(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCoefficient2_TODO_A(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficient2_TODO_A(self, animation);
     }
-    pub fn SetCoefficient2_TODO_B(self: *const IDCompositionArithmeticCompositeEffect, Coefficient2: f32) callconv(.Inline) HRESULT {
+    pub fn SetCoefficient2_TODO_B(self: *const IDCompositionArithmeticCompositeEffect, Coefficient2: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficient2_TODO_B(self, Coefficient2);
     }
-    pub fn SetCoefficient3_TODO_A(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCoefficient3_TODO_A(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficient3_TODO_A(self, animation);
     }
-    pub fn SetCoefficient3_TODO_B(self: *const IDCompositionArithmeticCompositeEffect, Coefficient3: f32) callconv(.Inline) HRESULT {
+    pub fn SetCoefficient3_TODO_B(self: *const IDCompositionArithmeticCompositeEffect, Coefficient3: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficient3_TODO_B(self, Coefficient3);
     }
-    pub fn SetCoefficient4_TODO_A(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetCoefficient4_TODO_A(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficient4_TODO_A(self, animation);
     }
-    pub fn SetCoefficient4_TODO_B(self: *const IDCompositionArithmeticCompositeEffect, Coefficient4: f32) callconv(.Inline) HRESULT {
+    pub fn SetCoefficient4_TODO_B(self: *const IDCompositionArithmeticCompositeEffect, Coefficient4: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCoefficient4_TODO_B(self, Coefficient4);
     }
 };
@@ -2866,25 +2866,25 @@ pub const IDCompositionAffineTransform2DEffect = extern union {
     IUnknown: IUnknown,
     pub const SetSharpness = @compileError("COM method 'SetSharpness' must be called using one of the following overload names: SetSharpness_TODO_B, SetSharpness_TODO_A");
     pub const SetTransformMatrixElement = @compileError("COM method 'SetTransformMatrixElement' must be called using one of the following overload names: SetTransformMatrixElement_TODO_A, SetTransformMatrixElement_TODO_B");
-    pub fn SetInterpolationMode(self: *const IDCompositionAffineTransform2DEffect, interpolationMode: D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE) callconv(.Inline) HRESULT {
+    pub fn SetInterpolationMode(self: *const IDCompositionAffineTransform2DEffect, interpolationMode: D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetInterpolationMode(self, interpolationMode);
     }
-    pub fn SetBorderMode(self: *const IDCompositionAffineTransform2DEffect, borderMode: D2D1_BORDER_MODE) callconv(.Inline) HRESULT {
+    pub fn SetBorderMode(self: *const IDCompositionAffineTransform2DEffect, borderMode: D2D1_BORDER_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetBorderMode(self, borderMode);
     }
-    pub fn SetTransformMatrix(self: *const IDCompositionAffineTransform2DEffect, transformMatrix: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+    pub fn SetTransformMatrix(self: *const IDCompositionAffineTransform2DEffect, transformMatrix: ?*const D2D_MATRIX_3X2_F) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformMatrix(self, transformMatrix);
     }
-    pub fn SetTransformMatrixElement_TODO_A(self: *const IDCompositionAffineTransform2DEffect, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetTransformMatrixElement_TODO_A(self: *const IDCompositionAffineTransform2DEffect, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformMatrixElement_TODO_A(self, row, column, animation);
     }
-    pub fn SetTransformMatrixElement_TODO_B(self: *const IDCompositionAffineTransform2DEffect, row: i32, column: i32, value: f32) callconv(.Inline) HRESULT {
+    pub fn SetTransformMatrixElement_TODO_B(self: *const IDCompositionAffineTransform2DEffect, row: i32, column: i32, value: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTransformMatrixElement_TODO_B(self, row, column, value);
     }
-    pub fn SetSharpness_TODO_A(self: *const IDCompositionAffineTransform2DEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn SetSharpness_TODO_A(self: *const IDCompositionAffineTransform2DEffect, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.SetSharpness_TODO_A(self, animation);
     }
-    pub fn SetSharpness_TODO_B(self: *const IDCompositionAffineTransform2DEffect, sharpness: f32) callconv(.Inline) HRESULT {
+    pub fn SetSharpness_TODO_B(self: *const IDCompositionAffineTransform2DEffect, sharpness: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSharpness_TODO_B(self, sharpness);
     }
 };
@@ -2925,16 +2925,16 @@ pub const IDCompositionDelegatedInkTrail = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddTrailPoints(self: *const IDCompositionDelegatedInkTrail, inkPoints: [*]const DCompositionInkTrailPoint, inkPointsCount: u32, generationId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AddTrailPoints(self: *const IDCompositionDelegatedInkTrail, inkPoints: [*]const DCompositionInkTrailPoint, inkPointsCount: u32, generationId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddTrailPoints(self, inkPoints, inkPointsCount, generationId);
     }
-    pub fn AddTrailPointsWithPrediction(self: *const IDCompositionDelegatedInkTrail, inkPoints: [*]const DCompositionInkTrailPoint, inkPointsCount: u32, predictedInkPoints: [*]const DCompositionInkTrailPoint, predictedInkPointsCount: u32, generationId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AddTrailPointsWithPrediction(self: *const IDCompositionDelegatedInkTrail, inkPoints: [*]const DCompositionInkTrailPoint, inkPointsCount: u32, predictedInkPoints: [*]const DCompositionInkTrailPoint, predictedInkPointsCount: u32, generationId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddTrailPointsWithPrediction(self, inkPoints, inkPointsCount, predictedInkPoints, predictedInkPointsCount, generationId);
     }
-    pub fn RemoveTrailPoints(self: *const IDCompositionDelegatedInkTrail, generationId: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveTrailPoints(self: *const IDCompositionDelegatedInkTrail, generationId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveTrailPoints(self, generationId);
     }
-    pub fn StartNewTrail(self: *const IDCompositionDelegatedInkTrail, color: ?*const D2D_COLOR_F) callconv(.Inline) HRESULT {
+    pub fn StartNewTrail(self: *const IDCompositionDelegatedInkTrail, color: ?*const D2D_COLOR_F) callconv(.@"inline") HRESULT {
         return self.vtable.StartNewTrail(self, color);
     }
 };
@@ -2956,10 +2956,10 @@ pub const IDCompositionInkTrailDevice = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateDelegatedInkTrail(self: *const IDCompositionInkTrailDevice, inkTrail: ?*?*IDCompositionDelegatedInkTrail) callconv(.Inline) HRESULT {
+    pub fn CreateDelegatedInkTrail(self: *const IDCompositionInkTrailDevice, inkTrail: ?*?*IDCompositionDelegatedInkTrail) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDelegatedInkTrail(self, inkTrail);
     }
-    pub fn CreateDelegatedInkTrailForSwapChain(self: *const IDCompositionInkTrailDevice, swapChain: ?*IUnknown, inkTrail: ?*?*IDCompositionDelegatedInkTrail) callconv(.Inline) HRESULT {
+    pub fn CreateDelegatedInkTrailForSwapChain(self: *const IDCompositionInkTrailDevice, swapChain: ?*IUnknown, inkTrail: ?*?*IDCompositionDelegatedInkTrail) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDelegatedInkTrailForSwapChain(self, swapChain, inkTrail);
     }
 };

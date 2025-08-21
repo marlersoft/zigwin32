@@ -28,7 +28,7 @@ pub const IWsbApplicationBackupSupport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CheckConsistency(self: *const IWsbApplicationBackupSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, cVolumes: u32, rgwszSourceVolumePath: [*]?PWSTR, rgwszSnapshotVolumePath: [*]?PWSTR, ppAsync: ?*?*IWsbApplicationAsync) callconv(.Inline) HRESULT {
+    pub fn CheckConsistency(self: *const IWsbApplicationBackupSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, cVolumes: u32, rgwszSourceVolumePath: [*]?PWSTR, rgwszSnapshotVolumePath: [*]?PWSTR, ppAsync: ?*?*IWsbApplicationAsync) callconv(.@"inline") HRESULT {
         return self.vtable.CheckConsistency(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, cVolumes, rgwszSourceVolumePath, rgwszSnapshotVolumePath, ppAsync);
     }
 };
@@ -68,16 +68,16 @@ pub const IWsbApplicationRestoreSupport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PreRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.Inline) HRESULT {
+    pub fn PreRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.@"inline") HRESULT {
         return self.vtable.PreRestore(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
     }
-    pub fn PostRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.Inline) HRESULT {
+    pub fn PostRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.@"inline") HRESULT {
         return self.vtable.PostRestore(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
     }
-    pub fn OrderComponents(self: *const IWsbApplicationRestoreSupport, cComponents: u32, rgComponentName: [*]?PWSTR, rgComponentLogicalPaths: [*]?PWSTR, prgComponentName: [*]?*?PWSTR, prgComponentLogicalPath: [*]?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn OrderComponents(self: *const IWsbApplicationRestoreSupport, cComponents: u32, rgComponentName: [*]?PWSTR, rgComponentLogicalPaths: [*]?PWSTR, prgComponentName: [*]?*?PWSTR, prgComponentLogicalPath: [*]?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OrderComponents(self, cComponents, rgComponentName, rgComponentLogicalPaths, prgComponentName, prgComponentLogicalPath);
     }
-    pub fn IsRollForwardSupported(self: *const IWsbApplicationRestoreSupport, pbRollForwardSupported: ?*u8) callconv(.Inline) HRESULT {
+    pub fn IsRollForwardSupported(self: *const IWsbApplicationRestoreSupport, pbRollForwardSupported: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.IsRollForwardSupported(self, pbRollForwardSupported);
     }
 };
@@ -98,10 +98,10 @@ pub const IWsbApplicationAsync = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryStatus(self: *const IWsbApplicationAsync, phrResult: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn QueryStatus(self: *const IWsbApplicationAsync, phrResult: ?*HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.QueryStatus(self, phrResult);
     }
-    pub fn Abort(self: *const IWsbApplicationAsync) callconv(.Inline) HRESULT {
+    pub fn Abort(self: *const IWsbApplicationAsync) callconv(.@"inline") HRESULT {
         return self.vtable.Abort(self);
     }
 };

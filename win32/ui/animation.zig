@@ -153,61 +153,61 @@ pub const IUIAnimationManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateAnimationVariable(self: *const IUIAnimationManager, initialValue: f64, variable: ?*?*IUIAnimationVariable) callconv(.Inline) HRESULT {
+    pub fn CreateAnimationVariable(self: *const IUIAnimationManager, initialValue: f64, variable: ?*?*IUIAnimationVariable) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAnimationVariable(self, initialValue, variable);
     }
-    pub fn ScheduleTransition(self: *const IUIAnimationManager, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, timeNow: f64) callconv(.Inline) HRESULT {
+    pub fn ScheduleTransition(self: *const IUIAnimationManager, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, timeNow: f64) callconv(.@"inline") HRESULT {
         return self.vtable.ScheduleTransition(self, variable, transition, timeNow);
     }
-    pub fn CreateStoryboard(self: *const IUIAnimationManager, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+    pub fn CreateStoryboard(self: *const IUIAnimationManager, storyboard: ?*?*IUIAnimationStoryboard) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStoryboard(self, storyboard);
     }
-    pub fn FinishAllStoryboards(self: *const IUIAnimationManager, completionDeadline: f64) callconv(.Inline) HRESULT {
+    pub fn FinishAllStoryboards(self: *const IUIAnimationManager, completionDeadline: f64) callconv(.@"inline") HRESULT {
         return self.vtable.FinishAllStoryboards(self, completionDeadline);
     }
-    pub fn AbandonAllStoryboards(self: *const IUIAnimationManager) callconv(.Inline) HRESULT {
+    pub fn AbandonAllStoryboards(self: *const IUIAnimationManager) callconv(.@"inline") HRESULT {
         return self.vtable.AbandonAllStoryboards(self);
     }
-    pub fn Update(self: *const IUIAnimationManager, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IUIAnimationManager, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Update(self, timeNow, updateResult);
     }
-    pub fn GetVariableFromTag(self: *const IUIAnimationManager, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable) callconv(.Inline) HRESULT {
+    pub fn GetVariableFromTag(self: *const IUIAnimationManager, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable) callconv(.@"inline") HRESULT {
         return self.vtable.GetVariableFromTag(self, object, id, variable);
     }
-    pub fn GetStoryboardFromTag(self: *const IUIAnimationManager, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+    pub fn GetStoryboardFromTag(self: *const IUIAnimationManager, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard) callconv(.@"inline") HRESULT {
         return self.vtable.GetStoryboardFromTag(self, object, id, storyboard);
     }
-    pub fn GetStatus(self: *const IUIAnimationManager, status: ?*UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IUIAnimationManager, status: ?*UI_ANIMATION_MANAGER_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, status);
     }
-    pub fn SetAnimationMode(self: *const IUIAnimationManager, mode: UI_ANIMATION_MODE) callconv(.Inline) HRESULT {
+    pub fn SetAnimationMode(self: *const IUIAnimationManager, mode: UI_ANIMATION_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetAnimationMode(self, mode);
     }
-    pub fn Pause(self: *const IUIAnimationManager) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const IUIAnimationManager) callconv(.@"inline") HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const IUIAnimationManager) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IUIAnimationManager) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn SetManagerEventHandler(self: *const IUIAnimationManager, handler: ?*IUIAnimationManagerEventHandler) callconv(.Inline) HRESULT {
+    pub fn SetManagerEventHandler(self: *const IUIAnimationManager, handler: ?*IUIAnimationManagerEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.SetManagerEventHandler(self, handler);
     }
-    pub fn SetCancelPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
+    pub fn SetCancelPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.@"inline") HRESULT {
         return self.vtable.SetCancelPriorityComparison(self, comparison);
     }
-    pub fn SetTrimPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
+    pub fn SetTrimPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.@"inline") HRESULT {
         return self.vtable.SetTrimPriorityComparison(self, comparison);
     }
-    pub fn SetCompressPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
+    pub fn SetCompressPriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.@"inline") HRESULT {
         return self.vtable.SetCompressPriorityComparison(self, comparison);
     }
-    pub fn SetConcludePriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.Inline) HRESULT {
+    pub fn SetConcludePriorityComparison(self: *const IUIAnimationManager, comparison: ?*IUIAnimationPriorityComparison) callconv(.@"inline") HRESULT {
         return self.vtable.SetConcludePriorityComparison(self, comparison);
     }
-    pub fn SetDefaultLongestAcceptableDelay(self: *const IUIAnimationManager, delay: f64) callconv(.Inline) HRESULT {
+    pub fn SetDefaultLongestAcceptableDelay(self: *const IUIAnimationManager, delay: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultLongestAcceptableDelay(self, delay);
     }
-    pub fn Shutdown(self: *const IUIAnimationManager) callconv(.Inline) HRESULT {
+    pub fn Shutdown(self: *const IUIAnimationManager) callconv(.@"inline") HRESULT {
         return self.vtable.Shutdown(self);
     }
 };
@@ -288,46 +288,46 @@ pub const IUIAnimationVariable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetValue(self: *const IUIAnimationVariable, value: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IUIAnimationVariable, value: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, value);
     }
-    pub fn GetFinalValue(self: *const IUIAnimationVariable, finalValue: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetFinalValue(self: *const IUIAnimationVariable, finalValue: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetFinalValue(self, finalValue);
     }
-    pub fn GetPreviousValue(self: *const IUIAnimationVariable, previousValue: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetPreviousValue(self: *const IUIAnimationVariable, previousValue: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousValue(self, previousValue);
     }
-    pub fn GetIntegerValue(self: *const IUIAnimationVariable, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIntegerValue(self: *const IUIAnimationVariable, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIntegerValue(self, value);
     }
-    pub fn GetFinalIntegerValue(self: *const IUIAnimationVariable, finalValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetFinalIntegerValue(self: *const IUIAnimationVariable, finalValue: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFinalIntegerValue(self, finalValue);
     }
-    pub fn GetPreviousIntegerValue(self: *const IUIAnimationVariable, previousValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPreviousIntegerValue(self: *const IUIAnimationVariable, previousValue: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousIntegerValue(self, previousValue);
     }
-    pub fn GetCurrentStoryboard(self: *const IUIAnimationVariable, storyboard: ?*?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+    pub fn GetCurrentStoryboard(self: *const IUIAnimationVariable, storyboard: ?*?*IUIAnimationStoryboard) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentStoryboard(self, storyboard);
     }
-    pub fn SetLowerBound(self: *const IUIAnimationVariable, bound: f64) callconv(.Inline) HRESULT {
+    pub fn SetLowerBound(self: *const IUIAnimationVariable, bound: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetLowerBound(self, bound);
     }
-    pub fn SetUpperBound(self: *const IUIAnimationVariable, bound: f64) callconv(.Inline) HRESULT {
+    pub fn SetUpperBound(self: *const IUIAnimationVariable, bound: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetUpperBound(self, bound);
     }
-    pub fn SetRoundingMode(self: *const IUIAnimationVariable, mode: UI_ANIMATION_ROUNDING_MODE) callconv(.Inline) HRESULT {
+    pub fn SetRoundingMode(self: *const IUIAnimationVariable, mode: UI_ANIMATION_ROUNDING_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetRoundingMode(self, mode);
     }
-    pub fn SetTag(self: *const IUIAnimationVariable, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+    pub fn SetTag(self: *const IUIAnimationVariable, object: ?*IUnknown, id: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTag(self, object, id);
     }
-    pub fn GetTag(self: *const IUIAnimationVariable, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTag(self: *const IUIAnimationVariable, object: ?*?*IUnknown, id: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTag(self, object, id);
     }
-    pub fn SetVariableChangeHandler(self: *const IUIAnimationVariable, handler: ?*IUIAnimationVariableChangeHandler) callconv(.Inline) HRESULT {
+    pub fn SetVariableChangeHandler(self: *const IUIAnimationVariable, handler: ?*IUIAnimationVariableChangeHandler) callconv(.@"inline") HRESULT {
         return self.vtable.SetVariableChangeHandler(self, handler);
     }
-    pub fn SetVariableIntegerChangeHandler(self: *const IUIAnimationVariable, handler: ?*IUIAnimationVariableIntegerChangeHandler) callconv(.Inline) HRESULT {
+    pub fn SetVariableIntegerChangeHandler(self: *const IUIAnimationVariable, handler: ?*IUIAnimationVariableIntegerChangeHandler) callconv(.@"inline") HRESULT {
         return self.vtable.SetVariableIntegerChangeHandler(self, handler);
     }
 };
@@ -453,55 +453,55 @@ pub const IUIAnimationStoryboard = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddTransition(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn AddTransition(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.AddTransition(self, variable, transition);
     }
-    pub fn AddKeyframeAtOffset(self: *const IUIAnimationStoryboard, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+    pub fn AddKeyframeAtOffset(self: *const IUIAnimationStoryboard, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.@"inline") HRESULT {
         return self.vtable.AddKeyframeAtOffset(self, existingKeyframe, offset, keyframe);
     }
-    pub fn AddKeyframeAfterTransition(self: *const IUIAnimationStoryboard, transition: ?*IUIAnimationTransition, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+    pub fn AddKeyframeAfterTransition(self: *const IUIAnimationStoryboard, transition: ?*IUIAnimationTransition, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.@"inline") HRESULT {
         return self.vtable.AddKeyframeAfterTransition(self, transition, keyframe);
     }
-    pub fn AddTransitionAtKeyframe(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+    pub fn AddTransitionAtKeyframe(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME) callconv(.@"inline") HRESULT {
         return self.vtable.AddTransitionAtKeyframe(self, variable, transition, startKeyframe);
     }
-    pub fn AddTransitionBetweenKeyframes(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+    pub fn AddTransitionBetweenKeyframes(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, transition: ?*IUIAnimationTransition, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) callconv(.@"inline") HRESULT {
         return self.vtable.AddTransitionBetweenKeyframes(self, variable, transition, startKeyframe, endKeyframe);
     }
-    pub fn RepeatBetweenKeyframes(self: *const IUIAnimationStoryboard, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, repetitionCount: i32) callconv(.Inline) HRESULT {
+    pub fn RepeatBetweenKeyframes(self: *const IUIAnimationStoryboard, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, repetitionCount: i32) callconv(.@"inline") HRESULT {
         return self.vtable.RepeatBetweenKeyframes(self, startKeyframe, endKeyframe, repetitionCount);
     }
-    pub fn HoldVariable(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable) callconv(.Inline) HRESULT {
+    pub fn HoldVariable(self: *const IUIAnimationStoryboard, variable: ?*IUIAnimationVariable) callconv(.@"inline") HRESULT {
         return self.vtable.HoldVariable(self, variable);
     }
-    pub fn SetLongestAcceptableDelay(self: *const IUIAnimationStoryboard, delay: f64) callconv(.Inline) HRESULT {
+    pub fn SetLongestAcceptableDelay(self: *const IUIAnimationStoryboard, delay: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetLongestAcceptableDelay(self, delay);
     }
-    pub fn Schedule(self: *const IUIAnimationStoryboard, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) callconv(.Inline) HRESULT {
+    pub fn Schedule(self: *const IUIAnimationStoryboard, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Schedule(self, timeNow, schedulingResult);
     }
-    pub fn Conclude(self: *const IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+    pub fn Conclude(self: *const IUIAnimationStoryboard) callconv(.@"inline") HRESULT {
         return self.vtable.Conclude(self);
     }
-    pub fn Finish(self: *const IUIAnimationStoryboard, completionDeadline: f64) callconv(.Inline) HRESULT {
+    pub fn Finish(self: *const IUIAnimationStoryboard, completionDeadline: f64) callconv(.@"inline") HRESULT {
         return self.vtable.Finish(self, completionDeadline);
     }
-    pub fn Abandon(self: *const IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+    pub fn Abandon(self: *const IUIAnimationStoryboard) callconv(.@"inline") HRESULT {
         return self.vtable.Abandon(self);
     }
-    pub fn SetTag(self: *const IUIAnimationStoryboard, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+    pub fn SetTag(self: *const IUIAnimationStoryboard, object: ?*IUnknown, id: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTag(self, object, id);
     }
-    pub fn GetTag(self: *const IUIAnimationStoryboard, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTag(self: *const IUIAnimationStoryboard, object: ?*?*IUnknown, id: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTag(self, object, id);
     }
-    pub fn GetStatus(self: *const IUIAnimationStoryboard, status: ?*UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IUIAnimationStoryboard, status: ?*UI_ANIMATION_STORYBOARD_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, status);
     }
-    pub fn GetElapsedTime(self: *const IUIAnimationStoryboard, elapsedTime: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetElapsedTime(self: *const IUIAnimationStoryboard, elapsedTime: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetElapsedTime(self, elapsedTime);
     }
-    pub fn SetStoryboardEventHandler(self: *const IUIAnimationStoryboard, handler: ?*IUIAnimationStoryboardEventHandler) callconv(.Inline) HRESULT {
+    pub fn SetStoryboardEventHandler(self: *const IUIAnimationStoryboard, handler: ?*IUIAnimationStoryboardEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.SetStoryboardEventHandler(self, handler);
     }
 };
@@ -530,16 +530,16 @@ pub const IUIAnimationTransition = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetInitialValue(self: *const IUIAnimationTransition, value: f64) callconv(.Inline) HRESULT {
+    pub fn SetInitialValue(self: *const IUIAnimationTransition, value: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialValue(self, value);
     }
-    pub fn SetInitialVelocity(self: *const IUIAnimationTransition, velocity: f64) callconv(.Inline) HRESULT {
+    pub fn SetInitialVelocity(self: *const IUIAnimationTransition, velocity: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialVelocity(self, velocity);
     }
-    pub fn IsDurationKnown(self: *const IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn IsDurationKnown(self: *const IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.IsDurationKnown(self);
     }
-    pub fn GetDuration(self: *const IUIAnimationTransition, duration: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetDuration(self: *const IUIAnimationTransition, duration: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDuration(self, duration);
     }
 };
@@ -558,7 +558,7 @@ pub const IUIAnimationManagerEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnManagerStatusChanged(self: *const IUIAnimationManagerEventHandler, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnManagerStatusChanged(self: *const IUIAnimationManagerEventHandler, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnManagerStatusChanged(self, newStatus, previousStatus);
     }
 };
@@ -579,7 +579,7 @@ pub const IUIAnimationVariableChangeHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnValueChanged(self: *const IUIAnimationVariableChangeHandler, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: f64, previousValue: f64) callconv(.Inline) HRESULT {
+    pub fn OnValueChanged(self: *const IUIAnimationVariableChangeHandler, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: f64, previousValue: f64) callconv(.@"inline") HRESULT {
         return self.vtable.OnValueChanged(self, storyboard, variable, newValue, previousValue);
     }
 };
@@ -600,7 +600,7 @@ pub const IUIAnimationVariableIntegerChangeHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnIntegerValueChanged(self: *const IUIAnimationVariableIntegerChangeHandler, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: i32, previousValue: i32) callconv(.Inline) HRESULT {
+    pub fn OnIntegerValueChanged(self: *const IUIAnimationVariableIntegerChangeHandler, storyboard: ?*IUIAnimationStoryboard, variable: ?*IUIAnimationVariable, newValue: i32, previousValue: i32) callconv(.@"inline") HRESULT {
         return self.vtable.OnIntegerValueChanged(self, storyboard, variable, newValue, previousValue);
     }
 };
@@ -624,10 +624,10 @@ pub const IUIAnimationStoryboardEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStoryboardStatusChanged(self: *const IUIAnimationStoryboardEventHandler, storyboard: ?*IUIAnimationStoryboard, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnStoryboardStatusChanged(self: *const IUIAnimationStoryboardEventHandler, storyboard: ?*IUIAnimationStoryboard, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnStoryboardStatusChanged(self, storyboard, newStatus, previousStatus);
     }
-    pub fn OnStoryboardUpdated(self: *const IUIAnimationStoryboardEventHandler, storyboard: ?*IUIAnimationStoryboard) callconv(.Inline) HRESULT {
+    pub fn OnStoryboardUpdated(self: *const IUIAnimationStoryboardEventHandler, storyboard: ?*IUIAnimationStoryboard) callconv(.@"inline") HRESULT {
         return self.vtable.OnStoryboardUpdated(self, storyboard);
     }
 };
@@ -654,7 +654,7 @@ pub const IUIAnimationPriorityComparison = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HasPriority(self: *const IUIAnimationPriorityComparison, scheduledStoryboard: ?*IUIAnimationStoryboard, newStoryboard: ?*IUIAnimationStoryboard, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) callconv(.Inline) HRESULT {
+    pub fn HasPriority(self: *const IUIAnimationPriorityComparison, scheduledStoryboard: ?*IUIAnimationStoryboard, newStoryboard: ?*IUIAnimationStoryboard, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) callconv(.@"inline") HRESULT {
         return self.vtable.HasPriority(self, scheduledStoryboard, newStoryboard, priorityEffect);
     }
 };
@@ -752,40 +752,40 @@ pub const IUIAnimationTransitionLibrary = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateInstantaneousTransition(self: *const IUIAnimationTransitionLibrary, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateInstantaneousTransition(self: *const IUIAnimationTransitionLibrary, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstantaneousTransition(self, finalValue, transition);
     }
-    pub fn CreateConstantTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateConstantTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateConstantTransition(self, duration, transition);
     }
-    pub fn CreateDiscreteTransition(self: *const IUIAnimationTransitionLibrary, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateDiscreteTransition(self: *const IUIAnimationTransitionLibrary, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDiscreteTransition(self, delay, finalValue, hold, transition);
     }
-    pub fn CreateLinearTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateLinearTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLinearTransition(self, duration, finalValue, transition);
     }
-    pub fn CreateLinearTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateLinearTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLinearTransitionFromSpeed(self, speed, finalValue, transition);
     }
-    pub fn CreateSinusoidalTransitionFromVelocity(self: *const IUIAnimationTransitionLibrary, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateSinusoidalTransitionFromVelocity(self: *const IUIAnimationTransitionLibrary, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSinusoidalTransitionFromVelocity(self, duration, period, transition);
     }
-    pub fn CreateSinusoidalTransitionFromRange(self: *const IUIAnimationTransitionLibrary, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateSinusoidalTransitionFromRange(self: *const IUIAnimationTransitionLibrary, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSinusoidalTransitionFromRange(self, duration, minimumValue, maximumValue, period, slope, transition);
     }
-    pub fn CreateAccelerateDecelerateTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateAccelerateDecelerateTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAccelerateDecelerateTransition(self, duration, finalValue, accelerationRatio, decelerationRatio, transition);
     }
-    pub fn CreateReversalTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateReversalTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateReversalTransition(self, duration, transition);
     }
-    pub fn CreateCubicTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateCubicTransition(self: *const IUIAnimationTransitionLibrary, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCubicTransition(self, duration, finalValue, finalVelocity, transition);
     }
-    pub fn CreateSmoothStopTransition(self: *const IUIAnimationTransitionLibrary, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateSmoothStopTransition(self: *const IUIAnimationTransitionLibrary, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSmoothStopTransition(self, maximumDuration, finalValue, transition);
     }
-    pub fn CreateParabolicTransitionFromAcceleration(self: *const IUIAnimationTransitionLibrary, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateParabolicTransitionFromAcceleration(self: *const IUIAnimationTransitionLibrary, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateParabolicTransitionFromAcceleration(self, finalValue, finalVelocity, acceleration, transition);
     }
 };
@@ -872,25 +872,25 @@ pub const IUIAnimationInterpolator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetInitialValueAndVelocity(self: *const IUIAnimationInterpolator, initialValue: f64, initialVelocity: f64) callconv(.Inline) HRESULT {
+    pub fn SetInitialValueAndVelocity(self: *const IUIAnimationInterpolator, initialValue: f64, initialVelocity: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialValueAndVelocity(self, initialValue, initialVelocity);
     }
-    pub fn SetDuration(self: *const IUIAnimationInterpolator, duration: f64) callconv(.Inline) HRESULT {
+    pub fn SetDuration(self: *const IUIAnimationInterpolator, duration: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetDuration(self, duration);
     }
-    pub fn GetDuration(self: *const IUIAnimationInterpolator, duration: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetDuration(self: *const IUIAnimationInterpolator, duration: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDuration(self, duration);
     }
-    pub fn GetFinalValue(self: *const IUIAnimationInterpolator, value: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetFinalValue(self: *const IUIAnimationInterpolator, value: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetFinalValue(self, value);
     }
-    pub fn InterpolateValue(self: *const IUIAnimationInterpolator, offset: f64, value: ?*f64) callconv(.Inline) HRESULT {
+    pub fn InterpolateValue(self: *const IUIAnimationInterpolator, offset: f64, value: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.InterpolateValue(self, offset, value);
     }
-    pub fn InterpolateVelocity(self: *const IUIAnimationInterpolator, offset: f64, velocity: ?*f64) callconv(.Inline) HRESULT {
+    pub fn InterpolateVelocity(self: *const IUIAnimationInterpolator, offset: f64, velocity: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.InterpolateVelocity(self, offset, velocity);
     }
-    pub fn GetDependencies(self: *const IUIAnimationInterpolator, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) callconv(.Inline) HRESULT {
+    pub fn GetDependencies(self: *const IUIAnimationInterpolator, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetDependencies(self, initialValueDependencies, initialVelocityDependencies, durationDependencies);
     }
 };
@@ -909,7 +909,7 @@ pub const IUIAnimationTransitionFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateTransition(self: *const IUIAnimationTransitionFactory, interpolator: ?*IUIAnimationInterpolator, transition: ?*?*IUIAnimationTransition) callconv(.Inline) HRESULT {
+    pub fn CreateTransition(self: *const IUIAnimationTransitionFactory, interpolator: ?*IUIAnimationInterpolator, transition: ?*?*IUIAnimationTransition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTransition(self, interpolator, transition);
     }
 };
@@ -956,25 +956,25 @@ pub const IUIAnimationTimer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetTimerUpdateHandler(self: *const IUIAnimationTimer, updateHandler: ?*IUIAnimationTimerUpdateHandler, idleBehavior: UI_ANIMATION_IDLE_BEHAVIOR) callconv(.Inline) HRESULT {
+    pub fn SetTimerUpdateHandler(self: *const IUIAnimationTimer, updateHandler: ?*IUIAnimationTimerUpdateHandler, idleBehavior: UI_ANIMATION_IDLE_BEHAVIOR) callconv(.@"inline") HRESULT {
         return self.vtable.SetTimerUpdateHandler(self, updateHandler, idleBehavior);
     }
-    pub fn SetTimerEventHandler(self: *const IUIAnimationTimer, handler: ?*IUIAnimationTimerEventHandler) callconv(.Inline) HRESULT {
+    pub fn SetTimerEventHandler(self: *const IUIAnimationTimer, handler: ?*IUIAnimationTimerEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.SetTimerEventHandler(self, handler);
     }
-    pub fn Enable(self: *const IUIAnimationTimer) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const IUIAnimationTimer) callconv(.@"inline") HRESULT {
         return self.vtable.Enable(self);
     }
-    pub fn Disable(self: *const IUIAnimationTimer) callconv(.Inline) HRESULT {
+    pub fn Disable(self: *const IUIAnimationTimer) callconv(.@"inline") HRESULT {
         return self.vtable.Disable(self);
     }
-    pub fn IsEnabled(self: *const IUIAnimationTimer) callconv(.Inline) HRESULT {
+    pub fn IsEnabled(self: *const IUIAnimationTimer) callconv(.@"inline") HRESULT {
         return self.vtable.IsEnabled(self);
     }
-    pub fn GetTime(self: *const IUIAnimationTimer, seconds: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetTime(self: *const IUIAnimationTimer, seconds: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetTime(self, seconds);
     }
-    pub fn SetFrameRateThreshold(self: *const IUIAnimationTimer, framesPerSecond: u32) callconv(.Inline) HRESULT {
+    pub fn SetFrameRateThreshold(self: *const IUIAnimationTimer, framesPerSecond: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFrameRateThreshold(self, framesPerSecond);
     }
 };
@@ -1000,13 +1000,13 @@ pub const IUIAnimationTimerUpdateHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnUpdate(self: *const IUIAnimationTimerUpdateHandler, timeNow: f64, result: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
+    pub fn OnUpdate(self: *const IUIAnimationTimerUpdateHandler, timeNow: f64, result: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnUpdate(self, timeNow, result);
     }
-    pub fn SetTimerClientEventHandler(self: *const IUIAnimationTimerUpdateHandler, handler: ?*IUIAnimationTimerClientEventHandler) callconv(.Inline) HRESULT {
+    pub fn SetTimerClientEventHandler(self: *const IUIAnimationTimerUpdateHandler, handler: ?*IUIAnimationTimerClientEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.SetTimerClientEventHandler(self, handler);
     }
-    pub fn ClearTimerClientEventHandler(self: *const IUIAnimationTimerUpdateHandler) callconv(.Inline) HRESULT {
+    pub fn ClearTimerClientEventHandler(self: *const IUIAnimationTimerUpdateHandler) callconv(.@"inline") HRESULT {
         return self.vtable.ClearTimerClientEventHandler(self);
     }
 };
@@ -1032,7 +1032,7 @@ pub const IUIAnimationTimerClientEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnTimerClientStatusChanged(self: *const IUIAnimationTimerClientEventHandler, newStatus: UI_ANIMATION_TIMER_CLIENT_STATUS, previousStatus: UI_ANIMATION_TIMER_CLIENT_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnTimerClientStatusChanged(self: *const IUIAnimationTimerClientEventHandler, newStatus: UI_ANIMATION_TIMER_CLIENT_STATUS, previousStatus: UI_ANIMATION_TIMER_CLIENT_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnTimerClientStatusChanged(self, newStatus, previousStatus);
     }
 };
@@ -1056,13 +1056,13 @@ pub const IUIAnimationTimerEventHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPreUpdate(self: *const IUIAnimationTimerEventHandler) callconv(.Inline) HRESULT {
+    pub fn OnPreUpdate(self: *const IUIAnimationTimerEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.OnPreUpdate(self);
     }
-    pub fn OnPostUpdate(self: *const IUIAnimationTimerEventHandler) callconv(.Inline) HRESULT {
+    pub fn OnPostUpdate(self: *const IUIAnimationTimerEventHandler) callconv(.@"inline") HRESULT {
         return self.vtable.OnPostUpdate(self);
     }
-    pub fn OnRenderingTooSlow(self: *const IUIAnimationTimerEventHandler, framesPerSecond: u32) callconv(.Inline) HRESULT {
+    pub fn OnRenderingTooSlow(self: *const IUIAnimationTimerEventHandler, framesPerSecond: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnRenderingTooSlow(self, framesPerSecond);
     }
 };
@@ -1167,67 +1167,67 @@ pub const IUIAnimationManager2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateAnimationVectorVariable(self: *const IUIAnimationManager2, initialValue: [*]const f64, cDimension: u32, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+    pub fn CreateAnimationVectorVariable(self: *const IUIAnimationManager2, initialValue: [*]const f64, cDimension: u32, variable: ?*?*IUIAnimationVariable2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAnimationVectorVariable(self, initialValue, cDimension, variable);
     }
-    pub fn CreateAnimationVariable(self: *const IUIAnimationManager2, initialValue: f64, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+    pub fn CreateAnimationVariable(self: *const IUIAnimationManager2, initialValue: f64, variable: ?*?*IUIAnimationVariable2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAnimationVariable(self, initialValue, variable);
     }
-    pub fn ScheduleTransition(self: *const IUIAnimationManager2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, timeNow: f64) callconv(.Inline) HRESULT {
+    pub fn ScheduleTransition(self: *const IUIAnimationManager2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, timeNow: f64) callconv(.@"inline") HRESULT {
         return self.vtable.ScheduleTransition(self, variable, transition, timeNow);
     }
-    pub fn CreateStoryboard(self: *const IUIAnimationManager2, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+    pub fn CreateStoryboard(self: *const IUIAnimationManager2, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStoryboard(self, storyboard);
     }
-    pub fn FinishAllStoryboards(self: *const IUIAnimationManager2, completionDeadline: f64) callconv(.Inline) HRESULT {
+    pub fn FinishAllStoryboards(self: *const IUIAnimationManager2, completionDeadline: f64) callconv(.@"inline") HRESULT {
         return self.vtable.FinishAllStoryboards(self, completionDeadline);
     }
-    pub fn AbandonAllStoryboards(self: *const IUIAnimationManager2) callconv(.Inline) HRESULT {
+    pub fn AbandonAllStoryboards(self: *const IUIAnimationManager2) callconv(.@"inline") HRESULT {
         return self.vtable.AbandonAllStoryboards(self);
     }
-    pub fn Update(self: *const IUIAnimationManager2, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IUIAnimationManager2, timeNow: f64, updateResult: ?*UI_ANIMATION_UPDATE_RESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Update(self, timeNow, updateResult);
     }
-    pub fn GetVariableFromTag(self: *const IUIAnimationManager2, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+    pub fn GetVariableFromTag(self: *const IUIAnimationManager2, object: ?*IUnknown, id: u32, variable: ?*?*IUIAnimationVariable2) callconv(.@"inline") HRESULT {
         return self.vtable.GetVariableFromTag(self, object, id, variable);
     }
-    pub fn GetStoryboardFromTag(self: *const IUIAnimationManager2, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+    pub fn GetStoryboardFromTag(self: *const IUIAnimationManager2, object: ?*IUnknown, id: u32, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.@"inline") HRESULT {
         return self.vtable.GetStoryboardFromTag(self, object, id, storyboard);
     }
-    pub fn EstimateNextEventTime(self: *const IUIAnimationManager2, seconds: ?*f64) callconv(.Inline) HRESULT {
+    pub fn EstimateNextEventTime(self: *const IUIAnimationManager2, seconds: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.EstimateNextEventTime(self, seconds);
     }
-    pub fn GetStatus(self: *const IUIAnimationManager2, status: ?*UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IUIAnimationManager2, status: ?*UI_ANIMATION_MANAGER_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, status);
     }
-    pub fn SetAnimationMode(self: *const IUIAnimationManager2, mode: UI_ANIMATION_MODE) callconv(.Inline) HRESULT {
+    pub fn SetAnimationMode(self: *const IUIAnimationManager2, mode: UI_ANIMATION_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetAnimationMode(self, mode);
     }
-    pub fn Pause(self: *const IUIAnimationManager2) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const IUIAnimationManager2) callconv(.@"inline") HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const IUIAnimationManager2) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IUIAnimationManager2) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn SetManagerEventHandler(self: *const IUIAnimationManager2, handler: ?*IUIAnimationManagerEventHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetManagerEventHandler(self: *const IUIAnimationManager2, handler: ?*IUIAnimationManagerEventHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetManagerEventHandler(self, handler, fRegisterForNextAnimationEvent);
     }
-    pub fn SetCancelPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
+    pub fn SetCancelPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.@"inline") HRESULT {
         return self.vtable.SetCancelPriorityComparison(self, comparison);
     }
-    pub fn SetTrimPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
+    pub fn SetTrimPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.@"inline") HRESULT {
         return self.vtable.SetTrimPriorityComparison(self, comparison);
     }
-    pub fn SetCompressPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
+    pub fn SetCompressPriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.@"inline") HRESULT {
         return self.vtable.SetCompressPriorityComparison(self, comparison);
     }
-    pub fn SetConcludePriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.Inline) HRESULT {
+    pub fn SetConcludePriorityComparison(self: *const IUIAnimationManager2, comparison: ?*IUIAnimationPriorityComparison2) callconv(.@"inline") HRESULT {
         return self.vtable.SetConcludePriorityComparison(self, comparison);
     }
-    pub fn SetDefaultLongestAcceptableDelay(self: *const IUIAnimationManager2, delay: f64) callconv(.Inline) HRESULT {
+    pub fn SetDefaultLongestAcceptableDelay(self: *const IUIAnimationManager2, delay: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultLongestAcceptableDelay(self, delay);
     }
-    pub fn Shutdown(self: *const IUIAnimationManager2) callconv(.Inline) HRESULT {
+    pub fn Shutdown(self: *const IUIAnimationManager2) callconv(.@"inline") HRESULT {
         return self.vtable.Shutdown(self);
     }
 };
@@ -1358,82 +1358,82 @@ pub const IUIAnimationVariable2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDimension(self: *const IUIAnimationVariable2, dimension: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDimension(self: *const IUIAnimationVariable2, dimension: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDimension(self, dimension);
     }
-    pub fn GetValue(self: *const IUIAnimationVariable2, value: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IUIAnimationVariable2, value: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, value);
     }
-    pub fn GetVectorValue(self: *const IUIAnimationVariable2, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetVectorValue(self: *const IUIAnimationVariable2, value: [*]f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVectorValue(self, value, cDimension);
     }
-    pub fn GetCurve(self: *const IUIAnimationVariable2, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
+    pub fn GetCurve(self: *const IUIAnimationVariable2, animation: ?*IDCompositionAnimation) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurve(self, animation);
     }
-    pub fn GetVectorCurve(self: *const IUIAnimationVariable2, animation: [*]?*IDCompositionAnimation, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetVectorCurve(self: *const IUIAnimationVariable2, animation: [*]?*IDCompositionAnimation, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVectorCurve(self, animation, cDimension);
     }
-    pub fn GetFinalValue(self: *const IUIAnimationVariable2, finalValue: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetFinalValue(self: *const IUIAnimationVariable2, finalValue: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetFinalValue(self, finalValue);
     }
-    pub fn GetFinalVectorValue(self: *const IUIAnimationVariable2, finalValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetFinalVectorValue(self: *const IUIAnimationVariable2, finalValue: [*]f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFinalVectorValue(self, finalValue, cDimension);
     }
-    pub fn GetPreviousValue(self: *const IUIAnimationVariable2, previousValue: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetPreviousValue(self: *const IUIAnimationVariable2, previousValue: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousValue(self, previousValue);
     }
-    pub fn GetPreviousVectorValue(self: *const IUIAnimationVariable2, previousValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetPreviousVectorValue(self: *const IUIAnimationVariable2, previousValue: [*]f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousVectorValue(self, previousValue, cDimension);
     }
-    pub fn GetIntegerValue(self: *const IUIAnimationVariable2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetIntegerValue(self: *const IUIAnimationVariable2, value: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIntegerValue(self, value);
     }
-    pub fn GetIntegerVectorValue(self: *const IUIAnimationVariable2, value: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetIntegerVectorValue(self: *const IUIAnimationVariable2, value: [*]i32, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIntegerVectorValue(self, value, cDimension);
     }
-    pub fn GetFinalIntegerValue(self: *const IUIAnimationVariable2, finalValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetFinalIntegerValue(self: *const IUIAnimationVariable2, finalValue: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFinalIntegerValue(self, finalValue);
     }
-    pub fn GetFinalIntegerVectorValue(self: *const IUIAnimationVariable2, finalValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetFinalIntegerVectorValue(self: *const IUIAnimationVariable2, finalValue: [*]i32, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFinalIntegerVectorValue(self, finalValue, cDimension);
     }
-    pub fn GetPreviousIntegerValue(self: *const IUIAnimationVariable2, previousValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPreviousIntegerValue(self: *const IUIAnimationVariable2, previousValue: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousIntegerValue(self, previousValue);
     }
-    pub fn GetPreviousIntegerVectorValue(self: *const IUIAnimationVariable2, previousValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetPreviousIntegerVectorValue(self: *const IUIAnimationVariable2, previousValue: [*]i32, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreviousIntegerVectorValue(self, previousValue, cDimension);
     }
-    pub fn GetCurrentStoryboard(self: *const IUIAnimationVariable2, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+    pub fn GetCurrentStoryboard(self: *const IUIAnimationVariable2, storyboard: ?*?*IUIAnimationStoryboard2) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentStoryboard(self, storyboard);
     }
-    pub fn SetLowerBound(self: *const IUIAnimationVariable2, bound: f64) callconv(.Inline) HRESULT {
+    pub fn SetLowerBound(self: *const IUIAnimationVariable2, bound: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetLowerBound(self, bound);
     }
-    pub fn SetLowerBoundVector(self: *const IUIAnimationVariable2, bound: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn SetLowerBoundVector(self: *const IUIAnimationVariable2, bound: [*]const f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLowerBoundVector(self, bound, cDimension);
     }
-    pub fn SetUpperBound(self: *const IUIAnimationVariable2, bound: f64) callconv(.Inline) HRESULT {
+    pub fn SetUpperBound(self: *const IUIAnimationVariable2, bound: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetUpperBound(self, bound);
     }
-    pub fn SetUpperBoundVector(self: *const IUIAnimationVariable2, bound: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn SetUpperBoundVector(self: *const IUIAnimationVariable2, bound: [*]const f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetUpperBoundVector(self, bound, cDimension);
     }
-    pub fn SetRoundingMode(self: *const IUIAnimationVariable2, mode: UI_ANIMATION_ROUNDING_MODE) callconv(.Inline) HRESULT {
+    pub fn SetRoundingMode(self: *const IUIAnimationVariable2, mode: UI_ANIMATION_ROUNDING_MODE) callconv(.@"inline") HRESULT {
         return self.vtable.SetRoundingMode(self, mode);
     }
-    pub fn SetTag(self: *const IUIAnimationVariable2, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+    pub fn SetTag(self: *const IUIAnimationVariable2, object: ?*IUnknown, id: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTag(self, object, id);
     }
-    pub fn GetTag(self: *const IUIAnimationVariable2, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTag(self: *const IUIAnimationVariable2, object: ?*?*IUnknown, id: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTag(self, object, id);
     }
-    pub fn SetVariableChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableChangeHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetVariableChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableChangeHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetVariableChangeHandler(self, handler, fRegisterForNextAnimationEvent);
     }
-    pub fn SetVariableIntegerChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableIntegerChangeHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetVariableIntegerChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableIntegerChangeHandler2, fRegisterForNextAnimationEvent: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetVariableIntegerChangeHandler(self, handler, fRegisterForNextAnimationEvent);
     }
-    pub fn SetVariableCurveChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableCurveChangeHandler2) callconv(.Inline) HRESULT {
+    pub fn SetVariableCurveChangeHandler(self: *const IUIAnimationVariable2, handler: ?*IUIAnimationVariableCurveChangeHandler2) callconv(.@"inline") HRESULT {
         return self.vtable.SetVariableCurveChangeHandler(self, handler);
     }
 };
@@ -1476,25 +1476,25 @@ pub const IUIAnimationTransition2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDimension(self: *const IUIAnimationTransition2, dimension: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDimension(self: *const IUIAnimationTransition2, dimension: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDimension(self, dimension);
     }
-    pub fn SetInitialValue(self: *const IUIAnimationTransition2, value: f64) callconv(.Inline) HRESULT {
+    pub fn SetInitialValue(self: *const IUIAnimationTransition2, value: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialValue(self, value);
     }
-    pub fn SetInitialVectorValue(self: *const IUIAnimationTransition2, value: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn SetInitialVectorValue(self: *const IUIAnimationTransition2, value: [*]const f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialVectorValue(self, value, cDimension);
     }
-    pub fn SetInitialVelocity(self: *const IUIAnimationTransition2, velocity: f64) callconv(.Inline) HRESULT {
+    pub fn SetInitialVelocity(self: *const IUIAnimationTransition2, velocity: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialVelocity(self, velocity);
     }
-    pub fn SetInitialVectorVelocity(self: *const IUIAnimationTransition2, velocity: [*]const f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn SetInitialVectorVelocity(self: *const IUIAnimationTransition2, velocity: [*]const f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialVectorVelocity(self, velocity, cDimension);
     }
-    pub fn IsDurationKnown(self: *const IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn IsDurationKnown(self: *const IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.IsDurationKnown(self);
     }
-    pub fn GetDuration(self: *const IUIAnimationTransition2, duration: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetDuration(self: *const IUIAnimationTransition2, duration: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDuration(self, duration);
     }
 };
@@ -1513,7 +1513,7 @@ pub const IUIAnimationManagerEventHandler2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnManagerStatusChanged(self: *const IUIAnimationManagerEventHandler2, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnManagerStatusChanged(self: *const IUIAnimationManagerEventHandler2, newStatus: UI_ANIMATION_MANAGER_STATUS, previousStatus: UI_ANIMATION_MANAGER_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnManagerStatusChanged(self, newStatus, previousStatus);
     }
 };
@@ -1535,7 +1535,7 @@ pub const IUIAnimationVariableChangeHandler2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnValueChanged(self: *const IUIAnimationVariableChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]f64, previousValue: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn OnValueChanged(self: *const IUIAnimationVariableChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]f64, previousValue: [*]f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnValueChanged(self, storyboard, variable, newValue, previousValue, cDimension);
     }
 };
@@ -1557,7 +1557,7 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnIntegerValueChanged(self: *const IUIAnimationVariableIntegerChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]i32, previousValue: [*]i32, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn OnIntegerValueChanged(self: *const IUIAnimationVariableIntegerChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, newValue: [*]i32, previousValue: [*]i32, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnIntegerValueChanged(self, storyboard, variable, newValue, previousValue, cDimension);
     }
 };
@@ -1575,7 +1575,7 @@ pub const IUIAnimationVariableCurveChangeHandler2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnCurveChanged(self: *const IUIAnimationVariableCurveChangeHandler2, variable: ?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+    pub fn OnCurveChanged(self: *const IUIAnimationVariableCurveChangeHandler2, variable: ?*IUIAnimationVariable2) callconv(.@"inline") HRESULT {
         return self.vtable.OnCurveChanged(self, variable);
     }
 };
@@ -1599,10 +1599,10 @@ pub const IUIAnimationStoryboardEventHandler2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStoryboardStatusChanged(self: *const IUIAnimationStoryboardEventHandler2, storyboard: ?*IUIAnimationStoryboard2, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnStoryboardStatusChanged(self: *const IUIAnimationStoryboardEventHandler2, storyboard: ?*IUIAnimationStoryboard2, newStatus: UI_ANIMATION_STORYBOARD_STATUS, previousStatus: UI_ANIMATION_STORYBOARD_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnStoryboardStatusChanged(self, storyboard, newStatus, previousStatus);
     }
-    pub fn OnStoryboardUpdated(self: *const IUIAnimationStoryboardEventHandler2, storyboard: ?*IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+    pub fn OnStoryboardUpdated(self: *const IUIAnimationStoryboardEventHandler2, storyboard: ?*IUIAnimationStoryboard2) callconv(.@"inline") HRESULT {
         return self.vtable.OnStoryboardUpdated(self, storyboard);
     }
 };
@@ -1623,7 +1623,7 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnLoopIterationChanged(self: *const IUIAnimationLoopIterationChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, id: usize, newIterationCount: u32, oldIterationCount: u32) callconv(.Inline) HRESULT {
+    pub fn OnLoopIterationChanged(self: *const IUIAnimationLoopIterationChangeHandler2, storyboard: ?*IUIAnimationStoryboard2, id: usize, newIterationCount: u32, oldIterationCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnLoopIterationChanged(self, storyboard, id, newIterationCount, oldIterationCount);
     }
 };
@@ -1643,7 +1643,7 @@ pub const IUIAnimationPriorityComparison2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HasPriority(self: *const IUIAnimationPriorityComparison2, scheduledStoryboard: ?*IUIAnimationStoryboard2, newStoryboard: ?*IUIAnimationStoryboard2, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) callconv(.Inline) HRESULT {
+    pub fn HasPriority(self: *const IUIAnimationPriorityComparison2, scheduledStoryboard: ?*IUIAnimationStoryboard2, newStoryboard: ?*IUIAnimationStoryboard2, priorityEffect: UI_ANIMATION_PRIORITY_EFFECT) callconv(.@"inline") HRESULT {
         return self.vtable.HasPriority(self, scheduledStoryboard, newStoryboard, priorityEffect);
     }
 };
@@ -1791,61 +1791,61 @@ pub const IUIAnimationTransitionLibrary2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateInstantaneousTransition(self: *const IUIAnimationTransitionLibrary2, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateInstantaneousTransition(self: *const IUIAnimationTransitionLibrary2, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstantaneousTransition(self, finalValue, transition);
     }
-    pub fn CreateInstantaneousVectorTransition(self: *const IUIAnimationTransitionLibrary2, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateInstantaneousVectorTransition(self: *const IUIAnimationTransitionLibrary2, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstantaneousVectorTransition(self, finalValue, cDimension, transition);
     }
-    pub fn CreateConstantTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateConstantTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateConstantTransition(self, duration, transition);
     }
-    pub fn CreateDiscreteTransition(self: *const IUIAnimationTransitionLibrary2, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateDiscreteTransition(self: *const IUIAnimationTransitionLibrary2, delay: f64, finalValue: f64, hold: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDiscreteTransition(self, delay, finalValue, hold, transition);
     }
-    pub fn CreateDiscreteVectorTransition(self: *const IUIAnimationTransitionLibrary2, delay: f64, finalValue: [*]const f64, cDimension: u32, hold: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateDiscreteVectorTransition(self: *const IUIAnimationTransitionLibrary2, delay: f64, finalValue: [*]const f64, cDimension: u32, hold: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDiscreteVectorTransition(self, delay, finalValue, cDimension, hold, transition);
     }
-    pub fn CreateLinearTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateLinearTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLinearTransition(self, duration, finalValue, transition);
     }
-    pub fn CreateLinearVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateLinearVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLinearVectorTransition(self, duration, finalValue, cDimension, transition);
     }
-    pub fn CreateLinearTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary2, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateLinearTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary2, speed: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLinearTransitionFromSpeed(self, speed, finalValue, transition);
     }
-    pub fn CreateLinearVectorTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary2, speed: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateLinearVectorTransitionFromSpeed(self: *const IUIAnimationTransitionLibrary2, speed: f64, finalValue: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLinearVectorTransitionFromSpeed(self, speed, finalValue, cDimension, transition);
     }
-    pub fn CreateSinusoidalTransitionFromVelocity(self: *const IUIAnimationTransitionLibrary2, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateSinusoidalTransitionFromVelocity(self: *const IUIAnimationTransitionLibrary2, duration: f64, period: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSinusoidalTransitionFromVelocity(self, duration, period, transition);
     }
-    pub fn CreateSinusoidalTransitionFromRange(self: *const IUIAnimationTransitionLibrary2, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateSinusoidalTransitionFromRange(self: *const IUIAnimationTransitionLibrary2, duration: f64, minimumValue: f64, maximumValue: f64, period: f64, slope: UI_ANIMATION_SLOPE, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSinusoidalTransitionFromRange(self, duration, minimumValue, maximumValue, period, slope, transition);
     }
-    pub fn CreateAccelerateDecelerateTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateAccelerateDecelerateTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, accelerationRatio: f64, decelerationRatio: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAccelerateDecelerateTransition(self, duration, finalValue, accelerationRatio, decelerationRatio, transition);
     }
-    pub fn CreateReversalTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateReversalTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateReversalTransition(self, duration, transition);
     }
-    pub fn CreateCubicTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateCubicTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, finalVelocity: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCubicTransition(self, duration, finalValue, finalVelocity, transition);
     }
-    pub fn CreateCubicVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, finalVelocity: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateCubicVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, finalVelocity: [*]const f64, cDimension: u32, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCubicVectorTransition(self, duration, finalValue, finalVelocity, cDimension, transition);
     }
-    pub fn CreateSmoothStopTransition(self: *const IUIAnimationTransitionLibrary2, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateSmoothStopTransition(self: *const IUIAnimationTransitionLibrary2, maximumDuration: f64, finalValue: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSmoothStopTransition(self, maximumDuration, finalValue, transition);
     }
-    pub fn CreateParabolicTransitionFromAcceleration(self: *const IUIAnimationTransitionLibrary2, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateParabolicTransitionFromAcceleration(self: *const IUIAnimationTransitionLibrary2, finalValue: f64, finalVelocity: f64, acceleration: f64, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateParabolicTransitionFromAcceleration(self, finalValue, finalVelocity, acceleration, transition);
     }
-    pub fn CreateCubicBezierLinearTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateCubicBezierLinearTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: f64, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCubicBezierLinearTransition(self, duration, finalValue, x1, y1, x2, y2, ppTransition);
     }
-    pub fn CreateCubicBezierLinearVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, cDimension: u32, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateCubicBezierLinearVectorTransition(self: *const IUIAnimationTransitionLibrary2, duration: f64, finalValue: [*]const f64, cDimension: u32, x1: f64, y1: f64, x2: f64, y2: f64, ppTransition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCubicBezierLinearVectorTransition(self, duration, finalValue, cDimension, x1, y1, x2, y2, ppTransition);
     }
 };
@@ -1877,10 +1877,10 @@ pub const IUIAnimationPrimitiveInterpolation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddCubic(self: *const IUIAnimationPrimitiveInterpolation, dimension: u32, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) callconv(.Inline) HRESULT {
+    pub fn AddCubic(self: *const IUIAnimationPrimitiveInterpolation, dimension: u32, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) callconv(.@"inline") HRESULT {
         return self.vtable.AddCubic(self, dimension, beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
     }
-    pub fn AddSinusoidal(self: *const IUIAnimationPrimitiveInterpolation, dimension: u32, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) callconv(.Inline) HRESULT {
+    pub fn AddSinusoidal(self: *const IUIAnimationPrimitiveInterpolation, dimension: u32, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) callconv(.@"inline") HRESULT {
         return self.vtable.AddSinusoidal(self, dimension, beginOffset, bias, amplitude, frequency, phase);
     }
 };
@@ -1940,31 +1940,31 @@ pub const IUIAnimationInterpolator2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDimension(self: *const IUIAnimationInterpolator2, dimension: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDimension(self: *const IUIAnimationInterpolator2, dimension: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDimension(self, dimension);
     }
-    pub fn SetInitialValueAndVelocity(self: *const IUIAnimationInterpolator2, initialValue: [*]f64, initialVelocity: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn SetInitialValueAndVelocity(self: *const IUIAnimationInterpolator2, initialValue: [*]f64, initialVelocity: [*]f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetInitialValueAndVelocity(self, initialValue, initialVelocity, cDimension);
     }
-    pub fn SetDuration(self: *const IUIAnimationInterpolator2, duration: f64) callconv(.Inline) HRESULT {
+    pub fn SetDuration(self: *const IUIAnimationInterpolator2, duration: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetDuration(self, duration);
     }
-    pub fn GetDuration(self: *const IUIAnimationInterpolator2, duration: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetDuration(self: *const IUIAnimationInterpolator2, duration: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDuration(self, duration);
     }
-    pub fn GetFinalValue(self: *const IUIAnimationInterpolator2, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetFinalValue(self: *const IUIAnimationInterpolator2, value: [*]f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFinalValue(self, value, cDimension);
     }
-    pub fn InterpolateValue(self: *const IUIAnimationInterpolator2, offset: f64, value: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn InterpolateValue(self: *const IUIAnimationInterpolator2, offset: f64, value: [*]f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InterpolateValue(self, offset, value, cDimension);
     }
-    pub fn InterpolateVelocity(self: *const IUIAnimationInterpolator2, offset: f64, velocity: [*]f64, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn InterpolateVelocity(self: *const IUIAnimationInterpolator2, offset: f64, velocity: [*]f64, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InterpolateVelocity(self, offset, velocity, cDimension);
     }
-    pub fn GetPrimitiveInterpolation(self: *const IUIAnimationInterpolator2, interpolation: ?*IUIAnimationPrimitiveInterpolation, cDimension: u32) callconv(.Inline) HRESULT {
+    pub fn GetPrimitiveInterpolation(self: *const IUIAnimationInterpolator2, interpolation: ?*IUIAnimationPrimitiveInterpolation, cDimension: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrimitiveInterpolation(self, interpolation, cDimension);
     }
-    pub fn GetDependencies(self: *const IUIAnimationInterpolator2, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) callconv(.Inline) HRESULT {
+    pub fn GetDependencies(self: *const IUIAnimationInterpolator2, initialValueDependencies: ?*UI_ANIMATION_DEPENDENCIES, initialVelocityDependencies: ?*UI_ANIMATION_DEPENDENCIES, durationDependencies: ?*UI_ANIMATION_DEPENDENCIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetDependencies(self, initialValueDependencies, initialVelocityDependencies, durationDependencies);
     }
 };
@@ -1983,7 +1983,7 @@ pub const IUIAnimationTransitionFactory2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateTransition(self: *const IUIAnimationTransitionFactory2, interpolator: ?*IUIAnimationInterpolator2, transition: ?*?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn CreateTransition(self: *const IUIAnimationTransitionFactory2, interpolator: ?*IUIAnimationInterpolator2, transition: ?*?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTransition(self, interpolator, transition);
     }
 };
@@ -2086,58 +2086,58 @@ pub const IUIAnimationStoryboard2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddTransition(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2) callconv(.Inline) HRESULT {
+    pub fn AddTransition(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2) callconv(.@"inline") HRESULT {
         return self.vtable.AddTransition(self, variable, transition);
     }
-    pub fn AddKeyframeAtOffset(self: *const IUIAnimationStoryboard2, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+    pub fn AddKeyframeAtOffset(self: *const IUIAnimationStoryboard2, existingKeyframe: UI_ANIMATION_KEYFRAME, offset: f64, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.@"inline") HRESULT {
         return self.vtable.AddKeyframeAtOffset(self, existingKeyframe, offset, keyframe);
     }
-    pub fn AddKeyframeAfterTransition(self: *const IUIAnimationStoryboard2, transition: ?*IUIAnimationTransition2, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+    pub fn AddKeyframeAfterTransition(self: *const IUIAnimationStoryboard2, transition: ?*IUIAnimationTransition2, keyframe: ?*UI_ANIMATION_KEYFRAME) callconv(.@"inline") HRESULT {
         return self.vtable.AddKeyframeAfterTransition(self, transition, keyframe);
     }
-    pub fn AddTransitionAtKeyframe(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+    pub fn AddTransitionAtKeyframe(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME) callconv(.@"inline") HRESULT {
         return self.vtable.AddTransitionAtKeyframe(self, variable, transition, startKeyframe);
     }
-    pub fn AddTransitionBetweenKeyframes(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) callconv(.Inline) HRESULT {
+    pub fn AddTransitionBetweenKeyframes(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2, transition: ?*IUIAnimationTransition2, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME) callconv(.@"inline") HRESULT {
         return self.vtable.AddTransitionBetweenKeyframes(self, variable, transition, startKeyframe, endKeyframe);
     }
-    pub fn RepeatBetweenKeyframes(self: *const IUIAnimationStoryboard2, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, cRepetition: f64, repeatMode: UI_ANIMATION_REPEAT_MODE, pIterationChangeHandler: ?*IUIAnimationLoopIterationChangeHandler2, id: usize, fRegisterForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+    pub fn RepeatBetweenKeyframes(self: *const IUIAnimationStoryboard2, startKeyframe: UI_ANIMATION_KEYFRAME, endKeyframe: UI_ANIMATION_KEYFRAME, cRepetition: f64, repeatMode: UI_ANIMATION_REPEAT_MODE, pIterationChangeHandler: ?*IUIAnimationLoopIterationChangeHandler2, id: usize, fRegisterForNextAnimationEvent: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RepeatBetweenKeyframes(self, startKeyframe, endKeyframe, cRepetition, repeatMode, pIterationChangeHandler, id, fRegisterForNextAnimationEvent);
     }
-    pub fn HoldVariable(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2) callconv(.Inline) HRESULT {
+    pub fn HoldVariable(self: *const IUIAnimationStoryboard2, variable: ?*IUIAnimationVariable2) callconv(.@"inline") HRESULT {
         return self.vtable.HoldVariable(self, variable);
     }
-    pub fn SetLongestAcceptableDelay(self: *const IUIAnimationStoryboard2, delay: f64) callconv(.Inline) HRESULT {
+    pub fn SetLongestAcceptableDelay(self: *const IUIAnimationStoryboard2, delay: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetLongestAcceptableDelay(self, delay);
     }
-    pub fn SetSkipDuration(self: *const IUIAnimationStoryboard2, secondsDuration: f64) callconv(.Inline) HRESULT {
+    pub fn SetSkipDuration(self: *const IUIAnimationStoryboard2, secondsDuration: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetSkipDuration(self, secondsDuration);
     }
-    pub fn Schedule(self: *const IUIAnimationStoryboard2, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) callconv(.Inline) HRESULT {
+    pub fn Schedule(self: *const IUIAnimationStoryboard2, timeNow: f64, schedulingResult: ?*UI_ANIMATION_SCHEDULING_RESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Schedule(self, timeNow, schedulingResult);
     }
-    pub fn Conclude(self: *const IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+    pub fn Conclude(self: *const IUIAnimationStoryboard2) callconv(.@"inline") HRESULT {
         return self.vtable.Conclude(self);
     }
-    pub fn Finish(self: *const IUIAnimationStoryboard2, completionDeadline: f64) callconv(.Inline) HRESULT {
+    pub fn Finish(self: *const IUIAnimationStoryboard2, completionDeadline: f64) callconv(.@"inline") HRESULT {
         return self.vtable.Finish(self, completionDeadline);
     }
-    pub fn Abandon(self: *const IUIAnimationStoryboard2) callconv(.Inline) HRESULT {
+    pub fn Abandon(self: *const IUIAnimationStoryboard2) callconv(.@"inline") HRESULT {
         return self.vtable.Abandon(self);
     }
-    pub fn SetTag(self: *const IUIAnimationStoryboard2, object: ?*IUnknown, id: u32) callconv(.Inline) HRESULT {
+    pub fn SetTag(self: *const IUIAnimationStoryboard2, object: ?*IUnknown, id: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTag(self, object, id);
     }
-    pub fn GetTag(self: *const IUIAnimationStoryboard2, object: ?*?*IUnknown, id: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTag(self: *const IUIAnimationStoryboard2, object: ?*?*IUnknown, id: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTag(self, object, id);
     }
-    pub fn GetStatus(self: *const IUIAnimationStoryboard2, status: ?*UI_ANIMATION_STORYBOARD_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IUIAnimationStoryboard2, status: ?*UI_ANIMATION_STORYBOARD_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, status);
     }
-    pub fn GetElapsedTime(self: *const IUIAnimationStoryboard2, elapsedTime: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetElapsedTime(self: *const IUIAnimationStoryboard2, elapsedTime: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetElapsedTime(self, elapsedTime);
     }
-    pub fn SetStoryboardEventHandler(self: *const IUIAnimationStoryboard2, handler: ?*IUIAnimationStoryboardEventHandler2, fRegisterStatusChangeForNextAnimationEvent: BOOL, fRegisterUpdateForNextAnimationEvent: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetStoryboardEventHandler(self: *const IUIAnimationStoryboard2, handler: ?*IUIAnimationStoryboardEventHandler2, fRegisterStatusChangeForNextAnimationEvent: BOOL, fRegisterUpdateForNextAnimationEvent: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetStoryboardEventHandler(self, handler, fRegisterStatusChangeForNextAnimationEvent, fRegisterUpdateForNextAnimationEvent);
     }
 };

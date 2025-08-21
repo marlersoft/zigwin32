@@ -195,61 +195,61 @@ pub const ICallFrame = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInfo(self: *const ICallFrame, pInfo: ?*CALLFRAMEINFO) callconv(.Inline) HRESULT {
+    pub fn GetInfo(self: *const ICallFrame, pInfo: ?*CALLFRAMEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetInfo(self, pInfo);
     }
-    pub fn GetIIDAndMethod(self: *const ICallFrame, pIID: ?*Guid, piMethod: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetIIDAndMethod(self: *const ICallFrame, pIID: ?*Guid, piMethod: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIIDAndMethod(self, pIID, piMethod);
     }
-    pub fn GetNames(self: *const ICallFrame, pwszInterface: ?*?PWSTR, pwszMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetNames(self: *const ICallFrame, pwszInterface: ?*?PWSTR, pwszMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetNames(self, pwszInterface, pwszMethod);
     }
-    pub fn GetStackLocation(self: *const ICallFrame) callconv(.Inline) ?*anyopaque {
+    pub fn GetStackLocation(self: *const ICallFrame) callconv(.@"inline") ?*anyopaque {
         return self.vtable.GetStackLocation(self);
     }
-    pub fn SetStackLocation(self: *const ICallFrame, pvStack: ?*anyopaque) callconv(.Inline) void {
+    pub fn SetStackLocation(self: *const ICallFrame, pvStack: ?*anyopaque) callconv(.@"inline") void {
         return self.vtable.SetStackLocation(self, pvStack);
     }
-    pub fn SetReturnValue(self: *const ICallFrame, hr: HRESULT) callconv(.Inline) void {
+    pub fn SetReturnValue(self: *const ICallFrame, hr: HRESULT) callconv(.@"inline") void {
         return self.vtable.SetReturnValue(self, hr);
     }
-    pub fn GetReturnValue(self: *const ICallFrame) callconv(.Inline) HRESULT {
+    pub fn GetReturnValue(self: *const ICallFrame) callconv(.@"inline") HRESULT {
         return self.vtable.GetReturnValue(self);
     }
-    pub fn GetParamInfo(self: *const ICallFrame, iparam: u32, pInfo: ?*CALLFRAMEPARAMINFO) callconv(.Inline) HRESULT {
+    pub fn GetParamInfo(self: *const ICallFrame, iparam: u32, pInfo: ?*CALLFRAMEPARAMINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetParamInfo(self, iparam, pInfo);
     }
-    pub fn SetParam(self: *const ICallFrame, iparam: u32, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetParam(self: *const ICallFrame, iparam: u32, pvar: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetParam(self, iparam, pvar);
     }
-    pub fn GetParam(self: *const ICallFrame, iparam: u32, pvar: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetParam(self: *const ICallFrame, iparam: u32, pvar: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetParam(self, iparam, pvar);
     }
-    pub fn Copy(self: *const ICallFrame, copyControl: CALLFRAME_COPY, pWalker: ?*ICallFrameWalker, ppFrame: ?*?*ICallFrame) callconv(.Inline) HRESULT {
+    pub fn Copy(self: *const ICallFrame, copyControl: CALLFRAME_COPY, pWalker: ?*ICallFrameWalker, ppFrame: ?*?*ICallFrame) callconv(.@"inline") HRESULT {
         return self.vtable.Copy(self, copyControl, pWalker, ppFrame);
     }
-    pub fn Free(self: *const ICallFrame, pframeArgsDest: ?*ICallFrame, pWalkerDestFree: ?*ICallFrameWalker, pWalkerCopy: ?*ICallFrameWalker, freeFlags: u32, pWalkerFree: ?*ICallFrameWalker, nullFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Free(self: *const ICallFrame, pframeArgsDest: ?*ICallFrame, pWalkerDestFree: ?*ICallFrameWalker, pWalkerCopy: ?*ICallFrameWalker, freeFlags: u32, pWalkerFree: ?*ICallFrameWalker, nullFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Free(self, pframeArgsDest, pWalkerDestFree, pWalkerCopy, freeFlags, pWalkerFree, nullFlags);
     }
-    pub fn FreeParam(self: *const ICallFrame, iparam: u32, freeFlags: u32, pWalkerFree: ?*ICallFrameWalker, nullFlags: u32) callconv(.Inline) HRESULT {
+    pub fn FreeParam(self: *const ICallFrame, iparam: u32, freeFlags: u32, pWalkerFree: ?*ICallFrameWalker, nullFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.FreeParam(self, iparam, freeFlags, pWalkerFree, nullFlags);
     }
-    pub fn WalkFrame(self: *const ICallFrame, walkWhat: u32, pWalker: ?*ICallFrameWalker) callconv(.Inline) HRESULT {
+    pub fn WalkFrame(self: *const ICallFrame, walkWhat: u32, pWalker: ?*ICallFrameWalker) callconv(.@"inline") HRESULT {
         return self.vtable.WalkFrame(self, walkWhat, pWalker);
     }
-    pub fn GetMarshalSizeMax(self: *const ICallFrame, pmshlContext: ?*CALLFRAME_MARSHALCONTEXT, mshlflags: MSHLFLAGS, pcbBufferNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMarshalSizeMax(self: *const ICallFrame, pmshlContext: ?*CALLFRAME_MARSHALCONTEXT, mshlflags: MSHLFLAGS, pcbBufferNeeded: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMarshalSizeMax(self, pmshlContext, mshlflags, pcbBufferNeeded);
     }
-    pub fn Marshal(self: *const ICallFrame, pmshlContext: ?*CALLFRAME_MARSHALCONTEXT, mshlflags: MSHLFLAGS, pBuffer: [*]u8, cbBuffer: u32, pcbBufferUsed: ?*u32, pdataRep: ?*u32, prpcFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Marshal(self: *const ICallFrame, pmshlContext: ?*CALLFRAME_MARSHALCONTEXT, mshlflags: MSHLFLAGS, pBuffer: [*]u8, cbBuffer: u32, pcbBufferUsed: ?*u32, pdataRep: ?*u32, prpcFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Marshal(self, pmshlContext, mshlflags, pBuffer, cbBuffer, pcbBufferUsed, pdataRep, prpcFlags);
     }
-    pub fn Unmarshal(self: *const ICallFrame, pBuffer: [*]u8, cbBuffer: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT, pcbUnmarshalled: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Unmarshal(self: *const ICallFrame, pBuffer: [*]u8, cbBuffer: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT, pcbUnmarshalled: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unmarshal(self, pBuffer, cbBuffer, dataRep, pcontext, pcbUnmarshalled);
     }
-    pub fn ReleaseMarshalData(self: *const ICallFrame, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) callconv(.Inline) HRESULT {
+    pub fn ReleaseMarshalData(self: *const ICallFrame, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseMarshalData(self, pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
     }
-    pub fn Invoke(self: *const ICallFrame, pvReceiver: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const ICallFrame, pvReceiver: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, pvReceiver);
     }
 };
@@ -288,16 +288,16 @@ pub const ICallIndirect = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CallIndirect(self: *const ICallIndirect, phrReturn: ?*HRESULT, iMethod: u32, pvArgs: ?*anyopaque, cbArgs: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CallIndirect(self: *const ICallIndirect, phrReturn: ?*HRESULT, iMethod: u32, pvArgs: ?*anyopaque, cbArgs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CallIndirect(self, phrReturn, iMethod, pvArgs, cbArgs);
     }
-    pub fn GetMethodInfo(self: *const ICallIndirect, iMethod: u32, pInfo: ?*CALLFRAMEINFO, pwszMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMethodInfo(self: *const ICallIndirect, iMethod: u32, pInfo: ?*CALLFRAMEINFO, pwszMethod: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMethodInfo(self, iMethod, pInfo, pwszMethod);
     }
-    pub fn GetStackSize(self: *const ICallIndirect, iMethod: u32, cbArgs: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStackSize(self: *const ICallIndirect, iMethod: u32, cbArgs: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStackSize(self, iMethod, cbArgs);
     }
-    pub fn GetIID(self: *const ICallIndirect, piid: ?*Guid, pfDerivesFromIDispatch: ?*BOOL, pcMethod: ?*u32, pwszInterface: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetIID(self: *const ICallIndirect, piid: ?*Guid, pfDerivesFromIDispatch: ?*BOOL, pcMethod: ?*u32, pwszInterface: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetIID(self, piid, pfDerivesFromIDispatch, pcMethod, pwszInterface);
     }
 };
@@ -320,10 +320,10 @@ pub const ICallInterceptor = extern union {
     vtable: *const VTable,
     ICallIndirect: ICallIndirect,
     IUnknown: IUnknown,
-    pub fn RegisterSink(self: *const ICallInterceptor, psink: ?*ICallFrameEvents) callconv(.Inline) HRESULT {
+    pub fn RegisterSink(self: *const ICallInterceptor, psink: ?*ICallFrameEvents) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterSink(self, psink);
     }
-    pub fn GetRegisteredSink(self: *const ICallInterceptor, ppsink: ?*?*ICallFrameEvents) callconv(.Inline) HRESULT {
+    pub fn GetRegisteredSink(self: *const ICallInterceptor, ppsink: ?*?*ICallFrameEvents) callconv(.@"inline") HRESULT {
         return self.vtable.GetRegisteredSink(self, ppsink);
     }
 };
@@ -341,7 +341,7 @@ pub const ICallFrameEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnCall(self: *const ICallFrameEvents, pFrame: ?*ICallFrame) callconv(.Inline) HRESULT {
+    pub fn OnCall(self: *const ICallFrameEvents, pFrame: ?*ICallFrame) callconv(.@"inline") HRESULT {
         return self.vtable.OnCall(self, pFrame);
     }
 };
@@ -375,10 +375,10 @@ pub const ICallUnmarshal = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Unmarshal(self: *const ICallUnmarshal, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, fForceBufferCopy: BOOL, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT, pcbUnmarshalled: ?*u32, ppFrame: ?*?*ICallFrame) callconv(.Inline) HRESULT {
+    pub fn Unmarshal(self: *const ICallUnmarshal, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, fForceBufferCopy: BOOL, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT, pcbUnmarshalled: ?*u32, ppFrame: ?*?*ICallFrame) callconv(.@"inline") HRESULT {
         return self.vtable.Unmarshal(self, iMethod, pBuffer, cbBuffer, fForceBufferCopy, dataRep, pcontext, pcbUnmarshalled, ppFrame);
     }
-    pub fn ReleaseMarshalData(self: *const ICallUnmarshal, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) callconv(.Inline) HRESULT {
+    pub fn ReleaseMarshalData(self: *const ICallUnmarshal, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseMarshalData(self, iMethod, pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
     }
 };
@@ -399,7 +399,7 @@ pub const ICallFrameWalker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnWalkInterface(self: *const ICallFrameWalker, iid: ?*const Guid, ppvInterface: ?*?*anyopaque, fIn: BOOL, fOut: BOOL) callconv(.Inline) HRESULT {
+    pub fn OnWalkInterface(self: *const ICallFrameWalker, iid: ?*const Guid, ppvInterface: ?*?*anyopaque, fIn: BOOL, fOut: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnWalkInterface(self, iid, ppvInterface, fIn, fOut);
     }
 };
@@ -420,10 +420,10 @@ pub const IInterfaceRelated = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetIID(self: *const IInterfaceRelated, iid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetIID(self: *const IInterfaceRelated, iid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetIID(self, iid);
     }
-    pub fn GetIID(self: *const IInterfaceRelated, piid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetIID(self: *const IInterfaceRelated, piid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetIID(self, piid);
     }
 };

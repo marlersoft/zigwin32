@@ -622,13 +622,13 @@ pub const IPrintDialogCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitDone(self: *const IPrintDialogCallback) callconv(.Inline) HRESULT {
+    pub fn InitDone(self: *const IPrintDialogCallback) callconv(.@"inline") HRESULT {
         return self.vtable.InitDone(self);
     }
-    pub fn SelectionChange(self: *const IPrintDialogCallback) callconv(.Inline) HRESULT {
+    pub fn SelectionChange(self: *const IPrintDialogCallback) callconv(.@"inline") HRESULT {
         return self.vtable.SelectionChange(self);
     }
-    pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.Inline) HRESULT {
+    pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.HandleMessage(self, hDlg, uMsg, wParam, lParam, pResult);
     }
 };
@@ -657,13 +657,13 @@ pub const IPrintDialogServices = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrentDevMode(self: *const IPrintDialogServices, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentDevMode(self: *const IPrintDialogServices, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentDevMode(self, pDevMode, pcbSize);
     }
-    pub fn GetCurrentPrinterName(self: *const IPrintDialogServices, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPrinterName(self: *const IPrintDialogServices, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentPrinterName(self, pPrinterName, pcchSize);
     }
-    pub fn GetCurrentPortName(self: *const IPrintDialogServices, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPortName(self: *const IPrintDialogServices, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentPortName(self, pPortName, pcchSize);
     }
 };

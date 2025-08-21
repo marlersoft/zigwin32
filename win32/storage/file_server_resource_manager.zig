@@ -729,19 +729,19 @@ pub const IFsrmObject = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IFsrmObject, id: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IFsrmObject, id: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, id);
     }
-    pub fn get_Description(self: *const IFsrmObject, description: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IFsrmObject, description: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, description);
     }
-    pub fn put_Description(self: *const IFsrmObject, description: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IFsrmObject, description: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, description);
     }
-    pub fn Delete(self: *const IFsrmObject) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IFsrmObject) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Commit(self: *const IFsrmObject) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IFsrmObject) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self);
     }
 };
@@ -789,25 +789,25 @@ pub const IFsrmCollection = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IFsrmCollection, unknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IFsrmCollection, unknown: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, unknown);
     }
-    pub fn get_Item(self: *const IFsrmCollection, index: i32, item: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IFsrmCollection, index: i32, item: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, index, item);
     }
-    pub fn get_Count(self: *const IFsrmCollection, count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IFsrmCollection, count: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn get_State(self: *const IFsrmCollection, state: ?*FsrmCollectionState) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const IFsrmCollection, state: ?*FsrmCollectionState) callconv(.@"inline") HRESULT {
         return self.vtable.get_State(self, state);
     }
-    pub fn Cancel(self: *const IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
-    pub fn WaitForCompletion(self: *const IFsrmCollection, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
+    pub fn WaitForCompletion(self: *const IFsrmCollection, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCompletion(self, waitSeconds, completed);
     }
-    pub fn GetById(self: *const IFsrmCollection, id: Guid, entry: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetById(self: *const IFsrmCollection, id: Guid, entry: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetById(self, id, entry);
     }
 };
@@ -839,16 +839,16 @@ pub const IFsrmMutableCollection = extern union {
     IFsrmCollection: IFsrmCollection,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Add(self: *const IFsrmMutableCollection, item: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const IFsrmMutableCollection, item: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, item);
     }
-    pub fn Remove(self: *const IFsrmMutableCollection, index: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IFsrmMutableCollection, index: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, index);
     }
-    pub fn RemoveById(self: *const IFsrmMutableCollection, id: Guid) callconv(.Inline) HRESULT {
+    pub fn RemoveById(self: *const IFsrmMutableCollection, id: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveById(self, id);
     }
-    pub fn Clone(self: *const IFsrmMutableCollection, collection: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IFsrmMutableCollection, collection: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, collection);
     }
 };
@@ -870,7 +870,7 @@ pub const IFsrmCommittableCollection = extern union {
     IFsrmCollection: IFsrmCollection,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Commit(self: *const IFsrmCommittableCollection, options: FsrmCommitOptions, results: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IFsrmCommittableCollection, options: FsrmCommitOptions, results: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self, options, results);
     }
 };
@@ -908,19 +908,19 @@ pub const IFsrmAction = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IFsrmAction, id: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IFsrmAction, id: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, id);
     }
-    pub fn get_ActionType(self: *const IFsrmAction, actionType: ?*FsrmActionType) callconv(.Inline) HRESULT {
+    pub fn get_ActionType(self: *const IFsrmAction, actionType: ?*FsrmActionType) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActionType(self, actionType);
     }
-    pub fn get_RunLimitInterval(self: *const IFsrmAction, minutes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RunLimitInterval(self: *const IFsrmAction, minutes: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunLimitInterval(self, minutes);
     }
-    pub fn put_RunLimitInterval(self: *const IFsrmAction, minutes: i32) callconv(.Inline) HRESULT {
+    pub fn put_RunLimitInterval(self: *const IFsrmAction, minutes: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_RunLimitInterval(self, minutes);
     }
-    pub fn Delete(self: *const IFsrmAction) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IFsrmAction) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
 };
@@ -1006,46 +1006,46 @@ pub const IFsrmActionEmail = extern union {
     IFsrmAction: IFsrmAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_MailFrom(self: *const IFsrmActionEmail, mailFrom: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailFrom(self: *const IFsrmActionEmail, mailFrom: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailFrom(self, mailFrom);
     }
-    pub fn put_MailFrom(self: *const IFsrmActionEmail, mailFrom: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailFrom(self: *const IFsrmActionEmail, mailFrom: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailFrom(self, mailFrom);
     }
-    pub fn get_MailReplyTo(self: *const IFsrmActionEmail, mailReplyTo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailReplyTo(self: *const IFsrmActionEmail, mailReplyTo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailReplyTo(self, mailReplyTo);
     }
-    pub fn put_MailReplyTo(self: *const IFsrmActionEmail, mailReplyTo: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailReplyTo(self: *const IFsrmActionEmail, mailReplyTo: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailReplyTo(self, mailReplyTo);
     }
-    pub fn get_MailTo(self: *const IFsrmActionEmail, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailTo(self: *const IFsrmActionEmail, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailTo(self, mailTo);
     }
-    pub fn put_MailTo(self: *const IFsrmActionEmail, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailTo(self: *const IFsrmActionEmail, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailTo(self, mailTo);
     }
-    pub fn get_MailCc(self: *const IFsrmActionEmail, mailCc: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailCc(self: *const IFsrmActionEmail, mailCc: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailCc(self, mailCc);
     }
-    pub fn put_MailCc(self: *const IFsrmActionEmail, mailCc: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailCc(self: *const IFsrmActionEmail, mailCc: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailCc(self, mailCc);
     }
-    pub fn get_MailBcc(self: *const IFsrmActionEmail, mailBcc: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailBcc(self: *const IFsrmActionEmail, mailBcc: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailBcc(self, mailBcc);
     }
-    pub fn put_MailBcc(self: *const IFsrmActionEmail, mailBcc: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailBcc(self: *const IFsrmActionEmail, mailBcc: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailBcc(self, mailBcc);
     }
-    pub fn get_MailSubject(self: *const IFsrmActionEmail, mailSubject: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailSubject(self: *const IFsrmActionEmail, mailSubject: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailSubject(self, mailSubject);
     }
-    pub fn put_MailSubject(self: *const IFsrmActionEmail, mailSubject: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailSubject(self: *const IFsrmActionEmail, mailSubject: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailSubject(self, mailSubject);
     }
-    pub fn get_MessageText(self: *const IFsrmActionEmail, messageText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MessageText(self: *const IFsrmActionEmail, messageText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MessageText(self, messageText);
     }
-    pub fn put_MessageText(self: *const IFsrmActionEmail, messageText: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MessageText(self: *const IFsrmActionEmail, messageText: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MessageText(self, messageText);
     }
 };
@@ -1072,10 +1072,10 @@ pub const IFsrmActionEmail2 = extern union {
     IFsrmAction: IFsrmAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AttachmentFileListSize(self: *const IFsrmActionEmail2, attachmentFileListSize: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AttachmentFileListSize(self: *const IFsrmActionEmail2, attachmentFileListSize: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AttachmentFileListSize(self, attachmentFileListSize);
     }
-    pub fn put_AttachmentFileListSize(self: *const IFsrmActionEmail2, attachmentFileListSize: i32) callconv(.Inline) HRESULT {
+    pub fn put_AttachmentFileListSize(self: *const IFsrmActionEmail2, attachmentFileListSize: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_AttachmentFileListSize(self, attachmentFileListSize);
     }
 };
@@ -1111,16 +1111,16 @@ pub const IFsrmActionReport = extern union {
     IFsrmAction: IFsrmAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReportTypes(self, reportTypes);
     }
-    pub fn put_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_ReportTypes(self, reportTypes);
     }
-    pub fn get_MailTo(self: *const IFsrmActionReport, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailTo(self: *const IFsrmActionReport, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailTo(self, mailTo);
     }
-    pub fn put_MailTo(self: *const IFsrmActionReport, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailTo(self: *const IFsrmActionReport, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailTo(self, mailTo);
     }
 };
@@ -1156,16 +1156,16 @@ pub const IFsrmActionEventLog = extern union {
     IFsrmAction: IFsrmAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_EventType(self: *const IFsrmActionEventLog, eventType: ?*FsrmEventType) callconv(.Inline) HRESULT {
+    pub fn get_EventType(self: *const IFsrmActionEventLog, eventType: ?*FsrmEventType) callconv(.@"inline") HRESULT {
         return self.vtable.get_EventType(self, eventType);
     }
-    pub fn put_EventType(self: *const IFsrmActionEventLog, eventType: FsrmEventType) callconv(.Inline) HRESULT {
+    pub fn put_EventType(self: *const IFsrmActionEventLog, eventType: FsrmEventType) callconv(.@"inline") HRESULT {
         return self.vtable.put_EventType(self, eventType);
     }
-    pub fn get_MessageText(self: *const IFsrmActionEventLog, messageText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MessageText(self: *const IFsrmActionEventLog, messageText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MessageText(self, messageText);
     }
-    pub fn put_MessageText(self: *const IFsrmActionEventLog, messageText: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MessageText(self: *const IFsrmActionEventLog, messageText: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MessageText(self, messageText);
     }
 };
@@ -1251,46 +1251,46 @@ pub const IFsrmActionCommand = extern union {
     IFsrmAction: IFsrmAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExecutablePath(self, executablePath);
     }
-    pub fn put_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExecutablePath(self, executablePath);
     }
-    pub fn get_Arguments(self: *const IFsrmActionCommand, arguments: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Arguments(self: *const IFsrmActionCommand, arguments: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Arguments(self, arguments);
     }
-    pub fn put_Arguments(self: *const IFsrmActionCommand, arguments: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Arguments(self: *const IFsrmActionCommand, arguments: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Arguments(self, arguments);
     }
-    pub fn get_Account(self: *const IFsrmActionCommand, account: ?*FsrmAccountType) callconv(.Inline) HRESULT {
+    pub fn get_Account(self: *const IFsrmActionCommand, account: ?*FsrmAccountType) callconv(.@"inline") HRESULT {
         return self.vtable.get_Account(self, account);
     }
-    pub fn put_Account(self: *const IFsrmActionCommand, account: FsrmAccountType) callconv(.Inline) HRESULT {
+    pub fn put_Account(self: *const IFsrmActionCommand, account: FsrmAccountType) callconv(.@"inline") HRESULT {
         return self.vtable.put_Account(self, account);
     }
-    pub fn get_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_WorkingDirectory(self, workingDirectory);
     }
-    pub fn put_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_WorkingDirectory(self, workingDirectory);
     }
-    pub fn get_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MonitorCommand(self, monitorCommand);
     }
-    pub fn put_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: i16) callconv(.Inline) HRESULT {
+    pub fn put_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MonitorCommand(self, monitorCommand);
     }
-    pub fn get_KillTimeOut(self: *const IFsrmActionCommand, minutes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_KillTimeOut(self: *const IFsrmActionCommand, minutes: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_KillTimeOut(self, minutes);
     }
-    pub fn put_KillTimeOut(self: *const IFsrmActionCommand, minutes: i32) callconv(.Inline) HRESULT {
+    pub fn put_KillTimeOut(self: *const IFsrmActionCommand, minutes: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_KillTimeOut(self, minutes);
     }
-    pub fn get_LogResult(self: *const IFsrmActionCommand, logResults: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_LogResult(self: *const IFsrmActionCommand, logResults: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_LogResult(self, logResults);
     }
-    pub fn put_LogResult(self: *const IFsrmActionCommand, logResults: i16) callconv(.Inline) HRESULT {
+    pub fn put_LogResult(self: *const IFsrmActionCommand, logResults: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_LogResult(self, logResults);
     }
 };
@@ -1369,43 +1369,43 @@ pub const IFsrmSetting = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_SmtpServer(self: *const IFsrmSetting, smtpServer: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SmtpServer(self: *const IFsrmSetting, smtpServer: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SmtpServer(self, smtpServer);
     }
-    pub fn put_SmtpServer(self: *const IFsrmSetting, smtpServer: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_SmtpServer(self: *const IFsrmSetting, smtpServer: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_SmtpServer(self, smtpServer);
     }
-    pub fn get_MailFrom(self: *const IFsrmSetting, mailFrom: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailFrom(self: *const IFsrmSetting, mailFrom: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailFrom(self, mailFrom);
     }
-    pub fn put_MailFrom(self: *const IFsrmSetting, mailFrom: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailFrom(self: *const IFsrmSetting, mailFrom: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailFrom(self, mailFrom);
     }
-    pub fn get_AdminEmail(self: *const IFsrmSetting, adminEmail: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AdminEmail(self: *const IFsrmSetting, adminEmail: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AdminEmail(self, adminEmail);
     }
-    pub fn put_AdminEmail(self: *const IFsrmSetting, adminEmail: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_AdminEmail(self: *const IFsrmSetting, adminEmail: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_AdminEmail(self, adminEmail);
     }
-    pub fn get_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisableCommandLine(self, disableCommandLine);
     }
-    pub fn put_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: i16) callconv(.Inline) HRESULT {
+    pub fn put_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisableCommandLine(self, disableCommandLine);
     }
-    pub fn get_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableScreeningAudit(self, enableScreeningAudit);
     }
-    pub fn put_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: i16) callconv(.Inline) HRESULT {
+    pub fn put_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableScreeningAudit(self, enableScreeningAudit);
     }
-    pub fn EmailTest(self: *const IFsrmSetting, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn EmailTest(self: *const IFsrmSetting, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.EmailTest(self, mailTo);
     }
-    pub fn SetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: i32) callconv(.Inline) HRESULT {
+    pub fn SetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetActionRunLimitInterval(self, actionType, delayTimeMinutes);
     }
-    pub fn GetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetActionRunLimitInterval(self, actionType, delayTimeMinutes);
     }
 };
@@ -1425,7 +1425,7 @@ pub const IFsrmPathMapper = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetSharePathsForLocalPath(self: *const IFsrmPathMapper, localPath: ?BSTR, sharePaths: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn GetSharePathsForLocalPath(self: *const IFsrmPathMapper, localPath: ?BSTR, sharePaths: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetSharePathsForLocalPath(self, localPath, sharePaths);
     }
 };
@@ -1479,22 +1479,22 @@ pub const IFsrmExportImport = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ExportFileGroups(self: *const IFsrmExportImport, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExportFileGroups(self: *const IFsrmExportImport, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExportFileGroups(self, filePath, fileGroupNamesSafeArray, remoteHost);
     }
-    pub fn ImportFileGroups(self: *const IFsrmExportImport, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn ImportFileGroups(self: *const IFsrmExportImport, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.ImportFileGroups(self, filePath, fileGroupNamesSafeArray, remoteHost, fileGroups);
     }
-    pub fn ExportFileScreenTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExportFileScreenTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExportFileScreenTemplates(self, filePath, templateNamesSafeArray, remoteHost);
     }
-    pub fn ImportFileScreenTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn ImportFileScreenTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.ImportFileScreenTemplates(self, filePath, templateNamesSafeArray, remoteHost, templates);
     }
-    pub fn ExportQuotaTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExportQuotaTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExportQuotaTemplates(self, filePath, templateNamesSafeArray, remoteHost);
     }
-    pub fn ImportQuotaTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn ImportQuotaTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.ImportQuotaTemplates(self, filePath, templateNamesSafeArray, remoteHost, templates);
     }
 };
@@ -1519,10 +1519,10 @@ pub const IFsrmDerivedObjectsResult = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DerivedObjects(self: *const IFsrmDerivedObjectsResult, derivedObjects: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn get_DerivedObjects(self: *const IFsrmDerivedObjectsResult, derivedObjects: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_DerivedObjects(self, derivedObjects);
     }
-    pub fn get_Results(self: *const IFsrmDerivedObjectsResult, results: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn get_Results(self: *const IFsrmDerivedObjectsResult, results: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_Results(self, results);
     }
 };
@@ -1547,7 +1547,7 @@ pub const IFsrmAccessDeniedRemediationClient = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Show(self: *const IFsrmAccessDeniedRemediationClient, parentWnd: usize, accessPath: ?BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: ?BSTR, windowMessage: ?BSTR, result: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Show(self: *const IFsrmAccessDeniedRemediationClient, parentWnd: usize, accessPath: ?BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: ?BSTR, windowMessage: ?BSTR, result: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self, parentWnd, accessPath, errorType, flags, windowTitle, windowMessage, result);
     }
 };
@@ -1657,34 +1657,34 @@ pub const IFsrmQuotaBase = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_QuotaLimit(self, quotaLimit);
     }
-    pub fn put_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_QuotaLimit(self, quotaLimit);
     }
-    pub fn get_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_QuotaFlags(self, quotaFlags);
     }
-    pub fn put_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: i32) callconv(.Inline) HRESULT {
+    pub fn put_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_QuotaFlags(self, quotaFlags);
     }
-    pub fn get_Thresholds(self: *const IFsrmQuotaBase, thresholds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Thresholds(self: *const IFsrmQuotaBase, thresholds: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Thresholds(self, thresholds);
     }
-    pub fn AddThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.Inline) HRESULT {
+    pub fn AddThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddThreshold(self, threshold);
     }
-    pub fn DeleteThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.Inline) HRESULT {
+    pub fn DeleteThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteThreshold(self, threshold);
     }
-    pub fn ModifyThreshold(self: *const IFsrmQuotaBase, threshold: i32, newThreshold: i32) callconv(.Inline) HRESULT {
+    pub fn ModifyThreshold(self: *const IFsrmQuotaBase, threshold: i32, newThreshold: i32) callconv(.@"inline") HRESULT {
         return self.vtable.ModifyThreshold(self, threshold, newThreshold);
     }
-    pub fn CreateThresholdAction(self: *const IFsrmQuotaBase, threshold: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
+    pub fn CreateThresholdAction(self: *const IFsrmQuotaBase, threshold: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.@"inline") HRESULT {
         return self.vtable.CreateThresholdAction(self, threshold, actionType, action);
     }
-    pub fn EnumThresholdActions(self: *const IFsrmQuotaBase, threshold: i32, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumThresholdActions(self: *const IFsrmQuotaBase, threshold: i32, actions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumThresholdActions(self, threshold, actions);
     }
 };
@@ -1730,22 +1730,22 @@ pub const IFsrmQuotaObject = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Path(self: *const IFsrmQuotaObject, path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IFsrmQuotaObject, path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, path);
     }
-    pub fn get_UserSid(self: *const IFsrmQuotaObject, userSid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserSid(self: *const IFsrmQuotaObject, userSid: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserSid(self, userSid);
     }
-    pub fn get_UserAccount(self: *const IFsrmQuotaObject, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserAccount(self: *const IFsrmQuotaObject, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserAccount(self, userAccount);
     }
-    pub fn get_SourceTemplateName(self: *const IFsrmQuotaObject, quotaTemplateName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SourceTemplateName(self: *const IFsrmQuotaObject, quotaTemplateName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SourceTemplateName(self, quotaTemplateName);
     }
-    pub fn get_MatchesSourceTemplate(self: *const IFsrmQuotaObject, matches: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MatchesSourceTemplate(self: *const IFsrmQuotaObject, matches: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MatchesSourceTemplate(self, matches);
     }
-    pub fn ApplyTemplate(self: *const IFsrmQuotaObject, quotaTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ApplyTemplate(self: *const IFsrmQuotaObject, quotaTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ApplyTemplate(self, quotaTemplateName);
     }
 };
@@ -1784,19 +1784,19 @@ pub const IFsrmQuota = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_QuotaUsed(self: *const IFsrmQuota, used: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_QuotaUsed(self: *const IFsrmQuota, used: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_QuotaUsed(self, used);
     }
-    pub fn get_QuotaPeakUsage(self: *const IFsrmQuota, peakUsage: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_QuotaPeakUsage(self: *const IFsrmQuota, peakUsage: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_QuotaPeakUsage(self, peakUsage);
     }
-    pub fn get_QuotaPeakUsageTime(self: *const IFsrmQuota, peakUsageDateTime: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_QuotaPeakUsageTime(self: *const IFsrmQuota, peakUsageDateTime: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.get_QuotaPeakUsageTime(self, peakUsageDateTime);
     }
-    pub fn ResetPeakUsage(self: *const IFsrmQuota) callconv(.Inline) HRESULT {
+    pub fn ResetPeakUsage(self: *const IFsrmQuota) callconv(.@"inline") HRESULT {
         return self.vtable.ResetPeakUsage(self);
     }
-    pub fn RefreshUsageProperties(self: *const IFsrmQuota) callconv(.Inline) HRESULT {
+    pub fn RefreshUsageProperties(self: *const IFsrmQuota) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshUsageProperties(self);
     }
 };
@@ -1830,13 +1830,13 @@ pub const IFsrmAutoApplyQuota = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExcludeFolders(self, folders);
     }
-    pub fn put_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExcludeFolders(self, folders);
     }
-    pub fn CommitAndUpdateDerived(self: *const IFsrmAutoApplyQuota, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+    pub fn CommitAndUpdateDerived(self: *const IFsrmAutoApplyQuota, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
         return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
     }
 };
@@ -1913,40 +1913,40 @@ pub const IFsrmQuotaManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ActionVariables(self: *const IFsrmQuotaManager, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ActionVariables(self: *const IFsrmQuotaManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActionVariables(self, variables);
     }
-    pub fn get_ActionVariableDescriptions(self: *const IFsrmQuotaManager, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmQuotaManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActionVariableDescriptions(self, descriptions);
     }
-    pub fn CreateQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
+    pub fn CreateQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
         return self.vtable.CreateQuota(self, path, quota);
     }
-    pub fn CreateAutoApplyQuota(self: *const IFsrmQuotaManager, quotaTemplateName: ?BSTR, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.Inline) HRESULT {
+    pub fn CreateAutoApplyQuota(self: *const IFsrmQuotaManager, quotaTemplateName: ?BSTR, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAutoApplyQuota(self, quotaTemplateName, path, quota);
     }
-    pub fn GetQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
+    pub fn GetQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuota(self, path, quota);
     }
-    pub fn GetAutoApplyQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.Inline) HRESULT {
+    pub fn GetAutoApplyQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.@"inline") HRESULT {
         return self.vtable.GetAutoApplyQuota(self, path, quota);
     }
-    pub fn GetRestrictiveQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
+    pub fn GetRestrictiveQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.@"inline") HRESULT {
         return self.vtable.GetRestrictiveQuota(self, path, quota);
     }
-    pub fn EnumQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn EnumQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumQuotas(self, path, options, quotas);
     }
-    pub fn EnumAutoApplyQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn EnumAutoApplyQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAutoApplyQuotas(self, path, options, quotas);
     }
-    pub fn EnumEffectiveQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn EnumEffectiveQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffectiveQuotas(self, path, options, quotas);
     }
-    pub fn Scan(self: *const IFsrmQuotaManager, strPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Scan(self: *const IFsrmQuotaManager, strPath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Scan(self, strPath);
     }
-    pub fn CreateQuotaCollection(self: *const IFsrmQuotaManager, collection: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn CreateQuotaCollection(self: *const IFsrmQuotaManager, collection: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.CreateQuotaCollection(self, collection);
     }
 };
@@ -1968,7 +1968,7 @@ pub const IFsrmQuotaManagerEx = extern union {
     IFsrmQuotaManager: IFsrmQuotaManager,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsAffectedByQuota(self: *const IFsrmQuotaManagerEx, path: ?BSTR, options: FsrmEnumOptions, affected: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsAffectedByQuota(self: *const IFsrmQuotaManagerEx, path: ?BSTR, options: FsrmEnumOptions, affected: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsAffectedByQuota(self, path, options, affected);
     }
 };
@@ -2005,16 +2005,16 @@ pub const IFsrmQuotaTemplate = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmQuotaTemplate, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmQuotaTemplate, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmQuotaTemplate, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmQuotaTemplate, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn CopyTemplate(self: *const IFsrmQuotaTemplate, quotaTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn CopyTemplate(self: *const IFsrmQuotaTemplate, quotaTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.CopyTemplate(self, quotaTemplateName);
     }
-    pub fn CommitAndUpdateDerived(self: *const IFsrmQuotaTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+    pub fn CommitAndUpdateDerived(self: *const IFsrmQuotaTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
         return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
     }
 };
@@ -2042,10 +2042,10 @@ pub const IFsrmQuotaTemplateImported = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub fn put_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: i16) callconv(.Inline) HRESULT {
+    pub fn put_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_OverwriteOnCommit(self, overwrite);
     }
 };
@@ -2085,19 +2085,19 @@ pub const IFsrmQuotaTemplateManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateTemplate(self: *const IFsrmQuotaTemplateManager, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.Inline) HRESULT {
+    pub fn CreateTemplate(self: *const IFsrmQuotaTemplateManager, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTemplate(self, quotaTemplate);
     }
-    pub fn GetTemplate(self: *const IFsrmQuotaTemplateManager, name: ?BSTR, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.Inline) HRESULT {
+    pub fn GetTemplate(self: *const IFsrmQuotaTemplateManager, name: ?BSTR, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.@"inline") HRESULT {
         return self.vtable.GetTemplate(self, name, quotaTemplate);
     }
-    pub fn EnumTemplates(self: *const IFsrmQuotaTemplateManager, options: FsrmEnumOptions, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn EnumTemplates(self: *const IFsrmQuotaTemplateManager, options: FsrmEnumOptions, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumTemplates(self, options, quotaTemplates);
     }
-    pub fn ExportTemplates(self: *const IFsrmQuotaTemplateManager, quotaTemplateNamesArray: ?*VARIANT, serializedQuotaTemplates: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExportTemplates(self: *const IFsrmQuotaTemplateManager, quotaTemplateNamesArray: ?*VARIANT, serializedQuotaTemplates: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExportTemplates(self, quotaTemplateNamesArray, serializedQuotaTemplates);
     }
-    pub fn ImportTemplates(self: *const IFsrmQuotaTemplateManager, serializedQuotaTemplates: ?BSTR, quotaTemplateNamesArray: ?*VARIANT, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn ImportTemplates(self: *const IFsrmQuotaTemplateManager, serializedQuotaTemplates: ?BSTR, quotaTemplateNamesArray: ?*VARIANT, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.ImportTemplates(self, serializedQuotaTemplates, quotaTemplateNamesArray, quotaTemplates);
     }
 };
@@ -2143,22 +2143,22 @@ pub const IFsrmFileGroup = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmFileGroup, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmFileGroup, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmFileGroup, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmFileGroup, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Members(self: *const IFsrmFileGroup, members: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn get_Members(self: *const IFsrmFileGroup, members: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_Members(self, members);
     }
-    pub fn put_Members(self: *const IFsrmFileGroup, members: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn put_Members(self: *const IFsrmFileGroup, members: ?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.put_Members(self, members);
     }
-    pub fn get_NonMembers(self: *const IFsrmFileGroup, nonMembers: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn get_NonMembers(self: *const IFsrmFileGroup, nonMembers: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_NonMembers(self, nonMembers);
     }
-    pub fn put_NonMembers(self: *const IFsrmFileGroup, nonMembers: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn put_NonMembers(self: *const IFsrmFileGroup, nonMembers: ?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.put_NonMembers(self, nonMembers);
     }
 };
@@ -2185,10 +2185,10 @@ pub const IFsrmFileGroupImported = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub fn put_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: i16) callconv(.Inline) HRESULT {
+    pub fn put_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_OverwriteOnCommit(self, overwrite);
     }
 };
@@ -2228,19 +2228,19 @@ pub const IFsrmFileGroupManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateFileGroup(self: *const IFsrmFileGroupManager, fileGroup: ?*?*IFsrmFileGroup) callconv(.Inline) HRESULT {
+    pub fn CreateFileGroup(self: *const IFsrmFileGroupManager, fileGroup: ?*?*IFsrmFileGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFileGroup(self, fileGroup);
     }
-    pub fn GetFileGroup(self: *const IFsrmFileGroupManager, name: ?BSTR, fileGroup: ?*?*IFsrmFileGroup) callconv(.Inline) HRESULT {
+    pub fn GetFileGroup(self: *const IFsrmFileGroupManager, name: ?BSTR, fileGroup: ?*?*IFsrmFileGroup) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileGroup(self, name, fileGroup);
     }
-    pub fn EnumFileGroups(self: *const IFsrmFileGroupManager, options: FsrmEnumOptions, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn EnumFileGroups(self: *const IFsrmFileGroupManager, options: FsrmEnumOptions, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumFileGroups(self, options, fileGroups);
     }
-    pub fn ExportFileGroups(self: *const IFsrmFileGroupManager, fileGroupNamesArray: ?*VARIANT, serializedFileGroups: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExportFileGroups(self: *const IFsrmFileGroupManager, fileGroupNamesArray: ?*VARIANT, serializedFileGroups: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExportFileGroups(self, fileGroupNamesArray, serializedFileGroups);
     }
-    pub fn ImportFileGroups(self: *const IFsrmFileGroupManager, serializedFileGroups: ?BSTR, fileGroupNamesArray: ?*VARIANT, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn ImportFileGroups(self: *const IFsrmFileGroupManager, serializedFileGroups: ?BSTR, fileGroupNamesArray: ?*VARIANT, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.ImportFileGroups(self, serializedFileGroups, fileGroupNamesArray, fileGroups);
     }
 };
@@ -2285,22 +2285,22 @@ pub const IFsrmFileScreenBase = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn get_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_BlockedFileGroups(self, blockList);
     }
-    pub fn put_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn put_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.put_BlockedFileGroups(self, blockList);
     }
-    pub fn get_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_FileScreenFlags(self, fileScreenFlags);
     }
-    pub fn put_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: i32) callconv(.Inline) HRESULT {
+    pub fn put_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_FileScreenFlags(self, fileScreenFlags);
     }
-    pub fn CreateAction(self: *const IFsrmFileScreenBase, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
+    pub fn CreateAction(self: *const IFsrmFileScreenBase, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAction(self, actionType, action);
     }
-    pub fn EnumActions(self: *const IFsrmFileScreenBase, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumActions(self: *const IFsrmFileScreenBase, actions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumActions(self, actions);
     }
 };
@@ -2346,22 +2346,22 @@ pub const IFsrmFileScreen = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Path(self: *const IFsrmFileScreen, path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IFsrmFileScreen, path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, path);
     }
-    pub fn get_SourceTemplateName(self: *const IFsrmFileScreen, fileScreenTemplateName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SourceTemplateName(self: *const IFsrmFileScreen, fileScreenTemplateName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SourceTemplateName(self, fileScreenTemplateName);
     }
-    pub fn get_MatchesSourceTemplate(self: *const IFsrmFileScreen, matches: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MatchesSourceTemplate(self: *const IFsrmFileScreen, matches: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MatchesSourceTemplate(self, matches);
     }
-    pub fn get_UserSid(self: *const IFsrmFileScreen, userSid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserSid(self: *const IFsrmFileScreen, userSid: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserSid(self, userSid);
     }
-    pub fn get_UserAccount(self: *const IFsrmFileScreen, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserAccount(self: *const IFsrmFileScreen, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserAccount(self, userAccount);
     }
-    pub fn ApplyTemplate(self: *const IFsrmFileScreen, fileScreenTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ApplyTemplate(self: *const IFsrmFileScreen, fileScreenTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ApplyTemplate(self, fileScreenTemplateName);
     }
 };
@@ -2392,13 +2392,13 @@ pub const IFsrmFileScreenException = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Path(self: *const IFsrmFileScreenException, path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IFsrmFileScreenException, path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, path);
     }
-    pub fn get_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn get_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowedFileGroups(self, allowList);
     }
-    pub fn put_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+    pub fn put_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*IFsrmMutableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowedFileGroups(self, allowList);
     }
 };
@@ -2459,31 +2459,31 @@ pub const IFsrmFileScreenManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ActionVariables(self: *const IFsrmFileScreenManager, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ActionVariables(self: *const IFsrmFileScreenManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActionVariables(self, variables);
     }
-    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileScreenManager, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileScreenManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActionVariableDescriptions(self, descriptions);
     }
-    pub fn CreateFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.Inline) HRESULT {
+    pub fn CreateFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFileScreen(self, path, fileScreen);
     }
-    pub fn GetFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.Inline) HRESULT {
+    pub fn GetFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileScreen(self, path, fileScreen);
     }
-    pub fn EnumFileScreens(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreens: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn EnumFileScreens(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreens: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumFileScreens(self, path, options, fileScreens);
     }
-    pub fn CreateFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.Inline) HRESULT {
+    pub fn CreateFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFileScreenException(self, path, fileScreenException);
     }
-    pub fn GetFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.Inline) HRESULT {
+    pub fn GetFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileScreenException(self, path, fileScreenException);
     }
-    pub fn EnumFileScreenExceptions(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreenExceptions: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn EnumFileScreenExceptions(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreenExceptions: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumFileScreenExceptions(self, path, options, fileScreenExceptions);
     }
-    pub fn CreateFileScreenCollection(self: *const IFsrmFileScreenManager, collection: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn CreateFileScreenCollection(self: *const IFsrmFileScreenManager, collection: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFileScreenCollection(self, collection);
     }
 };
@@ -2520,16 +2520,16 @@ pub const IFsrmFileScreenTemplate = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmFileScreenTemplate, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmFileScreenTemplate, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmFileScreenTemplate, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmFileScreenTemplate, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn CopyTemplate(self: *const IFsrmFileScreenTemplate, fileScreenTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn CopyTemplate(self: *const IFsrmFileScreenTemplate, fileScreenTemplateName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.CopyTemplate(self, fileScreenTemplateName);
     }
-    pub fn CommitAndUpdateDerived(self: *const IFsrmFileScreenTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+    pub fn CommitAndUpdateDerived(self: *const IFsrmFileScreenTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.@"inline") HRESULT {
         return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
     }
 };
@@ -2557,10 +2557,10 @@ pub const IFsrmFileScreenTemplateImported = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub fn put_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: i16) callconv(.Inline) HRESULT {
+    pub fn put_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_OverwriteOnCommit(self, overwrite);
     }
 };
@@ -2600,19 +2600,19 @@ pub const IFsrmFileScreenTemplateManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateTemplate(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.Inline) HRESULT {
+    pub fn CreateTemplate(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTemplate(self, fileScreenTemplate);
     }
-    pub fn GetTemplate(self: *const IFsrmFileScreenTemplateManager, name: ?BSTR, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.Inline) HRESULT {
+    pub fn GetTemplate(self: *const IFsrmFileScreenTemplateManager, name: ?BSTR, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.@"inline") HRESULT {
         return self.vtable.GetTemplate(self, name, fileScreenTemplate);
     }
-    pub fn EnumTemplates(self: *const IFsrmFileScreenTemplateManager, options: FsrmEnumOptions, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn EnumTemplates(self: *const IFsrmFileScreenTemplateManager, options: FsrmEnumOptions, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumTemplates(self, options, fileScreenTemplates);
     }
-    pub fn ExportTemplates(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplateNamesArray: ?*VARIANT, serializedFileScreenTemplates: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExportTemplates(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplateNamesArray: ?*VARIANT, serializedFileScreenTemplates: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ExportTemplates(self, fileScreenTemplateNamesArray, serializedFileScreenTemplates);
     }
-    pub fn ImportTemplates(self: *const IFsrmFileScreenTemplateManager, serializedFileScreenTemplates: ?BSTR, fileScreenTemplateNamesArray: ?*VARIANT, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+    pub fn ImportTemplates(self: *const IFsrmFileScreenTemplateManager, serializedFileScreenTemplates: ?BSTR, fileScreenTemplateNamesArray: ?*VARIANT, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.@"inline") HRESULT {
         return self.vtable.ImportTemplates(self, serializedFileScreenTemplates, fileScreenTemplateNamesArray, fileScreenTemplates);
     }
 };
@@ -2679,34 +2679,34 @@ pub const IFsrmReportManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn EnumReportJobs(self: *const IFsrmReportManager, options: FsrmEnumOptions, reportJobs: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumReportJobs(self: *const IFsrmReportManager, options: FsrmEnumOptions, reportJobs: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumReportJobs(self, options, reportJobs);
     }
-    pub fn CreateReportJob(self: *const IFsrmReportManager, reportJob: ?*?*IFsrmReportJob) callconv(.Inline) HRESULT {
+    pub fn CreateReportJob(self: *const IFsrmReportManager, reportJob: ?*?*IFsrmReportJob) callconv(.@"inline") HRESULT {
         return self.vtable.CreateReportJob(self, reportJob);
     }
-    pub fn GetReportJob(self: *const IFsrmReportManager, taskName: ?BSTR, reportJob: ?*?*IFsrmReportJob) callconv(.Inline) HRESULT {
+    pub fn GetReportJob(self: *const IFsrmReportManager, taskName: ?BSTR, reportJob: ?*?*IFsrmReportJob) callconv(.@"inline") HRESULT {
         return self.vtable.GetReportJob(self, taskName, reportJob);
     }
-    pub fn GetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutputDirectory(self, context, path);
     }
-    pub fn SetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetOutputDirectory(self, context, path);
     }
-    pub fn IsFilterValidForReportType(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsFilterValidForReportType(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsFilterValidForReportType(self, reportType, filter, valid);
     }
-    pub fn GetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultFilter(self, reportType, filter, filterValue);
     }
-    pub fn SetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultFilter(self, reportType, filter, filterValue);
     }
-    pub fn GetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetReportSizeLimit(self, limit, limitValue);
     }
-    pub fn SetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetReportSizeLimit(self, limit, limitValue);
     }
 };
@@ -2803,55 +2803,55 @@ pub const IFsrmReportJob = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Task(self: *const IFsrmReportJob, taskName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Task(self: *const IFsrmReportJob, taskName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Task(self, taskName);
     }
-    pub fn put_Task(self: *const IFsrmReportJob, taskName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Task(self: *const IFsrmReportJob, taskName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Task(self, taskName);
     }
-    pub fn get_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_NamespaceRoots(self, namespaceRoots);
     }
-    pub fn put_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_NamespaceRoots(self, namespaceRoots);
     }
-    pub fn get_Formats(self: *const IFsrmReportJob, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Formats(self: *const IFsrmReportJob, formats: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Formats(self, formats);
     }
-    pub fn put_Formats(self: *const IFsrmReportJob, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_Formats(self: *const IFsrmReportJob, formats: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_Formats(self, formats);
     }
-    pub fn get_MailTo(self: *const IFsrmReportJob, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailTo(self: *const IFsrmReportJob, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailTo(self, mailTo);
     }
-    pub fn put_MailTo(self: *const IFsrmReportJob, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailTo(self: *const IFsrmReportJob, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailTo(self, mailTo);
     }
-    pub fn get_RunningStatus(self: *const IFsrmReportJob, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+    pub fn get_RunningStatus(self: *const IFsrmReportJob, runningStatus: ?*FsrmReportRunningStatus) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunningStatus(self, runningStatus);
     }
-    pub fn get_LastRun(self: *const IFsrmReportJob, lastRun: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_LastRun(self: *const IFsrmReportJob, lastRun: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastRun(self, lastRun);
     }
-    pub fn get_LastError(self: *const IFsrmReportJob, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LastError(self: *const IFsrmReportJob, lastError: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastError(self, lastError);
     }
-    pub fn get_LastGeneratedInDirectory(self: *const IFsrmReportJob, path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LastGeneratedInDirectory(self: *const IFsrmReportJob, path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastGeneratedInDirectory(self, path);
     }
-    pub fn EnumReports(self: *const IFsrmReportJob, reports: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumReports(self: *const IFsrmReportJob, reports: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumReports(self, reports);
     }
-    pub fn CreateReport(self: *const IFsrmReportJob, reportType: FsrmReportType, report: ?*?*IFsrmReport) callconv(.Inline) HRESULT {
+    pub fn CreateReport(self: *const IFsrmReportJob, reportType: FsrmReportType, report: ?*?*IFsrmReport) callconv(.@"inline") HRESULT {
         return self.vtable.CreateReport(self, reportType, report);
     }
-    pub fn Run(self: *const IFsrmReportJob, context: FsrmReportGenerationContext) callconv(.Inline) HRESULT {
+    pub fn Run(self: *const IFsrmReportJob, context: FsrmReportGenerationContext) callconv(.@"inline") HRESULT {
         return self.vtable.Run(self, context);
     }
-    pub fn WaitForCompletion(self: *const IFsrmReportJob, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
+    pub fn WaitForCompletion(self: *const IFsrmReportJob, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCompletion(self, waitSeconds, completed);
     }
-    pub fn Cancel(self: *const IFsrmReportJob) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IFsrmReportJob) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
 };
@@ -2909,31 +2909,31 @@ pub const IFsrmReport = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const IFsrmReport, reportType: ?*FsrmReportType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IFsrmReport, reportType: ?*FsrmReportType) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, reportType);
     }
-    pub fn get_Name(self: *const IFsrmReport, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmReport, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmReport, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmReport, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Description(self: *const IFsrmReport, description: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IFsrmReport, description: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, description);
     }
-    pub fn put_Description(self: *const IFsrmReport, description: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IFsrmReport, description: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, description);
     }
-    pub fn get_LastGeneratedFileNamePrefix(self: *const IFsrmReport, prefix: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LastGeneratedFileNamePrefix(self: *const IFsrmReport, prefix: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastGeneratedFileNamePrefix(self, prefix);
     }
-    pub fn GetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetFilter(self, filter, filterValue);
     }
-    pub fn SetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetFilter(self, filter, filterValue);
     }
-    pub fn Delete(self: *const IFsrmReport) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IFsrmReport) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
 };
@@ -2968,16 +2968,16 @@ pub const IFsrmReportScheduler = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn VerifyNamespaces(self: *const IFsrmReportScheduler, namespacesSafeArray: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn VerifyNamespaces(self: *const IFsrmReportScheduler, namespacesSafeArray: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.VerifyNamespaces(self, namespacesSafeArray);
     }
-    pub fn CreateScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn CreateScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.CreateScheduleTask(self, taskName, namespacesSafeArray, serializedTask);
     }
-    pub fn ModifyScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ModifyScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ModifyScheduleTask(self, taskName, namespacesSafeArray, serializedTask);
     }
-    pub fn DeleteScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteScheduleTask(self, taskName);
     }
 };
@@ -3016,19 +3016,19 @@ pub const IFsrmFileManagementJobManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ActionVariables(self: *const IFsrmFileManagementJobManager, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ActionVariables(self: *const IFsrmFileManagementJobManager, variables: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActionVariables(self, variables);
     }
-    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileManagementJobManager, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileManagementJobManager, descriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ActionVariableDescriptions(self, descriptions);
     }
-    pub fn EnumFileManagementJobs(self: *const IFsrmFileManagementJobManager, options: FsrmEnumOptions, fileManagementJobs: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumFileManagementJobs(self: *const IFsrmFileManagementJobManager, options: FsrmEnumOptions, fileManagementJobs: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumFileManagementJobs(self, options, fileManagementJobs);
     }
-    pub fn CreateFileManagementJob(self: *const IFsrmFileManagementJobManager, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.Inline) HRESULT {
+    pub fn CreateFileManagementJob(self: *const IFsrmFileManagementJobManager, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFileManagementJob(self, fileManagementJob);
     }
-    pub fn GetFileManagementJob(self: *const IFsrmFileManagementJobManager, name: ?BSTR, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.Inline) HRESULT {
+    pub fn GetFileManagementJob(self: *const IFsrmFileManagementJobManager, name: ?BSTR, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileManagementJob(self, name, fileManagementJob);
     }
 };
@@ -3284,151 +3284,151 @@ pub const IFsrmFileManagementJob = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmFileManagementJob, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmFileManagementJob, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmFileManagementJob, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmFileManagementJob, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_NamespaceRoots(self: *const IFsrmFileManagementJob, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_NamespaceRoots(self: *const IFsrmFileManagementJob, namespaceRoots: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_NamespaceRoots(self, namespaceRoots);
     }
-    pub fn put_NamespaceRoots(self: *const IFsrmFileManagementJob, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_NamespaceRoots(self: *const IFsrmFileManagementJob, namespaceRoots: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_NamespaceRoots(self, namespaceRoots);
     }
-    pub fn get_Enabled(self: *const IFsrmFileManagementJob, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const IFsrmFileManagementJob, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const IFsrmFileManagementJob, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const IFsrmFileManagementJob, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_OperationType(self: *const IFsrmFileManagementJob, operationType: ?*FsrmFileManagementType) callconv(.Inline) HRESULT {
+    pub fn get_OperationType(self: *const IFsrmFileManagementJob, operationType: ?*FsrmFileManagementType) callconv(.@"inline") HRESULT {
         return self.vtable.get_OperationType(self, operationType);
     }
-    pub fn put_OperationType(self: *const IFsrmFileManagementJob, operationType: FsrmFileManagementType) callconv(.Inline) HRESULT {
+    pub fn put_OperationType(self: *const IFsrmFileManagementJob, operationType: FsrmFileManagementType) callconv(.@"inline") HRESULT {
         return self.vtable.put_OperationType(self, operationType);
     }
-    pub fn get_ExpirationDirectory(self: *const IFsrmFileManagementJob, expirationDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ExpirationDirectory(self: *const IFsrmFileManagementJob, expirationDirectory: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExpirationDirectory(self, expirationDirectory);
     }
-    pub fn put_ExpirationDirectory(self: *const IFsrmFileManagementJob, expirationDirectory: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ExpirationDirectory(self: *const IFsrmFileManagementJob, expirationDirectory: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExpirationDirectory(self, expirationDirectory);
     }
-    pub fn get_CustomAction(self: *const IFsrmFileManagementJob, action: ?*?*IFsrmActionCommand) callconv(.Inline) HRESULT {
+    pub fn get_CustomAction(self: *const IFsrmFileManagementJob, action: ?*?*IFsrmActionCommand) callconv(.@"inline") HRESULT {
         return self.vtable.get_CustomAction(self, action);
     }
-    pub fn get_Notifications(self: *const IFsrmFileManagementJob, notifications: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Notifications(self: *const IFsrmFileManagementJob, notifications: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Notifications(self, notifications);
     }
-    pub fn get_Logging(self: *const IFsrmFileManagementJob, loggingFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Logging(self: *const IFsrmFileManagementJob, loggingFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Logging(self, loggingFlags);
     }
-    pub fn put_Logging(self: *const IFsrmFileManagementJob, loggingFlags: i32) callconv(.Inline) HRESULT {
+    pub fn put_Logging(self: *const IFsrmFileManagementJob, loggingFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Logging(self, loggingFlags);
     }
-    pub fn get_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReportEnabled(self, reportEnabled);
     }
-    pub fn put_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_ReportEnabled(self, reportEnabled);
     }
-    pub fn get_Formats(self: *const IFsrmFileManagementJob, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Formats(self: *const IFsrmFileManagementJob, formats: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Formats(self, formats);
     }
-    pub fn put_Formats(self: *const IFsrmFileManagementJob, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_Formats(self: *const IFsrmFileManagementJob, formats: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_Formats(self, formats);
     }
-    pub fn get_MailTo(self: *const IFsrmFileManagementJob, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MailTo(self: *const IFsrmFileManagementJob, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_MailTo(self, mailTo);
     }
-    pub fn put_MailTo(self: *const IFsrmFileManagementJob, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MailTo(self: *const IFsrmFileManagementJob, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_MailTo(self, mailTo);
     }
-    pub fn get_DaysSinceFileCreated(self: *const IFsrmFileManagementJob, daysSinceCreation: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DaysSinceFileCreated(self: *const IFsrmFileManagementJob, daysSinceCreation: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_DaysSinceFileCreated(self, daysSinceCreation);
     }
-    pub fn put_DaysSinceFileCreated(self: *const IFsrmFileManagementJob, daysSinceCreation: i32) callconv(.Inline) HRESULT {
+    pub fn put_DaysSinceFileCreated(self: *const IFsrmFileManagementJob, daysSinceCreation: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_DaysSinceFileCreated(self, daysSinceCreation);
     }
-    pub fn get_DaysSinceFileLastAccessed(self: *const IFsrmFileManagementJob, daysSinceAccess: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DaysSinceFileLastAccessed(self: *const IFsrmFileManagementJob, daysSinceAccess: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_DaysSinceFileLastAccessed(self, daysSinceAccess);
     }
-    pub fn put_DaysSinceFileLastAccessed(self: *const IFsrmFileManagementJob, daysSinceAccess: i32) callconv(.Inline) HRESULT {
+    pub fn put_DaysSinceFileLastAccessed(self: *const IFsrmFileManagementJob, daysSinceAccess: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_DaysSinceFileLastAccessed(self, daysSinceAccess);
     }
-    pub fn get_DaysSinceFileLastModified(self: *const IFsrmFileManagementJob, daysSinceModify: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DaysSinceFileLastModified(self: *const IFsrmFileManagementJob, daysSinceModify: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_DaysSinceFileLastModified(self, daysSinceModify);
     }
-    pub fn put_DaysSinceFileLastModified(self: *const IFsrmFileManagementJob, daysSinceModify: i32) callconv(.Inline) HRESULT {
+    pub fn put_DaysSinceFileLastModified(self: *const IFsrmFileManagementJob, daysSinceModify: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_DaysSinceFileLastModified(self, daysSinceModify);
     }
-    pub fn get_PropertyConditions(self: *const IFsrmFileManagementJob, propertyConditions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn get_PropertyConditions(self: *const IFsrmFileManagementJob, propertyConditions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyConditions(self, propertyConditions);
     }
-    pub fn get_FromDate(self: *const IFsrmFileManagementJob, fromDate: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_FromDate(self: *const IFsrmFileManagementJob, fromDate: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.get_FromDate(self, fromDate);
     }
-    pub fn put_FromDate(self: *const IFsrmFileManagementJob, fromDate: f64) callconv(.Inline) HRESULT {
+    pub fn put_FromDate(self: *const IFsrmFileManagementJob, fromDate: f64) callconv(.@"inline") HRESULT {
         return self.vtable.put_FromDate(self, fromDate);
     }
-    pub fn get_Task(self: *const IFsrmFileManagementJob, taskName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Task(self: *const IFsrmFileManagementJob, taskName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Task(self, taskName);
     }
-    pub fn put_Task(self: *const IFsrmFileManagementJob, taskName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Task(self: *const IFsrmFileManagementJob, taskName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Task(self, taskName);
     }
-    pub fn get_Parameters(self: *const IFsrmFileManagementJob, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Parameters(self: *const IFsrmFileManagementJob, parameters: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parameters(self, parameters);
     }
-    pub fn put_Parameters(self: *const IFsrmFileManagementJob, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_Parameters(self: *const IFsrmFileManagementJob, parameters: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_Parameters(self, parameters);
     }
-    pub fn get_RunningStatus(self: *const IFsrmFileManagementJob, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+    pub fn get_RunningStatus(self: *const IFsrmFileManagementJob, runningStatus: ?*FsrmReportRunningStatus) callconv(.@"inline") HRESULT {
         return self.vtable.get_RunningStatus(self, runningStatus);
     }
-    pub fn get_LastError(self: *const IFsrmFileManagementJob, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LastError(self: *const IFsrmFileManagementJob, lastError: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastError(self, lastError);
     }
-    pub fn get_LastReportPathWithoutExtension(self: *const IFsrmFileManagementJob, path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LastReportPathWithoutExtension(self: *const IFsrmFileManagementJob, path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastReportPathWithoutExtension(self, path);
     }
-    pub fn get_LastRun(self: *const IFsrmFileManagementJob, lastRun: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_LastRun(self: *const IFsrmFileManagementJob, lastRun: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastRun(self, lastRun);
     }
-    pub fn get_FileNamePattern(self: *const IFsrmFileManagementJob, fileNamePattern: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FileNamePattern(self: *const IFsrmFileManagementJob, fileNamePattern: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_FileNamePattern(self, fileNamePattern);
     }
-    pub fn put_FileNamePattern(self: *const IFsrmFileManagementJob, fileNamePattern: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FileNamePattern(self: *const IFsrmFileManagementJob, fileNamePattern: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_FileNamePattern(self, fileNamePattern);
     }
-    pub fn Run(self: *const IFsrmFileManagementJob, context: FsrmReportGenerationContext) callconv(.Inline) HRESULT {
+    pub fn Run(self: *const IFsrmFileManagementJob, context: FsrmReportGenerationContext) callconv(.@"inline") HRESULT {
         return self.vtable.Run(self, context);
     }
-    pub fn WaitForCompletion(self: *const IFsrmFileManagementJob, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
+    pub fn WaitForCompletion(self: *const IFsrmFileManagementJob, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCompletion(self, waitSeconds, completed);
     }
-    pub fn Cancel(self: *const IFsrmFileManagementJob) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IFsrmFileManagementJob) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
-    pub fn AddNotification(self: *const IFsrmFileManagementJob, days: i32) callconv(.Inline) HRESULT {
+    pub fn AddNotification(self: *const IFsrmFileManagementJob, days: i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddNotification(self, days);
     }
-    pub fn DeleteNotification(self: *const IFsrmFileManagementJob, days: i32) callconv(.Inline) HRESULT {
+    pub fn DeleteNotification(self: *const IFsrmFileManagementJob, days: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteNotification(self, days);
     }
-    pub fn ModifyNotification(self: *const IFsrmFileManagementJob, days: i32, newDays: i32) callconv(.Inline) HRESULT {
+    pub fn ModifyNotification(self: *const IFsrmFileManagementJob, days: i32, newDays: i32) callconv(.@"inline") HRESULT {
         return self.vtable.ModifyNotification(self, days, newDays);
     }
-    pub fn CreateNotificationAction(self: *const IFsrmFileManagementJob, days: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
+    pub fn CreateNotificationAction(self: *const IFsrmFileManagementJob, days: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.@"inline") HRESULT {
         return self.vtable.CreateNotificationAction(self, days, actionType, action);
     }
-    pub fn EnumNotificationActions(self: *const IFsrmFileManagementJob, days: i32, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumNotificationActions(self: *const IFsrmFileManagementJob, days: i32, actions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumNotificationActions(self, days, actions);
     }
-    pub fn CreatePropertyCondition(self: *const IFsrmFileManagementJob, name: ?BSTR, propertyCondition: ?*?*IFsrmPropertyCondition) callconv(.Inline) HRESULT {
+    pub fn CreatePropertyCondition(self: *const IFsrmFileManagementJob, name: ?BSTR, propertyCondition: ?*?*IFsrmPropertyCondition) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePropertyCondition(self, name, propertyCondition);
     }
-    pub fn CreateCustomAction(self: *const IFsrmFileManagementJob, customAction: ?*?*IFsrmActionCommand) callconv(.Inline) HRESULT {
+    pub fn CreateCustomAction(self: *const IFsrmFileManagementJob, customAction: ?*?*IFsrmActionCommand) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCustomAction(self, customAction);
     }
 };
@@ -3476,25 +3476,25 @@ pub const IFsrmPropertyCondition = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmPropertyCondition, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmPropertyCondition, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmPropertyCondition, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmPropertyCondition, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Type(self: *const IFsrmPropertyCondition, @"type": ?*FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IFsrmPropertyCondition, @"type": ?*FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, @"type");
     }
-    pub fn put_Type(self: *const IFsrmPropertyCondition, @"type": FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+    pub fn put_Type(self: *const IFsrmPropertyCondition, @"type": FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
         return self.vtable.put_Type(self, @"type");
     }
-    pub fn get_Value(self: *const IFsrmPropertyCondition, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const IFsrmPropertyCondition, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, value);
     }
-    pub fn put_Value(self: *const IFsrmPropertyCondition, value: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const IFsrmPropertyCondition, value: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, value);
     }
-    pub fn Delete(self: *const IFsrmPropertyCondition) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IFsrmPropertyCondition) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
 };
@@ -3516,10 +3516,10 @@ pub const IFsrmFileCondition = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const IFsrmFileCondition, pVal: ?*FsrmFileConditionType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IFsrmFileCondition, pVal: ?*FsrmFileConditionType) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, pVal);
     }
-    pub fn Delete(self: *const IFsrmFileCondition) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IFsrmFileCondition) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self);
     }
 };
@@ -3585,34 +3585,34 @@ pub const IFsrmFileConditionProperty = extern union {
     IFsrmFileCondition: IFsrmFileCondition,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PropertyName(self: *const IFsrmFileConditionProperty, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PropertyName(self: *const IFsrmFileConditionProperty, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyName(self, pVal);
     }
-    pub fn put_PropertyName(self: *const IFsrmFileConditionProperty, newVal: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_PropertyName(self: *const IFsrmFileConditionProperty, newVal: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropertyName(self, newVal);
     }
-    pub fn get_PropertyId(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmFileSystemPropertyId) callconv(.Inline) HRESULT {
+    pub fn get_PropertyId(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmFileSystemPropertyId) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyId(self, pVal);
     }
-    pub fn put_PropertyId(self: *const IFsrmFileConditionProperty, newVal: FsrmFileSystemPropertyId) callconv(.Inline) HRESULT {
+    pub fn put_PropertyId(self: *const IFsrmFileConditionProperty, newVal: FsrmFileSystemPropertyId) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropertyId(self, newVal);
     }
-    pub fn get_Operator(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+    pub fn get_Operator(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
         return self.vtable.get_Operator(self, pVal);
     }
-    pub fn put_Operator(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+    pub fn put_Operator(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyConditionType) callconv(.@"inline") HRESULT {
         return self.vtable.put_Operator(self, newVal);
     }
-    pub fn get_ValueType(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyValueType) callconv(.Inline) HRESULT {
+    pub fn get_ValueType(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyValueType) callconv(.@"inline") HRESULT {
         return self.vtable.get_ValueType(self, pVal);
     }
-    pub fn put_ValueType(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyValueType) callconv(.Inline) HRESULT {
+    pub fn put_ValueType(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyValueType) callconv(.@"inline") HRESULT {
         return self.vtable.put_ValueType(self, newVal);
     }
-    pub fn get_Value(self: *const IFsrmFileConditionProperty, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const IFsrmFileConditionProperty, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, pVal);
     }
-    pub fn put_Value(self: *const IFsrmFileConditionProperty, newVal: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const IFsrmFileConditionProperty, newVal: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, newVal);
     }
 };
@@ -3678,34 +3678,34 @@ pub const IFsrmPropertyDefinition = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmPropertyDefinition, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmPropertyDefinition, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmPropertyDefinition, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmPropertyDefinition, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Type(self: *const IFsrmPropertyDefinition, @"type": ?*FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IFsrmPropertyDefinition, @"type": ?*FsrmPropertyDefinitionType) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, @"type");
     }
-    pub fn put_Type(self: *const IFsrmPropertyDefinition, @"type": FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+    pub fn put_Type(self: *const IFsrmPropertyDefinition, @"type": FsrmPropertyDefinitionType) callconv(.@"inline") HRESULT {
         return self.vtable.put_Type(self, @"type");
     }
-    pub fn get_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_PossibleValues(self, possibleValues);
     }
-    pub fn put_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_PossibleValues(self, possibleValues);
     }
-    pub fn get_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ValueDescriptions(self, valueDescriptions);
     }
-    pub fn put_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_ValueDescriptions(self, valueDescriptions);
     }
-    pub fn get_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parameters(self, parameters);
     }
-    pub fn put_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_Parameters(self, parameters);
     }
 };
@@ -3747,19 +3747,19 @@ pub const IFsrmPropertyDefinition2 = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PropertyDefinitionFlags(self: *const IFsrmPropertyDefinition2, propertyDefinitionFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PropertyDefinitionFlags(self: *const IFsrmPropertyDefinition2, propertyDefinitionFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyDefinitionFlags(self, propertyDefinitionFlags);
     }
-    pub fn get_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, name);
     }
-    pub fn put_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisplayName(self, name);
     }
-    pub fn get_AppliesTo(self: *const IFsrmPropertyDefinition2, appliesTo: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AppliesTo(self: *const IFsrmPropertyDefinition2, appliesTo: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppliesTo(self, appliesTo);
     }
-    pub fn get_ValueDefinitions(self: *const IFsrmPropertyDefinition2, valueDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn get_ValueDefinitions(self: *const IFsrmPropertyDefinition2, valueDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.get_ValueDefinitions(self, valueDefinitions);
     }
 };
@@ -3794,16 +3794,16 @@ pub const IFsrmPropertyDefinitionValue = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmPropertyDefinitionValue, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmPropertyDefinitionValue, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn get_DisplayName(self: *const IFsrmPropertyDefinitionValue, displayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const IFsrmPropertyDefinitionValue, displayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, displayName);
     }
-    pub fn get_Description(self: *const IFsrmPropertyDefinitionValue, description: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IFsrmPropertyDefinitionValue, description: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, description);
     }
-    pub fn get_UniqueID(self: *const IFsrmPropertyDefinitionValue, uniqueID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UniqueID(self: *const IFsrmPropertyDefinitionValue, uniqueID: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UniqueID(self, uniqueID);
     }
 };
@@ -3838,16 +3838,16 @@ pub const IFsrmProperty = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmProperty, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmProperty, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn get_Value(self: *const IFsrmProperty, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const IFsrmProperty, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, value);
     }
-    pub fn get_Sources(self: *const IFsrmProperty, sources: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Sources(self: *const IFsrmProperty, sources: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Sources(self, sources);
     }
-    pub fn get_PropertyFlags(self: *const IFsrmProperty, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PropertyFlags(self: *const IFsrmProperty, flags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyFlags(self, flags);
     }
 };
@@ -3923,40 +3923,40 @@ pub const IFsrmRule = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmRule, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmRule, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmRule, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmRule, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_RuleType(self: *const IFsrmRule, ruleType: ?*FsrmRuleType) callconv(.Inline) HRESULT {
+    pub fn get_RuleType(self: *const IFsrmRule, ruleType: ?*FsrmRuleType) callconv(.@"inline") HRESULT {
         return self.vtable.get_RuleType(self, ruleType);
     }
-    pub fn get_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleDefinitionName(self, moduleDefinitionName);
     }
-    pub fn put_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ModuleDefinitionName(self, moduleDefinitionName);
     }
-    pub fn get_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_NamespaceRoots(self, namespaceRoots);
     }
-    pub fn put_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_NamespaceRoots(self, namespaceRoots);
     }
-    pub fn get_RuleFlags(self: *const IFsrmRule, ruleFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RuleFlags(self: *const IFsrmRule, ruleFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_RuleFlags(self, ruleFlags);
     }
-    pub fn put_RuleFlags(self: *const IFsrmRule, ruleFlags: i32) callconv(.Inline) HRESULT {
+    pub fn put_RuleFlags(self: *const IFsrmRule, ruleFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_RuleFlags(self, ruleFlags);
     }
-    pub fn get_Parameters(self: *const IFsrmRule, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Parameters(self: *const IFsrmRule, parameters: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parameters(self, parameters);
     }
-    pub fn put_Parameters(self: *const IFsrmRule, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_Parameters(self: *const IFsrmRule, parameters: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_Parameters(self, parameters);
     }
-    pub fn get_LastModified(self: *const IFsrmRule, lastModified: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_LastModified(self: *const IFsrmRule, lastModified: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastModified(self, lastModified);
     }
 };
@@ -4003,22 +4003,22 @@ pub const IFsrmClassificationRule = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: ?*FsrmExecutionOption) callconv(.Inline) HRESULT {
+    pub fn get_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: ?*FsrmExecutionOption) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExecutionOption(self, executionOption);
     }
-    pub fn put_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: FsrmExecutionOption) callconv(.Inline) HRESULT {
+    pub fn put_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: FsrmExecutionOption) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExecutionOption(self, executionOption);
     }
-    pub fn get_PropertyAffected(self: *const IFsrmClassificationRule, property: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PropertyAffected(self: *const IFsrmClassificationRule, property: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyAffected(self, property);
     }
-    pub fn put_PropertyAffected(self: *const IFsrmClassificationRule, property: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_PropertyAffected(self: *const IFsrmClassificationRule, property: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropertyAffected(self, property);
     }
-    pub fn get_Value(self: *const IFsrmClassificationRule, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const IFsrmClassificationRule, value: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, value);
     }
-    pub fn put_Value(self: *const IFsrmClassificationRule, value: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const IFsrmClassificationRule, value: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, value);
     }
 };
@@ -4129,61 +4129,61 @@ pub const IFsrmPipelineModuleDefinition = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ModuleClsid(self: *const IFsrmPipelineModuleDefinition, moduleClsid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ModuleClsid(self: *const IFsrmPipelineModuleDefinition, moduleClsid: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleClsid(self, moduleClsid);
     }
-    pub fn put_ModuleClsid(self: *const IFsrmPipelineModuleDefinition, moduleClsid: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ModuleClsid(self: *const IFsrmPipelineModuleDefinition, moduleClsid: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ModuleClsid(self, moduleClsid);
     }
-    pub fn get_Name(self: *const IFsrmPipelineModuleDefinition, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmPipelineModuleDefinition, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn put_Name(self: *const IFsrmPipelineModuleDefinition, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IFsrmPipelineModuleDefinition, name: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Company(self: *const IFsrmPipelineModuleDefinition, company: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Company(self: *const IFsrmPipelineModuleDefinition, company: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Company(self, company);
     }
-    pub fn put_Company(self: *const IFsrmPipelineModuleDefinition, company: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Company(self: *const IFsrmPipelineModuleDefinition, company: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Company(self, company);
     }
-    pub fn get_Version(self: *const IFsrmPipelineModuleDefinition, version: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IFsrmPipelineModuleDefinition, version: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Version(self, version);
     }
-    pub fn put_Version(self: *const IFsrmPipelineModuleDefinition, version: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Version(self: *const IFsrmPipelineModuleDefinition, version: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Version(self, version);
     }
-    pub fn get_ModuleType(self: *const IFsrmPipelineModuleDefinition, moduleType: ?*FsrmPipelineModuleType) callconv(.Inline) HRESULT {
+    pub fn get_ModuleType(self: *const IFsrmPipelineModuleDefinition, moduleType: ?*FsrmPipelineModuleType) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleType(self, moduleType);
     }
-    pub fn get_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_NeedsFileContent(self, needsFileContent);
     }
-    pub fn put_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: i16) callconv(.Inline) HRESULT {
+    pub fn put_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_NeedsFileContent(self, needsFileContent);
     }
-    pub fn get_Account(self: *const IFsrmPipelineModuleDefinition, retrievalAccount: ?*FsrmAccountType) callconv(.Inline) HRESULT {
+    pub fn get_Account(self: *const IFsrmPipelineModuleDefinition, retrievalAccount: ?*FsrmAccountType) callconv(.@"inline") HRESULT {
         return self.vtable.get_Account(self, retrievalAccount);
     }
-    pub fn put_Account(self: *const IFsrmPipelineModuleDefinition, retrievalAccount: FsrmAccountType) callconv(.Inline) HRESULT {
+    pub fn put_Account(self: *const IFsrmPipelineModuleDefinition, retrievalAccount: FsrmAccountType) callconv(.@"inline") HRESULT {
         return self.vtable.put_Account(self, retrievalAccount);
     }
-    pub fn get_SupportedExtensions(self: *const IFsrmPipelineModuleDefinition, supportedExtensions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_SupportedExtensions(self: *const IFsrmPipelineModuleDefinition, supportedExtensions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_SupportedExtensions(self, supportedExtensions);
     }
-    pub fn put_SupportedExtensions(self: *const IFsrmPipelineModuleDefinition, supportedExtensions: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_SupportedExtensions(self: *const IFsrmPipelineModuleDefinition, supportedExtensions: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_SupportedExtensions(self, supportedExtensions);
     }
-    pub fn get_Parameters(self: *const IFsrmPipelineModuleDefinition, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Parameters(self: *const IFsrmPipelineModuleDefinition, parameters: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Parameters(self, parameters);
     }
-    pub fn put_Parameters(self: *const IFsrmPipelineModuleDefinition, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_Parameters(self: *const IFsrmPipelineModuleDefinition, parameters: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_Parameters(self, parameters);
     }
 };
@@ -4230,22 +4230,22 @@ pub const IFsrmClassifierModuleDefinition = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertiesAffected(self, propertiesAffected);
     }
-    pub fn put_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropertiesAffected(self, propertiesAffected);
     }
-    pub fn get_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertiesUsed(self, propertiesUsed);
     }
-    pub fn put_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropertiesUsed(self, propertiesUsed);
     }
-    pub fn get_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_NeedsExplicitValue(self, needsExplicitValue);
     }
-    pub fn put_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: i16) callconv(.Inline) HRESULT {
+    pub fn put_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_NeedsExplicitValue(self, needsExplicitValue);
     }
 };
@@ -4292,22 +4292,22 @@ pub const IFsrmStorageModuleDefinition = extern union {
     IFsrmObject: IFsrmObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: ?*FsrmStorageModuleCaps) callconv(.Inline) HRESULT {
+    pub fn get_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: ?*FsrmStorageModuleCaps) callconv(.@"inline") HRESULT {
         return self.vtable.get_Capabilities(self, capabilities);
     }
-    pub fn put_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: FsrmStorageModuleCaps) callconv(.Inline) HRESULT {
+    pub fn put_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: FsrmStorageModuleCaps) callconv(.@"inline") HRESULT {
         return self.vtable.put_Capabilities(self, capabilities);
     }
-    pub fn get_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: ?*FsrmStorageModuleType) callconv(.Inline) HRESULT {
+    pub fn get_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: ?*FsrmStorageModuleType) callconv(.@"inline") HRESULT {
         return self.vtable.get_StorageType(self, storageType);
     }
-    pub fn put_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: FsrmStorageModuleType) callconv(.Inline) HRESULT {
+    pub fn put_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: FsrmStorageModuleType) callconv(.@"inline") HRESULT {
         return self.vtable.put_StorageType(self, storageType);
     }
-    pub fn get_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_UpdatesFileContent(self, updatesFileContent);
     }
-    pub fn put_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: i16) callconv(.Inline) HRESULT {
+    pub fn put_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_UpdatesFileContent(self, updatesFileContent);
     }
 };
@@ -4462,85 +4462,85 @@ pub const IFsrmClassificationManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClassificationReportFormats(self, formats);
     }
-    pub fn put_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_ClassificationReportFormats(self, formats);
     }
-    pub fn get_Logging(self: *const IFsrmClassificationManager, logging: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Logging(self: *const IFsrmClassificationManager, logging: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Logging(self, logging);
     }
-    pub fn put_Logging(self: *const IFsrmClassificationManager, logging: i32) callconv(.Inline) HRESULT {
+    pub fn put_Logging(self: *const IFsrmClassificationManager, logging: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Logging(self, logging);
     }
-    pub fn get_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClassificationReportMailTo(self, mailTo);
     }
-    pub fn put_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ClassificationReportMailTo(self, mailTo);
     }
-    pub fn get_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClassificationReportEnabled(self, reportEnabled);
     }
-    pub fn put_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_ClassificationReportEnabled(self, reportEnabled);
     }
-    pub fn get_ClassificationLastReportPathWithoutExtension(self: *const IFsrmClassificationManager, lastReportPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ClassificationLastReportPathWithoutExtension(self: *const IFsrmClassificationManager, lastReportPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClassificationLastReportPathWithoutExtension(self, lastReportPath);
     }
-    pub fn get_ClassificationLastError(self: *const IFsrmClassificationManager, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ClassificationLastError(self: *const IFsrmClassificationManager, lastError: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClassificationLastError(self, lastError);
     }
-    pub fn get_ClassificationRunningStatus(self: *const IFsrmClassificationManager, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+    pub fn get_ClassificationRunningStatus(self: *const IFsrmClassificationManager, runningStatus: ?*FsrmReportRunningStatus) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClassificationRunningStatus(self, runningStatus);
     }
-    pub fn EnumPropertyDefinitions(self: *const IFsrmClassificationManager, options: FsrmEnumOptions, propertyDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumPropertyDefinitions(self: *const IFsrmClassificationManager, options: FsrmEnumOptions, propertyDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumPropertyDefinitions(self, options, propertyDefinitions);
     }
-    pub fn CreatePropertyDefinition(self: *const IFsrmClassificationManager, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.Inline) HRESULT {
+    pub fn CreatePropertyDefinition(self: *const IFsrmClassificationManager, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePropertyDefinition(self, propertyDefinition);
     }
-    pub fn GetPropertyDefinition(self: *const IFsrmClassificationManager, propertyName: ?BSTR, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDefinition(self: *const IFsrmClassificationManager, propertyName: ?BSTR, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyDefinition(self, propertyName, propertyDefinition);
     }
-    pub fn EnumRules(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, options: FsrmEnumOptions, Rules: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumRules(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, options: FsrmEnumOptions, Rules: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRules(self, ruleType, options, Rules);
     }
-    pub fn CreateRule(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.Inline) HRESULT {
+    pub fn CreateRule(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRule(self, ruleType, Rule);
     }
-    pub fn GetRule(self: *const IFsrmClassificationManager, ruleName: ?BSTR, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.Inline) HRESULT {
+    pub fn GetRule(self: *const IFsrmClassificationManager, ruleName: ?BSTR, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.@"inline") HRESULT {
         return self.vtable.GetRule(self, ruleName, ruleType, Rule);
     }
-    pub fn EnumModuleDefinitions(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, options: FsrmEnumOptions, moduleDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumModuleDefinitions(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, options: FsrmEnumOptions, moduleDefinitions: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumModuleDefinitions(self, moduleType, options, moduleDefinitions);
     }
-    pub fn CreateModuleDefinition(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.Inline) HRESULT {
+    pub fn CreateModuleDefinition(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateModuleDefinition(self, moduleType, moduleDefinition);
     }
-    pub fn GetModuleDefinition(self: *const IFsrmClassificationManager, moduleName: ?BSTR, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.Inline) HRESULT {
+    pub fn GetModuleDefinition(self: *const IFsrmClassificationManager, moduleName: ?BSTR, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.@"inline") HRESULT {
         return self.vtable.GetModuleDefinition(self, moduleName, moduleType, moduleDefinition);
     }
-    pub fn RunClassification(self: *const IFsrmClassificationManager, context: FsrmReportGenerationContext, reserved: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn RunClassification(self: *const IFsrmClassificationManager, context: FsrmReportGenerationContext, reserved: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RunClassification(self, context, reserved);
     }
-    pub fn WaitForClassificationCompletion(self: *const IFsrmClassificationManager, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
+    pub fn WaitForClassificationCompletion(self: *const IFsrmClassificationManager, waitSeconds: i32, completed: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForClassificationCompletion(self, waitSeconds, completed);
     }
-    pub fn CancelClassification(self: *const IFsrmClassificationManager) callconv(.Inline) HRESULT {
+    pub fn CancelClassification(self: *const IFsrmClassificationManager) callconv(.@"inline") HRESULT {
         return self.vtable.CancelClassification(self);
     }
-    pub fn EnumFileProperties(self: *const IFsrmClassificationManager, filePath: ?BSTR, options: FsrmGetFilePropertyOptions, fileProperties: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn EnumFileProperties(self: *const IFsrmClassificationManager, filePath: ?BSTR, options: FsrmGetFilePropertyOptions, fileProperties: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.EnumFileProperties(self, filePath, options, fileProperties);
     }
-    pub fn GetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, options: FsrmGetFilePropertyOptions, property: ?*?*IFsrmProperty) callconv(.Inline) HRESULT {
+    pub fn GetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, options: FsrmGetFilePropertyOptions, property: ?*?*IFsrmProperty) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileProperty(self, filePath, propertyName, options, property);
     }
-    pub fn SetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, propertyValue: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, propertyValue: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileProperty(self, filePath, propertyName, propertyValue);
     }
-    pub fn ClearFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, property: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ClearFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, property: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ClearFileProperty(self, filePath, property);
     }
 };
@@ -4563,7 +4563,7 @@ pub const IFsrmClassificationManager2 = extern union {
     IFsrmClassificationManager: IFsrmClassificationManager,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ClassifyFiles(self: *const IFsrmClassificationManager2, filePaths: ?*SAFEARRAY, propertyNames: ?*SAFEARRAY, propertyValues: ?*SAFEARRAY, options: FsrmGetFilePropertyOptions) callconv(.Inline) HRESULT {
+    pub fn ClassifyFiles(self: *const IFsrmClassificationManager2, filePaths: ?*SAFEARRAY, propertyNames: ?*SAFEARRAY, propertyValues: ?*SAFEARRAY, options: FsrmGetFilePropertyOptions) callconv(.@"inline") HRESULT {
         return self.vtable.ClassifyFiles(self, filePaths, propertyNames, propertyValues, options);
     }
 };
@@ -4683,67 +4683,67 @@ pub const IFsrmPropertyBag = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IFsrmPropertyBag, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IFsrmPropertyBag, name: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn get_RelativePath(self: *const IFsrmPropertyBag, path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RelativePath(self: *const IFsrmPropertyBag, path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RelativePath(self, path);
     }
-    pub fn get_VolumeName(self: *const IFsrmPropertyBag, volumeName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_VolumeName(self: *const IFsrmPropertyBag, volumeName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_VolumeName(self, volumeName);
     }
-    pub fn get_RelativeNamespaceRoot(self: *const IFsrmPropertyBag, relativeNamespaceRoot: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RelativeNamespaceRoot(self: *const IFsrmPropertyBag, relativeNamespaceRoot: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RelativeNamespaceRoot(self, relativeNamespaceRoot);
     }
-    pub fn get_VolumeIndex(self: *const IFsrmPropertyBag, volumeId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_VolumeIndex(self: *const IFsrmPropertyBag, volumeId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_VolumeIndex(self, volumeId);
     }
-    pub fn get_FileId(self: *const IFsrmPropertyBag, fileId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_FileId(self: *const IFsrmPropertyBag, fileId: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_FileId(self, fileId);
     }
-    pub fn get_ParentDirectoryId(self: *const IFsrmPropertyBag, parentDirectoryId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ParentDirectoryId(self: *const IFsrmPropertyBag, parentDirectoryId: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_ParentDirectoryId(self, parentDirectoryId);
     }
-    pub fn get_Size(self: *const IFsrmPropertyBag, size: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Size(self: *const IFsrmPropertyBag, size: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Size(self, size);
     }
-    pub fn get_SizeAllocated(self: *const IFsrmPropertyBag, sizeAllocated: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SizeAllocated(self: *const IFsrmPropertyBag, sizeAllocated: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_SizeAllocated(self, sizeAllocated);
     }
-    pub fn get_CreationTime(self: *const IFsrmPropertyBag, creationTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CreationTime(self: *const IFsrmPropertyBag, creationTime: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_CreationTime(self, creationTime);
     }
-    pub fn get_LastAccessTime(self: *const IFsrmPropertyBag, lastAccessTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_LastAccessTime(self: *const IFsrmPropertyBag, lastAccessTime: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastAccessTime(self, lastAccessTime);
     }
-    pub fn get_LastModificationTime(self: *const IFsrmPropertyBag, lastModificationTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_LastModificationTime(self: *const IFsrmPropertyBag, lastModificationTime: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastModificationTime(self, lastModificationTime);
     }
-    pub fn get_Attributes(self: *const IFsrmPropertyBag, attributes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Attributes(self: *const IFsrmPropertyBag, attributes: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Attributes(self, attributes);
     }
-    pub fn get_OwnerSid(self: *const IFsrmPropertyBag, ownerSid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_OwnerSid(self: *const IFsrmPropertyBag, ownerSid: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_OwnerSid(self, ownerSid);
     }
-    pub fn get_FilePropertyNames(self: *const IFsrmPropertyBag, filePropertyNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_FilePropertyNames(self: *const IFsrmPropertyBag, filePropertyNames: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_FilePropertyNames(self, filePropertyNames);
     }
-    pub fn get_Messages(self: *const IFsrmPropertyBag, messages: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Messages(self: *const IFsrmPropertyBag, messages: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Messages(self, messages);
     }
-    pub fn get_PropertyBagFlags(self: *const IFsrmPropertyBag, flags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_PropertyBagFlags(self: *const IFsrmPropertyBag, flags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropertyBagFlags(self, flags);
     }
-    pub fn GetFileProperty(self: *const IFsrmPropertyBag, name: ?BSTR, fileProperty: ?*?*IFsrmProperty) callconv(.Inline) HRESULT {
+    pub fn GetFileProperty(self: *const IFsrmPropertyBag, name: ?BSTR, fileProperty: ?*?*IFsrmProperty) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileProperty(self, name, fileProperty);
     }
-    pub fn SetFileProperty(self: *const IFsrmPropertyBag, name: ?BSTR, value: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetFileProperty(self: *const IFsrmPropertyBag, name: ?BSTR, value: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileProperty(self, name, value);
     }
-    pub fn AddMessage(self: *const IFsrmPropertyBag, message: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddMessage(self: *const IFsrmPropertyBag, message: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddMessage(self, message);
     }
-    pub fn GetFileStreamInterface(self: *const IFsrmPropertyBag, accessMode: FsrmFileStreamingMode, interfaceType: FsrmFileStreamingInterfaceType, pStreamInterface: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetFileStreamInterface(self: *const IFsrmPropertyBag, accessMode: FsrmFileStreamingMode, interfaceType: FsrmFileStreamingInterfaceType, pStreamInterface: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileStreamInterface(self, accessMode, interfaceType, pStreamInterface);
     }
 };
@@ -4768,10 +4768,10 @@ pub const IFsrmPropertyBag2 = extern union {
     IFsrmPropertyBag: IFsrmPropertyBag,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetFieldValue(self: *const IFsrmPropertyBag2, field: FsrmPropertyBagField, value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetFieldValue(self: *const IFsrmPropertyBag2, field: FsrmPropertyBagField, value: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetFieldValue(self, field, value);
     }
-    pub fn GetUntrustedInFileProperties(self: *const IFsrmPropertyBag2, props: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn GetUntrustedInFileProperties(self: *const IFsrmPropertyBag2, props: ?*?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.GetUntrustedInFileProperties(self, props);
     }
 };
@@ -4794,10 +4794,10 @@ pub const IFsrmPipelineModuleImplementation = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OnLoad(self: *const IFsrmPipelineModuleImplementation, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleConnector: ?*?*IFsrmPipelineModuleConnector) callconv(.Inline) HRESULT {
+    pub fn OnLoad(self: *const IFsrmPipelineModuleImplementation, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleConnector: ?*?*IFsrmPipelineModuleConnector) callconv(.@"inline") HRESULT {
         return self.vtable.OnLoad(self, moduleDefinition, moduleConnector);
     }
-    pub fn OnUnload(self: *const IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
+    pub fn OnUnload(self: *const IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
         return self.vtable.OnUnload(self);
     }
 };
@@ -4846,22 +4846,22 @@ pub const IFsrmClassifierModuleImplementation = extern union {
     IFsrmPipelineModuleImplementation: IFsrmPipelineModuleImplementation,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LastModified(self: *const IFsrmClassifierModuleImplementation, lastModified: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_LastModified(self: *const IFsrmClassifierModuleImplementation, lastModified: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_LastModified(self, lastModified);
     }
-    pub fn UseRulesAndDefinitions(self: *const IFsrmClassifierModuleImplementation, rules: ?*IFsrmCollection, propertyDefinitions: ?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn UseRulesAndDefinitions(self: *const IFsrmClassifierModuleImplementation, rules: ?*IFsrmCollection, propertyDefinitions: ?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.UseRulesAndDefinitions(self, rules, propertyDefinitions);
     }
-    pub fn OnBeginFile(self: *const IFsrmClassifierModuleImplementation, propertyBag: ?*IFsrmPropertyBag, arrayRuleIds: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn OnBeginFile(self: *const IFsrmClassifierModuleImplementation, propertyBag: ?*IFsrmPropertyBag, arrayRuleIds: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeginFile(self, propertyBag, arrayRuleIds);
     }
-    pub fn DoesPropertyValueApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?BSTR, applyValue: ?*i16, idRule: Guid, idPropDef: Guid) callconv(.Inline) HRESULT {
+    pub fn DoesPropertyValueApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?BSTR, applyValue: ?*i16, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.DoesPropertyValueApply(self, property, value, applyValue, idRule, idPropDef);
     }
-    pub fn GetPropertyValueToApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?*?BSTR, idRule: Guid, idPropDef: Guid) callconv(.Inline) HRESULT {
+    pub fn GetPropertyValueToApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?*?BSTR, idRule: Guid, idPropDef: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyValueToApply(self, property, value, idRule, idPropDef);
     }
-    pub fn OnEndFile(self: *const IFsrmClassifierModuleImplementation) callconv(.Inline) HRESULT {
+    pub fn OnEndFile(self: *const IFsrmClassifierModuleImplementation) callconv(.@"inline") HRESULT {
         return self.vtable.OnEndFile(self);
     }
 };
@@ -4889,13 +4889,13 @@ pub const IFsrmStorageModuleImplementation = extern union {
     IFsrmPipelineModuleImplementation: IFsrmPipelineModuleImplementation,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn UseDefinitions(self: *const IFsrmStorageModuleImplementation, propertyDefinitions: ?*IFsrmCollection) callconv(.Inline) HRESULT {
+    pub fn UseDefinitions(self: *const IFsrmStorageModuleImplementation, propertyDefinitions: ?*IFsrmCollection) callconv(.@"inline") HRESULT {
         return self.vtable.UseDefinitions(self, propertyDefinitions);
     }
-    pub fn LoadProperties(self: *const IFsrmStorageModuleImplementation, propertyBag: ?*IFsrmPropertyBag) callconv(.Inline) HRESULT {
+    pub fn LoadProperties(self: *const IFsrmStorageModuleImplementation, propertyBag: ?*IFsrmPropertyBag) callconv(.@"inline") HRESULT {
         return self.vtable.LoadProperties(self, propertyBag);
     }
-    pub fn SaveProperties(self: *const IFsrmStorageModuleImplementation, propertyBag: ?*IFsrmPropertyBag) callconv(.Inline) HRESULT {
+    pub fn SaveProperties(self: *const IFsrmStorageModuleImplementation, propertyBag: ?*IFsrmPropertyBag) callconv(.@"inline") HRESULT {
         return self.vtable.SaveProperties(self, propertyBag);
     }
 };
@@ -4935,19 +4935,19 @@ pub const IFsrmPipelineModuleConnector = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ModuleImplementation(self: *const IFsrmPipelineModuleConnector, pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
+    pub fn get_ModuleImplementation(self: *const IFsrmPipelineModuleConnector, pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleImplementation(self, pipelineModuleImplementation);
     }
-    pub fn get_ModuleName(self: *const IFsrmPipelineModuleConnector, userName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ModuleName(self: *const IFsrmPipelineModuleConnector, userName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ModuleName(self, userName);
     }
-    pub fn get_HostingUserAccount(self: *const IFsrmPipelineModuleConnector, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_HostingUserAccount(self: *const IFsrmPipelineModuleConnector, userAccount: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_HostingUserAccount(self, userAccount);
     }
-    pub fn get_HostingProcessPid(self: *const IFsrmPipelineModuleConnector, pid: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_HostingProcessPid(self: *const IFsrmPipelineModuleConnector, pid: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_HostingProcessPid(self, pid);
     }
-    pub fn Bind(self: *const IFsrmPipelineModuleConnector, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleImplementation: ?*IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
+    pub fn Bind(self: *const IFsrmPipelineModuleConnector, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleImplementation: ?*IFsrmPipelineModuleImplementation) callconv(.@"inline") HRESULT {
         return self.vtable.Bind(self, moduleDefinition, moduleImplementation);
     }
 };

@@ -26,10 +26,10 @@ pub const IGraphicsCaptureItemInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateForWindow(self: *const IGraphicsCaptureItemInterop, window: ?HWND, riid: ?*const Guid, result: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateForWindow(self: *const IGraphicsCaptureItemInterop, window: ?HWND, riid: ?*const Guid, result: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateForWindow(self, window, riid, result);
     }
-    pub fn CreateForMonitor(self: *const IGraphicsCaptureItemInterop, monitor: ?HMONITOR, riid: ?*const Guid, result: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateForMonitor(self: *const IGraphicsCaptureItemInterop, monitor: ?HMONITOR, riid: ?*const Guid, result: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateForMonitor(self, monitor, riid, result);
     }
 };

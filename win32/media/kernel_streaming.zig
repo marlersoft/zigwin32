@@ -700,13 +700,13 @@ pub const IKsControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn KsProperty(self: *const IKsControl, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn KsProperty(self: *const IKsControl, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.KsProperty(self, Property, PropertyLength, PropertyData, DataLength, BytesReturned);
     }
-    pub fn KsMethod(self: *const IKsControl, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn KsMethod(self: *const IKsControl, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.KsMethod(self, Method, MethodLength, MethodData, DataLength, BytesReturned);
     }
-    pub fn KsEvent(self: *const IKsControl, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn KsEvent(self: *const IKsControl, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.KsEvent(self, Event, EventLength, EventData, DataLength, BytesReturned);
     }
 };
@@ -730,10 +730,10 @@ pub const IKsFormatSupport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsFormatSupported(self: *const IKsFormatSupport, pKsFormat: ?*KSDATAFORMAT, cbFormat: u32, pbSupported: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsFormatSupported(self: *const IKsFormatSupport, pKsFormat: ?*KSDATAFORMAT, cbFormat: u32, pbSupported: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsFormatSupported(self, pKsFormat, cbFormat, pbSupported);
     }
-    pub fn GetDevicePreferredFormat(self: *const IKsFormatSupport, ppKsFormat: ?*?*KSDATAFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetDevicePreferredFormat(self: *const IKsFormatSupport, ppKsFormat: ?*?*KSDATAFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.GetDevicePreferredFormat(self, ppKsFormat);
     }
 };
@@ -756,10 +756,10 @@ pub const IKsJackDescription = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetJackCount(self: *const IKsJackDescription, pcJacks: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetJackCount(self: *const IKsJackDescription, pcJacks: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetJackCount(self, pcJacks);
     }
-    pub fn GetJackDescription(self: *const IKsJackDescription, nJack: u32, pDescription: ?*KSJACK_DESCRIPTION) callconv(.Inline) HRESULT {
+    pub fn GetJackDescription(self: *const IKsJackDescription, nJack: u32, pDescription: ?*KSJACK_DESCRIPTION) callconv(.@"inline") HRESULT {
         return self.vtable.GetJackDescription(self, nJack, pDescription);
     }
 };
@@ -782,10 +782,10 @@ pub const IKsJackDescription2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetJackCount(self: *const IKsJackDescription2, pcJacks: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetJackCount(self: *const IKsJackDescription2, pcJacks: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetJackCount(self, pcJacks);
     }
-    pub fn GetJackDescription2(self: *const IKsJackDescription2, nJack: u32, pDescription2: ?*KSJACK_DESCRIPTION2) callconv(.Inline) HRESULT {
+    pub fn GetJackDescription2(self: *const IKsJackDescription2, nJack: u32, pDescription2: ?*KSJACK_DESCRIPTION2) callconv(.@"inline") HRESULT {
         return self.vtable.GetJackDescription2(self, nJack, pDescription2);
     }
 };
@@ -803,7 +803,7 @@ pub const IKsJackSinkInformation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetJackSinkInformation(self: *const IKsJackSinkInformation, pJackSinkInformation: ?*KSJACK_SINK_INFORMATION) callconv(.Inline) HRESULT {
+    pub fn GetJackSinkInformation(self: *const IKsJackSinkInformation, pJackSinkInformation: ?*KSJACK_SINK_INFORMATION) callconv(.@"inline") HRESULT {
         return self.vtable.GetJackSinkInformation(self, pJackSinkInformation);
     }
 };
@@ -820,7 +820,7 @@ pub const IKsJackContainerId = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetJackContainerId(self: *const IKsJackContainerId, pJackContainerId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetJackContainerId(self: *const IKsJackContainerId, pJackContainerId: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetJackContainerId(self, pJackContainerId);
     }
 };
@@ -7130,13 +7130,13 @@ pub const IKsPropertySet = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Set(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32) callconv(.Inline) HRESULT {
+    pub fn Set(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Set(self, PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
     }
-    pub fn Get(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Get(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Get(self, PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
     }
-    pub fn QuerySupported(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, TypeSupport: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QuerySupported(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, TypeSupport: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QuerySupported(self, PropSet, Id, TypeSupport);
     }
 };
@@ -7157,10 +7157,10 @@ pub const IKsAggregateControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn KsAddAggregate(self: *const IKsAggregateControl, AggregateClass: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn KsAddAggregate(self: *const IKsAggregateControl, AggregateClass: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.KsAddAggregate(self, AggregateClass);
     }
-    pub fn KsRemoveAggregate(self: *const IKsAggregateControl, AggregateClass: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn KsRemoveAggregate(self: *const IKsAggregateControl, AggregateClass: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.KsRemoveAggregate(self, AggregateClass);
     }
 };
@@ -7182,7 +7182,7 @@ pub const IKsTopology = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateNodeInstance(self: *const IKsTopology, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateNodeInstance(self: *const IKsTopology, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateNodeInstance(self, NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
     }
 };

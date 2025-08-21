@@ -304,10 +304,10 @@ pub const IRDPSRAPIDebug = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn put_CLXCmdLine(self: *const IRDPSRAPIDebug, CLXCmdLine: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_CLXCmdLine(self: *const IRDPSRAPIDebug, CLXCmdLine: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_CLXCmdLine(self, CLXCmdLine);
     }
-    pub fn get_CLXCmdLine(self: *const IRDPSRAPIDebug, pCLXCmdLine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_CLXCmdLine(self: *const IRDPSRAPIDebug, pCLXCmdLine: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_CLXCmdLine(self, pCLXCmdLine);
     }
 };
@@ -325,7 +325,7 @@ pub const IRDPSRAPIPerfCounterLogger = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LogValue(self: *const IRDPSRAPIPerfCounterLogger, lValue: i64) callconv(.Inline) HRESULT {
+    pub fn LogValue(self: *const IRDPSRAPIPerfCounterLogger, lValue: i64) callconv(.@"inline") HRESULT {
         return self.vtable.LogValue(self, lValue);
     }
 };
@@ -344,7 +344,7 @@ pub const IRDPSRAPIPerfCounterLoggingManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateLogger(self: *const IRDPSRAPIPerfCounterLoggingManager, bstrCounterName: ?BSTR, ppLogger: ?*?*IRDPSRAPIPerfCounterLogger) callconv(.Inline) HRESULT {
+    pub fn CreateLogger(self: *const IRDPSRAPIPerfCounterLoggingManager, bstrCounterName: ?BSTR, ppLogger: ?*?*IRDPSRAPIPerfCounterLogger) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLogger(self, bstrCounterName, ppLogger);
     }
 };
@@ -377,19 +377,19 @@ pub const IRDPSRAPIAudioStream = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IRDPSRAPIAudioStream, pnPeriodInHundredNsIntervals: ?*i64) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IRDPSRAPIAudioStream, pnPeriodInHundredNsIntervals: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pnPeriodInHundredNsIntervals);
     }
-    pub fn Start(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IRDPSRAPIAudioStream) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self);
     }
-    pub fn Stop(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IRDPSRAPIAudioStream) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn GetBuffer(self: *const IRDPSRAPIAudioStream, ppbData: [*]?*u8, pcbData: ?*u32, pTimestamp: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const IRDPSRAPIAudioStream, ppbData: [*]?*u8, pcbData: ?*u32, pTimestamp: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetBuffer(self, ppbData, pcbData, pTimestamp);
     }
-    pub fn FreeBuffer(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
+    pub fn FreeBuffer(self: *const IRDPSRAPIAudioStream) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBuffer(self);
     }
 };
@@ -409,7 +409,7 @@ pub const IRDPSRAPIClipboardUseEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPasteFromClipboard(self: *const IRDPSRAPIClipboardUseEvents, clipboardFormat: u32, pAttendee: ?*IDispatch, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn OnPasteFromClipboard(self: *const IRDPSRAPIClipboardUseEvents, clipboardFormat: u32, pAttendee: ?*IDispatch, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.OnPasteFromClipboard(self, clipboardFormat, pAttendee, pRetVal);
     }
 };
@@ -457,25 +457,25 @@ pub const IRDPSRAPIWindow = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IRDPSRAPIWindow, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IRDPSRAPIWindow, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, pRetVal);
     }
-    pub fn get_Application(self: *const IRDPSRAPIWindow, pApplication: ?*?*IRDPSRAPIApplication) callconv(.Inline) HRESULT {
+    pub fn get_Application(self: *const IRDPSRAPIWindow, pApplication: ?*?*IRDPSRAPIApplication) callconv(.@"inline") HRESULT {
         return self.vtable.get_Application(self, pApplication);
     }
-    pub fn get_Shared(self: *const IRDPSRAPIWindow, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Shared(self: *const IRDPSRAPIWindow, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Shared(self, pRetVal);
     }
-    pub fn put_Shared(self: *const IRDPSRAPIWindow, NewVal: i16) callconv(.Inline) HRESULT {
+    pub fn put_Shared(self: *const IRDPSRAPIWindow, NewVal: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Shared(self, NewVal);
     }
-    pub fn get_Name(self: *const IRDPSRAPIWindow, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IRDPSRAPIWindow, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pRetVal);
     }
-    pub fn Show(self: *const IRDPSRAPIWindow) callconv(.Inline) HRESULT {
+    pub fn Show(self: *const IRDPSRAPIWindow) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self);
     }
-    pub fn get_Flags(self: *const IRDPSRAPIWindow, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const IRDPSRAPIWindow, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Flags(self, pdwFlags);
     }
 };
@@ -500,10 +500,10 @@ pub const IRDPSRAPIWindowList = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIWindowList, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IRDPSRAPIWindowList, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const IRDPSRAPIWindowList, item: i32, pWindow: ?*?*IRDPSRAPIWindow) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IRDPSRAPIWindowList, item: i32, pWindow: ?*?*IRDPSRAPIWindow) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, item, pWindow);
     }
 };
@@ -548,22 +548,22 @@ pub const IRDPSRAPIApplication = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Windows(self: *const IRDPSRAPIApplication, pWindowList: ?*?*IRDPSRAPIWindowList) callconv(.Inline) HRESULT {
+    pub fn get_Windows(self: *const IRDPSRAPIApplication, pWindowList: ?*?*IRDPSRAPIWindowList) callconv(.@"inline") HRESULT {
         return self.vtable.get_Windows(self, pWindowList);
     }
-    pub fn get_Id(self: *const IRDPSRAPIApplication, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IRDPSRAPIApplication, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, pRetVal);
     }
-    pub fn get_Shared(self: *const IRDPSRAPIApplication, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Shared(self: *const IRDPSRAPIApplication, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Shared(self, pRetVal);
     }
-    pub fn put_Shared(self: *const IRDPSRAPIApplication, NewVal: i16) callconv(.Inline) HRESULT {
+    pub fn put_Shared(self: *const IRDPSRAPIApplication, NewVal: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Shared(self, NewVal);
     }
-    pub fn get_Name(self: *const IRDPSRAPIApplication, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IRDPSRAPIApplication, pRetVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pRetVal);
     }
-    pub fn get_Flags(self: *const IRDPSRAPIApplication, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const IRDPSRAPIApplication, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Flags(self, pdwFlags);
     }
 };
@@ -588,10 +588,10 @@ pub const IRDPSRAPIApplicationList = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIApplicationList, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IRDPSRAPIApplicationList, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const IRDPSRAPIApplicationList, item: i32, pApplication: ?*?*IRDPSRAPIApplication) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IRDPSRAPIApplicationList, item: i32, pApplication: ?*?*IRDPSRAPIApplication) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, item, pApplication);
     }
 };
@@ -626,16 +626,16 @@ pub const IRDPSRAPIApplicationFilter = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Applications(self: *const IRDPSRAPIApplicationFilter, pApplications: ?*?*IRDPSRAPIApplicationList) callconv(.Inline) HRESULT {
+    pub fn get_Applications(self: *const IRDPSRAPIApplicationFilter, pApplications: ?*?*IRDPSRAPIApplicationList) callconv(.@"inline") HRESULT {
         return self.vtable.get_Applications(self, pApplications);
     }
-    pub fn get_Windows(self: *const IRDPSRAPIApplicationFilter, pWindows: ?*?*IRDPSRAPIWindowList) callconv(.Inline) HRESULT {
+    pub fn get_Windows(self: *const IRDPSRAPIApplicationFilter, pWindows: ?*?*IRDPSRAPIWindowList) callconv(.@"inline") HRESULT {
         return self.vtable.get_Windows(self, pWindows);
     }
-    pub fn get_Enabled(self: *const IRDPSRAPIApplicationFilter, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const IRDPSRAPIApplicationFilter, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, pRetVal);
     }
-    pub fn put_Enabled(self: *const IRDPSRAPIApplicationFilter, NewVal: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const IRDPSRAPIApplicationFilter, NewVal: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, NewVal);
     }
 };
@@ -660,10 +660,10 @@ pub const IRDPSRAPISessionProperties = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, pVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Property(self, PropertyName, pVal);
     }
-    pub fn put_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, newVal: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, newVal: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Property(self, PropertyName, newVal);
     }
 };
@@ -713,25 +713,25 @@ pub const IRDPSRAPIInvitation = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ConnectionString(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ConnectionString(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ConnectionString(self, pbstrVal);
     }
-    pub fn get_GroupName(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_GroupName(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_GroupName(self, pbstrVal);
     }
-    pub fn get_Password(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Password(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Password(self, pbstrVal);
     }
-    pub fn get_AttendeeLimit(self: *const IRDPSRAPIInvitation, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AttendeeLimit(self: *const IRDPSRAPIInvitation, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AttendeeLimit(self, pRetVal);
     }
-    pub fn put_AttendeeLimit(self: *const IRDPSRAPIInvitation, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_AttendeeLimit(self: *const IRDPSRAPIInvitation, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_AttendeeLimit(self, NewVal);
     }
-    pub fn get_Revoked(self: *const IRDPSRAPIInvitation, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Revoked(self: *const IRDPSRAPIInvitation, pRetVal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Revoked(self, pRetVal);
     }
-    pub fn put_Revoked(self: *const IRDPSRAPIInvitation, NewVal: i16) callconv(.Inline) HRESULT {
+    pub fn put_Revoked(self: *const IRDPSRAPIInvitation, NewVal: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Revoked(self, NewVal);
     }
 };
@@ -769,16 +769,16 @@ pub const IRDPSRAPIInvitationManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIInvitationManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IRDPSRAPIInvitationManager, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const IRDPSRAPIInvitationManager, item: VARIANT, ppInvitation: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IRDPSRAPIInvitationManager, item: VARIANT, ppInvitation: ?*?*IRDPSRAPIInvitation) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, item, ppInvitation);
     }
-    pub fn get_Count(self: *const IRDPSRAPIInvitationManager, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IRDPSRAPIInvitationManager, pRetVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, pRetVal);
     }
-    pub fn CreateInvitation(self: *const IRDPSRAPIInvitationManager, bstrAuthString: ?BSTR, bstrGroupName: ?BSTR, bstrPassword: ?BSTR, AttendeeLimit: i32, ppInvitation: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
+    pub fn CreateInvitation(self: *const IRDPSRAPIInvitationManager, bstrAuthString: ?BSTR, bstrGroupName: ?BSTR, bstrPassword: ?BSTR, AttendeeLimit: i32, ppInvitation: ?*?*IRDPSRAPIInvitation) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInvitation(self, bstrAuthString, bstrGroupName, bstrPassword, AttendeeLimit, ppInvitation);
     }
 };
@@ -818,19 +818,19 @@ pub const IRDPSRAPITcpConnectionInfo = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Protocol(self: *const IRDPSRAPITcpConnectionInfo, plProtocol: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Protocol(self: *const IRDPSRAPITcpConnectionInfo, plProtocol: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Protocol(self, plProtocol);
     }
-    pub fn get_LocalPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LocalPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalPort(self, plPort);
     }
-    pub fn get_LocalIP(self: *const IRDPSRAPITcpConnectionInfo, pbsrLocalIP: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LocalIP(self: *const IRDPSRAPITcpConnectionInfo, pbsrLocalIP: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LocalIP(self, pbsrLocalIP);
     }
-    pub fn get_PeerPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PeerPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PeerPort(self, plPort);
     }
-    pub fn get_PeerIP(self: *const IRDPSRAPITcpConnectionInfo, pbstrIP: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PeerIP(self: *const IRDPSRAPITcpConnectionInfo, pbstrIP: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_PeerIP(self, pbstrIP);
     }
 };
@@ -883,28 +883,28 @@ pub const IRDPSRAPIAttendee = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IRDPSRAPIAttendee, pId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IRDPSRAPIAttendee, pId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Id(self, pId);
     }
-    pub fn get_RemoteName(self: *const IRDPSRAPIAttendee, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteName(self: *const IRDPSRAPIAttendee, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RemoteName(self, pVal);
     }
-    pub fn get_ControlLevel(self: *const IRDPSRAPIAttendee, pVal: ?*CTRL_LEVEL) callconv(.Inline) HRESULT {
+    pub fn get_ControlLevel(self: *const IRDPSRAPIAttendee, pVal: ?*CTRL_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ControlLevel(self, pVal);
     }
-    pub fn put_ControlLevel(self: *const IRDPSRAPIAttendee, pNewVal: CTRL_LEVEL) callconv(.Inline) HRESULT {
+    pub fn put_ControlLevel(self: *const IRDPSRAPIAttendee, pNewVal: CTRL_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ControlLevel(self, pNewVal);
     }
-    pub fn get_Invitation(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
+    pub fn get_Invitation(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IRDPSRAPIInvitation) callconv(.@"inline") HRESULT {
         return self.vtable.get_Invitation(self, ppVal);
     }
-    pub fn TerminateConnection(self: *const IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
+    pub fn TerminateConnection(self: *const IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
         return self.vtable.TerminateConnection(self);
     }
-    pub fn get_Flags(self: *const IRDPSRAPIAttendee, plFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const IRDPSRAPIAttendee, plFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Flags(self, plFlags);
     }
-    pub fn get_ConnectivityInfo(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get_ConnectivityInfo(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get_ConnectivityInfo(self, ppVal);
     }
 };
@@ -929,10 +929,10 @@ pub const IRDPSRAPIAttendeeManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIAttendeeManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IRDPSRAPIAttendeeManager, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const IRDPSRAPIAttendeeManager, id: i32, ppItem: ?*?*IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IRDPSRAPIAttendeeManager, id: i32, ppItem: ?*?*IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, id, ppItem);
     }
 };
@@ -962,13 +962,13 @@ pub const IRDPSRAPIAttendeeDisconnectInfo = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Attendee(self: *const IRDPSRAPIAttendeeDisconnectInfo, retval: ?*?*IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
+    pub fn get_Attendee(self: *const IRDPSRAPIAttendeeDisconnectInfo, retval: ?*?*IRDPSRAPIAttendee) callconv(.@"inline") HRESULT {
         return self.vtable.get_Attendee(self, retval);
     }
-    pub fn get_Reason(self: *const IRDPSRAPIAttendeeDisconnectInfo, pReason: ?*ATTENDEE_DISCONNECT_REASON) callconv(.Inline) HRESULT {
+    pub fn get_Reason(self: *const IRDPSRAPIAttendeeDisconnectInfo, pReason: ?*ATTENDEE_DISCONNECT_REASON) callconv(.@"inline") HRESULT {
         return self.vtable.get_Reason(self, pReason);
     }
-    pub fn get_Code(self: *const IRDPSRAPIAttendeeDisconnectInfo, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Code(self: *const IRDPSRAPIAttendeeDisconnectInfo, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Code(self, pVal);
     }
 };
@@ -1009,19 +1009,19 @@ pub const IRDPSRAPIVirtualChannel = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SendData(self: *const IRDPSRAPIVirtualChannel, bstrData: ?BSTR, lAttendeeId: i32, ChannelSendFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SendData(self: *const IRDPSRAPIVirtualChannel, bstrData: ?BSTR, lAttendeeId: i32, ChannelSendFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendData(self, bstrData, lAttendeeId, ChannelSendFlags);
     }
-    pub fn SetAccess(self: *const IRDPSRAPIVirtualChannel, lAttendeeId: i32, AccessType: CHANNEL_ACCESS_ENUM) callconv(.Inline) HRESULT {
+    pub fn SetAccess(self: *const IRDPSRAPIVirtualChannel, lAttendeeId: i32, AccessType: CHANNEL_ACCESS_ENUM) callconv(.@"inline") HRESULT {
         return self.vtable.SetAccess(self, lAttendeeId, AccessType);
     }
-    pub fn get_Name(self: *const IRDPSRAPIVirtualChannel, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IRDPSRAPIVirtualChannel, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_Flags(self: *const IRDPSRAPIVirtualChannel, plFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const IRDPSRAPIVirtualChannel, plFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Flags(self, plFlags);
     }
-    pub fn get_Priority(self: *const IRDPSRAPIVirtualChannel, pPriority: ?*CHANNEL_PRIORITY) callconv(.Inline) HRESULT {
+    pub fn get_Priority(self: *const IRDPSRAPIVirtualChannel, pPriority: ?*CHANNEL_PRIORITY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Priority(self, pPriority);
     }
 };
@@ -1053,13 +1053,13 @@ pub const IRDPSRAPIVirtualChannelManager = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const IRDPSRAPIVirtualChannelManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IRDPSRAPIVirtualChannelManager, retval: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const IRDPSRAPIVirtualChannelManager, item: VARIANT, pChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IRDPSRAPIVirtualChannelManager, item: VARIANT, pChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, item, pChannel);
     }
-    pub fn CreateVirtualChannel(self: *const IRDPSRAPIVirtualChannelManager, bstrChannelName: ?BSTR, Priority: CHANNEL_PRIORITY, ChannelFlags: u32, ppChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.Inline) HRESULT {
+    pub fn CreateVirtualChannel(self: *const IRDPSRAPIVirtualChannelManager, bstrChannelName: ?BSTR, Priority: CHANNEL_PRIORITY, ChannelFlags: u32, ppChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualChannel(self, bstrChannelName, Priority, ChannelFlags, ppChannel);
     }
 };
@@ -1143,46 +1143,46 @@ pub const IRDPSRAPIViewer = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Connect(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, bstrConnectionString, bstrName, bstrPassword);
     }
-    pub fn Disconnect(self: *const IRDPSRAPIViewer) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const IRDPSRAPIViewer) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnect(self);
     }
-    pub fn get_Attendees(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.Inline) HRESULT {
+    pub fn get_Attendees(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.@"inline") HRESULT {
         return self.vtable.get_Attendees(self, ppVal);
     }
-    pub fn get_Invitations(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.Inline) HRESULT {
+    pub fn get_Invitations(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.@"inline") HRESULT {
         return self.vtable.get_Invitations(self, ppVal);
     }
-    pub fn get_ApplicationFilter(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationFilter(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationFilter(self, ppVal);
     }
-    pub fn get_VirtualChannelManager(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.Inline) HRESULT {
+    pub fn get_VirtualChannelManager(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.@"inline") HRESULT {
         return self.vtable.get_VirtualChannelManager(self, ppVal);
     }
-    pub fn put_SmartSizing(self: *const IRDPSRAPIViewer, vbSmartSizing: i16) callconv(.Inline) HRESULT {
+    pub fn put_SmartSizing(self: *const IRDPSRAPIViewer, vbSmartSizing: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_SmartSizing(self, vbSmartSizing);
     }
-    pub fn get_SmartSizing(self: *const IRDPSRAPIViewer, pvbSmartSizing: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_SmartSizing(self: *const IRDPSRAPIViewer, pvbSmartSizing: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_SmartSizing(self, pvbSmartSizing);
     }
-    pub fn RequestControl(self: *const IRDPSRAPIViewer, CtrlLevel: CTRL_LEVEL) callconv(.Inline) HRESULT {
+    pub fn RequestControl(self: *const IRDPSRAPIViewer, CtrlLevel: CTRL_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.RequestControl(self, CtrlLevel);
     }
-    pub fn put_DisconnectedText(self: *const IRDPSRAPIViewer, bstrDisconnectedText: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_DisconnectedText(self: *const IRDPSRAPIViewer, bstrDisconnectedText: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisconnectedText(self, bstrDisconnectedText);
     }
-    pub fn get_DisconnectedText(self: *const IRDPSRAPIViewer, pbstrDisconnectedText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisconnectedText(self: *const IRDPSRAPIViewer, pbstrDisconnectedText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisconnectedText(self, pbstrDisconnectedText);
     }
-    pub fn RequestColorDepthChange(self: *const IRDPSRAPIViewer, Bpp: i32) callconv(.Inline) HRESULT {
+    pub fn RequestColorDepthChange(self: *const IRDPSRAPIViewer, Bpp: i32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestColorDepthChange(self, Bpp);
     }
-    pub fn get_Properties(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.@"inline") HRESULT {
         return self.vtable.get_Properties(self, ppVal);
     }
-    pub fn StartReverseConnectListener(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, pbstrReverseConnectString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn StartReverseConnectListener(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, pbstrReverseConnectString: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.StartReverseConnectListener(self, bstrConnectionString, bstrUserName, bstrPassword, pbstrReverseConnectString);
     }
 };
@@ -1237,28 +1237,28 @@ pub const IRDPViewerInputSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SendMouseButtonEvent(self: *const IRDPViewerInputSink, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: i16, xPos: u32, yPos: u32) callconv(.Inline) HRESULT {
+    pub fn SendMouseButtonEvent(self: *const IRDPViewerInputSink, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: i16, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendMouseButtonEvent(self, buttonType, vbButtonDown, xPos, yPos);
     }
-    pub fn SendMouseMoveEvent(self: *const IRDPViewerInputSink, xPos: u32, yPos: u32) callconv(.Inline) HRESULT {
+    pub fn SendMouseMoveEvent(self: *const IRDPViewerInputSink, xPos: u32, yPos: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendMouseMoveEvent(self, xPos, yPos);
     }
-    pub fn SendMouseWheelEvent(self: *const IRDPViewerInputSink, wheelRotation: u16) callconv(.Inline) HRESULT {
+    pub fn SendMouseWheelEvent(self: *const IRDPViewerInputSink, wheelRotation: u16) callconv(.@"inline") HRESULT {
         return self.vtable.SendMouseWheelEvent(self, wheelRotation);
     }
-    pub fn SendKeyboardEvent(self: *const IRDPViewerInputSink, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: i16, vbRepeat: i16, vbExtended: i16) callconv(.Inline) HRESULT {
+    pub fn SendKeyboardEvent(self: *const IRDPViewerInputSink, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: i16, vbRepeat: i16, vbExtended: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SendKeyboardEvent(self, codeType, keycode, vbKeyUp, vbRepeat, vbExtended);
     }
-    pub fn SendSyncEvent(self: *const IRDPViewerInputSink, syncFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SendSyncEvent(self: *const IRDPViewerInputSink, syncFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendSyncEvent(self, syncFlags);
     }
-    pub fn BeginTouchFrame(self: *const IRDPViewerInputSink) callconv(.Inline) HRESULT {
+    pub fn BeginTouchFrame(self: *const IRDPViewerInputSink) callconv(.@"inline") HRESULT {
         return self.vtable.BeginTouchFrame(self);
     }
-    pub fn AddTouchInput(self: *const IRDPViewerInputSink, contactId: u32, event: u32, x: i32, y: i32) callconv(.Inline) HRESULT {
+    pub fn AddTouchInput(self: *const IRDPViewerInputSink, contactId: u32, event: u32, x: i32, y: i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddTouchInput(self, contactId, event, x, y);
     }
-    pub fn EndTouchFrame(self: *const IRDPViewerInputSink) callconv(.Inline) HRESULT {
+    pub fn EndTouchFrame(self: *const IRDPViewerInputSink) callconv(.@"inline") HRESULT {
         return self.vtable.EndTouchFrame(self);
     }
 };
@@ -1296,16 +1296,16 @@ pub const IRDPSRAPIFrameBuffer = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Width(self: *const IRDPSRAPIFrameBuffer, plWidth: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Width(self: *const IRDPSRAPIFrameBuffer, plWidth: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Width(self, plWidth);
     }
-    pub fn get_Height(self: *const IRDPSRAPIFrameBuffer, plHeight: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Height(self: *const IRDPSRAPIFrameBuffer, plHeight: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Height(self, plHeight);
     }
-    pub fn get_Bpp(self: *const IRDPSRAPIFrameBuffer, plBpp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Bpp(self: *const IRDPSRAPIFrameBuffer, plBpp: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Bpp(self, plBpp);
     }
-    pub fn GetFrameBufferBits(self: *const IRDPSRAPIFrameBuffer, x: i32, y: i32, Width: i32, Heigth: i32, ppBits: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn GetFrameBufferBits(self: *const IRDPSRAPIFrameBuffer, x: i32, y: i32, Width: i32, Heigth: i32, ppBits: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameBufferBits(self, x, y, Width, Heigth, ppBits);
     }
 };
@@ -1369,34 +1369,34 @@ pub const IRDPSRAPITransportStreamBuffer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Storage(self: *const IRDPSRAPITransportStreamBuffer, ppbStorage: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn get_Storage(self: *const IRDPSRAPITransportStreamBuffer, ppbStorage: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.get_Storage(self, ppbStorage);
     }
-    pub fn get_StorageSize(self: *const IRDPSRAPITransportStreamBuffer, plMaxStore: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_StorageSize(self: *const IRDPSRAPITransportStreamBuffer, plMaxStore: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_StorageSize(self, plMaxStore);
     }
-    pub fn get_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PayloadSize(self, plRetVal);
     }
-    pub fn put_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, lVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, lVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_PayloadSize(self, lVal);
     }
-    pub fn get_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PayloadOffset(self, plRetVal);
     }
-    pub fn put_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, lRetVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, lRetVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_PayloadOffset(self, lRetVal);
     }
-    pub fn get_Flags(self: *const IRDPSRAPITransportStreamBuffer, plFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const IRDPSRAPITransportStreamBuffer, plFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Flags(self, plFlags);
     }
-    pub fn put_Flags(self: *const IRDPSRAPITransportStreamBuffer, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn put_Flags(self: *const IRDPSRAPITransportStreamBuffer, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Flags(self, lFlags);
     }
-    pub fn get_Context(self: *const IRDPSRAPITransportStreamBuffer, ppContext: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get_Context(self: *const IRDPSRAPITransportStreamBuffer, ppContext: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get_Context(self, ppContext);
     }
-    pub fn put_Context(self: *const IRDPSRAPITransportStreamBuffer, pContext: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn put_Context(self: *const IRDPSRAPITransportStreamBuffer, pContext: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.put_Context(self, pContext);
     }
 };
@@ -1422,13 +1422,13 @@ pub const IRDPSRAPITransportStreamEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnWriteCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) void {
+    pub fn OnWriteCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") void {
         return self.vtable.OnWriteCompleted(self, pBuffer);
     }
-    pub fn OnReadCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) void {
+    pub fn OnReadCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") void {
         return self.vtable.OnReadCompleted(self, pBuffer);
     }
-    pub fn OnStreamClosed(self: *const IRDPSRAPITransportStreamEvents, hrReason: HRESULT) callconv(.Inline) void {
+    pub fn OnStreamClosed(self: *const IRDPSRAPITransportStreamEvents, hrReason: HRESULT) callconv(.@"inline") void {
         return self.vtable.OnStreamClosed(self, hrReason);
     }
 };
@@ -1466,22 +1466,22 @@ pub const IRDPSRAPITransportStream = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AllocBuffer(self: *const IRDPSRAPITransportStream, maxPayload: i32, ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
+    pub fn AllocBuffer(self: *const IRDPSRAPITransportStream, maxPayload: i32, ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.AllocBuffer(self, maxPayload, ppBuffer);
     }
-    pub fn FreeBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
+    pub fn FreeBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBuffer(self, pBuffer);
     }
-    pub fn WriteBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
+    pub fn WriteBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.WriteBuffer(self, pBuffer);
     }
-    pub fn ReadBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
+    pub fn ReadBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.ReadBuffer(self, pBuffer);
     }
-    pub fn Open(self: *const IRDPSRAPITransportStream, pCallbacks: ?*IRDPSRAPITransportStreamEvents) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IRDPSRAPITransportStream, pCallbacks: ?*IRDPSRAPITransportStreamEvents) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, pCallbacks);
     }
-    pub fn Close(self: *const IRDPSRAPITransportStream) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IRDPSRAPITransportStream) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -1561,46 +1561,46 @@ pub const IRDPSRAPISharingSession = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Open(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IRDPSRAPISharingSession) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self);
     }
-    pub fn Close(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IRDPSRAPISharingSession) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn put_ColorDepth(self: *const IRDPSRAPISharingSession, colorDepth: i32) callconv(.Inline) HRESULT {
+    pub fn put_ColorDepth(self: *const IRDPSRAPISharingSession, colorDepth: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ColorDepth(self, colorDepth);
     }
-    pub fn get_ColorDepth(self: *const IRDPSRAPISharingSession, pColorDepth: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ColorDepth(self: *const IRDPSRAPISharingSession, pColorDepth: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ColorDepth(self, pColorDepth);
     }
-    pub fn get_Properties(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.@"inline") HRESULT {
         return self.vtable.get_Properties(self, ppVal);
     }
-    pub fn get_Attendees(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.Inline) HRESULT {
+    pub fn get_Attendees(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.@"inline") HRESULT {
         return self.vtable.get_Attendees(self, ppVal);
     }
-    pub fn get_Invitations(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.Inline) HRESULT {
+    pub fn get_Invitations(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.@"inline") HRESULT {
         return self.vtable.get_Invitations(self, ppVal);
     }
-    pub fn get_ApplicationFilter(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationFilter(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationFilter(self, ppVal);
     }
-    pub fn get_VirtualChannelManager(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.Inline) HRESULT {
+    pub fn get_VirtualChannelManager(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.@"inline") HRESULT {
         return self.vtable.get_VirtualChannelManager(self, ppVal);
     }
-    pub fn Pause(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const IRDPSRAPISharingSession) callconv(.@"inline") HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IRDPSRAPISharingSession) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn ConnectToClient(self: *const IRDPSRAPISharingSession, bstrConnectionString: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ConnectToClient(self: *const IRDPSRAPISharingSession, bstrConnectionString: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectToClient(self, bstrConnectionString);
     }
-    pub fn SetDesktopSharedRect(self: *const IRDPSRAPISharingSession, left: i32, top: i32, right: i32, bottom: i32) callconv(.Inline) HRESULT {
+    pub fn SetDesktopSharedRect(self: *const IRDPSRAPISharingSession, left: i32, top: i32, right: i32, bottom: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetDesktopSharedRect(self, left, top, right, bottom);
     }
-    pub fn GetDesktopSharedRect(self: *const IRDPSRAPISharingSession, pleft: ?*i32, ptop: ?*i32, pright: ?*i32, pbottom: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetDesktopSharedRect(self: *const IRDPSRAPISharingSession, pleft: ?*i32, ptop: ?*i32, pright: ?*i32, pbottom: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDesktopSharedRect(self, pleft, ptop, pright, pbottom);
     }
 };
@@ -1633,13 +1633,13 @@ pub const IRDPSRAPISharingSession2 = extern union {
     IRDPSRAPISharingSession: IRDPSRAPISharingSession,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ConnectUsingTransportStream(self: *const IRDPSRAPISharingSession2, pStream: ?*IRDPSRAPITransportStream, bstrGroup: ?BSTR, bstrAuthenticatedAttendeeName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ConnectUsingTransportStream(self: *const IRDPSRAPISharingSession2, pStream: ?*IRDPSRAPITransportStream, bstrGroup: ?BSTR, bstrAuthenticatedAttendeeName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectUsingTransportStream(self, pStream, bstrGroup, bstrAuthenticatedAttendeeName);
     }
-    pub fn get_FrameBuffer(self: *const IRDPSRAPISharingSession2, ppVal: ?*?*IRDPSRAPIFrameBuffer) callconv(.Inline) HRESULT {
+    pub fn get_FrameBuffer(self: *const IRDPSRAPISharingSession2, ppVal: ?*?*IRDPSRAPIFrameBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.get_FrameBuffer(self, ppVal);
     }
-    pub fn SendControlLevelChangeResponse(self: *const IRDPSRAPISharingSession2, pAttendee: ?*IRDPSRAPIAttendee, RequestedLevel: CTRL_LEVEL, ReasonCode: i32) callconv(.Inline) HRESULT {
+    pub fn SendControlLevelChangeResponse(self: *const IRDPSRAPISharingSession2, pAttendee: ?*IRDPSRAPIAttendee, RequestedLevel: CTRL_LEVEL, ReasonCode: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SendControlLevelChangeResponse(self, pAttendee, RequestedLevel, ReasonCode);
     }
 };

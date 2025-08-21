@@ -26,10 +26,10 @@ pub const IWebApplicationScriptEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeforeScriptExecute(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2) callconv(.Inline) HRESULT {
+    pub fn BeforeScriptExecute(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2) callconv(.@"inline") HRESULT {
         return self.vtable.BeforeScriptExecute(self, htmlWindow);
     }
-    pub fn ScriptError(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2, scriptError: ?*IActiveScriptError, url: ?[*:0]const u16, errorHandled: BOOL) callconv(.Inline) HRESULT {
+    pub fn ScriptError(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2, scriptError: ?*IActiveScriptError, url: ?[*:0]const u16, errorHandled: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ScriptError(self, htmlWindow, scriptError, url, errorHandled);
     }
 };
@@ -73,22 +73,22 @@ pub const IWebApplicationNavigationEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeforeNavigate(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, navigationFlags: u32, targetFrameName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn BeforeNavigate(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, navigationFlags: u32, targetFrameName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.BeforeNavigate(self, htmlWindow, url, navigationFlags, targetFrameName);
     }
-    pub fn NavigateComplete(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn NavigateComplete(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.NavigateComplete(self, htmlWindow, url);
     }
-    pub fn NavigateError(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, targetFrameName: ?[*:0]const u16, statusCode: u32) callconv(.Inline) HRESULT {
+    pub fn NavigateError(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, targetFrameName: ?[*:0]const u16, statusCode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.NavigateError(self, htmlWindow, url, targetFrameName, statusCode);
     }
-    pub fn DocumentComplete(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DocumentComplete(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DocumentComplete(self, htmlWindow, url);
     }
-    pub fn DownloadBegin(self: *const IWebApplicationNavigationEvents) callconv(.Inline) HRESULT {
+    pub fn DownloadBegin(self: *const IWebApplicationNavigationEvents) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadBegin(self);
     }
-    pub fn DownloadComplete(self: *const IWebApplicationNavigationEvents) callconv(.Inline) HRESULT {
+    pub fn DownloadComplete(self: *const IWebApplicationNavigationEvents) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadComplete(self);
     }
 };
@@ -107,7 +107,7 @@ pub const IWebApplicationUIEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SecurityProblem(self: *const IWebApplicationUIEvents, securityProblem: u32, result: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn SecurityProblem(self: *const IWebApplicationUIEvents, securityProblem: u32, result: ?*HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.SecurityProblem(self, securityProblem, result);
     }
 };
@@ -127,10 +127,10 @@ pub const IWebApplicationUpdateEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnPaint(self: *const IWebApplicationUpdateEvents) callconv(.Inline) HRESULT {
+    pub fn OnPaint(self: *const IWebApplicationUpdateEvents) callconv(.@"inline") HRESULT {
         return self.vtable.OnPaint(self);
     }
-    pub fn OnCssChanged(self: *const IWebApplicationUpdateEvents) callconv(.Inline) HRESULT {
+    pub fn OnCssChanged(self: *const IWebApplicationUpdateEvents) callconv(.@"inline") HRESULT {
         return self.vtable.OnCssChanged(self);
     }
 };
@@ -167,19 +167,19 @@ pub const IWebApplicationHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_HWND(self: *const IWebApplicationHost, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn get_HWND(self: *const IWebApplicationHost, hwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.get_HWND(self, hwnd);
     }
-    pub fn get_Document(self: *const IWebApplicationHost, htmlDocument: ?*?*IHTMLDocument2) callconv(.Inline) HRESULT {
+    pub fn get_Document(self: *const IWebApplicationHost, htmlDocument: ?*?*IHTMLDocument2) callconv(.@"inline") HRESULT {
         return self.vtable.get_Document(self, htmlDocument);
     }
-    pub fn Refresh(self: *const IWebApplicationHost) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IWebApplicationHost) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn Advise(self: *const IWebApplicationHost, interfaceId: ?*const Guid, callback: ?*IUnknown, cookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IWebApplicationHost, interfaceId: ?*const Guid, callback: ?*IUnknown, cookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, interfaceId, callback, cookie);
     }
-    pub fn Unadvise(self: *const IWebApplicationHost, cookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IWebApplicationHost, cookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, cookie);
     }
 };
@@ -196,7 +196,7 @@ pub const IWebApplicationActivation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CancelPendingActivation(self: *const IWebApplicationActivation) callconv(.Inline) HRESULT {
+    pub fn CancelPendingActivation(self: *const IWebApplicationActivation) callconv(.@"inline") HRESULT {
         return self.vtable.CancelPendingActivation(self);
     }
 };
@@ -216,7 +216,7 @@ pub const IWebApplicationAuthoringMode = extern union {
     vtable: *const VTable,
     IServiceProvider: IServiceProvider,
     IUnknown: IUnknown,
-    pub fn get_AuthoringClientBinary(self: *const IWebApplicationAuthoringMode, designModeDllPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AuthoringClientBinary(self: *const IWebApplicationAuthoringMode, designModeDllPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AuthoringClientBinary(self, designModeDllPath);
     }
 };

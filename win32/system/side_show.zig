@@ -63,10 +63,10 @@ pub const ISideShowSession = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterContent(self: *const ISideShowSession, in_applicationId: ?*Guid, in_endpointId: ?*Guid, out_ppIContent: ?*?*ISideShowContentManager) callconv(.Inline) HRESULT {
+    pub fn RegisterContent(self: *const ISideShowSession, in_applicationId: ?*Guid, in_endpointId: ?*Guid, out_ppIContent: ?*?*ISideShowContentManager) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterContent(self, in_applicationId, in_endpointId, out_ppIContent);
     }
-    pub fn RegisterNotifications(self: *const ISideShowSession, in_applicationId: ?*Guid, out_ppINotification: ?*?*ISideShowNotificationManager) callconv(.Inline) HRESULT {
+    pub fn RegisterNotifications(self: *const ISideShowSession, in_applicationId: ?*Guid, out_ppINotification: ?*?*ISideShowNotificationManager) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterNotifications(self, in_applicationId, out_ppINotification);
     }
 };
@@ -90,13 +90,13 @@ pub const ISideShowNotificationManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Show(self: *const ISideShowNotificationManager, in_pINotification: ?*ISideShowNotification) callconv(.Inline) HRESULT {
+    pub fn Show(self: *const ISideShowNotificationManager, in_pINotification: ?*ISideShowNotification) callconv(.@"inline") HRESULT {
         return self.vtable.Show(self, in_pINotification);
     }
-    pub fn Revoke(self: *const ISideShowNotificationManager, in_notificationId: u32) callconv(.Inline) HRESULT {
+    pub fn Revoke(self: *const ISideShowNotificationManager, in_notificationId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Revoke(self, in_notificationId);
     }
-    pub fn RevokeAll(self: *const ISideShowNotificationManager) callconv(.Inline) HRESULT {
+    pub fn RevokeAll(self: *const ISideShowNotificationManager) callconv(.@"inline") HRESULT {
         return self.vtable.RevokeAll(self);
     }
 };
@@ -159,34 +159,34 @@ pub const ISideShowNotification = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_NotificationId(self: *const ISideShowNotification, out_pNotificationId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_NotificationId(self: *const ISideShowNotification, out_pNotificationId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_NotificationId(self, out_pNotificationId);
     }
-    pub fn put_NotificationId(self: *const ISideShowNotification, in_notificationId: u32) callconv(.Inline) HRESULT {
+    pub fn put_NotificationId(self: *const ISideShowNotification, in_notificationId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_NotificationId(self, in_notificationId);
     }
-    pub fn get_Title(self: *const ISideShowNotification, out_ppwszTitle: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Title(self: *const ISideShowNotification, out_ppwszTitle: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Title(self, out_ppwszTitle);
     }
-    pub fn put_Title(self: *const ISideShowNotification, in_pwszTitle: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn put_Title(self: *const ISideShowNotification, in_pwszTitle: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Title(self, in_pwszTitle);
     }
-    pub fn get_Message(self: *const ISideShowNotification, out_ppwszMessage: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Message(self: *const ISideShowNotification, out_ppwszMessage: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Message(self, out_ppwszMessage);
     }
-    pub fn put_Message(self: *const ISideShowNotification, in_pwszMessage: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn put_Message(self: *const ISideShowNotification, in_pwszMessage: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Message(self, in_pwszMessage);
     }
-    pub fn get_Image(self: *const ISideShowNotification, out_phIcon: ?*?HICON) callconv(.Inline) HRESULT {
+    pub fn get_Image(self: *const ISideShowNotification, out_phIcon: ?*?HICON) callconv(.@"inline") HRESULT {
         return self.vtable.get_Image(self, out_phIcon);
     }
-    pub fn put_Image(self: *const ISideShowNotification, in_hIcon: ?HICON) callconv(.Inline) HRESULT {
+    pub fn put_Image(self: *const ISideShowNotification, in_hIcon: ?HICON) callconv(.@"inline") HRESULT {
         return self.vtable.put_Image(self, in_hIcon);
     }
-    pub fn get_ExpirationTime(self: *const ISideShowNotification, out_pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn get_ExpirationTime(self: *const ISideShowNotification, out_pTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_ExpirationTime(self, out_pTime);
     }
-    pub fn put_ExpirationTime(self: *const ISideShowNotification, in_pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn put_ExpirationTime(self: *const ISideShowNotification, in_pTime: ?*SYSTEMTIME) callconv(.@"inline") HRESULT {
         return self.vtable.put_ExpirationTime(self, in_pTime);
     }
 };
@@ -218,19 +218,19 @@ pub const ISideShowContentManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Add(self: *const ISideShowContentManager, in_pIContent: ?*ISideShowContent) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISideShowContentManager, in_pIContent: ?*ISideShowContent) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, in_pIContent);
     }
-    pub fn Remove(self: *const ISideShowContentManager, in_contentId: u32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISideShowContentManager, in_contentId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, in_contentId);
     }
-    pub fn RemoveAll(self: *const ISideShowContentManager) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const ISideShowContentManager) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAll(self);
     }
-    pub fn SetEventSink(self: *const ISideShowContentManager, in_pIEvents: ?*ISideShowEvents) callconv(.Inline) HRESULT {
+    pub fn SetEventSink(self: *const ISideShowContentManager, in_pIEvents: ?*ISideShowEvents) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventSink(self, in_pIEvents);
     }
-    pub fn GetDeviceCapabilities(self: *const ISideShowContentManager, out_ppCollection: ?*?*ISideShowCapabilitiesCollection) callconv(.Inline) HRESULT {
+    pub fn GetDeviceCapabilities(self: *const ISideShowContentManager, out_ppCollection: ?*?*ISideShowCapabilitiesCollection) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceCapabilities(self, out_ppCollection);
     }
 };
@@ -259,13 +259,13 @@ pub const ISideShowContent = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetContent(self: *const ISideShowContent, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: [*]?*u8) callconv(.Inline) HRESULT {
+    pub fn GetContent(self: *const ISideShowContent, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: [*]?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetContent(self, in_pICapabilities, out_pdwSize, out_ppbData);
     }
-    pub fn get_ContentId(self: *const ISideShowContent, out_pcontentId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ContentId(self: *const ISideShowContent, out_pcontentId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ContentId(self, out_pcontentId);
     }
-    pub fn get_DifferentiateContent(self: *const ISideShowContent, out_pfDifferentiateContent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_DifferentiateContent(self: *const ISideShowContent, out_pfDifferentiateContent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_DifferentiateContent(self, out_pfDifferentiateContent);
     }
 };
@@ -298,16 +298,16 @@ pub const ISideShowEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ContentMissing(self: *const ISideShowEvents, in_contentId: u32, out_ppIContent: ?*?*ISideShowContent) callconv(.Inline) HRESULT {
+    pub fn ContentMissing(self: *const ISideShowEvents, in_contentId: u32, out_ppIContent: ?*?*ISideShowContent) callconv(.@"inline") HRESULT {
         return self.vtable.ContentMissing(self, in_contentId, out_ppIContent);
     }
-    pub fn ApplicationEvent(self: *const ISideShowEvents, in_pICapabilities: ?*ISideShowCapabilities, in_dwEventId: u32, in_dwEventSize: u32, in_pbEventData: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn ApplicationEvent(self: *const ISideShowEvents, in_pICapabilities: ?*ISideShowCapabilities, in_dwEventId: u32, in_dwEventSize: u32, in_pbEventData: ?[*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.ApplicationEvent(self, in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
     }
-    pub fn DeviceAdded(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.Inline) HRESULT {
+    pub fn DeviceAdded(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
         return self.vtable.DeviceAdded(self, in_pIDevice);
     }
-    pub fn DeviceRemoved(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.Inline) HRESULT {
+    pub fn DeviceRemoved(self: *const ISideShowEvents, in_pIDevice: ?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
         return self.vtable.DeviceRemoved(self, in_pIDevice);
     }
 };
@@ -325,7 +325,7 @@ pub const ISideShowCapabilities = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCapability(self: *const ISideShowCapabilities, in_keyCapability: ?*const PROPERTYKEY, inout_pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetCapability(self: *const ISideShowCapabilities, in_keyCapability: ?*const PROPERTYKEY, inout_pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapability(self, in_keyCapability, inout_pValue);
     }
 };
@@ -347,10 +347,10 @@ pub const ISideShowCapabilitiesCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const ISideShowCapabilitiesCollection, out_pdwCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISideShowCapabilitiesCollection, out_pdwCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, out_pdwCount);
     }
-    pub fn GetAt(self: *const ISideShowCapabilitiesCollection, in_dwIndex: u32, out_ppCapabilities: ?*?*ISideShowCapabilities) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const ISideShowCapabilitiesCollection, in_dwIndex: u32, out_ppCapabilities: ?*?*ISideShowCapabilities) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, in_dwIndex, out_ppCapabilities);
     }
 };
@@ -369,7 +369,7 @@ pub const ISideShowBulkCapabilities = extern union {
     vtable: *const VTable,
     ISideShowCapabilities: ISideShowCapabilities,
     IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const ISideShowBulkCapabilities, in_keyCollection: ?*ISideShowKeyCollection, inout_pValues: ?*?*ISideShowPropVariantCollection) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const ISideShowBulkCapabilities, in_keyCollection: ?*ISideShowKeyCollection, inout_pValues: ?*?*ISideShowPropVariantCollection) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, in_keyCollection, inout_pValues);
     }
 };
@@ -402,19 +402,19 @@ pub const ISideShowKeyCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Add(self: *const ISideShowKeyCollection, Key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISideShowKeyCollection, Key: ?*const PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, Key);
     }
-    pub fn Clear(self: *const ISideShowKeyCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const ISideShowKeyCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Clear(self);
     }
-    pub fn GetAt(self: *const ISideShowKeyCollection, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const ISideShowKeyCollection, dwIndex: u32, pKey: ?*PROPERTYKEY) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, dwIndex, pKey);
     }
-    pub fn GetCount(self: *const ISideShowKeyCollection, pcElems: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISideShowKeyCollection, pcElems: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pcElems);
     }
-    pub fn RemoveAt(self: *const ISideShowKeyCollection, dwIndex: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveAt(self: *const ISideShowKeyCollection, dwIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAt(self, dwIndex);
     }
 };
@@ -447,19 +447,19 @@ pub const ISideShowPropVariantCollection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Add(self: *const ISideShowPropVariantCollection, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISideShowPropVariantCollection, pValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, pValue);
     }
-    pub fn Clear(self: *const ISideShowPropVariantCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const ISideShowPropVariantCollection) callconv(.@"inline") HRESULT {
         return self.vtable.Clear(self);
     }
-    pub fn GetAt(self: *const ISideShowPropVariantCollection, dwIndex: u32, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const ISideShowPropVariantCollection, dwIndex: u32, pValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetAt(self, dwIndex, pValue);
     }
-    pub fn GetCount(self: *const ISideShowPropVariantCollection, pcElems: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISideShowPropVariantCollection, pcElems: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pcElems);
     }
-    pub fn RemoveAt(self: *const ISideShowPropVariantCollection, dwIndex: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveAt(self: *const ISideShowPropVariantCollection, dwIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAt(self, dwIndex);
     }
 };

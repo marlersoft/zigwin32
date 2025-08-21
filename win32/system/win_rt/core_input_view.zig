@@ -21,7 +21,7 @@ pub const ICoreFrameworkInputViewInterop = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const ICoreFrameworkInputViewInterop, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const ICoreFrameworkInputViewInterop, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, coreFrameworkInputView);
     }
 };

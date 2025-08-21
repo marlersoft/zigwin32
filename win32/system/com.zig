@@ -522,13 +522,13 @@ pub const IUnknown = extern union {
         ) callconv(.winapi) u32,
     };
     vtable: *const VTable,
-    pub fn QueryInterface(self: *const IUnknown, riid: *const Guid, ppvObject: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryInterface(self: *const IUnknown, riid: *const Guid, ppvObject: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.QueryInterface(self, riid, ppvObject);
     }
-    pub fn AddRef(self: *const IUnknown) callconv(.Inline) u32 {
+    pub fn AddRef(self: *const IUnknown) callconv(.@"inline") u32 {
         return self.vtable.AddRef(self);
     }
-    pub fn Release(self: *const IUnknown) callconv(.Inline) u32 {
+    pub fn Release(self: *const IUnknown) callconv(.@"inline") u32 {
         return self.vtable.Release(self);
     }
 };
@@ -561,22 +561,22 @@ pub const AsyncIUnknown = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_QueryInterface(self: *const AsyncIUnknown, riid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Begin_QueryInterface(self: *const AsyncIUnknown, riid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_QueryInterface(self, riid);
     }
-    pub fn Finish_QueryInterface(self: *const AsyncIUnknown, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Finish_QueryInterface(self: *const AsyncIUnknown, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_QueryInterface(self, ppvObject);
     }
-    pub fn Begin_AddRef(self: *const AsyncIUnknown) callconv(.Inline) HRESULT {
+    pub fn Begin_AddRef(self: *const AsyncIUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_AddRef(self);
     }
-    pub fn Finish_AddRef(self: *const AsyncIUnknown) callconv(.Inline) u32 {
+    pub fn Finish_AddRef(self: *const AsyncIUnknown) callconv(.@"inline") u32 {
         return self.vtable.Finish_AddRef(self);
     }
-    pub fn Begin_Release(self: *const AsyncIUnknown) callconv(.Inline) HRESULT {
+    pub fn Begin_Release(self: *const AsyncIUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_Release(self);
     }
-    pub fn Finish_Release(self: *const AsyncIUnknown) callconv(.Inline) u32 {
+    pub fn Finish_Release(self: *const AsyncIUnknown) callconv(.@"inline") u32 {
         return self.vtable.Finish_Release(self);
     }
 };
@@ -600,10 +600,10 @@ pub const IClassFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const IClassFactory, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IClassFactory, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObject: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstance(self, pUnkOuter, riid, ppvObject);
     }
-    pub fn LockServer(self: *const IClassFactory, fLock: BOOL) callconv(.Inline) HRESULT {
+    pub fn LockServer(self: *const IClassFactory, fLock: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.LockServer(self, fLock);
     }
 };
@@ -651,7 +651,7 @@ pub const IActivationFilter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HandleActivation(self: *const IActivationFilter, dwActivationType: u32, rclsid: ?*const Guid, pReplacementClsId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn HandleActivation(self: *const IActivationFilter, dwActivationType: u32, rclsid: ?*const Guid, pReplacementClsId: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.HandleActivation(self, dwActivationType, rclsid, pReplacementClsId);
     }
 };
@@ -689,22 +689,22 @@ pub const IMalloc = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Alloc(self: *const IMalloc, cb: usize) callconv(.Inline) ?*anyopaque {
+    pub fn Alloc(self: *const IMalloc, cb: usize) callconv(.@"inline") ?*anyopaque {
         return self.vtable.Alloc(self, cb);
     }
-    pub fn Realloc(self: *const IMalloc, pv: ?*anyopaque, cb: usize) callconv(.Inline) ?*anyopaque {
+    pub fn Realloc(self: *const IMalloc, pv: ?*anyopaque, cb: usize) callconv(.@"inline") ?*anyopaque {
         return self.vtable.Realloc(self, pv, cb);
     }
-    pub fn Free(self: *const IMalloc, pv: ?*anyopaque) callconv(.Inline) void {
+    pub fn Free(self: *const IMalloc, pv: ?*anyopaque) callconv(.@"inline") void {
         return self.vtable.Free(self, pv);
     }
-    pub fn GetSize(self: *const IMalloc, pv: ?*anyopaque) callconv(.Inline) usize {
+    pub fn GetSize(self: *const IMalloc, pv: ?*anyopaque) callconv(.@"inline") usize {
         return self.vtable.GetSize(self, pv);
     }
-    pub fn DidAlloc(self: *const IMalloc, pv: ?*anyopaque) callconv(.Inline) i32 {
+    pub fn DidAlloc(self: *const IMalloc, pv: ?*anyopaque) callconv(.@"inline") i32 {
         return self.vtable.DidAlloc(self, pv);
     }
-    pub fn HeapMinimize(self: *const IMalloc) callconv(.Inline) void {
+    pub fn HeapMinimize(self: *const IMalloc) callconv(.@"inline") void {
         return self.vtable.HeapMinimize(self);
     }
 };
@@ -724,7 +724,7 @@ pub const IStdMarshalInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClassForHandler(self: *const IStdMarshalInfo, dwDestContext: u32, pvDestContext: ?*anyopaque, pClsid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetClassForHandler(self: *const IStdMarshalInfo, dwDestContext: u32, pvDestContext: ?*anyopaque, pClsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetClassForHandler(self, dwDestContext, pvDestContext, pClsid);
     }
 };
@@ -758,10 +758,10 @@ pub const IExternalConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddConnection(self: *const IExternalConnection, extconn: u32, reserved: u32) callconv(.Inline) u32 {
+    pub fn AddConnection(self: *const IExternalConnection, extconn: u32, reserved: u32) callconv(.@"inline") u32 {
         return self.vtable.AddConnection(self, extconn, reserved);
     }
-    pub fn ReleaseConnection(self: *const IExternalConnection, extconn: u32, reserved: u32, fLastReleaseCloses: BOOL) callconv(.Inline) u32 {
+    pub fn ReleaseConnection(self: *const IExternalConnection, extconn: u32, reserved: u32, fLastReleaseCloses: BOOL) callconv(.@"inline") u32 {
         return self.vtable.ReleaseConnection(self, extconn, reserved, fLastReleaseCloses);
     }
 };
@@ -786,7 +786,7 @@ pub const IMultiQI = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryMultipleInterfaces(self: *const IMultiQI, cMQIs: u32, pMQIs: [*]MULTI_QI) callconv(.Inline) HRESULT {
+    pub fn QueryMultipleInterfaces(self: *const IMultiQI, cMQIs: u32, pMQIs: [*]MULTI_QI) callconv(.@"inline") HRESULT {
         return self.vtable.QueryMultipleInterfaces(self, cMQIs, pMQIs);
     }
 };
@@ -808,10 +808,10 @@ pub const AsyncIMultiQI = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_QueryMultipleInterfaces(self: *const AsyncIMultiQI, cMQIs: u32, pMQIs: [*]MULTI_QI) callconv(.Inline) HRESULT {
+    pub fn Begin_QueryMultipleInterfaces(self: *const AsyncIMultiQI, cMQIs: u32, pMQIs: [*]MULTI_QI) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_QueryMultipleInterfaces(self, cMQIs, pMQIs);
     }
-    pub fn Finish_QueryMultipleInterfaces(self: *const AsyncIMultiQI, pMQIs: ?*MULTI_QI) callconv(.Inline) HRESULT {
+    pub fn Finish_QueryMultipleInterfaces(self: *const AsyncIMultiQI, pMQIs: ?*MULTI_QI) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_QueryMultipleInterfaces(self, pMQIs);
     }
 };
@@ -830,7 +830,7 @@ pub const IInternalUnknown = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryInternalInterface(self: *const IInternalUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryInternalInterface(self: *const IInternalUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.QueryInternalInterface(self, riid, ppv);
     }
 };
@@ -861,16 +861,16 @@ pub const IEnumUnknown = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumUnknown, celt: u32, rgelt: [*]?*IUnknown, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumUnknown, celt: u32, rgelt: [*]?*IUnknown, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumUnknown, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumUnknown, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumUnknown, ppenum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumUnknown, ppenum: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -901,16 +901,16 @@ pub const IEnumString = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumString, celt: u32, rgelt: [*]?PWSTR, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumString, celt: u32, rgelt: [*]?PWSTR, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumString, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumString, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumString) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumString, ppenum: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumString, ppenum: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -938,10 +938,10 @@ pub const ISequentialStream = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Read(self: *const ISequentialStream, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Read(self: *const ISequentialStream, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Read(self, pv, cb, pcbRead);
     }
-    pub fn Write(self: *const ISequentialStream, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Write(self: *const ISequentialStream, pv: ?*const anyopaque, cb: u32, pcbWritten: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Write(self, pv, cb, pcbWritten);
     }
 };
@@ -1035,31 +1035,31 @@ pub const IStream = extern union {
     vtable: *const VTable,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn Seek(self: *const IStream, dlibMove: LARGE_INTEGER, dwOrigin: STREAM_SEEK, plibNewPosition: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn Seek(self: *const IStream, dlibMove: LARGE_INTEGER, dwOrigin: STREAM_SEEK, plibNewPosition: ?*ULARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.Seek(self, dlibMove, dwOrigin, plibNewPosition);
     }
-    pub fn SetSize(self: *const IStream, libNewSize: ULARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn SetSize(self: *const IStream, libNewSize: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.SetSize(self, libNewSize);
     }
-    pub fn CopyTo(self: *const IStream, pstm: ?*IStream, cb: ULARGE_INTEGER, pcbRead: ?*ULARGE_INTEGER, pcbWritten: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn CopyTo(self: *const IStream, pstm: ?*IStream, cb: ULARGE_INTEGER, pcbRead: ?*ULARGE_INTEGER, pcbWritten: ?*ULARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.CopyTo(self, pstm, cb, pcbRead, pcbWritten);
     }
-    pub fn Commit(self: *const IStream, grfCommitFlags: STGC) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IStream, grfCommitFlags: STGC) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self, grfCommitFlags);
     }
-    pub fn Revert(self: *const IStream) callconv(.Inline) HRESULT {
+    pub fn Revert(self: *const IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Revert(self);
     }
-    pub fn LockRegion(self: *const IStream, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.Inline) HRESULT {
+    pub fn LockRegion(self: *const IStream, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LockRegion(self, libOffset, cb, dwLockType);
     }
-    pub fn UnlockRegion(self: *const IStream, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.Inline) HRESULT {
+    pub fn UnlockRegion(self: *const IStream, libOffset: ULARGE_INTEGER, cb: ULARGE_INTEGER, dwLockType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnlockRegion(self, libOffset, cb, dwLockType);
     }
-    pub fn Stat(self: *const IStream, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.Inline) HRESULT {
+    pub fn Stat(self: *const IStream, pstatstg: ?*STATSTG, grfStatFlag: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Stat(self, pstatstg, grfStatFlag);
     }
-    pub fn Clone(self: *const IStream, ppstm: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IStream, ppstm: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppstm);
     }
 };
@@ -1105,19 +1105,19 @@ pub const IRpcChannelBuffer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const IRpcChannelBuffer, pMessage: ?*RPCOLEMESSAGE, riid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const IRpcChannelBuffer, pMessage: ?*RPCOLEMESSAGE, riid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetBuffer(self, pMessage, riid);
     }
-    pub fn SendReceive(self: *const IRpcChannelBuffer, pMessage: ?*RPCOLEMESSAGE, pStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SendReceive(self: *const IRpcChannelBuffer, pMessage: ?*RPCOLEMESSAGE, pStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendReceive(self, pMessage, pStatus);
     }
-    pub fn FreeBuffer(self: *const IRpcChannelBuffer, pMessage: ?*RPCOLEMESSAGE) callconv(.Inline) HRESULT {
+    pub fn FreeBuffer(self: *const IRpcChannelBuffer, pMessage: ?*RPCOLEMESSAGE) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBuffer(self, pMessage);
     }
-    pub fn GetDestCtx(self: *const IRpcChannelBuffer, pdwDestContext: ?*u32, ppvDestContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDestCtx(self: *const IRpcChannelBuffer, pdwDestContext: ?*u32, ppvDestContext: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDestCtx(self, pdwDestContext, ppvDestContext);
     }
-    pub fn IsConnected(self: *const IRpcChannelBuffer) callconv(.Inline) HRESULT {
+    pub fn IsConnected(self: *const IRpcChannelBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.IsConnected(self);
     }
 };
@@ -1135,7 +1135,7 @@ pub const IRpcChannelBuffer2 = extern union {
     vtable: *const VTable,
     IRpcChannelBuffer: IRpcChannelBuffer,
     IUnknown: IUnknown,
-    pub fn GetProtocolVersion(self: *const IRpcChannelBuffer2, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProtocolVersion(self: *const IRpcChannelBuffer2, pdwVersion: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProtocolVersion(self, pdwVersion);
     }
 };
@@ -1167,13 +1167,13 @@ pub const IAsyncRpcChannelBuffer = extern union {
     IRpcChannelBuffer2: IRpcChannelBuffer2,
     IRpcChannelBuffer: IRpcChannelBuffer,
     IUnknown: IUnknown,
-    pub fn Send(self: *const IAsyncRpcChannelBuffer, pMsg: ?*RPCOLEMESSAGE, pSync: ?*ISynchronize, pulStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Send(self: *const IAsyncRpcChannelBuffer, pMsg: ?*RPCOLEMESSAGE, pSync: ?*ISynchronize, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Send(self, pMsg, pSync, pulStatus);
     }
-    pub fn Receive(self: *const IAsyncRpcChannelBuffer, pMsg: ?*RPCOLEMESSAGE, pulStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Receive(self: *const IAsyncRpcChannelBuffer, pMsg: ?*RPCOLEMESSAGE, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Receive(self, pMsg, pulStatus);
     }
-    pub fn GetDestCtxEx(self: *const IAsyncRpcChannelBuffer, pMsg: ?*RPCOLEMESSAGE, pdwDestContext: ?*u32, ppvDestContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDestCtxEx(self: *const IAsyncRpcChannelBuffer, pMsg: ?*RPCOLEMESSAGE, pdwDestContext: ?*u32, ppvDestContext: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDestCtxEx(self, pMsg, pdwDestContext, ppvDestContext);
     }
 };
@@ -1225,25 +1225,25 @@ pub const IRpcChannelBuffer3 = extern union {
     IRpcChannelBuffer2: IRpcChannelBuffer2,
     IRpcChannelBuffer: IRpcChannelBuffer,
     IUnknown: IUnknown,
-    pub fn Send(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, pulStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Send(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Send(self, pMsg, pulStatus);
     }
-    pub fn Receive(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, ulSize: u32, pulStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Receive(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, ulSize: u32, pulStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Receive(self, pMsg, ulSize, pulStatus);
     }
-    pub fn Cancel(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self, pMsg);
     }
-    pub fn GetCallContext(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCallContext(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCallContext(self, pMsg, riid, pInterface);
     }
-    pub fn GetDestCtxEx(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, pdwDestContext: ?*u32, ppvDestContext: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDestCtxEx(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, pdwDestContext: ?*u32, ppvDestContext: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDestCtxEx(self, pMsg, pdwDestContext, ppvDestContext);
     }
-    pub fn GetState(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, pState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, pState: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, pMsg, pState);
     }
-    pub fn RegisterAsync(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, pAsyncMgr: ?*IAsyncManager) callconv(.Inline) HRESULT {
+    pub fn RegisterAsync(self: *const IRpcChannelBuffer3, pMsg: ?*RPCOLEMESSAGE, pAsyncMgr: ?*IAsyncManager) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterAsync(self, pMsg, pAsyncMgr);
     }
 };
@@ -1260,7 +1260,7 @@ pub const IRpcSyntaxNegotiate = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NegotiateSyntax(self: *const IRpcSyntaxNegotiate, pMsg: ?*RPCOLEMESSAGE) callconv(.Inline) HRESULT {
+    pub fn NegotiateSyntax(self: *const IRpcSyntaxNegotiate, pMsg: ?*RPCOLEMESSAGE) callconv(.@"inline") HRESULT {
         return self.vtable.NegotiateSyntax(self, pMsg);
     }
 };
@@ -1281,10 +1281,10 @@ pub const IRpcProxyBuffer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Connect(self: *const IRpcProxyBuffer, pRpcChannelBuffer: ?*IRpcChannelBuffer) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IRpcProxyBuffer, pRpcChannelBuffer: ?*IRpcChannelBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, pRpcChannelBuffer);
     }
-    pub fn Disconnect(self: *const IRpcProxyBuffer) callconv(.Inline) void {
+    pub fn Disconnect(self: *const IRpcProxyBuffer) callconv(.@"inline") void {
         return self.vtable.Disconnect(self);
     }
 };
@@ -1325,25 +1325,25 @@ pub const IRpcStubBuffer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Connect(self: *const IRpcStubBuffer, pUnkServer: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IRpcStubBuffer, pUnkServer: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self, pUnkServer);
     }
-    pub fn Disconnect(self: *const IRpcStubBuffer) callconv(.Inline) void {
+    pub fn Disconnect(self: *const IRpcStubBuffer) callconv(.@"inline") void {
         return self.vtable.Disconnect(self);
     }
-    pub fn Invoke(self: *const IRpcStubBuffer, _prpcmsg: ?*RPCOLEMESSAGE, _pRpcChannelBuffer: ?*IRpcChannelBuffer) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IRpcStubBuffer, _prpcmsg: ?*RPCOLEMESSAGE, _pRpcChannelBuffer: ?*IRpcChannelBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, _prpcmsg, _pRpcChannelBuffer);
     }
-    pub fn IsIIDSupported(self: *const IRpcStubBuffer, riid: ?*const Guid) callconv(.Inline) ?*IRpcStubBuffer {
+    pub fn IsIIDSupported(self: *const IRpcStubBuffer, riid: ?*const Guid) callconv(.@"inline") ?*IRpcStubBuffer {
         return self.vtable.IsIIDSupported(self, riid);
     }
-    pub fn CountRefs(self: *const IRpcStubBuffer) callconv(.Inline) u32 {
+    pub fn CountRefs(self: *const IRpcStubBuffer) callconv(.@"inline") u32 {
         return self.vtable.CountRefs(self);
     }
-    pub fn DebugServerQueryInterface(self: *const IRpcStubBuffer, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn DebugServerQueryInterface(self: *const IRpcStubBuffer, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.DebugServerQueryInterface(self, ppv);
     }
-    pub fn DebugServerRelease(self: *const IRpcStubBuffer, pv: ?*anyopaque) callconv(.Inline) void {
+    pub fn DebugServerRelease(self: *const IRpcStubBuffer, pv: ?*anyopaque) callconv(.@"inline") void {
         return self.vtable.DebugServerRelease(self, pv);
     }
 };
@@ -1370,10 +1370,10 @@ pub const IPSFactoryBuffer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateProxy(self: *const IPSFactoryBuffer, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppProxy: ?*?*IRpcProxyBuffer, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateProxy(self: *const IPSFactoryBuffer, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppProxy: ?*?*IRpcProxyBuffer, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProxy(self, pUnkOuter, riid, ppProxy, ppv);
     }
-    pub fn CreateStub(self: *const IPSFactoryBuffer, riid: ?*const Guid, pUnkServer: ?*IUnknown, ppStub: ?*?*IRpcStubBuffer) callconv(.Inline) HRESULT {
+    pub fn CreateStub(self: *const IPSFactoryBuffer, riid: ?*const Guid, pUnkServer: ?*IUnknown, ppStub: ?*?*IRpcStubBuffer) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStub(self, riid, pUnkServer, ppStub);
     }
 };
@@ -1440,22 +1440,22 @@ pub const IChannelHook = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ClientGetSize(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, pDataSize: ?*u32) callconv(.Inline) void {
+    pub fn ClientGetSize(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, pDataSize: ?*u32) callconv(.@"inline") void {
         return self.vtable.ClientGetSize(self, uExtent, riid, pDataSize);
     }
-    pub fn ClientFillBuffer(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, pDataSize: ?*u32, pDataBuffer: ?*anyopaque) callconv(.Inline) void {
+    pub fn ClientFillBuffer(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, pDataSize: ?*u32, pDataBuffer: ?*anyopaque) callconv(.@"inline") void {
         return self.vtable.ClientFillBuffer(self, uExtent, riid, pDataSize, pDataBuffer);
     }
-    pub fn ClientNotify(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, cbDataSize: u32, pDataBuffer: ?*anyopaque, lDataRep: u32, hrFault: HRESULT) callconv(.Inline) void {
+    pub fn ClientNotify(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, cbDataSize: u32, pDataBuffer: ?*anyopaque, lDataRep: u32, hrFault: HRESULT) callconv(.@"inline") void {
         return self.vtable.ClientNotify(self, uExtent, riid, cbDataSize, pDataBuffer, lDataRep, hrFault);
     }
-    pub fn ServerNotify(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, cbDataSize: u32, pDataBuffer: ?*anyopaque, lDataRep: u32) callconv(.Inline) void {
+    pub fn ServerNotify(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, cbDataSize: u32, pDataBuffer: ?*anyopaque, lDataRep: u32) callconv(.@"inline") void {
         return self.vtable.ServerNotify(self, uExtent, riid, cbDataSize, pDataBuffer, lDataRep);
     }
-    pub fn ServerGetSize(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, hrFault: HRESULT, pDataSize: ?*u32) callconv(.Inline) void {
+    pub fn ServerGetSize(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, hrFault: HRESULT, pDataSize: ?*u32) callconv(.@"inline") void {
         return self.vtable.ServerGetSize(self, uExtent, riid, hrFault, pDataSize);
     }
-    pub fn ServerFillBuffer(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, pDataSize: ?*u32, pDataBuffer: ?*anyopaque, hrFault: HRESULT) callconv(.Inline) void {
+    pub fn ServerFillBuffer(self: *const IChannelHook, uExtent: ?*const Guid, riid: ?*const Guid, pDataSize: ?*u32, pDataBuffer: ?*anyopaque, hrFault: HRESULT) callconv(.@"inline") void {
         return self.vtable.ServerFillBuffer(self, uExtent, riid, pDataSize, pDataBuffer, hrFault);
     }
 };
@@ -1549,13 +1549,13 @@ pub const IClientSecurity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryBlanket(self: *const IClientSecurity, pProxy: ?*IUnknown, pAuthnSvc: ?*u32, pAuthzSvc: ?*u32, pServerPrincName: ?*?*u16, pAuthnLevel: ?*RPC_C_AUTHN_LEVEL, pImpLevel: ?*RPC_C_IMP_LEVEL, pAuthInfo: ?*?*anyopaque, pCapabilites: ?*EOLE_AUTHENTICATION_CAPABILITIES) callconv(.Inline) HRESULT {
+    pub fn QueryBlanket(self: *const IClientSecurity, pProxy: ?*IUnknown, pAuthnSvc: ?*u32, pAuthzSvc: ?*u32, pServerPrincName: ?*?*u16, pAuthnLevel: ?*RPC_C_AUTHN_LEVEL, pImpLevel: ?*RPC_C_IMP_LEVEL, pAuthInfo: ?*?*anyopaque, pCapabilites: ?*EOLE_AUTHENTICATION_CAPABILITIES) callconv(.@"inline") HRESULT {
         return self.vtable.QueryBlanket(self, pProxy, pAuthnSvc, pAuthzSvc, pServerPrincName, pAuthnLevel, pImpLevel, pAuthInfo, pCapabilites);
     }
-    pub fn SetBlanket(self: *const IClientSecurity, pProxy: ?*IUnknown, dwAuthnSvc: u32, dwAuthzSvc: u32, pServerPrincName: ?PWSTR, dwAuthnLevel: RPC_C_AUTHN_LEVEL, dwImpLevel: RPC_C_IMP_LEVEL, pAuthInfo: ?*anyopaque, dwCapabilities: EOLE_AUTHENTICATION_CAPABILITIES) callconv(.Inline) HRESULT {
+    pub fn SetBlanket(self: *const IClientSecurity, pProxy: ?*IUnknown, dwAuthnSvc: u32, dwAuthzSvc: u32, pServerPrincName: ?PWSTR, dwAuthnLevel: RPC_C_AUTHN_LEVEL, dwImpLevel: RPC_C_IMP_LEVEL, pAuthInfo: ?*anyopaque, dwCapabilities: EOLE_AUTHENTICATION_CAPABILITIES) callconv(.@"inline") HRESULT {
         return self.vtable.SetBlanket(self, pProxy, dwAuthnSvc, dwAuthzSvc, pServerPrincName, dwAuthnLevel, dwImpLevel, pAuthInfo, dwCapabilities);
     }
-    pub fn CopyProxy(self: *const IClientSecurity, pProxy: ?*IUnknown, ppCopy: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CopyProxy(self: *const IClientSecurity, pProxy: ?*IUnknown, ppCopy: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CopyProxy(self, pProxy, ppCopy);
     }
 };
@@ -1588,16 +1588,16 @@ pub const IServerSecurity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryBlanket(self: *const IServerSecurity, pAuthnSvc: ?*u32, pAuthzSvc: ?*u32, pServerPrincName: ?*?*u16, pAuthnLevel: ?*u32, pImpLevel: ?*u32, pPrivs: ?*?*anyopaque, pCapabilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QueryBlanket(self: *const IServerSecurity, pAuthnSvc: ?*u32, pAuthzSvc: ?*u32, pServerPrincName: ?*?*u16, pAuthnLevel: ?*u32, pImpLevel: ?*u32, pPrivs: ?*?*anyopaque, pCapabilities: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryBlanket(self, pAuthnSvc, pAuthzSvc, pServerPrincName, pAuthnLevel, pImpLevel, pPrivs, pCapabilities);
     }
-    pub fn ImpersonateClient(self: *const IServerSecurity) callconv(.Inline) HRESULT {
+    pub fn ImpersonateClient(self: *const IServerSecurity) callconv(.@"inline") HRESULT {
         return self.vtable.ImpersonateClient(self);
     }
-    pub fn RevertToSelf(self: *const IServerSecurity) callconv(.Inline) HRESULT {
+    pub fn RevertToSelf(self: *const IServerSecurity) callconv(.@"inline") HRESULT {
         return self.vtable.RevertToSelf(self);
     }
-    pub fn IsImpersonating(self: *const IServerSecurity) callconv(.Inline) BOOL {
+    pub fn IsImpersonating(self: *const IServerSecurity) callconv(.@"inline") BOOL {
         return self.vtable.IsImpersonating(self);
     }
 };
@@ -1647,10 +1647,10 @@ pub const IRpcOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Set(self: *const IRpcOptions, pPrx: ?*IUnknown, dwProperty: RPCOPT_PROPERTIES, dwValue: usize) callconv(.Inline) HRESULT {
+    pub fn Set(self: *const IRpcOptions, pPrx: ?*IUnknown, dwProperty: RPCOPT_PROPERTIES, dwValue: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Set(self, pPrx, dwProperty, dwValue);
     }
-    pub fn Query(self: *const IRpcOptions, pPrx: ?*IUnknown, dwProperty: RPCOPT_PROPERTIES, pdwValue: ?*usize) callconv(.Inline) HRESULT {
+    pub fn Query(self: *const IRpcOptions, pPrx: ?*IUnknown, dwProperty: RPCOPT_PROPERTIES, pdwValue: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.Query(self, pPrx, dwProperty, pdwValue);
     }
 };
@@ -1745,10 +1745,10 @@ pub const IGlobalOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Set(self: *const IGlobalOptions, dwProperty: GLOBALOPT_PROPERTIES, dwValue: usize) callconv(.Inline) HRESULT {
+    pub fn Set(self: *const IGlobalOptions, dwProperty: GLOBALOPT_PROPERTIES, dwValue: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Set(self, dwProperty, dwValue);
     }
-    pub fn Query(self: *const IGlobalOptions, dwProperty: GLOBALOPT_PROPERTIES, pdwValue: ?*usize) callconv(.Inline) HRESULT {
+    pub fn Query(self: *const IGlobalOptions, dwProperty: GLOBALOPT_PROPERTIES, pdwValue: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.Query(self, dwProperty, pdwValue);
     }
 };
@@ -1769,10 +1769,10 @@ pub const ISurrogate = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LoadDllServer(self: *const ISurrogate, Clsid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn LoadDllServer(self: *const ISurrogate, Clsid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.LoadDllServer(self, Clsid);
     }
-    pub fn FreeSurrogate(self: *const ISurrogate) callconv(.Inline) HRESULT {
+    pub fn FreeSurrogate(self: *const ISurrogate) callconv(.@"inline") HRESULT {
         return self.vtable.FreeSurrogate(self);
     }
 };
@@ -1802,13 +1802,13 @@ pub const IGlobalInterfaceTable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterInterfaceInGlobal(self: *const IGlobalInterfaceTable, pUnk: ?*IUnknown, riid: ?*const Guid, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RegisterInterfaceInGlobal(self: *const IGlobalInterfaceTable, pUnk: ?*IUnknown, riid: ?*const Guid, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterInterfaceInGlobal(self, pUnk, riid, pdwCookie);
     }
-    pub fn RevokeInterfaceFromGlobal(self: *const IGlobalInterfaceTable, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn RevokeInterfaceFromGlobal(self: *const IGlobalInterfaceTable, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RevokeInterfaceFromGlobal(self, dwCookie);
     }
-    pub fn GetInterfaceFromGlobal(self: *const IGlobalInterfaceTable, dwCookie: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetInterfaceFromGlobal(self: *const IGlobalInterfaceTable, dwCookie: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetInterfaceFromGlobal(self, dwCookie, riid, ppv);
     }
 };
@@ -1833,13 +1833,13 @@ pub const ISynchronize = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Wait(self: *const ISynchronize, dwFlags: u32, dwMilliseconds: u32) callconv(.Inline) HRESULT {
+    pub fn Wait(self: *const ISynchronize, dwFlags: u32, dwMilliseconds: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Wait(self, dwFlags, dwMilliseconds);
     }
-    pub fn Signal(self: *const ISynchronize) callconv(.Inline) HRESULT {
+    pub fn Signal(self: *const ISynchronize) callconv(.@"inline") HRESULT {
         return self.vtable.Signal(self);
     }
-    pub fn Reset(self: *const ISynchronize) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const ISynchronize) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -1857,7 +1857,7 @@ pub const ISynchronizeHandle = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHandle(self: *const ISynchronizeHandle, ph: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn GetHandle(self: *const ISynchronizeHandle, ph: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetHandle(self, ph);
     }
 };
@@ -1876,7 +1876,7 @@ pub const ISynchronizeEvent = extern union {
     vtable: *const VTable,
     ISynchronizeHandle: ISynchronizeHandle,
     IUnknown: IUnknown,
-    pub fn SetEventHandle(self: *const ISynchronizeEvent, ph: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn SetEventHandle(self: *const ISynchronizeEvent, ph: ?*?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventHandle(self, ph);
     }
 };
@@ -1900,10 +1900,10 @@ pub const ISynchronizeContainer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddSynchronize(self: *const ISynchronizeContainer, pSync: ?*ISynchronize) callconv(.Inline) HRESULT {
+    pub fn AddSynchronize(self: *const ISynchronizeContainer, pSync: ?*ISynchronize) callconv(.@"inline") HRESULT {
         return self.vtable.AddSynchronize(self, pSync);
     }
-    pub fn WaitMultiple(self: *const ISynchronizeContainer, dwFlags: u32, dwTimeOut: u32, ppSync: ?*?*ISynchronize) callconv(.Inline) HRESULT {
+    pub fn WaitMultiple(self: *const ISynchronizeContainer, dwFlags: u32, dwTimeOut: u32, ppSync: ?*?*ISynchronize) callconv(.@"inline") HRESULT {
         return self.vtable.WaitMultiple(self, dwFlags, dwTimeOut, ppSync);
     }
 };
@@ -1920,7 +1920,7 @@ pub const ISynchronizeMutex = extern union {
     vtable: *const VTable,
     ISynchronize: ISynchronize,
     IUnknown: IUnknown,
-    pub fn ReleaseMutex(self: *const ISynchronizeMutex) callconv(.Inline) HRESULT {
+    pub fn ReleaseMutex(self: *const ISynchronizeMutex) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseMutex(self);
     }
 };
@@ -1941,10 +1941,10 @@ pub const ICancelMethodCalls = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Cancel(self: *const ICancelMethodCalls, ulSeconds: u32) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const ICancelMethodCalls, ulSeconds: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self, ulSeconds);
     }
-    pub fn TestCancel(self: *const ICancelMethodCalls) callconv(.Inline) HRESULT {
+    pub fn TestCancel(self: *const ICancelMethodCalls) callconv(.@"inline") HRESULT {
         return self.vtable.TestCancel(self);
     }
 };
@@ -1979,13 +1979,13 @@ pub const IAsyncManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CompleteCall(self: *const IAsyncManager, Result: HRESULT) callconv(.Inline) HRESULT {
+    pub fn CompleteCall(self: *const IAsyncManager, Result: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.CompleteCall(self, Result);
     }
-    pub fn GetCallContext(self: *const IAsyncManager, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCallContext(self: *const IAsyncManager, riid: ?*const Guid, pInterface: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCallContext(self, riid, pInterface);
     }
-    pub fn GetState(self: *const IAsyncManager, pulStateFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IAsyncManager, pulStateFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, pulStateFlags);
     }
 };
@@ -2006,7 +2006,7 @@ pub const ICallFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateCall(self: *const ICallFactory, riid: ?*const Guid, pCtrlUnk: ?*IUnknown, riid2: ?*const Guid, ppv: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateCall(self: *const ICallFactory, riid: ?*const Guid, pCtrlUnk: ?*IUnknown, riid2: ?*const Guid, ppv: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCall(self, riid, pCtrlUnk, riid2, ppv);
     }
 };
@@ -2028,10 +2028,10 @@ pub const IRpcHelper = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDCOMProtocolVersion(self: *const IRpcHelper, pComVersion: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDCOMProtocolVersion(self: *const IRpcHelper, pComVersion: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDCOMProtocolVersion(self, pComVersion);
     }
-    pub fn GetIIDFromOBJREF(self: *const IRpcHelper, pObjRef: ?*anyopaque, piid: ?*?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetIIDFromOBJREF(self: *const IRpcHelper, pObjRef: ?*anyopaque, piid: ?*?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetIIDFromOBJREF(self, pObjRef, piid);
     }
 };
@@ -2050,7 +2050,7 @@ pub const IReleaseMarshalBuffers = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReleaseMarshalBuffer(self: *const IReleaseMarshalBuffers, pMsg: ?*RPCOLEMESSAGE, dwFlags: u32, pChnl: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn ReleaseMarshalBuffer(self: *const IReleaseMarshalBuffers, pMsg: ?*RPCOLEMESSAGE, dwFlags: u32, pChnl: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseMarshalBuffer(self, pMsg, dwFlags, pChnl);
     }
 };
@@ -2072,10 +2072,10 @@ pub const IWaitMultiple = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn WaitMultiple(self: *const IWaitMultiple, timeout: u32, pSync: ?*?*ISynchronize) callconv(.Inline) HRESULT {
+    pub fn WaitMultiple(self: *const IWaitMultiple, timeout: u32, pSync: ?*?*ISynchronize) callconv(.@"inline") HRESULT {
         return self.vtable.WaitMultiple(self, timeout, pSync);
     }
-    pub fn AddSynchronize(self: *const IWaitMultiple, pSync: ?*ISynchronize) callconv(.Inline) HRESULT {
+    pub fn AddSynchronize(self: *const IWaitMultiple, pSync: ?*ISynchronize) callconv(.@"inline") HRESULT {
         return self.vtable.AddSynchronize(self, pSync);
     }
 };
@@ -2094,10 +2094,10 @@ pub const IAddrTrackingControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnableCOMDynamicAddrTracking(self: *const IAddrTrackingControl) callconv(.Inline) HRESULT {
+    pub fn EnableCOMDynamicAddrTracking(self: *const IAddrTrackingControl) callconv(.@"inline") HRESULT {
         return self.vtable.EnableCOMDynamicAddrTracking(self);
     }
-    pub fn DisableCOMDynamicAddrTracking(self: *const IAddrTrackingControl) callconv(.Inline) HRESULT {
+    pub fn DisableCOMDynamicAddrTracking(self: *const IAddrTrackingControl) callconv(.@"inline") HRESULT {
         return self.vtable.DisableCOMDynamicAddrTracking(self);
     }
 };
@@ -2119,10 +2119,10 @@ pub const IAddrExclusionControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrentAddrExclusionList(self: *const IAddrExclusionControl, riid: ?*const Guid, ppEnumerator: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetCurrentAddrExclusionList(self: *const IAddrExclusionControl, riid: ?*const Guid, ppEnumerator: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentAddrExclusionList(self, riid, ppEnumerator);
     }
-    pub fn UpdateAddrExclusionList(self: *const IAddrExclusionControl, pEnumerator: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn UpdateAddrExclusionList(self: *const IAddrExclusionControl, pEnumerator: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateAddrExclusionList(self, pEnumerator);
     }
 };
@@ -2147,10 +2147,10 @@ pub const IPipeByte = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Pull(self: *const IPipeByte, buf: [*:0]u8, cRequest: u32, pcReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Pull(self: *const IPipeByte, buf: [*:0]u8, cRequest: u32, pcReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Pull(self, buf, cRequest, pcReturned);
     }
-    pub fn Push(self: *const IPipeByte, buf: [*:0]u8, cSent: u32) callconv(.Inline) HRESULT {
+    pub fn Push(self: *const IPipeByte, buf: [*:0]u8, cSent: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Push(self, buf, cSent);
     }
 };
@@ -2180,16 +2180,16 @@ pub const AsyncIPipeByte = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_Pull(self: *const AsyncIPipeByte, cRequest: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_Pull(self: *const AsyncIPipeByte, cRequest: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_Pull(self, cRequest);
     }
-    pub fn Finish_Pull(self: *const AsyncIPipeByte, buf: [*:0]u8, pcReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Finish_Pull(self: *const AsyncIPipeByte, buf: [*:0]u8, pcReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_Pull(self, buf, pcReturned);
     }
-    pub fn Begin_Push(self: *const AsyncIPipeByte, buf: [*:0]u8, cSent: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_Push(self: *const AsyncIPipeByte, buf: [*:0]u8, cSent: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_Push(self, buf, cSent);
     }
-    pub fn Finish_Push(self: *const AsyncIPipeByte) callconv(.Inline) HRESULT {
+    pub fn Finish_Push(self: *const AsyncIPipeByte) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_Push(self);
     }
 };
@@ -2214,10 +2214,10 @@ pub const IPipeLong = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Pull(self: *const IPipeLong, buf: [*]i32, cRequest: u32, pcReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Pull(self: *const IPipeLong, buf: [*]i32, cRequest: u32, pcReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Pull(self, buf, cRequest, pcReturned);
     }
-    pub fn Push(self: *const IPipeLong, buf: [*]i32, cSent: u32) callconv(.Inline) HRESULT {
+    pub fn Push(self: *const IPipeLong, buf: [*]i32, cSent: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Push(self, buf, cSent);
     }
 };
@@ -2247,16 +2247,16 @@ pub const AsyncIPipeLong = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_Pull(self: *const AsyncIPipeLong, cRequest: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_Pull(self: *const AsyncIPipeLong, cRequest: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_Pull(self, cRequest);
     }
-    pub fn Finish_Pull(self: *const AsyncIPipeLong, buf: [*]i32, pcReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Finish_Pull(self: *const AsyncIPipeLong, buf: [*]i32, pcReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_Pull(self, buf, pcReturned);
     }
-    pub fn Begin_Push(self: *const AsyncIPipeLong, buf: [*]i32, cSent: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_Push(self: *const AsyncIPipeLong, buf: [*]i32, cSent: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_Push(self, buf, cSent);
     }
-    pub fn Finish_Push(self: *const AsyncIPipeLong) callconv(.Inline) HRESULT {
+    pub fn Finish_Push(self: *const AsyncIPipeLong) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_Push(self);
     }
 };
@@ -2281,10 +2281,10 @@ pub const IPipeDouble = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Pull(self: *const IPipeDouble, buf: [*]f64, cRequest: u32, pcReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Pull(self: *const IPipeDouble, buf: [*]f64, cRequest: u32, pcReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Pull(self, buf, cRequest, pcReturned);
     }
-    pub fn Push(self: *const IPipeDouble, buf: [*]f64, cSent: u32) callconv(.Inline) HRESULT {
+    pub fn Push(self: *const IPipeDouble, buf: [*]f64, cSent: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Push(self, buf, cSent);
     }
 };
@@ -2314,16 +2314,16 @@ pub const AsyncIPipeDouble = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_Pull(self: *const AsyncIPipeDouble, cRequest: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_Pull(self: *const AsyncIPipeDouble, cRequest: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_Pull(self, cRequest);
     }
-    pub fn Finish_Pull(self: *const AsyncIPipeDouble, buf: [*]f64, pcReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Finish_Pull(self: *const AsyncIPipeDouble, buf: [*]f64, pcReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_Pull(self, buf, pcReturned);
     }
-    pub fn Begin_Push(self: *const AsyncIPipeDouble, buf: [*]f64, cSent: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_Push(self: *const AsyncIPipeDouble, buf: [*]f64, cSent: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_Push(self, buf, cSent);
     }
-    pub fn Finish_Push(self: *const AsyncIPipeDouble) callconv(.Inline) HRESULT {
+    pub fn Finish_Push(self: *const AsyncIPipeDouble) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_Push(self);
     }
 };
@@ -2392,16 +2392,16 @@ pub const IComThreadingInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrentApartmentType(self: *const IComThreadingInfo, pAptType: ?*APTTYPE) callconv(.Inline) HRESULT {
+    pub fn GetCurrentApartmentType(self: *const IComThreadingInfo, pAptType: ?*APTTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentApartmentType(self, pAptType);
     }
-    pub fn GetCurrentThreadType(self: *const IComThreadingInfo, pThreadType: ?*THDTYPE) callconv(.Inline) HRESULT {
+    pub fn GetCurrentThreadType(self: *const IComThreadingInfo, pThreadType: ?*THDTYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentThreadType(self, pThreadType);
     }
-    pub fn GetCurrentLogicalThreadId(self: *const IComThreadingInfo, pguidLogicalThreadId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetCurrentLogicalThreadId(self: *const IComThreadingInfo, pguidLogicalThreadId: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentLogicalThreadId(self, pguidLogicalThreadId);
     }
-    pub fn SetCurrentLogicalThreadId(self: *const IComThreadingInfo, rguid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SetCurrentLogicalThreadId(self: *const IComThreadingInfo, rguid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetCurrentLogicalThreadId(self, rguid);
     }
 };
@@ -2419,7 +2419,7 @@ pub const IProcessInitControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ResetInitializerTimeout(self: *const IProcessInitControl, dwSecondsRemaining: u32) callconv(.Inline) HRESULT {
+    pub fn ResetInitializerTimeout(self: *const IProcessInitControl, dwSecondsRemaining: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ResetInitializerTimeout(self, dwSecondsRemaining);
     }
 };
@@ -2506,13 +2506,13 @@ pub const IMachineGlobalObjectTable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterObject(self: *const IMachineGlobalObjectTable, clsid: ?*const Guid, identifier: ?[*:0]const u16, object: ?*IUnknown, token: ?*?*MachineGlobalObjectTableRegistrationToken__) callconv(.Inline) HRESULT {
+    pub fn RegisterObject(self: *const IMachineGlobalObjectTable, clsid: ?*const Guid, identifier: ?[*:0]const u16, object: ?*IUnknown, token: ?*?*MachineGlobalObjectTableRegistrationToken__) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterObject(self, clsid, identifier, object, token);
     }
-    pub fn GetObject(self: *const IMachineGlobalObjectTable, clsid: ?*const Guid, identifier: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const IMachineGlobalObjectTable, clsid: ?*const Guid, identifier: ?[*:0]const u16, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, clsid, identifier, riid, ppv);
     }
-    pub fn RevokeObject(self: *const IMachineGlobalObjectTable, token: ?*MachineGlobalObjectTableRegistrationToken__) callconv(.Inline) HRESULT {
+    pub fn RevokeObject(self: *const IMachineGlobalObjectTable, token: ?*MachineGlobalObjectTableRegistrationToken__) callconv(.@"inline") HRESULT {
         return self.vtable.RevokeObject(self, token);
     }
 };
@@ -2582,40 +2582,40 @@ pub const IMallocSpy = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PreAlloc(self: *const IMallocSpy, cbRequest: usize) callconv(.Inline) usize {
+    pub fn PreAlloc(self: *const IMallocSpy, cbRequest: usize) callconv(.@"inline") usize {
         return self.vtable.PreAlloc(self, cbRequest);
     }
-    pub fn PostAlloc(self: *const IMallocSpy, pActual: ?*anyopaque) callconv(.Inline) ?*anyopaque {
+    pub fn PostAlloc(self: *const IMallocSpy, pActual: ?*anyopaque) callconv(.@"inline") ?*anyopaque {
         return self.vtable.PostAlloc(self, pActual);
     }
-    pub fn PreFree(self: *const IMallocSpy, pRequest: ?*anyopaque, fSpyed: BOOL) callconv(.Inline) ?*anyopaque {
+    pub fn PreFree(self: *const IMallocSpy, pRequest: ?*anyopaque, fSpyed: BOOL) callconv(.@"inline") ?*anyopaque {
         return self.vtable.PreFree(self, pRequest, fSpyed);
     }
-    pub fn PostFree(self: *const IMallocSpy, fSpyed: BOOL) callconv(.Inline) void {
+    pub fn PostFree(self: *const IMallocSpy, fSpyed: BOOL) callconv(.@"inline") void {
         return self.vtable.PostFree(self, fSpyed);
     }
-    pub fn PreRealloc(self: *const IMallocSpy, pRequest: ?*anyopaque, cbRequest: usize, ppNewRequest: ?*?*anyopaque, fSpyed: BOOL) callconv(.Inline) usize {
+    pub fn PreRealloc(self: *const IMallocSpy, pRequest: ?*anyopaque, cbRequest: usize, ppNewRequest: ?*?*anyopaque, fSpyed: BOOL) callconv(.@"inline") usize {
         return self.vtable.PreRealloc(self, pRequest, cbRequest, ppNewRequest, fSpyed);
     }
-    pub fn PostRealloc(self: *const IMallocSpy, pActual: ?*anyopaque, fSpyed: BOOL) callconv(.Inline) ?*anyopaque {
+    pub fn PostRealloc(self: *const IMallocSpy, pActual: ?*anyopaque, fSpyed: BOOL) callconv(.@"inline") ?*anyopaque {
         return self.vtable.PostRealloc(self, pActual, fSpyed);
     }
-    pub fn PreGetSize(self: *const IMallocSpy, pRequest: ?*anyopaque, fSpyed: BOOL) callconv(.Inline) ?*anyopaque {
+    pub fn PreGetSize(self: *const IMallocSpy, pRequest: ?*anyopaque, fSpyed: BOOL) callconv(.@"inline") ?*anyopaque {
         return self.vtable.PreGetSize(self, pRequest, fSpyed);
     }
-    pub fn PostGetSize(self: *const IMallocSpy, cbActual: usize, fSpyed: BOOL) callconv(.Inline) usize {
+    pub fn PostGetSize(self: *const IMallocSpy, cbActual: usize, fSpyed: BOOL) callconv(.@"inline") usize {
         return self.vtable.PostGetSize(self, cbActual, fSpyed);
     }
-    pub fn PreDidAlloc(self: *const IMallocSpy, pRequest: ?*anyopaque, fSpyed: BOOL) callconv(.Inline) ?*anyopaque {
+    pub fn PreDidAlloc(self: *const IMallocSpy, pRequest: ?*anyopaque, fSpyed: BOOL) callconv(.@"inline") ?*anyopaque {
         return self.vtable.PreDidAlloc(self, pRequest, fSpyed);
     }
-    pub fn PostDidAlloc(self: *const IMallocSpy, pRequest: ?*anyopaque, fSpyed: BOOL, fActual: i32) callconv(.Inline) i32 {
+    pub fn PostDidAlloc(self: *const IMallocSpy, pRequest: ?*anyopaque, fSpyed: BOOL, fActual: i32) callconv(.@"inline") i32 {
         return self.vtable.PostDidAlloc(self, pRequest, fSpyed, fActual);
     }
-    pub fn PreHeapMinimize(self: *const IMallocSpy) callconv(.Inline) void {
+    pub fn PreHeapMinimize(self: *const IMallocSpy) callconv(.@"inline") void {
         return self.vtable.PreHeapMinimize(self);
     }
-    pub fn PostHeapMinimize(self: *const IMallocSpy) callconv(.Inline) void {
+    pub fn PostHeapMinimize(self: *const IMallocSpy) callconv(.@"inline") void {
         return self.vtable.PostHeapMinimize(self);
     }
 };
@@ -2697,34 +2697,34 @@ pub const IBindCtx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterObjectBound(self: *const IBindCtx, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn RegisterObjectBound(self: *const IBindCtx, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterObjectBound(self, punk);
     }
-    pub fn RevokeObjectBound(self: *const IBindCtx, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn RevokeObjectBound(self: *const IBindCtx, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.RevokeObjectBound(self, punk);
     }
-    pub fn ReleaseBoundObjects(self: *const IBindCtx) callconv(.Inline) HRESULT {
+    pub fn ReleaseBoundObjects(self: *const IBindCtx) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseBoundObjects(self);
     }
-    pub fn SetBindOptions(self: *const IBindCtx, pbindopts: ?*BIND_OPTS) callconv(.Inline) HRESULT {
+    pub fn SetBindOptions(self: *const IBindCtx, pbindopts: ?*BIND_OPTS) callconv(.@"inline") HRESULT {
         return self.vtable.SetBindOptions(self, pbindopts);
     }
-    pub fn GetBindOptions(self: *const IBindCtx, pbindopts: ?*BIND_OPTS) callconv(.Inline) HRESULT {
+    pub fn GetBindOptions(self: *const IBindCtx, pbindopts: ?*BIND_OPTS) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindOptions(self, pbindopts);
     }
-    pub fn GetRunningObjectTable(self: *const IBindCtx, pprot: ?*?*IRunningObjectTable) callconv(.Inline) HRESULT {
+    pub fn GetRunningObjectTable(self: *const IBindCtx, pprot: ?*?*IRunningObjectTable) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningObjectTable(self, pprot);
     }
-    pub fn RegisterObjectParam(self: *const IBindCtx, pszKey: ?PWSTR, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn RegisterObjectParam(self: *const IBindCtx, pszKey: ?PWSTR, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterObjectParam(self, pszKey, punk);
     }
-    pub fn GetObjectParam(self: *const IBindCtx, pszKey: ?PWSTR, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetObjectParam(self: *const IBindCtx, pszKey: ?PWSTR, ppunk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectParam(self, pszKey, ppunk);
     }
-    pub fn EnumObjectParam(self: *const IBindCtx, ppenum: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn EnumObjectParam(self: *const IBindCtx, ppenum: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.EnumObjectParam(self, ppenum);
     }
-    pub fn RevokeObjectParam(self: *const IBindCtx, pszKey: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn RevokeObjectParam(self: *const IBindCtx, pszKey: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RevokeObjectParam(self, pszKey);
     }
 };
@@ -2755,16 +2755,16 @@ pub const IEnumMoniker = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumMoniker, celt: u32, rgelt: [*]?*IMoniker, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumMoniker, celt: u32, rgelt: [*]?*IMoniker, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumMoniker, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumMoniker, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumMoniker) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumMoniker, ppenum: ?*?*IEnumMoniker) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumMoniker, ppenum: ?*?*IEnumMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -2798,19 +2798,19 @@ pub const IRunnableObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRunningClass(self: *const IRunnableObject, lpClsid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetRunningClass(self: *const IRunnableObject, lpClsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetRunningClass(self, lpClsid);
     }
-    pub fn Run(self: *const IRunnableObject, pbc: ?*IBindCtx) callconv(.Inline) HRESULT {
+    pub fn Run(self: *const IRunnableObject, pbc: ?*IBindCtx) callconv(.@"inline") HRESULT {
         return self.vtable.Run(self, pbc);
     }
-    pub fn IsRunning(self: *const IRunnableObject) callconv(.Inline) BOOL {
+    pub fn IsRunning(self: *const IRunnableObject) callconv(.@"inline") BOOL {
         return self.vtable.IsRunning(self);
     }
-    pub fn LockRunning(self: *const IRunnableObject, fLock: BOOL, fLastUnlockCloses: BOOL) callconv(.Inline) HRESULT {
+    pub fn LockRunning(self: *const IRunnableObject, fLock: BOOL, fLastUnlockCloses: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.LockRunning(self, fLock, fLastUnlockCloses);
     }
-    pub fn SetContainedObject(self: *const IRunnableObject, fContained: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetContainedObject(self: *const IRunnableObject, fContained: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetContainedObject(self, fContained);
     }
 };
@@ -2858,25 +2858,25 @@ pub const IRunningObjectTable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Register(self: *const IRunningObjectTable, grfFlags: ROT_FLAGS, punkObject: ?*IUnknown, pmkObjectName: ?*IMoniker, pdwRegister: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Register(self: *const IRunningObjectTable, grfFlags: ROT_FLAGS, punkObject: ?*IUnknown, pmkObjectName: ?*IMoniker, pdwRegister: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Register(self, grfFlags, punkObject, pmkObjectName, pdwRegister);
     }
-    pub fn Revoke(self: *const IRunningObjectTable, dwRegister: u32) callconv(.Inline) HRESULT {
+    pub fn Revoke(self: *const IRunningObjectTable, dwRegister: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Revoke(self, dwRegister);
     }
-    pub fn IsRunning(self: *const IRunningObjectTable, pmkObjectName: ?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn IsRunning(self: *const IRunningObjectTable, pmkObjectName: ?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.IsRunning(self, pmkObjectName);
     }
-    pub fn GetObject(self: *const IRunningObjectTable, pmkObjectName: ?*IMoniker, ppunkObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const IRunningObjectTable, pmkObjectName: ?*IMoniker, ppunkObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, pmkObjectName, ppunkObject);
     }
-    pub fn NoteChangeTime(self: *const IRunningObjectTable, dwRegister: u32, pfiletime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn NoteChangeTime(self: *const IRunningObjectTable, dwRegister: u32, pfiletime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.NoteChangeTime(self, dwRegister, pfiletime);
     }
-    pub fn GetTimeOfLastChange(self: *const IRunningObjectTable, pmkObjectName: ?*IMoniker, pfiletime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetTimeOfLastChange(self: *const IRunningObjectTable, pmkObjectName: ?*IMoniker, pfiletime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetTimeOfLastChange(self, pmkObjectName, pfiletime);
     }
-    pub fn EnumRunning(self: *const IRunningObjectTable, ppenumMoniker: ?*?*IEnumMoniker) callconv(.Inline) HRESULT {
+    pub fn EnumRunning(self: *const IRunningObjectTable, ppenumMoniker: ?*?*IEnumMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRunning(self, ppenumMoniker);
     }
 };
@@ -2894,7 +2894,7 @@ pub const IPersist = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClassID(self: *const IPersist, pClassID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetClassID(self: *const IPersist, pClassID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetClassID(self, pClassID);
     }
 };
@@ -2925,16 +2925,16 @@ pub const IPersistStream = extern union {
     vtable: *const VTable,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IPersistStream) callconv(.Inline) HRESULT {
+    pub fn IsDirty(self: *const IPersistStream) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirty(self);
     }
-    pub fn Load(self: *const IPersistStream, pStm: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn Load(self: *const IPersistStream, pStm: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Load(self, pStm);
     }
-    pub fn Save(self: *const IPersistStream, pStm: ?*IStream, fClearDirty: BOOL) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IPersistStream, pStm: ?*IStream, fClearDirty: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, pStm, fClearDirty);
     }
-    pub fn GetSizeMax(self: *const IPersistStream, pcbSize: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn GetSizeMax(self: *const IPersistStream, pcbSize: ?*ULARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.GetSizeMax(self, pcbSize);
     }
 };
@@ -3068,49 +3068,49 @@ pub const IMoniker = extern union {
     IPersistStream: IPersistStream,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn BindToObject(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, riidResult: ?*const Guid, ppvResult: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToObject(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, riidResult: ?*const Guid, ppvResult: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToObject(self, pbc, pmkToLeft, riidResult, ppvResult);
     }
-    pub fn BindToStorage(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn BindToStorage(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.BindToStorage(self, pbc, pmkToLeft, riid, ppvObj);
     }
-    pub fn Reduce(self: *const IMoniker, pbc: ?*IBindCtx, dwReduceHowFar: u32, ppmkToLeft: ?*?*IMoniker, ppmkReduced: ?*?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn Reduce(self: *const IMoniker, pbc: ?*IBindCtx, dwReduceHowFar: u32, ppmkToLeft: ?*?*IMoniker, ppmkReduced: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.Reduce(self, pbc, dwReduceHowFar, ppmkToLeft, ppmkReduced);
     }
-    pub fn ComposeWith(self: *const IMoniker, pmkRight: ?*IMoniker, fOnlyIfNotGeneric: BOOL, ppmkComposite: ?*?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn ComposeWith(self: *const IMoniker, pmkRight: ?*IMoniker, fOnlyIfNotGeneric: BOOL, ppmkComposite: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.ComposeWith(self, pmkRight, fOnlyIfNotGeneric, ppmkComposite);
     }
-    pub fn Enum(self: *const IMoniker, fForward: BOOL, ppenumMoniker: ?*?*IEnumMoniker) callconv(.Inline) HRESULT {
+    pub fn Enum(self: *const IMoniker, fForward: BOOL, ppenumMoniker: ?*?*IEnumMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.Enum(self, fForward, ppenumMoniker);
     }
-    pub fn IsEqual(self: *const IMoniker, pmkOtherMoniker: ?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn IsEqual(self: *const IMoniker, pmkOtherMoniker: ?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.IsEqual(self, pmkOtherMoniker);
     }
-    pub fn Hash(self: *const IMoniker, pdwHash: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Hash(self: *const IMoniker, pdwHash: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Hash(self, pdwHash);
     }
-    pub fn IsRunning(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, pmkNewlyRunning: ?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn IsRunning(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, pmkNewlyRunning: ?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.IsRunning(self, pbc, pmkToLeft, pmkNewlyRunning);
     }
-    pub fn GetTimeOfLastChange(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, pFileTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetTimeOfLastChange(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, pFileTime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetTimeOfLastChange(self, pbc, pmkToLeft, pFileTime);
     }
-    pub fn Inverse(self: *const IMoniker, ppmk: ?*?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn Inverse(self: *const IMoniker, ppmk: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.Inverse(self, ppmk);
     }
-    pub fn CommonPrefixWith(self: *const IMoniker, pmkOther: ?*IMoniker, ppmkPrefix: ?*?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn CommonPrefixWith(self: *const IMoniker, pmkOther: ?*IMoniker, ppmkPrefix: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.CommonPrefixWith(self, pmkOther, ppmkPrefix);
     }
-    pub fn RelativePathTo(self: *const IMoniker, pmkOther: ?*IMoniker, ppmkRelPath: ?*?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn RelativePathTo(self: *const IMoniker, pmkOther: ?*IMoniker, ppmkRelPath: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.RelativePathTo(self, pmkOther, ppmkRelPath);
     }
-    pub fn GetDisplayName(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, ppszDisplayName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDisplayName(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, ppszDisplayName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pbc, pmkToLeft, ppszDisplayName);
     }
-    pub fn ParseDisplayName(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.Inline) HRESULT {
+    pub fn ParseDisplayName(self: *const IMoniker, pbc: ?*IBindCtx, pmkToLeft: ?*IMoniker, pszDisplayName: ?PWSTR, pchEaten: ?*u32, ppmkOut: ?*?*IMoniker) callconv(.@"inline") HRESULT {
         return self.vtable.ParseDisplayName(self, pbc, pmkToLeft, pszDisplayName, pchEaten, ppmkOut);
     }
-    pub fn IsSystemMoniker(self: *const IMoniker, pdwMksys: ?*u32) callconv(.Inline) HRESULT {
+    pub fn IsSystemMoniker(self: *const IMoniker, pdwMksys: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.IsSystemMoniker(self, pdwMksys);
     }
 };
@@ -3130,7 +3130,7 @@ pub const IROTData = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetComparisonData(self: *const IROTData, pbData: [*:0]u8, cbMax: u32, pcbData: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetComparisonData(self: *const IROTData, pbData: [*:0]u8, cbMax: u32, pcbData: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetComparisonData(self, pbData, cbMax, pcbData);
     }
 };
@@ -3166,19 +3166,19 @@ pub const IPersistFile = extern union {
     vtable: *const VTable,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IPersistFile) callconv(.Inline) HRESULT {
+    pub fn IsDirty(self: *const IPersistFile) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirty(self);
     }
-    pub fn Load(self: *const IPersistFile, pszFileName: ?[*:0]const u16, dwMode: u32) callconv(.Inline) HRESULT {
+    pub fn Load(self: *const IPersistFile, pszFileName: ?[*:0]const u16, dwMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Load(self, pszFileName, dwMode);
     }
-    pub fn Save(self: *const IPersistFile, pszFileName: ?[*:0]const u16, fRemember: BOOL) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IPersistFile, pszFileName: ?[*:0]const u16, fRemember: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, pszFileName, fRemember);
     }
-    pub fn SaveCompleted(self: *const IPersistFile, pszFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SaveCompleted(self: *const IPersistFile, pszFileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SaveCompleted(self, pszFileName);
     }
-    pub fn GetCurFile(self: *const IPersistFile, ppszFileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurFile(self: *const IPersistFile, ppszFileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurFile(self, ppszFileName);
     }
 };
@@ -3226,16 +3226,16 @@ pub const IEnumFORMATETC = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumFORMATETC, celt: u32, rgelt: [*]FORMATETC, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumFORMATETC, celt: u32, rgelt: [*]FORMATETC, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumFORMATETC, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumFORMATETC, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumFORMATETC) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumFORMATETC) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumFORMATETC, ppenum: ?*?*IEnumFORMATETC) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumFORMATETC, ppenum: ?*?*IEnumFORMATETC) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -3290,16 +3290,16 @@ pub const IEnumSTATDATA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSTATDATA, celt: u32, rgelt: [*]STATDATA, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSTATDATA, celt: u32, rgelt: [*]STATDATA, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumSTATDATA, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSTATDATA, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumSTATDATA) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSTATDATA) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSTATDATA, ppenum: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSTATDATA, ppenum: ?*?*IEnumSTATDATA) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -3412,19 +3412,19 @@ pub const IAdviseSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnDataChange(self: *const IAdviseSink, pFormatetc: ?*FORMATETC, pStgmed: ?*STGMEDIUM) callconv(.Inline) void {
+    pub fn OnDataChange(self: *const IAdviseSink, pFormatetc: ?*FORMATETC, pStgmed: ?*STGMEDIUM) callconv(.@"inline") void {
         return self.vtable.OnDataChange(self, pFormatetc, pStgmed);
     }
-    pub fn OnViewChange(self: *const IAdviseSink, dwAspect: u32, lindex: i32) callconv(.Inline) void {
+    pub fn OnViewChange(self: *const IAdviseSink, dwAspect: u32, lindex: i32) callconv(.@"inline") void {
         return self.vtable.OnViewChange(self, dwAspect, lindex);
     }
-    pub fn OnRename(self: *const IAdviseSink, pmk: ?*IMoniker) callconv(.Inline) void {
+    pub fn OnRename(self: *const IAdviseSink, pmk: ?*IMoniker) callconv(.@"inline") void {
         return self.vtable.OnRename(self, pmk);
     }
-    pub fn OnSave(self: *const IAdviseSink) callconv(.Inline) void {
+    pub fn OnSave(self: *const IAdviseSink) callconv(.@"inline") void {
         return self.vtable.OnSave(self);
     }
-    pub fn OnClose(self: *const IAdviseSink) callconv(.Inline) void {
+    pub fn OnClose(self: *const IAdviseSink) callconv(.@"inline") void {
         return self.vtable.OnClose(self);
     }
 };
@@ -3472,34 +3472,34 @@ pub const AsyncIAdviseSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_OnDataChange(self: *const AsyncIAdviseSink, pFormatetc: ?*FORMATETC, pStgmed: ?*STGMEDIUM) callconv(.Inline) void {
+    pub fn Begin_OnDataChange(self: *const AsyncIAdviseSink, pFormatetc: ?*FORMATETC, pStgmed: ?*STGMEDIUM) callconv(.@"inline") void {
         return self.vtable.Begin_OnDataChange(self, pFormatetc, pStgmed);
     }
-    pub fn Finish_OnDataChange(self: *const AsyncIAdviseSink) callconv(.Inline) void {
+    pub fn Finish_OnDataChange(self: *const AsyncIAdviseSink) callconv(.@"inline") void {
         return self.vtable.Finish_OnDataChange(self);
     }
-    pub fn Begin_OnViewChange(self: *const AsyncIAdviseSink, dwAspect: u32, lindex: i32) callconv(.Inline) void {
+    pub fn Begin_OnViewChange(self: *const AsyncIAdviseSink, dwAspect: u32, lindex: i32) callconv(.@"inline") void {
         return self.vtable.Begin_OnViewChange(self, dwAspect, lindex);
     }
-    pub fn Finish_OnViewChange(self: *const AsyncIAdviseSink) callconv(.Inline) void {
+    pub fn Finish_OnViewChange(self: *const AsyncIAdviseSink) callconv(.@"inline") void {
         return self.vtable.Finish_OnViewChange(self);
     }
-    pub fn Begin_OnRename(self: *const AsyncIAdviseSink, pmk: ?*IMoniker) callconv(.Inline) void {
+    pub fn Begin_OnRename(self: *const AsyncIAdviseSink, pmk: ?*IMoniker) callconv(.@"inline") void {
         return self.vtable.Begin_OnRename(self, pmk);
     }
-    pub fn Finish_OnRename(self: *const AsyncIAdviseSink) callconv(.Inline) void {
+    pub fn Finish_OnRename(self: *const AsyncIAdviseSink) callconv(.@"inline") void {
         return self.vtable.Finish_OnRename(self);
     }
-    pub fn Begin_OnSave(self: *const AsyncIAdviseSink) callconv(.Inline) void {
+    pub fn Begin_OnSave(self: *const AsyncIAdviseSink) callconv(.@"inline") void {
         return self.vtable.Begin_OnSave(self);
     }
-    pub fn Finish_OnSave(self: *const AsyncIAdviseSink) callconv(.Inline) void {
+    pub fn Finish_OnSave(self: *const AsyncIAdviseSink) callconv(.@"inline") void {
         return self.vtable.Finish_OnSave(self);
     }
-    pub fn Begin_OnClose(self: *const AsyncIAdviseSink) callconv(.Inline) void {
+    pub fn Begin_OnClose(self: *const AsyncIAdviseSink) callconv(.@"inline") void {
         return self.vtable.Begin_OnClose(self);
     }
-    pub fn Finish_OnClose(self: *const AsyncIAdviseSink) callconv(.Inline) void {
+    pub fn Finish_OnClose(self: *const AsyncIAdviseSink) callconv(.@"inline") void {
         return self.vtable.Finish_OnClose(self);
     }
 };
@@ -3518,7 +3518,7 @@ pub const IAdviseSink2 = extern union {
     vtable: *const VTable,
     IAdviseSink: IAdviseSink,
     IUnknown: IUnknown,
-    pub fn OnLinkSrcChange(self: *const IAdviseSink2, pmk: ?*IMoniker) callconv(.Inline) void {
+    pub fn OnLinkSrcChange(self: *const IAdviseSink2, pmk: ?*IMoniker) callconv(.@"inline") void {
         return self.vtable.OnLinkSrcChange(self, pmk);
     }
 };
@@ -3539,10 +3539,10 @@ pub const AsyncIAdviseSink2 = extern union {
     vtable: *const VTable,
     AsyncIAdviseSink: AsyncIAdviseSink,
     IUnknown: IUnknown,
-    pub fn Begin_OnLinkSrcChange(self: *const AsyncIAdviseSink2, pmk: ?*IMoniker) callconv(.Inline) void {
+    pub fn Begin_OnLinkSrcChange(self: *const AsyncIAdviseSink2, pmk: ?*IMoniker) callconv(.@"inline") void {
         return self.vtable.Begin_OnLinkSrcChange(self, pmk);
     }
-    pub fn Finish_OnLinkSrcChange(self: *const AsyncIAdviseSink2) callconv(.Inline) void {
+    pub fn Finish_OnLinkSrcChange(self: *const AsyncIAdviseSink2) callconv(.@"inline") void {
         return self.vtable.Finish_OnLinkSrcChange(self);
     }
 };
@@ -3608,31 +3608,31 @@ pub const IDataObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetData(self: *const IDataObject, pformatetcIn: ?*FORMATETC, pmedium: ?*STGMEDIUM) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const IDataObject, pformatetcIn: ?*FORMATETC, pmedium: ?*STGMEDIUM) callconv(.@"inline") HRESULT {
         return self.vtable.GetData(self, pformatetcIn, pmedium);
     }
-    pub fn GetDataHere(self: *const IDataObject, pformatetc: ?*FORMATETC, pmedium: ?*STGMEDIUM) callconv(.Inline) HRESULT {
+    pub fn GetDataHere(self: *const IDataObject, pformatetc: ?*FORMATETC, pmedium: ?*STGMEDIUM) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataHere(self, pformatetc, pmedium);
     }
-    pub fn QueryGetData(self: *const IDataObject, pformatetc: ?*FORMATETC) callconv(.Inline) HRESULT {
+    pub fn QueryGetData(self: *const IDataObject, pformatetc: ?*FORMATETC) callconv(.@"inline") HRESULT {
         return self.vtable.QueryGetData(self, pformatetc);
     }
-    pub fn GetCanonicalFormatEtc(self: *const IDataObject, pformatectIn: ?*FORMATETC, pformatetcOut: ?*FORMATETC) callconv(.Inline) HRESULT {
+    pub fn GetCanonicalFormatEtc(self: *const IDataObject, pformatectIn: ?*FORMATETC, pformatetcOut: ?*FORMATETC) callconv(.@"inline") HRESULT {
         return self.vtable.GetCanonicalFormatEtc(self, pformatectIn, pformatetcOut);
     }
-    pub fn SetData(self: *const IDataObject, pformatetc: ?*FORMATETC, pmedium: ?*STGMEDIUM, fRelease: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetData(self: *const IDataObject, pformatetc: ?*FORMATETC, pmedium: ?*STGMEDIUM, fRelease: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetData(self, pformatetc, pmedium, fRelease);
     }
-    pub fn EnumFormatEtc(self: *const IDataObject, dwDirection: u32, ppenumFormatEtc: ?*?*IEnumFORMATETC) callconv(.Inline) HRESULT {
+    pub fn EnumFormatEtc(self: *const IDataObject, dwDirection: u32, ppenumFormatEtc: ?*?*IEnumFORMATETC) callconv(.@"inline") HRESULT {
         return self.vtable.EnumFormatEtc(self, dwDirection, ppenumFormatEtc);
     }
-    pub fn DAdvise(self: *const IDataObject, pformatetc: ?*FORMATETC, advf: u32, pAdvSink: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
+    pub fn DAdvise(self: *const IDataObject, pformatetc: ?*FORMATETC, advf: u32, pAdvSink: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.DAdvise(self, pformatetc, advf, pAdvSink, pdwConnection);
     }
-    pub fn DUnadvise(self: *const IDataObject, dwConnection: u32) callconv(.Inline) HRESULT {
+    pub fn DUnadvise(self: *const IDataObject, dwConnection: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DUnadvise(self, dwConnection);
     }
-    pub fn EnumDAdvise(self: *const IDataObject, ppenumAdvise: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
+    pub fn EnumDAdvise(self: *const IDataObject, ppenumAdvise: ?*?*IEnumSTATDATA) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDAdvise(self, ppenumAdvise);
     }
 };
@@ -3668,16 +3668,16 @@ pub const IDataAdviseHolder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Advise(self: *const IDataAdviseHolder, pDataObject: ?*IDataObject, pFetc: ?*FORMATETC, advf: u32, pAdvise: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IDataAdviseHolder, pDataObject: ?*IDataObject, pFetc: ?*FORMATETC, advf: u32, pAdvise: ?*IAdviseSink, pdwConnection: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, pDataObject, pFetc, advf, pAdvise, pdwConnection);
     }
-    pub fn Unadvise(self: *const IDataAdviseHolder, dwConnection: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IDataAdviseHolder, dwConnection: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwConnection);
     }
-    pub fn EnumAdvise(self: *const IDataAdviseHolder, ppenumAdvise: ?*?*IEnumSTATDATA) callconv(.Inline) HRESULT {
+    pub fn EnumAdvise(self: *const IDataAdviseHolder, ppenumAdvise: ?*?*IEnumSTATDATA) callconv(.@"inline") HRESULT {
         return self.vtable.EnumAdvise(self, ppenumAdvise);
     }
-    pub fn SendOnDataChange(self: *const IDataAdviseHolder, pDataObject: ?*IDataObject, dwReserved: u32, advf: u32) callconv(.Inline) HRESULT {
+    pub fn SendOnDataChange(self: *const IDataAdviseHolder, pDataObject: ?*IDataObject, dwReserved: u32, advf: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendOnDataChange(self, pDataObject, dwReserved, advf);
     }
 };
@@ -3743,7 +3743,7 @@ pub const IClassActivator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClassObject(self: *const IClassActivator, rclsid: ?*const Guid, dwClassContext: u32, locale: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetClassObject(self: *const IClassActivator, rclsid: ?*const Guid, dwClassContext: u32, locale: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetClassObject(self, rclsid, dwClassContext, locale, riid, ppv);
     }
 };
@@ -3764,7 +3764,7 @@ pub const IProgressNotify = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnProgress(self: *const IProgressNotify, dwProgressCurrent: u32, dwProgressMaximum: u32, fAccurate: BOOL, fOwner: BOOL) callconv(.Inline) HRESULT {
+    pub fn OnProgress(self: *const IProgressNotify, dwProgressCurrent: u32, dwProgressMaximum: u32, fAccurate: BOOL, fOwner: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnProgress(self, dwProgressCurrent, dwProgressMaximum, fAccurate, fOwner);
     }
 };
@@ -3792,10 +3792,10 @@ pub const IBlockingLock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Lock(self: *const IBlockingLock, dwTimeout: u32) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IBlockingLock, dwTimeout: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, dwTimeout);
     }
-    pub fn Unlock(self: *const IBlockingLock) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IBlockingLock) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self);
     }
 };
@@ -3813,7 +3813,7 @@ pub const ITimeAndNoticeControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SuppressChanges(self: *const ITimeAndNoticeControl, res1: u32, res2: u32) callconv(.Inline) HRESULT {
+    pub fn SuppressChanges(self: *const ITimeAndNoticeControl, res1: u32, res2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SuppressChanges(self, res1, res2);
     }
 };
@@ -3844,10 +3844,10 @@ pub const IOplockStorage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateStorageEx(self: *const IOplockStorage, pwcsName: ?[*:0]const u16, grfMode: u32, stgfmt: u32, grfAttrs: u32, riid: ?*const Guid, ppstgOpen: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateStorageEx(self: *const IOplockStorage, pwcsName: ?[*:0]const u16, grfMode: u32, stgfmt: u32, grfAttrs: u32, riid: ?*const Guid, ppstgOpen: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStorageEx(self, pwcsName, grfMode, stgfmt, grfAttrs, riid, ppstgOpen);
     }
-    pub fn OpenStorageEx(self: *const IOplockStorage, pwcsName: ?[*:0]const u16, grfMode: u32, stgfmt: u32, grfAttrs: u32, riid: ?*const Guid, ppstgOpen: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn OpenStorageEx(self: *const IOplockStorage, pwcsName: ?[*:0]const u16, grfMode: u32, stgfmt: u32, grfAttrs: u32, riid: ?*const Guid, ppstgOpen: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.OpenStorageEx(self, pwcsName, grfMode, stgfmt, grfAttrs, riid, ppstgOpen);
     }
 };
@@ -3873,7 +3873,7 @@ pub const IUrlMon = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AsyncGetClassBits(self: *const IUrlMon, rclsid: ?*const Guid, pszTYPE: ?[*:0]const u16, pszExt: ?[*:0]const u16, dwFileVersionMS: u32, dwFileVersionLS: u32, pszCodeBase: ?[*:0]const u16, pbc: ?*IBindCtx, dwClassContext: u32, riid: ?*const Guid, flags: u32) callconv(.Inline) HRESULT {
+    pub fn AsyncGetClassBits(self: *const IUrlMon, rclsid: ?*const Guid, pszTYPE: ?[*:0]const u16, pszExt: ?[*:0]const u16, dwFileVersionMS: u32, dwFileVersionLS: u32, pszCodeBase: ?[*:0]const u16, pbc: ?*IBindCtx, dwClassContext: u32, riid: ?*const Guid, flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AsyncGetClassBits(self, rclsid, pszTYPE, pszExt, dwFileVersionMS, dwFileVersionLS, pszCodeBase, pbc, dwClassContext, riid, flags);
     }
 };
@@ -3891,7 +3891,7 @@ pub const IForegroundTransfer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AllowForegroundTransfer(self: *const IForegroundTransfer, lpvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn AllowForegroundTransfer(self: *const IForegroundTransfer, lpvReserved: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.AllowForegroundTransfer(self, lpvReserved);
     }
 };
@@ -3925,10 +3925,10 @@ pub const IProcessLock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddRefOnProcess(self: *const IProcessLock) callconv(.Inline) u32 {
+    pub fn AddRefOnProcess(self: *const IProcessLock) callconv(.@"inline") u32 {
         return self.vtable.AddRefOnProcess(self);
     }
-    pub fn ReleaseRefOnProcess(self: *const IProcessLock) callconv(.Inline) u32 {
+    pub fn ReleaseRefOnProcess(self: *const IProcessLock) callconv(.@"inline") u32 {
         return self.vtable.ReleaseRefOnProcess(self);
     }
 };
@@ -3965,19 +3965,19 @@ pub const ISurrogateService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const ISurrogateService, rguidProcessID: ?*const Guid, pProcessLock: ?*IProcessLock, pfApplicationAware: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn Init(self: *const ISurrogateService, rguidProcessID: ?*const Guid, pProcessLock: ?*IProcessLock, pfApplicationAware: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Init(self, rguidProcessID, pProcessLock, pfApplicationAware);
     }
-    pub fn ApplicationLaunch(self: *const ISurrogateService, rguidApplID: ?*const Guid, appType: ApplicationType) callconv(.Inline) HRESULT {
+    pub fn ApplicationLaunch(self: *const ISurrogateService, rguidApplID: ?*const Guid, appType: ApplicationType) callconv(.@"inline") HRESULT {
         return self.vtable.ApplicationLaunch(self, rguidApplID, appType);
     }
-    pub fn ApplicationFree(self: *const ISurrogateService, rguidApplID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn ApplicationFree(self: *const ISurrogateService, rguidApplID: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.ApplicationFree(self, rguidApplID);
     }
-    pub fn CatalogRefresh(self: *const ISurrogateService, ulReserved: u32) callconv(.Inline) HRESULT {
+    pub fn CatalogRefresh(self: *const ISurrogateService, ulReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CatalogRefresh(self, ulReserved);
     }
-    pub fn ProcessShutdown(self: *const ISurrogateService, shutdownType: ShutdownType) callconv(.Inline) HRESULT {
+    pub fn ProcessShutdown(self: *const ISurrogateService, shutdownType: ShutdownType) callconv(.@"inline") HRESULT {
         return self.vtable.ProcessShutdown(self, shutdownType);
     }
 };
@@ -4010,16 +4010,16 @@ pub const IInitializeSpy = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PreInitialize(self: *const IInitializeSpy, dwCoInit: u32, dwCurThreadAptRefs: u32) callconv(.Inline) HRESULT {
+    pub fn PreInitialize(self: *const IInitializeSpy, dwCoInit: u32, dwCurThreadAptRefs: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PreInitialize(self, dwCoInit, dwCurThreadAptRefs);
     }
-    pub fn PostInitialize(self: *const IInitializeSpy, hrCoInit: HRESULT, dwCoInit: u32, dwNewThreadAptRefs: u32) callconv(.Inline) HRESULT {
+    pub fn PostInitialize(self: *const IInitializeSpy, hrCoInit: HRESULT, dwCoInit: u32, dwNewThreadAptRefs: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PostInitialize(self, hrCoInit, dwCoInit, dwNewThreadAptRefs);
     }
-    pub fn PreUninitialize(self: *const IInitializeSpy, dwCurThreadAptRefs: u32) callconv(.Inline) HRESULT {
+    pub fn PreUninitialize(self: *const IInitializeSpy, dwCurThreadAptRefs: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PreUninitialize(self, dwCurThreadAptRefs);
     }
-    pub fn PostUninitialize(self: *const IInitializeSpy, dwNewThreadAptRefs: u32) callconv(.Inline) HRESULT {
+    pub fn PostUninitialize(self: *const IInitializeSpy, dwNewThreadAptRefs: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PostUninitialize(self, dwNewThreadAptRefs);
     }
 };
@@ -4088,7 +4088,7 @@ pub const IServiceProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryService(self: *const IServiceProvider, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryService(self: *const IServiceProvider, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.QueryService(self, guidService, riid, ppvObject);
     }
 };
@@ -4152,16 +4152,16 @@ pub const IEnumGUID = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumGUID, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumGUID, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumGUID, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumGUID, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumGUID) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumGUID) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumGUID, ppenum: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumGUID, ppenum: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -4198,16 +4198,16 @@ pub const IEnumCATEGORYINFO = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumCATEGORYINFO, celt: u32, rgelt: [*]CATEGORYINFO, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumCATEGORYINFO, celt: u32, rgelt: [*]CATEGORYINFO, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumCATEGORYINFO, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumCATEGORYINFO, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumCATEGORYINFO) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumCATEGORYINFO) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumCATEGORYINFO, ppenum: ?*?*IEnumCATEGORYINFO) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumCATEGORYINFO, ppenum: ?*?*IEnumCATEGORYINFO) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -4255,22 +4255,22 @@ pub const ICatRegister = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterCategories(self: *const ICatRegister, cCategories: u32, rgCategoryInfo: [*]CATEGORYINFO) callconv(.Inline) HRESULT {
+    pub fn RegisterCategories(self: *const ICatRegister, cCategories: u32, rgCategoryInfo: [*]CATEGORYINFO) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterCategories(self, cCategories, rgCategoryInfo);
     }
-    pub fn UnRegisterCategories(self: *const ICatRegister, cCategories: u32, rgcatid: [*]Guid) callconv(.Inline) HRESULT {
+    pub fn UnRegisterCategories(self: *const ICatRegister, cCategories: u32, rgcatid: [*]Guid) callconv(.@"inline") HRESULT {
         return self.vtable.UnRegisterCategories(self, cCategories, rgcatid);
     }
-    pub fn RegisterClassImplCategories(self: *const ICatRegister, rclsid: ?*const Guid, cCategories: u32, rgcatid: [*]Guid) callconv(.Inline) HRESULT {
+    pub fn RegisterClassImplCategories(self: *const ICatRegister, rclsid: ?*const Guid, cCategories: u32, rgcatid: [*]Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterClassImplCategories(self, rclsid, cCategories, rgcatid);
     }
-    pub fn UnRegisterClassImplCategories(self: *const ICatRegister, rclsid: ?*const Guid, cCategories: u32, rgcatid: [*]Guid) callconv(.Inline) HRESULT {
+    pub fn UnRegisterClassImplCategories(self: *const ICatRegister, rclsid: ?*const Guid, cCategories: u32, rgcatid: [*]Guid) callconv(.@"inline") HRESULT {
         return self.vtable.UnRegisterClassImplCategories(self, rclsid, cCategories, rgcatid);
     }
-    pub fn RegisterClassReqCategories(self: *const ICatRegister, rclsid: ?*const Guid, cCategories: u32, rgcatid: [*]Guid) callconv(.Inline) HRESULT {
+    pub fn RegisterClassReqCategories(self: *const ICatRegister, rclsid: ?*const Guid, cCategories: u32, rgcatid: [*]Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterClassReqCategories(self, rclsid, cCategories, rgcatid);
     }
-    pub fn UnRegisterClassReqCategories(self: *const ICatRegister, rclsid: ?*const Guid, cCategories: u32, rgcatid: [*]Guid) callconv(.Inline) HRESULT {
+    pub fn UnRegisterClassReqCategories(self: *const ICatRegister, rclsid: ?*const Guid, cCategories: u32, rgcatid: [*]Guid) callconv(.@"inline") HRESULT {
         return self.vtable.UnRegisterClassReqCategories(self, rclsid, cCategories, rgcatid);
     }
 };
@@ -4321,22 +4321,22 @@ pub const ICatInformation = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumCategories(self: *const ICatInformation, lcid: u32, ppenumCategoryInfo: ?*?*IEnumCATEGORYINFO) callconv(.Inline) HRESULT {
+    pub fn EnumCategories(self: *const ICatInformation, lcid: u32, ppenumCategoryInfo: ?*?*IEnumCATEGORYINFO) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCategories(self, lcid, ppenumCategoryInfo);
     }
-    pub fn GetCategoryDesc(self: *const ICatInformation, rcatid: ?*Guid, lcid: u32, pszDesc: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCategoryDesc(self: *const ICatInformation, rcatid: ?*Guid, lcid: u32, pszDesc: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCategoryDesc(self, rcatid, lcid, pszDesc);
     }
-    pub fn EnumClassesOfCategories(self: *const ICatInformation, cImplemented: u32, rgcatidImpl: [*]const Guid, cRequired: u32, rgcatidReq: [*]const Guid, ppenumClsid: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
+    pub fn EnumClassesOfCategories(self: *const ICatInformation, cImplemented: u32, rgcatidImpl: [*]const Guid, cRequired: u32, rgcatidReq: [*]const Guid, ppenumClsid: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
         return self.vtable.EnumClassesOfCategories(self, cImplemented, rgcatidImpl, cRequired, rgcatidReq, ppenumClsid);
     }
-    pub fn IsClassOfCategories(self: *const ICatInformation, rclsid: ?*const Guid, cImplemented: u32, rgcatidImpl: [*]const Guid, cRequired: u32, rgcatidReq: [*]const Guid) callconv(.Inline) HRESULT {
+    pub fn IsClassOfCategories(self: *const ICatInformation, rclsid: ?*const Guid, cImplemented: u32, rgcatidImpl: [*]const Guid, cRequired: u32, rgcatidReq: [*]const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.IsClassOfCategories(self, rclsid, cImplemented, rgcatidImpl, cRequired, rgcatidReq);
     }
-    pub fn EnumImplCategoriesOfClass(self: *const ICatInformation, rclsid: ?*const Guid, ppenumCatid: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
+    pub fn EnumImplCategoriesOfClass(self: *const ICatInformation, rclsid: ?*const Guid, ppenumCatid: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
         return self.vtable.EnumImplCategoriesOfClass(self, rclsid, ppenumCatid);
     }
-    pub fn EnumReqCategoriesOfClass(self: *const ICatInformation, rclsid: ?*const Guid, ppenumCatid: ?*?*IEnumGUID) callconv(.Inline) HRESULT {
+    pub fn EnumReqCategoriesOfClass(self: *const ICatInformation, rclsid: ?*const Guid, ppenumCatid: ?*?*IEnumGUID) callconv(.@"inline") HRESULT {
         return self.vtable.EnumReqCategoriesOfClass(self, rclsid, ppenumCatid);
     }
 };
@@ -4368,7 +4368,7 @@ pub const IContextCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ContextCallback(self: *const IContextCallback, pfnCallback: ?PFNCONTEXTCALL, pParam: ?*ComCallData, riid: ?*const Guid, iMethod: i32, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn ContextCallback(self: *const IContextCallback, pfnCallback: ?PFNCONTEXTCALL, pParam: ?*ComCallData, riid: ?*const Guid, iMethod: i32, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.ContextCallback(self, pfnCallback, pParam, riid, iMethod, pUnk);
     }
 };
@@ -4405,22 +4405,22 @@ pub const IBinding = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Abort(self: *const IBinding) callconv(.Inline) HRESULT {
+    pub fn Abort(self: *const IBinding) callconv(.@"inline") HRESULT {
         return self.vtable.Abort(self);
     }
-    pub fn Suspend(self: *const IBinding) callconv(.Inline) HRESULT {
+    pub fn Suspend(self: *const IBinding) callconv(.@"inline") HRESULT {
         return self.vtable.Suspend(self);
     }
-    pub fn Resume(self: *const IBinding) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IBinding) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn SetPriority(self: *const IBinding, nPriority: i32) callconv(.Inline) HRESULT {
+    pub fn SetPriority(self: *const IBinding, nPriority: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPriority(self, nPriority);
     }
-    pub fn GetPriority(self: *const IBinding, pnPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPriority(self: *const IBinding, pnPriority: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPriority(self, pnPriority);
     }
-    pub fn GetBindResult(self: *const IBinding, pclsidProtocol: ?*Guid, pdwResult: ?*u32, pszResult: ?*?PWSTR, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBindResult(self: *const IBinding, pclsidProtocol: ?*Guid, pdwResult: ?*u32, pszResult: ?*?PWSTR, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindResult(self, pclsidProtocol, pdwResult, pszResult, pdwReserved);
     }
 };
@@ -4499,28 +4499,28 @@ pub const IBindStatusCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStartBinding(self: *const IBindStatusCallback, dwReserved: u32, pib: ?*IBinding) callconv(.Inline) HRESULT {
+    pub fn OnStartBinding(self: *const IBindStatusCallback, dwReserved: u32, pib: ?*IBinding) callconv(.@"inline") HRESULT {
         return self.vtable.OnStartBinding(self, dwReserved, pib);
     }
-    pub fn GetPriority(self: *const IBindStatusCallback, pnPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPriority(self: *const IBindStatusCallback, pnPriority: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPriority(self, pnPriority);
     }
-    pub fn OnLowResource(self: *const IBindStatusCallback, reserved: u32) callconv(.Inline) HRESULT {
+    pub fn OnLowResource(self: *const IBindStatusCallback, reserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnLowResource(self, reserved);
     }
-    pub fn OnProgress(self: *const IBindStatusCallback, ulProgress: u32, ulProgressMax: u32, ulStatusCode: u32, szStatusText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OnProgress(self: *const IBindStatusCallback, ulProgress: u32, ulProgressMax: u32, ulStatusCode: u32, szStatusText: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnProgress(self, ulProgress, ulProgressMax, ulStatusCode, szStatusText);
     }
-    pub fn OnStopBinding(self: *const IBindStatusCallback, hresult: HRESULT, szError: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OnStopBinding(self: *const IBindStatusCallback, hresult: HRESULT, szError: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.OnStopBinding(self, hresult, szError);
     }
-    pub fn GetBindInfo(self: *const IBindStatusCallback, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO) callconv(.Inline) HRESULT {
+    pub fn GetBindInfo(self: *const IBindStatusCallback, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindInfo(self, grfBINDF, pbindinfo);
     }
-    pub fn OnDataAvailable(self: *const IBindStatusCallback, grfBSCF: u32, dwSize: u32, pformatetc: ?*FORMATETC, pstgmed: ?*STGMEDIUM) callconv(.Inline) HRESULT {
+    pub fn OnDataAvailable(self: *const IBindStatusCallback, grfBSCF: u32, dwSize: u32, pformatetc: ?*FORMATETC, pstgmed: ?*STGMEDIUM) callconv(.@"inline") HRESULT {
         return self.vtable.OnDataAvailable(self, grfBSCF, dwSize, pformatetc, pstgmed);
     }
-    pub fn OnObjectAvailable(self: *const IBindStatusCallback, riid: ?*const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn OnObjectAvailable(self: *const IBindStatusCallback, riid: ?*const Guid, punk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OnObjectAvailable(self, riid, punk);
     }
 };
@@ -4541,7 +4541,7 @@ pub const IBindStatusCallbackEx = extern union {
     vtable: *const VTable,
     IBindStatusCallback: IBindStatusCallback,
     IUnknown: IUnknown,
-    pub fn GetBindInfoEx(self: *const IBindStatusCallbackEx, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO, grfBINDF2: ?*u32, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBindInfoEx(self: *const IBindStatusCallbackEx, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO, grfBINDF2: ?*u32, pdwReserved: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBindInfoEx(self, grfBINDF, pbindinfo, grfBINDF2, pdwReserved);
     }
 };
@@ -4560,7 +4560,7 @@ pub const IAuthenticate = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Authenticate(self: *const IAuthenticate, phwnd: ?*?HWND, pszUsername: ?*?PWSTR, pszPassword: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn Authenticate(self: *const IAuthenticate, phwnd: ?*?HWND, pszUsername: ?*?PWSTR, pszPassword: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Authenticate(self, phwnd, pszUsername, pszPassword);
     }
 };
@@ -4586,7 +4586,7 @@ pub const IAuthenticateEx = extern union {
     vtable: *const VTable,
     IAuthenticate: IAuthenticate,
     IUnknown: IUnknown,
-    pub fn AuthenticateEx(self: *const IAuthenticateEx, phwnd: ?*?HWND, pszUsername: ?*?PWSTR, pszPassword: ?*?PWSTR, pauthinfo: ?*AUTHENTICATEINFO) callconv(.Inline) HRESULT {
+    pub fn AuthenticateEx(self: *const IAuthenticateEx, phwnd: ?*?HWND, pszUsername: ?*?PWSTR, pszPassword: ?*?PWSTR, pauthinfo: ?*AUTHENTICATEINFO) callconv(.@"inline") HRESULT {
         return self.vtable.AuthenticateEx(self, phwnd, pszUsername, pszPassword, pauthinfo);
     }
 };
@@ -4756,79 +4756,79 @@ pub const IUri = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPropertyBSTR(self: *const IUri, uriProp: Uri_PROPERTY, pbstrProperty: ?*?BSTR, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyBSTR(self: *const IUri, uriProp: Uri_PROPERTY, pbstrProperty: ?*?BSTR, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyBSTR(self, uriProp, pbstrProperty, dwFlags);
     }
-    pub fn GetPropertyLength(self: *const IUri, uriProp: Uri_PROPERTY, pcchProperty: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyLength(self: *const IUri, uriProp: Uri_PROPERTY, pcchProperty: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyLength(self, uriProp, pcchProperty, dwFlags);
     }
-    pub fn GetPropertyDWORD(self: *const IUri, uriProp: Uri_PROPERTY, pdwProperty: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyDWORD(self: *const IUri, uriProp: Uri_PROPERTY, pdwProperty: ?*u32, dwFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyDWORD(self, uriProp, pdwProperty, dwFlags);
     }
-    pub fn HasProperty(self: *const IUri, uriProp: Uri_PROPERTY, pfHasProperty: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn HasProperty(self: *const IUri, uriProp: Uri_PROPERTY, pfHasProperty: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HasProperty(self, uriProp, pfHasProperty);
     }
-    pub fn GetAbsoluteUri(self: *const IUri, pbstrAbsoluteUri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetAbsoluteUri(self: *const IUri, pbstrAbsoluteUri: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAbsoluteUri(self, pbstrAbsoluteUri);
     }
-    pub fn GetAuthority(self: *const IUri, pbstrAuthority: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetAuthority(self: *const IUri, pbstrAuthority: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAuthority(self, pbstrAuthority);
     }
-    pub fn GetDisplayUri(self: *const IUri, pbstrDisplayString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDisplayUri(self: *const IUri, pbstrDisplayString: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayUri(self, pbstrDisplayString);
     }
-    pub fn GetDomain(self: *const IUri, pbstrDomain: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDomain(self: *const IUri, pbstrDomain: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDomain(self, pbstrDomain);
     }
-    pub fn GetExtension(self: *const IUri, pbstrExtension: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetExtension(self: *const IUri, pbstrExtension: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetExtension(self, pbstrExtension);
     }
-    pub fn GetFragment(self: *const IUri, pbstrFragment: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetFragment(self: *const IUri, pbstrFragment: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFragment(self, pbstrFragment);
     }
-    pub fn GetHost(self: *const IUri, pbstrHost: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetHost(self: *const IUri, pbstrHost: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetHost(self, pbstrHost);
     }
-    pub fn GetPassword(self: *const IUri, pbstrPassword: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetPassword(self: *const IUri, pbstrPassword: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPassword(self, pbstrPassword);
     }
-    pub fn GetPath(self: *const IUri, pbstrPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const IUri, pbstrPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, pbstrPath);
     }
-    pub fn GetPathAndQuery(self: *const IUri, pbstrPathAndQuery: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetPathAndQuery(self: *const IUri, pbstrPathAndQuery: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPathAndQuery(self, pbstrPathAndQuery);
     }
-    pub fn GetQuery(self: *const IUri, pbstrQuery: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetQuery(self: *const IUri, pbstrQuery: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuery(self, pbstrQuery);
     }
-    pub fn GetRawUri(self: *const IUri, pbstrRawUri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetRawUri(self: *const IUri, pbstrRawUri: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetRawUri(self, pbstrRawUri);
     }
-    pub fn GetSchemeName(self: *const IUri, pbstrSchemeName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSchemeName(self: *const IUri, pbstrSchemeName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSchemeName(self, pbstrSchemeName);
     }
-    pub fn GetUserInfo(self: *const IUri, pbstrUserInfo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetUserInfo(self: *const IUri, pbstrUserInfo: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserInfo(self, pbstrUserInfo);
     }
-    pub fn GetUserName(self: *const IUri, pbstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetUserName(self: *const IUri, pbstrUserName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserName(self, pbstrUserName);
     }
-    pub fn GetHostType(self: *const IUri, pdwHostType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetHostType(self: *const IUri, pdwHostType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetHostType(self, pdwHostType);
     }
-    pub fn GetPort(self: *const IUri, pdwPort: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPort(self: *const IUri, pdwPort: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPort(self, pdwPort);
     }
-    pub fn GetScheme(self: *const IUri, pdwScheme: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScheme(self: *const IUri, pdwScheme: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetScheme(self, pdwScheme);
     }
-    pub fn GetZone(self: *const IUri, pdwZone: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetZone(self: *const IUri, pdwZone: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetZone(self, pdwZone);
     }
-    pub fn GetProperties(self: *const IUri, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const IUri, pdwFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperties(self, pdwFlags);
     }
-    pub fn IsEqual(self: *const IUri, pUri: ?*IUri, pfEqual: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsEqual(self: *const IUri, pUri: ?*IUri, pfEqual: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsEqual(self, pUri, pfEqual);
     }
 };
@@ -4951,73 +4951,73 @@ pub const IUriBuilder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateUriSimple(self: *const IUriBuilder, dwAllowEncodingPropertyMask: u32, dwReserved: usize, ppIUri: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn CreateUriSimple(self: *const IUriBuilder, dwAllowEncodingPropertyMask: u32, dwReserved: usize, ppIUri: ?*?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.CreateUriSimple(self, dwAllowEncodingPropertyMask, dwReserved, ppIUri);
     }
-    pub fn CreateUri(self: *const IUriBuilder, dwCreateFlags: u32, dwAllowEncodingPropertyMask: u32, dwReserved: usize, ppIUri: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn CreateUri(self: *const IUriBuilder, dwCreateFlags: u32, dwAllowEncodingPropertyMask: u32, dwReserved: usize, ppIUri: ?*?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.CreateUri(self, dwCreateFlags, dwAllowEncodingPropertyMask, dwReserved, ppIUri);
     }
-    pub fn CreateUriWithFlags(self: *const IUriBuilder, dwCreateFlags: u32, dwUriBuilderFlags: u32, dwAllowEncodingPropertyMask: u32, dwReserved: usize, ppIUri: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn CreateUriWithFlags(self: *const IUriBuilder, dwCreateFlags: u32, dwUriBuilderFlags: u32, dwAllowEncodingPropertyMask: u32, dwReserved: usize, ppIUri: ?*?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.CreateUriWithFlags(self, dwCreateFlags, dwUriBuilderFlags, dwAllowEncodingPropertyMask, dwReserved, ppIUri);
     }
-    pub fn GetIUri(self: *const IUriBuilder, ppIUri: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn GetIUri(self: *const IUriBuilder, ppIUri: ?*?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.GetIUri(self, ppIUri);
     }
-    pub fn SetIUri(self: *const IUriBuilder, pIUri: ?*IUri) callconv(.Inline) HRESULT {
+    pub fn SetIUri(self: *const IUriBuilder, pIUri: ?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.SetIUri(self, pIUri);
     }
-    pub fn GetFragment(self: *const IUriBuilder, pcchFragment: ?*u32, ppwzFragment: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFragment(self: *const IUriBuilder, pcchFragment: ?*u32, ppwzFragment: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFragment(self, pcchFragment, ppwzFragment);
     }
-    pub fn GetHost(self: *const IUriBuilder, pcchHost: ?*u32, ppwzHost: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetHost(self: *const IUriBuilder, pcchHost: ?*u32, ppwzHost: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetHost(self, pcchHost, ppwzHost);
     }
-    pub fn GetPassword(self: *const IUriBuilder, pcchPassword: ?*u32, ppwzPassword: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPassword(self: *const IUriBuilder, pcchPassword: ?*u32, ppwzPassword: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPassword(self, pcchPassword, ppwzPassword);
     }
-    pub fn GetPath(self: *const IUriBuilder, pcchPath: ?*u32, ppwzPath: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const IUriBuilder, pcchPath: ?*u32, ppwzPath: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPath(self, pcchPath, ppwzPath);
     }
-    pub fn GetPort(self: *const IUriBuilder, pfHasPort: ?*BOOL, pdwPort: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPort(self: *const IUriBuilder, pfHasPort: ?*BOOL, pdwPort: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPort(self, pfHasPort, pdwPort);
     }
-    pub fn GetQuery(self: *const IUriBuilder, pcchQuery: ?*u32, ppwzQuery: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetQuery(self: *const IUriBuilder, pcchQuery: ?*u32, ppwzQuery: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuery(self, pcchQuery, ppwzQuery);
     }
-    pub fn GetSchemeName(self: *const IUriBuilder, pcchSchemeName: ?*u32, ppwzSchemeName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSchemeName(self: *const IUriBuilder, pcchSchemeName: ?*u32, ppwzSchemeName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSchemeName(self, pcchSchemeName, ppwzSchemeName);
     }
-    pub fn GetUserName(self: *const IUriBuilder, pcchUserName: ?*u32, ppwzUserName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetUserName(self: *const IUriBuilder, pcchUserName: ?*u32, ppwzUserName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserName(self, pcchUserName, ppwzUserName);
     }
-    pub fn SetFragment(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFragment(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFragment(self, pwzNewValue);
     }
-    pub fn SetHost(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetHost(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHost(self, pwzNewValue);
     }
-    pub fn SetPassword(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetPassword(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetPassword(self, pwzNewValue);
     }
-    pub fn SetPath(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetPath(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetPath(self, pwzNewValue);
     }
-    pub fn SetPort(self: *const IUriBuilder, fHasPort: BOOL, dwNewValue: u32) callconv(.Inline) HRESULT {
+    pub fn SetPort(self: *const IUriBuilder, fHasPort: BOOL, dwNewValue: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPort(self, fHasPort, dwNewValue);
     }
-    pub fn SetQuery(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetQuery(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetQuery(self, pwzNewValue);
     }
-    pub fn SetSchemeName(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetSchemeName(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetSchemeName(self, pwzNewValue);
     }
-    pub fn SetUserName(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetUserName(self: *const IUriBuilder, pwzNewValue: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetUserName(self, pwzNewValue);
     }
-    pub fn RemoveProperties(self: *const IUriBuilder, dwPropertyMask: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveProperties(self: *const IUriBuilder, dwPropertyMask: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveProperties(self, dwPropertyMask);
     }
-    pub fn HasBeenModified(self: *const IUriBuilder, pfModified: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn HasBeenModified(self: *const IUriBuilder, pfModified: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HasBeenModified(self, pfModified);
     }
 };
@@ -5053,13 +5053,13 @@ pub const IBindHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateMoniker(self: *const IBindHost, szName: ?PWSTR, pBC: ?*IBindCtx, ppmk: ?*?*IMoniker, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn CreateMoniker(self: *const IBindHost, szName: ?PWSTR, pBC: ?*IBindCtx, ppmk: ?*?*IMoniker, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMoniker(self, szName, pBC, ppmk, dwReserved);
     }
-    pub fn MonikerBindToStorage(self: *const IBindHost, pMk: ?*IMoniker, pBC: ?*IBindCtx, pBSC: ?*IBindStatusCallback, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn MonikerBindToStorage(self: *const IBindHost, pMk: ?*IMoniker, pBC: ?*IBindCtx, pBSC: ?*IBindStatusCallback, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.MonikerBindToStorage(self, pMk, pBC, pBSC, riid, ppvObj);
     }
-    pub fn MonikerBindToObject(self: *const IBindHost, pMk: ?*IMoniker, pBC: ?*IBindCtx, pBSC: ?*IBindStatusCallback, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn MonikerBindToObject(self: *const IBindHost, pMk: ?*IMoniker, pBC: ?*IBindCtx, pBSC: ?*IBindStatusCallback, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.MonikerBindToObject(self, pMk, pBC, pBSC, riid, ppvObj);
     }
 };
@@ -5358,16 +5358,16 @@ pub const IDispatch = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTypeInfoCount(self: *const IDispatch, pctinfo: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTypeInfoCount(self: *const IDispatch, pctinfo: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfoCount(self, pctinfo);
     }
-    pub fn GetTypeInfo(self: *const IDispatch, iTInfo: u32, lcid: u32, ppTInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
+    pub fn GetTypeInfo(self: *const IDispatch, iTInfo: u32, lcid: u32, ppTInfo: ?*?*ITypeInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfo(self, iTInfo, lcid, ppTInfo);
     }
-    pub fn GetIDsOfNames(self: *const IDispatch, riid: ?*const Guid, rgszNames: [*]?PWSTR, cNames: u32, lcid: u32, rgDispId: [*]i32) callconv(.Inline) HRESULT {
+    pub fn GetIDsOfNames(self: *const IDispatch, riid: ?*const Guid, rgszNames: [*]?PWSTR, cNames: u32, lcid: u32, rgDispId: [*]i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDsOfNames(self, riid, rgszNames, cNames, lcid, rgDispId);
     }
-    pub fn Invoke(self: *const IDispatch, dispIdMember: i32, riid: ?*const Guid, lcid: u32, wFlags: u16, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IDispatch, dispIdMember: i32, riid: ?*const Guid, lcid: u32, wFlags: u16, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, dispIdMember, riid, lcid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
     }
 };
@@ -5417,10 +5417,10 @@ pub const ITypeComp = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Bind(self: *const ITypeComp, szName: ?PWSTR, lHashVal: u32, wFlags: u16, ppTInfo: ?*?*ITypeInfo, pDescKind: ?*DESCKIND, pBindPtr: ?*BINDPTR) callconv(.Inline) HRESULT {
+    pub fn Bind(self: *const ITypeComp, szName: ?PWSTR, lHashVal: u32, wFlags: u16, ppTInfo: ?*?*ITypeInfo, pDescKind: ?*DESCKIND, pBindPtr: ?*BINDPTR) callconv(.@"inline") HRESULT {
         return self.vtable.Bind(self, szName, lHashVal, wFlags, ppTInfo, pDescKind, pBindPtr);
     }
-    pub fn BindType(self: *const ITypeComp, szName: ?PWSTR, lHashVal: u32, ppTInfo: ?*?*ITypeInfo, ppTComp: ?*?*ITypeComp) callconv(.Inline) HRESULT {
+    pub fn BindType(self: *const ITypeComp, szName: ?PWSTR, lHashVal: u32, ppTInfo: ?*?*ITypeInfo, ppTComp: ?*?*ITypeComp) callconv(.@"inline") HRESULT {
         return self.vtable.BindType(self, szName, lHashVal, ppTInfo, ppTComp);
     }
 };
@@ -5539,61 +5539,61 @@ pub const ITypeInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTypeAttr(self: *const ITypeInfo, ppTypeAttr: ?*?*TYPEATTR) callconv(.Inline) HRESULT {
+    pub fn GetTypeAttr(self: *const ITypeInfo, ppTypeAttr: ?*?*TYPEATTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeAttr(self, ppTypeAttr);
     }
-    pub fn GetTypeComp(self: *const ITypeInfo, ppTComp: ?*?*ITypeComp) callconv(.Inline) HRESULT {
+    pub fn GetTypeComp(self: *const ITypeInfo, ppTComp: ?*?*ITypeComp) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeComp(self, ppTComp);
     }
-    pub fn GetFuncDesc(self: *const ITypeInfo, index: u32, ppFuncDesc: ?*?*FUNCDESC) callconv(.Inline) HRESULT {
+    pub fn GetFuncDesc(self: *const ITypeInfo, index: u32, ppFuncDesc: ?*?*FUNCDESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetFuncDesc(self, index, ppFuncDesc);
     }
-    pub fn GetVarDesc(self: *const ITypeInfo, index: u32, ppVarDesc: ?*?*VARDESC) callconv(.Inline) HRESULT {
+    pub fn GetVarDesc(self: *const ITypeInfo, index: u32, ppVarDesc: ?*?*VARDESC) callconv(.@"inline") HRESULT {
         return self.vtable.GetVarDesc(self, index, ppVarDesc);
     }
-    pub fn GetNames(self: *const ITypeInfo, memid: i32, rgBstrNames: [*]?BSTR, cMaxNames: u32, pcNames: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNames(self: *const ITypeInfo, memid: i32, rgBstrNames: [*]?BSTR, cMaxNames: u32, pcNames: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNames(self, memid, rgBstrNames, cMaxNames, pcNames);
     }
-    pub fn GetRefTypeOfImplType(self: *const ITypeInfo, index: u32, pRefType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRefTypeOfImplType(self: *const ITypeInfo, index: u32, pRefType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRefTypeOfImplType(self, index, pRefType);
     }
-    pub fn GetImplTypeFlags(self: *const ITypeInfo, index: u32, pImplTypeFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetImplTypeFlags(self: *const ITypeInfo, index: u32, pImplTypeFlags: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetImplTypeFlags(self, index, pImplTypeFlags);
     }
-    pub fn GetIDsOfNames(self: *const ITypeInfo, rgszNames: [*]?PWSTR, cNames: u32, pMemId: [*]i32) callconv(.Inline) HRESULT {
+    pub fn GetIDsOfNames(self: *const ITypeInfo, rgszNames: [*]?PWSTR, cNames: u32, pMemId: [*]i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDsOfNames(self, rgszNames, cNames, pMemId);
     }
-    pub fn Invoke(self: *const ITypeInfo, pvInstance: ?*anyopaque, memid: i32, wFlags: u16, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const ITypeInfo, pvInstance: ?*anyopaque, memid: i32, wFlags: u16, pDispParams: ?*DISPPARAMS, pVarResult: ?*VARIANT, pExcepInfo: ?*EXCEPINFO, puArgErr: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self, pvInstance, memid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
     }
-    pub fn GetDocumentation(self: *const ITypeInfo, memid: i32, pBstrName: ?*?BSTR, pBstrDocString: ?*?BSTR, pdwHelpContext: ?*u32, pBstrHelpFile: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDocumentation(self: *const ITypeInfo, memid: i32, pBstrName: ?*?BSTR, pBstrDocString: ?*?BSTR, pdwHelpContext: ?*u32, pBstrHelpFile: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDocumentation(self, memid, pBstrName, pBstrDocString, pdwHelpContext, pBstrHelpFile);
     }
-    pub fn GetDllEntry(self: *const ITypeInfo, memid: i32, invKind: INVOKEKIND, pBstrDllName: ?*?BSTR, pBstrName: ?*?BSTR, pwOrdinal: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetDllEntry(self: *const ITypeInfo, memid: i32, invKind: INVOKEKIND, pBstrDllName: ?*?BSTR, pBstrName: ?*?BSTR, pwOrdinal: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetDllEntry(self, memid, invKind, pBstrDllName, pBstrName, pwOrdinal);
     }
-    pub fn GetRefTypeInfo(self: *const ITypeInfo, hRefType: u32, ppTInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
+    pub fn GetRefTypeInfo(self: *const ITypeInfo, hRefType: u32, ppTInfo: ?*?*ITypeInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetRefTypeInfo(self, hRefType, ppTInfo);
     }
-    pub fn AddressOfMember(self: *const ITypeInfo, memid: i32, invKind: INVOKEKIND, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn AddressOfMember(self: *const ITypeInfo, memid: i32, invKind: INVOKEKIND, ppv: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.AddressOfMember(self, memid, invKind, ppv);
     }
-    pub fn CreateInstance(self: *const ITypeInfo, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObj: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const ITypeInfo, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppvObj: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstance(self, pUnkOuter, riid, ppvObj);
     }
-    pub fn GetMops(self: *const ITypeInfo, memid: i32, pBstrMops: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetMops(self: *const ITypeInfo, memid: i32, pBstrMops: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMops(self, memid, pBstrMops);
     }
-    pub fn GetContainingTypeLib(self: *const ITypeInfo, ppTLib: ?*?*ITypeLib, pIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetContainingTypeLib(self: *const ITypeInfo, ppTLib: ?*?*ITypeLib, pIndex: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainingTypeLib(self, ppTLib, pIndex);
     }
-    pub fn ReleaseTypeAttr(self: *const ITypeInfo, pTypeAttr: ?*TYPEATTR) callconv(.Inline) void {
+    pub fn ReleaseTypeAttr(self: *const ITypeInfo, pTypeAttr: ?*TYPEATTR) callconv(.@"inline") void {
         return self.vtable.ReleaseTypeAttr(self, pTypeAttr);
     }
-    pub fn ReleaseFuncDesc(self: *const ITypeInfo, pFuncDesc: ?*FUNCDESC) callconv(.Inline) void {
+    pub fn ReleaseFuncDesc(self: *const ITypeInfo, pFuncDesc: ?*FUNCDESC) callconv(.@"inline") void {
         return self.vtable.ReleaseFuncDesc(self, pFuncDesc);
     }
-    pub fn ReleaseVarDesc(self: *const ITypeInfo, pVarDesc: ?*VARDESC) callconv(.Inline) void {
+    pub fn ReleaseVarDesc(self: *const ITypeInfo, pVarDesc: ?*VARDESC) callconv(.@"inline") void {
         return self.vtable.ReleaseVarDesc(self, pVarDesc);
     }
 };
@@ -5689,49 +5689,49 @@ pub const ITypeInfo2 = extern union {
     vtable: *const VTable,
     ITypeInfo: ITypeInfo,
     IUnknown: IUnknown,
-    pub fn GetTypeKind(self: *const ITypeInfo2, pTypeKind: ?*TYPEKIND) callconv(.Inline) HRESULT {
+    pub fn GetTypeKind(self: *const ITypeInfo2, pTypeKind: ?*TYPEKIND) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeKind(self, pTypeKind);
     }
-    pub fn GetTypeFlags(self: *const ITypeInfo2, pTypeFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTypeFlags(self: *const ITypeInfo2, pTypeFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeFlags(self, pTypeFlags);
     }
-    pub fn GetFuncIndexOfMemId(self: *const ITypeInfo2, memid: i32, invKind: INVOKEKIND, pFuncIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFuncIndexOfMemId(self: *const ITypeInfo2, memid: i32, invKind: INVOKEKIND, pFuncIndex: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFuncIndexOfMemId(self, memid, invKind, pFuncIndex);
     }
-    pub fn GetVarIndexOfMemId(self: *const ITypeInfo2, memid: i32, pVarIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVarIndexOfMemId(self: *const ITypeInfo2, memid: i32, pVarIndex: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVarIndexOfMemId(self, memid, pVarIndex);
     }
-    pub fn GetCustData(self: *const ITypeInfo2, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetCustData(self: *const ITypeInfo2, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCustData(self, guid, pVarVal);
     }
-    pub fn GetFuncCustData(self: *const ITypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetFuncCustData(self: *const ITypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetFuncCustData(self, index, guid, pVarVal);
     }
-    pub fn GetParamCustData(self: *const ITypeInfo2, indexFunc: u32, indexParam: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetParamCustData(self: *const ITypeInfo2, indexFunc: u32, indexParam: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetParamCustData(self, indexFunc, indexParam, guid, pVarVal);
     }
-    pub fn GetVarCustData(self: *const ITypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetVarCustData(self: *const ITypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetVarCustData(self, index, guid, pVarVal);
     }
-    pub fn GetImplTypeCustData(self: *const ITypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetImplTypeCustData(self: *const ITypeInfo2, index: u32, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetImplTypeCustData(self, index, guid, pVarVal);
     }
-    pub fn GetDocumentation2(self: *const ITypeInfo2, memid: i32, lcid: u32, pbstrHelpString: ?*?BSTR, pdwHelpStringContext: ?*u32, pbstrHelpStringDll: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDocumentation2(self: *const ITypeInfo2, memid: i32, lcid: u32, pbstrHelpString: ?*?BSTR, pdwHelpStringContext: ?*u32, pbstrHelpStringDll: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDocumentation2(self, memid, lcid, pbstrHelpString, pdwHelpStringContext, pbstrHelpStringDll);
     }
-    pub fn GetAllCustData(self: *const ITypeInfo2, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
+    pub fn GetAllCustData(self: *const ITypeInfo2, pCustData: ?*CUSTDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllCustData(self, pCustData);
     }
-    pub fn GetAllFuncCustData(self: *const ITypeInfo2, index: u32, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
+    pub fn GetAllFuncCustData(self: *const ITypeInfo2, index: u32, pCustData: ?*CUSTDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllFuncCustData(self, index, pCustData);
     }
-    pub fn GetAllParamCustData(self: *const ITypeInfo2, indexFunc: u32, indexParam: u32, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
+    pub fn GetAllParamCustData(self: *const ITypeInfo2, indexFunc: u32, indexParam: u32, pCustData: ?*CUSTDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllParamCustData(self, indexFunc, indexParam, pCustData);
     }
-    pub fn GetAllVarCustData(self: *const ITypeInfo2, index: u32, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
+    pub fn GetAllVarCustData(self: *const ITypeInfo2, index: u32, pCustData: ?*CUSTDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllVarCustData(self, index, pCustData);
     }
-    pub fn GetAllImplTypeCustData(self: *const ITypeInfo2, index: u32, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
+    pub fn GetAllImplTypeCustData(self: *const ITypeInfo2, index: u32, pCustData: ?*CUSTDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllImplTypeCustData(self, index, pCustData);
     }
 };
@@ -5816,34 +5816,34 @@ pub const ITypeLib = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTypeInfoCount(self: *const ITypeLib) callconv(.Inline) u32 {
+    pub fn GetTypeInfoCount(self: *const ITypeLib) callconv(.@"inline") u32 {
         return self.vtable.GetTypeInfoCount(self);
     }
-    pub fn GetTypeInfo(self: *const ITypeLib, index: u32, ppTInfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
+    pub fn GetTypeInfo(self: *const ITypeLib, index: u32, ppTInfo: ?*?*ITypeInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfo(self, index, ppTInfo);
     }
-    pub fn GetTypeInfoType(self: *const ITypeLib, index: u32, pTKind: ?*TYPEKIND) callconv(.Inline) HRESULT {
+    pub fn GetTypeInfoType(self: *const ITypeLib, index: u32, pTKind: ?*TYPEKIND) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfoType(self, index, pTKind);
     }
-    pub fn GetTypeInfoOfGuid(self: *const ITypeLib, guid: ?*const Guid, ppTinfo: ?*?*ITypeInfo) callconv(.Inline) HRESULT {
+    pub fn GetTypeInfoOfGuid(self: *const ITypeLib, guid: ?*const Guid, ppTinfo: ?*?*ITypeInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfoOfGuid(self, guid, ppTinfo);
     }
-    pub fn GetLibAttr(self: *const ITypeLib, ppTLibAttr: ?*?*TLIBATTR) callconv(.Inline) HRESULT {
+    pub fn GetLibAttr(self: *const ITypeLib, ppTLibAttr: ?*?*TLIBATTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLibAttr(self, ppTLibAttr);
     }
-    pub fn GetTypeComp(self: *const ITypeLib, ppTComp: ?*?*ITypeComp) callconv(.Inline) HRESULT {
+    pub fn GetTypeComp(self: *const ITypeLib, ppTComp: ?*?*ITypeComp) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeComp(self, ppTComp);
     }
-    pub fn GetDocumentation(self: *const ITypeLib, index: i32, pBstrName: ?*?BSTR, pBstrDocString: ?*?BSTR, pdwHelpContext: ?*u32, pBstrHelpFile: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDocumentation(self: *const ITypeLib, index: i32, pBstrName: ?*?BSTR, pBstrDocString: ?*?BSTR, pdwHelpContext: ?*u32, pBstrHelpFile: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDocumentation(self, index, pBstrName, pBstrDocString, pdwHelpContext, pBstrHelpFile);
     }
-    pub fn IsName(self: *const ITypeLib, szNameBuf: ?PWSTR, lHashVal: u32, pfName: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsName(self: *const ITypeLib, szNameBuf: ?PWSTR, lHashVal: u32, pfName: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsName(self, szNameBuf, lHashVal, pfName);
     }
-    pub fn FindName(self: *const ITypeLib, szNameBuf: ?PWSTR, lHashVal: u32, ppTInfo: [*]?*ITypeInfo, rgMemId: [*]i32, pcFound: ?*u16) callconv(.Inline) HRESULT {
+    pub fn FindName(self: *const ITypeLib, szNameBuf: ?PWSTR, lHashVal: u32, ppTInfo: [*]?*ITypeInfo, rgMemId: [*]i32, pcFound: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.FindName(self, szNameBuf, lHashVal, ppTInfo, rgMemId, pcFound);
     }
-    pub fn ReleaseTLibAttr(self: *const ITypeLib, pTLibAttr: ?*TLIBATTR) callconv(.Inline) void {
+    pub fn ReleaseTLibAttr(self: *const ITypeLib, pTLibAttr: ?*TLIBATTR) callconv(.@"inline") void {
         return self.vtable.ReleaseTLibAttr(self, pTLibAttr);
     }
 };
@@ -5879,16 +5879,16 @@ pub const ITypeLib2 = extern union {
     vtable: *const VTable,
     ITypeLib: ITypeLib,
     IUnknown: IUnknown,
-    pub fn GetCustData(self: *const ITypeLib2, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetCustData(self: *const ITypeLib2, guid: ?*const Guid, pVarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetCustData(self, guid, pVarVal);
     }
-    pub fn GetLibStatistics(self: *const ITypeLib2, pcUniqueNames: ?*u32, pcchUniqueNames: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLibStatistics(self: *const ITypeLib2, pcUniqueNames: ?*u32, pcchUniqueNames: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLibStatistics(self, pcUniqueNames, pcchUniqueNames);
     }
-    pub fn GetDocumentation2(self: *const ITypeLib2, index: i32, lcid: u32, pbstrHelpString: ?*?BSTR, pdwHelpStringContext: ?*u32, pbstrHelpStringDll: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDocumentation2(self: *const ITypeLib2, index: i32, lcid: u32, pbstrHelpString: ?*?BSTR, pdwHelpStringContext: ?*u32, pbstrHelpStringDll: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDocumentation2(self, index, lcid, pbstrHelpString, pdwHelpStringContext, pbstrHelpStringDll);
     }
-    pub fn GetAllCustData(self: *const ITypeLib2, pCustData: ?*CUSTDATA) callconv(.Inline) HRESULT {
+    pub fn GetAllCustData(self: *const ITypeLib2, pCustData: ?*CUSTDATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetAllCustData(self, pCustData);
     }
 };
@@ -5921,19 +5921,19 @@ pub const IErrorInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGUID(self: *const IErrorInfo, pGUID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetGUID(self: *const IErrorInfo, pGUID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetGUID(self, pGUID);
     }
-    pub fn GetSource(self: *const IErrorInfo, pBstrSource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSource(self: *const IErrorInfo, pBstrSource: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSource(self, pBstrSource);
     }
-    pub fn GetDescription(self: *const IErrorInfo, pBstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const IErrorInfo, pBstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, pBstrDescription);
     }
-    pub fn GetHelpFile(self: *const IErrorInfo, pBstrHelpFile: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetHelpFile(self: *const IErrorInfo, pBstrHelpFile: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelpFile(self, pBstrHelpFile);
     }
-    pub fn GetHelpContext(self: *const IErrorInfo, pdwHelpContext: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetHelpContext(self: *const IErrorInfo, pdwHelpContext: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelpContext(self, pdwHelpContext);
     }
 };
@@ -5950,7 +5950,7 @@ pub const ISupportErrorInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InterfaceSupportsErrorInfo(self: *const ISupportErrorInfo, riid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn InterfaceSupportsErrorInfo(self: *const ISupportErrorInfo, riid: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.InterfaceSupportsErrorInfo(self, riid);
     }
 };
@@ -5968,7 +5968,7 @@ pub const IErrorLog = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddError(self: *const IErrorLog, pszPropName: ?[*:0]const u16, pExcepInfo: ?*EXCEPINFO) callconv(.Inline) HRESULT {
+    pub fn AddError(self: *const IErrorLog, pszPropName: ?[*:0]const u16, pExcepInfo: ?*EXCEPINFO) callconv(.@"inline") HRESULT {
         return self.vtable.AddError(self, pszPropName, pExcepInfo);
     }
 };
@@ -5985,7 +5985,7 @@ pub const ITypeLibRegistrationReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumTypeLibRegistrations(self: *const ITypeLibRegistrationReader, ppEnumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn EnumTypeLibRegistrations(self: *const ITypeLibRegistrationReader, ppEnumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.EnumTypeLibRegistrations(self, ppEnumUnknown);
     }
 };
@@ -6030,28 +6030,28 @@ pub const ITypeLibRegistration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGuid(self: *const ITypeLibRegistration, pGuid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetGuid(self: *const ITypeLibRegistration, pGuid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetGuid(self, pGuid);
     }
-    pub fn GetVersion(self: *const ITypeLibRegistration, pVersion: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const ITypeLibRegistration, pVersion: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetVersion(self, pVersion);
     }
-    pub fn GetLcid(self: *const ITypeLibRegistration, pLcid: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLcid(self: *const ITypeLibRegistration, pLcid: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLcid(self, pLcid);
     }
-    pub fn GetWin32Path(self: *const ITypeLibRegistration, pWin32Path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetWin32Path(self: *const ITypeLibRegistration, pWin32Path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetWin32Path(self, pWin32Path);
     }
-    pub fn GetWin64Path(self: *const ITypeLibRegistration, pWin64Path: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetWin64Path(self: *const ITypeLibRegistration, pWin64Path: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetWin64Path(self, pWin64Path);
     }
-    pub fn GetDisplayName(self: *const ITypeLibRegistration, pDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDisplayName(self: *const ITypeLibRegistration, pDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pDisplayName);
     }
-    pub fn GetFlags(self: *const ITypeLibRegistration, pFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const ITypeLibRegistration, pFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlags(self, pFlags);
     }
-    pub fn GetHelpDir(self: *const ITypeLibRegistration, pHelpDir: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetHelpDir(self: *const ITypeLibRegistration, pHelpDir: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelpDir(self, pHelpDir);
     }
 };
@@ -6087,16 +6087,16 @@ pub const IEnumConnections = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumConnections, cConnections: u32, rgcd: [*]CONNECTDATA, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumConnections, cConnections: u32, rgcd: [*]CONNECTDATA, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cConnections, rgcd, pcFetched);
     }
-    pub fn Skip(self: *const IEnumConnections, cConnections: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumConnections, cConnections: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cConnections);
     }
-    pub fn Reset(self: *const IEnumConnections) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumConnections) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumConnections, ppEnum: ?*?*IEnumConnections) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumConnections, ppEnum: ?*?*IEnumConnections) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -6131,19 +6131,19 @@ pub const IConnectionPoint = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConnectionInterface(self: *const IConnectionPoint, pIID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetConnectionInterface(self: *const IConnectionPoint, pIID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectionInterface(self, pIID);
     }
-    pub fn GetConnectionPointContainer(self: *const IConnectionPoint, ppCPC: ?*?*IConnectionPointContainer) callconv(.Inline) HRESULT {
+    pub fn GetConnectionPointContainer(self: *const IConnectionPoint, ppCPC: ?*?*IConnectionPointContainer) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectionPointContainer(self, ppCPC);
     }
-    pub fn Advise(self: *const IConnectionPoint, pUnkSink: ?*IUnknown, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IConnectionPoint, pUnkSink: ?*IUnknown, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, pUnkSink, pdwCookie);
     }
-    pub fn Unadvise(self: *const IConnectionPoint, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IConnectionPoint, dwCookie: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwCookie);
     }
-    pub fn EnumConnections(self: *const IConnectionPoint, ppEnum: ?*?*IEnumConnections) callconv(.Inline) HRESULT {
+    pub fn EnumConnections(self: *const IConnectionPoint, ppEnum: ?*?*IEnumConnections) callconv(.@"inline") HRESULT {
         return self.vtable.EnumConnections(self, ppEnum);
     }
 };
@@ -6174,16 +6174,16 @@ pub const IEnumConnectionPoints = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumConnectionPoints, cConnections: u32, ppCP: [*]?*IConnectionPoint, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumConnectionPoints, cConnections: u32, ppCP: [*]?*IConnectionPoint, pcFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, cConnections, ppCP, pcFetched);
     }
-    pub fn Skip(self: *const IEnumConnectionPoints, cConnections: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumConnectionPoints, cConnections: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, cConnections);
     }
-    pub fn Reset(self: *const IEnumConnectionPoints) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumConnectionPoints) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumConnectionPoints, ppEnum: ?*?*IEnumConnectionPoints) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumConnectionPoints, ppEnum: ?*?*IEnumConnectionPoints) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -6206,10 +6206,10 @@ pub const IConnectionPointContainer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumConnectionPoints(self: *const IConnectionPointContainer, ppEnum: ?*?*IEnumConnectionPoints) callconv(.Inline) HRESULT {
+    pub fn EnumConnectionPoints(self: *const IConnectionPointContainer, ppEnum: ?*?*IEnumConnectionPoints) callconv(.@"inline") HRESULT {
         return self.vtable.EnumConnectionPoints(self, ppEnum);
     }
-    pub fn FindConnectionPoint(self: *const IConnectionPointContainer, riid: ?*const Guid, ppCP: ?*?*IConnectionPoint) callconv(.Inline) HRESULT {
+    pub fn FindConnectionPoint(self: *const IConnectionPointContainer, riid: ?*const Guid, ppCP: ?*?*IConnectionPoint) callconv(.@"inline") HRESULT {
         return self.vtable.FindConnectionPoint(self, riid, ppCP);
     }
 };
@@ -6244,19 +6244,19 @@ pub const IPersistMemory = extern union {
     vtable: *const VTable,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IPersistMemory) callconv(.Inline) HRESULT {
+    pub fn IsDirty(self: *const IPersistMemory) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirty(self);
     }
-    pub fn Load(self: *const IPersistMemory, pMem: [*]u8, cbSize: u32) callconv(.Inline) HRESULT {
+    pub fn Load(self: *const IPersistMemory, pMem: [*]u8, cbSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Load(self, pMem, cbSize);
     }
-    pub fn Save(self: *const IPersistMemory, pMem: [*]u8, fClearDirty: BOOL, cbSize: u32) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IPersistMemory, pMem: [*]u8, fClearDirty: BOOL, cbSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, pMem, fClearDirty, cbSize);
     }
-    pub fn GetSizeMax(self: *const IPersistMemory, pCbSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSizeMax(self: *const IPersistMemory, pCbSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSizeMax(self, pCbSize);
     }
-    pub fn InitNew(self: *const IPersistMemory) callconv(.Inline) HRESULT {
+    pub fn InitNew(self: *const IPersistMemory) callconv(.@"inline") HRESULT {
         return self.vtable.InitNew(self);
     }
 };
@@ -6290,19 +6290,19 @@ pub const IPersistStreamInit = extern union {
     vtable: *const VTable,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IPersistStreamInit) callconv(.Inline) HRESULT {
+    pub fn IsDirty(self: *const IPersistStreamInit) callconv(.@"inline") HRESULT {
         return self.vtable.IsDirty(self);
     }
-    pub fn Load(self: *const IPersistStreamInit, pStm: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn Load(self: *const IPersistStreamInit, pStm: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Load(self, pStm);
     }
-    pub fn Save(self: *const IPersistStreamInit, pStm: ?*IStream, fClearDirty: BOOL) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IPersistStreamInit, pStm: ?*IStream, fClearDirty: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Save(self, pStm, fClearDirty);
     }
-    pub fn GetSizeMax(self: *const IPersistStreamInit, pCbSize: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn GetSizeMax(self: *const IPersistStreamInit, pCbSize: ?*ULARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.GetSizeMax(self, pCbSize);
     }
-    pub fn InitNew(self: *const IPersistStreamInit) callconv(.Inline) HRESULT {
+    pub fn InitNew(self: *const IPersistStreamInit) callconv(.@"inline") HRESULT {
         return self.vtable.InitNew(self);
     }
 };

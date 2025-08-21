@@ -584,10 +584,10 @@ pub const IRouterProtocolConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddProtocol(self: *const IRouterProtocolConfig, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
+    pub fn AddProtocol(self: *const IRouterProtocolConfig, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.@"inline") HRESULT {
         return self.vtable.AddProtocol(self, pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
     }
-    pub fn RemoveProtocol(self: *const IRouterProtocolConfig, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
+    pub fn RemoveProtocol(self: *const IRouterProtocolConfig, pszMachineName: ?[*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: ?HWND, dwFlags: u32, pRouter: ?*IUnknown, uReserved1: usize) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveProtocol(self, pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
     }
 };
@@ -629,19 +629,19 @@ pub const IAuthenticationProviderConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IAuthenticationProviderConfig, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IAuthenticationProviderConfig, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pszMachineName, puConnectionParam);
     }
-    pub fn Uninitialize(self: *const IAuthenticationProviderConfig, uConnectionParam: usize) callconv(.Inline) HRESULT {
+    pub fn Uninitialize(self: *const IAuthenticationProviderConfig, uConnectionParam: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Uninitialize(self, uConnectionParam);
     }
-    pub fn Configure(self: *const IAuthenticationProviderConfig, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+    pub fn Configure(self: *const IAuthenticationProviderConfig, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Configure(self, uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
     }
-    pub fn Activate(self: *const IAuthenticationProviderConfig, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IAuthenticationProviderConfig, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, uConnectionParam, uReserved1, uReserved2);
     }
-    pub fn Deactivate(self: *const IAuthenticationProviderConfig, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+    pub fn Deactivate(self: *const IAuthenticationProviderConfig, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Deactivate(self, uConnectionParam, uReserved1, uReserved2);
     }
 };
@@ -683,19 +683,19 @@ pub const IAccountingProviderConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IAccountingProviderConfig, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IAccountingProviderConfig, pszMachineName: ?[*:0]const u16, puConnectionParam: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pszMachineName, puConnectionParam);
     }
-    pub fn Uninitialize(self: *const IAccountingProviderConfig, uConnectionParam: usize) callconv(.Inline) HRESULT {
+    pub fn Uninitialize(self: *const IAccountingProviderConfig, uConnectionParam: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Uninitialize(self, uConnectionParam);
     }
-    pub fn Configure(self: *const IAccountingProviderConfig, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+    pub fn Configure(self: *const IAccountingProviderConfig, uConnectionParam: usize, hWnd: ?HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Configure(self, uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
     }
-    pub fn Activate(self: *const IAccountingProviderConfig, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IAccountingProviderConfig, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, uConnectionParam, uReserved1, uReserved2);
     }
-    pub fn Deactivate(self: *const IAccountingProviderConfig, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+    pub fn Deactivate(self: *const IAccountingProviderConfig, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Deactivate(self, uConnectionParam, uReserved1, uReserved2);
     }
 };
@@ -752,19 +752,19 @@ pub const IEAPProviderConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IEAPProviderConfig, pszMachineName: ?[*:0]const u16, dwEapTypeId: u32, puConnectionParam: ?*usize) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IEAPProviderConfig, pszMachineName: ?[*:0]const u16, dwEapTypeId: u32, puConnectionParam: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pszMachineName, dwEapTypeId, puConnectionParam);
     }
-    pub fn Uninitialize(self: *const IEAPProviderConfig, dwEapTypeId: u32, uConnectionParam: usize) callconv(.Inline) HRESULT {
+    pub fn Uninitialize(self: *const IEAPProviderConfig, dwEapTypeId: u32, uConnectionParam: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Uninitialize(self, dwEapTypeId, uConnectionParam);
     }
-    pub fn ServerInvokeConfigUI(self: *const IEAPProviderConfig, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+    pub fn ServerInvokeConfigUI(self: *const IEAPProviderConfig, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, uReserved1: usize, uReserved2: usize) callconv(.@"inline") HRESULT {
         return self.vtable.ServerInvokeConfigUI(self, dwEapTypeId, uConnectionParam, hWnd, uReserved1, uReserved2);
     }
-    pub fn RouterInvokeConfigUI(self: *const IEAPProviderConfig, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]?*u8, pdwSizeOfConnectionDataOut: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RouterInvokeConfigUI(self: *const IEAPProviderConfig, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]?*u8, pdwSizeOfConnectionDataOut: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RouterInvokeConfigUI(self, dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, ppConnectionDataOut, pdwSizeOfConnectionDataOut);
     }
-    pub fn RouterInvokeCredentialsUI(self: *const IEAPProviderConfig, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]?*u8, pdwSizeOfUserDataOut: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RouterInvokeCredentialsUI(self: *const IEAPProviderConfig, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: ?HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]?*u8, pdwSizeOfUserDataOut: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RouterInvokeCredentialsUI(self, dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, pUserDataIn, dwSizeOfUserDataIn, ppUserDataOut, pdwSizeOfUserDataOut);
     }
 };
@@ -794,10 +794,10 @@ pub const IEAPProviderConfig2 = extern union {
     vtable: *const VTable,
     IEAPProviderConfig: IEAPProviderConfig,
     IUnknown: IUnknown,
-    pub fn ServerInvokeConfigUI2(self: *const IEAPProviderConfig2, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ServerInvokeConfigUI2(self: *const IEAPProviderConfig2, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ServerInvokeConfigUI2(self, dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut);
     }
-    pub fn GetGlobalConfig(self: *const IEAPProviderConfig2, dwEapTypeId: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGlobalConfig(self: *const IEAPProviderConfig2, dwEapTypeId: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetGlobalConfig(self, dwEapTypeId, ppConfigDataOut, pdwSizeOfConfigDataOut);
     }
 };
@@ -823,7 +823,7 @@ pub const IEAPProviderConfig3 = extern union {
     IEAPProviderConfig2: IEAPProviderConfig2,
     IEAPProviderConfig: IEAPProviderConfig,
     IUnknown: IUnknown,
-    pub fn ServerInvokeCertificateConfigUI(self: *const IEAPProviderConfig3, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32, uReserved: usize) callconv(.Inline) HRESULT {
+    pub fn ServerInvokeCertificateConfigUI(self: *const IEAPProviderConfig3, dwEapTypeId: u32, uConnectionParam: usize, hWnd: ?HWND, pConfigDataIn: ?*const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: ?*?*u8, pdwSizeOfConfigDataOut: ?*u32, uReserved: usize) callconv(.@"inline") HRESULT {
         return self.vtable.ServerInvokeCertificateConfigUI(self, dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut, uReserved);
     }
 };

@@ -67,22 +67,22 @@ pub const IGraphicsEffectD2D1Interop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetEffectId(self: *const IGraphicsEffectD2D1Interop, id: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetEffectId(self: *const IGraphicsEffectD2D1Interop, id: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectId(self, id);
     }
-    pub fn GetNamedPropertyMapping(self: *const IGraphicsEffectD2D1Interop, name: ?[*:0]const u16, index: ?*u32, mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING) callconv(.Inline) HRESULT {
+    pub fn GetNamedPropertyMapping(self: *const IGraphicsEffectD2D1Interop, name: ?[*:0]const u16, index: ?*u32, mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamedPropertyMapping(self, name, index, mapping);
     }
-    pub fn GetPropertyCount(self: *const IGraphicsEffectD2D1Interop, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyCount(self: *const IGraphicsEffectD2D1Interop, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyCount(self, count);
     }
-    pub fn GetProperty(self: *const IGraphicsEffectD2D1Interop, index: u32, value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"}) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IGraphicsEffectD2D1Interop, index: u32, value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"}) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, index, value);
     }
-    pub fn GetSource(self: *const IGraphicsEffectD2D1Interop, index: u32, source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"}) callconv(.Inline) HRESULT {
+    pub fn GetSource(self: *const IGraphicsEffectD2D1Interop, index: u32, source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"}) callconv(.@"inline") HRESULT {
         return self.vtable.GetSource(self, index, source);
     }
-    pub fn GetSourceCount(self: *const IGraphicsEffectD2D1Interop, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSourceCount(self: *const IGraphicsEffectD2D1Interop, count: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSourceCount(self, count);
     }
 };
@@ -104,10 +104,10 @@ pub const IGeometrySource2DInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGeometry(self: *const IGeometrySource2DInterop, value: **ID2D1Geometry) callconv(.Inline) HRESULT {
+    pub fn GetGeometry(self: *const IGeometrySource2DInterop, value: **ID2D1Geometry) callconv(.@"inline") HRESULT {
         return self.vtable.GetGeometry(self, value);
     }
-    pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: ?**ID2D1Geometry) callconv(.Inline) HRESULT {
+    pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: ?**ID2D1Geometry) callconv(.@"inline") HRESULT {
         return self.vtable.TryGetGeometryUsingFactory(self, factory, value);
     }
 };

@@ -1803,34 +1803,34 @@ pub const IWbemPathKeyList = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IWbemPathKeyList, puKeyCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IWbemPathKeyList, puKeyCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, puKeyCount);
     }
-    pub fn SetKey(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetKey(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.SetKey(self, wszName, uFlags, uCimType, pKeyVal);
     }
-    pub fn SetKey2(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetKey2(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32, uCimType: u32, pKeyVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetKey2(self, wszName, uFlags, uCimType, pKeyVal);
     }
-    pub fn GetKey(self: *const IWbemPathKeyList, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, puKeyValBufSize: ?*u32, pKeyVal: ?*anyopaque, puApparentCimType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetKey(self: *const IWbemPathKeyList, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, puKeyValBufSize: ?*u32, pKeyVal: ?*anyopaque, puApparentCimType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetKey(self, uKeyIx, uFlags, puNameBufSize, pszKeyName, puKeyValBufSize, pKeyVal, puApparentCimType);
     }
-    pub fn GetKey2(self: *const IWbemPathKeyList, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, pKeyValue: ?*VARIANT, puApparentCimType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetKey2(self: *const IWbemPathKeyList, uKeyIx: u32, uFlags: u32, puNameBufSize: ?*u32, pszKeyName: ?[*:0]u16, pKeyValue: ?*VARIANT, puApparentCimType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetKey2(self, uKeyIx, uFlags, puNameBufSize, pszKeyName, pKeyValue, puApparentCimType);
     }
-    pub fn RemoveKey(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveKey(self: *const IWbemPathKeyList, wszName: ?[*:0]const u16, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveKey(self, wszName, uFlags);
     }
-    pub fn RemoveAllKeys(self: *const IWbemPathKeyList, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveAllKeys(self: *const IWbemPathKeyList, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAllKeys(self, uFlags);
     }
-    pub fn MakeSingleton(self: *const IWbemPathKeyList, bSet: u8) callconv(.Inline) HRESULT {
+    pub fn MakeSingleton(self: *const IWbemPathKeyList, bSet: u8) callconv(.@"inline") HRESULT {
         return self.vtable.MakeSingleton(self, bSet);
     }
-    pub fn GetInfo(self: *const IWbemPathKeyList, uRequestedInfo: u32, puResponse: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetInfo(self: *const IWbemPathKeyList, uRequestedInfo: u32, puResponse: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetInfo(self, uRequestedInfo, puResponse);
     }
-    pub fn GetText(self: *const IWbemPathKeyList, lFlags: i32, puBuffLength: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetText(self: *const IWbemPathKeyList, lFlags: i32, puBuffLength: ?*u32, pszText: [*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetText(self, lFlags, puBuffLength, pszText);
     }
 };
@@ -1966,82 +1966,82 @@ pub const IWbemPath = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetText(self: *const IWbemPath, uMode: u32, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetText(self: *const IWbemPath, uMode: u32, pszPath: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetText(self, uMode, pszPath);
     }
-    pub fn GetText(self: *const IWbemPath, lFlags: i32, puBuffLength: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetText(self: *const IWbemPath, lFlags: i32, puBuffLength: ?*u32, pszText: [*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetText(self, lFlags, puBuffLength, pszText);
     }
-    pub fn GetInfo(self: *const IWbemPath, uRequestedInfo: u32, puResponse: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetInfo(self: *const IWbemPath, uRequestedInfo: u32, puResponse: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetInfo(self, uRequestedInfo, puResponse);
     }
-    pub fn SetServer(self: *const IWbemPath, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetServer(self: *const IWbemPath, Name: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetServer(self, Name);
     }
-    pub fn GetServer(self: *const IWbemPath, puNameBufLength: ?*u32, pName: [*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetServer(self: *const IWbemPath, puNameBufLength: ?*u32, pName: [*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetServer(self, puNameBufLength, pName);
     }
-    pub fn GetNamespaceCount(self: *const IWbemPath, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNamespaceCount(self: *const IWbemPath, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamespaceCount(self, puCount);
     }
-    pub fn SetNamespaceAt(self: *const IWbemPath, uIndex: u32, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetNamespaceAt(self: *const IWbemPath, uIndex: u32, pszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetNamespaceAt(self, uIndex, pszName);
     }
-    pub fn GetNamespaceAt(self: *const IWbemPath, uIndex: u32, puNameBufLength: ?*u32, pName: [*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetNamespaceAt(self: *const IWbemPath, uIndex: u32, puNameBufLength: ?*u32, pName: [*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamespaceAt(self, uIndex, puNameBufLength, pName);
     }
-    pub fn RemoveNamespaceAt(self: *const IWbemPath, uIndex: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveNamespaceAt(self: *const IWbemPath, uIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveNamespaceAt(self, uIndex);
     }
-    pub fn RemoveAllNamespaces(self: *const IWbemPath) callconv(.Inline) HRESULT {
+    pub fn RemoveAllNamespaces(self: *const IWbemPath) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAllNamespaces(self);
     }
-    pub fn GetScopeCount(self: *const IWbemPath, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScopeCount(self: *const IWbemPath, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetScopeCount(self, puCount);
     }
-    pub fn SetScope(self: *const IWbemPath, uIndex: u32, pszClass: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn SetScope(self: *const IWbemPath, uIndex: u32, pszClass: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetScope(self, uIndex, pszClass);
     }
-    pub fn SetScopeFromText(self: *const IWbemPath, uIndex: u32, pszText: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn SetScopeFromText(self: *const IWbemPath, uIndex: u32, pszText: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetScopeFromText(self, uIndex, pszText);
     }
-    pub fn GetScope(self: *const IWbemPath, uIndex: u32, puClassNameBufSize: ?*u32, pszClass: [*:0]u16, pKeyList: ?*?*IWbemPathKeyList) callconv(.Inline) HRESULT {
+    pub fn GetScope(self: *const IWbemPath, uIndex: u32, puClassNameBufSize: ?*u32, pszClass: [*:0]u16, pKeyList: ?*?*IWbemPathKeyList) callconv(.@"inline") HRESULT {
         return self.vtable.GetScope(self, uIndex, puClassNameBufSize, pszClass, pKeyList);
     }
-    pub fn GetScopeAsText(self: *const IWbemPath, uIndex: u32, puTextBufSize: ?*u32, pszText: [*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetScopeAsText(self: *const IWbemPath, uIndex: u32, puTextBufSize: ?*u32, pszText: [*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetScopeAsText(self, uIndex, puTextBufSize, pszText);
     }
-    pub fn RemoveScope(self: *const IWbemPath, uIndex: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveScope(self: *const IWbemPath, uIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveScope(self, uIndex);
     }
-    pub fn RemoveAllScopes(self: *const IWbemPath) callconv(.Inline) HRESULT {
+    pub fn RemoveAllScopes(self: *const IWbemPath) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAllScopes(self);
     }
-    pub fn SetClassName(self: *const IWbemPath, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetClassName(self: *const IWbemPath, Name: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetClassName(self, Name);
     }
-    pub fn GetClassName(self: *const IWbemPath, puBuffLength: ?*u32, pszName: ?[*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetClassName(self: *const IWbemPath, puBuffLength: ?*u32, pszName: ?[*:0]u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetClassName(self, puBuffLength, pszName);
     }
-    pub fn GetKeyList(self: *const IWbemPath, pOut: ?*?*IWbemPathKeyList) callconv(.Inline) HRESULT {
+    pub fn GetKeyList(self: *const IWbemPath, pOut: ?*?*IWbemPathKeyList) callconv(.@"inline") HRESULT {
         return self.vtable.GetKeyList(self, pOut);
     }
-    pub fn CreateClassPart(self: *const IWbemPath, lFlags: i32, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn CreateClassPart(self: *const IWbemPath, lFlags: i32, Name: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.CreateClassPart(self, lFlags, Name);
     }
-    pub fn DeleteClassPart(self: *const IWbemPath, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn DeleteClassPart(self: *const IWbemPath, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteClassPart(self, lFlags);
     }
-    pub fn IsRelative(self: *const IWbemPath, wszMachine: ?PWSTR, wszNamespace: ?PWSTR) callconv(.Inline) BOOL {
+    pub fn IsRelative(self: *const IWbemPath, wszMachine: ?PWSTR, wszNamespace: ?PWSTR) callconv(.@"inline") BOOL {
         return self.vtable.IsRelative(self, wszMachine, wszNamespace);
     }
-    pub fn IsRelativeOrChild(self: *const IWbemPath, wszMachine: ?PWSTR, wszNamespace: ?PWSTR, lFlags: i32) callconv(.Inline) BOOL {
+    pub fn IsRelativeOrChild(self: *const IWbemPath, wszMachine: ?PWSTR, wszNamespace: ?PWSTR, lFlags: i32) callconv(.@"inline") BOOL {
         return self.vtable.IsRelativeOrChild(self, wszMachine, wszNamespace, lFlags);
     }
-    pub fn IsLocal(self: *const IWbemPath, wszMachine: ?[*:0]const u16) callconv(.Inline) BOOL {
+    pub fn IsLocal(self: *const IWbemPath, wszMachine: ?[*:0]const u16) callconv(.@"inline") BOOL {
         return self.vtable.IsLocal(self, wszMachine);
     }
-    pub fn IsSameClassName(self: *const IWbemPath, wszClass: ?[*:0]const u16) callconv(.Inline) BOOL {
+    pub fn IsSameClassName(self: *const IWbemPath, wszClass: ?[*:0]const u16) callconv(.@"inline") BOOL {
         return self.vtable.IsSameClassName(self, wszClass);
     }
 };
@@ -2093,25 +2093,25 @@ pub const IWbemQuery = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Empty(self: *const IWbemQuery) callconv(.Inline) HRESULT {
+    pub fn Empty(self: *const IWbemQuery) callconv(.@"inline") HRESULT {
         return self.vtable.Empty(self);
     }
-    pub fn SetLanguageFeatures(self: *const IWbemQuery, uFlags: u32, uArraySize: u32, puFeatures: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetLanguageFeatures(self: *const IWbemQuery, uFlags: u32, uArraySize: u32, puFeatures: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLanguageFeatures(self, uFlags, uArraySize, puFeatures);
     }
-    pub fn TestLanguageFeatures(self: *const IWbemQuery, uFlags: u32, uArraySize: ?*u32, puFeatures: ?*u32) callconv(.Inline) HRESULT {
+    pub fn TestLanguageFeatures(self: *const IWbemQuery, uFlags: u32, uArraySize: ?*u32, puFeatures: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.TestLanguageFeatures(self, uFlags, uArraySize, puFeatures);
     }
-    pub fn Parse(self: *const IWbemQuery, pszLang: ?[*:0]const u16, pszQuery: ?[*:0]const u16, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Parse(self: *const IWbemQuery, pszLang: ?[*:0]const u16, pszQuery: ?[*:0]const u16, uFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Parse(self, pszLang, pszQuery, uFlags);
     }
-    pub fn GetAnalysis(self: *const IWbemQuery, uAnalysisType: u32, uFlags: u32, pAnalysis: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAnalysis(self: *const IWbemQuery, uAnalysisType: u32, uFlags: u32, pAnalysis: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetAnalysis(self, uAnalysisType, uFlags, pAnalysis);
     }
-    pub fn FreeMemory(self: *const IWbemQuery, pMem: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn FreeMemory(self: *const IWbemQuery, pMem: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.FreeMemory(self, pMem);
     }
-    pub fn GetQueryInfo(self: *const IWbemQuery, uAnalysisType: u32, uInfoId: u32, uBufSize: u32, pDestBuf: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetQueryInfo(self: *const IWbemQuery, uAnalysisType: u32, uInfoId: u32, uBufSize: u32, pDestBuf: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetQueryInfo(self, uAnalysisType, uInfoId, uBufSize, pDestBuf);
     }
 };
@@ -3282,76 +3282,76 @@ pub const IWbemClassObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetQualifierSet(self: *const IWbemClassObject, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
+    pub fn GetQualifierSet(self: *const IWbemClassObject, ppQualSet: ?*?*IWbemQualifierSet) callconv(.@"inline") HRESULT {
         return self.vtable.GetQualifierSet(self, ppQualSet);
     }
-    pub fn Get(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, pType: ?*i32, plFlavor: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Get(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, pType: ?*i32, plFlavor: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Get(self, wszName, lFlags, pVal, pType, plFlavor);
     }
-    pub fn Put(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, Type: i32) callconv(.Inline) HRESULT {
+    pub fn Put(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, Type: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Put(self, wszName, lFlags, pVal, Type);
     }
-    pub fn Delete(self: *const IWbemClassObject, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IWbemClassObject, wszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, wszName);
     }
-    pub fn GetNames(self: *const IWbemClassObject, wszQualifierName: ?[*:0]const u16, lFlags: i32, pQualifierVal: ?*VARIANT, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn GetNames(self: *const IWbemClassObject, wszQualifierName: ?[*:0]const u16, lFlags: i32, pQualifierVal: ?*VARIANT, pNames: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetNames(self, wszQualifierName, lFlags, pQualifierVal, pNames);
     }
-    pub fn BeginEnumeration(self: *const IWbemClassObject, lEnumFlags: i32) callconv(.Inline) HRESULT {
+    pub fn BeginEnumeration(self: *const IWbemClassObject, lEnumFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.BeginEnumeration(self, lEnumFlags);
     }
-    pub fn Next(self: *const IWbemClassObject, lFlags: i32, strName: ?*?BSTR, pVal: ?*VARIANT, pType: ?*i32, plFlavor: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IWbemClassObject, lFlags: i32, strName: ?*?BSTR, pVal: ?*VARIANT, pType: ?*i32, plFlavor: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, lFlags, strName, pVal, pType, plFlavor);
     }
-    pub fn EndEnumeration(self: *const IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn EndEnumeration(self: *const IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.EndEnumeration(self);
     }
-    pub fn GetPropertyQualifierSet(self: *const IWbemClassObject, wszProperty: ?[*:0]const u16, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
+    pub fn GetPropertyQualifierSet(self: *const IWbemClassObject, wszProperty: ?[*:0]const u16, ppQualSet: ?*?*IWbemQualifierSet) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyQualifierSet(self, wszProperty, ppQualSet);
     }
-    pub fn Clone(self: *const IWbemClassObject, ppCopy: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IWbemClassObject, ppCopy: ?*?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppCopy);
     }
-    pub fn GetObjectText(self: *const IWbemClassObject, lFlags: i32, pstrObjectText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetObjectText(self: *const IWbemClassObject, lFlags: i32, pstrObjectText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectText(self, lFlags, pstrObjectText);
     }
-    pub fn SpawnDerivedClass(self: *const IWbemClassObject, lFlags: i32, ppNewClass: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn SpawnDerivedClass(self: *const IWbemClassObject, lFlags: i32, ppNewClass: ?*?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.SpawnDerivedClass(self, lFlags, ppNewClass);
     }
-    pub fn SpawnInstance(self: *const IWbemClassObject, lFlags: i32, ppNewInstance: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn SpawnInstance(self: *const IWbemClassObject, lFlags: i32, ppNewInstance: ?*?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.SpawnInstance(self, lFlags, ppNewInstance);
     }
-    pub fn CompareTo(self: *const IWbemClassObject, lFlags: i32, pCompareTo: ?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn CompareTo(self: *const IWbemClassObject, lFlags: i32, pCompareTo: ?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.CompareTo(self, lFlags, pCompareTo);
     }
-    pub fn GetPropertyOrigin(self: *const IWbemClassObject, wszName: ?[*:0]const u16, pstrClassName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetPropertyOrigin(self: *const IWbemClassObject, wszName: ?[*:0]const u16, pstrClassName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyOrigin(self, wszName, pstrClassName);
     }
-    pub fn InheritsFrom(self: *const IWbemClassObject, strAncestor: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn InheritsFrom(self: *const IWbemClassObject, strAncestor: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.InheritsFrom(self, strAncestor);
     }
-    pub fn GetMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, ppInSignature: ?*?*IWbemClassObject, ppOutSignature: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn GetMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, ppInSignature: ?*?*IWbemClassObject, ppOutSignature: ?*?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.GetMethod(self, wszName, lFlags, ppInSignature, ppOutSignature);
     }
-    pub fn PutMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pInSignature: ?*IWbemClassObject, pOutSignature: ?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn PutMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16, lFlags: i32, pInSignature: ?*IWbemClassObject, pOutSignature: ?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.PutMethod(self, wszName, lFlags, pInSignature, pOutSignature);
     }
-    pub fn DeleteMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteMethod(self: *const IWbemClassObject, wszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteMethod(self, wszName);
     }
-    pub fn BeginMethodEnumeration(self: *const IWbemClassObject, lEnumFlags: i32) callconv(.Inline) HRESULT {
+    pub fn BeginMethodEnumeration(self: *const IWbemClassObject, lEnumFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.BeginMethodEnumeration(self, lEnumFlags);
     }
-    pub fn NextMethod(self: *const IWbemClassObject, lFlags: i32, pstrName: ?*?BSTR, ppInSignature: ?*?*IWbemClassObject, ppOutSignature: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn NextMethod(self: *const IWbemClassObject, lFlags: i32, pstrName: ?*?BSTR, ppInSignature: ?*?*IWbemClassObject, ppOutSignature: ?*?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.NextMethod(self, lFlags, pstrName, ppInSignature, ppOutSignature);
     }
-    pub fn EndMethodEnumeration(self: *const IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn EndMethodEnumeration(self: *const IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.EndMethodEnumeration(self);
     }
-    pub fn GetMethodQualifierSet(self: *const IWbemClassObject, wszMethod: ?[*:0]const u16, ppQualSet: ?*?*IWbemQualifierSet) callconv(.Inline) HRESULT {
+    pub fn GetMethodQualifierSet(self: *const IWbemClassObject, wszMethod: ?[*:0]const u16, ppQualSet: ?*?*IWbemQualifierSet) callconv(.@"inline") HRESULT {
         return self.vtable.GetMethodQualifierSet(self, wszMethod, ppQualSet);
     }
-    pub fn GetMethodOrigin(self: *const IWbemClassObject, wszMethodName: ?[*:0]const u16, pstrClassName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetMethodOrigin(self: *const IWbemClassObject, wszMethodName: ?[*:0]const u16, pstrClassName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMethodOrigin(self, wszMethodName, pstrClassName);
     }
 };
@@ -3419,34 +3419,34 @@ pub const IWbemObjectAccess = extern union {
     vtable: *const VTable,
     IWbemClassObject: IWbemClassObject,
     IUnknown: IUnknown,
-    pub fn GetPropertyHandle(self: *const IWbemObjectAccess, wszPropertyName: ?[*:0]const u16, pType: ?*i32, plHandle: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyHandle(self: *const IWbemObjectAccess, wszPropertyName: ?[*:0]const u16, pType: ?*i32, plHandle: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyHandle(self, wszPropertyName, pType, plHandle);
     }
-    pub fn WritePropertyValue(self: *const IWbemObjectAccess, lHandle: i32, lNumBytes: i32, aData: [*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn WritePropertyValue(self: *const IWbemObjectAccess, lHandle: i32, lNumBytes: i32, aData: [*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.WritePropertyValue(self, lHandle, lNumBytes, aData);
     }
-    pub fn ReadPropertyValue(self: *const IWbemObjectAccess, lHandle: i32, lBufferSize: i32, plNumBytes: ?*i32, aData: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn ReadPropertyValue(self: *const IWbemObjectAccess, lHandle: i32, lBufferSize: i32, plNumBytes: ?*i32, aData: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.ReadPropertyValue(self, lHandle, lBufferSize, plNumBytes, aData);
     }
-    pub fn ReadDWORD(self: *const IWbemObjectAccess, lHandle: i32, pdw: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ReadDWORD(self: *const IWbemObjectAccess, lHandle: i32, pdw: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ReadDWORD(self, lHandle, pdw);
     }
-    pub fn WriteDWORD(self: *const IWbemObjectAccess, lHandle: i32, dw: u32) callconv(.Inline) HRESULT {
+    pub fn WriteDWORD(self: *const IWbemObjectAccess, lHandle: i32, dw: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteDWORD(self, lHandle, dw);
     }
-    pub fn ReadQWORD(self: *const IWbemObjectAccess, lHandle: i32, pqw: ?*u64) callconv(.Inline) HRESULT {
+    pub fn ReadQWORD(self: *const IWbemObjectAccess, lHandle: i32, pqw: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.ReadQWORD(self, lHandle, pqw);
     }
-    pub fn WriteQWORD(self: *const IWbemObjectAccess, lHandle: i32, pw: u64) callconv(.Inline) HRESULT {
+    pub fn WriteQWORD(self: *const IWbemObjectAccess, lHandle: i32, pw: u64) callconv(.@"inline") HRESULT {
         return self.vtable.WriteQWORD(self, lHandle, pw);
     }
-    pub fn GetPropertyInfoByHandle(self: *const IWbemObjectAccess, lHandle: i32, pstrName: ?*?BSTR, pType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyInfoByHandle(self: *const IWbemObjectAccess, lHandle: i32, pstrName: ?*?BSTR, pType: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropertyInfoByHandle(self, lHandle, pstrName, pType);
     }
-    pub fn Lock(self: *const IWbemObjectAccess, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IWbemObjectAccess, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, lFlags);
     }
-    pub fn Unlock(self: *const IWbemObjectAccess, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IWbemObjectAccess, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Unlock(self, lFlags);
     }
 };
@@ -3496,25 +3496,25 @@ pub const IWbemQualifierSet = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Get(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Get(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16, lFlags: i32, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Get(self, wszName, lFlags, pVal, plFlavor);
     }
-    pub fn Put(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16, pVal: ?*VARIANT, lFlavor: i32) callconv(.Inline) HRESULT {
+    pub fn Put(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16, pVal: ?*VARIANT, lFlavor: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Put(self, wszName, pVal, lFlavor);
     }
-    pub fn Delete(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IWbemQualifierSet, wszName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, wszName);
     }
-    pub fn GetNames(self: *const IWbemQualifierSet, lFlags: i32, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn GetNames(self: *const IWbemQualifierSet, lFlags: i32, pNames: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetNames(self, lFlags, pNames);
     }
-    pub fn BeginEnumeration(self: *const IWbemQualifierSet, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn BeginEnumeration(self: *const IWbemQualifierSet, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.BeginEnumeration(self, lFlags);
     }
-    pub fn Next(self: *const IWbemQualifierSet, lFlags: i32, pstrName: ?*?BSTR, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IWbemQualifierSet, lFlags: i32, pstrName: ?*?BSTR, pVal: ?*VARIANT, plFlavor: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, lFlags, pstrName, pVal, plFlavor);
     }
-    pub fn EndEnumeration(self: *const IWbemQualifierSet) callconv(.Inline) HRESULT {
+    pub fn EndEnumeration(self: *const IWbemQualifierSet) callconv(.@"inline") HRESULT {
         return self.vtable.EndEnumeration(self);
     }
 };
@@ -3695,73 +3695,73 @@ pub const IWbemServices = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OpenNamespace(self: *const IWbemServices, strNamespace: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppWorkingNamespace: ?*?*IWbemServices, ppResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn OpenNamespace(self: *const IWbemServices, strNamespace: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppWorkingNamespace: ?*?*IWbemServices, ppResult: ?*?*IWbemCallResult) callconv(.@"inline") HRESULT {
         return self.vtable.OpenNamespace(self, strNamespace, lFlags, pCtx, ppWorkingNamespace, ppResult);
     }
-    pub fn CancelAsyncCall(self: *const IWbemServices, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn CancelAsyncCall(self: *const IWbemServices, pSink: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.CancelAsyncCall(self, pSink);
     }
-    pub fn QueryObjectSink(self: *const IWbemServices, lFlags: i32, ppResponseHandler: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn QueryObjectSink(self: *const IWbemServices, lFlags: i32, ppResponseHandler: ?*?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.QueryObjectSink(self, lFlags, ppResponseHandler);
     }
-    pub fn GetObject(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppObject: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppObject: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, strObjectPath, lFlags, pCtx, ppObject, ppCallResult);
     }
-    pub fn GetObjectAsync(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn GetObjectAsync(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectAsync(self, strObjectPath, lFlags, pCtx, pResponseHandler);
     }
-    pub fn PutClass(self: *const IWbemServices, pObject: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn PutClass(self: *const IWbemServices, pObject: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.@"inline") HRESULT {
         return self.vtable.PutClass(self, pObject, lFlags, pCtx, ppCallResult);
     }
-    pub fn PutClassAsync(self: *const IWbemServices, pObject: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn PutClassAsync(self: *const IWbemServices, pObject: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.PutClassAsync(self, pObject, lFlags, pCtx, pResponseHandler);
     }
-    pub fn DeleteClass(self: *const IWbemServices, strClass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn DeleteClass(self: *const IWbemServices, strClass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteClass(self, strClass, lFlags, pCtx, ppCallResult);
     }
-    pub fn DeleteClassAsync(self: *const IWbemServices, strClass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn DeleteClassAsync(self: *const IWbemServices, strClass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteClassAsync(self, strClass, lFlags, pCtx, pResponseHandler);
     }
-    pub fn CreateClassEnum(self: *const IWbemServices, strSuperclass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn CreateClassEnum(self: *const IWbemServices, strSuperclass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.CreateClassEnum(self, strSuperclass, lFlags, pCtx, ppEnum);
     }
-    pub fn CreateClassEnumAsync(self: *const IWbemServices, strSuperclass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn CreateClassEnumAsync(self: *const IWbemServices, strSuperclass: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.CreateClassEnumAsync(self, strSuperclass, lFlags, pCtx, pResponseHandler);
     }
-    pub fn PutInstance(self: *const IWbemServices, pInst: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn PutInstance(self: *const IWbemServices, pInst: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.@"inline") HRESULT {
         return self.vtable.PutInstance(self, pInst, lFlags, pCtx, ppCallResult);
     }
-    pub fn PutInstanceAsync(self: *const IWbemServices, pInst: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn PutInstanceAsync(self: *const IWbemServices, pInst: ?*IWbemClassObject, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.PutInstanceAsync(self, pInst, lFlags, pCtx, pResponseHandler);
     }
-    pub fn DeleteInstance(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn DeleteInstance(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppCallResult: ?*?*IWbemCallResult) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteInstance(self, strObjectPath, lFlags, pCtx, ppCallResult);
     }
-    pub fn DeleteInstanceAsync(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn DeleteInstanceAsync(self: *const IWbemServices, strObjectPath: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteInstanceAsync(self, strObjectPath, lFlags, pCtx, pResponseHandler);
     }
-    pub fn CreateInstanceEnum(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: **IEnumWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn CreateInstanceEnum(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: **IEnumWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstanceEnum(self, strFilter, lFlags, pCtx, ppEnum);
     }
-    pub fn CreateInstanceEnumAsync(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn CreateInstanceEnumAsync(self: *const IWbemServices, strFilter: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstanceEnumAsync(self, strFilter, lFlags, pCtx, pResponseHandler);
     }
-    pub fn ExecQuery(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn ExecQuery(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.ExecQuery(self, strQueryLanguage, strQuery, lFlags, pCtx, ppEnum);
     }
-    pub fn ExecQueryAsync(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn ExecQueryAsync(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.ExecQueryAsync(self, strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
     }
-    pub fn ExecNotificationQuery(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn ExecNotificationQuery(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, ppEnum: ?*?*IEnumWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.ExecNotificationQuery(self, strQueryLanguage, strQuery, lFlags, pCtx, ppEnum);
     }
-    pub fn ExecNotificationQueryAsync(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn ExecNotificationQueryAsync(self: *const IWbemServices, strQueryLanguage: ?BSTR, strQuery: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.ExecNotificationQueryAsync(self, strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
     }
-    pub fn ExecMethod(self: *const IWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pInParams: ?*IWbemClassObject, ppOutParams: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn ExecMethod(self: *const IWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pInParams: ?*IWbemClassObject, ppOutParams: ?*?*IWbemClassObject, ppCallResult: ?*?*IWbemCallResult) callconv(.@"inline") HRESULT {
         return self.vtable.ExecMethod(self, strObjectPath, strMethodName, lFlags, pCtx, pInParams, ppOutParams, ppCallResult);
     }
-    pub fn ExecMethodAsync(self: *const IWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pInParams: ?*IWbemClassObject, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn ExecMethodAsync(self: *const IWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, pInParams: ?*IWbemClassObject, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.ExecMethodAsync(self, strObjectPath, strMethodName, lFlags, pCtx, pInParams, pResponseHandler);
     }
 };
@@ -3786,7 +3786,7 @@ pub const IWbemLocator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConnectServer(self: *const IWbemLocator, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+    pub fn ConnectServer(self: *const IWbemLocator, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectServer(self, strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
     }
 };
@@ -3812,10 +3812,10 @@ pub const IWbemObjectSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Indicate(self: *const IWbemObjectSink, lObjectCount: i32, apObjArray: [*]?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn Indicate(self: *const IWbemObjectSink, lObjectCount: i32, apObjArray: [*]?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.Indicate(self, lObjectCount, apObjArray);
     }
-    pub fn SetStatus(self: *const IWbemObjectSink, lFlags: i32, hResult: HRESULT, strParam: ?BSTR, pObjParam: ?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn SetStatus(self: *const IWbemObjectSink, lFlags: i32, hResult: HRESULT, strParam: ?BSTR, pObjParam: ?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.SetStatus(self, lFlags, hResult, strParam, pObjParam);
     }
 };
@@ -3853,19 +3853,19 @@ pub const IEnumWbemClassObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IEnumWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Next(self: *const IEnumWbemClassObject, lTimeout: i32, uCount: u32, apObjects: [*]?*IWbemClassObject, puReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumWbemClassObject, lTimeout: i32, uCount: u32, apObjects: [*]?*IWbemClassObject, puReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, lTimeout, uCount, apObjects, puReturned);
     }
-    pub fn NextAsync(self: *const IEnumWbemClassObject, uCount: u32, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn NextAsync(self: *const IEnumWbemClassObject, uCount: u32, pSink: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.NextAsync(self, uCount, pSink);
     }
-    pub fn Clone(self: *const IEnumWbemClassObject, ppEnum: ?*?*IEnumWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumWbemClassObject, ppEnum: ?*?*IEnumWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
-    pub fn Skip(self: *const IEnumWbemClassObject, lTimeout: i32, nCount: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumWbemClassObject, lTimeout: i32, nCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, lTimeout, nCount);
     }
 };
@@ -3899,16 +3899,16 @@ pub const IWbemCallResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetResultObject(self: *const IWbemCallResult, lTimeout: i32, ppResultObject: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn GetResultObject(self: *const IWbemCallResult, lTimeout: i32, ppResultObject: ?*?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.GetResultObject(self, lTimeout, ppResultObject);
     }
-    pub fn GetResultString(self: *const IWbemCallResult, lTimeout: i32, pstrResultString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetResultString(self: *const IWbemCallResult, lTimeout: i32, pstrResultString: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetResultString(self, lTimeout, pstrResultString);
     }
-    pub fn GetResultServices(self: *const IWbemCallResult, lTimeout: i32, ppServices: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+    pub fn GetResultServices(self: *const IWbemCallResult, lTimeout: i32, ppServices: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.GetResultServices(self, lTimeout, ppServices);
     }
-    pub fn GetCallStatus(self: *const IWbemCallResult, lTimeout: i32, plStatus: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetCallStatus(self: *const IWbemCallResult, lTimeout: i32, plStatus: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCallStatus(self, lTimeout, plStatus);
     }
 };
@@ -3964,31 +3964,31 @@ pub const IWbemContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Clone(self: *const IWbemContext, ppNewCopy: ?*?*IWbemContext) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IWbemContext, ppNewCopy: ?*?*IWbemContext) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppNewCopy);
     }
-    pub fn GetNames(self: *const IWbemContext, lFlags: i32, pNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn GetNames(self: *const IWbemContext, lFlags: i32, pNames: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetNames(self, lFlags, pNames);
     }
-    pub fn BeginEnumeration(self: *const IWbemContext, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn BeginEnumeration(self: *const IWbemContext, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.BeginEnumeration(self, lFlags);
     }
-    pub fn Next(self: *const IWbemContext, lFlags: i32, pstrName: ?*?BSTR, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IWbemContext, lFlags: i32, pstrName: ?*?BSTR, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, lFlags, pstrName, pValue);
     }
-    pub fn EndEnumeration(self: *const IWbemContext) callconv(.Inline) HRESULT {
+    pub fn EndEnumeration(self: *const IWbemContext) callconv(.@"inline") HRESULT {
         return self.vtable.EndEnumeration(self);
     }
-    pub fn SetValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetValue(self, wszName, lFlags, pValue);
     }
-    pub fn GetValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32, pValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, wszName, lFlags, pValue);
     }
-    pub fn DeleteValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn DeleteValue(self: *const IWbemContext, wszName: ?[*:0]const u16, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteValue(self, wszName, lFlags);
     }
-    pub fn DeleteAll(self: *const IWbemContext) callconv(.Inline) HRESULT {
+    pub fn DeleteAll(self: *const IWbemContext) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAll(self);
     }
 };
@@ -4007,7 +4007,7 @@ pub const IUnsecuredApartment = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateObjectStub(self: *const IUnsecuredApartment, pObject: ?*IUnknown, ppStub: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateObjectStub(self: *const IUnsecuredApartment, pObject: ?*IUnknown, ppStub: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateObjectStub(self, pObject, ppStub);
     }
 };
@@ -4029,7 +4029,7 @@ pub const IWbemUnsecuredApartment = extern union {
     vtable: *const VTable,
     IUnsecuredApartment: IUnsecuredApartment,
     IUnknown: IUnknown,
-    pub fn CreateSinkStub(self: *const IWbemUnsecuredApartment, pSink: ?*IWbemObjectSink, dwFlags: u32, wszReserved: ?[*:0]const u16, ppStub: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn CreateSinkStub(self: *const IWbemUnsecuredApartment, pSink: ?*IWbemObjectSink, dwFlags: u32, wszReserved: ?[*:0]const u16, ppStub: ?*?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSinkStub(self, pSink, dwFlags, wszReserved, ppStub);
     }
 };
@@ -4057,10 +4057,10 @@ pub const IWbemStatusCodeText = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetErrorCodeText(self: *const IWbemStatusCodeText, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetErrorCodeText(self: *const IWbemStatusCodeText, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorCodeText(self, hRes, LocaleId, lFlags, MessageText);
     }
-    pub fn GetFacilityCodeText(self: *const IWbemStatusCodeText, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetFacilityCodeText(self: *const IWbemStatusCodeText, hRes: HRESULT, LocaleId: u32, lFlags: i32, MessageText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFacilityCodeText(self, hRes, LocaleId, lFlags, MessageText);
     }
 };
@@ -4084,10 +4084,10 @@ pub const IWbemBackupRestore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Backup(self: *const IWbemBackupRestore, strBackupToFile: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Backup(self: *const IWbemBackupRestore, strBackupToFile: ?[*:0]const u16, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Backup(self, strBackupToFile, lFlags);
     }
-    pub fn Restore(self: *const IWbemBackupRestore, strRestoreFromFile: ?[*:0]const u16, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IWbemBackupRestore, strRestoreFromFile: ?[*:0]const u16, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Restore(self, strRestoreFromFile, lFlags);
     }
 };
@@ -4108,10 +4108,10 @@ pub const IWbemBackupRestoreEx = extern union {
     vtable: *const VTable,
     IWbemBackupRestore: IWbemBackupRestore,
     IUnknown: IUnknown,
-    pub fn Pause(self: *const IWbemBackupRestoreEx) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const IWbemBackupRestoreEx) callconv(.@"inline") HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const IWbemBackupRestoreEx) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IWbemBackupRestoreEx) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self);
     }
 };
@@ -4129,7 +4129,7 @@ pub const IWbemRefresher = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Refresh(self: *const IWbemRefresher, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IWbemRefresher, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self, lFlags);
     }
 };
@@ -4167,16 +4167,16 @@ pub const IWbemHiPerfEnum = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apIds: [*]i32, apObj: [*]?*IWbemObjectAccess) callconv(.Inline) HRESULT {
+    pub fn AddObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apIds: [*]i32, apObj: [*]?*IWbemObjectAccess) callconv(.@"inline") HRESULT {
         return self.vtable.AddObjects(self, lFlags, uNumObjects, apIds, apObj);
     }
-    pub fn RemoveObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apIds: [*]i32) callconv(.Inline) HRESULT {
+    pub fn RemoveObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apIds: [*]i32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveObjects(self, lFlags, uNumObjects, apIds);
     }
-    pub fn GetObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apObj: [*]?*IWbemObjectAccess, puReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetObjects(self: *const IWbemHiPerfEnum, lFlags: i32, uNumObjects: u32, apObj: [*]?*IWbemObjectAccess, puReturned: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjects(self, lFlags, uNumObjects, apObj, puReturned);
     }
-    pub fn RemoveAll(self: *const IWbemHiPerfEnum, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const IWbemHiPerfEnum, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAll(self, lFlags);
     }
 };
@@ -4228,19 +4228,19 @@ pub const IWbemConfigureRefresher = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddObjectByPath(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, wszPath: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AddObjectByPath(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, wszPath: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddObjectByPath(self, pNamespace, wszPath, lFlags, pContext, ppRefreshable, plId);
     }
-    pub fn AddObjectByTemplate(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, pTemplate: ?*IWbemClassObject, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AddObjectByTemplate(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, pTemplate: ?*IWbemClassObject, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemClassObject, plId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddObjectByTemplate(self, pNamespace, pTemplate, lFlags, pContext, ppRefreshable, plId);
     }
-    pub fn AddRefresher(self: *const IWbemConfigureRefresher, pRefresher: ?*IWbemRefresher, lFlags: i32, plId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AddRefresher(self: *const IWbemConfigureRefresher, pRefresher: ?*IWbemRefresher, lFlags: i32, plId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddRefresher(self, pRefresher, lFlags, plId);
     }
-    pub fn Remove(self: *const IWbemConfigureRefresher, lId: i32, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IWbemConfigureRefresher, lId: i32, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, lId, lFlags);
     }
-    pub fn AddEnum(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, wszClassName: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppEnum: ?*?*IWbemHiPerfEnum, plId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AddEnum(self: *const IWbemConfigureRefresher, pNamespace: ?*IWbemServices, wszClassName: ?[*:0]const u16, lFlags: i32, pContext: ?*IWbemContext, ppEnum: ?*?*IWbemHiPerfEnum, plId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.AddEnum(self, pNamespace, wszClassName, lFlags, pContext, ppEnum, plId);
     }
 };
@@ -4286,19 +4286,19 @@ pub const IWbemObjectSinkEx = extern union {
     vtable: *const VTable,
     IWbemObjectSink: IWbemObjectSink,
     IUnknown: IUnknown,
-    pub fn WriteMessage(self: *const IWbemObjectSinkEx, uChannel: u32, strMessage: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn WriteMessage(self: *const IWbemObjectSinkEx, uChannel: u32, strMessage: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.WriteMessage(self, uChannel, strMessage);
     }
-    pub fn WriteError(self: *const IWbemObjectSinkEx, pObjError: ?*IWbemClassObject, puReturned: ?*u8) callconv(.Inline) HRESULT {
+    pub fn WriteError(self: *const IWbemObjectSinkEx, pObjError: ?*IWbemClassObject, puReturned: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.WriteError(self, pObjError, puReturned);
     }
-    pub fn PromptUser(self: *const IWbemObjectSinkEx, strMessage: ?BSTR, uPromptType: u8, puReturned: ?*u8) callconv(.Inline) HRESULT {
+    pub fn PromptUser(self: *const IWbemObjectSinkEx, strMessage: ?BSTR, uPromptType: u8, puReturned: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.PromptUser(self, strMessage, uPromptType, puReturned);
     }
-    pub fn WriteProgress(self: *const IWbemObjectSinkEx, strActivity: ?BSTR, strCurrentOperation: ?BSTR, strStatusDescription: ?BSTR, uPercentComplete: u32, uSecondsRemaining: u32) callconv(.Inline) HRESULT {
+    pub fn WriteProgress(self: *const IWbemObjectSinkEx, strActivity: ?BSTR, strCurrentOperation: ?BSTR, strStatusDescription: ?BSTR, uPercentComplete: u32, uSecondsRemaining: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteProgress(self, strActivity, strCurrentOperation, strStatusDescription, uPercentComplete, uSecondsRemaining);
     }
-    pub fn WriteStreamParameter(self: *const IWbemObjectSinkEx, strName: ?BSTR, vtValue: ?*VARIANT, ulType: u32, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn WriteStreamParameter(self: *const IWbemObjectSinkEx, strName: ?BSTR, vtValue: ?*VARIANT, ulType: u32, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteStreamParameter(self, strName, vtValue, ulType, ulFlags);
     }
 };
@@ -4318,7 +4318,7 @@ pub const IWbemShutdown = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Shutdown(self: *const IWbemShutdown, uReason: i32, uMaxMilliseconds: u32, pCtx: ?*IWbemContext) callconv(.Inline) HRESULT {
+    pub fn Shutdown(self: *const IWbemShutdown, uReason: i32, uMaxMilliseconds: u32, pCtx: ?*IWbemContext) callconv(.@"inline") HRESULT {
         return self.vtable.Shutdown(self, uReason, uMaxMilliseconds, pCtx);
     }
 };
@@ -4377,10 +4377,10 @@ pub const IWbemObjectTextSrc = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetText(self: *const IWbemObjectTextSrc, lFlags: i32, pObj: ?*IWbemClassObject, uObjTextFormat: u32, pCtx: ?*IWbemContext, strText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetText(self: *const IWbemObjectTextSrc, lFlags: i32, pObj: ?*IWbemClassObject, uObjTextFormat: u32, pCtx: ?*IWbemContext, strText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetText(self, lFlags, pObj, uObjTextFormat, pCtx, strText);
     }
-    pub fn CreateFromText(self: *const IWbemObjectTextSrc, lFlags: i32, strText: ?BSTR, uObjTextFormat: u32, pCtx: ?*IWbemContext, pNewObj: ?*?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn CreateFromText(self: *const IWbemObjectTextSrc, lFlags: i32, strText: ?BSTR, uObjTextFormat: u32, pCtx: ?*IWbemContext, pNewObj: ?*?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFromText(self, lFlags, strText, uObjTextFormat, pCtx, pNewObj);
     }
 };
@@ -4465,13 +4465,13 @@ pub const IMofCompiler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CompileFile(self: *const IMofCompiler, FileName: ?PWSTR, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
+    pub fn CompileFile(self: *const IMofCompiler, FileName: ?PWSTR, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.CompileFile(self, FileName, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
     }
-    pub fn CompileBuffer(self: *const IMofCompiler, BuffSize: i32, pBuffer: ?*u8, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
+    pub fn CompileBuffer(self: *const IMofCompiler, BuffSize: i32, pBuffer: ?*u8, ServerAndNamespace: ?PWSTR, User: ?PWSTR, Authority: ?PWSTR, Password: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.CompileBuffer(self, BuffSize, pBuffer, ServerAndNamespace, User, Authority, Password, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
     }
-    pub fn CreateBMOF(self: *const IMofCompiler, TextFileName: ?PWSTR, BMOFFileName: ?PWSTR, ServerAndNamespace: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.Inline) HRESULT {
+    pub fn CreateBMOF(self: *const IMofCompiler, TextFileName: ?PWSTR, BMOFFileName: ?PWSTR, ServerAndNamespace: ?PWSTR, lOptionFlags: i32, lClassFlags: i32, lInstanceFlags: i32, pInfo: ?*WBEM_COMPILE_STATUS_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBMOF(self, TextFileName, BMOFFileName, ServerAndNamespace, lOptionFlags, lClassFlags, lInstanceFlags, pInfo);
     }
 };
@@ -4543,10 +4543,10 @@ pub const IWbemPropertyProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetProperty(self: *const IWbemPropertyProvider, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IWbemPropertyProvider, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lFlags, strLocale, strClassMapping, strInstMapping, strPropMapping, pvValue);
     }
-    pub fn PutProperty(self: *const IWbemPropertyProvider, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*const VARIANT) callconv(.Inline) HRESULT {
+    pub fn PutProperty(self: *const IWbemPropertyProvider, lFlags: i32, strLocale: ?BSTR, strClassMapping: ?BSTR, strInstMapping: ?BSTR, strPropMapping: ?BSTR, pvValue: ?*const VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.PutProperty(self, lFlags, strLocale, strClassMapping, strInstMapping, strPropMapping, pvValue);
     }
 };
@@ -4566,7 +4566,7 @@ pub const IWbemUnboundObjectSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IndicateToConsumer(self: *const IWbemUnboundObjectSink, pLogicalConsumer: ?*IWbemClassObject, lNumObjects: i32, apObjects: [*]?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn IndicateToConsumer(self: *const IWbemUnboundObjectSink, pLogicalConsumer: ?*IWbemClassObject, lNumObjects: i32, apObjects: [*]?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.IndicateToConsumer(self, pLogicalConsumer, lNumObjects, apObjects);
     }
 };
@@ -4585,7 +4585,7 @@ pub const IWbemEventProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ProvideEvents(self: *const IWbemEventProvider, pSink: ?*IWbemObjectSink, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn ProvideEvents(self: *const IWbemEventProvider, pSink: ?*IWbemObjectSink, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.ProvideEvents(self, pSink, lFlags);
     }
 };
@@ -4609,10 +4609,10 @@ pub const IWbemEventProviderQuerySink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NewQuery(self: *const IWbemEventProviderQuerySink, dwId: u32, wszQueryLanguage: ?*u16, wszQuery: ?*u16) callconv(.Inline) HRESULT {
+    pub fn NewQuery(self: *const IWbemEventProviderQuerySink, dwId: u32, wszQueryLanguage: ?*u16, wszQuery: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.NewQuery(self, dwId, wszQueryLanguage, wszQuery);
     }
-    pub fn CancelQuery(self: *const IWbemEventProviderQuerySink, dwId: u32) callconv(.Inline) HRESULT {
+    pub fn CancelQuery(self: *const IWbemEventProviderQuerySink, dwId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CancelQuery(self, dwId);
     }
 };
@@ -4633,7 +4633,7 @@ pub const IWbemEventProviderSecurity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AccessCheck(self: *const IWbemEventProviderSecurity, wszQueryLanguage: ?*u16, wszQuery: ?*u16, lSidLength: i32, pSid: [*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn AccessCheck(self: *const IWbemEventProviderSecurity, wszQueryLanguage: ?*u16, wszQuery: ?*u16, lSidLength: i32, pSid: [*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.AccessCheck(self, wszQueryLanguage, wszQuery, lSidLength, pSid);
     }
 };
@@ -4652,7 +4652,7 @@ pub const IWbemEventConsumerProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindConsumer(self: *const IWbemEventConsumerProvider, pLogicalConsumer: ?*IWbemClassObject, ppConsumer: ?*?*IWbemUnboundObjectSink) callconv(.Inline) HRESULT {
+    pub fn FindConsumer(self: *const IWbemEventConsumerProvider, pLogicalConsumer: ?*IWbemClassObject, ppConsumer: ?*?*IWbemUnboundObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.FindConsumer(self, pLogicalConsumer, ppConsumer);
     }
 };
@@ -4671,7 +4671,7 @@ pub const IWbemProviderInitSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetStatus(self: *const IWbemProviderInitSink, lStatus: i32, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn SetStatus(self: *const IWbemProviderInitSink, lStatus: i32, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStatus(self, lStatus, lFlags);
     }
 };
@@ -4695,7 +4695,7 @@ pub const IWbemProviderInit = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWbemProviderInit, wszUser: ?PWSTR, lFlags: i32, wszNamespace: ?PWSTR, wszLocale: ?PWSTR, pNamespace: ?*IWbemServices, pCtx: ?*IWbemContext, pInitSink: ?*IWbemProviderInitSink) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWbemProviderInit, wszUser: ?PWSTR, lFlags: i32, wszNamespace: ?PWSTR, wszLocale: ?PWSTR, pNamespace: ?*IWbemServices, pCtx: ?*IWbemContext, pInitSink: ?*IWbemProviderInitSink) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, wszUser, lFlags, wszNamespace, wszLocale, pNamespace, pCtx, pInitSink);
     }
 };
@@ -4757,22 +4757,22 @@ pub const IWbemHiPerfProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryInstances(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, pSink: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn QueryInstances(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, pSink: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.QueryInstances(self, pNamespace, wszClass, lFlags, pCtx, pSink);
     }
-    pub fn CreateRefresher(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, lFlags: i32, ppRefresher: ?*?*IWbemRefresher) callconv(.Inline) HRESULT {
+    pub fn CreateRefresher(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, lFlags: i32, ppRefresher: ?*?*IWbemRefresher) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRefresher(self, pNamespace, lFlags, ppRefresher);
     }
-    pub fn CreateRefreshableObject(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, pTemplate: ?*IWbemObjectAccess, pRefresher: ?*IWbemRefresher, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemObjectAccess, plId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn CreateRefreshableObject(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, pTemplate: ?*IWbemObjectAccess, pRefresher: ?*IWbemRefresher, lFlags: i32, pContext: ?*IWbemContext, ppRefreshable: ?*?*IWbemObjectAccess, plId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRefreshableObject(self, pNamespace, pTemplate, pRefresher, lFlags, pContext, ppRefreshable, plId);
     }
-    pub fn StopRefreshing(self: *const IWbemHiPerfProvider, pRefresher: ?*IWbemRefresher, lId: i32, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn StopRefreshing(self: *const IWbemHiPerfProvider, pRefresher: ?*IWbemRefresher, lId: i32, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.StopRefreshing(self, pRefresher, lId, lFlags);
     }
-    pub fn CreateRefreshableEnum(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?[*:0]const u16, pRefresher: ?*IWbemRefresher, lFlags: i32, pContext: ?*IWbemContext, pHiPerfEnum: ?*IWbemHiPerfEnum, plId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn CreateRefreshableEnum(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, wszClass: ?[*:0]const u16, pRefresher: ?*IWbemRefresher, lFlags: i32, pContext: ?*IWbemContext, pHiPerfEnum: ?*IWbemHiPerfEnum, plId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRefreshableEnum(self, pNamespace, wszClass, pRefresher, lFlags, pContext, pHiPerfEnum, plId);
     }
-    pub fn GetObjects(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, lNumObjects: i32, apObj: [*]?*IWbemObjectAccess, lFlags: i32, pContext: ?*IWbemContext) callconv(.Inline) HRESULT {
+    pub fn GetObjects(self: *const IWbemHiPerfProvider, pNamespace: ?*IWbemServices, lNumObjects: i32, apObj: [*]?*IWbemObjectAccess, lFlags: i32, pContext: ?*IWbemContext) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjects(self, pNamespace, lNumObjects, apObj, lFlags, pContext);
     }
 };
@@ -4799,10 +4799,10 @@ pub const IWbemDecoupledRegistrar = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Register(self: *const IWbemDecoupledRegistrar, a_Flags: i32, a_Context: ?*IWbemContext, a_User: ?[*:0]const u16, a_Locale: ?[*:0]const u16, a_Scope: ?[*:0]const u16, a_Registration: ?[*:0]const u16, pIUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Register(self: *const IWbemDecoupledRegistrar, a_Flags: i32, a_Context: ?*IWbemContext, a_User: ?[*:0]const u16, a_Locale: ?[*:0]const u16, a_Scope: ?[*:0]const u16, a_Registration: ?[*:0]const u16, pIUnknown: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Register(self, a_Flags, a_Context, a_User, a_Locale, a_Scope, a_Registration, pIUnknown);
     }
-    pub fn UnRegister(self: *const IWbemDecoupledRegistrar) callconv(.Inline) HRESULT {
+    pub fn UnRegister(self: *const IWbemDecoupledRegistrar) callconv(.@"inline") HRESULT {
         return self.vtable.UnRegister(self);
     }
 };
@@ -4821,7 +4821,7 @@ pub const IWbemProviderIdentity = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetRegistrationObject(self: *const IWbemProviderIdentity, lFlags: i32, pProvReg: ?*IWbemClassObject) callconv(.Inline) HRESULT {
+    pub fn SetRegistrationObject(self: *const IWbemProviderIdentity, lFlags: i32, pProvReg: ?*IWbemClassObject) callconv(.@"inline") HRESULT {
         return self.vtable.SetRegistrationObject(self, lFlags, pProvReg);
     }
 };
@@ -4868,10 +4868,10 @@ pub const IWbemDecoupledBasicEventProvider = extern union {
     vtable: *const VTable,
     IWbemDecoupledRegistrar: IWbemDecoupledRegistrar,
     IUnknown: IUnknown,
-    pub fn GetSink(self: *const IWbemDecoupledBasicEventProvider, a_Flags: i32, a_Context: ?*IWbemContext, a_Sink: ?*?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn GetSink(self: *const IWbemDecoupledBasicEventProvider, a_Flags: i32, a_Context: ?*IWbemContext, a_Sink: ?*?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.GetSink(self, a_Flags, a_Context, a_Sink);
     }
-    pub fn GetService(self: *const IWbemDecoupledBasicEventProvider, a_Flags: i32, a_Context: ?*IWbemContext, a_Service: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+    pub fn GetService(self: *const IWbemDecoupledBasicEventProvider, a_Flags: i32, a_Context: ?*IWbemContext, a_Service: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.GetService(self, a_Flags, a_Context, a_Service);
     }
 };
@@ -4916,16 +4916,16 @@ pub const IWbemEventSink = extern union {
     vtable: *const VTable,
     IWbemObjectSink: IWbemObjectSink,
     IUnknown: IUnknown,
-    pub fn SetSinkSecurity(self: *const IWbemEventSink, lSDLength: i32, pSD: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn SetSinkSecurity(self: *const IWbemEventSink, lSDLength: i32, pSD: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetSinkSecurity(self, lSDLength, pSD);
     }
-    pub fn IsActive(self: *const IWbemEventSink) callconv(.Inline) HRESULT {
+    pub fn IsActive(self: *const IWbemEventSink) callconv(.@"inline") HRESULT {
         return self.vtable.IsActive(self);
     }
-    pub fn GetRestrictedSink(self: *const IWbemEventSink, lNumQueries: i32, awszQueries: [*]const ?[*:0]const u16, pCallback: ?*IUnknown, ppSink: ?*?*IWbemEventSink) callconv(.Inline) HRESULT {
+    pub fn GetRestrictedSink(self: *const IWbemEventSink, lNumQueries: i32, awszQueries: [*]const ?[*:0]const u16, pCallback: ?*IUnknown, ppSink: ?*?*IWbemEventSink) callconv(.@"inline") HRESULT {
         return self.vtable.GetRestrictedSink(self, lNumQueries, awszQueries, pCallback, ppSink);
     }
-    pub fn SetBatchingParameters(self: *const IWbemEventSink, lFlags: i32, dwMaxBufferSize: u32, dwMaxSendLatency: u32) callconv(.Inline) HRESULT {
+    pub fn SetBatchingParameters(self: *const IWbemEventSink, lFlags: i32, dwMaxBufferSize: u32, dwMaxSendLatency: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBatchingParameters(self, lFlags, dwMaxBufferSize, dwMaxSendLatency);
     }
 };
@@ -5663,61 +5663,61 @@ pub const ISWbemServices = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Get(self: *const ISWbemServices, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn Get(self: *const ISWbemServices, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.Get(self, strObjectPath, iFlags, objWbemNamedValueSet, objWbemObject);
     }
-    pub fn GetAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn GetAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.GetAsync(self, objWbemSink, strObjectPath, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn Delete(self: *const ISWbemServices, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const ISWbemServices, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, strObjectPath, iFlags, objWbemNamedValueSet);
     }
-    pub fn DeleteAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn DeleteAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAsync(self, objWbemSink, strObjectPath, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn InstancesOf(self: *const ISWbemServices, strClass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn InstancesOf(self: *const ISWbemServices, strClass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.InstancesOf(self, strClass, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn InstancesOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strClass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn InstancesOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strClass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.InstancesOfAsync(self, objWbemSink, strClass, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn SubclassesOf(self: *const ISWbemServices, strSuperclass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn SubclassesOf(self: *const ISWbemServices, strSuperclass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.SubclassesOf(self, strSuperclass, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn SubclassesOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strSuperclass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn SubclassesOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strSuperclass: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SubclassesOfAsync(self, objWbemSink, strSuperclass, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn ExecQuery(self: *const ISWbemServices, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn ExecQuery(self: *const ISWbemServices, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.ExecQuery(self, strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn ExecQueryAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, lFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn ExecQueryAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, lFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ExecQueryAsync(self, objWbemSink, strQuery, strQueryLanguage, lFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn AssociatorsOf(self: *const ISWbemServices, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn AssociatorsOf(self: *const ISWbemServices, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.AssociatorsOf(self, strObjectPath, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn AssociatorsOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn AssociatorsOfAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.AssociatorsOfAsync(self, objWbemSink, strObjectPath, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn ReferencesTo(self: *const ISWbemServices, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn ReferencesTo(self: *const ISWbemServices, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.ReferencesTo(self, strObjectPath, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn ReferencesToAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn ReferencesToAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ReferencesToAsync(self, objWbemSink, strObjectPath, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn ExecNotificationQuery(self: *const ISWbemServices, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemEventSource: ?*?*ISWbemEventSource) callconv(.Inline) HRESULT {
+    pub fn ExecNotificationQuery(self: *const ISWbemServices, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemEventSource: ?*?*ISWbemEventSource) callconv(.@"inline") HRESULT {
         return self.vtable.ExecNotificationQuery(self, strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemEventSource);
     }
-    pub fn ExecNotificationQueryAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn ExecNotificationQueryAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strQuery: ?BSTR, strQueryLanguage: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ExecNotificationQueryAsync(self, objWbemSink, strQuery, strQueryLanguage, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn ExecMethod(self: *const ISWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn ExecMethod(self: *const ISWbemServices, strObjectPath: ?BSTR, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.ExecMethod(self, strObjectPath, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemOutParameters);
     }
-    pub fn ExecMethodAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn ExecMethodAsync(self: *const ISWbemServices, objWbemSink: ?*IDispatch, strObjectPath: ?BSTR, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ExecMethodAsync(self, objWbemSink, strObjectPath, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn get_Security_(self: *const ISWbemServices, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+    pub fn get_Security_(self: *const ISWbemServices, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.@"inline") HRESULT {
         return self.vtable.get_Security_(self, objWbemSecurity);
     }
 };
@@ -5748,10 +5748,10 @@ pub const ISWbemLocator = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ConnectServer(self: *const ISWbemLocator, strServer: ?BSTR, strNamespace: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, strAuthority: ?BSTR, iSecurityFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemServices: ?*?*ISWbemServices) callconv(.Inline) HRESULT {
+    pub fn ConnectServer(self: *const ISWbemLocator, strServer: ?BSTR, strNamespace: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, strAuthority: ?BSTR, iSecurityFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemServices: ?*?*ISWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectServer(self, strServer, strNamespace, strUser, strPassword, strLocale, strAuthority, iSecurityFlags, objWbemNamedValueSet, objWbemServices);
     }
-    pub fn get_Security_(self: *const ISWbemLocator, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+    pub fn get_Security_(self: *const ISWbemLocator, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.@"inline") HRESULT {
         return self.vtable.get_Security_(self, objWbemSecurity);
     }
 };
@@ -5940,79 +5940,79 @@ pub const ISWbemObject = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Put_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
+    pub fn Put_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.@"inline") HRESULT {
         return self.vtable.Put_(self, iFlags, objWbemNamedValueSet, objWbemObjectPath);
     }
-    pub fn PutAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn PutAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.PutAsync_(self, objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn Delete_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Delete_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Delete_(self, iFlags, objWbemNamedValueSet);
     }
-    pub fn DeleteAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn DeleteAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAsync_(self, objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn Instances_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn Instances_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.Instances_(self, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn InstancesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn InstancesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.InstancesAsync_(self, objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn Subclasses_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn Subclasses_(self: *const ISWbemObject, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.Subclasses_(self, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn SubclassesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn SubclassesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SubclassesAsync_(self, objWbemSink, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn Associators_(self: *const ISWbemObject, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn Associators_(self: *const ISWbemObject, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.Associators_(self, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn AssociatorsAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn AssociatorsAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strAssocClass: ?BSTR, strResultClass: ?BSTR, strResultRole: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredAssocQualifier: ?BSTR, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.AssociatorsAsync_(self, objWbemSink, strAssocClass, strResultClass, strResultRole, strRole, bClassesOnly, bSchemaOnly, strRequiredAssocQualifier, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn References_(self: *const ISWbemObject, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn References_(self: *const ISWbemObject, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.References_(self, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemObjectSet);
     }
-    pub fn ReferencesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn ReferencesAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strResultClass: ?BSTR, strRole: ?BSTR, bClassesOnly: i16, bSchemaOnly: i16, strRequiredQualifier: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ReferencesAsync_(self, objWbemSink, strResultClass, strRole, bClassesOnly, bSchemaOnly, strRequiredQualifier, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn ExecMethod_(self: *const ISWbemObject, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn ExecMethod_(self: *const ISWbemObject, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemOutParameters: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.ExecMethod_(self, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemOutParameters);
     }
-    pub fn ExecMethodAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn ExecMethodAsync_(self: *const ISWbemObject, objWbemSink: ?*IDispatch, strMethodName: ?BSTR, objWbemInParameters: ?*IDispatch, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.ExecMethodAsync_(self, objWbemSink, strMethodName, objWbemInParameters, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
-    pub fn Clone_(self: *const ISWbemObject, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn Clone_(self: *const ISWbemObject, objWbemObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.Clone_(self, objWbemObject);
     }
-    pub fn GetObjectText_(self: *const ISWbemObject, iFlags: i32, strObjectText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetObjectText_(self: *const ISWbemObject, iFlags: i32, strObjectText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectText_(self, iFlags, strObjectText);
     }
-    pub fn SpawnDerivedClass_(self: *const ISWbemObject, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn SpawnDerivedClass_(self: *const ISWbemObject, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.SpawnDerivedClass_(self, iFlags, objWbemObject);
     }
-    pub fn SpawnInstance_(self: *const ISWbemObject, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn SpawnInstance_(self: *const ISWbemObject, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.SpawnInstance_(self, iFlags, objWbemObject);
     }
-    pub fn CompareTo_(self: *const ISWbemObject, objWbemObject: ?*IDispatch, iFlags: i32, bResult: ?*i16) callconv(.Inline) HRESULT {
+    pub fn CompareTo_(self: *const ISWbemObject, objWbemObject: ?*IDispatch, iFlags: i32, bResult: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.CompareTo_(self, objWbemObject, iFlags, bResult);
     }
-    pub fn get_Qualifiers_(self: *const ISWbemObject, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
+    pub fn get_Qualifiers_(self: *const ISWbemObject, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.@"inline") HRESULT {
         return self.vtable.get_Qualifiers_(self, objWbemQualifierSet);
     }
-    pub fn get_Properties_(self: *const ISWbemObject, objWbemPropertySet: ?*?*ISWbemPropertySet) callconv(.Inline) HRESULT {
+    pub fn get_Properties_(self: *const ISWbemObject, objWbemPropertySet: ?*?*ISWbemPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.get_Properties_(self, objWbemPropertySet);
     }
-    pub fn get_Methods_(self: *const ISWbemObject, objWbemMethodSet: ?*?*ISWbemMethodSet) callconv(.Inline) HRESULT {
+    pub fn get_Methods_(self: *const ISWbemObject, objWbemMethodSet: ?*?*ISWbemMethodSet) callconv(.@"inline") HRESULT {
         return self.vtable.get_Methods_(self, objWbemMethodSet);
     }
-    pub fn get_Derivation_(self: *const ISWbemObject, strClassNameArray: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Derivation_(self: *const ISWbemObject, strClassNameArray: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Derivation_(self, strClassNameArray);
     }
-    pub fn get_Path_(self: *const ISWbemObject, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
+    pub fn get_Path_(self: *const ISWbemObject, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path_(self, objWbemObjectPath);
     }
-    pub fn get_Security_(self: *const ISWbemObject, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+    pub fn get_Security_(self: *const ISWbemObject, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.@"inline") HRESULT {
         return self.vtable.get_Security_(self, objWbemSecurity);
     }
 };
@@ -6052,19 +6052,19 @@ pub const ISWbemObjectSet = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const ISWbemObjectSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISWbemObjectSet, pUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
-    pub fn Item(self: *const ISWbemObjectSet, strObjectPath: ?BSTR, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISWbemObjectSet, strObjectPath: ?BSTR, iFlags: i32, objWbemObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, strObjectPath, iFlags, objWbemObject);
     }
-    pub fn get_Count(self: *const ISWbemObjectSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISWbemObjectSet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn get_Security_(self: *const ISWbemObjectSet, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+    pub fn get_Security_(self: *const ISWbemObjectSet, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.@"inline") HRESULT {
         return self.vtable.get_Security_(self, objWbemSecurity);
     }
-    pub fn ItemIndex(self: *const ISWbemObjectSet, lIndex: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn ItemIndex(self: *const ISWbemObjectSet, lIndex: i32, objWbemObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.ItemIndex(self, lIndex, objWbemObject);
     }
 };
@@ -6093,13 +6093,13 @@ pub const ISWbemNamedValue = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Value(self: *const ISWbemNamedValue, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const ISWbemNamedValue, varValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, varValue);
     }
-    pub fn put_Value(self: *const ISWbemNamedValue, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const ISWbemNamedValue, varValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, varValue);
     }
-    pub fn get_Name(self: *const ISWbemNamedValue, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISWbemNamedValue, strName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, strName);
     }
 };
@@ -6148,25 +6148,25 @@ pub const ISWbemNamedValueSet = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const ISWbemNamedValueSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISWbemNamedValueSet, pUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
-    pub fn Item(self: *const ISWbemNamedValueSet, strName: ?BSTR, iFlags: i32, objWbemNamedValue: ?*?*ISWbemNamedValue) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISWbemNamedValueSet, strName: ?BSTR, iFlags: i32, objWbemNamedValue: ?*?*ISWbemNamedValue) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, strName, iFlags, objWbemNamedValue);
     }
-    pub fn get_Count(self: *const ISWbemNamedValueSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISWbemNamedValueSet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn Add(self: *const ISWbemNamedValueSet, strName: ?BSTR, varValue: ?*VARIANT, iFlags: i32, objWbemNamedValue: ?*?*ISWbemNamedValue) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISWbemNamedValueSet, strName: ?BSTR, varValue: ?*VARIANT, iFlags: i32, objWbemNamedValue: ?*?*ISWbemNamedValue) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, strName, varValue, iFlags, objWbemNamedValue);
     }
-    pub fn Remove(self: *const ISWbemNamedValueSet, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISWbemNamedValueSet, strName: ?BSTR, iFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, strName, iFlags);
     }
-    pub fn Clone(self: *const ISWbemNamedValueSet, objWbemNamedValueSet: ?*?*ISWbemNamedValueSet) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const ISWbemNamedValueSet, objWbemNamedValueSet: ?*?*ISWbemNamedValueSet) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, objWbemNamedValueSet);
     }
-    pub fn DeleteAll(self: *const ISWbemNamedValueSet) callconv(.Inline) HRESULT {
+    pub fn DeleteAll(self: *const ISWbemNamedValueSet) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAll(self);
     }
 };
@@ -6235,37 +6235,37 @@ pub const ISWbemQualifier = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Value(self: *const ISWbemQualifier, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const ISWbemQualifier, varValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, varValue);
     }
-    pub fn put_Value(self: *const ISWbemQualifier, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const ISWbemQualifier, varValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, varValue);
     }
-    pub fn get_Name(self: *const ISWbemQualifier, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISWbemQualifier, strName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, strName);
     }
-    pub fn get_IsLocal(self: *const ISWbemQualifier, bIsLocal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLocal(self: *const ISWbemQualifier, bIsLocal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLocal(self, bIsLocal);
     }
-    pub fn get_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropagatesToSubclass(self, bPropagatesToSubclass);
     }
-    pub fn put_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: i16) callconv(.Inline) HRESULT {
+    pub fn put_PropagatesToSubclass(self: *const ISWbemQualifier, bPropagatesToSubclass: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropagatesToSubclass(self, bPropagatesToSubclass);
     }
-    pub fn get_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_PropagatesToInstance(self, bPropagatesToInstance);
     }
-    pub fn put_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: i16) callconv(.Inline) HRESULT {
+    pub fn put_PropagatesToInstance(self: *const ISWbemQualifier, bPropagatesToInstance: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_PropagatesToInstance(self, bPropagatesToInstance);
     }
-    pub fn get_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsOverridable(self, bIsOverridable);
     }
-    pub fn put_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: i16) callconv(.Inline) HRESULT {
+    pub fn put_IsOverridable(self: *const ISWbemQualifier, bIsOverridable: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsOverridable(self, bIsOverridable);
     }
-    pub fn get_IsAmended(self: *const ISWbemQualifier, bIsAmended: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsAmended(self: *const ISWbemQualifier, bIsAmended: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsAmended(self, bIsAmended);
     }
 };
@@ -6310,19 +6310,19 @@ pub const ISWbemQualifierSet = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const ISWbemQualifierSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISWbemQualifierSet, pUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
-    pub fn Item(self: *const ISWbemQualifierSet, name: ?BSTR, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISWbemQualifierSet, name: ?BSTR, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, name, iFlags, objWbemQualifier);
     }
-    pub fn get_Count(self: *const ISWbemQualifierSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISWbemQualifierSet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn Add(self: *const ISWbemQualifierSet, strName: ?BSTR, varVal: ?*VARIANT, bPropagatesToSubclass: i16, bPropagatesToInstance: i16, bIsOverridable: i16, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISWbemQualifierSet, strName: ?BSTR, varVal: ?*VARIANT, bPropagatesToSubclass: i16, bPropagatesToInstance: i16, bIsOverridable: i16, iFlags: i32, objWbemQualifier: ?*?*ISWbemQualifier) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, strName, varVal, bPropagatesToSubclass, bPropagatesToInstance, bIsOverridable, iFlags, objWbemQualifier);
     }
-    pub fn Remove(self: *const ISWbemQualifierSet, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISWbemQualifierSet, strName: ?BSTR, iFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, strName, iFlags);
     }
 };
@@ -6376,28 +6376,28 @@ pub const ISWbemProperty = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Value(self: *const ISWbemProperty, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const ISWbemProperty, varValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, varValue);
     }
-    pub fn put_Value(self: *const ISWbemProperty, varValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const ISWbemProperty, varValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, varValue);
     }
-    pub fn get_Name(self: *const ISWbemProperty, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISWbemProperty, strName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, strName);
     }
-    pub fn get_IsLocal(self: *const ISWbemProperty, bIsLocal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLocal(self: *const ISWbemProperty, bIsLocal: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsLocal(self, bIsLocal);
     }
-    pub fn get_Origin(self: *const ISWbemProperty, strOrigin: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Origin(self: *const ISWbemProperty, strOrigin: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Origin(self, strOrigin);
     }
-    pub fn get_CIMType(self: *const ISWbemProperty, iCimType: ?*WbemCimtypeEnum) callconv(.Inline) HRESULT {
+    pub fn get_CIMType(self: *const ISWbemProperty, iCimType: ?*WbemCimtypeEnum) callconv(.@"inline") HRESULT {
         return self.vtable.get_CIMType(self, iCimType);
     }
-    pub fn get_Qualifiers_(self: *const ISWbemProperty, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
+    pub fn get_Qualifiers_(self: *const ISWbemProperty, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.@"inline") HRESULT {
         return self.vtable.get_Qualifiers_(self, objWbemQualifierSet);
     }
-    pub fn get_IsArray(self: *const ISWbemProperty, bIsArray: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsArray(self: *const ISWbemProperty, bIsArray: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsArray(self, bIsArray);
     }
 };
@@ -6440,19 +6440,19 @@ pub const ISWbemPropertySet = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const ISWbemPropertySet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISWbemPropertySet, pUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
-    pub fn Item(self: *const ISWbemPropertySet, strName: ?BSTR, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISWbemPropertySet, strName: ?BSTR, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, strName, iFlags, objWbemProperty);
     }
-    pub fn get_Count(self: *const ISWbemPropertySet, iCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISWbemPropertySet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn Add(self: *const ISWbemPropertySet, strName: ?BSTR, iCIMType: WbemCimtypeEnum, bIsArray: i16, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISWbemPropertySet, strName: ?BSTR, iCIMType: WbemCimtypeEnum, bIsArray: i16, iFlags: i32, objWbemProperty: ?*?*ISWbemProperty) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, strName, iCIMType, bIsArray, iFlags, objWbemProperty);
     }
-    pub fn Remove(self: *const ISWbemPropertySet, strName: ?BSTR, iFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISWbemPropertySet, strName: ?BSTR, iFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, strName, iFlags);
     }
 };
@@ -6491,19 +6491,19 @@ pub const ISWbemMethod = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const ISWbemMethod, strName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISWbemMethod, strName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, strName);
     }
-    pub fn get_Origin(self: *const ISWbemMethod, strOrigin: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Origin(self: *const ISWbemMethod, strOrigin: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Origin(self, strOrigin);
     }
-    pub fn get_InParameters(self: *const ISWbemMethod, objWbemInParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn get_InParameters(self: *const ISWbemMethod, objWbemInParameters: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.get_InParameters(self, objWbemInParameters);
     }
-    pub fn get_OutParameters(self: *const ISWbemMethod, objWbemOutParameters: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn get_OutParameters(self: *const ISWbemMethod, objWbemOutParameters: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.get_OutParameters(self, objWbemOutParameters);
     }
-    pub fn get_Qualifiers_(self: *const ISWbemMethod, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.Inline) HRESULT {
+    pub fn get_Qualifiers_(self: *const ISWbemMethod, objWbemQualifierSet: ?*?*ISWbemQualifierSet) callconv(.@"inline") HRESULT {
         return self.vtable.get_Qualifiers_(self, objWbemQualifierSet);
     }
 };
@@ -6533,13 +6533,13 @@ pub const ISWbemMethodSet = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const ISWbemMethodSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISWbemMethodSet, pUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
-    pub fn Item(self: *const ISWbemMethodSet, strName: ?BSTR, iFlags: i32, objWbemMethod: ?*?*ISWbemMethod) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISWbemMethodSet, strName: ?BSTR, iFlags: i32, objWbemMethod: ?*?*ISWbemMethod) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, strName, iFlags, objWbemMethod);
     }
-    pub fn get_Count(self: *const ISWbemMethodSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISWbemMethodSet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
 };
@@ -6563,10 +6563,10 @@ pub const ISWbemEventSource = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn NextEvent(self: *const ISWbemEventSource, iTimeoutMs: i32, objWbemObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn NextEvent(self: *const ISWbemEventSource, iTimeoutMs: i32, objWbemObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.NextEvent(self, iTimeoutMs, objWbemObject);
     }
-    pub fn get_Security_(self: *const ISWbemEventSource, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+    pub fn get_Security_(self: *const ISWbemEventSource, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.@"inline") HRESULT {
         return self.vtable.get_Security_(self, objWbemSecurity);
     }
 };
@@ -6691,73 +6691,73 @@ pub const ISWbemObjectPath = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Path(self: *const ISWbemObjectPath, strPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const ISWbemObjectPath, strPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Path(self, strPath);
     }
-    pub fn put_Path(self: *const ISWbemObjectPath, strPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Path(self: *const ISWbemObjectPath, strPath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Path(self, strPath);
     }
-    pub fn get_RelPath(self: *const ISWbemObjectPath, strRelPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RelPath(self: *const ISWbemObjectPath, strRelPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RelPath(self, strRelPath);
     }
-    pub fn put_RelPath(self: *const ISWbemObjectPath, strRelPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RelPath(self: *const ISWbemObjectPath, strRelPath: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RelPath(self, strRelPath);
     }
-    pub fn get_Server(self: *const ISWbemObjectPath, strServer: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Server(self: *const ISWbemObjectPath, strServer: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Server(self, strServer);
     }
-    pub fn put_Server(self: *const ISWbemObjectPath, strServer: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Server(self: *const ISWbemObjectPath, strServer: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Server(self, strServer);
     }
-    pub fn get_Namespace(self: *const ISWbemObjectPath, strNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Namespace(self: *const ISWbemObjectPath, strNamespace: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Namespace(self, strNamespace);
     }
-    pub fn put_Namespace(self: *const ISWbemObjectPath, strNamespace: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Namespace(self: *const ISWbemObjectPath, strNamespace: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Namespace(self, strNamespace);
     }
-    pub fn get_ParentNamespace(self: *const ISWbemObjectPath, strParentNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ParentNamespace(self: *const ISWbemObjectPath, strParentNamespace: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ParentNamespace(self, strParentNamespace);
     }
-    pub fn get_DisplayName(self: *const ISWbemObjectPath, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const ISWbemObjectPath, strDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, strDisplayName);
     }
-    pub fn put_DisplayName(self: *const ISWbemObjectPath, strDisplayName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_DisplayName(self: *const ISWbemObjectPath, strDisplayName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisplayName(self, strDisplayName);
     }
-    pub fn get_Class(self: *const ISWbemObjectPath, strClass: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Class(self: *const ISWbemObjectPath, strClass: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Class(self, strClass);
     }
-    pub fn put_Class(self: *const ISWbemObjectPath, strClass: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Class(self: *const ISWbemObjectPath, strClass: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Class(self, strClass);
     }
-    pub fn get_IsClass(self: *const ISWbemObjectPath, bIsClass: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsClass(self: *const ISWbemObjectPath, bIsClass: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsClass(self, bIsClass);
     }
-    pub fn SetAsClass(self: *const ISWbemObjectPath) callconv(.Inline) HRESULT {
+    pub fn SetAsClass(self: *const ISWbemObjectPath) callconv(.@"inline") HRESULT {
         return self.vtable.SetAsClass(self);
     }
-    pub fn get_IsSingleton(self: *const ISWbemObjectPath, bIsSingleton: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsSingleton(self: *const ISWbemObjectPath, bIsSingleton: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSingleton(self, bIsSingleton);
     }
-    pub fn SetAsSingleton(self: *const ISWbemObjectPath) callconv(.Inline) HRESULT {
+    pub fn SetAsSingleton(self: *const ISWbemObjectPath) callconv(.@"inline") HRESULT {
         return self.vtable.SetAsSingleton(self);
     }
-    pub fn get_Keys(self: *const ISWbemObjectPath, objWbemNamedValueSet: ?*?*ISWbemNamedValueSet) callconv(.Inline) HRESULT {
+    pub fn get_Keys(self: *const ISWbemObjectPath, objWbemNamedValueSet: ?*?*ISWbemNamedValueSet) callconv(.@"inline") HRESULT {
         return self.vtable.get_Keys(self, objWbemNamedValueSet);
     }
-    pub fn get_Security_(self: *const ISWbemObjectPath, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.Inline) HRESULT {
+    pub fn get_Security_(self: *const ISWbemObjectPath, objWbemSecurity: ?*?*ISWbemSecurity) callconv(.@"inline") HRESULT {
         return self.vtable.get_Security_(self, objWbemSecurity);
     }
-    pub fn get_Locale(self: *const ISWbemObjectPath, strLocale: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Locale(self: *const ISWbemObjectPath, strLocale: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Locale(self, strLocale);
     }
-    pub fn put_Locale(self: *const ISWbemObjectPath, strLocale: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Locale(self: *const ISWbemObjectPath, strLocale: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Locale(self, strLocale);
     }
-    pub fn get_Authority(self: *const ISWbemObjectPath, strAuthority: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Authority(self: *const ISWbemObjectPath, strAuthority: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Authority(self, strAuthority);
     }
-    pub fn put_Authority(self: *const ISWbemObjectPath, strAuthority: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Authority(self: *const ISWbemObjectPath, strAuthority: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Authority(self, strAuthority);
     }
 };
@@ -6797,7 +6797,7 @@ pub const ISWbemSink = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Cancel(self: *const ISWbemSink) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const ISWbemSink) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
 };
@@ -6836,19 +6836,19 @@ pub const ISWbemSecurity = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ImpersonationLevel(self: *const ISWbemSecurity, iImpersonationLevel: ?*WbemImpersonationLevelEnum) callconv(.Inline) HRESULT {
+    pub fn get_ImpersonationLevel(self: *const ISWbemSecurity, iImpersonationLevel: ?*WbemImpersonationLevelEnum) callconv(.@"inline") HRESULT {
         return self.vtable.get_ImpersonationLevel(self, iImpersonationLevel);
     }
-    pub fn put_ImpersonationLevel(self: *const ISWbemSecurity, iImpersonationLevel: WbemImpersonationLevelEnum) callconv(.Inline) HRESULT {
+    pub fn put_ImpersonationLevel(self: *const ISWbemSecurity, iImpersonationLevel: WbemImpersonationLevelEnum) callconv(.@"inline") HRESULT {
         return self.vtable.put_ImpersonationLevel(self, iImpersonationLevel);
     }
-    pub fn get_AuthenticationLevel(self: *const ISWbemSecurity, iAuthenticationLevel: ?*WbemAuthenticationLevelEnum) callconv(.Inline) HRESULT {
+    pub fn get_AuthenticationLevel(self: *const ISWbemSecurity, iAuthenticationLevel: ?*WbemAuthenticationLevelEnum) callconv(.@"inline") HRESULT {
         return self.vtable.get_AuthenticationLevel(self, iAuthenticationLevel);
     }
-    pub fn put_AuthenticationLevel(self: *const ISWbemSecurity, iAuthenticationLevel: WbemAuthenticationLevelEnum) callconv(.Inline) HRESULT {
+    pub fn put_AuthenticationLevel(self: *const ISWbemSecurity, iAuthenticationLevel: WbemAuthenticationLevelEnum) callconv(.@"inline") HRESULT {
         return self.vtable.put_AuthenticationLevel(self, iAuthenticationLevel);
     }
-    pub fn get_Privileges(self: *const ISWbemSecurity, objWbemPrivilegeSet: ?*?*ISWbemPrivilegeSet) callconv(.Inline) HRESULT {
+    pub fn get_Privileges(self: *const ISWbemSecurity, objWbemPrivilegeSet: ?*?*ISWbemPrivilegeSet) callconv(.@"inline") HRESULT {
         return self.vtable.get_Privileges(self, objWbemPrivilegeSet);
     }
 };
@@ -6887,19 +6887,19 @@ pub const ISWbemPrivilege = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsEnabled(self, bIsEnabled);
     }
-    pub fn put_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_IsEnabled(self: *const ISWbemPrivilege, bIsEnabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsEnabled(self, bIsEnabled);
     }
-    pub fn get_Name(self: *const ISWbemPrivilege, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISWbemPrivilege, strDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, strDisplayName);
     }
-    pub fn get_DisplayName(self: *const ISWbemPrivilege, strDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const ISWbemPrivilege, strDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisplayName(self, strDisplayName);
     }
-    pub fn get_Identifier(self: *const ISWbemPrivilege, iPrivilege: ?*WbemPrivilegeEnum) callconv(.Inline) HRESULT {
+    pub fn get_Identifier(self: *const ISWbemPrivilege, iPrivilege: ?*WbemPrivilegeEnum) callconv(.@"inline") HRESULT {
         return self.vtable.get_Identifier(self, iPrivilege);
     }
 };
@@ -6947,25 +6947,25 @@ pub const ISWbemPrivilegeSet = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const ISWbemPrivilegeSet, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISWbemPrivilegeSet, pUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
-    pub fn Item(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, iPrivilege, objWbemPrivilege);
     }
-    pub fn get_Count(self: *const ISWbemPrivilegeSet, iCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISWbemPrivilegeSet, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn Add(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, iPrivilege, bIsEnabled, objWbemPrivilege);
     }
-    pub fn Remove(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISWbemPrivilegeSet, iPrivilege: WbemPrivilegeEnum) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, iPrivilege);
     }
-    pub fn DeleteAll(self: *const ISWbemPrivilegeSet) callconv(.Inline) HRESULT {
+    pub fn DeleteAll(self: *const ISWbemPrivilegeSet) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAll(self);
     }
-    pub fn AddAsString(self: *const ISWbemPrivilegeSet, strPrivilege: ?BSTR, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.Inline) HRESULT {
+    pub fn AddAsString(self: *const ISWbemPrivilegeSet, strPrivilege: ?BSTR, bIsEnabled: i16, objWbemPrivilege: ?*?*ISWbemPrivilege) callconv(.@"inline") HRESULT {
         return self.vtable.AddAsString(self, strPrivilege, bIsEnabled, objWbemPrivilege);
     }
 };
@@ -6995,10 +6995,10 @@ pub const ISWbemServicesEx = extern union {
     ISWbemServices: ISWbemServices,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Put(self: *const ISWbemServicesEx, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.Inline) HRESULT {
+    pub fn Put(self: *const ISWbemServicesEx, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemObjectPath: ?*?*ISWbemObjectPath) callconv(.@"inline") HRESULT {
         return self.vtable.Put(self, objWbemObject, iFlags, objWbemNamedValueSet, objWbemObjectPath);
     }
-    pub fn PutAsync(self: *const ISWbemServicesEx, objWbemSink: ?*ISWbemSink, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn PutAsync(self: *const ISWbemServicesEx, objWbemSink: ?*ISWbemSink, objWbemObject: ?*ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemAsyncContext: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.PutAsync(self, objWbemSink, objWbemObject, iFlags, objWbemNamedValueSet, objWbemAsyncContext);
     }
 };
@@ -7037,16 +7037,16 @@ pub const ISWbemObjectEx = extern union {
     ISWbemObject: ISWbemObject,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Refresh_(self: *const ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Refresh_(self: *const ISWbemObjectEx, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh_(self, iFlags, objWbemNamedValueSet);
     }
-    pub fn get_SystemProperties_(self: *const ISWbemObjectEx, objWbemPropertySet: ?*?*ISWbemPropertySet) callconv(.Inline) HRESULT {
+    pub fn get_SystemProperties_(self: *const ISWbemObjectEx, objWbemPropertySet: ?*?*ISWbemPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.get_SystemProperties_(self, objWbemPropertySet);
     }
-    pub fn GetText_(self: *const ISWbemObjectEx, iObjectTextFormat: WbemObjectTextFormatEnum, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, bsText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetText_(self: *const ISWbemObjectEx, iObjectTextFormat: WbemObjectTextFormatEnum, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, bsText: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetText_(self, iObjectTextFormat, iFlags, objWbemNamedValueSet, bsText);
     }
-    pub fn SetFromText_(self: *const ISWbemObjectEx, bsText: ?BSTR, iObjectTextFormat: WbemObjectTextFormatEnum, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn SetFromText_(self: *const ISWbemObjectEx, bsText: ?BSTR, iObjectTextFormat: WbemObjectTextFormatEnum, iFlags: i32, objWbemNamedValueSet: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.SetFromText_(self, bsText, iObjectTextFormat, iFlags, objWbemNamedValueSet);
     }
 };
@@ -7260,124 +7260,124 @@ pub const ISWbemDateTime = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Value(self: *const ISWbemDateTime, strValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const ISWbemDateTime, strValue: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Value(self, strValue);
     }
-    pub fn put_Value(self: *const ISWbemDateTime, strValue: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const ISWbemDateTime, strValue: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Value(self, strValue);
     }
-    pub fn get_Year(self: *const ISWbemDateTime, iYear: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Year(self: *const ISWbemDateTime, iYear: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Year(self, iYear);
     }
-    pub fn put_Year(self: *const ISWbemDateTime, iYear: i32) callconv(.Inline) HRESULT {
+    pub fn put_Year(self: *const ISWbemDateTime, iYear: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Year(self, iYear);
     }
-    pub fn get_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_YearSpecified(self, bYearSpecified);
     }
-    pub fn put_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: i16) callconv(.Inline) HRESULT {
+    pub fn put_YearSpecified(self: *const ISWbemDateTime, bYearSpecified: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_YearSpecified(self, bYearSpecified);
     }
-    pub fn get_Month(self: *const ISWbemDateTime, iMonth: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Month(self: *const ISWbemDateTime, iMonth: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Month(self, iMonth);
     }
-    pub fn put_Month(self: *const ISWbemDateTime, iMonth: i32) callconv(.Inline) HRESULT {
+    pub fn put_Month(self: *const ISWbemDateTime, iMonth: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Month(self, iMonth);
     }
-    pub fn get_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MonthSpecified(self, bMonthSpecified);
     }
-    pub fn put_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: i16) callconv(.Inline) HRESULT {
+    pub fn put_MonthSpecified(self: *const ISWbemDateTime, bMonthSpecified: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MonthSpecified(self, bMonthSpecified);
     }
-    pub fn get_Day(self: *const ISWbemDateTime, iDay: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Day(self: *const ISWbemDateTime, iDay: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Day(self, iDay);
     }
-    pub fn put_Day(self: *const ISWbemDateTime, iDay: i32) callconv(.Inline) HRESULT {
+    pub fn put_Day(self: *const ISWbemDateTime, iDay: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Day(self, iDay);
     }
-    pub fn get_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_DaySpecified(self, bDaySpecified);
     }
-    pub fn put_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: i16) callconv(.Inline) HRESULT {
+    pub fn put_DaySpecified(self: *const ISWbemDateTime, bDaySpecified: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_DaySpecified(self, bDaySpecified);
     }
-    pub fn get_Hours(self: *const ISWbemDateTime, iHours: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Hours(self: *const ISWbemDateTime, iHours: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Hours(self, iHours);
     }
-    pub fn put_Hours(self: *const ISWbemDateTime, iHours: i32) callconv(.Inline) HRESULT {
+    pub fn put_Hours(self: *const ISWbemDateTime, iHours: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Hours(self, iHours);
     }
-    pub fn get_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_HoursSpecified(self, bHoursSpecified);
     }
-    pub fn put_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: i16) callconv(.Inline) HRESULT {
+    pub fn put_HoursSpecified(self: *const ISWbemDateTime, bHoursSpecified: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_HoursSpecified(self, bHoursSpecified);
     }
-    pub fn get_Minutes(self: *const ISWbemDateTime, iMinutes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Minutes(self: *const ISWbemDateTime, iMinutes: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Minutes(self, iMinutes);
     }
-    pub fn put_Minutes(self: *const ISWbemDateTime, iMinutes: i32) callconv(.Inline) HRESULT {
+    pub fn put_Minutes(self: *const ISWbemDateTime, iMinutes: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Minutes(self, iMinutes);
     }
-    pub fn get_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MinutesSpecified(self, bMinutesSpecified);
     }
-    pub fn put_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: i16) callconv(.Inline) HRESULT {
+    pub fn put_MinutesSpecified(self: *const ISWbemDateTime, bMinutesSpecified: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MinutesSpecified(self, bMinutesSpecified);
     }
-    pub fn get_Seconds(self: *const ISWbemDateTime, iSeconds: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Seconds(self: *const ISWbemDateTime, iSeconds: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Seconds(self, iSeconds);
     }
-    pub fn put_Seconds(self: *const ISWbemDateTime, iSeconds: i32) callconv(.Inline) HRESULT {
+    pub fn put_Seconds(self: *const ISWbemDateTime, iSeconds: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Seconds(self, iSeconds);
     }
-    pub fn get_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_SecondsSpecified(self, bSecondsSpecified);
     }
-    pub fn put_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: i16) callconv(.Inline) HRESULT {
+    pub fn put_SecondsSpecified(self: *const ISWbemDateTime, bSecondsSpecified: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_SecondsSpecified(self, bSecondsSpecified);
     }
-    pub fn get_Microseconds(self: *const ISWbemDateTime, iMicroseconds: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Microseconds(self: *const ISWbemDateTime, iMicroseconds: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Microseconds(self, iMicroseconds);
     }
-    pub fn put_Microseconds(self: *const ISWbemDateTime, iMicroseconds: i32) callconv(.Inline) HRESULT {
+    pub fn put_Microseconds(self: *const ISWbemDateTime, iMicroseconds: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Microseconds(self, iMicroseconds);
     }
-    pub fn get_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_MicrosecondsSpecified(self, bMicrosecondsSpecified);
     }
-    pub fn put_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: i16) callconv(.Inline) HRESULT {
+    pub fn put_MicrosecondsSpecified(self: *const ISWbemDateTime, bMicrosecondsSpecified: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_MicrosecondsSpecified(self, bMicrosecondsSpecified);
     }
-    pub fn get_UTC(self: *const ISWbemDateTime, iUTC: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_UTC(self: *const ISWbemDateTime, iUTC: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_UTC(self, iUTC);
     }
-    pub fn put_UTC(self: *const ISWbemDateTime, iUTC: i32) callconv(.Inline) HRESULT {
+    pub fn put_UTC(self: *const ISWbemDateTime, iUTC: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_UTC(self, iUTC);
     }
-    pub fn get_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_UTCSpecified(self, bUTCSpecified);
     }
-    pub fn put_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: i16) callconv(.Inline) HRESULT {
+    pub fn put_UTCSpecified(self: *const ISWbemDateTime, bUTCSpecified: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_UTCSpecified(self, bUTCSpecified);
     }
-    pub fn get_IsInterval(self: *const ISWbemDateTime, bIsInterval: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsInterval(self: *const ISWbemDateTime, bIsInterval: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsInterval(self, bIsInterval);
     }
-    pub fn put_IsInterval(self: *const ISWbemDateTime, bIsInterval: i16) callconv(.Inline) HRESULT {
+    pub fn put_IsInterval(self: *const ISWbemDateTime, bIsInterval: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsInterval(self, bIsInterval);
     }
-    pub fn GetVarDate(self: *const ISWbemDateTime, bIsLocal: i16, dVarDate: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetVarDate(self: *const ISWbemDateTime, bIsLocal: i16, dVarDate: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetVarDate(self, bIsLocal, dVarDate);
     }
-    pub fn SetVarDate(self: *const ISWbemDateTime, dVarDate: f64, bIsLocal: i16) callconv(.Inline) HRESULT {
+    pub fn SetVarDate(self: *const ISWbemDateTime, dVarDate: f64, bIsLocal: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SetVarDate(self, dVarDate, bIsLocal);
     }
-    pub fn GetFileTime(self: *const ISWbemDateTime, bIsLocal: i16, strFileTime: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetFileTime(self: *const ISWbemDateTime, bIsLocal: i16, strFileTime: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileTime(self, bIsLocal, strFileTime);
     }
-    pub fn SetFileTime(self: *const ISWbemDateTime, strFileTime: ?BSTR, bIsLocal: i16) callconv(.Inline) HRESULT {
+    pub fn SetFileTime(self: *const ISWbemDateTime, strFileTime: ?BSTR, bIsLocal: i16) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileTime(self, strFileTime, bIsLocal);
     }
 };
@@ -7444,34 +7444,34 @@ pub const ISWbemRefresher = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get__NewEnum(self: *const ISWbemRefresher, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISWbemRefresher, pUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, pUnk);
     }
-    pub fn Item(self: *const ISWbemRefresher, iIndex: i32, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISWbemRefresher, iIndex: i32, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.@"inline") HRESULT {
         return self.vtable.Item(self, iIndex, objWbemRefreshableItem);
     }
-    pub fn get_Count(self: *const ISWbemRefresher, iCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISWbemRefresher, iCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, iCount);
     }
-    pub fn Add(self: *const ISWbemRefresher, objWbemServices: ?*ISWbemServicesEx, bsInstancePath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISWbemRefresher, objWbemServices: ?*ISWbemServicesEx, bsInstancePath: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.@"inline") HRESULT {
         return self.vtable.Add(self, objWbemServices, bsInstancePath, iFlags, objWbemNamedValueSet, objWbemRefreshableItem);
     }
-    pub fn AddEnum(self: *const ISWbemRefresher, objWbemServices: ?*ISWbemServicesEx, bsClassName: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.Inline) HRESULT {
+    pub fn AddEnum(self: *const ISWbemRefresher, objWbemServices: ?*ISWbemServicesEx, bsClassName: ?BSTR, iFlags: i32, objWbemNamedValueSet: ?*IDispatch, objWbemRefreshableItem: ?*?*ISWbemRefreshableItem) callconv(.@"inline") HRESULT {
         return self.vtable.AddEnum(self, objWbemServices, bsClassName, iFlags, objWbemNamedValueSet, objWbemRefreshableItem);
     }
-    pub fn Remove(self: *const ISWbemRefresher, iIndex: i32, iFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISWbemRefresher, iIndex: i32, iFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, iIndex, iFlags);
     }
-    pub fn Refresh(self: *const ISWbemRefresher, iFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISWbemRefresher, iFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self, iFlags);
     }
-    pub fn get_AutoReconnect(self: *const ISWbemRefresher, bCount: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AutoReconnect(self: *const ISWbemRefresher, bCount: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_AutoReconnect(self, bCount);
     }
-    pub fn put_AutoReconnect(self: *const ISWbemRefresher, bCount: i16) callconv(.Inline) HRESULT {
+    pub fn put_AutoReconnect(self: *const ISWbemRefresher, bCount: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_AutoReconnect(self, bCount);
     }
-    pub fn DeleteAll(self: *const ISWbemRefresher) callconv(.Inline) HRESULT {
+    pub fn DeleteAll(self: *const ISWbemRefresher) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAll(self);
     }
 };
@@ -7514,22 +7514,22 @@ pub const ISWbemRefreshableItem = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Index(self: *const ISWbemRefreshableItem, iIndex: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Index(self: *const ISWbemRefreshableItem, iIndex: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Index(self, iIndex);
     }
-    pub fn get_Refresher(self: *const ISWbemRefreshableItem, objWbemRefresher: ?*?*ISWbemRefresher) callconv(.Inline) HRESULT {
+    pub fn get_Refresher(self: *const ISWbemRefreshableItem, objWbemRefresher: ?*?*ISWbemRefresher) callconv(.@"inline") HRESULT {
         return self.vtable.get_Refresher(self, objWbemRefresher);
     }
-    pub fn get_IsSet(self: *const ISWbemRefreshableItem, bIsSet: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsSet(self: *const ISWbemRefreshableItem, bIsSet: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsSet(self, bIsSet);
     }
-    pub fn get_Object(self: *const ISWbemRefreshableItem, objWbemObject: ?*?*ISWbemObjectEx) callconv(.Inline) HRESULT {
+    pub fn get_Object(self: *const ISWbemRefreshableItem, objWbemObject: ?*?*ISWbemObjectEx) callconv(.@"inline") HRESULT {
         return self.vtable.get_Object(self, objWbemObject);
     }
-    pub fn get_ObjectSet(self: *const ISWbemRefreshableItem, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.Inline) HRESULT {
+    pub fn get_ObjectSet(self: *const ISWbemRefreshableItem, objWbemObjectSet: ?*?*ISWbemObjectSet) callconv(.@"inline") HRESULT {
         return self.vtable.get_ObjectSet(self, objWbemObjectSet);
     }
-    pub fn Remove(self: *const ISWbemRefreshableItem, iFlags: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISWbemRefreshableItem, iFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, iFlags);
     }
 };
@@ -7559,13 +7559,13 @@ pub const IWMIExtension = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_WMIObjectPath(self: *const IWMIExtension, strWMIObjectPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_WMIObjectPath(self: *const IWMIExtension, strWMIObjectPath: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_WMIObjectPath(self, strWMIObjectPath);
     }
-    pub fn GetWMIObject(self: *const IWMIExtension, objWMIObject: ?*?*ISWbemObject) callconv(.Inline) HRESULT {
+    pub fn GetWMIObject(self: *const IWMIExtension, objWMIObject: ?*?*ISWbemObject) callconv(.@"inline") HRESULT {
         return self.vtable.GetWMIObject(self, objWMIObject);
     }
-    pub fn GetWMIServices(self: *const IWMIExtension, objWMIServices: ?*?*ISWbemServices) callconv(.Inline) HRESULT {
+    pub fn GetWMIServices(self: *const IWMIExtension, objWMIServices: ?*?*ISWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.GetWMIServices(self, objWMIServices);
     }
 };
@@ -7606,7 +7606,7 @@ pub const IWbemTransport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWbemTransport) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWbemTransport) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self);
     }
 };
@@ -7647,16 +7647,16 @@ pub const IWbemLevel1Login = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EstablishPosition(self: *const IWbemLevel1Login, wszLocaleList: ?PWSTR, dwNumLocales: u32, reserved: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EstablishPosition(self: *const IWbemLevel1Login, wszLocaleList: ?PWSTR, dwNumLocales: u32, reserved: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.EstablishPosition(self, wszLocaleList, dwNumLocales, reserved);
     }
-    pub fn RequestChallenge(self: *const IWbemLevel1Login, wszNetworkResource: ?PWSTR, wszUser: ?PWSTR, Nonce: ?*u8) callconv(.Inline) HRESULT {
+    pub fn RequestChallenge(self: *const IWbemLevel1Login, wszNetworkResource: ?PWSTR, wszUser: ?PWSTR, Nonce: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.RequestChallenge(self, wszNetworkResource, wszUser, Nonce);
     }
-    pub fn WBEMLogin(self: *const IWbemLevel1Login, wszPreferredLocale: ?PWSTR, AccessToken: ?*u8, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+    pub fn WBEMLogin(self: *const IWbemLevel1Login, wszPreferredLocale: ?PWSTR, AccessToken: ?*u8, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.WBEMLogin(self, wszPreferredLocale, AccessToken, lFlags, pCtx, ppNamespace);
     }
-    pub fn NTLMLogin(self: *const IWbemLevel1Login, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+    pub fn NTLMLogin(self: *const IWbemLevel1Login, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.NTLMLogin(self, wszNetworkResource, wszPreferredLocale, lFlags, pCtx, ppNamespace);
     }
 };
@@ -7678,7 +7678,7 @@ pub const IWbemConnectorLogin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConnectorLogin(self: *const IWbemConnectorLogin, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn ConnectorLogin(self: *const IWbemConnectorLogin, wszNetworkResource: ?PWSTR, wszPreferredLocale: ?PWSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectorLogin(self, wszNetworkResource, wszPreferredLocale, lFlags, pCtx, riid, pInterface);
     }
 };
@@ -7698,7 +7698,7 @@ pub const IWbemAddressResolution = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Resolve(self: *const IWbemAddressResolution, wszNamespacePath: ?PWSTR, wszAddressType: ?PWSTR, pdwAddressLength: ?*u32, pabBinaryAddress: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn Resolve(self: *const IWbemAddressResolution, wszNamespacePath: ?PWSTR, wszAddressType: ?PWSTR, pdwAddressLength: ?*u32, pabBinaryAddress: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.Resolve(self, wszNamespacePath, wszAddressType, pdwAddressLength, pabBinaryAddress);
     }
 };
@@ -7725,7 +7725,7 @@ pub const IWbemClientTransport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConnectServer(self: *const IWbemClientTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.Inline) HRESULT {
+    pub fn ConnectServer(self: *const IWbemClientTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strNetworkResource: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lSecurityFlags: i32, strAuthority: ?BSTR, pCtx: ?*IWbemContext, ppNamespace: ?*?*IWbemServices) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectServer(self, strAddressType, dwBinaryAddressLength, abBinaryAddress, strNetworkResource, strUser, strPassword, strLocale, lSecurityFlags, strAuthority, pCtx, ppNamespace);
     }
 };
@@ -7772,13 +7772,13 @@ pub const IWbemClientConnectionTransport = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: **anyopaque, pCallRes: ?*?*IWbemCallResult) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pInterface: **anyopaque, pCallRes: ?*?*IWbemCallResult) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pInterface, pCallRes);
     }
-    pub fn OpenAsync(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pResponseHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn OpenAsync(self: *const IWbemClientConnectionTransport, strAddressType: ?BSTR, dwBinaryAddressLength: u32, abBinaryAddress: [*:0]u8, strObject: ?BSTR, strUser: ?BSTR, strPassword: ?BSTR, strLocale: ?BSTR, lFlags: i32, pCtx: ?*IWbemContext, riid: ?*const Guid, pResponseHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.OpenAsync(self, strAddressType, dwBinaryAddressLength, abBinaryAddress, strObject, strUser, strPassword, strLocale, lFlags, pCtx, riid, pResponseHandler);
     }
-    pub fn Cancel(self: *const IWbemClientConnectionTransport, lFlags: i32, pHandler: ?*IWbemObjectSink) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IWbemClientConnectionTransport, lFlags: i32, pHandler: ?*IWbemObjectSink) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self, lFlags, pHandler);
     }
 };
@@ -7812,16 +7812,16 @@ pub const IWbemConstructClassObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetInheritanceChain(self: *const IWbemConstructClassObject, lNumAntecedents: i32, awszAntecedents: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn SetInheritanceChain(self: *const IWbemConstructClassObject, lNumAntecedents: i32, awszAntecedents: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetInheritanceChain(self, lNumAntecedents, awszAntecedents);
     }
-    pub fn SetPropertyOrigin(self: *const IWbemConstructClassObject, wszPropertyName: ?[*:0]const u16, lOriginIndex: i32) callconv(.Inline) HRESULT {
+    pub fn SetPropertyOrigin(self: *const IWbemConstructClassObject, wszPropertyName: ?[*:0]const u16, lOriginIndex: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPropertyOrigin(self, wszPropertyName, lOriginIndex);
     }
-    pub fn SetMethodOrigin(self: *const IWbemConstructClassObject, wszMethodName: ?[*:0]const u16, lOriginIndex: i32) callconv(.Inline) HRESULT {
+    pub fn SetMethodOrigin(self: *const IWbemConstructClassObject, wszMethodName: ?[*:0]const u16, lOriginIndex: i32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMethodOrigin(self, wszMethodName, lOriginIndex);
     }
-    pub fn SetServerNamespace(self: *const IWbemConstructClassObject, wszServer: ?[*:0]const u16, wszNamespace: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetServerNamespace(self: *const IWbemConstructClassObject, wszServer: ?[*:0]const u16, wszNamespace: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetServerNamespace(self, wszServer, wszNamespace);
     }
 };

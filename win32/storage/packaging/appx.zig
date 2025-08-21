@@ -251,19 +251,19 @@ pub const IAppxFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreatePackageWriter(self: *const IAppxFactory, outputStream: ?*IStream, settings: ?*APPX_PACKAGE_SETTINGS, packageWriter: ?*?*IAppxPackageWriter) callconv(.Inline) HRESULT {
+    pub fn CreatePackageWriter(self: *const IAppxFactory, outputStream: ?*IStream, settings: ?*APPX_PACKAGE_SETTINGS, packageWriter: ?*?*IAppxPackageWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePackageWriter(self, outputStream, settings, packageWriter);
     }
-    pub fn CreatePackageReader(self: *const IAppxFactory, inputStream: ?*IStream, packageReader: ?*?*IAppxPackageReader) callconv(.Inline) HRESULT {
+    pub fn CreatePackageReader(self: *const IAppxFactory, inputStream: ?*IStream, packageReader: ?*?*IAppxPackageReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePackageReader(self, inputStream, packageReader);
     }
-    pub fn CreateManifestReader(self: *const IAppxFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxManifestReader) callconv(.Inline) HRESULT {
+    pub fn CreateManifestReader(self: *const IAppxFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxManifestReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateManifestReader(self, inputStream, manifestReader);
     }
-    pub fn CreateBlockMapReader(self: *const IAppxFactory, inputStream: ?*IStream, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
+    pub fn CreateBlockMapReader(self: *const IAppxFactory, inputStream: ?*IStream, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBlockMapReader(self, inputStream, blockMapReader);
     }
-    pub fn CreateValidatedBlockMapReader(self: *const IAppxFactory, blockMapStream: ?*IStream, signatureFileName: ?[*:0]const u16, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
+    pub fn CreateValidatedBlockMapReader(self: *const IAppxFactory, blockMapStream: ?*IStream, signatureFileName: ?[*:0]const u16, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateValidatedBlockMapReader(self, blockMapStream, signatureFileName, blockMapReader);
     }
 };
@@ -292,13 +292,13 @@ pub const IAppxFactory2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateContentGroupMapReader(self: *const IAppxFactory2, inputStream: ?*IStream, contentGroupMapReader: ?*?*IAppxContentGroupMapReader) callconv(.Inline) HRESULT {
+    pub fn CreateContentGroupMapReader(self: *const IAppxFactory2, inputStream: ?*IStream, contentGroupMapReader: ?*?*IAppxContentGroupMapReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateContentGroupMapReader(self, inputStream, contentGroupMapReader);
     }
-    pub fn CreateSourceContentGroupMapReader(self: *const IAppxFactory2, inputStream: ?*IStream, reader: ?*?*IAppxSourceContentGroupMapReader) callconv(.Inline) HRESULT {
+    pub fn CreateSourceContentGroupMapReader(self: *const IAppxFactory2, inputStream: ?*IStream, reader: ?*?*IAppxSourceContentGroupMapReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSourceContentGroupMapReader(self, inputStream, reader);
     }
-    pub fn CreateContentGroupMapWriter(self: *const IAppxFactory2, stream: ?*IStream, contentGroupMapWriter: ?*?*IAppxContentGroupMapWriter) callconv(.Inline) HRESULT {
+    pub fn CreateContentGroupMapWriter(self: *const IAppxFactory2, stream: ?*IStream, contentGroupMapWriter: ?*?*IAppxContentGroupMapWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateContentGroupMapWriter(self, stream, contentGroupMapWriter);
     }
 };
@@ -334,19 +334,19 @@ pub const IAppxPackageReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBlockMap(self: *const IAppxPackageReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
+    pub fn GetBlockMap(self: *const IAppxPackageReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.@"inline") HRESULT {
         return self.vtable.GetBlockMap(self, blockMapReader);
     }
-    pub fn GetFootprintFile(self: *const IAppxPackageReader, @"type": APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetFootprintFile(self: *const IAppxPackageReader, @"type": APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetFootprintFile(self, @"type", file);
     }
-    pub fn GetPayloadFile(self: *const IAppxPackageReader, fileName: ?[*:0]const u16, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetPayloadFile(self: *const IAppxPackageReader, fileName: ?[*:0]const u16, file: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetPayloadFile(self, fileName, file);
     }
-    pub fn GetPayloadFiles(self: *const IAppxPackageReader, filesEnumerator: ?*?*IAppxFilesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPayloadFiles(self: *const IAppxPackageReader, filesEnumerator: ?*?*IAppxFilesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetPayloadFiles(self, filesEnumerator);
     }
-    pub fn GetManifest(self: *const IAppxPackageReader, manifestReader: ?*?*IAppxManifestReader) callconv(.Inline) HRESULT {
+    pub fn GetManifest(self: *const IAppxPackageReader, manifestReader: ?*?*IAppxManifestReader) callconv(.@"inline") HRESULT {
         return self.vtable.GetManifest(self, manifestReader);
     }
 };
@@ -371,10 +371,10 @@ pub const IAppxPackageWriter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadFile(self: *const IAppxPackageWriter, fileName: ?[*:0]const u16, contentType: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPayloadFile(self: *const IAppxPackageWriter, fileName: ?[*:0]const u16, contentType: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.AddPayloadFile(self, fileName, contentType, compressionOption, inputStream);
     }
-    pub fn Close(self: *const IAppxPackageWriter, manifest: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxPackageWriter, manifest: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self, manifest);
     }
 };
@@ -393,7 +393,7 @@ pub const IAppxPackageWriter2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Close(self: *const IAppxPackageWriter2, manifest: ?*IStream, contentGroupMap: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxPackageWriter2, manifest: ?*IStream, contentGroupMap: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self, manifest, contentGroupMap);
     }
 };
@@ -413,7 +413,7 @@ pub const IAppxPackageWriter3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadFiles(self: *const IAppxPackageWriter3, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.Inline) HRESULT {
+    pub fn AddPayloadFiles(self: *const IAppxPackageWriter3, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.@"inline") HRESULT {
         return self.vtable.AddPayloadFiles(self, fileCount, payloadFiles, memoryLimit);
     }
 };
@@ -447,19 +447,19 @@ pub const IAppxFile = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCompressionOption(self: *const IAppxFile, compressionOption: ?*APPX_COMPRESSION_OPTION) callconv(.Inline) HRESULT {
+    pub fn GetCompressionOption(self: *const IAppxFile, compressionOption: ?*APPX_COMPRESSION_OPTION) callconv(.@"inline") HRESULT {
         return self.vtable.GetCompressionOption(self, compressionOption);
     }
-    pub fn GetContentType(self: *const IAppxFile, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetContentType(self: *const IAppxFile, contentType: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentType(self, contentType);
     }
-    pub fn GetName(self: *const IAppxFile, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxFile, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, fileName);
     }
-    pub fn GetSize(self: *const IAppxFile, size: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IAppxFile, size: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, size);
     }
-    pub fn GetStream(self: *const IAppxFile, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAppxFile, stream: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.GetStream(self, stream);
     }
 };
@@ -485,13 +485,13 @@ pub const IAppxFilesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxFilesEnumerator, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxFilesEnumerator, file: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, file);
     }
-    pub fn GetHasCurrent(self: *const IAppxFilesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxFilesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxFilesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -522,16 +522,16 @@ pub const IAppxBlockMapReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFile(self: *const IAppxBlockMapReader, filename: ?[*:0]const u16, file: ?*?*IAppxBlockMapFile) callconv(.Inline) HRESULT {
+    pub fn GetFile(self: *const IAppxBlockMapReader, filename: ?[*:0]const u16, file: ?*?*IAppxBlockMapFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetFile(self, filename, file);
     }
-    pub fn GetFiles(self: *const IAppxBlockMapReader, enumerator: ?*?*IAppxBlockMapFilesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetFiles(self: *const IAppxBlockMapReader, enumerator: ?*?*IAppxBlockMapFilesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetFiles(self, enumerator);
     }
-    pub fn GetHashMethod(self: *const IAppxBlockMapReader, hashMethod: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn GetHashMethod(self: *const IAppxBlockMapReader, hashMethod: ?*?*IUri) callconv(.@"inline") HRESULT {
         return self.vtable.GetHashMethod(self, hashMethod);
     }
-    pub fn GetStream(self: *const IAppxBlockMapReader, blockMapStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAppxBlockMapReader, blockMapStream: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.GetStream(self, blockMapStream);
     }
 };
@@ -566,19 +566,19 @@ pub const IAppxBlockMapFile = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBlocks(self: *const IAppxBlockMapFile, blocks: ?*?*IAppxBlockMapBlocksEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetBlocks(self: *const IAppxBlockMapFile, blocks: ?*?*IAppxBlockMapBlocksEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetBlocks(self, blocks);
     }
-    pub fn GetLocalFileHeaderSize(self: *const IAppxBlockMapFile, lfhSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLocalFileHeaderSize(self: *const IAppxBlockMapFile, lfhSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalFileHeaderSize(self, lfhSize);
     }
-    pub fn GetName(self: *const IAppxBlockMapFile, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxBlockMapFile, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetUncompressedSize(self: *const IAppxBlockMapFile, size: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetUncompressedSize(self: *const IAppxBlockMapFile, size: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetUncompressedSize(self, size);
     }
-    pub fn ValidateFileHash(self: *const IAppxBlockMapFile, fileStream: ?*IStream, isValid: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn ValidateFileHash(self: *const IAppxBlockMapFile, fileStream: ?*IStream, isValid: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ValidateFileHash(self, fileStream, isValid);
     }
 };
@@ -604,13 +604,13 @@ pub const IAppxBlockMapFilesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBlockMapFilesEnumerator, file: ?*?*IAppxBlockMapFile) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxBlockMapFilesEnumerator, file: ?*?*IAppxBlockMapFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, file);
     }
-    pub fn GetHasCurrent(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasCurrent);
     }
 };
@@ -633,10 +633,10 @@ pub const IAppxBlockMapBlock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHash(self: *const IAppxBlockMapBlock, bufferSize: ?*u32, buffer: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetHash(self: *const IAppxBlockMapBlock, bufferSize: ?*u32, buffer: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetHash(self, bufferSize, buffer);
     }
-    pub fn GetCompressedSize(self: *const IAppxBlockMapBlock, size: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCompressedSize(self: *const IAppxBlockMapBlock, size: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCompressedSize(self, size);
     }
 };
@@ -662,13 +662,13 @@ pub const IAppxBlockMapBlocksEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBlockMapBlocksEnumerator, block: ?*?*IAppxBlockMapBlock) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxBlockMapBlocksEnumerator, block: ?*?*IAppxBlockMapBlock) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, block);
     }
-    pub fn GetHasCurrent(self: *const IAppxBlockMapBlocksEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxBlockMapBlocksEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBlockMapBlocksEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxBlockMapBlocksEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -719,31 +719,31 @@ pub const IAppxManifestReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageId(self: *const IAppxManifestReader, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
+    pub fn GetPackageId(self: *const IAppxManifestReader, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetProperties(self: *const IAppxManifestReader, packageProperties: ?*?*IAppxManifestProperties) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const IAppxManifestReader, packageProperties: ?*?*IAppxManifestProperties) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperties(self, packageProperties);
     }
-    pub fn GetPackageDependencies(self: *const IAppxManifestReader, dependencies: ?*?*IAppxManifestPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPackageDependencies(self: *const IAppxManifestReader, dependencies: ?*?*IAppxManifestPackageDependenciesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageDependencies(self, dependencies);
     }
-    pub fn GetCapabilities(self: *const IAppxManifestReader, capabilities: ?*APPX_CAPABILITIES) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IAppxManifestReader, capabilities: ?*APPX_CAPABILITIES) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, capabilities);
     }
-    pub fn GetResources(self: *const IAppxManifestReader, resources: ?*?*IAppxManifestResourcesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetResources(self: *const IAppxManifestReader, resources: ?*?*IAppxManifestResourcesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetResources(self, resources);
     }
-    pub fn GetDeviceCapabilities(self: *const IAppxManifestReader, deviceCapabilities: ?*?*IAppxManifestDeviceCapabilitiesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetDeviceCapabilities(self: *const IAppxManifestReader, deviceCapabilities: ?*?*IAppxManifestDeviceCapabilitiesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceCapabilities(self, deviceCapabilities);
     }
-    pub fn GetPrerequisite(self: *const IAppxManifestReader, name: ?[*:0]const u16, value: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetPrerequisite(self: *const IAppxManifestReader, name: ?[*:0]const u16, value: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrerequisite(self, name, value);
     }
-    pub fn GetApplications(self: *const IAppxManifestReader, applications: ?*?*IAppxManifestApplicationsEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetApplications(self: *const IAppxManifestReader, applications: ?*?*IAppxManifestApplicationsEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetApplications(self, applications);
     }
-    pub fn GetStream(self: *const IAppxManifestReader, manifestStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAppxManifestReader, manifestStream: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.GetStream(self, manifestStream);
     }
 };
@@ -762,7 +762,7 @@ pub const IAppxManifestReader2 = extern union {
     vtable: *const VTable,
     IAppxManifestReader: IAppxManifestReader,
     IUnknown: IUnknown,
-    pub fn GetQualifiedResources(self: *const IAppxManifestReader2, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetQualifiedResources(self: *const IAppxManifestReader2, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetQualifiedResources(self, resources);
     }
 };
@@ -786,10 +786,10 @@ pub const IAppxManifestReader3 = extern union {
     IAppxManifestReader2: IAppxManifestReader2,
     IAppxManifestReader: IAppxManifestReader,
     IUnknown: IUnknown,
-    pub fn GetCapabilitiesByCapabilityClass(self: *const IAppxManifestReader3, capabilityClass: APPX_CAPABILITY_CLASS_TYPE, capabilities: ?*?*IAppxManifestCapabilitiesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetCapabilitiesByCapabilityClass(self: *const IAppxManifestReader3, capabilityClass: APPX_CAPABILITY_CLASS_TYPE, capabilities: ?*?*IAppxManifestCapabilitiesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilitiesByCapabilityClass(self, capabilityClass, capabilities);
     }
-    pub fn GetTargetDeviceFamilies(self: *const IAppxManifestReader3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetTargetDeviceFamilies(self: *const IAppxManifestReader3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetDeviceFamilies(self, targetDeviceFamilies);
     }
 };
@@ -809,7 +809,7 @@ pub const IAppxManifestReader4 = extern union {
     IAppxManifestReader2: IAppxManifestReader2,
     IAppxManifestReader: IAppxManifestReader,
     IUnknown: IUnknown,
-    pub fn GetOptionalPackageInfo(self: *const IAppxManifestReader4, optionalPackageInfo: ?*?*IAppxManifestOptionalPackageInfo) callconv(.Inline) HRESULT {
+    pub fn GetOptionalPackageInfo(self: *const IAppxManifestReader4, optionalPackageInfo: ?*?*IAppxManifestOptionalPackageInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionalPackageInfo(self, optionalPackageInfo);
     }
 };
@@ -827,7 +827,7 @@ pub const IAppxManifestReader5 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMainPackageDependencies(self: *const IAppxManifestReader5, mainPackageDependencies: ?*?*IAppxManifestMainPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetMainPackageDependencies(self: *const IAppxManifestReader5, mainPackageDependencies: ?*?*IAppxManifestMainPackageDependenciesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetMainPackageDependencies(self, mainPackageDependencies);
     }
 };
@@ -845,7 +845,7 @@ pub const IAppxManifestReader6 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxManifestReader6, isNonQualifiedResourcePackage: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxManifestReader6, isNonQualifiedResourcePackage: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsNonQualifiedResourcePackage(self, isNonQualifiedResourcePackage);
     }
 };
@@ -870,13 +870,13 @@ pub const IAppxManifestReader7 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDriverDependencies(self: *const IAppxManifestReader7, driverDependencies: ?*?*IAppxManifestDriverDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetDriverDependencies(self: *const IAppxManifestReader7, driverDependencies: ?*?*IAppxManifestDriverDependenciesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetDriverDependencies(self, driverDependencies);
     }
-    pub fn GetOSPackageDependencies(self: *const IAppxManifestReader7, osPackageDependencies: ?*?*IAppxManifestOSPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetOSPackageDependencies(self: *const IAppxManifestReader7, osPackageDependencies: ?*?*IAppxManifestOSPackageDependenciesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetOSPackageDependencies(self, osPackageDependencies);
     }
-    pub fn GetHostRuntimeDependencies(self: *const IAppxManifestReader7, hostRuntimeDependencies: ?*?*IAppxManifestHostRuntimeDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetHostRuntimeDependencies(self: *const IAppxManifestReader7, hostRuntimeDependencies: ?*?*IAppxManifestHostRuntimeDependenciesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetHostRuntimeDependencies(self, hostRuntimeDependencies);
     }
 };
@@ -901,13 +901,13 @@ pub const IAppxManifestDriverDependenciesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, driverDependency: ?*?*IAppxManifestDriverDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, driverDependency: ?*?*IAppxManifestDriverDependency) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, driverDependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestDriverDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestDriverDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -924,7 +924,7 @@ pub const IAppxManifestDriverDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDriverConstraints(self: *const IAppxManifestDriverDependency, driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetDriverConstraints(self: *const IAppxManifestDriverDependency, driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetDriverConstraints(self, driverConstraints);
     }
 };
@@ -949,13 +949,13 @@ pub const IAppxManifestDriverConstraintsEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, driverConstraint: ?*?*IAppxManifestDriverConstraint) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, driverConstraint: ?*?*IAppxManifestDriverConstraint) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, driverConstraint);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestDriverConstraintsEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestDriverConstraintsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -980,13 +980,13 @@ pub const IAppxManifestDriverConstraint = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestDriverConstraint, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestDriverConstraint, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetMinVersion(self: *const IAppxManifestDriverConstraint, minVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMinVersion(self: *const IAppxManifestDriverConstraint, minVersion: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
-    pub fn GetMinDate(self: *const IAppxManifestDriverConstraint, minDate: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMinDate(self: *const IAppxManifestDriverConstraint, minDate: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMinDate(self, minDate);
     }
 };
@@ -1011,13 +1011,13 @@ pub const IAppxManifestOSPackageDependenciesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, osPackageDependency: ?*?*IAppxManifestOSPackageDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, osPackageDependency: ?*?*IAppxManifestOSPackageDependency) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, osPackageDependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1038,10 +1038,10 @@ pub const IAppxManifestOSPackageDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestOSPackageDependency, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestOSPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetVersion(self: *const IAppxManifestOSPackageDependency, version: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IAppxManifestOSPackageDependency, version: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetVersion(self, version);
     }
 };
@@ -1066,13 +1066,13 @@ pub const IAppxManifestHostRuntimeDependenciesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, hostRuntimeDependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1097,13 +1097,13 @@ pub const IAppxManifestHostRuntimeDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestHostRuntimeDependency, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestHostRuntimeDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestHostRuntimeDependency, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestHostRuntimeDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetMinVersion(self: *const IAppxManifestHostRuntimeDependency, minVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMinVersion(self: *const IAppxManifestHostRuntimeDependency, minVersion: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
 };
@@ -1120,7 +1120,7 @@ pub const IAppxManifestHostRuntimeDependency2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageFamilyName(self: *const IAppxManifestHostRuntimeDependency2, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestHostRuntimeDependency2, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -1142,10 +1142,10 @@ pub const IAppxManifestOptionalPackageInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsOptionalPackage(self: *const IAppxManifestOptionalPackageInfo, isOptionalPackage: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsOptionalPackage(self: *const IAppxManifestOptionalPackageInfo, isOptionalPackage: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsOptionalPackage(self, isOptionalPackage);
     }
-    pub fn GetMainPackageName(self: *const IAppxManifestOptionalPackageInfo, mainPackageName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMainPackageName(self: *const IAppxManifestOptionalPackageInfo, mainPackageName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetMainPackageName(self, mainPackageName);
     }
 };
@@ -1171,13 +1171,13 @@ pub const IAppxManifestMainPackageDependenciesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, mainPackageDependency: ?*?*IAppxManifestMainPackageDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, mainPackageDependency: ?*?*IAppxManifestMainPackageDependency) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, mainPackageDependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1203,13 +1203,13 @@ pub const IAppxManifestMainPackageDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestMainPackageDependency, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestMainPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestMainPackageDependency, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestMainPackageDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetPackageFamilyName(self: *const IAppxManifestMainPackageDependency, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestMainPackageDependency, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -1256,28 +1256,28 @@ pub const IAppxManifestPackageId = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestPackageId, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestPackageId, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetArchitecture(self: *const IAppxManifestPackageId, architecture: ?*APPX_PACKAGE_ARCHITECTURE) callconv(.Inline) HRESULT {
+    pub fn GetArchitecture(self: *const IAppxManifestPackageId, architecture: ?*APPX_PACKAGE_ARCHITECTURE) callconv(.@"inline") HRESULT {
         return self.vtable.GetArchitecture(self, architecture);
     }
-    pub fn GetPublisher(self: *const IAppxManifestPackageId, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestPackageId, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetVersion(self: *const IAppxManifestPackageId, packageVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IAppxManifestPackageId, packageVersion: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetVersion(self, packageVersion);
     }
-    pub fn GetResourceId(self: *const IAppxManifestPackageId, resourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetResourceId(self: *const IAppxManifestPackageId, resourceId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceId(self, resourceId);
     }
-    pub fn ComparePublisher(self: *const IAppxManifestPackageId, other: ?[*:0]const u16, isSame: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn ComparePublisher(self: *const IAppxManifestPackageId, other: ?[*:0]const u16, isSame: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.ComparePublisher(self, other, isSame);
     }
-    pub fn GetPackageFullName(self: *const IAppxManifestPackageId, packageFullName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPackageFullName(self: *const IAppxManifestPackageId, packageFullName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageFullName(self, packageFullName);
     }
-    pub fn GetPackageFamilyName(self: *const IAppxManifestPackageId, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestPackageId, packageFamilyName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -1296,7 +1296,7 @@ pub const IAppxManifestPackageId2 = extern union {
     vtable: *const VTable,
     IAppxManifestPackageId: IAppxManifestPackageId,
     IUnknown: IUnknown,
-    pub fn GetArchitecture2(self: *const IAppxManifestPackageId2, architecture: ?*APPX_PACKAGE_ARCHITECTURE2) callconv(.Inline) HRESULT {
+    pub fn GetArchitecture2(self: *const IAppxManifestPackageId2, architecture: ?*APPX_PACKAGE_ARCHITECTURE2) callconv(.@"inline") HRESULT {
         return self.vtable.GetArchitecture2(self, architecture);
     }
 };
@@ -1320,10 +1320,10 @@ pub const IAppxManifestProperties = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBoolValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetBoolValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetBoolValue(self, name, value);
     }
-    pub fn GetStringValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringValue(self, name, value);
     }
 };
@@ -1348,13 +1348,13 @@ pub const IAppxManifestTargetDeviceFamiliesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, targetDeviceFamily: ?*?*IAppxManifestTargetDeviceFamily) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, targetDeviceFamily: ?*?*IAppxManifestTargetDeviceFamily) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, targetDeviceFamily);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1380,13 +1380,13 @@ pub const IAppxManifestTargetDeviceFamily = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestTargetDeviceFamily, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestTargetDeviceFamily, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetMinVersion(self: *const IAppxManifestTargetDeviceFamily, minVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMinVersion(self: *const IAppxManifestTargetDeviceFamily, minVersion: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
-    pub fn GetMaxVersionTested(self: *const IAppxManifestTargetDeviceFamily, maxVersionTested: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMaxVersionTested(self: *const IAppxManifestTargetDeviceFamily, maxVersionTested: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxVersionTested(self, maxVersionTested);
     }
 };
@@ -1412,13 +1412,13 @@ pub const IAppxManifestPackageDependenciesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, dependency: ?*?*IAppxManifestPackageDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, dependency: ?*?*IAppxManifestPackageDependency) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, dependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1444,13 +1444,13 @@ pub const IAppxManifestPackageDependency = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestPackageDependency, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestPackageDependency, name: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestPackageDependency, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestPackageDependency, publisher: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetMinVersion(self: *const IAppxManifestPackageDependency, minVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMinVersion(self: *const IAppxManifestPackageDependency, minVersion: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
 };
@@ -1469,7 +1469,7 @@ pub const IAppxManifestPackageDependency2 = extern union {
     vtable: *const VTable,
     IAppxManifestPackageDependency: IAppxManifestPackageDependency,
     IUnknown: IUnknown,
-    pub fn GetMaxMajorVersionTested(self: *const IAppxManifestPackageDependency2, maxMajorVersionTested: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetMaxMajorVersionTested(self: *const IAppxManifestPackageDependency2, maxMajorVersionTested: ?*u16) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaxMajorVersionTested(self, maxMajorVersionTested);
     }
 };
@@ -1486,7 +1486,7 @@ pub const IAppxManifestPackageDependency3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsOptional(self: *const IAppxManifestPackageDependency3, isOptional: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsOptional(self: *const IAppxManifestPackageDependency3, isOptional: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsOptional(self, isOptional);
     }
 };
@@ -1512,13 +1512,13 @@ pub const IAppxManifestResourcesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestResourcesEnumerator, resource: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestResourcesEnumerator, resource: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, resource);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestResourcesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestResourcesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1544,13 +1544,13 @@ pub const IAppxManifestDeviceCapabilitiesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, deviceCapability: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, deviceCapability: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, deviceCapability);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1575,13 +1575,13 @@ pub const IAppxManifestCapabilitiesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestCapabilitiesEnumerator, capability: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestCapabilitiesEnumerator, capability: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, capability);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1607,13 +1607,13 @@ pub const IAppxManifestApplicationsEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestApplicationsEnumerator, application: ?*?*IAppxManifestApplication) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestApplicationsEnumerator, application: ?*?*IAppxManifestApplication) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, application);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestApplicationsEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestApplicationsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestApplicationsEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestApplicationsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1636,10 +1636,10 @@ pub const IAppxManifestApplication = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStringValue(self: *const IAppxManifestApplication, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringValue(self: *const IAppxManifestApplication, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetStringValue(self, name, value);
     }
-    pub fn GetAppUserModelId(self: *const IAppxManifestApplication, appUserModelId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetAppUserModelId(self: *const IAppxManifestApplication, appUserModelId: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetAppUserModelId(self, appUserModelId);
     }
 };
@@ -1664,13 +1664,13 @@ pub const IAppxManifestQualifiedResourcesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, resource: ?*?*IAppxManifestQualifiedResource) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, resource: ?*?*IAppxManifestQualifiedResource) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, resource);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestQualifiedResourcesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestQualifiedResourcesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1695,13 +1695,13 @@ pub const IAppxManifestQualifiedResource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLanguage(self: *const IAppxManifestQualifiedResource, language: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetLanguage(self: *const IAppxManifestQualifiedResource, language: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLanguage(self, language);
     }
-    pub fn GetScale(self: *const IAppxManifestQualifiedResource, scale: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScale(self: *const IAppxManifestQualifiedResource, scale: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetScale(self, scale);
     }
-    pub fn GetDXFeatureLevel(self: *const IAppxManifestQualifiedResource, dxFeatureLevel: ?*DX_FEATURE_LEVEL) callconv(.Inline) HRESULT {
+    pub fn GetDXFeatureLevel(self: *const IAppxManifestQualifiedResource, dxFeatureLevel: ?*DX_FEATURE_LEVEL) callconv(.@"inline") HRESULT {
         return self.vtable.GetDXFeatureLevel(self, dxFeatureLevel);
     }
 };
@@ -1731,13 +1731,13 @@ pub const IAppxBundleFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateBundleWriter(self: *const IAppxBundleFactory, outputStream: ?*IStream, bundleVersion: u64, bundleWriter: ?*?*IAppxBundleWriter) callconv(.Inline) HRESULT {
+    pub fn CreateBundleWriter(self: *const IAppxBundleFactory, outputStream: ?*IStream, bundleVersion: u64, bundleWriter: ?*?*IAppxBundleWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBundleWriter(self, outputStream, bundleVersion, bundleWriter);
     }
-    pub fn CreateBundleReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, bundleReader: ?*?*IAppxBundleReader) callconv(.Inline) HRESULT {
+    pub fn CreateBundleReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, bundleReader: ?*?*IAppxBundleReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBundleReader(self, inputStream, bundleReader);
     }
-    pub fn CreateBundleManifestReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.Inline) HRESULT {
+    pub fn CreateBundleManifestReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBundleManifestReader(self, inputStream, manifestReader);
     }
 };
@@ -1759,10 +1759,10 @@ pub const IAppxBundleWriter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadPackage(self: *const IAppxBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPayloadPackage(self: *const IAppxBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.AddPayloadPackage(self, fileName, packageStream);
     }
-    pub fn Close(self: *const IAppxBundleWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxBundleWriter) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -1781,7 +1781,7 @@ pub const IAppxBundleWriter2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.AddExternalPackageReference(self, fileName, inputStream);
     }
 };
@@ -1804,10 +1804,10 @@ pub const IAppxBundleWriter3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPackageReference(self: *const IAppxBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPackageReference(self: *const IAppxBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.AddPackageReference(self, fileName, inputStream);
     }
-    pub fn Close(self: *const IAppxBundleWriter3, hashMethodString: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxBundleWriter3, hashMethodString: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self, hashMethodString);
     }
 };
@@ -1839,13 +1839,13 @@ pub const IAppxBundleWriter4 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadPackage(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddPayloadPackage(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddPayloadPackage(self, fileName, packageStream, isDefaultApplicablePackage);
     }
-    pub fn AddPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
     }
-    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddExternalPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
     }
 };
@@ -1881,19 +1881,19 @@ pub const IAppxBundleReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFootprintFile(self: *const IAppxBundleReader, fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE, footprintFile: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetFootprintFile(self: *const IAppxBundleReader, fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE, footprintFile: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetFootprintFile(self, fileType, footprintFile);
     }
-    pub fn GetBlockMap(self: *const IAppxBundleReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
+    pub fn GetBlockMap(self: *const IAppxBundleReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.@"inline") HRESULT {
         return self.vtable.GetBlockMap(self, blockMapReader);
     }
-    pub fn GetManifest(self: *const IAppxBundleReader, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.Inline) HRESULT {
+    pub fn GetManifest(self: *const IAppxBundleReader, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.@"inline") HRESULT {
         return self.vtable.GetManifest(self, manifestReader);
     }
-    pub fn GetPayloadPackages(self: *const IAppxBundleReader, payloadPackages: ?*?*IAppxFilesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPayloadPackages(self: *const IAppxBundleReader, payloadPackages: ?*?*IAppxFilesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetPayloadPackages(self, payloadPackages);
     }
-    pub fn GetPayloadPackage(self: *const IAppxBundleReader, fileName: ?[*:0]const u16, payloadPackage: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetPayloadPackage(self: *const IAppxBundleReader, fileName: ?[*:0]const u16, payloadPackage: ?*?*IAppxFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetPayloadPackage(self, fileName, payloadPackage);
     }
 };
@@ -1919,13 +1919,13 @@ pub const IAppxBundleManifestReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageId(self: *const IAppxBundleManifestReader, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
+    pub fn GetPackageId(self: *const IAppxBundleManifestReader, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestReader, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestReader, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageInfoItems(self, packageInfoItems);
     }
-    pub fn GetStream(self: *const IAppxBundleManifestReader, manifestStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAppxBundleManifestReader, manifestStream: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.GetStream(self, manifestStream);
     }
 };
@@ -1943,7 +1943,7 @@ pub const IAppxBundleManifestReader2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOptionalBundles(self: *const IAppxBundleManifestReader2, optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetOptionalBundles(self: *const IAppxBundleManifestReader2, optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetOptionalBundles(self, optionalBundles);
     }
 };
@@ -1969,13 +1969,13 @@ pub const IAppxBundleManifestPackageInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, packageInfo: ?*?*IAppxBundleManifestPackageInfo) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, packageInfo: ?*?*IAppxBundleManifestPackageInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, packageInfo);
     }
-    pub fn GetHasCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBundleManifestPackageInfoEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxBundleManifestPackageInfoEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -2013,22 +2013,22 @@ pub const IAppxBundleManifestPackageInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageType(self: *const IAppxBundleManifestPackageInfo, packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetPackageType(self: *const IAppxBundleManifestPackageInfo, packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageType(self, packageType);
     }
-    pub fn GetPackageId(self: *const IAppxBundleManifestPackageInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
+    pub fn GetPackageId(self: *const IAppxBundleManifestPackageInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetFileName(self: *const IAppxBundleManifestPackageInfo, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFileName(self: *const IAppxBundleManifestPackageInfo, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileName(self, fileName);
     }
-    pub fn GetOffset(self: *const IAppxBundleManifestPackageInfo, offset: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetOffset(self: *const IAppxBundleManifestPackageInfo, offset: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetOffset(self, offset);
     }
-    pub fn GetSize(self: *const IAppxBundleManifestPackageInfo, size: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IAppxBundleManifestPackageInfo, size: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, size);
     }
-    pub fn GetResources(self: *const IAppxBundleManifestPackageInfo, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetResources(self: *const IAppxBundleManifestPackageInfo, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetResources(self, resources);
     }
 };
@@ -2054,13 +2054,13 @@ pub const IAppxBundleManifestPackageInfo2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsPackageReference(self: *const IAppxBundleManifestPackageInfo2, isPackageReference: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsPackageReference(self: *const IAppxBundleManifestPackageInfo2, isPackageReference: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsPackageReference(self, isPackageReference);
     }
-    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxBundleManifestPackageInfo2, isNonQualifiedResourcePackage: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxBundleManifestPackageInfo2, isNonQualifiedResourcePackage: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsNonQualifiedResourcePackage(self, isNonQualifiedResourcePackage);
     }
-    pub fn GetIsDefaultApplicablePackage(self: *const IAppxBundleManifestPackageInfo2, isDefaultApplicablePackage: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsDefaultApplicablePackage(self: *const IAppxBundleManifestPackageInfo2, isDefaultApplicablePackage: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsDefaultApplicablePackage(self, isDefaultApplicablePackage);
     }
 };
@@ -2077,7 +2077,7 @@ pub const IAppxBundleManifestPackageInfo3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTargetDeviceFamilies(self: *const IAppxBundleManifestPackageInfo3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetTargetDeviceFamilies(self: *const IAppxBundleManifestPackageInfo3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetTargetDeviceFamilies(self, targetDeviceFamilies);
     }
 };
@@ -2094,7 +2094,7 @@ pub const IAppxBundleManifestPackageInfo4 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsStub(self: *const IAppxBundleManifestPackageInfo4, isStub: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsStub(self: *const IAppxBundleManifestPackageInfo4, isStub: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetIsStub(self, isStub);
     }
 };
@@ -2120,13 +2120,13 @@ pub const IAppxBundleManifestOptionalBundleInfoEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, optionalBundle);
     }
-    pub fn GetHasCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -2152,13 +2152,13 @@ pub const IAppxBundleManifestOptionalBundleInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageId(self: *const IAppxBundleManifestOptionalBundleInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
+    pub fn GetPackageId(self: *const IAppxBundleManifestOptionalBundleInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetFileName(self: *const IAppxBundleManifestOptionalBundleInfo, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFileName(self: *const IAppxBundleManifestOptionalBundleInfo, fileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileName(self, fileName);
     }
-    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestOptionalBundleInfo, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestOptionalBundleInfo, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetPackageInfoItems(self, packageInfoItems);
     }
 };
@@ -2184,13 +2184,13 @@ pub const IAppxContentGroupFilesEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxContentGroupFilesEnumerator, file: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxContentGroupFilesEnumerator, file: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, file);
     }
-    pub fn GetHasCurrent(self: *const IAppxContentGroupFilesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxContentGroupFilesEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxContentGroupFilesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxContentGroupFilesEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -2212,10 +2212,10 @@ pub const IAppxContentGroup = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxContentGroup, groupName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxContentGroup, groupName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetName(self, groupName);
     }
-    pub fn GetFiles(self: *const IAppxContentGroup, enumerator: ?*?*IAppxContentGroupFilesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetFiles(self: *const IAppxContentGroup, enumerator: ?*?*IAppxContentGroupFilesEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetFiles(self, enumerator);
     }
 };
@@ -2241,13 +2241,13 @@ pub const IAppxContentGroupsEnumerator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxContentGroupsEnumerator, stream: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxContentGroupsEnumerator, stream: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrent(self, stream);
     }
-    pub fn GetHasCurrent(self: *const IAppxContentGroupsEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxContentGroupsEnumerator, hasCurrent: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxContentGroupsEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxContentGroupsEnumerator, hasNext: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -2269,10 +2269,10 @@ pub const IAppxContentGroupMapReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRequiredGroup(self: *const IAppxContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
+    pub fn GetRequiredGroup(self: *const IAppxContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
         return self.vtable.GetRequiredGroup(self, requiredGroup);
     }
-    pub fn GetAutomaticGroups(self: *const IAppxContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetAutomaticGroups(self: *const IAppxContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetAutomaticGroups(self, automaticGroupsEnumerator);
     }
 };
@@ -2294,10 +2294,10 @@ pub const IAppxSourceContentGroupMapReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRequiredGroup(self: *const IAppxSourceContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
+    pub fn GetRequiredGroup(self: *const IAppxSourceContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.@"inline") HRESULT {
         return self.vtable.GetRequiredGroup(self, requiredGroup);
     }
-    pub fn GetAutomaticGroups(self: *const IAppxSourceContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetAutomaticGroups(self: *const IAppxSourceContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.@"inline") HRESULT {
         return self.vtable.GetAutomaticGroups(self, automaticGroupsEnumerator);
     }
 };
@@ -2322,13 +2322,13 @@ pub const IAppxContentGroupMapWriter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAutomaticGroup(self: *const IAppxContentGroupMapWriter, groupName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddAutomaticGroup(self: *const IAppxContentGroupMapWriter, groupName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddAutomaticGroup(self, groupName);
     }
-    pub fn AddAutomaticFile(self: *const IAppxContentGroupMapWriter, fileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddAutomaticFile(self: *const IAppxContentGroupMapWriter, fileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddAutomaticFile(self, fileName);
     }
-    pub fn Close(self: *const IAppxContentGroupMapWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxContentGroupMapWriter) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -2353,10 +2353,10 @@ pub const IAppxPackagingDiagnosticEventSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReportContextChange(self: *const IAppxPackagingDiagnosticEventSink, changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE, contextId: i32, contextName: ?[*:0]const u8, contextMessage: ?[*:0]const u16, detailsMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ReportContextChange(self: *const IAppxPackagingDiagnosticEventSink, changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE, contextId: i32, contextName: ?[*:0]const u8, contextMessage: ?[*:0]const u16, detailsMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.ReportContextChange(self, changeType, contextId, contextName, contextMessage, detailsMessage);
     }
-    pub fn ReportError(self: *const IAppxPackagingDiagnosticEventSink, errorMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ReportError(self: *const IAppxPackagingDiagnosticEventSink, errorMessage: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.ReportError(self, errorMessage);
     }
 };
@@ -2373,7 +2373,7 @@ pub const IAppxPackagingDiagnosticEventSinkManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSinkForProcess(self: *const IAppxPackagingDiagnosticEventSinkManager, sink: ?*IAppxPackagingDiagnosticEventSink) callconv(.Inline) HRESULT {
+    pub fn SetSinkForProcess(self: *const IAppxPackagingDiagnosticEventSinkManager, sink: ?*IAppxPackagingDiagnosticEventSink) callconv(.@"inline") HRESULT {
         return self.vtable.SetSinkForProcess(self, sink);
     }
 };
@@ -2509,28 +2509,28 @@ pub const IAppxEncryptionFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
     }
-    pub fn DecryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+    pub fn DecryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.DecryptPackage(self, inputStream, outputStream, keyInfo);
     }
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, manifestStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, manifestStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, settings, keyInfo, exemptedFiles, packageWriter);
     }
-    pub fn CreateEncryptedPackageReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, packageReader: ?*?*IAppxPackageReader) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedPackageReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, packageReader: ?*?*IAppxPackageReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncryptedPackageReader(self, inputStream, keyInfo, packageReader);
     }
-    pub fn EncryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+    pub fn EncryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.EncryptBundle(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
     }
-    pub fn DecryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+    pub fn DecryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.DecryptBundle(self, inputStream, outputStream, keyInfo);
     }
-    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncryptedBundleWriter(self, outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
     }
-    pub fn CreateEncryptedBundleReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, bundleReader: ?*?*IAppxBundleReader) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedBundleReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, bundleReader: ?*?*IAppxBundleReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncryptedBundleReader(self, inputStream, keyInfo, bundleReader);
     }
 };
@@ -2554,7 +2554,7 @@ pub const IAppxEncryptionFactory2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory2, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory2, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
     }
 };
@@ -2603,16 +2603,16 @@ pub const IAppxEncryptionFactory3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
     }
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
     }
-    pub fn EncryptBundle(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+    pub fn EncryptBundle(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.EncryptBundle(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
     }
-    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncryptedBundleWriter(self, outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
     }
 };
@@ -2635,7 +2635,7 @@ pub const IAppxEncryptionFactory4 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory4, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, memoryLimit: u64) callconv(.Inline) HRESULT {
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory4, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, memoryLimit: u64) callconv(.@"inline") HRESULT {
         return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles, memoryLimit);
     }
 };
@@ -2658,10 +2658,10 @@ pub const IAppxEncryptedPackageWriter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadFileEncrypted(self: *const IAppxEncryptedPackageWriter, fileName: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPayloadFileEncrypted(self: *const IAppxEncryptedPackageWriter, fileName: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.AddPayloadFileEncrypted(self, fileName, compressionOption, inputStream);
     }
-    pub fn Close(self: *const IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxEncryptedPackageWriter) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -2681,7 +2681,7 @@ pub const IAppxEncryptedPackageWriter2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadFilesEncrypted(self: *const IAppxEncryptedPackageWriter2, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.Inline) HRESULT {
+    pub fn AddPayloadFilesEncrypted(self: *const IAppxEncryptedPackageWriter2, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.@"inline") HRESULT {
         return self.vtable.AddPayloadFilesEncrypted(self, fileCount, payloadFiles, memoryLimit);
     }
 };
@@ -2703,10 +2703,10 @@ pub const IAppxEncryptedBundleWriter = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.AddPayloadPackageEncrypted(self, fileName, packageStream);
     }
-    pub fn Close(self: *const IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxEncryptedBundleWriter) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -2725,7 +2725,7 @@ pub const IAppxEncryptedBundleWriter2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.AddExternalPackageReference(self, fileName, inputStream);
     }
 };
@@ -2794,10 +2794,10 @@ pub const IAppxEncryptedBundleWriter3 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddPayloadPackageEncrypted(self, fileName, packageStream, isDefaultApplicablePackage);
     }
-    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.AddExternalPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
     }
 };
@@ -2849,22 +2849,22 @@ pub const IAppxPackageEditor = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetWorkingDirectory(self: *const IAppxPackageEditor, workingDirectory: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetWorkingDirectory(self: *const IAppxPackageEditor, workingDirectory: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetWorkingDirectory(self, workingDirectory);
     }
-    pub fn CreateDeltaPackage(self: *const IAppxPackageEditor, updatedPackageStream: ?*IStream, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateDeltaPackage(self: *const IAppxPackageEditor, updatedPackageStream: ?*IStream, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDeltaPackage(self, updatedPackageStream, baselinePackageStream, deltaPackageStream);
     }
-    pub fn CreateDeltaPackageUsingBaselineBlockMap(self: *const IAppxPackageEditor, updatedPackageStream: ?*IStream, baselineBlockMapStream: ?*IStream, baselinePackageFullName: ?[*:0]const u16, deltaPackageStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateDeltaPackageUsingBaselineBlockMap(self: *const IAppxPackageEditor, updatedPackageStream: ?*IStream, baselineBlockMapStream: ?*IStream, baselinePackageFullName: ?[*:0]const u16, deltaPackageStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDeltaPackageUsingBaselineBlockMap(self, updatedPackageStream, baselineBlockMapStream, baselinePackageFullName, deltaPackageStream);
     }
-    pub fn UpdatePackage(self: *const IAppxPackageEditor, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION) callconv(.Inline) HRESULT {
+    pub fn UpdatePackage(self: *const IAppxPackageEditor, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION) callconv(.@"inline") HRESULT {
         return self.vtable.UpdatePackage(self, baselinePackageStream, deltaPackageStream, updateOption);
     }
-    pub fn UpdateEncryptedPackage(self: *const IAppxPackageEditor, baselineEncryptedPackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+    pub fn UpdateEncryptedPackage(self: *const IAppxPackageEditor, baselineEncryptedPackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateEncryptedPackage(self, baselineEncryptedPackageStream, deltaPackageStream, updateOption, settings, keyInfo);
     }
-    pub fn UpdatePackageManifest(self: *const IAppxPackageEditor, packageStream: ?*IStream, updatedManifestStream: ?*IStream, isPackageEncrypted: BOOL, options: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn UpdatePackageManifest(self: *const IAppxPackageEditor, packageStream: ?*IStream, updatedManifestStream: ?*IStream, isPackageEncrypted: BOOL, options: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS) callconv(.@"inline") HRESULT {
         return self.vtable.UpdatePackageManifest(self, packageStream, updatedManifestStream, isPackageEncrypted, options);
     }
 };

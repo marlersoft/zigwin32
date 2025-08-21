@@ -315,19 +315,19 @@ pub const IAudioEndpoint = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFrameFormat(self: *const IAudioEndpoint, ppFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetFrameFormat(self: *const IAudioEndpoint, ppFormat: ?*?*WAVEFORMATEX) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameFormat(self, ppFormat);
     }
-    pub fn GetFramesPerPacket(self: *const IAudioEndpoint, pFramesPerPacket: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFramesPerPacket(self: *const IAudioEndpoint, pFramesPerPacket: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFramesPerPacket(self, pFramesPerPacket);
     }
-    pub fn GetLatency(self: *const IAudioEndpoint, pLatency: ?*i64) callconv(.Inline) HRESULT {
+    pub fn GetLatency(self: *const IAudioEndpoint, pLatency: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetLatency(self, pLatency);
     }
-    pub fn SetStreamFlags(self: *const IAudioEndpoint, streamFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetStreamFlags(self: *const IAudioEndpoint, streamFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetStreamFlags(self, streamFlags);
     }
-    pub fn SetEventHandle(self: *const IAudioEndpoint, eventHandle: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn SetEventHandle(self: *const IAudioEndpoint, eventHandle: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventHandle(self, eventHandle);
     }
 };
@@ -355,16 +355,16 @@ pub const IAudioEndpointRT = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrentPadding(self: *const IAudioEndpointRT, pPadding: ?*i64, pAeCurrentPosition: ?*AE_CURRENT_POSITION) callconv(.Inline) void {
+    pub fn GetCurrentPadding(self: *const IAudioEndpointRT, pPadding: ?*i64, pAeCurrentPosition: ?*AE_CURRENT_POSITION) callconv(.@"inline") void {
         return self.vtable.GetCurrentPadding(self, pPadding, pAeCurrentPosition);
     }
-    pub fn ProcessingComplete(self: *const IAudioEndpointRT) callconv(.Inline) void {
+    pub fn ProcessingComplete(self: *const IAudioEndpointRT) callconv(.@"inline") void {
         return self.vtable.ProcessingComplete(self);
     }
-    pub fn SetPinInactive(self: *const IAudioEndpointRT) callconv(.Inline) HRESULT {
+    pub fn SetPinInactive(self: *const IAudioEndpointRT) callconv(.@"inline") HRESULT {
         return self.vtable.SetPinInactive(self);
     }
-    pub fn SetPinActive(self: *const IAudioEndpointRT) callconv(.Inline) HRESULT {
+    pub fn SetPinActive(self: *const IAudioEndpointRT) callconv(.@"inline") HRESULT {
         return self.vtable.SetPinActive(self);
     }
 };
@@ -391,13 +391,13 @@ pub const IAudioInputEndpointRT = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInputDataPointer(self: *const IAudioInputEndpointRT, pConnectionProperty: ?*APO_CONNECTION_PROPERTY, pAeTimeStamp: ?*AE_CURRENT_POSITION) callconv(.Inline) void {
+    pub fn GetInputDataPointer(self: *const IAudioInputEndpointRT, pConnectionProperty: ?*APO_CONNECTION_PROPERTY, pAeTimeStamp: ?*AE_CURRENT_POSITION) callconv(.@"inline") void {
         return self.vtable.GetInputDataPointer(self, pConnectionProperty, pAeTimeStamp);
     }
-    pub fn ReleaseInputDataPointer(self: *const IAudioInputEndpointRT, u32FrameCount: u32, pDataPointer: usize) callconv(.Inline) void {
+    pub fn ReleaseInputDataPointer(self: *const IAudioInputEndpointRT, u32FrameCount: u32, pDataPointer: usize) callconv(.@"inline") void {
         return self.vtable.ReleaseInputDataPointer(self, u32FrameCount, pDataPointer);
     }
-    pub fn PulseEndpoint(self: *const IAudioInputEndpointRT) callconv(.Inline) void {
+    pub fn PulseEndpoint(self: *const IAudioInputEndpointRT) callconv(.@"inline") void {
         return self.vtable.PulseEndpoint(self);
     }
 };
@@ -423,13 +423,13 @@ pub const IAudioOutputEndpointRT = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOutputDataPointer(self: *const IAudioOutputEndpointRT, u32FrameCount: u32, pAeTimeStamp: ?*AE_CURRENT_POSITION) callconv(.Inline) usize {
+    pub fn GetOutputDataPointer(self: *const IAudioOutputEndpointRT, u32FrameCount: u32, pAeTimeStamp: ?*AE_CURRENT_POSITION) callconv(.@"inline") usize {
         return self.vtable.GetOutputDataPointer(self, u32FrameCount, pAeTimeStamp);
     }
-    pub fn ReleaseOutputDataPointer(self: *const IAudioOutputEndpointRT, pConnectionProperty: ?*const APO_CONNECTION_PROPERTY) callconv(.Inline) void {
+    pub fn ReleaseOutputDataPointer(self: *const IAudioOutputEndpointRT, pConnectionProperty: ?*const APO_CONNECTION_PROPERTY) callconv(.@"inline") void {
         return self.vtable.ReleaseOutputDataPointer(self, pConnectionProperty);
     }
-    pub fn PulseEndpoint(self: *const IAudioOutputEndpointRT) callconv(.Inline) void {
+    pub fn PulseEndpoint(self: *const IAudioOutputEndpointRT) callconv(.@"inline") void {
         return self.vtable.PulseEndpoint(self);
     }
 };
@@ -465,16 +465,16 @@ pub const IAudioDeviceEndpoint = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetBuffer(self: *const IAudioDeviceEndpoint, MaxPeriod: i64, u32LatencyCoefficient: u32) callconv(.Inline) HRESULT {
+    pub fn SetBuffer(self: *const IAudioDeviceEndpoint, MaxPeriod: i64, u32LatencyCoefficient: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetBuffer(self, MaxPeriod, u32LatencyCoefficient);
     }
-    pub fn GetRTCaps(self: *const IAudioDeviceEndpoint, pbIsRTCapable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetRTCaps(self: *const IAudioDeviceEndpoint, pbIsRTCapable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetRTCaps(self, pbIsRTCapable);
     }
-    pub fn GetEventDrivenCapable(self: *const IAudioDeviceEndpoint, pbisEventCapable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetEventDrivenCapable(self: *const IAudioDeviceEndpoint, pbisEventCapable: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetEventDrivenCapable(self, pbisEventCapable);
     }
-    pub fn WriteExclusiveModeParametersToSharedMemory(self: *const IAudioDeviceEndpoint, hTargetProcess: usize, hnsPeriod: i64, hnsBufferDuration: i64, u32LatencyCoefficient: u32, pu32SharedMemorySize: ?*u32, phSharedMemory: ?*usize) callconv(.Inline) HRESULT {
+    pub fn WriteExclusiveModeParametersToSharedMemory(self: *const IAudioDeviceEndpoint, hTargetProcess: usize, hnsPeriod: i64, hnsBufferDuration: i64, u32LatencyCoefficient: u32, pu32SharedMemorySize: ?*u32, phSharedMemory: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.WriteExclusiveModeParametersToSharedMemory(self, hTargetProcess, hnsPeriod, hnsBufferDuration, u32LatencyCoefficient, pu32SharedMemorySize, phSharedMemory);
     }
 };
@@ -497,13 +497,13 @@ pub const IAudioEndpointControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IAudioEndpointControl) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IAudioEndpointControl) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self);
     }
-    pub fn Reset(self: *const IAudioEndpointControl) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IAudioEndpointControl) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Stop(self: *const IAudioEndpointControl) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IAudioEndpointControl) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
 };
@@ -678,94 +678,94 @@ pub const IADsTSUserEx = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_TerminalServicesProfilePath(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TerminalServicesProfilePath(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TerminalServicesProfilePath(self, pVal);
     }
-    pub fn put_TerminalServicesProfilePath(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TerminalServicesProfilePath(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TerminalServicesProfilePath(self, pNewVal);
     }
-    pub fn get_TerminalServicesHomeDirectory(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TerminalServicesHomeDirectory(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TerminalServicesHomeDirectory(self, pVal);
     }
-    pub fn put_TerminalServicesHomeDirectory(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TerminalServicesHomeDirectory(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TerminalServicesHomeDirectory(self, pNewVal);
     }
-    pub fn get_TerminalServicesHomeDrive(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TerminalServicesHomeDrive(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TerminalServicesHomeDrive(self, pVal);
     }
-    pub fn put_TerminalServicesHomeDrive(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TerminalServicesHomeDrive(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TerminalServicesHomeDrive(self, pNewVal);
     }
-    pub fn get_AllowLogon(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AllowLogon(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_AllowLogon(self, pVal);
     }
-    pub fn put_AllowLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_AllowLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_AllowLogon(self, NewVal);
     }
-    pub fn get_EnableRemoteControl(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EnableRemoteControl(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnableRemoteControl(self, pVal);
     }
-    pub fn put_EnableRemoteControl(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_EnableRemoteControl(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnableRemoteControl(self, NewVal);
     }
-    pub fn get_MaxDisconnectionTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxDisconnectionTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MaxDisconnectionTime(self, pVal);
     }
-    pub fn put_MaxDisconnectionTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxDisconnectionTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_MaxDisconnectionTime(self, NewVal);
     }
-    pub fn get_MaxConnectionTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxConnectionTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MaxConnectionTime(self, pVal);
     }
-    pub fn put_MaxConnectionTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxConnectionTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_MaxConnectionTime(self, NewVal);
     }
-    pub fn get_MaxIdleTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxIdleTime(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MaxIdleTime(self, pVal);
     }
-    pub fn put_MaxIdleTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxIdleTime(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_MaxIdleTime(self, NewVal);
     }
-    pub fn get_ReconnectionAction(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ReconnectionAction(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ReconnectionAction(self, pNewVal);
     }
-    pub fn put_ReconnectionAction(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_ReconnectionAction(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ReconnectionAction(self, NewVal);
     }
-    pub fn get_BrokenConnectionAction(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BrokenConnectionAction(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_BrokenConnectionAction(self, pNewVal);
     }
-    pub fn put_BrokenConnectionAction(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_BrokenConnectionAction(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_BrokenConnectionAction(self, NewVal);
     }
-    pub fn get_ConnectClientDrivesAtLogon(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ConnectClientDrivesAtLogon(self: *const IADsTSUserEx, pNewVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ConnectClientDrivesAtLogon(self, pNewVal);
     }
-    pub fn put_ConnectClientDrivesAtLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_ConnectClientDrivesAtLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ConnectClientDrivesAtLogon(self, NewVal);
     }
-    pub fn get_ConnectClientPrintersAtLogon(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ConnectClientPrintersAtLogon(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ConnectClientPrintersAtLogon(self, pVal);
     }
-    pub fn put_ConnectClientPrintersAtLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_ConnectClientPrintersAtLogon(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ConnectClientPrintersAtLogon(self, NewVal);
     }
-    pub fn get_DefaultToMainPrinter(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DefaultToMainPrinter(self: *const IADsTSUserEx, pVal: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_DefaultToMainPrinter(self, pVal);
     }
-    pub fn put_DefaultToMainPrinter(self: *const IADsTSUserEx, NewVal: i32) callconv(.Inline) HRESULT {
+    pub fn put_DefaultToMainPrinter(self: *const IADsTSUserEx, NewVal: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_DefaultToMainPrinter(self, NewVal);
     }
-    pub fn get_TerminalServicesWorkDirectory(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TerminalServicesWorkDirectory(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TerminalServicesWorkDirectory(self, pVal);
     }
-    pub fn put_TerminalServicesWorkDirectory(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TerminalServicesWorkDirectory(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TerminalServicesWorkDirectory(self, pNewVal);
     }
-    pub fn get_TerminalServicesInitialProgram(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TerminalServicesInitialProgram(self: *const IADsTSUserEx, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TerminalServicesInitialProgram(self, pVal);
     }
-    pub fn put_TerminalServicesInitialProgram(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TerminalServicesInitialProgram(self: *const IADsTSUserEx, pNewVal: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TerminalServicesInitialProgram(self, pNewVal);
     }
 };
@@ -880,7 +880,7 @@ pub const ITSGAuthorizeConnectionSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnConnectionAuthorized(self: *const ITSGAuthorizeConnectionSink, hrIn: HRESULT, mainSessionId: Guid, cbSoHResponse: u32, pbSoHResponse: [*:0]u8, idleTimeout: u32, sessionTimeout: u32, sessionTimeoutAction: SESSION_TIMEOUT_ACTION_TYPE, trustClass: AATrustClassID, policyAttributes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn OnConnectionAuthorized(self: *const ITSGAuthorizeConnectionSink, hrIn: HRESULT, mainSessionId: Guid, cbSoHResponse: u32, pbSoHResponse: [*:0]u8, idleTimeout: u32, sessionTimeout: u32, sessionTimeoutAction: SESSION_TIMEOUT_ACTION_TYPE, trustClass: AATrustClassID, policyAttributes: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnConnectionAuthorized(self, hrIn, mainSessionId, cbSoHResponse, pbSoHResponse, idleTimeout, sessionTimeout, sessionTimeoutAction, trustClass, policyAttributes);
     }
 };
@@ -904,7 +904,7 @@ pub const ITSGAuthorizeResourceSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnChannelAuthorized(self: *const ITSGAuthorizeResourceSink, hrIn: HRESULT, mainSessionId: Guid, subSessionId: i32, allowedResourceNames: [*]?BSTR, numAllowedResourceNames: u32, failedResourceNames: [*]?BSTR, numFailedResourceNames: u32) callconv(.Inline) HRESULT {
+    pub fn OnChannelAuthorized(self: *const ITSGAuthorizeResourceSink, hrIn: HRESULT, mainSessionId: Guid, subSessionId: i32, allowedResourceNames: [*]?BSTR, numAllowedResourceNames: u32, failedResourceNames: [*]?BSTR, numFailedResourceNames: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnChannelAuthorized(self, hrIn, mainSessionId, subSessionId, allowedResourceNames, numAllowedResourceNames, failedResourceNames, numFailedResourceNames);
     }
 };
@@ -954,16 +954,16 @@ pub const ITSGPolicyEngine = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AuthorizeConnection(self: *const ITSGPolicyEngine, mainSessionId: Guid, username: ?BSTR, authType: AAAuthSchemes, clientMachineIP: ?BSTR, clientMachineName: ?BSTR, sohData: [*:0]u8, numSOHBytes: u32, cookieData: [*:0]u8, numCookieBytes: u32, userToken: HANDLE_PTR, pSink: ?*ITSGAuthorizeConnectionSink) callconv(.Inline) HRESULT {
+    pub fn AuthorizeConnection(self: *const ITSGPolicyEngine, mainSessionId: Guid, username: ?BSTR, authType: AAAuthSchemes, clientMachineIP: ?BSTR, clientMachineName: ?BSTR, sohData: [*:0]u8, numSOHBytes: u32, cookieData: [*:0]u8, numCookieBytes: u32, userToken: HANDLE_PTR, pSink: ?*ITSGAuthorizeConnectionSink) callconv(.@"inline") HRESULT {
         return self.vtable.AuthorizeConnection(self, mainSessionId, username, authType, clientMachineIP, clientMachineName, sohData, numSOHBytes, cookieData, numCookieBytes, userToken, pSink);
     }
-    pub fn AuthorizeResource(self: *const ITSGPolicyEngine, mainSessionId: Guid, subSessionId: i32, username: ?BSTR, resourceNames: [*]?BSTR, numResources: u32, alternateResourceNames: [*]?BSTR, numAlternateResourceName: u32, portNumber: u32, operation: ?BSTR, cookie: [*:0]u8, numBytesInCookie: u32, pSink: ?*ITSGAuthorizeResourceSink) callconv(.Inline) HRESULT {
+    pub fn AuthorizeResource(self: *const ITSGPolicyEngine, mainSessionId: Guid, subSessionId: i32, username: ?BSTR, resourceNames: [*]?BSTR, numResources: u32, alternateResourceNames: [*]?BSTR, numAlternateResourceName: u32, portNumber: u32, operation: ?BSTR, cookie: [*:0]u8, numBytesInCookie: u32, pSink: ?*ITSGAuthorizeResourceSink) callconv(.@"inline") HRESULT {
         return self.vtable.AuthorizeResource(self, mainSessionId, subSessionId, username, resourceNames, numResources, alternateResourceNames, numAlternateResourceName, portNumber, operation, cookie, numBytesInCookie, pSink);
     }
-    pub fn Refresh(self: *const ITSGPolicyEngine) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ITSGPolicyEngine) callconv(.@"inline") HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn IsQuarantineEnabled(self: *const ITSGPolicyEngine, quarantineEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsQuarantineEnabled(self: *const ITSGPolicyEngine, quarantineEnabled: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsQuarantineEnabled(self, quarantineEnabled);
     }
 };
@@ -982,7 +982,7 @@ pub const ITSGAccountingEngine = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DoAccounting(self: *const ITSGAccountingEngine, accountingDataType: AAAccountingDataType, accountingData: AAAccountingData) callconv(.Inline) HRESULT {
+    pub fn DoAccounting(self: *const ITSGAccountingEngine, accountingDataType: AAAccountingDataType, accountingData: AAAccountingData) callconv(.@"inline") HRESULT {
         return self.vtable.DoAccounting(self, accountingDataType, accountingData);
     }
 };
@@ -1017,16 +1017,16 @@ pub const ITSGAuthenticateUserSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnUserAuthenticated(self: *const ITSGAuthenticateUserSink, userName: ?BSTR, userDomain: ?BSTR, context: usize, userToken: HANDLE_PTR) callconv(.Inline) HRESULT {
+    pub fn OnUserAuthenticated(self: *const ITSGAuthenticateUserSink, userName: ?BSTR, userDomain: ?BSTR, context: usize, userToken: HANDLE_PTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnUserAuthenticated(self, userName, userDomain, context, userToken);
     }
-    pub fn OnUserAuthenticationFailed(self: *const ITSGAuthenticateUserSink, context: usize, genericErrorCode: HRESULT, specificErrorCode: HRESULT) callconv(.Inline) HRESULT {
+    pub fn OnUserAuthenticationFailed(self: *const ITSGAuthenticateUserSink, context: usize, genericErrorCode: HRESULT, specificErrorCode: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnUserAuthenticationFailed(self, context, genericErrorCode, specificErrorCode);
     }
-    pub fn ReauthenticateUser(self: *const ITSGAuthenticateUserSink, context: usize) callconv(.Inline) HRESULT {
+    pub fn ReauthenticateUser(self: *const ITSGAuthenticateUserSink, context: usize) callconv(.@"inline") HRESULT {
         return self.vtable.ReauthenticateUser(self, context);
     }
-    pub fn DisconnectUser(self: *const ITSGAuthenticateUserSink, context: usize) callconv(.Inline) HRESULT {
+    pub fn DisconnectUser(self: *const ITSGAuthenticateUserSink, context: usize) callconv(.@"inline") HRESULT {
         return self.vtable.DisconnectUser(self, context);
     }
 };
@@ -1053,10 +1053,10 @@ pub const ITSGAuthenticationEngine = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AuthenticateUser(self: *const ITSGAuthenticationEngine, mainSessionId: Guid, cookieData: ?*u8, numCookieBytes: u32, context: usize, pSink: ?*ITSGAuthenticateUserSink) callconv(.Inline) HRESULT {
+    pub fn AuthenticateUser(self: *const ITSGAuthenticationEngine, mainSessionId: Guid, cookieData: ?*u8, numCookieBytes: u32, context: usize, pSink: ?*ITSGAuthenticateUserSink) callconv(.@"inline") HRESULT {
         return self.vtable.AuthenticateUser(self, mainSessionId, cookieData, numCookieBytes, context, pSink);
     }
-    pub fn CancelAuthentication(self: *const ITSGAuthenticationEngine, mainSessionId: Guid, context: usize) callconv(.Inline) HRESULT {
+    pub fn CancelAuthentication(self: *const ITSGAuthenticationEngine, mainSessionId: Guid, context: usize) callconv(.@"inline") HRESULT {
         return self.vtable.CancelAuthentication(self, mainSessionId, context);
     }
 };
@@ -1758,22 +1758,22 @@ pub const IWTSSBPlugin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWTSSBPlugin, PluginCapabilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWTSSBPlugin, PluginCapabilities: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, PluginCapabilities);
     }
-    pub fn WTSSBX_MachineChangeNotification(self: *const IWTSSBPlugin, NotificationType: WTSSBX_NOTIFICATION_TYPE, MachineId: i32, pMachineInfo: ?*WTSSBX_MACHINE_INFO) callconv(.Inline) HRESULT {
+    pub fn WTSSBX_MachineChangeNotification(self: *const IWTSSBPlugin, NotificationType: WTSSBX_NOTIFICATION_TYPE, MachineId: i32, pMachineInfo: ?*WTSSBX_MACHINE_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.WTSSBX_MachineChangeNotification(self, NotificationType, MachineId, pMachineInfo);
     }
-    pub fn WTSSBX_SessionChangeNotification(self: *const IWTSSBPlugin, NotificationType: WTSSBX_NOTIFICATION_TYPE, MachineId: i32, NumOfSessions: u32, SessionInfo: [*]WTSSBX_SESSION_INFO) callconv(.Inline) HRESULT {
+    pub fn WTSSBX_SessionChangeNotification(self: *const IWTSSBPlugin, NotificationType: WTSSBX_NOTIFICATION_TYPE, MachineId: i32, NumOfSessions: u32, SessionInfo: [*]WTSSBX_SESSION_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.WTSSBX_SessionChangeNotification(self, NotificationType, MachineId, NumOfSessions, SessionInfo);
     }
-    pub fn WTSSBX_GetMostSuitableServer(self: *const IWTSSBPlugin, UserName: ?PWSTR, DomainName: ?PWSTR, ApplicationType: ?PWSTR, FarmName: ?PWSTR, pMachineId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn WTSSBX_GetMostSuitableServer(self: *const IWTSSBPlugin, UserName: ?PWSTR, DomainName: ?PWSTR, ApplicationType: ?PWSTR, FarmName: ?PWSTR, pMachineId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.WTSSBX_GetMostSuitableServer(self, UserName, DomainName, ApplicationType, FarmName, pMachineId);
     }
-    pub fn Terminated(self: *const IWTSSBPlugin) callconv(.Inline) HRESULT {
+    pub fn Terminated(self: *const IWTSSBPlugin) callconv(.@"inline") HRESULT {
         return self.vtable.Terminated(self);
     }
-    pub fn WTSSBX_GetUserExternalSession(self: *const IWTSSBPlugin, UserName: ?PWSTR, DomainName: ?PWSTR, ApplicationType: ?PWSTR, RedirectorInternalIP: ?*WTSSBX_IP_ADDRESS, pSessionId: ?*u32, pMachineConnectInfo: ?*WTSSBX_MACHINE_CONNECT_INFO) callconv(.Inline) HRESULT {
+    pub fn WTSSBX_GetUserExternalSession(self: *const IWTSSBPlugin, UserName: ?PWSTR, DomainName: ?PWSTR, ApplicationType: ?PWSTR, RedirectorInternalIP: ?*WTSSBX_IP_ADDRESS, pSessionId: ?*u32, pMachineConnectInfo: ?*WTSSBX_MACHINE_CONNECT_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.WTSSBX_GetUserExternalSession(self, UserName, DomainName, ApplicationType, RedirectorInternalIP, pSessionId, pMachineConnectInfo);
     }
 };
@@ -1866,13 +1866,13 @@ pub const IWorkspaceClientExt = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetResourceId(self: *const IWorkspaceClientExt, bstrWorkspaceId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetResourceId(self: *const IWorkspaceClientExt, bstrWorkspaceId: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceId(self, bstrWorkspaceId);
     }
-    pub fn GetResourceDisplayName(self: *const IWorkspaceClientExt, bstrWorkspaceDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetResourceDisplayName(self: *const IWorkspaceClientExt, bstrWorkspaceDisplayName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceDisplayName(self, bstrWorkspaceDisplayName);
     }
-    pub fn IssueDisconnect(self: *const IWorkspaceClientExt) callconv(.Inline) HRESULT {
+    pub fn IssueDisconnect(self: *const IWorkspaceClientExt) callconv(.@"inline") HRESULT {
         return self.vtable.IssueDisconnect(self);
     }
 };
@@ -1899,13 +1899,13 @@ pub const IWorkspace = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetWorkspaceNames(self: *const IWorkspace, psaWkspNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn GetWorkspaceNames(self: *const IWorkspace, psaWkspNames: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetWorkspaceNames(self, psaWkspNames);
     }
-    pub fn StartRemoteApplication(self: *const IWorkspace, bstrWorkspaceId: ?BSTR, psaParams: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn StartRemoteApplication(self: *const IWorkspace, bstrWorkspaceId: ?BSTR, psaParams: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.StartRemoteApplication(self, bstrWorkspaceId, psaParams);
     }
-    pub fn GetProcessId(self: *const IWorkspace, pulProcessId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProcessId(self: *const IWorkspace, pulProcessId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProcessId(self, pulProcessId);
     }
 };
@@ -1929,7 +1929,7 @@ pub const IWorkspace2 = extern union {
     vtable: *const VTable,
     IWorkspace: IWorkspace,
     IUnknown: IUnknown,
-    pub fn StartRemoteApplicationEx(self: *const IWorkspace2, bstrWorkspaceId: ?BSTR, bstrRequestingAppId: ?BSTR, bstrRequestingAppFamilyName: ?BSTR, bLaunchIntoImmersiveClient: i16, bstrImmersiveClientActivationContext: ?BSTR, psaParams: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn StartRemoteApplicationEx(self: *const IWorkspace2, bstrWorkspaceId: ?BSTR, bstrRequestingAppId: ?BSTR, bstrRequestingAppFamilyName: ?BSTR, bLaunchIntoImmersiveClient: i16, bstrImmersiveClientActivationContext: ?BSTR, psaParams: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.StartRemoteApplicationEx(self, bstrWorkspaceId, bstrRequestingAppId, bstrRequestingAppFamilyName, bLaunchIntoImmersiveClient, bstrImmersiveClientActivationContext, psaParams);
     }
 };
@@ -1960,10 +1960,10 @@ pub const IWorkspace3 = extern union {
     IWorkspace2: IWorkspace2,
     IWorkspace: IWorkspace,
     IUnknown: IUnknown,
-    pub fn GetClaimsToken2(self: *const IWorkspace3, bstrClaimsHint: ?BSTR, bstrUserHint: ?BSTR, claimCookie: u32, hwndCredUiParent: u32, rectCredUiParent: RECT, pbstrAccessToken: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetClaimsToken2(self: *const IWorkspace3, bstrClaimsHint: ?BSTR, bstrUserHint: ?BSTR, claimCookie: u32, hwndCredUiParent: u32, rectCredUiParent: RECT, pbstrAccessToken: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetClaimsToken2(self, bstrClaimsHint, bstrUserHint, claimCookie, hwndCredUiParent, rectCredUiParent, pbstrAccessToken);
     }
-    pub fn SetClaimsToken(self: *const IWorkspace3, bstrAccessToken: ?BSTR, ullAccessTokenExpiration: u64, bstrRefreshToken: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetClaimsToken(self: *const IWorkspace3, bstrAccessToken: ?BSTR, ullAccessTokenExpiration: u64, bstrRefreshToken: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetClaimsToken(self, bstrAccessToken, ullAccessTokenExpiration, bstrRefreshToken);
     }
 };
@@ -1986,10 +1986,10 @@ pub const IWorkspaceRegistration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddResource(self: *const IWorkspaceRegistration, pUnk: ?*IWorkspaceClientExt, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AddResource(self: *const IWorkspaceRegistration, pUnk: ?*IWorkspaceClientExt, pdwCookie: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AddResource(self, pUnk, pdwCookie);
     }
-    pub fn RemoveResource(self: *const IWorkspaceRegistration, dwCookieConnection: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveResource(self: *const IWorkspaceRegistration, dwCookieConnection: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveResource(self, dwCookieConnection);
     }
 };
@@ -2016,10 +2016,10 @@ pub const IWorkspaceRegistration2 = extern union {
     vtable: *const VTable,
     IWorkspaceRegistration: IWorkspaceRegistration,
     IUnknown: IUnknown,
-    pub fn AddResourceEx(self: *const IWorkspaceRegistration2, pUnk: ?*IWorkspaceClientExt, bstrEventLogUploadAddress: ?BSTR, pdwCookie: ?*u32, correlationId: Guid) callconv(.Inline) HRESULT {
+    pub fn AddResourceEx(self: *const IWorkspaceRegistration2, pUnk: ?*IWorkspaceClientExt, bstrEventLogUploadAddress: ?BSTR, pdwCookie: ?*u32, correlationId: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.AddResourceEx(self, pUnk, bstrEventLogUploadAddress, pdwCookie, correlationId);
     }
-    pub fn RemoveResourceEx(self: *const IWorkspaceRegistration2, dwCookieConnection: u32, correlationId: Guid) callconv(.Inline) HRESULT {
+    pub fn RemoveResourceEx(self: *const IWorkspaceRegistration2, dwCookieConnection: u32, correlationId: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveResourceEx(self, dwCookieConnection, correlationId);
     }
 };
@@ -2070,25 +2070,25 @@ pub const IWorkspaceScriptable = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn DisconnectWorkspace(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DisconnectWorkspace(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DisconnectWorkspace(self, bstrWorkspaceId);
     }
-    pub fn StartWorkspace(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn StartWorkspace(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.StartWorkspace(self, bstrWorkspaceId, bstrUserName, bstrPassword, bstrWorkspaceParams, lTimeout, lFlags);
     }
-    pub fn IsWorkspaceCredentialSpecified(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bCountUnauthenticatedCredentials: i16, pbCredExist: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsWorkspaceCredentialSpecified(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bCountUnauthenticatedCredentials: i16, pbCredExist: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsWorkspaceCredentialSpecified(self, bstrWorkspaceId, bCountUnauthenticatedCredentials, pbCredExist);
     }
-    pub fn IsWorkspaceSSOEnabled(self: *const IWorkspaceScriptable, pbSSOEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsWorkspaceSSOEnabled(self: *const IWorkspaceScriptable, pbSSOEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsWorkspaceSSOEnabled(self, pbSSOEnabled);
     }
-    pub fn ClearWorkspaceCredential(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ClearWorkspaceCredential(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ClearWorkspaceCredential(self, bstrWorkspaceId);
     }
-    pub fn OnAuthenticated(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bstrUserName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OnAuthenticated(self: *const IWorkspaceScriptable, bstrWorkspaceId: ?BSTR, bstrUserName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnAuthenticated(self, bstrWorkspaceId, bstrUserName);
     }
-    pub fn DisconnectWorkspaceByFriendlyName(self: *const IWorkspaceScriptable, bstrWorkspaceFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DisconnectWorkspaceByFriendlyName(self: *const IWorkspaceScriptable, bstrWorkspaceFriendlyName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DisconnectWorkspaceByFriendlyName(self, bstrWorkspaceFriendlyName);
     }
 };
@@ -2121,10 +2121,10 @@ pub const IWorkspaceScriptable2 = extern union {
     IWorkspaceScriptable: IWorkspaceScriptable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn StartWorkspaceEx(self: *const IWorkspaceScriptable2, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR, bstrRedirectorName: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrAppContainer: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32) callconv(.Inline) HRESULT {
+    pub fn StartWorkspaceEx(self: *const IWorkspaceScriptable2, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR, bstrRedirectorName: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrAppContainer: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32) callconv(.@"inline") HRESULT {
         return self.vtable.StartWorkspaceEx(self, bstrWorkspaceId, bstrWorkspaceFriendlyName, bstrRedirectorName, bstrUserName, bstrPassword, bstrAppContainer, bstrWorkspaceParams, lTimeout, lFlags);
     }
-    pub fn ResourceDismissed(self: *const IWorkspaceScriptable2, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ResourceDismissed(self: *const IWorkspaceScriptable2, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ResourceDismissed(self, bstrWorkspaceId, bstrWorkspaceFriendlyName);
     }
 };
@@ -2155,7 +2155,7 @@ pub const IWorkspaceScriptable3 = extern union {
     IWorkspaceScriptable: IWorkspaceScriptable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn StartWorkspaceEx2(self: *const IWorkspaceScriptable3, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR, bstrRedirectorName: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrAppContainer: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32, bstrEventLogUploadAddress: ?BSTR, correlationId: Guid) callconv(.Inline) HRESULT {
+    pub fn StartWorkspaceEx2(self: *const IWorkspaceScriptable3, bstrWorkspaceId: ?BSTR, bstrWorkspaceFriendlyName: ?BSTR, bstrRedirectorName: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, bstrAppContainer: ?BSTR, bstrWorkspaceParams: ?BSTR, lTimeout: i32, lFlags: i32, bstrEventLogUploadAddress: ?BSTR, correlationId: Guid) callconv(.@"inline") HRESULT {
         return self.vtable.StartWorkspaceEx2(self, bstrWorkspaceId, bstrWorkspaceFriendlyName, bstrRedirectorName, bstrUserName, bstrPassword, bstrAppContainer, bstrWorkspaceParams, lTimeout, lFlags, bstrEventLogUploadAddress, correlationId);
     }
 };
@@ -2188,13 +2188,13 @@ pub const IWorkspaceReportMessage = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterErrorLogMessage(self: *const IWorkspaceReportMessage, bstrMessage: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn RegisterErrorLogMessage(self: *const IWorkspaceReportMessage, bstrMessage: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterErrorLogMessage(self, bstrMessage);
     }
-    pub fn IsErrorMessageRegistered(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32, pfErrorExist: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsErrorMessageRegistered(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32, pfErrorExist: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsErrorMessageRegistered(self, bstrWkspId, dwErrorType, bstrErrorMessageType, dwErrorCode, pfErrorExist);
     }
-    pub fn RegisterErrorEvent(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32) callconv(.Inline) HRESULT {
+    pub fn RegisterErrorEvent(self: *const IWorkspaceReportMessage, bstrWkspId: ?BSTR, dwErrorType: u32, bstrErrorMessageType: ?BSTR, dwErrorCode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterErrorEvent(self, bstrWkspId, dwErrorType, bstrErrorMessageType, dwErrorCode);
     }
 };
@@ -2505,10 +2505,10 @@ pub const ITsSbPlugin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const ITsSbPlugin, pProvider: ?*ITsSbProvider, pNotifySink: ?*ITsSbPluginNotifySink, pPropertySet: ?*ITsSbPluginPropertySet) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const ITsSbPlugin, pProvider: ?*ITsSbProvider, pNotifySink: ?*ITsSbPluginNotifySink, pPropertySet: ?*ITsSbPluginPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pProvider, pNotifySink, pPropertySet);
     }
-    pub fn Terminate(self: *const ITsSbPlugin, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn Terminate(self: *const ITsSbPlugin, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.Terminate(self, hr);
     }
 };
@@ -2540,10 +2540,10 @@ pub const ITsSbServiceNotification = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NotifyServiceFailure(self: *const ITsSbServiceNotification) callconv(.Inline) HRESULT {
+    pub fn NotifyServiceFailure(self: *const ITsSbServiceNotification) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyServiceFailure(self);
     }
-    pub fn NotifyServiceSuccess(self: *const ITsSbServiceNotification) callconv(.Inline) HRESULT {
+    pub fn NotifyServiceSuccess(self: *const ITsSbServiceNotification) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyServiceSuccess(self);
     }
 };
@@ -2563,7 +2563,7 @@ pub const ITsSbLoadBalancing = extern union {
     vtable: *const VTable,
     ITsSbPlugin: ITsSbPlugin,
     IUnknown: IUnknown,
-    pub fn GetMostSuitableTarget(self: *const ITsSbLoadBalancing, pConnection: ?*ITsSbClientConnection, pLBSink: ?*ITsSbLoadBalancingNotifySink) callconv(.Inline) HRESULT {
+    pub fn GetMostSuitableTarget(self: *const ITsSbLoadBalancing, pConnection: ?*ITsSbClientConnection, pLBSink: ?*ITsSbLoadBalancingNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.GetMostSuitableTarget(self, pConnection, pLBSink);
     }
 };
@@ -2583,7 +2583,7 @@ pub const ITsSbPlacement = extern union {
     vtable: *const VTable,
     ITsSbPlugin: ITsSbPlugin,
     IUnknown: IUnknown,
-    pub fn QueryEnvironmentForTarget(self: *const ITsSbPlacement, pConnection: ?*ITsSbClientConnection, pPlacementSink: ?*ITsSbPlacementNotifySink) callconv(.Inline) HRESULT {
+    pub fn QueryEnvironmentForTarget(self: *const ITsSbPlacement, pConnection: ?*ITsSbClientConnection, pPlacementSink: ?*ITsSbPlacementNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.QueryEnvironmentForTarget(self, pConnection, pPlacementSink);
     }
 };
@@ -2603,7 +2603,7 @@ pub const ITsSbOrchestration = extern union {
     vtable: *const VTable,
     ITsSbPlugin: ITsSbPlugin,
     IUnknown: IUnknown,
-    pub fn PrepareTargetForConnect(self: *const ITsSbOrchestration, pConnection: ?*ITsSbClientConnection, pOrchestrationNotifySink: ?*ITsSbOrchestrationNotifySink) callconv(.Inline) HRESULT {
+    pub fn PrepareTargetForConnect(self: *const ITsSbOrchestration, pConnection: ?*ITsSbClientConnection, pOrchestrationNotifySink: ?*ITsSbOrchestrationNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.PrepareTargetForConnect(self, pConnection, pOrchestrationNotifySink);
     }
 };
@@ -2637,16 +2637,16 @@ pub const ITsSbEnvironment = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const ITsSbEnvironment, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ITsSbEnvironment, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pVal);
     }
-    pub fn get_ServerWeight(self: *const ITsSbEnvironment, pVal: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ServerWeight(self: *const ITsSbEnvironment, pVal: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ServerWeight(self, pVal);
     }
-    pub fn get_EnvironmentPropertySet(self: *const ITsSbEnvironment, ppPropertySet: ?*?*ITsSbEnvironmentPropertySet) callconv(.Inline) HRESULT {
+    pub fn get_EnvironmentPropertySet(self: *const ITsSbEnvironment, ppPropertySet: ?*?*ITsSbEnvironmentPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnvironmentPropertySet(self, ppPropertySet);
     }
-    pub fn put_EnvironmentPropertySet(self: *const ITsSbEnvironment, pVal: ?*ITsSbEnvironmentPropertySet) callconv(.Inline) HRESULT {
+    pub fn put_EnvironmentPropertySet(self: *const ITsSbEnvironment, pVal: ?*ITsSbEnvironmentPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnvironmentPropertySet(self, pVal);
     }
 };
@@ -2665,7 +2665,7 @@ pub const ITsSbLoadBalanceResult = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_TargetName(self: *const ITsSbLoadBalanceResult, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetName(self: *const ITsSbLoadBalanceResult, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetName(self, pVal);
     }
 };
@@ -2774,61 +2774,61 @@ pub const ITsSbTarget = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_TargetName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetName(self, pVal);
     }
-    pub fn put_TargetName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TargetName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TargetName(self, Val);
     }
-    pub fn get_FarmName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FarmName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_FarmName(self, pVal);
     }
-    pub fn put_FarmName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FarmName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_FarmName(self, Val);
     }
-    pub fn get_TargetFQDN(self: *const ITsSbTarget, TargetFqdnName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetFQDN(self: *const ITsSbTarget, TargetFqdnName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetFQDN(self, TargetFqdnName);
     }
-    pub fn put_TargetFQDN(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TargetFQDN(self: *const ITsSbTarget, Val: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TargetFQDN(self, Val);
     }
-    pub fn get_TargetNetbios(self: *const ITsSbTarget, TargetNetbiosName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetNetbios(self: *const ITsSbTarget, TargetNetbiosName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetNetbios(self, TargetNetbiosName);
     }
-    pub fn put_TargetNetbios(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TargetNetbios(self: *const ITsSbTarget, Val: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TargetNetbios(self, Val);
     }
-    pub fn get_IpAddresses(self: *const ITsSbTarget, SOCKADDR: [*]TSSD_ConnectionPoint, numAddresses: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_IpAddresses(self: *const ITsSbTarget, SOCKADDR: [*]TSSD_ConnectionPoint, numAddresses: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_IpAddresses(self, SOCKADDR, numAddresses);
     }
-    pub fn put_IpAddresses(self: *const ITsSbTarget, SOCKADDR: [*]TSSD_ConnectionPoint, numAddresses: u32) callconv(.Inline) HRESULT {
+    pub fn put_IpAddresses(self: *const ITsSbTarget, SOCKADDR: [*]TSSD_ConnectionPoint, numAddresses: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_IpAddresses(self, SOCKADDR, numAddresses);
     }
-    pub fn get_TargetState(self: *const ITsSbTarget, pState: ?*TARGET_STATE) callconv(.Inline) HRESULT {
+    pub fn get_TargetState(self: *const ITsSbTarget, pState: ?*TARGET_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetState(self, pState);
     }
-    pub fn put_TargetState(self: *const ITsSbTarget, State: TARGET_STATE) callconv(.Inline) HRESULT {
+    pub fn put_TargetState(self: *const ITsSbTarget, State: TARGET_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.put_TargetState(self, State);
     }
-    pub fn get_TargetPropertySet(self: *const ITsSbTarget, ppPropertySet: ?*?*ITsSbTargetPropertySet) callconv(.Inline) HRESULT {
+    pub fn get_TargetPropertySet(self: *const ITsSbTarget, ppPropertySet: ?*?*ITsSbTargetPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetPropertySet(self, ppPropertySet);
     }
-    pub fn put_TargetPropertySet(self: *const ITsSbTarget, pVal: ?*ITsSbTargetPropertySet) callconv(.Inline) HRESULT {
+    pub fn put_TargetPropertySet(self: *const ITsSbTarget, pVal: ?*ITsSbTargetPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.put_TargetPropertySet(self, pVal);
     }
-    pub fn get_EnvironmentName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_EnvironmentName(self: *const ITsSbTarget, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_EnvironmentName(self, pVal);
     }
-    pub fn put_EnvironmentName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_EnvironmentName(self: *const ITsSbTarget, Val: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_EnvironmentName(self, Val);
     }
-    pub fn get_NumSessions(self: *const ITsSbTarget, pNumSessions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_NumSessions(self: *const ITsSbTarget, pNumSessions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_NumSessions(self, pNumSessions);
     }
-    pub fn get_NumPendingConnections(self: *const ITsSbTarget, pNumPendingConnections: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_NumPendingConnections(self: *const ITsSbTarget, pNumPendingConnections: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_NumPendingConnections(self, pNumPendingConnections);
     }
-    pub fn get_TargetLoad(self: *const ITsSbTarget, pTargetLoad: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_TargetLoad(self: *const ITsSbTarget, pTargetLoad: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetLoad(self, pTargetLoad);
     }
 };
@@ -2927,55 +2927,55 @@ pub const ITsSbSession = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SessionId(self: *const ITsSbSession, pVal: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_SessionId(self: *const ITsSbSession, pVal: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_SessionId(self, pVal);
     }
-    pub fn get_TargetName(self: *const ITsSbSession, targetName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetName(self: *const ITsSbSession, targetName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetName(self, targetName);
     }
-    pub fn put_TargetName(self: *const ITsSbSession, targetName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_TargetName(self: *const ITsSbSession, targetName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_TargetName(self, targetName);
     }
-    pub fn get_Username(self: *const ITsSbSession, userName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Username(self: *const ITsSbSession, userName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Username(self, userName);
     }
-    pub fn get_Domain(self: *const ITsSbSession, domain: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Domain(self: *const ITsSbSession, domain: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Domain(self, domain);
     }
-    pub fn get_State(self: *const ITsSbSession, pState: ?*TSSESSION_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ITsSbSession, pState: ?*TSSESSION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.get_State(self, pState);
     }
-    pub fn put_State(self: *const ITsSbSession, State: TSSESSION_STATE) callconv(.Inline) HRESULT {
+    pub fn put_State(self: *const ITsSbSession, State: TSSESSION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.put_State(self, State);
     }
-    pub fn get_CreateTime(self: *const ITsSbSession, pTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_CreateTime(self: *const ITsSbSession, pTime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_CreateTime(self, pTime);
     }
-    pub fn put_CreateTime(self: *const ITsSbSession, Time: FILETIME) callconv(.Inline) HRESULT {
+    pub fn put_CreateTime(self: *const ITsSbSession, Time: FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.put_CreateTime(self, Time);
     }
-    pub fn get_DisconnectTime(self: *const ITsSbSession, pTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_DisconnectTime(self: *const ITsSbSession, pTime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_DisconnectTime(self, pTime);
     }
-    pub fn put_DisconnectTime(self: *const ITsSbSession, Time: FILETIME) callconv(.Inline) HRESULT {
+    pub fn put_DisconnectTime(self: *const ITsSbSession, Time: FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.put_DisconnectTime(self, Time);
     }
-    pub fn get_InitialProgram(self: *const ITsSbSession, app: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InitialProgram(self: *const ITsSbSession, app: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InitialProgram(self, app);
     }
-    pub fn put_InitialProgram(self: *const ITsSbSession, Application: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_InitialProgram(self: *const ITsSbSession, Application: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_InitialProgram(self, Application);
     }
-    pub fn get_ClientDisplay(self: *const ITsSbSession, pClientDisplay: ?*CLIENT_DISPLAY) callconv(.Inline) HRESULT {
+    pub fn get_ClientDisplay(self: *const ITsSbSession, pClientDisplay: ?*CLIENT_DISPLAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClientDisplay(self, pClientDisplay);
     }
-    pub fn put_ClientDisplay(self: *const ITsSbSession, pClientDisplay: CLIENT_DISPLAY) callconv(.Inline) HRESULT {
+    pub fn put_ClientDisplay(self: *const ITsSbSession, pClientDisplay: CLIENT_DISPLAY) callconv(.@"inline") HRESULT {
         return self.vtable.put_ClientDisplay(self, pClientDisplay);
     }
-    pub fn get_ProtocolType(self: *const ITsSbSession, pVal: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ProtocolType(self: *const ITsSbSession, pVal: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ProtocolType(self, pVal);
     }
-    pub fn put_ProtocolType(self: *const ITsSbSession, Val: u32) callconv(.Inline) HRESULT {
+    pub fn put_ProtocolType(self: *const ITsSbSession, Val: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ProtocolType(self, Val);
     }
 };
@@ -3004,13 +3004,13 @@ pub const ITsSbResourceNotification = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NotifySessionChange(self: *const ITsSbResourceNotification, changeType: TSSESSION_STATE, pSession: ?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn NotifySessionChange(self: *const ITsSbResourceNotification, changeType: TSSESSION_STATE, pSession: ?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionChange(self, changeType, pSession);
     }
-    pub fn NotifyTargetChange(self: *const ITsSbResourceNotification, TargetChangeType: u32, pTarget: ?*ITsSbTarget) callconv(.Inline) HRESULT {
+    pub fn NotifyTargetChange(self: *const ITsSbResourceNotification, TargetChangeType: u32, pTarget: ?*ITsSbTarget) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyTargetChange(self, TargetChangeType, pTarget);
     }
-    pub fn NotifyClientConnectionStateChange(self: *const ITsSbResourceNotification, ChangeType: CONNECTION_CHANGE_NOTIFICATION, pConnection: ?*ITsSbClientConnection) callconv(.Inline) HRESULT {
+    pub fn NotifyClientConnectionStateChange(self: *const ITsSbResourceNotification, ChangeType: CONNECTION_CHANGE_NOTIFICATION, pConnection: ?*ITsSbClientConnection) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyClientConnectionStateChange(self, ChangeType, pConnection);
     }
 };
@@ -3046,13 +3046,13 @@ pub const ITsSbResourceNotificationEx = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NotifySessionChangeEx(self: *const ITsSbResourceNotificationEx, targetName: ?BSTR, userName: ?BSTR, domain: ?BSTR, sessionId: u32, sessionState: TSSESSION_STATE) callconv(.Inline) HRESULT {
+    pub fn NotifySessionChangeEx(self: *const ITsSbResourceNotificationEx, targetName: ?BSTR, userName: ?BSTR, domain: ?BSTR, sessionId: u32, sessionState: TSSESSION_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionChangeEx(self, targetName, userName, domain, sessionId, sessionState);
     }
-    pub fn NotifyTargetChangeEx(self: *const ITsSbResourceNotificationEx, targetName: ?BSTR, targetChangeType: u32) callconv(.Inline) HRESULT {
+    pub fn NotifyTargetChangeEx(self: *const ITsSbResourceNotificationEx, targetName: ?BSTR, targetChangeType: u32) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyTargetChangeEx(self, targetName, targetChangeType);
     }
-    pub fn NotifyClientConnectionStateChangeEx(self: *const ITsSbResourceNotificationEx, userName: ?BSTR, domain: ?BSTR, initialProgram: ?BSTR, poolName: ?BSTR, targetName: ?BSTR, connectionChangeType: CONNECTION_CHANGE_NOTIFICATION) callconv(.Inline) HRESULT {
+    pub fn NotifyClientConnectionStateChangeEx(self: *const ITsSbResourceNotificationEx, userName: ?BSTR, domain: ?BSTR, initialProgram: ?BSTR, poolName: ?BSTR, targetName: ?BSTR, connectionChangeType: CONNECTION_CHANGE_NOTIFICATION) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyClientConnectionStateChangeEx(self, userName, domain, initialProgram, poolName, targetName, connectionChangeType);
     }
 };
@@ -3111,31 +3111,31 @@ pub const ITsSbTaskInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_TargetId(self: *const ITsSbTaskInfo, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetId(self: *const ITsSbTaskInfo, pName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetId(self, pName);
     }
-    pub fn get_StartTime(self: *const ITsSbTaskInfo, pStartTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_StartTime(self: *const ITsSbTaskInfo, pStartTime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_StartTime(self, pStartTime);
     }
-    pub fn get_EndTime(self: *const ITsSbTaskInfo, pEndTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_EndTime(self: *const ITsSbTaskInfo, pEndTime: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_EndTime(self, pEndTime);
     }
-    pub fn get_Deadline(self: *const ITsSbTaskInfo, pDeadline: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_Deadline(self: *const ITsSbTaskInfo, pDeadline: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.get_Deadline(self, pDeadline);
     }
-    pub fn get_Identifier(self: *const ITsSbTaskInfo, pIdentifier: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Identifier(self: *const ITsSbTaskInfo, pIdentifier: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Identifier(self, pIdentifier);
     }
-    pub fn get_Label(self: *const ITsSbTaskInfo, pLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const ITsSbTaskInfo, pLabel: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Label(self, pLabel);
     }
-    pub fn get_Context(self: *const ITsSbTaskInfo, pContext: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Context(self: *const ITsSbTaskInfo, pContext: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.get_Context(self, pContext);
     }
-    pub fn get_Plugin(self: *const ITsSbTaskInfo, pPlugin: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Plugin(self: *const ITsSbTaskInfo, pPlugin: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Plugin(self, pPlugin);
     }
-    pub fn get_Status(self: *const ITsSbTaskInfo, pStatus: ?*RDV_TASK_STATUS) callconv(.Inline) HRESULT {
+    pub fn get_Status(self: *const ITsSbTaskInfo, pStatus: ?*RDV_TASK_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.get_Status(self, pStatus);
     }
 };
@@ -3160,10 +3160,10 @@ pub const ITsSbTaskPlugin = extern union {
     vtable: *const VTable,
     ITsSbPlugin: ITsSbPlugin,
     IUnknown: IUnknown,
-    pub fn InitializeTaskPlugin(self: *const ITsSbTaskPlugin, pITsSbTaskPluginNotifySink: ?*ITsSbTaskPluginNotifySink) callconv(.Inline) HRESULT {
+    pub fn InitializeTaskPlugin(self: *const ITsSbTaskPlugin, pITsSbTaskPluginNotifySink: ?*ITsSbTaskPluginNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeTaskPlugin(self, pITsSbTaskPluginNotifySink);
     }
-    pub fn SetTaskQueue(self: *const ITsSbTaskPlugin, pszHostName: ?BSTR, SbTaskInfoSize: u32, pITsSbTaskInfo: [*]?*ITsSbTaskInfo) callconv(.Inline) HRESULT {
+    pub fn SetTaskQueue(self: *const ITsSbTaskPlugin, pszHostName: ?BSTR, SbTaskInfoSize: u32, pITsSbTaskInfo: [*]?*ITsSbTaskInfo) callconv(.@"inline") HRESULT {
         return self.vtable.SetTaskQueue(self, pszHostName, SbTaskInfoSize, pITsSbTaskInfo);
     }
 };
@@ -3250,10 +3250,10 @@ pub const ITsSbBaseNotifySink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnError(self: *const ITsSbBaseNotifySink, hrError: HRESULT) callconv(.Inline) HRESULT {
+    pub fn OnError(self: *const ITsSbBaseNotifySink, hrError: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnError(self, hrError);
     }
-    pub fn OnReportStatus(self: *const ITsSbBaseNotifySink, messageType: CLIENT_MESSAGE_TYPE, messageID: u32) callconv(.Inline) HRESULT {
+    pub fn OnReportStatus(self: *const ITsSbBaseNotifySink, messageType: CLIENT_MESSAGE_TYPE, messageID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnReportStatus(self, messageType, messageID);
     }
 };
@@ -3275,10 +3275,10 @@ pub const ITsSbPluginNotifySink = extern union {
     vtable: *const VTable,
     ITsSbBaseNotifySink: ITsSbBaseNotifySink,
     IUnknown: IUnknown,
-    pub fn OnInitialized(self: *const ITsSbPluginNotifySink, hr: HRESULT) callconv(.Inline) HRESULT {
+    pub fn OnInitialized(self: *const ITsSbPluginNotifySink, hr: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnInitialized(self, hr);
     }
-    pub fn OnTerminated(self: *const ITsSbPluginNotifySink) callconv(.Inline) HRESULT {
+    pub fn OnTerminated(self: *const ITsSbPluginNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.OnTerminated(self);
     }
 };
@@ -3298,7 +3298,7 @@ pub const ITsSbLoadBalancingNotifySink = extern union {
     vtable: *const VTable,
     ITsSbBaseNotifySink: ITsSbBaseNotifySink,
     IUnknown: IUnknown,
-    pub fn OnGetMostSuitableTarget(self: *const ITsSbLoadBalancingNotifySink, pLBResult: ?*ITsSbLoadBalanceResult, fIsNewConnection: BOOL) callconv(.Inline) HRESULT {
+    pub fn OnGetMostSuitableTarget(self: *const ITsSbLoadBalancingNotifySink, pLBResult: ?*ITsSbLoadBalanceResult, fIsNewConnection: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.OnGetMostSuitableTarget(self, pLBResult, fIsNewConnection);
     }
 };
@@ -3317,7 +3317,7 @@ pub const ITsSbPlacementNotifySink = extern union {
     vtable: *const VTable,
     ITsSbBaseNotifySink: ITsSbBaseNotifySink,
     IUnknown: IUnknown,
-    pub fn OnQueryEnvironmentCompleted(self: *const ITsSbPlacementNotifySink, pEnvironment: ?*ITsSbEnvironment) callconv(.Inline) HRESULT {
+    pub fn OnQueryEnvironmentCompleted(self: *const ITsSbPlacementNotifySink, pEnvironment: ?*ITsSbEnvironment) callconv(.@"inline") HRESULT {
         return self.vtable.OnQueryEnvironmentCompleted(self, pEnvironment);
     }
 };
@@ -3336,7 +3336,7 @@ pub const ITsSbOrchestrationNotifySink = extern union {
     vtable: *const VTable,
     ITsSbBaseNotifySink: ITsSbBaseNotifySink,
     IUnknown: IUnknown,
-    pub fn OnReadyToConnect(self: *const ITsSbOrchestrationNotifySink, pTarget: ?*ITsSbTarget) callconv(.Inline) HRESULT {
+    pub fn OnReadyToConnect(self: *const ITsSbOrchestrationNotifySink, pTarget: ?*ITsSbTarget) callconv(.@"inline") HRESULT {
         return self.vtable.OnReadyToConnect(self, pTarget);
     }
 };
@@ -3378,16 +3378,16 @@ pub const ITsSbTaskPluginNotifySink = extern union {
     vtable: *const VTable,
     ITsSbBaseNotifySink: ITsSbBaseNotifySink,
     IUnknown: IUnknown,
-    pub fn OnSetTaskTime(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, TaskStartTime: FILETIME, TaskEndTime: FILETIME, TaskDeadline: FILETIME, szTaskLabel: ?BSTR, szTaskIdentifier: ?BSTR, szTaskPlugin: ?BSTR, dwTaskStatus: u32, saContext: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn OnSetTaskTime(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, TaskStartTime: FILETIME, TaskEndTime: FILETIME, TaskDeadline: FILETIME, szTaskLabel: ?BSTR, szTaskIdentifier: ?BSTR, szTaskPlugin: ?BSTR, dwTaskStatus: u32, saContext: ?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.OnSetTaskTime(self, szTargetName, TaskStartTime, TaskEndTime, TaskDeadline, szTaskLabel, szTaskIdentifier, szTaskPlugin, dwTaskStatus, saContext);
     }
-    pub fn OnDeleteTaskTime(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, szTaskIdentifier: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OnDeleteTaskTime(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, szTaskIdentifier: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnDeleteTaskTime(self, szTargetName, szTaskIdentifier);
     }
-    pub fn OnUpdateTaskStatus(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, TaskIdentifier: ?BSTR, TaskStatus: RDV_TASK_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnUpdateTaskStatus(self: *const ITsSbTaskPluginNotifySink, szTargetName: ?BSTR, TaskIdentifier: ?BSTR, TaskStatus: RDV_TASK_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.OnUpdateTaskStatus(self, szTargetName, TaskIdentifier, TaskStatus);
     }
-    pub fn OnReportTasks(self: *const ITsSbTaskPluginNotifySink, szHostName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OnReportTasks(self: *const ITsSbTaskPluginNotifySink, szHostName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnReportTasks(self, szHostName);
     }
 };
@@ -3474,49 +3474,49 @@ pub const ITsSbClientConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_UserName(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserName(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserName(self, pVal);
     }
-    pub fn get_Domain(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Domain(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Domain(self, pVal);
     }
-    pub fn get_InitialProgram(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InitialProgram(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_InitialProgram(self, pVal);
     }
-    pub fn get_LoadBalanceResult(self: *const ITsSbClientConnection, ppVal: ?*?*ITsSbLoadBalanceResult) callconv(.Inline) HRESULT {
+    pub fn get_LoadBalanceResult(self: *const ITsSbClientConnection, ppVal: ?*?*ITsSbLoadBalanceResult) callconv(.@"inline") HRESULT {
         return self.vtable.get_LoadBalanceResult(self, ppVal);
     }
-    pub fn get_FarmName(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FarmName(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_FarmName(self, pVal);
     }
-    pub fn PutContext(self: *const ITsSbClientConnection, contextId: ?BSTR, context: VARIANT, existingContext: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn PutContext(self: *const ITsSbClientConnection, contextId: ?BSTR, context: VARIANT, existingContext: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.PutContext(self, contextId, context, existingContext);
     }
-    pub fn GetContext(self: *const ITsSbClientConnection, contextId: ?BSTR, context: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetContext(self: *const ITsSbClientConnection, contextId: ?BSTR, context: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetContext(self, contextId, context);
     }
-    pub fn get_Environment(self: *const ITsSbClientConnection, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
+    pub fn get_Environment(self: *const ITsSbClientConnection, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.@"inline") HRESULT {
         return self.vtable.get_Environment(self, ppEnvironment);
     }
-    pub fn get_ConnectionError(self: *const ITsSbClientConnection) callconv(.Inline) HRESULT {
+    pub fn get_ConnectionError(self: *const ITsSbClientConnection) callconv(.@"inline") HRESULT {
         return self.vtable.get_ConnectionError(self);
     }
-    pub fn get_SamUserAccount(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SamUserAccount(self: *const ITsSbClientConnection, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_SamUserAccount(self, pVal);
     }
-    pub fn get_ClientConnectionPropertySet(self: *const ITsSbClientConnection, ppPropertySet: ?*?*ITsSbClientConnectionPropertySet) callconv(.Inline) HRESULT {
+    pub fn get_ClientConnectionPropertySet(self: *const ITsSbClientConnection, ppPropertySet: ?*?*ITsSbClientConnectionPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.get_ClientConnectionPropertySet(self, ppPropertySet);
     }
-    pub fn get_IsFirstAssignment(self: *const ITsSbClientConnection, ppVal: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsFirstAssignment(self: *const ITsSbClientConnection, ppVal: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsFirstAssignment(self, ppVal);
     }
-    pub fn get_RdFarmType(self: *const ITsSbClientConnection, pRdFarmType: ?*RD_FARM_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_RdFarmType(self: *const ITsSbClientConnection, pRdFarmType: ?*RD_FARM_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.get_RdFarmType(self, pRdFarmType);
     }
-    pub fn get_UserSidString(self: *const ITsSbClientConnection, pszUserSidString: ?*?*i8) callconv(.Inline) HRESULT {
+    pub fn get_UserSidString(self: *const ITsSbClientConnection, pszUserSidString: ?*?*i8) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserSidString(self, pszUserSidString);
     }
-    pub fn GetDisconnectedSession(self: *const ITsSbClientConnection, ppSession: ?*?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn GetDisconnectedSession(self: *const ITsSbClientConnection, ppSession: ?*?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisconnectedSession(self, ppSession);
     }
 };
@@ -3590,40 +3590,40 @@ pub const ITsSbProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateTargetObject(self: *const ITsSbProvider, TargetName: ?BSTR, EnvironmentName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.Inline) HRESULT {
+    pub fn CreateTargetObject(self: *const ITsSbProvider, TargetName: ?BSTR, EnvironmentName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTargetObject(self, TargetName, EnvironmentName, ppTarget);
     }
-    pub fn CreateLoadBalanceResultObject(self: *const ITsSbProvider, TargetName: ?BSTR, ppLBResult: ?*?*ITsSbLoadBalanceResult) callconv(.Inline) HRESULT {
+    pub fn CreateLoadBalanceResultObject(self: *const ITsSbProvider, TargetName: ?BSTR, ppLBResult: ?*?*ITsSbLoadBalanceResult) callconv(.@"inline") HRESULT {
         return self.vtable.CreateLoadBalanceResultObject(self, TargetName, ppLBResult);
     }
-    pub fn CreateSessionObject(self: *const ITsSbProvider, TargetName: ?BSTR, UserName: ?BSTR, Domain: ?BSTR, SessionId: u32, ppSession: ?*?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn CreateSessionObject(self: *const ITsSbProvider, TargetName: ?BSTR, UserName: ?BSTR, Domain: ?BSTR, SessionId: u32, ppSession: ?*?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.CreateSessionObject(self, TargetName, UserName, Domain, SessionId, ppSession);
     }
-    pub fn CreatePluginPropertySet(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbPluginPropertySet) callconv(.Inline) HRESULT {
+    pub fn CreatePluginPropertySet(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbPluginPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePluginPropertySet(self, ppPropertySet);
     }
-    pub fn CreateTargetPropertySetObject(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbTargetPropertySet) callconv(.Inline) HRESULT {
+    pub fn CreateTargetPropertySetObject(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbTargetPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTargetPropertySetObject(self, ppPropertySet);
     }
-    pub fn CreateEnvironmentObject(self: *const ITsSbProvider, Name: ?BSTR, ServerWeight: u32, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
+    pub fn CreateEnvironmentObject(self: *const ITsSbProvider, Name: ?BSTR, ServerWeight: u32, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEnvironmentObject(self, Name, ServerWeight, ppEnvironment);
     }
-    pub fn GetResourcePluginStore(self: *const ITsSbProvider, ppStore: ?*?*ITsSbResourcePluginStore) callconv(.Inline) HRESULT {
+    pub fn GetResourcePluginStore(self: *const ITsSbProvider, ppStore: ?*?*ITsSbResourcePluginStore) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourcePluginStore(self, ppStore);
     }
-    pub fn GetFilterPluginStore(self: *const ITsSbProvider, ppStore: ?*?*ITsSbFilterPluginStore) callconv(.Inline) HRESULT {
+    pub fn GetFilterPluginStore(self: *const ITsSbProvider, ppStore: ?*?*ITsSbFilterPluginStore) callconv(.@"inline") HRESULT {
         return self.vtable.GetFilterPluginStore(self, ppStore);
     }
-    pub fn RegisterForNotification(self: *const ITsSbProvider, notificationType: u32, ResourceToMonitor: ?BSTR, pPluginNotification: ?*ITsSbResourceNotification) callconv(.Inline) HRESULT {
+    pub fn RegisterForNotification(self: *const ITsSbProvider, notificationType: u32, ResourceToMonitor: ?BSTR, pPluginNotification: ?*ITsSbResourceNotification) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterForNotification(self, notificationType, ResourceToMonitor, pPluginNotification);
     }
-    pub fn UnRegisterForNotification(self: *const ITsSbProvider, notificationType: u32, ResourceToMonitor: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn UnRegisterForNotification(self: *const ITsSbProvider, notificationType: u32, ResourceToMonitor: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.UnRegisterForNotification(self, notificationType, ResourceToMonitor);
     }
-    pub fn GetInstanceOfGlobalStore(self: *const ITsSbProvider, ppGlobalStore: ?*?*ITsSbGlobalStore) callconv(.Inline) HRESULT {
+    pub fn GetInstanceOfGlobalStore(self: *const ITsSbProvider, ppGlobalStore: ?*?*ITsSbGlobalStore) callconv(.@"inline") HRESULT {
         return self.vtable.GetInstanceOfGlobalStore(self, ppGlobalStore);
     }
-    pub fn CreateEnvironmentPropertySetObject(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbEnvironmentPropertySet) callconv(.Inline) HRESULT {
+    pub fn CreateEnvironmentPropertySetObject(self: *const ITsSbProvider, ppPropertySet: ?*?*ITsSbEnvironmentPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEnvironmentPropertySetObject(self, ppPropertySet);
     }
 };
@@ -3794,88 +3794,88 @@ pub const ITsSbResourcePluginStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryTarget(self: *const ITsSbResourcePluginStore, TargetName: ?BSTR, FarmName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.Inline) HRESULT {
+    pub fn QueryTarget(self: *const ITsSbResourcePluginStore, TargetName: ?BSTR, FarmName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.@"inline") HRESULT {
         return self.vtable.QueryTarget(self, TargetName, FarmName, ppTarget);
     }
-    pub fn QuerySessionBySessionId(self: *const ITsSbResourcePluginStore, dwSessionId: u32, TargetName: ?BSTR, ppSession: ?*?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn QuerySessionBySessionId(self: *const ITsSbResourcePluginStore, dwSessionId: u32, TargetName: ?BSTR, ppSession: ?*?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.QuerySessionBySessionId(self, dwSessionId, TargetName, ppSession);
     }
-    pub fn AddTargetToStore(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget) callconv(.Inline) HRESULT {
+    pub fn AddTargetToStore(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget) callconv(.@"inline") HRESULT {
         return self.vtable.AddTargetToStore(self, pTarget);
     }
-    pub fn AddSessionToStore(self: *const ITsSbResourcePluginStore, pSession: ?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn AddSessionToStore(self: *const ITsSbResourcePluginStore, pSession: ?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.AddSessionToStore(self, pSession);
     }
-    pub fn AddEnvironmentToStore(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment) callconv(.Inline) HRESULT {
+    pub fn AddEnvironmentToStore(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment) callconv(.@"inline") HRESULT {
         return self.vtable.AddEnvironmentToStore(self, pEnvironment);
     }
-    pub fn RemoveEnvironmentFromStore(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, bIgnoreOwner: BOOL) callconv(.Inline) HRESULT {
+    pub fn RemoveEnvironmentFromStore(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, bIgnoreOwner: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveEnvironmentFromStore(self, EnvironmentName, bIgnoreOwner);
     }
-    pub fn EnumerateFarms(self: *const ITsSbResourcePluginStore, pdwCount: ?*u32, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn EnumerateFarms(self: *const ITsSbResourcePluginStore, pdwCount: ?*u32, pVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateFarms(self, pdwCount, pVal);
     }
-    pub fn QueryEnvironment(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
+    pub fn QueryEnvironment(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, ppEnvironment: ?*?*ITsSbEnvironment) callconv(.@"inline") HRESULT {
         return self.vtable.QueryEnvironment(self, EnvironmentName, ppEnvironment);
     }
-    pub fn EnumerateEnvironments(self: *const ITsSbResourcePluginStore, pdwCount: ?*u32, pVal: [*]?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
+    pub fn EnumerateEnvironments(self: *const ITsSbResourcePluginStore, pdwCount: ?*u32, pVal: [*]?*?*ITsSbEnvironment) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateEnvironments(self, pdwCount, pVal);
     }
-    pub fn SaveTarget(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget, bForceWrite: BOOL) callconv(.Inline) HRESULT {
+    pub fn SaveTarget(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget, bForceWrite: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SaveTarget(self, pTarget, bForceWrite);
     }
-    pub fn SaveEnvironment(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment, bForceWrite: BOOL) callconv(.Inline) HRESULT {
+    pub fn SaveEnvironment(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment, bForceWrite: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SaveEnvironment(self, pEnvironment, bForceWrite);
     }
-    pub fn SaveSession(self: *const ITsSbResourcePluginStore, pSession: ?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn SaveSession(self: *const ITsSbResourcePluginStore, pSession: ?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.SaveSession(self, pSession);
     }
-    pub fn SetTargetProperty(self: *const ITsSbResourcePluginStore, TargetName: ?BSTR, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetTargetProperty(self: *const ITsSbResourcePluginStore, TargetName: ?BSTR, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetProperty(self, TargetName, PropertyName, pProperty);
     }
-    pub fn SetEnvironmentProperty(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetEnvironmentProperty(self: *const ITsSbResourcePluginStore, EnvironmentName: ?BSTR, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnvironmentProperty(self, EnvironmentName, PropertyName, pProperty);
     }
-    pub fn SetTargetState(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, newState: TARGET_STATE, pOldState: ?*TARGET_STATE) callconv(.Inline) HRESULT {
+    pub fn SetTargetState(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, newState: TARGET_STATE, pOldState: ?*TARGET_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetState(self, targetName, newState, pOldState);
     }
-    pub fn SetSessionState(self: *const ITsSbResourcePluginStore, sbSession: ?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn SetSessionState(self: *const ITsSbResourcePluginStore, sbSession: ?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.SetSessionState(self, sbSession);
     }
-    pub fn EnumerateTargets(self: *const ITsSbResourcePluginStore, FarmName: ?BSTR, EnvName: ?BSTR, sortByFieldId: TS_SB_SORT_BY, sortyByPropName: ?BSTR, pdwCount: ?*u32, pVal: [*]?*?*ITsSbTarget) callconv(.Inline) HRESULT {
+    pub fn EnumerateTargets(self: *const ITsSbResourcePluginStore, FarmName: ?BSTR, EnvName: ?BSTR, sortByFieldId: TS_SB_SORT_BY, sortyByPropName: ?BSTR, pdwCount: ?*u32, pVal: [*]?*?*ITsSbTarget) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateTargets(self, FarmName, EnvName, sortByFieldId, sortyByPropName, pdwCount, pVal);
     }
-    pub fn EnumerateSessions(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, userName: ?BSTR, userDomain: ?BSTR, poolName: ?BSTR, initialProgram: ?BSTR, pSessionState: ?*TSSESSION_STATE, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn EnumerateSessions(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, userName: ?BSTR, userDomain: ?BSTR, poolName: ?BSTR, initialProgram: ?BSTR, pSessionState: ?*TSSESSION_STATE, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateSessions(self, targetName, userName, userDomain, poolName, initialProgram, pSessionState, pdwCount, ppVal);
     }
-    pub fn GetFarmProperty(self: *const ITsSbResourcePluginStore, farmName: ?BSTR, propertyName: ?BSTR, pVarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetFarmProperty(self: *const ITsSbResourcePluginStore, farmName: ?BSTR, propertyName: ?BSTR, pVarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetFarmProperty(self, farmName, propertyName, pVarValue);
     }
-    pub fn DeleteTarget(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, hostName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteTarget(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, hostName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteTarget(self, targetName, hostName);
     }
-    pub fn SetTargetPropertyWithVersionCheck(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetTargetPropertyWithVersionCheck(self: *const ITsSbResourcePluginStore, pTarget: ?*ITsSbTarget, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetTargetPropertyWithVersionCheck(self, pTarget, PropertyName, pProperty);
     }
-    pub fn SetEnvironmentPropertyWithVersionCheck(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetEnvironmentPropertyWithVersionCheck(self: *const ITsSbResourcePluginStore, pEnvironment: ?*ITsSbEnvironment, PropertyName: ?BSTR, pProperty: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetEnvironmentPropertyWithVersionCheck(self, pEnvironment, PropertyName, pProperty);
     }
-    pub fn AcquireTargetLock(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, dwTimeout: u32, ppContext: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn AcquireTargetLock(self: *const ITsSbResourcePluginStore, targetName: ?BSTR, dwTimeout: u32, ppContext: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.AcquireTargetLock(self, targetName, dwTimeout, ppContext);
     }
-    pub fn ReleaseTargetLock(self: *const ITsSbResourcePluginStore, pContext: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn ReleaseTargetLock(self: *const ITsSbResourcePluginStore, pContext: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.ReleaseTargetLock(self, pContext);
     }
-    pub fn TestAndSetServerState(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, ServerFQDN: ?BSTR, NewState: TARGET_STATE, TestState: TARGET_STATE, pInitState: ?*TARGET_STATE) callconv(.Inline) HRESULT {
+    pub fn TestAndSetServerState(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, ServerFQDN: ?BSTR, NewState: TARGET_STATE, TestState: TARGET_STATE, pInitState: ?*TARGET_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.TestAndSetServerState(self, PoolName, ServerFQDN, NewState, TestState, pInitState);
     }
-    pub fn SetServerWaitingToStart(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, serverName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetServerWaitingToStart(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, serverName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetServerWaitingToStart(self, PoolName, serverName);
     }
-    pub fn GetServerState(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, ServerFQDN: ?BSTR, pState: ?*TARGET_STATE) callconv(.Inline) HRESULT {
+    pub fn GetServerState(self: *const ITsSbResourcePluginStore, PoolName: ?BSTR, ServerFQDN: ?BSTR, pState: ?*TARGET_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetServerState(self, PoolName, ServerFQDN, pState);
     }
-    pub fn SetServerDrainMode(self: *const ITsSbResourcePluginStore, ServerFQDN: ?BSTR, DrainMode: u32) callconv(.Inline) HRESULT {
+    pub fn SetServerDrainMode(self: *const ITsSbResourcePluginStore, ServerFQDN: ?BSTR, DrainMode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetServerDrainMode(self, ServerFQDN, DrainMode);
     }
 };
@@ -3901,13 +3901,13 @@ pub const ITsSbFilterPluginStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SaveProperties(self: *const ITsSbFilterPluginStore, pPropertySet: ?*ITsSbPropertySet) callconv(.Inline) HRESULT {
+    pub fn SaveProperties(self: *const ITsSbFilterPluginStore, pPropertySet: ?*ITsSbPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.SaveProperties(self, pPropertySet);
     }
-    pub fn EnumerateProperties(self: *const ITsSbFilterPluginStore, ppPropertySet: ?*?*ITsSbPropertySet) callconv(.Inline) HRESULT {
+    pub fn EnumerateProperties(self: *const ITsSbFilterPluginStore, ppPropertySet: ?*?*ITsSbPropertySet) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateProperties(self, ppPropertySet);
     }
-    pub fn DeleteProperties(self: *const ITsSbFilterPluginStore, propertyName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteProperties(self: *const ITsSbFilterPluginStore, propertyName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteProperties(self, propertyName);
     }
 };
@@ -3973,25 +3973,25 @@ pub const ITsSbGlobalStore = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryTarget(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, TargetName: ?BSTR, FarmName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.Inline) HRESULT {
+    pub fn QueryTarget(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, TargetName: ?BSTR, FarmName: ?BSTR, ppTarget: ?*?*ITsSbTarget) callconv(.@"inline") HRESULT {
         return self.vtable.QueryTarget(self, ProviderName, TargetName, FarmName, ppTarget);
     }
-    pub fn QuerySessionBySessionId(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, dwSessionId: u32, TargetName: ?BSTR, ppSession: ?*?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn QuerySessionBySessionId(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, dwSessionId: u32, TargetName: ?BSTR, ppSession: ?*?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.QuerySessionBySessionId(self, ProviderName, dwSessionId, TargetName, ppSession);
     }
-    pub fn EnumerateFarms(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, pdwCount: ?*u32, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn EnumerateFarms(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, pdwCount: ?*u32, pVal: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateFarms(self, ProviderName, pdwCount, pVal);
     }
-    pub fn EnumerateTargets(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, FarmName: ?BSTR, EnvName: ?BSTR, pdwCount: ?*u32, pVal: [*]?*?*ITsSbTarget) callconv(.Inline) HRESULT {
+    pub fn EnumerateTargets(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, FarmName: ?BSTR, EnvName: ?BSTR, pdwCount: ?*u32, pVal: [*]?*?*ITsSbTarget) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateTargets(self, ProviderName, FarmName, EnvName, pdwCount, pVal);
     }
-    pub fn EnumerateEnvironmentsByProvider(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbEnvironment) callconv(.Inline) HRESULT {
+    pub fn EnumerateEnvironmentsByProvider(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbEnvironment) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateEnvironmentsByProvider(self, ProviderName, pdwCount, ppVal);
     }
-    pub fn EnumerateSessions(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, targetName: ?BSTR, userName: ?BSTR, userDomain: ?BSTR, poolName: ?BSTR, initialProgram: ?BSTR, pSessionState: ?*TSSESSION_STATE, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbSession) callconv(.Inline) HRESULT {
+    pub fn EnumerateSessions(self: *const ITsSbGlobalStore, ProviderName: ?BSTR, targetName: ?BSTR, userName: ?BSTR, userDomain: ?BSTR, poolName: ?BSTR, initialProgram: ?BSTR, pSessionState: ?*TSSESSION_STATE, pdwCount: ?*u32, ppVal: [*]?*?*ITsSbSession) callconv(.@"inline") HRESULT {
         return self.vtable.EnumerateSessions(self, ProviderName, targetName, userName, userDomain, poolName, initialProgram, pSessionState, pdwCount, ppVal);
     }
-    pub fn GetFarmProperty(self: *const ITsSbGlobalStore, farmName: ?BSTR, propertyName: ?BSTR, pVarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetFarmProperty(self: *const ITsSbGlobalStore, farmName: ?BSTR, propertyName: ?BSTR, pVarValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetFarmProperty(self, farmName, propertyName, pVarValue);
     }
 };
@@ -4035,22 +4035,22 @@ pub const ITsSbProvisioningPluginNotifySink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnJobCreated(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyInfo: ?*VM_NOTIFY_INFO) callconv(.Inline) HRESULT {
+    pub fn OnJobCreated(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyInfo: ?*VM_NOTIFY_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.OnJobCreated(self, pVmNotifyInfo);
     }
-    pub fn OnVirtualMachineStatusChanged(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyEntry: ?*VM_NOTIFY_ENTRY, VmNotifyStatus: VM_NOTIFY_STATUS, ErrorCode: HRESULT, ErrorDescr: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OnVirtualMachineStatusChanged(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyEntry: ?*VM_NOTIFY_ENTRY, VmNotifyStatus: VM_NOTIFY_STATUS, ErrorCode: HRESULT, ErrorDescr: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnVirtualMachineStatusChanged(self, pVmNotifyEntry, VmNotifyStatus, ErrorCode, ErrorDescr);
     }
-    pub fn OnJobCompleted(self: *const ITsSbProvisioningPluginNotifySink, ResultCode: HRESULT, ResultDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OnJobCompleted(self: *const ITsSbProvisioningPluginNotifySink, ResultCode: HRESULT, ResultDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnJobCompleted(self, ResultCode, ResultDescription);
     }
-    pub fn OnJobCancelled(self: *const ITsSbProvisioningPluginNotifySink) callconv(.Inline) HRESULT {
+    pub fn OnJobCancelled(self: *const ITsSbProvisioningPluginNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.OnJobCancelled(self);
     }
-    pub fn LockVirtualMachine(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyEntry: ?*VM_NOTIFY_ENTRY) callconv(.Inline) HRESULT {
+    pub fn LockVirtualMachine(self: *const ITsSbProvisioningPluginNotifySink, pVmNotifyEntry: ?*VM_NOTIFY_ENTRY) callconv(.@"inline") HRESULT {
         return self.vtable.LockVirtualMachine(self, pVmNotifyEntry);
     }
-    pub fn OnVirtualMachineHostStatusChanged(self: *const ITsSbProvisioningPluginNotifySink, VmHost: ?BSTR, VmHostNotifyStatus: VM_HOST_NOTIFY_STATUS, ErrorCode: HRESULT, ErrorDescr: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OnVirtualMachineHostStatusChanged(self: *const ITsSbProvisioningPluginNotifySink, VmHost: ?BSTR, VmHostNotifyStatus: VM_HOST_NOTIFY_STATUS, ErrorCode: HRESULT, ErrorDescr: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnVirtualMachineHostStatusChanged(self, VmHost, VmHostNotifyStatus, ErrorCode, ErrorDescr);
     }
 };
@@ -4088,16 +4088,16 @@ pub const ITsSbProvisioning = extern union {
     vtable: *const VTable,
     ITsSbPlugin: ITsSbPlugin,
     IUnknown: IUnknown,
-    pub fn CreateVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink) callconv(.Inline) HRESULT {
+    pub fn CreateVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualMachines(self, JobXmlString, JobGuid, pSink);
     }
-    pub fn PatchVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink, pVMPatchInfo: ?*VM_PATCH_INFO) callconv(.Inline) HRESULT {
+    pub fn PatchVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink, pVMPatchInfo: ?*VM_PATCH_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.PatchVirtualMachines(self, JobXmlString, JobGuid, pSink, pVMPatchInfo);
     }
-    pub fn DeleteVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink) callconv(.Inline) HRESULT {
+    pub fn DeleteVirtualMachines(self: *const ITsSbProvisioning, JobXmlString: ?BSTR, JobGuid: ?BSTR, pSink: ?*ITsSbProvisioningPluginNotifySink) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteVirtualMachines(self, JobXmlString, JobGuid, pSink);
     }
-    pub fn CancelJob(self: *const ITsSbProvisioning, JobGuid: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn CancelJob(self: *const ITsSbProvisioning, JobGuid: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.CancelJob(self, JobGuid);
     }
 };
@@ -4119,10 +4119,10 @@ pub const ITsSbGenericNotifySink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnCompleted(self: *const ITsSbGenericNotifySink, Status: HRESULT) callconv(.Inline) HRESULT {
+    pub fn OnCompleted(self: *const ITsSbGenericNotifySink, Status: HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.OnCompleted(self, Status);
     }
-    pub fn GetWaitTimeout(self: *const ITsSbGenericNotifySink, pftTimeout: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetWaitTimeout(self: *const ITsSbGenericNotifySink, pftTimeout: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetWaitTimeout(self, pftTimeout);
     }
 };
@@ -4184,22 +4184,22 @@ pub const ItsPubPlugin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetResourceList(self: *const ItsPubPlugin, userID: ?[*:0]const u16, pceAppListSize: ?*i32, resourceList: ?*?*pluginResource) callconv(.Inline) HRESULT {
+    pub fn GetResourceList(self: *const ItsPubPlugin, userID: ?[*:0]const u16, pceAppListSize: ?*i32, resourceList: ?*?*pluginResource) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceList(self, userID, pceAppListSize, resourceList);
     }
-    pub fn GetResource(self: *const ItsPubPlugin, alias: ?[*:0]const u16, flags: i32, resource: ?*pluginResource) callconv(.Inline) HRESULT {
+    pub fn GetResource(self: *const ItsPubPlugin, alias: ?[*:0]const u16, flags: i32, resource: ?*pluginResource) callconv(.@"inline") HRESULT {
         return self.vtable.GetResource(self, alias, flags, resource);
     }
-    pub fn GetCacheLastUpdateTime(self: *const ItsPubPlugin, lastUpdateTime: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetCacheLastUpdateTime(self: *const ItsPubPlugin, lastUpdateTime: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetCacheLastUpdateTime(self, lastUpdateTime);
     }
-    pub fn get_pluginName(self: *const ItsPubPlugin, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_pluginName(self: *const ItsPubPlugin, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_pluginName(self, pVal);
     }
-    pub fn get_pluginVersion(self: *const ItsPubPlugin, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_pluginVersion(self: *const ItsPubPlugin, pVal: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_pluginVersion(self, pVal);
     }
-    pub fn ResolveResource(self: *const ItsPubPlugin, resourceType: ?*u32, resourceLocation: ?PWSTR, endPointName: ?PWSTR, userID: ?PWSTR, alias: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn ResolveResource(self: *const ItsPubPlugin, resourceType: ?*u32, resourceLocation: ?PWSTR, endPointName: ?PWSTR, userID: ?PWSTR, alias: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveResource(self, resourceType, resourceLocation, endPointName, userID, alias);
     }
 };
@@ -4270,16 +4270,16 @@ pub const ItsPubPlugin2 = extern union {
     vtable: *const VTable,
     ItsPubPlugin: ItsPubPlugin,
     IUnknown: IUnknown,
-    pub fn GetResource2List(self: *const ItsPubPlugin2, userID: ?[*:0]const u16, pceAppListSize: ?*i32, resourceList: ?*?*pluginResource2) callconv(.Inline) HRESULT {
+    pub fn GetResource2List(self: *const ItsPubPlugin2, userID: ?[*:0]const u16, pceAppListSize: ?*i32, resourceList: ?*?*pluginResource2) callconv(.@"inline") HRESULT {
         return self.vtable.GetResource2List(self, userID, pceAppListSize, resourceList);
     }
-    pub fn GetResource2(self: *const ItsPubPlugin2, alias: ?[*:0]const u16, flags: i32, resource: ?*pluginResource2) callconv(.Inline) HRESULT {
+    pub fn GetResource2(self: *const ItsPubPlugin2, alias: ?[*:0]const u16, flags: i32, resource: ?*pluginResource2) callconv(.@"inline") HRESULT {
         return self.vtable.GetResource2(self, alias, flags, resource);
     }
-    pub fn ResolvePersonalDesktop(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE, pPdAssignmentType: ?*TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE, endPointName: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn ResolvePersonalDesktop(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE, pPdAssignmentType: ?*TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE, endPointName: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ResolvePersonalDesktop(self, userId, poolId, ePdResolutionType, pPdAssignmentType, endPointName);
     }
-    pub fn DeletePersonalDesktopAssignment(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, endpointName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeletePersonalDesktopAssignment(self: *const ItsPubPlugin2, userId: ?[*:0]const u16, poolId: ?[*:0]const u16, endpointName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePersonalDesktopAssignment(self, userId, poolId, endpointName);
     }
 };
@@ -4322,19 +4322,19 @@ pub const IWorkspaceResTypeRegistry = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddResourceType(self, fMachineWide, bstrFileExtension, bstrLauncher);
     }
-    pub fn DeleteResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteResourceType(self, fMachineWide, bstrFileExtension);
     }
-    pub fn GetRegisteredFileExtensions(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, psaFileExtensions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn GetRegisteredFileExtensions(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, psaFileExtensions: ?*?*SAFEARRAY) callconv(.@"inline") HRESULT {
         return self.vtable.GetRegisteredFileExtensions(self, fMachineWide, psaFileExtensions);
     }
-    pub fn GetResourceTypeInfo(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, pbstrLauncher: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetResourceTypeInfo(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, pbstrLauncher: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetResourceTypeInfo(self, fMachineWide, bstrFileExtension, pbstrLauncher);
     }
-    pub fn ModifyResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ModifyResourceType(self: *const IWorkspaceResTypeRegistry, fMachineWide: i16, bstrFileExtension: ?BSTR, bstrLauncher: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ModifyResourceType(self, fMachineWide, bstrFileExtension, bstrLauncher);
     }
 };
@@ -4362,16 +4362,16 @@ pub const IWTSPlugin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWTSPlugin, pChannelMgr: ?*IWTSVirtualChannelManager) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWTSPlugin, pChannelMgr: ?*IWTSVirtualChannelManager) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pChannelMgr);
     }
-    pub fn Connected(self: *const IWTSPlugin) callconv(.Inline) HRESULT {
+    pub fn Connected(self: *const IWTSPlugin) callconv(.@"inline") HRESULT {
         return self.vtable.Connected(self);
     }
-    pub fn Disconnected(self: *const IWTSPlugin, dwDisconnectCode: u32) callconv(.Inline) HRESULT {
+    pub fn Disconnected(self: *const IWTSPlugin, dwDisconnectCode: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnected(self, dwDisconnectCode);
     }
-    pub fn Terminated(self: *const IWTSPlugin) callconv(.Inline) HRESULT {
+    pub fn Terminated(self: *const IWTSPlugin) callconv(.@"inline") HRESULT {
         return self.vtable.Terminated(self);
     }
 };
@@ -4389,7 +4389,7 @@ pub const IWTSListener = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConfiguration(self: *const IWTSListener, ppPropertyBag: ?*?*IPropertyBag) callconv(.Inline) HRESULT {
+    pub fn GetConfiguration(self: *const IWTSListener, ppPropertyBag: ?*?*IPropertyBag) callconv(.@"inline") HRESULT {
         return self.vtable.GetConfiguration(self, ppPropertyBag);
     }
 };
@@ -4410,7 +4410,7 @@ pub const IWTSListenerCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnNewChannelConnection(self: *const IWTSListenerCallback, pChannel: ?*IWTSVirtualChannel, data: ?BSTR, pbAccept: ?*BOOL, ppCallback: ?*?*IWTSVirtualChannelCallback) callconv(.Inline) HRESULT {
+    pub fn OnNewChannelConnection(self: *const IWTSListenerCallback, pChannel: ?*IWTSVirtualChannel, data: ?BSTR, pbAccept: ?*BOOL, ppCallback: ?*?*IWTSVirtualChannelCallback) callconv(.@"inline") HRESULT {
         return self.vtable.OnNewChannelConnection(self, pChannel, data, pbAccept, ppCallback);
     }
 };
@@ -4432,10 +4432,10 @@ pub const IWTSVirtualChannelCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnDataReceived(self: *const IWTSVirtualChannelCallback, cbSize: u32, pBuffer: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn OnDataReceived(self: *const IWTSVirtualChannelCallback, cbSize: u32, pBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.OnDataReceived(self, cbSize, pBuffer);
     }
-    pub fn OnClose(self: *const IWTSVirtualChannelCallback) callconv(.Inline) HRESULT {
+    pub fn OnClose(self: *const IWTSVirtualChannelCallback) callconv(.@"inline") HRESULT {
         return self.vtable.OnClose(self);
     }
 };
@@ -4456,7 +4456,7 @@ pub const IWTSVirtualChannelManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateListener(self: *const IWTSVirtualChannelManager, pszChannelName: ?*const u8, uFlags: u32, pListenerCallback: ?*IWTSListenerCallback, ppListener: ?*?*IWTSListener) callconv(.Inline) HRESULT {
+    pub fn CreateListener(self: *const IWTSVirtualChannelManager, pszChannelName: ?*const u8, uFlags: u32, pListenerCallback: ?*IWTSListenerCallback, ppListener: ?*?*IWTSListener) callconv(.@"inline") HRESULT {
         return self.vtable.CreateListener(self, pszChannelName, uFlags, pListenerCallback, ppListener);
     }
 };
@@ -4479,10 +4479,10 @@ pub const IWTSVirtualChannel = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Write(self: *const IWTSVirtualChannel, cbSize: u32, pBuffer: [*:0]u8, pReserved: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Write(self: *const IWTSVirtualChannel, cbSize: u32, pBuffer: [*:0]u8, pReserved: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Write(self, cbSize, pBuffer, pReserved);
     }
-    pub fn Close(self: *const IWTSVirtualChannel) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IWTSVirtualChannel) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -4501,7 +4501,7 @@ pub const IWTSPluginServiceProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetService(self: *const IWTSPluginServiceProvider, ServiceId: Guid, ppunkObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetService(self: *const IWTSPluginServiceProvider, ServiceId: Guid, ppunkObject: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetService(self, ServiceId, ppunkObject);
     }
 };
@@ -4536,13 +4536,13 @@ pub const IWTSBitmapRenderer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Render(self: *const IWTSBitmapRenderer, imageFormat: Guid, dwWidth: u32, dwHeight: u32, cbStride: i32, cbImageBuffer: u32, pImageBuffer: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn Render(self: *const IWTSBitmapRenderer, imageFormat: Guid, dwWidth: u32, dwHeight: u32, cbStride: i32, cbImageBuffer: u32, pImageBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.Render(self, imageFormat, dwWidth, dwHeight, cbStride, cbImageBuffer, pImageBuffer);
     }
-    pub fn GetRendererStatistics(self: *const IWTSBitmapRenderer, pStatistics: ?*BITMAP_RENDERER_STATISTICS) callconv(.Inline) HRESULT {
+    pub fn GetRendererStatistics(self: *const IWTSBitmapRenderer, pStatistics: ?*BITMAP_RENDERER_STATISTICS) callconv(.@"inline") HRESULT {
         return self.vtable.GetRendererStatistics(self, pStatistics);
     }
-    pub fn RemoveMapping(self: *const IWTSBitmapRenderer) callconv(.Inline) HRESULT {
+    pub fn RemoveMapping(self: *const IWTSBitmapRenderer) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveMapping(self);
     }
 };
@@ -4560,7 +4560,7 @@ pub const IWTSBitmapRendererCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnTargetSizeChanged(self: *const IWTSBitmapRendererCallback, rcNewSize: RECT) callconv(.Inline) HRESULT {
+    pub fn OnTargetSizeChanged(self: *const IWTSBitmapRendererCallback, rcNewSize: RECT) callconv(.@"inline") HRESULT {
         return self.vtable.OnTargetSizeChanged(self, rcNewSize);
     }
 };
@@ -4580,7 +4580,7 @@ pub const IWTSBitmapRenderService = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMappedRenderer(self: *const IWTSBitmapRenderService, mappingId: u64, pMappedRendererCallback: ?*IWTSBitmapRendererCallback, ppMappedRenderer: ?*?*IWTSBitmapRenderer) callconv(.Inline) HRESULT {
+    pub fn GetMappedRenderer(self: *const IWTSBitmapRenderService, mappingId: u64, pMappedRendererCallback: ?*IWTSBitmapRendererCallback, ppMappedRenderer: ?*?*IWTSBitmapRenderer) callconv(.@"inline") HRESULT {
         return self.vtable.GetMappedRenderer(self, mappingId, pMappedRendererCallback, ppMappedRenderer);
     }
 };
@@ -4620,19 +4620,19 @@ pub const IWRdsGraphicsChannelEvents = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnDataReceived(self: *const IWRdsGraphicsChannelEvents, cbSize: u32, pBuffer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn OnDataReceived(self: *const IWRdsGraphicsChannelEvents, cbSize: u32, pBuffer: ?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.OnDataReceived(self, cbSize, pBuffer);
     }
-    pub fn OnClose(self: *const IWRdsGraphicsChannelEvents) callconv(.Inline) HRESULT {
+    pub fn OnClose(self: *const IWRdsGraphicsChannelEvents) callconv(.@"inline") HRESULT {
         return self.vtable.OnClose(self);
     }
-    pub fn OnChannelOpened(self: *const IWRdsGraphicsChannelEvents, OpenResult: HRESULT, pOpenContext: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn OnChannelOpened(self: *const IWRdsGraphicsChannelEvents, OpenResult: HRESULT, pOpenContext: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OnChannelOpened(self, OpenResult, pOpenContext);
     }
-    pub fn OnDataSent(self: *const IWRdsGraphicsChannelEvents, pWriteContext: ?*IUnknown, bCancelled: BOOL, pBuffer: ?*u8, cbBuffer: u32) callconv(.Inline) HRESULT {
+    pub fn OnDataSent(self: *const IWRdsGraphicsChannelEvents, pWriteContext: ?*IUnknown, bCancelled: BOOL, pBuffer: ?*u8, cbBuffer: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnDataSent(self, pWriteContext, bCancelled, pBuffer, cbBuffer);
     }
-    pub fn OnMetricsUpdate(self: *const IWRdsGraphicsChannelEvents, bandwidth: u32, RTT: u32, lastSentByteIndex: u64) callconv(.Inline) HRESULT {
+    pub fn OnMetricsUpdate(self: *const IWRdsGraphicsChannelEvents, bandwidth: u32, RTT: u32, lastSentByteIndex: u64) callconv(.@"inline") HRESULT {
         return self.vtable.OnMetricsUpdate(self, bandwidth, RTT, lastSentByteIndex);
     }
 };
@@ -4660,13 +4660,13 @@ pub const IWRdsGraphicsChannel = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Write(self: *const IWRdsGraphicsChannel, cbSize: u32, pBuffer: ?*u8, pContext: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Write(self: *const IWRdsGraphicsChannel, cbSize: u32, pBuffer: ?*u8, pContext: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Write(self, cbSize, pBuffer, pContext);
     }
-    pub fn Close(self: *const IWRdsGraphicsChannel) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IWRdsGraphicsChannel) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn Open(self: *const IWRdsGraphicsChannel, pChannelEvents: ?*IWRdsGraphicsChannelEvents, pOpenContext: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IWRdsGraphicsChannel, pChannelEvents: ?*IWRdsGraphicsChannelEvents, pOpenContext: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, pChannelEvents, pOpenContext);
     }
 };
@@ -4693,7 +4693,7 @@ pub const IWRdsGraphicsChannelManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateChannel(self: *const IWRdsGraphicsChannelManager, pszChannelName: ?*const u8, channelType: WRdsGraphicsChannelType, ppVirtualChannel: ?*?*IWRdsGraphicsChannel) callconv(.Inline) HRESULT {
+    pub fn CreateChannel(self: *const IWRdsGraphicsChannelManager, pszChannelName: ?*const u8, channelType: WRdsGraphicsChannelType, ppVirtualChannel: ?*?*IWRdsGraphicsChannel) callconv(.@"inline") HRESULT {
         return self.vtable.CreateChannel(self, pszChannelName, channelType, ppVirtualChannel);
     }
 };
@@ -5244,19 +5244,19 @@ pub const IWTSProtocolManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateListener(self: *const IWTSProtocolManager, wszListenerName: ?PWSTR, pProtocolListener: ?*?*IWTSProtocolListener) callconv(.Inline) HRESULT {
+    pub fn CreateListener(self: *const IWTSProtocolManager, wszListenerName: ?PWSTR, pProtocolListener: ?*?*IWTSProtocolListener) callconv(.@"inline") HRESULT {
         return self.vtable.CreateListener(self, wszListenerName, pProtocolListener);
     }
-    pub fn NotifyServiceStateChange(self: *const IWTSProtocolManager, pTSServiceStateChange: ?*WTS_SERVICE_STATE) callconv(.Inline) HRESULT {
+    pub fn NotifyServiceStateChange(self: *const IWTSProtocolManager, pTSServiceStateChange: ?*WTS_SERVICE_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyServiceStateChange(self, pTSServiceStateChange);
     }
-    pub fn NotifySessionOfServiceStart(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
+    pub fn NotifySessionOfServiceStart(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionOfServiceStart(self, SessionId);
     }
-    pub fn NotifySessionOfServiceStop(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
+    pub fn NotifySessionOfServiceStop(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionOfServiceStop(self, SessionId);
     }
-    pub fn NotifySessionStateChange(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID, EventId: u32) callconv(.Inline) HRESULT {
+    pub fn NotifySessionStateChange(self: *const IWTSProtocolManager, SessionId: ?*WTS_SESSION_ID, EventId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionStateChange(self, SessionId, EventId);
     }
 };
@@ -5277,10 +5277,10 @@ pub const IWTSProtocolListener = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StartListen(self: *const IWTSProtocolListener, pCallback: ?*IWTSProtocolListenerCallback) callconv(.Inline) HRESULT {
+    pub fn StartListen(self: *const IWTSProtocolListener, pCallback: ?*IWTSProtocolListenerCallback) callconv(.@"inline") HRESULT {
         return self.vtable.StartListen(self, pCallback);
     }
-    pub fn StopListen(self: *const IWTSProtocolListener) callconv(.Inline) HRESULT {
+    pub fn StopListen(self: *const IWTSProtocolListener) callconv(.@"inline") HRESULT {
         return self.vtable.StopListen(self);
     }
 };
@@ -5299,7 +5299,7 @@ pub const IWTSProtocolListenerCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnConnected(self: *const IWTSProtocolListenerCallback, pConnection: ?*IWTSProtocolConnection, pCallback: ?*?*IWTSProtocolConnectionCallback) callconv(.Inline) HRESULT {
+    pub fn OnConnected(self: *const IWTSProtocolListenerCallback, pConnection: ?*IWTSProtocolConnection, pCallback: ?*?*IWTSProtocolConnectionCallback) callconv(.@"inline") HRESULT {
         return self.vtable.OnConnected(self, pConnection, pCallback);
     }
 };
@@ -5423,73 +5423,73 @@ pub const IWTSProtocolConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLogonErrorRedirector(self: *const IWTSProtocolConnection, ppLogonErrorRedir: ?*?*IWTSProtocolLogonErrorRedirector) callconv(.Inline) HRESULT {
+    pub fn GetLogonErrorRedirector(self: *const IWTSProtocolConnection, ppLogonErrorRedir: ?*?*IWTSProtocolLogonErrorRedirector) callconv(.@"inline") HRESULT {
         return self.vtable.GetLogonErrorRedirector(self, ppLogonErrorRedir);
     }
-    pub fn SendPolicyData(self: *const IWTSProtocolConnection, pPolicyData: ?*WTS_POLICY_DATA) callconv(.Inline) HRESULT {
+    pub fn SendPolicyData(self: *const IWTSProtocolConnection, pPolicyData: ?*WTS_POLICY_DATA) callconv(.@"inline") HRESULT {
         return self.vtable.SendPolicyData(self, pPolicyData);
     }
-    pub fn AcceptConnection(self: *const IWTSProtocolConnection) callconv(.Inline) HRESULT {
+    pub fn AcceptConnection(self: *const IWTSProtocolConnection) callconv(.@"inline") HRESULT {
         return self.vtable.AcceptConnection(self);
     }
-    pub fn GetClientData(self: *const IWTSProtocolConnection, pClientData: ?*WTS_CLIENT_DATA) callconv(.Inline) HRESULT {
+    pub fn GetClientData(self: *const IWTSProtocolConnection, pClientData: ?*WTS_CLIENT_DATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetClientData(self, pClientData);
     }
-    pub fn GetUserCredentials(self: *const IWTSProtocolConnection, pUserCreds: ?*WTS_USER_CREDENTIAL) callconv(.Inline) HRESULT {
+    pub fn GetUserCredentials(self: *const IWTSProtocolConnection, pUserCreds: ?*WTS_USER_CREDENTIAL) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserCredentials(self, pUserCreds);
     }
-    pub fn GetLicenseConnection(self: *const IWTSProtocolConnection, ppLicenseConnection: ?*?*IWTSProtocolLicenseConnection) callconv(.Inline) HRESULT {
+    pub fn GetLicenseConnection(self: *const IWTSProtocolConnection, ppLicenseConnection: ?*?*IWTSProtocolLicenseConnection) callconv(.@"inline") HRESULT {
         return self.vtable.GetLicenseConnection(self, ppLicenseConnection);
     }
-    pub fn AuthenticateClientToSession(self: *const IWTSProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
+    pub fn AuthenticateClientToSession(self: *const IWTSProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.AuthenticateClientToSession(self, SessionId);
     }
-    pub fn NotifySessionId(self: *const IWTSProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
+    pub fn NotifySessionId(self: *const IWTSProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionId(self, SessionId);
     }
-    pub fn GetProtocolHandles(self: *const IWTSProtocolConnection, pKeyboardHandle: ?*HANDLE_PTR, pMouseHandle: ?*HANDLE_PTR, pBeepHandle: ?*HANDLE_PTR, pVideoHandle: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
+    pub fn GetProtocolHandles(self: *const IWTSProtocolConnection, pKeyboardHandle: ?*HANDLE_PTR, pMouseHandle: ?*HANDLE_PTR, pBeepHandle: ?*HANDLE_PTR, pVideoHandle: ?*HANDLE_PTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetProtocolHandles(self, pKeyboardHandle, pMouseHandle, pBeepHandle, pVideoHandle);
     }
-    pub fn ConnectNotify(self: *const IWTSProtocolConnection, SessionId: u32) callconv(.Inline) HRESULT {
+    pub fn ConnectNotify(self: *const IWTSProtocolConnection, SessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectNotify(self, SessionId);
     }
-    pub fn IsUserAllowedToLogon(self: *const IWTSProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?PWSTR, pUserName: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn IsUserAllowedToLogon(self: *const IWTSProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?PWSTR, pUserName: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.IsUserAllowedToLogon(self, SessionId, UserToken, pDomainName, pUserName);
     }
-    pub fn SessionArbitrationEnumeration(self: *const IWTSProtocolConnection, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SessionArbitrationEnumeration(self: *const IWTSProtocolConnection, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionArbitrationEnumeration(self, hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
     }
-    pub fn LogonNotify(self: *const IWTSProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?PWSTR, wszDomainName: ?PWSTR, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
+    pub fn LogonNotify(self: *const IWTSProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?PWSTR, wszDomainName: ?PWSTR, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.LogonNotify(self, hClientToken, wszUserName, wszDomainName, SessionId);
     }
-    pub fn GetUserData(self: *const IWTSProtocolConnection, pPolicyData: ?*WTS_POLICY_DATA, pClientData: ?*WTS_USER_DATA) callconv(.Inline) HRESULT {
+    pub fn GetUserData(self: *const IWTSProtocolConnection, pPolicyData: ?*WTS_POLICY_DATA, pClientData: ?*WTS_USER_DATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserData(self, pPolicyData, pClientData);
     }
-    pub fn DisconnectNotify(self: *const IWTSProtocolConnection) callconv(.Inline) HRESULT {
+    pub fn DisconnectNotify(self: *const IWTSProtocolConnection) callconv(.@"inline") HRESULT {
         return self.vtable.DisconnectNotify(self);
     }
-    pub fn Close(self: *const IWTSProtocolConnection) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IWTSProtocolConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn GetProtocolStatus(self: *const IWTSProtocolConnection, pProtocolStatus: ?*WTS_PROTOCOL_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetProtocolStatus(self: *const IWTSProtocolConnection, pProtocolStatus: ?*WTS_PROTOCOL_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetProtocolStatus(self, pProtocolStatus);
     }
-    pub fn GetLastInputTime(self: *const IWTSProtocolConnection, pLastInputTime: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetLastInputTime(self: *const IWTSProtocolConnection, pLastInputTime: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastInputTime(self, pLastInputTime);
     }
-    pub fn SetErrorInfo(self: *const IWTSProtocolConnection, ulError: u32) callconv(.Inline) HRESULT {
+    pub fn SetErrorInfo(self: *const IWTSProtocolConnection, ulError: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetErrorInfo(self, ulError);
     }
-    pub fn SendBeep(self: *const IWTSProtocolConnection, Frequency: u32, Duration: u32) callconv(.Inline) HRESULT {
+    pub fn SendBeep(self: *const IWTSProtocolConnection, Frequency: u32, Duration: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendBeep(self, Frequency, Duration);
     }
-    pub fn CreateVirtualChannel(self: *const IWTSProtocolConnection, szEndpointName: ?PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.Inline) HRESULT {
+    pub fn CreateVirtualChannel(self: *const IWTSProtocolConnection, szEndpointName: ?PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualChannel(self, szEndpointName, bStatic, RequestedPriority, phChannel);
     }
-    pub fn QueryProperty(self: *const IWTSProtocolConnection, QueryType: Guid, ulNumEntriesIn: u32, ulNumEntriesOut: u32, pPropertyEntriesIn: [*]WTS_PROPERTY_VALUE, pPropertyEntriesOut: [*]WTS_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+    pub fn QueryProperty(self: *const IWTSProtocolConnection, QueryType: Guid, ulNumEntriesIn: u32, ulNumEntriesOut: u32, pPropertyEntriesIn: [*]WTS_PROPERTY_VALUE, pPropertyEntriesOut: [*]WTS_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
         return self.vtable.QueryProperty(self, QueryType, ulNumEntriesIn, ulNumEntriesOut, pPropertyEntriesIn, pPropertyEntriesOut);
     }
-    pub fn GetShadowConnection(self: *const IWTSProtocolConnection, ppShadowConnection: ?*?*IWTSProtocolShadowConnection) callconv(.Inline) HRESULT {
+    pub fn GetShadowConnection(self: *const IWTSProtocolConnection, ppShadowConnection: ?*?*IWTSProtocolShadowConnection) callconv(.@"inline") HRESULT {
         return self.vtable.GetShadowConnection(self, ppShadowConnection);
     }
 };
@@ -5522,19 +5522,19 @@ pub const IWTSProtocolConnectionCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnReady(self: *const IWTSProtocolConnectionCallback) callconv(.Inline) HRESULT {
+    pub fn OnReady(self: *const IWTSProtocolConnectionCallback) callconv(.@"inline") HRESULT {
         return self.vtable.OnReady(self);
     }
-    pub fn BrokenConnection(self: *const IWTSProtocolConnectionCallback, Reason: u32, Source: u32) callconv(.Inline) HRESULT {
+    pub fn BrokenConnection(self: *const IWTSProtocolConnectionCallback, Reason: u32, Source: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BrokenConnection(self, Reason, Source);
     }
-    pub fn StopScreenUpdates(self: *const IWTSProtocolConnectionCallback) callconv(.Inline) HRESULT {
+    pub fn StopScreenUpdates(self: *const IWTSProtocolConnectionCallback) callconv(.@"inline") HRESULT {
         return self.vtable.StopScreenUpdates(self);
     }
-    pub fn RedrawWindow(self: *const IWTSProtocolConnectionCallback, rect: ?*WTS_SMALL_RECT) callconv(.Inline) HRESULT {
+    pub fn RedrawWindow(self: *const IWTSProtocolConnectionCallback, rect: ?*WTS_SMALL_RECT) callconv(.@"inline") HRESULT {
         return self.vtable.RedrawWindow(self, rect);
     }
-    pub fn DisplayIOCtl(self: *const IWTSProtocolConnectionCallback, _param_DisplayIOCtl: ?*WTS_DISPLAY_IOCTL) callconv(.Inline) HRESULT {
+    pub fn DisplayIOCtl(self: *const IWTSProtocolConnectionCallback, _param_DisplayIOCtl: ?*WTS_DISPLAY_IOCTL) callconv(.@"inline") HRESULT {
         return self.vtable.DisplayIOCtl(self, _param_DisplayIOCtl);
     }
 };
@@ -5571,13 +5571,13 @@ pub const IWTSProtocolShadowConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IWTSProtocolShadowConnection, pTargetServerName: ?PWSTR, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWTSProtocolShadowCallback) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IWTSProtocolShadowConnection, pTargetServerName: ?PWSTR, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWTSProtocolShadowCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self, pTargetServerName, TargetSessionId, HotKeyVk, HotkeyModifiers, pShadowCallback);
     }
-    pub fn Stop(self: *const IWTSProtocolShadowConnection) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IWTSProtocolShadowConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn DoTarget(self: *const IWTSProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn DoTarget(self: *const IWTSProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DoTarget(self, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
@@ -5608,10 +5608,10 @@ pub const IWTSProtocolShadowCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StopShadow(self: *const IWTSProtocolShadowCallback) callconv(.Inline) HRESULT {
+    pub fn StopShadow(self: *const IWTSProtocolShadowCallback) callconv(.@"inline") HRESULT {
         return self.vtable.StopShadow(self);
     }
-    pub fn InvokeTargetShadow(self: *const IWTSProtocolShadowCallback, pTargetServerName: ?PWSTR, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn InvokeTargetShadow(self: *const IWTSProtocolShadowCallback, pTargetServerName: ?PWSTR, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeTargetShadow(self, pTargetServerName, TargetSessionId, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
@@ -5646,16 +5646,16 @@ pub const IWTSProtocolLicenseConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestLicensingCapabilities(self: *const IWTSProtocolLicenseConnection, ppLicenseCapabilities: ?*WTS_LICENSE_CAPABILITIES, pcbLicenseCapabilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RequestLicensingCapabilities(self: *const IWTSProtocolLicenseConnection, ppLicenseCapabilities: ?*WTS_LICENSE_CAPABILITIES, pcbLicenseCapabilities: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestLicensingCapabilities(self, ppLicenseCapabilities, pcbLicenseCapabilities);
     }
-    pub fn SendClientLicense(self: *const IWTSProtocolLicenseConnection, pClientLicense: [*:0]u8, cbClientLicense: u32) callconv(.Inline) HRESULT {
+    pub fn SendClientLicense(self: *const IWTSProtocolLicenseConnection, pClientLicense: [*:0]u8, cbClientLicense: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendClientLicense(self, pClientLicense, cbClientLicense);
     }
-    pub fn RequestClientLicense(self: *const IWTSProtocolLicenseConnection, Reserve1: [*:0]u8, Reserve2: u32, ppClientLicense: [*:0]u8, pcbClientLicense: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RequestClientLicense(self: *const IWTSProtocolLicenseConnection, Reserve1: [*:0]u8, Reserve2: u32, ppClientLicense: [*:0]u8, pcbClientLicense: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestClientLicense(self, Reserve1, Reserve2, ppClientLicense, pcbClientLicense);
     }
-    pub fn ProtocolComplete(self: *const IWTSProtocolLicenseConnection, ulComplete: u32) callconv(.Inline) HRESULT {
+    pub fn ProtocolComplete(self: *const IWTSProtocolLicenseConnection, ulComplete: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ProtocolComplete(self, ulComplete);
     }
 };
@@ -5693,16 +5693,16 @@ pub const IWTSProtocolLogonErrorRedirector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnBeginPainting(self: *const IWTSProtocolLogonErrorRedirector) callconv(.Inline) HRESULT {
+    pub fn OnBeginPainting(self: *const IWTSProtocolLogonErrorRedirector) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeginPainting(self);
     }
-    pub fn RedirectStatus(self: *const IWTSProtocolLogonErrorRedirector, pszMessage: ?[*:0]const u16, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn RedirectStatus(self: *const IWTSProtocolLogonErrorRedirector, pszMessage: ?[*:0]const u16, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.RedirectStatus(self, pszMessage, pResponse);
     }
-    pub fn RedirectMessage(self: *const IWTSProtocolLogonErrorRedirector, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn RedirectMessage(self: *const IWTSProtocolLogonErrorRedirector, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.RedirectMessage(self, pszCaption, pszMessage, uType, pResponse);
     }
-    pub fn RedirectLogonError(self: *const IWTSProtocolLogonErrorRedirector, ntsStatus: i32, ntsSubstatus: i32, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn RedirectLogonError(self: *const IWTSProtocolLogonErrorRedirector, ntsStatus: i32, ntsSubstatus: i32, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.RedirectLogonError(self, ntsStatus, ntsSubstatus, pszCaption, pszMessage, uType, pResponse);
     }
 };
@@ -5728,10 +5728,10 @@ pub const IWRdsProtocolSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSettings(self: *const IWRdsProtocolSettings, WRdsSettingType: WRDS_SETTING_TYPE, WRdsSettingLevel: WRDS_SETTING_LEVEL, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.Inline) HRESULT {
+    pub fn GetSettings(self: *const IWRdsProtocolSettings, WRdsSettingType: WRDS_SETTING_TYPE, WRdsSettingLevel: WRDS_SETTING_LEVEL, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettings(self, WRdsSettingType, WRdsSettingLevel, pWRdsSettings);
     }
-    pub fn MergeSettings(self: *const IWRdsProtocolSettings, pWRdsSettings: ?*WRDS_SETTINGS, WRdsConnectionSettingLevel: WRDS_CONNECTION_SETTING_LEVEL, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS) callconv(.Inline) HRESULT {
+    pub fn MergeSettings(self: *const IWRdsProtocolSettings, pWRdsSettings: ?*WRDS_SETTINGS, WRdsConnectionSettingLevel: WRDS_CONNECTION_SETTING_LEVEL, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.MergeSettings(self, pWRdsSettings, WRdsConnectionSettingLevel, pWRdsConnectionSettings);
     }
 };
@@ -5779,28 +5779,28 @@ pub const IWRdsProtocolManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWRdsProtocolManager, pIWRdsSettings: ?*IWRdsProtocolSettings, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWRdsProtocolManager, pIWRdsSettings: ?*IWRdsProtocolSettings, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pIWRdsSettings, pWRdsSettings);
     }
-    pub fn CreateListener(self: *const IWRdsProtocolManager, wszListenerName: ?PWSTR, pProtocolListener: ?*?*IWRdsProtocolListener) callconv(.Inline) HRESULT {
+    pub fn CreateListener(self: *const IWRdsProtocolManager, wszListenerName: ?PWSTR, pProtocolListener: ?*?*IWRdsProtocolListener) callconv(.@"inline") HRESULT {
         return self.vtable.CreateListener(self, wszListenerName, pProtocolListener);
     }
-    pub fn NotifyServiceStateChange(self: *const IWRdsProtocolManager, pTSServiceStateChange: ?*WTS_SERVICE_STATE) callconv(.Inline) HRESULT {
+    pub fn NotifyServiceStateChange(self: *const IWRdsProtocolManager, pTSServiceStateChange: ?*WTS_SERVICE_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyServiceStateChange(self, pTSServiceStateChange);
     }
-    pub fn NotifySessionOfServiceStart(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
+    pub fn NotifySessionOfServiceStart(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionOfServiceStart(self, SessionId);
     }
-    pub fn NotifySessionOfServiceStop(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
+    pub fn NotifySessionOfServiceStop(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionOfServiceStop(self, SessionId);
     }
-    pub fn NotifySessionStateChange(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID, EventId: u32) callconv(.Inline) HRESULT {
+    pub fn NotifySessionStateChange(self: *const IWRdsProtocolManager, SessionId: ?*WTS_SESSION_ID, EventId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionStateChange(self, SessionId, EventId);
     }
-    pub fn NotifySettingsChange(self: *const IWRdsProtocolManager, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.Inline) HRESULT {
+    pub fn NotifySettingsChange(self: *const IWRdsProtocolManager, pWRdsSettings: ?*WRDS_SETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySettingsChange(self, pWRdsSettings);
     }
-    pub fn Uninitialize(self: *const IWRdsProtocolManager) callconv(.Inline) HRESULT {
+    pub fn Uninitialize(self: *const IWRdsProtocolManager) callconv(.@"inline") HRESULT {
         return self.vtable.Uninitialize(self);
     }
 };
@@ -5826,13 +5826,13 @@ pub const IWRdsProtocolListener = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSettings(self: *const IWRdsProtocolListener, WRdsListenerSettingLevel: WRDS_LISTENER_SETTING_LEVEL, pWRdsListenerSettings: ?*WRDS_LISTENER_SETTINGS) callconv(.Inline) HRESULT {
+    pub fn GetSettings(self: *const IWRdsProtocolListener, WRdsListenerSettingLevel: WRDS_LISTENER_SETTING_LEVEL, pWRdsListenerSettings: ?*WRDS_LISTENER_SETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.GetSettings(self, WRdsListenerSettingLevel, pWRdsListenerSettings);
     }
-    pub fn StartListen(self: *const IWRdsProtocolListener, pCallback: ?*IWRdsProtocolListenerCallback) callconv(.Inline) HRESULT {
+    pub fn StartListen(self: *const IWRdsProtocolListener, pCallback: ?*IWRdsProtocolListenerCallback) callconv(.@"inline") HRESULT {
         return self.vtable.StartListen(self, pCallback);
     }
-    pub fn StopListen(self: *const IWRdsProtocolListener) callconv(.Inline) HRESULT {
+    pub fn StopListen(self: *const IWRdsProtocolListener) callconv(.@"inline") HRESULT {
         return self.vtable.StopListen(self);
     }
 };
@@ -5852,7 +5852,7 @@ pub const IWRdsProtocolListenerCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnConnected(self: *const IWRdsProtocolListenerCallback, pConnection: ?*IWRdsProtocolConnection, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS, pCallback: ?*?*IWRdsProtocolConnectionCallback) callconv(.Inline) HRESULT {
+    pub fn OnConnected(self: *const IWRdsProtocolListenerCallback, pConnection: ?*IWRdsProtocolConnection, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS, pCallback: ?*?*IWRdsProtocolConnectionCallback) callconv(.@"inline") HRESULT {
         return self.vtable.OnConnected(self, pConnection, pWRdsConnectionSettings, pCallback);
     }
 };
@@ -5980,76 +5980,76 @@ pub const IWRdsProtocolConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLogonErrorRedirector(self: *const IWRdsProtocolConnection, ppLogonErrorRedir: ?*?*IWRdsProtocolLogonErrorRedirector) callconv(.Inline) HRESULT {
+    pub fn GetLogonErrorRedirector(self: *const IWRdsProtocolConnection, ppLogonErrorRedir: ?*?*IWRdsProtocolLogonErrorRedirector) callconv(.@"inline") HRESULT {
         return self.vtable.GetLogonErrorRedirector(self, ppLogonErrorRedir);
     }
-    pub fn AcceptConnection(self: *const IWRdsProtocolConnection) callconv(.Inline) HRESULT {
+    pub fn AcceptConnection(self: *const IWRdsProtocolConnection) callconv(.@"inline") HRESULT {
         return self.vtable.AcceptConnection(self);
     }
-    pub fn GetClientData(self: *const IWRdsProtocolConnection, pClientData: ?*WTS_CLIENT_DATA) callconv(.Inline) HRESULT {
+    pub fn GetClientData(self: *const IWRdsProtocolConnection, pClientData: ?*WTS_CLIENT_DATA) callconv(.@"inline") HRESULT {
         return self.vtable.GetClientData(self, pClientData);
     }
-    pub fn GetClientMonitorData(self: *const IWRdsProtocolConnection, pNumMonitors: ?*u32, pPrimaryMonitor: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClientMonitorData(self: *const IWRdsProtocolConnection, pNumMonitors: ?*u32, pPrimaryMonitor: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetClientMonitorData(self, pNumMonitors, pPrimaryMonitor);
     }
-    pub fn GetUserCredentials(self: *const IWRdsProtocolConnection, pUserCreds: ?*WTS_USER_CREDENTIAL) callconv(.Inline) HRESULT {
+    pub fn GetUserCredentials(self: *const IWRdsProtocolConnection, pUserCreds: ?*WTS_USER_CREDENTIAL) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserCredentials(self, pUserCreds);
     }
-    pub fn GetLicenseConnection(self: *const IWRdsProtocolConnection, ppLicenseConnection: ?*?*IWRdsProtocolLicenseConnection) callconv(.Inline) HRESULT {
+    pub fn GetLicenseConnection(self: *const IWRdsProtocolConnection, ppLicenseConnection: ?*?*IWRdsProtocolLicenseConnection) callconv(.@"inline") HRESULT {
         return self.vtable.GetLicenseConnection(self, ppLicenseConnection);
     }
-    pub fn AuthenticateClientToSession(self: *const IWRdsProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.Inline) HRESULT {
+    pub fn AuthenticateClientToSession(self: *const IWRdsProtocolConnection, SessionId: ?*WTS_SESSION_ID) callconv(.@"inline") HRESULT {
         return self.vtable.AuthenticateClientToSession(self, SessionId);
     }
-    pub fn NotifySessionId(self: *const IWRdsProtocolConnection, SessionId: ?*WTS_SESSION_ID, SessionHandle: HANDLE_PTR) callconv(.Inline) HRESULT {
+    pub fn NotifySessionId(self: *const IWRdsProtocolConnection, SessionId: ?*WTS_SESSION_ID, SessionHandle: HANDLE_PTR) callconv(.@"inline") HRESULT {
         return self.vtable.NotifySessionId(self, SessionId, SessionHandle);
     }
-    pub fn GetInputHandles(self: *const IWRdsProtocolConnection, pKeyboardHandle: ?*HANDLE_PTR, pMouseHandle: ?*HANDLE_PTR, pBeepHandle: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
+    pub fn GetInputHandles(self: *const IWRdsProtocolConnection, pKeyboardHandle: ?*HANDLE_PTR, pMouseHandle: ?*HANDLE_PTR, pBeepHandle: ?*HANDLE_PTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetInputHandles(self, pKeyboardHandle, pMouseHandle, pBeepHandle);
     }
-    pub fn GetVideoHandle(self: *const IWRdsProtocolConnection, pVideoHandle: ?*HANDLE_PTR) callconv(.Inline) HRESULT {
+    pub fn GetVideoHandle(self: *const IWRdsProtocolConnection, pVideoHandle: ?*HANDLE_PTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetVideoHandle(self, pVideoHandle);
     }
-    pub fn ConnectNotify(self: *const IWRdsProtocolConnection, SessionId: u32) callconv(.Inline) HRESULT {
+    pub fn ConnectNotify(self: *const IWRdsProtocolConnection, SessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ConnectNotify(self, SessionId);
     }
-    pub fn IsUserAllowedToLogon(self: *const IWRdsProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?PWSTR, pUserName: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn IsUserAllowedToLogon(self: *const IWRdsProtocolConnection, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: ?PWSTR, pUserName: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.IsUserAllowedToLogon(self, SessionId, UserToken, pDomainName, pUserName);
     }
-    pub fn SessionArbitrationEnumeration(self: *const IWRdsProtocolConnection, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SessionArbitrationEnumeration(self: *const IWRdsProtocolConnection, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SessionArbitrationEnumeration(self, hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
     }
-    pub fn LogonNotify(self: *const IWRdsProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?PWSTR, wszDomainName: ?PWSTR, SessionId: ?*WTS_SESSION_ID, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS) callconv(.Inline) HRESULT {
+    pub fn LogonNotify(self: *const IWRdsProtocolConnection, hClientToken: HANDLE_PTR, wszUserName: ?PWSTR, wszDomainName: ?PWSTR, SessionId: ?*WTS_SESSION_ID, pWRdsConnectionSettings: ?*WRDS_CONNECTION_SETTINGS) callconv(.@"inline") HRESULT {
         return self.vtable.LogonNotify(self, hClientToken, wszUserName, wszDomainName, SessionId, pWRdsConnectionSettings);
     }
-    pub fn PreDisconnect(self: *const IWRdsProtocolConnection, DisconnectReason: u32) callconv(.Inline) HRESULT {
+    pub fn PreDisconnect(self: *const IWRdsProtocolConnection, DisconnectReason: u32) callconv(.@"inline") HRESULT {
         return self.vtable.PreDisconnect(self, DisconnectReason);
     }
-    pub fn DisconnectNotify(self: *const IWRdsProtocolConnection) callconv(.Inline) HRESULT {
+    pub fn DisconnectNotify(self: *const IWRdsProtocolConnection) callconv(.@"inline") HRESULT {
         return self.vtable.DisconnectNotify(self);
     }
-    pub fn Close(self: *const IWRdsProtocolConnection) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IWRdsProtocolConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn GetProtocolStatus(self: *const IWRdsProtocolConnection, pProtocolStatus: ?*WTS_PROTOCOL_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetProtocolStatus(self: *const IWRdsProtocolConnection, pProtocolStatus: ?*WTS_PROTOCOL_STATUS) callconv(.@"inline") HRESULT {
         return self.vtable.GetProtocolStatus(self, pProtocolStatus);
     }
-    pub fn GetLastInputTime(self: *const IWRdsProtocolConnection, pLastInputTime: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetLastInputTime(self: *const IWRdsProtocolConnection, pLastInputTime: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastInputTime(self, pLastInputTime);
     }
-    pub fn SetErrorInfo(self: *const IWRdsProtocolConnection, ulError: u32) callconv(.Inline) HRESULT {
+    pub fn SetErrorInfo(self: *const IWRdsProtocolConnection, ulError: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetErrorInfo(self, ulError);
     }
-    pub fn CreateVirtualChannel(self: *const IWRdsProtocolConnection, szEndpointName: ?PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.Inline) HRESULT {
+    pub fn CreateVirtualChannel(self: *const IWRdsProtocolConnection, szEndpointName: ?PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.CreateVirtualChannel(self, szEndpointName, bStatic, RequestedPriority, phChannel);
     }
-    pub fn QueryProperty(self: *const IWRdsProtocolConnection, QueryType: Guid, ulNumEntriesIn: u32, ulNumEntriesOut: u32, pPropertyEntriesIn: [*]WTS_PROPERTY_VALUE, pPropertyEntriesOut: [*]WTS_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+    pub fn QueryProperty(self: *const IWRdsProtocolConnection, QueryType: Guid, ulNumEntriesIn: u32, ulNumEntriesOut: u32, pPropertyEntriesIn: [*]WTS_PROPERTY_VALUE, pPropertyEntriesOut: [*]WTS_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
         return self.vtable.QueryProperty(self, QueryType, ulNumEntriesIn, ulNumEntriesOut, pPropertyEntriesIn, pPropertyEntriesOut);
     }
-    pub fn GetShadowConnection(self: *const IWRdsProtocolConnection, ppShadowConnection: ?*?*IWRdsProtocolShadowConnection) callconv(.Inline) HRESULT {
+    pub fn GetShadowConnection(self: *const IWRdsProtocolConnection, ppShadowConnection: ?*?*IWRdsProtocolShadowConnection) callconv(.@"inline") HRESULT {
         return self.vtable.GetShadowConnection(self, ppShadowConnection);
     }
-    pub fn NotifyCommandProcessCreated(self: *const IWRdsProtocolConnection, SessionId: u32) callconv(.Inline) HRESULT {
+    pub fn NotifyCommandProcessCreated(self: *const IWRdsProtocolConnection, SessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyCommandProcessCreated(self, SessionId);
     }
 };
@@ -6082,19 +6082,19 @@ pub const IWRdsProtocolConnectionCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnReady(self: *const IWRdsProtocolConnectionCallback) callconv(.Inline) HRESULT {
+    pub fn OnReady(self: *const IWRdsProtocolConnectionCallback) callconv(.@"inline") HRESULT {
         return self.vtable.OnReady(self);
     }
-    pub fn BrokenConnection(self: *const IWRdsProtocolConnectionCallback, Reason: u32, Source: u32) callconv(.Inline) HRESULT {
+    pub fn BrokenConnection(self: *const IWRdsProtocolConnectionCallback, Reason: u32, Source: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BrokenConnection(self, Reason, Source);
     }
-    pub fn StopScreenUpdates(self: *const IWRdsProtocolConnectionCallback) callconv(.Inline) HRESULT {
+    pub fn StopScreenUpdates(self: *const IWRdsProtocolConnectionCallback) callconv(.@"inline") HRESULT {
         return self.vtable.StopScreenUpdates(self);
     }
-    pub fn RedrawWindow(self: *const IWRdsProtocolConnectionCallback, rect: ?*WTS_SMALL_RECT) callconv(.Inline) HRESULT {
+    pub fn RedrawWindow(self: *const IWRdsProtocolConnectionCallback, rect: ?*WTS_SMALL_RECT) callconv(.@"inline") HRESULT {
         return self.vtable.RedrawWindow(self, rect);
     }
-    pub fn GetConnectionId(self: *const IWRdsProtocolConnectionCallback, pConnectionId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetConnectionId(self: *const IWRdsProtocolConnectionCallback, pConnectionId: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectionId(self, pConnectionId);
     }
 };
@@ -6131,13 +6131,13 @@ pub const IWRdsProtocolShadowConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IWRdsProtocolShadowConnection, pTargetServerName: ?PWSTR, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWRdsProtocolShadowCallback) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IWRdsProtocolShadowConnection, pTargetServerName: ?PWSTR, TargetSessionId: u32, HotKeyVk: u8, HotkeyModifiers: u16, pShadowCallback: ?*IWRdsProtocolShadowCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self, pTargetServerName, TargetSessionId, HotKeyVk, HotkeyModifiers, pShadowCallback);
     }
-    pub fn Stop(self: *const IWRdsProtocolShadowConnection) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IWRdsProtocolShadowConnection) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn DoTarget(self: *const IWRdsProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn DoTarget(self: *const IWRdsProtocolShadowConnection, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DoTarget(self, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
@@ -6168,10 +6168,10 @@ pub const IWRdsProtocolShadowCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn StopShadow(self: *const IWRdsProtocolShadowCallback) callconv(.Inline) HRESULT {
+    pub fn StopShadow(self: *const IWRdsProtocolShadowCallback) callconv(.@"inline") HRESULT {
         return self.vtable.StopShadow(self);
     }
-    pub fn InvokeTargetShadow(self: *const IWRdsProtocolShadowCallback, pTargetServerName: ?PWSTR, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn InvokeTargetShadow(self: *const IWRdsProtocolShadowCallback, pTargetServerName: ?PWSTR, TargetSessionId: u32, pParam1: [*:0]u8, Param1Size: u32, pParam2: [*:0]u8, Param2Size: u32, pParam3: [*:0]u8, Param3Size: u32, pParam4: [*:0]u8, Param4Size: u32, pClientName: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.InvokeTargetShadow(self, pTargetServerName, TargetSessionId, pParam1, Param1Size, pParam2, Param2Size, pParam3, Param3Size, pParam4, Param4Size, pClientName);
     }
 };
@@ -6206,16 +6206,16 @@ pub const IWRdsProtocolLicenseConnection = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestLicensingCapabilities(self: *const IWRdsProtocolLicenseConnection, ppLicenseCapabilities: ?*WTS_LICENSE_CAPABILITIES, pcbLicenseCapabilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RequestLicensingCapabilities(self: *const IWRdsProtocolLicenseConnection, ppLicenseCapabilities: ?*WTS_LICENSE_CAPABILITIES, pcbLicenseCapabilities: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestLicensingCapabilities(self, ppLicenseCapabilities, pcbLicenseCapabilities);
     }
-    pub fn SendClientLicense(self: *const IWRdsProtocolLicenseConnection, pClientLicense: [*:0]u8, cbClientLicense: u32) callconv(.Inline) HRESULT {
+    pub fn SendClientLicense(self: *const IWRdsProtocolLicenseConnection, pClientLicense: [*:0]u8, cbClientLicense: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendClientLicense(self, pClientLicense, cbClientLicense);
     }
-    pub fn RequestClientLicense(self: *const IWRdsProtocolLicenseConnection, Reserve1: [*:0]u8, Reserve2: u32, ppClientLicense: [*:0]u8, pcbClientLicense: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RequestClientLicense(self: *const IWRdsProtocolLicenseConnection, Reserve1: [*:0]u8, Reserve2: u32, ppClientLicense: [*:0]u8, pcbClientLicense: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RequestClientLicense(self, Reserve1, Reserve2, ppClientLicense, pcbClientLicense);
     }
-    pub fn ProtocolComplete(self: *const IWRdsProtocolLicenseConnection, ulComplete: u32) callconv(.Inline) HRESULT {
+    pub fn ProtocolComplete(self: *const IWRdsProtocolLicenseConnection, ulComplete: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ProtocolComplete(self, ulComplete);
     }
 };
@@ -6253,16 +6253,16 @@ pub const IWRdsProtocolLogonErrorRedirector = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnBeginPainting(self: *const IWRdsProtocolLogonErrorRedirector) callconv(.Inline) HRESULT {
+    pub fn OnBeginPainting(self: *const IWRdsProtocolLogonErrorRedirector) callconv(.@"inline") HRESULT {
         return self.vtable.OnBeginPainting(self);
     }
-    pub fn RedirectStatus(self: *const IWRdsProtocolLogonErrorRedirector, pszMessage: ?[*:0]const u16, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn RedirectStatus(self: *const IWRdsProtocolLogonErrorRedirector, pszMessage: ?[*:0]const u16, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.RedirectStatus(self, pszMessage, pResponse);
     }
-    pub fn RedirectMessage(self: *const IWRdsProtocolLogonErrorRedirector, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn RedirectMessage(self: *const IWRdsProtocolLogonErrorRedirector, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.RedirectMessage(self, pszCaption, pszMessage, uType, pResponse);
     }
-    pub fn RedirectLogonError(self: *const IWRdsProtocolLogonErrorRedirector, ntsStatus: i32, ntsSubstatus: i32, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn RedirectLogonError(self: *const IWRdsProtocolLogonErrorRedirector, ntsStatus: i32, ntsSubstatus: i32, pszCaption: ?[*:0]const u16, pszMessage: ?[*:0]const u16, uType: u32, pResponse: ?*WTS_LOGON_ERROR_REDIRECTOR_RESPONSE) callconv(.@"inline") HRESULT {
         return self.vtable.RedirectLogonError(self, ntsStatus, ntsSubstatus, pszCaption, pszMessage, uType, pResponse);
     }
 };
@@ -6293,16 +6293,16 @@ pub const IWRdsWddmIddProps = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHardwareId(self: *const IWRdsWddmIddProps, pDisplayDriverHardwareId: [*:0]u16, Count: u32) callconv(.Inline) HRESULT {
+    pub fn GetHardwareId(self: *const IWRdsWddmIddProps, pDisplayDriverHardwareId: [*:0]u16, Count: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetHardwareId(self, pDisplayDriverHardwareId, Count);
     }
-    pub fn OnDriverLoad(self: *const IWRdsWddmIddProps, SessionId: u32, DriverHandle: HANDLE_PTR) callconv(.Inline) HRESULT {
+    pub fn OnDriverLoad(self: *const IWRdsWddmIddProps, SessionId: u32, DriverHandle: HANDLE_PTR) callconv(.@"inline") HRESULT {
         return self.vtable.OnDriverLoad(self, SessionId, DriverHandle);
     }
-    pub fn OnDriverUnload(self: *const IWRdsWddmIddProps, SessionId: u32) callconv(.Inline) HRESULT {
+    pub fn OnDriverUnload(self: *const IWRdsWddmIddProps, SessionId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnDriverUnload(self, SessionId);
     }
-    pub fn EnableWddmIdd(self: *const IWRdsWddmIddProps, Enabled: BOOL) callconv(.Inline) HRESULT {
+    pub fn EnableWddmIdd(self: *const IWRdsWddmIddProps, Enabled: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.EnableWddmIdd(self, Enabled);
     }
 };
@@ -6325,10 +6325,10 @@ pub const IWRdsProtocolConnectionSettings = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetConnectionSetting(self: *const IWRdsProtocolConnectionSettings, PropertyID: Guid, pPropertyEntriesIn: ?*WTS_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+    pub fn SetConnectionSetting(self: *const IWRdsProtocolConnectionSettings, PropertyID: Guid, pPropertyEntriesIn: ?*WTS_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
         return self.vtable.SetConnectionSetting(self, PropertyID, pPropertyEntriesIn);
     }
-    pub fn GetConnectionSetting(self: *const IWRdsProtocolConnectionSettings, PropertyID: Guid, pPropertyEntriesOut: ?*WTS_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+    pub fn GetConnectionSetting(self: *const IWRdsProtocolConnectionSettings, PropertyID: Guid, pPropertyEntriesOut: ?*WTS_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
         return self.vtable.GetConnectionSetting(self, PropertyID, pPropertyEntriesOut);
     }
 };
@@ -6347,7 +6347,7 @@ pub const IWRdsEnhancedFastReconnectArbitrator = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSessionForEnhancedFastReconnect(self: *const IWRdsEnhancedFastReconnectArbitrator, pSessionIdArray: ?*i32, dwSessionCount: u32, pResultSessionId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetSessionForEnhancedFastReconnect(self: *const IWRdsEnhancedFastReconnectArbitrator, pSessionIdArray: ?*i32, dwSessionCount: u32, pResultSessionId: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSessionForEnhancedFastReconnect(self, pSessionIdArray, dwSessionCount, pResultSessionId);
     }
 };
@@ -6389,16 +6389,16 @@ pub const IRemoteDesktopClientSettings = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ApplySettings(self: *const IRemoteDesktopClientSettings, rdpFileContents: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ApplySettings(self: *const IRemoteDesktopClientSettings, rdpFileContents: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.ApplySettings(self, rdpFileContents);
     }
-    pub fn RetrieveSettings(self: *const IRemoteDesktopClientSettings, rdpFileContents: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn RetrieveSettings(self: *const IRemoteDesktopClientSettings, rdpFileContents: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.RetrieveSettings(self, rdpFileContents);
     }
-    pub fn GetRdpProperty(self: *const IRemoteDesktopClientSettings, propertyName: ?BSTR, value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetRdpProperty(self: *const IRemoteDesktopClientSettings, propertyName: ?BSTR, value: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetRdpProperty(self, propertyName, value);
     }
-    pub fn SetRdpProperty(self: *const IRemoteDesktopClientSettings, propertyName: ?BSTR, value: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetRdpProperty(self: *const IRemoteDesktopClientSettings, propertyName: ?BSTR, value: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetRdpProperty(self, propertyName, value);
     }
 };
@@ -6458,16 +6458,16 @@ pub const IRemoteDesktopClientActions = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SuspendScreenUpdates(self: *const IRemoteDesktopClientActions) callconv(.Inline) HRESULT {
+    pub fn SuspendScreenUpdates(self: *const IRemoteDesktopClientActions) callconv(.@"inline") HRESULT {
         return self.vtable.SuspendScreenUpdates(self);
     }
-    pub fn ResumeScreenUpdates(self: *const IRemoteDesktopClientActions) callconv(.Inline) HRESULT {
+    pub fn ResumeScreenUpdates(self: *const IRemoteDesktopClientActions) callconv(.@"inline") HRESULT {
         return self.vtable.ResumeScreenUpdates(self);
     }
-    pub fn ExecuteRemoteAction(self: *const IRemoteDesktopClientActions, remoteAction: RemoteActionType) callconv(.Inline) HRESULT {
+    pub fn ExecuteRemoteAction(self: *const IRemoteDesktopClientActions, remoteAction: RemoteActionType) callconv(.@"inline") HRESULT {
         return self.vtable.ExecuteRemoteAction(self, remoteAction);
     }
-    pub fn GetSnapshot(self: *const IRemoteDesktopClientActions, snapshotEncoding: SnapshotEncodingType, snapshotFormat: SnapshotFormatType, snapshotWidth: u32, snapshotHeight: u32, snapshotData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSnapshot(self: *const IRemoteDesktopClientActions, snapshotEncoding: SnapshotEncodingType, snapshotFormat: SnapshotFormatType, snapshotWidth: u32, snapshotHeight: u32, snapshotData: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetSnapshot(self, snapshotEncoding, snapshotFormat, snapshotWidth, snapshotHeight, snapshotData);
     }
 };
@@ -6512,22 +6512,22 @@ pub const IRemoteDesktopClientTouchPointer = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const IRemoteDesktopClientTouchPointer, enabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_Enabled(self, enabled);
     }
-    pub fn put_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_EventsEnabled(self, eventsEnabled);
     }
-    pub fn get_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_EventsEnabled(self: *const IRemoteDesktopClientTouchPointer, eventsEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_EventsEnabled(self, eventsEnabled);
     }
-    pub fn put_PointerSpeed(self: *const IRemoteDesktopClientTouchPointer, pointerSpeed: u32) callconv(.Inline) HRESULT {
+    pub fn put_PointerSpeed(self: *const IRemoteDesktopClientTouchPointer, pointerSpeed: u32) callconv(.@"inline") HRESULT {
         return self.vtable.put_PointerSpeed(self, pointerSpeed);
     }
-    pub fn get_PointerSpeed(self: *const IRemoteDesktopClientTouchPointer, pointerSpeed: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_PointerSpeed(self: *const IRemoteDesktopClientTouchPointer, pointerSpeed: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_PointerSpeed(self, pointerSpeed);
     }
 };
@@ -6602,34 +6602,34 @@ pub const IRemoteDesktopClient = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Connect(self: *const IRemoteDesktopClient) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IRemoteDesktopClient) callconv(.@"inline") HRESULT {
         return self.vtable.Connect(self);
     }
-    pub fn Disconnect(self: *const IRemoteDesktopClient) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const IRemoteDesktopClient) callconv(.@"inline") HRESULT {
         return self.vtable.Disconnect(self);
     }
-    pub fn Reconnect(self: *const IRemoteDesktopClient, width: u32, height: u32) callconv(.Inline) HRESULT {
+    pub fn Reconnect(self: *const IRemoteDesktopClient, width: u32, height: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Reconnect(self, width, height);
     }
-    pub fn get_Settings(self: *const IRemoteDesktopClient, settings: ?*?*IRemoteDesktopClientSettings) callconv(.Inline) HRESULT {
+    pub fn get_Settings(self: *const IRemoteDesktopClient, settings: ?*?*IRemoteDesktopClientSettings) callconv(.@"inline") HRESULT {
         return self.vtable.get_Settings(self, settings);
     }
-    pub fn get_Actions(self: *const IRemoteDesktopClient, actions: ?*?*IRemoteDesktopClientActions) callconv(.Inline) HRESULT {
+    pub fn get_Actions(self: *const IRemoteDesktopClient, actions: ?*?*IRemoteDesktopClientActions) callconv(.@"inline") HRESULT {
         return self.vtable.get_Actions(self, actions);
     }
-    pub fn get_TouchPointer(self: *const IRemoteDesktopClient, touchPointer: ?*?*IRemoteDesktopClientTouchPointer) callconv(.Inline) HRESULT {
+    pub fn get_TouchPointer(self: *const IRemoteDesktopClient, touchPointer: ?*?*IRemoteDesktopClientTouchPointer) callconv(.@"inline") HRESULT {
         return self.vtable.get_TouchPointer(self, touchPointer);
     }
-    pub fn DeleteSavedCredentials(self: *const IRemoteDesktopClient, serverName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteSavedCredentials(self: *const IRemoteDesktopClient, serverName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteSavedCredentials(self, serverName);
     }
-    pub fn UpdateSessionDisplaySettings(self: *const IRemoteDesktopClient, width: u32, height: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateSessionDisplaySettings(self: *const IRemoteDesktopClient, width: u32, height: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateSessionDisplaySettings(self, width, height);
     }
-    pub fn attachEvent(self: *const IRemoteDesktopClient, eventName: ?BSTR, callback: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn attachEvent(self: *const IRemoteDesktopClient, eventName: ?BSTR, callback: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.attachEvent(self, eventName, callback);
     }
-    pub fn detachEvent(self: *const IRemoteDesktopClient, eventName: ?BSTR, callback: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn detachEvent(self: *const IRemoteDesktopClient, eventName: ?BSTR, callback: ?*IDispatch) callconv(.@"inline") HRESULT {
         return self.vtable.detachEvent(self, eventName, callback);
     }
 };
@@ -6648,7 +6648,7 @@ pub const IRemoteSystemAdditionalInfoProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAdditionalInfo(self: *const IRemoteSystemAdditionalInfoProvider, deduplicationId: ?*?HSTRING, riid: ?*const Guid, mapView: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAdditionalInfo(self: *const IRemoteSystemAdditionalInfoProvider, deduplicationId: ?*?HSTRING, riid: ?*const Guid, mapView: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetAdditionalInfo(self, deduplicationId, riid, mapView);
     }
 };

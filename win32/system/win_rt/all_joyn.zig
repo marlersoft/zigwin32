@@ -20,7 +20,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn get_Win32Handle(self: *const IWindowsDevicesAllJoynBusAttachmentInterop, value: ?*u64) callconv(.Inline) HRESULT {
+    pub fn get_Win32Handle(self: *const IWindowsDevicesAllJoynBusAttachmentInterop, value: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.get_Win32Handle(self, value);
     }
 };
@@ -41,7 +41,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, win32handle: u64, enableAboutData: u8, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, win32handle: u64, enableAboutData: u8, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFromWin32Handle(self, win32handle, enableAboutData, riid, ppv);
     }
 };
@@ -72,13 +72,13 @@ pub const IWindowsDevicesAllJoynBusObjectInterop = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn AddPropertyGetHandler(self: *const IWindowsDevicesAllJoynBusObjectInterop, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) callconv(.Inline) HRESULT {
+    pub fn AddPropertyGetHandler(self: *const IWindowsDevicesAllJoynBusObjectInterop, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyGetHandler(self, context, interfaceName, callback);
     }
-    pub fn AddPropertySetHandler(self: *const IWindowsDevicesAllJoynBusObjectInterop, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) callconv(.Inline) HRESULT {
+    pub fn AddPropertySetHandler(self: *const IWindowsDevicesAllJoynBusObjectInterop, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertySetHandler(self, context, interfaceName, callback);
     }
-    pub fn get_Win32Handle(self: *const IWindowsDevicesAllJoynBusObjectInterop, value: ?*u64) callconv(.Inline) HRESULT {
+    pub fn get_Win32Handle(self: *const IWindowsDevicesAllJoynBusObjectInterop, value: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.get_Win32Handle(self, value);
     }
 };
@@ -98,7 +98,7 @@ pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusObjectFactoryInterop, win32handle: u64, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateFromWin32Handle(self: *const IWindowsDevicesAllJoynBusObjectFactoryInterop, win32handle: u64, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFromWin32Handle(self, win32handle, riid, ppv);
     }
 };

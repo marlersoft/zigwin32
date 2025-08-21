@@ -981,34 +981,34 @@ pub const IWICPalette = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitializePredefined(self: *const IWICPalette, ePaletteType: WICBitmapPaletteType, fAddTransparentColor: BOOL) callconv(.Inline) HRESULT {
+    pub fn InitializePredefined(self: *const IWICPalette, ePaletteType: WICBitmapPaletteType, fAddTransparentColor: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InitializePredefined(self, ePaletteType, fAddTransparentColor);
     }
-    pub fn InitializeCustom(self: *const IWICPalette, pColors: [*]u32, cCount: u32) callconv(.Inline) HRESULT {
+    pub fn InitializeCustom(self: *const IWICPalette, pColors: [*]u32, cCount: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeCustom(self, pColors, cCount);
     }
-    pub fn InitializeFromBitmap(self: *const IWICPalette, pISurface: ?*IWICBitmapSource, cCount: u32, fAddTransparentColor: BOOL) callconv(.Inline) HRESULT {
+    pub fn InitializeFromBitmap(self: *const IWICPalette, pISurface: ?*IWICBitmapSource, cCount: u32, fAddTransparentColor: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromBitmap(self, pISurface, cCount, fAddTransparentColor);
     }
-    pub fn InitializeFromPalette(self: *const IWICPalette, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
+    pub fn InitializeFromPalette(self: *const IWICPalette, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromPalette(self, pIPalette);
     }
-    pub fn GetType(self: *const IWICPalette, pePaletteType: ?*WICBitmapPaletteType) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const IWICPalette, pePaletteType: ?*WICBitmapPaletteType) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pePaletteType);
     }
-    pub fn GetColorCount(self: *const IWICPalette, pcCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColorCount(self: *const IWICPalette, pcCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorCount(self, pcCount);
     }
-    pub fn GetColors(self: *const IWICPalette, cCount: u32, pColors: [*]u32, pcActualColors: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColors(self: *const IWICPalette, cCount: u32, pColors: [*]u32, pcActualColors: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColors(self, cCount, pColors, pcActualColors);
     }
-    pub fn IsBlackWhite(self: *const IWICPalette, pfIsBlackWhite: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsBlackWhite(self: *const IWICPalette, pfIsBlackWhite: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsBlackWhite(self, pfIsBlackWhite);
     }
-    pub fn IsGrayscale(self: *const IWICPalette, pfIsGrayscale: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsGrayscale(self: *const IWICPalette, pfIsGrayscale: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsGrayscale(self, pfIsGrayscale);
     }
-    pub fn HasAlpha(self: *const IWICPalette, pfHasAlpha: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn HasAlpha(self: *const IWICPalette, pfHasAlpha: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.HasAlpha(self, pfHasAlpha);
     }
 };
@@ -1047,19 +1047,19 @@ pub const IWICBitmapSource = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSize(self: *const IWICBitmapSource, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IWICBitmapSource, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, puiWidth, puiHeight);
     }
-    pub fn GetPixelFormat(self: *const IWICBitmapSource, pPixelFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IWICBitmapSource, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormat(self, pPixelFormat);
     }
-    pub fn GetResolution(self: *const IWICBitmapSource, pDpiX: ?*f64, pDpiY: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetResolution(self: *const IWICBitmapSource, pDpiX: ?*f64, pDpiY: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetResolution(self, pDpiX, pDpiY);
     }
-    pub fn CopyPalette(self: *const IWICBitmapSource, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
+    pub fn CopyPalette(self: *const IWICBitmapSource, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
         return self.vtable.CopyPalette(self, pIPalette);
     }
-    pub fn CopyPixels(self: *const IWICBitmapSource, prc: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn CopyPixels(self: *const IWICBitmapSource, prc: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.CopyPixels(self, prc, cbStride, cbBufferSize, pbBuffer);
     }
 };
@@ -1089,10 +1089,10 @@ pub const IWICFormatConverter = extern union {
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICFormatConverter, pISource: ?*IWICBitmapSource, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICFormatConverter, pISource: ?*IWICBitmapSource, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pISource, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
     }
-    pub fn CanConvert(self: *const IWICFormatConverter, srcPixelFormat: ?*Guid, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn CanConvert(self: *const IWICFormatConverter, srcPixelFormat: ?*Guid, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CanConvert(self, srcPixelFormat, dstPixelFormat, pfCanConvert);
     }
 };
@@ -1124,10 +1124,10 @@ pub const IWICPlanarFormatConverter = extern union {
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICPlanarFormatConverter, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICPlanarFormatConverter, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, dstFormat: ?*Guid, dither: WICBitmapDitherType, pIPalette: ?*IWICPalette, alphaThresholdPercent: f64, paletteTranslate: WICBitmapPaletteType) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, ppPlanes, cPlanes, dstFormat, dither, pIPalette, alphaThresholdPercent, paletteTranslate);
     }
-    pub fn CanConvert(self: *const IWICPlanarFormatConverter, pSrcPixelFormats: [*]const Guid, cSrcPlanes: u32, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn CanConvert(self: *const IWICPlanarFormatConverter, pSrcPixelFormats: [*]const Guid, cSrcPlanes: u32, dstPixelFormat: ?*Guid, pfCanConvert: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.CanConvert(self, pSrcPixelFormats, cSrcPlanes, dstPixelFormat, pfCanConvert);
     }
 };
@@ -1149,7 +1149,7 @@ pub const IWICBitmapScaler = extern union {
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapScaler, pISource: ?*IWICBitmapSource, uiWidth: u32, uiHeight: u32, mode: WICBitmapInterpolationMode) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICBitmapScaler, pISource: ?*IWICBitmapSource, uiWidth: u32, uiHeight: u32, mode: WICBitmapInterpolationMode) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pISource, uiWidth, uiHeight, mode);
     }
 };
@@ -1169,7 +1169,7 @@ pub const IWICBitmapClipper = extern union {
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapClipper, pISource: ?*IWICBitmapSource, prc: ?*const WICRect) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICBitmapClipper, pISource: ?*IWICBitmapSource, prc: ?*const WICRect) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pISource, prc);
     }
 };
@@ -1189,7 +1189,7 @@ pub const IWICBitmapFlipRotator = extern union {
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapFlipRotator, pISource: ?*IWICBitmapSource, options: WICBitmapTransformOptions) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICBitmapFlipRotator, pISource: ?*IWICBitmapSource, options: WICBitmapTransformOptions) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pISource, options);
     }
 };
@@ -1221,16 +1221,16 @@ pub const IWICBitmapLock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSize(self: *const IWICBitmapLock, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IWICBitmapLock, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, puiWidth, puiHeight);
     }
-    pub fn GetStride(self: *const IWICBitmapLock, pcbStride: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStride(self: *const IWICBitmapLock, pcbStride: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStride(self, pcbStride);
     }
-    pub fn GetDataPointer(self: *const IWICBitmapLock, pcbBufferSize: ?*u32, ppbData: [*]?*u8) callconv(.Inline) HRESULT {
+    pub fn GetDataPointer(self: *const IWICBitmapLock, pcbBufferSize: ?*u32, ppbData: [*]?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetDataPointer(self, pcbBufferSize, ppbData);
     }
-    pub fn GetPixelFormat(self: *const IWICBitmapLock, pPixelFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IWICBitmapLock, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormat(self, pPixelFormat);
     }
 };
@@ -1260,13 +1260,13 @@ pub const IWICBitmap = extern union {
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn Lock(self: *const IWICBitmap, prcLock: ?*const WICRect, flags: u32, ppILock: ?*?*IWICBitmapLock) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IWICBitmap, prcLock: ?*const WICRect, flags: u32, ppILock: ?*?*IWICBitmapLock) callconv(.@"inline") HRESULT {
         return self.vtable.Lock(self, prcLock, flags, ppILock);
     }
-    pub fn SetPalette(self: *const IWICBitmap, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IWICBitmap, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
         return self.vtable.SetPalette(self, pIPalette);
     }
-    pub fn SetResolution(self: *const IWICBitmap, dpiX: f64, dpiY: f64) callconv(.Inline) HRESULT {
+    pub fn SetResolution(self: *const IWICBitmap, dpiX: f64, dpiY: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetResolution(self, dpiX, dpiY);
     }
 };
@@ -1307,22 +1307,22 @@ pub const IWICColorContext = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitializeFromFilename(self: *const IWICColorContext, wzFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn InitializeFromFilename(self: *const IWICColorContext, wzFilename: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromFilename(self, wzFilename);
     }
-    pub fn InitializeFromMemory(self: *const IWICColorContext, pbBuffer: [*:0]const u8, cbBufferSize: u32) callconv(.Inline) HRESULT {
+    pub fn InitializeFromMemory(self: *const IWICColorContext, pbBuffer: [*:0]const u8, cbBufferSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromMemory(self, pbBuffer, cbBufferSize);
     }
-    pub fn InitializeFromExifColorSpace(self: *const IWICColorContext, value: u32) callconv(.Inline) HRESULT {
+    pub fn InitializeFromExifColorSpace(self: *const IWICColorContext, value: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromExifColorSpace(self, value);
     }
-    pub fn GetType(self: *const IWICColorContext, pType: ?*WICColorContextType) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const IWICColorContext, pType: ?*WICColorContextType) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pType);
     }
-    pub fn GetProfileBytes(self: *const IWICColorContext, cbBuffer: u32, pbBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProfileBytes(self: *const IWICColorContext, cbBuffer: u32, pbBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProfileBytes(self, cbBuffer, pbBuffer, pcbActual);
     }
-    pub fn GetExifColorSpace(self: *const IWICColorContext, pValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetExifColorSpace(self: *const IWICColorContext, pValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetExifColorSpace(self, pValue);
     }
 };
@@ -1344,7 +1344,7 @@ pub const IWICColorTransform = extern union {
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICColorTransform, pIBitmapSource: ?*IWICBitmapSource, pIContextSource: ?*IWICColorContext, pIContextDest: ?*IWICColorContext, pixelFmtDest: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICColorTransform, pIBitmapSource: ?*IWICBitmapSource, pIContextSource: ?*IWICColorContext, pIContextDest: ?*IWICColorContext, pixelFmtDest: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pIBitmapSource, pIContextSource, pIContextDest, pixelFmtDest);
     }
 };
@@ -1365,10 +1365,10 @@ pub const IWICFastMetadataEncoder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Commit(self: *const IWICFastMetadataEncoder) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn GetMetadataQueryWriter(self: *const IWICFastMetadataEncoder, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
+    pub fn GetMetadataQueryWriter(self: *const IWICFastMetadataEncoder, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
     }
 };
@@ -1404,16 +1404,16 @@ pub const IWICStream = extern union {
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn InitializeFromIStream(self: *const IWICStream, pIStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn InitializeFromIStream(self: *const IWICStream, pIStream: ?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromIStream(self, pIStream);
     }
-    pub fn InitializeFromFilename(self: *const IWICStream, wzFileName: ?[*:0]const u16, dwDesiredAccess: u32) callconv(.Inline) HRESULT {
+    pub fn InitializeFromFilename(self: *const IWICStream, wzFileName: ?[*:0]const u16, dwDesiredAccess: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromFilename(self, wzFileName, dwDesiredAccess);
     }
-    pub fn InitializeFromMemory(self: *const IWICStream, pbBuffer: [*:0]u8, cbBufferSize: u32) callconv(.Inline) HRESULT {
+    pub fn InitializeFromMemory(self: *const IWICStream, pbBuffer: [*:0]u8, cbBufferSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromMemory(self, pbBuffer, cbBufferSize);
     }
-    pub fn InitializeFromIStreamRegion(self: *const IWICStream, pIStream: ?*IStream, ulOffset: ULARGE_INTEGER, ulMaxSize: ULARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn InitializeFromIStreamRegion(self: *const IWICStream, pIStream: ?*IStream, ulOffset: ULARGE_INTEGER, ulMaxSize: ULARGE_INTEGER) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromIStreamRegion(self, pIStream, ulOffset, ulMaxSize);
     }
 };
@@ -1446,16 +1446,16 @@ pub const IWICEnumMetadataItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IWICEnumMetadataItem, celt: u32, rgeltSchema: [*]PROPVARIANT, rgeltId: [*]PROPVARIANT, rgeltValue: [*]PROPVARIANT, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IWICEnumMetadataItem, celt: u32, rgeltSchema: [*]PROPVARIANT, rgeltId: [*]PROPVARIANT, rgeltValue: [*]PROPVARIANT, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgeltSchema, rgeltId, rgeltValue, pceltFetched);
     }
-    pub fn Skip(self: *const IWICEnumMetadataItem, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IWICEnumMetadataItem, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IWICEnumMetadataItem) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IWICEnumMetadataItem, ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IWICEnumMetadataItem, ppIEnumMetadataItem: ?*?*IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppIEnumMetadataItem);
     }
 };
@@ -1488,16 +1488,16 @@ pub const IWICMetadataQueryReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetContainerFormat(self: *const IWICMetadataQueryReader, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetContainerFormat(self: *const IWICMetadataQueryReader, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainerFormat(self, pguidContainerFormat);
     }
-    pub fn GetLocation(self: *const IWICMetadataQueryReader, cchMaxLength: u32, wzNamespace: [*:0]u16, pcchActualLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLocation(self: *const IWICMetadataQueryReader, cchMaxLength: u32, wzNamespace: [*:0]u16, pcchActualLength: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocation(self, cchMaxLength, wzNamespace, pcchActualLength);
     }
-    pub fn GetMetadataByName(self: *const IWICMetadataQueryReader, wzName: ?[*:0]const u16, pvarValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetMetadataByName(self: *const IWICMetadataQueryReader, wzName: ?[*:0]const u16, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataByName(self, wzName, pvarValue);
     }
-    pub fn GetEnumerator(self: *const IWICMetadataQueryReader, ppIEnumString: ?*?*IEnumString) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IWICMetadataQueryReader, ppIEnumString: ?*?*IEnumString) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnumerator(self, ppIEnumString);
     }
 };
@@ -1521,10 +1521,10 @@ pub const IWICMetadataQueryWriter = extern union {
     vtable: *const VTable,
     IWICMetadataQueryReader: IWICMetadataQueryReader,
     IUnknown: IUnknown,
-    pub fn SetMetadataByName(self: *const IWICMetadataQueryWriter, wzName: ?[*:0]const u16, pvarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn SetMetadataByName(self: *const IWICMetadataQueryWriter, wzName: ?[*:0]const u16, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetMetadataByName(self, wzName, pvarValue);
     }
-    pub fn RemoveMetadataByName(self: *const IWICMetadataQueryWriter, wzName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn RemoveMetadataByName(self: *const IWICMetadataQueryWriter, wzName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveMetadataByName(self, wzName);
     }
 };
@@ -1579,34 +1579,34 @@ pub const IWICBitmapEncoder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapEncoder, pIStream: ?*IStream, cacheOption: WICBitmapEncoderCacheOption) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICBitmapEncoder, pIStream: ?*IStream, cacheOption: WICBitmapEncoderCacheOption) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pIStream, cacheOption);
     }
-    pub fn GetContainerFormat(self: *const IWICBitmapEncoder, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetContainerFormat(self: *const IWICBitmapEncoder, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainerFormat(self, pguidContainerFormat);
     }
-    pub fn GetEncoderInfo(self: *const IWICBitmapEncoder, ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo) callconv(.Inline) HRESULT {
+    pub fn GetEncoderInfo(self: *const IWICBitmapEncoder, ppIEncoderInfo: ?*?*IWICBitmapEncoderInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetEncoderInfo(self, ppIEncoderInfo);
     }
-    pub fn SetColorContexts(self: *const IWICBitmapEncoder, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.Inline) HRESULT {
+    pub fn SetColorContexts(self: *const IWICBitmapEncoder, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorContexts(self, cCount, ppIColorContext);
     }
-    pub fn SetPalette(self: *const IWICBitmapEncoder, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IWICBitmapEncoder, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
         return self.vtable.SetPalette(self, pIPalette);
     }
-    pub fn SetThumbnail(self: *const IWICBitmapEncoder, pIThumbnail: ?*IWICBitmapSource) callconv(.Inline) HRESULT {
+    pub fn SetThumbnail(self: *const IWICBitmapEncoder, pIThumbnail: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.SetThumbnail(self, pIThumbnail);
     }
-    pub fn SetPreview(self: *const IWICBitmapEncoder, pIPreview: ?*IWICBitmapSource) callconv(.Inline) HRESULT {
+    pub fn SetPreview(self: *const IWICBitmapEncoder, pIPreview: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.SetPreview(self, pIPreview);
     }
-    pub fn CreateNewFrame(self: *const IWICBitmapEncoder, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, ppIEncoderOptions: ?*?*IPropertyBag2) callconv(.Inline) HRESULT {
+    pub fn CreateNewFrame(self: *const IWICBitmapEncoder, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, ppIEncoderOptions: ?*?*IPropertyBag2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateNewFrame(self, ppIFrameEncode, ppIEncoderOptions);
     }
-    pub fn Commit(self: *const IWICBitmapEncoder) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IWICBitmapEncoder) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn GetMetadataQueryWriter(self: *const IWICBitmapEncoder, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
+    pub fn GetMetadataQueryWriter(self: *const IWICBitmapEncoder, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
     }
 };
@@ -1670,37 +1670,37 @@ pub const IWICBitmapFrameEncode = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWICBitmapFrameEncode, pIEncoderOptions: ?*IPropertyBag2) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICBitmapFrameEncode, pIEncoderOptions: ?*IPropertyBag2) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pIEncoderOptions);
     }
-    pub fn SetSize(self: *const IWICBitmapFrameEncode, uiWidth: u32, uiHeight: u32) callconv(.Inline) HRESULT {
+    pub fn SetSize(self: *const IWICBitmapFrameEncode, uiWidth: u32, uiHeight: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSize(self, uiWidth, uiHeight);
     }
-    pub fn SetResolution(self: *const IWICBitmapFrameEncode, dpiX: f64, dpiY: f64) callconv(.Inline) HRESULT {
+    pub fn SetResolution(self: *const IWICBitmapFrameEncode, dpiX: f64, dpiY: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetResolution(self, dpiX, dpiY);
     }
-    pub fn SetPixelFormat(self: *const IWICBitmapFrameEncode, pPixelFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn SetPixelFormat(self: *const IWICBitmapFrameEncode, pPixelFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.SetPixelFormat(self, pPixelFormat);
     }
-    pub fn SetColorContexts(self: *const IWICBitmapFrameEncode, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.Inline) HRESULT {
+    pub fn SetColorContexts(self: *const IWICBitmapFrameEncode, cCount: u32, ppIColorContext: [*]?*IWICColorContext) callconv(.@"inline") HRESULT {
         return self.vtable.SetColorContexts(self, cCount, ppIColorContext);
     }
-    pub fn SetPalette(self: *const IWICBitmapFrameEncode, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IWICBitmapFrameEncode, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
         return self.vtable.SetPalette(self, pIPalette);
     }
-    pub fn SetThumbnail(self: *const IWICBitmapFrameEncode, pIThumbnail: ?*IWICBitmapSource) callconv(.Inline) HRESULT {
+    pub fn SetThumbnail(self: *const IWICBitmapFrameEncode, pIThumbnail: ?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.SetThumbnail(self, pIThumbnail);
     }
-    pub fn WritePixels(self: *const IWICBitmapFrameEncode, lineCount: u32, cbStride: u32, cbBufferSize: u32, pbPixels: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn WritePixels(self: *const IWICBitmapFrameEncode, lineCount: u32, cbStride: u32, cbBufferSize: u32, pbPixels: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.WritePixels(self, lineCount, cbStride, cbBufferSize, pbPixels);
     }
-    pub fn WriteSource(self: *const IWICBitmapFrameEncode, pIBitmapSource: ?*IWICBitmapSource, prc: ?*WICRect) callconv(.Inline) HRESULT {
+    pub fn WriteSource(self: *const IWICBitmapFrameEncode, pIBitmapSource: ?*IWICBitmapSource, prc: ?*WICRect) callconv(.@"inline") HRESULT {
         return self.vtable.WriteSource(self, pIBitmapSource, prc);
     }
-    pub fn Commit(self: *const IWICBitmapFrameEncode) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IWICBitmapFrameEncode) callconv(.@"inline") HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn GetMetadataQueryWriter(self: *const IWICBitmapFrameEncode, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
+    pub fn GetMetadataQueryWriter(self: *const IWICBitmapFrameEncode, ppIMetadataQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataQueryWriter(self, ppIMetadataQueryWriter);
     }
 };
@@ -1726,10 +1726,10 @@ pub const IWICPlanarBitmapFrameEncode = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn WritePixels(self: *const IWICPlanarBitmapFrameEncode, lineCount: u32, pPlanes: [*]WICBitmapPlane, cPlanes: u32) callconv(.Inline) HRESULT {
+    pub fn WritePixels(self: *const IWICPlanarBitmapFrameEncode, lineCount: u32, pPlanes: [*]WICBitmapPlane, cPlanes: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WritePixels(self, lineCount, pPlanes, cPlanes);
     }
-    pub fn WriteSource(self: *const IWICPlanarBitmapFrameEncode, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, prcSource: ?*WICRect) callconv(.Inline) HRESULT {
+    pub fn WriteSource(self: *const IWICPlanarBitmapFrameEncode, ppPlanes: [*]?*IWICBitmapSource, cPlanes: u32, prcSource: ?*WICRect) callconv(.@"inline") HRESULT {
         return self.vtable.WriteSource(self, ppPlanes, cPlanes, prcSource);
     }
 };
@@ -1792,37 +1792,37 @@ pub const IWICBitmapDecoder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueryCapability(self: *const IWICBitmapDecoder, pIStream: ?*IStream, pdwCapability: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QueryCapability(self: *const IWICBitmapDecoder, pIStream: ?*IStream, pdwCapability: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryCapability(self, pIStream, pdwCapability);
     }
-    pub fn Initialize(self: *const IWICBitmapDecoder, pIStream: ?*IStream, cacheOptions: WICDecodeOptions) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWICBitmapDecoder, pIStream: ?*IStream, cacheOptions: WICDecodeOptions) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, pIStream, cacheOptions);
     }
-    pub fn GetContainerFormat(self: *const IWICBitmapDecoder, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetContainerFormat(self: *const IWICBitmapDecoder, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainerFormat(self, pguidContainerFormat);
     }
-    pub fn GetDecoderInfo(self: *const IWICBitmapDecoder, ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo) callconv(.Inline) HRESULT {
+    pub fn GetDecoderInfo(self: *const IWICBitmapDecoder, ppIDecoderInfo: ?*?*IWICBitmapDecoderInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetDecoderInfo(self, ppIDecoderInfo);
     }
-    pub fn CopyPalette(self: *const IWICBitmapDecoder, pIPalette: ?*IWICPalette) callconv(.Inline) HRESULT {
+    pub fn CopyPalette(self: *const IWICBitmapDecoder, pIPalette: ?*IWICPalette) callconv(.@"inline") HRESULT {
         return self.vtable.CopyPalette(self, pIPalette);
     }
-    pub fn GetMetadataQueryReader(self: *const IWICBitmapDecoder, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.Inline) HRESULT {
+    pub fn GetMetadataQueryReader(self: *const IWICBitmapDecoder, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataQueryReader(self, ppIMetadataQueryReader);
     }
-    pub fn GetPreview(self: *const IWICBitmapDecoder, ppIBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
+    pub fn GetPreview(self: *const IWICBitmapDecoder, ppIBitmapSource: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreview(self, ppIBitmapSource);
     }
-    pub fn GetColorContexts(self: *const IWICBitmapDecoder, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColorContexts(self: *const IWICBitmapDecoder, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorContexts(self, cCount, ppIColorContexts, pcActualCount);
     }
-    pub fn GetThumbnail(self: *const IWICBitmapDecoder, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
+    pub fn GetThumbnail(self: *const IWICBitmapDecoder, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.GetThumbnail(self, ppIThumbnail);
     }
-    pub fn GetFrameCount(self: *const IWICBitmapDecoder, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFrameCount(self: *const IWICBitmapDecoder, pCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameCount(self, pCount);
     }
-    pub fn GetFrame(self: *const IWICBitmapDecoder, index: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.Inline) HRESULT {
+    pub fn GetFrame(self: *const IWICBitmapDecoder, index: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrame(self, index, ppIBitmapFrame);
     }
 };
@@ -1861,16 +1861,16 @@ pub const IWICBitmapSourceTransform = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CopyPixels(self: *const IWICBitmapSourceTransform, prc: ?*const WICRect, uiWidth: u32, uiHeight: u32, pguidDstFormat: ?*Guid, dstTransform: WICBitmapTransformOptions, nStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn CopyPixels(self: *const IWICBitmapSourceTransform, prc: ?*const WICRect, uiWidth: u32, uiHeight: u32, pguidDstFormat: ?*Guid, dstTransform: WICBitmapTransformOptions, nStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.CopyPixels(self, prc, uiWidth, uiHeight, pguidDstFormat, dstTransform, nStride, cbBufferSize, pbBuffer);
     }
-    pub fn GetClosestSize(self: *const IWICBitmapSourceTransform, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClosestSize(self: *const IWICBitmapSourceTransform, puiWidth: ?*u32, puiHeight: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetClosestSize(self, puiWidth, puiHeight);
     }
-    pub fn GetClosestPixelFormat(self: *const IWICBitmapSourceTransform, pguidDstFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetClosestPixelFormat(self: *const IWICBitmapSourceTransform, pguidDstFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetClosestPixelFormat(self, pguidDstFormat);
     }
-    pub fn DoesSupportTransform(self: *const IWICBitmapSourceTransform, dstTransform: WICBitmapTransformOptions, pfIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesSupportTransform(self: *const IWICBitmapSourceTransform, dstTransform: WICBitmapTransformOptions, pfIsSupported: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesSupportTransform(self, dstTransform, pfIsSupported);
     }
 };
@@ -1905,10 +1905,10 @@ pub const IWICPlanarBitmapSourceTransform = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DoesSupportTransform(self: *const IWICPlanarBitmapSourceTransform, puiWidth: ?*u32, puiHeight: ?*u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pguidDstFormats: [*]const Guid, pPlaneDescriptions: [*]WICBitmapPlaneDescription, cPlanes: u32, pfIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesSupportTransform(self: *const IWICPlanarBitmapSourceTransform, puiWidth: ?*u32, puiHeight: ?*u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pguidDstFormats: [*]const Guid, pPlaneDescriptions: [*]WICBitmapPlaneDescription, cPlanes: u32, pfIsSupported: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesSupportTransform(self, puiWidth, puiHeight, dstTransform, dstPlanarOptions, pguidDstFormats, pPlaneDescriptions, cPlanes, pfIsSupported);
     }
-    pub fn CopyPixels(self: *const IWICPlanarBitmapSourceTransform, prcSource: ?*const WICRect, uiWidth: u32, uiHeight: u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pDstPlanes: [*]const WICBitmapPlane, cPlanes: u32) callconv(.Inline) HRESULT {
+    pub fn CopyPixels(self: *const IWICPlanarBitmapSourceTransform, prcSource: ?*const WICRect, uiWidth: u32, uiHeight: u32, dstTransform: WICBitmapTransformOptions, dstPlanarOptions: WICPlanarOptions, pDstPlanes: [*]const WICBitmapPlane, cPlanes: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CopyPixels(self, prcSource, uiWidth, uiHeight, dstTransform, dstPlanarOptions, pDstPlanes, cPlanes);
     }
 };
@@ -1937,13 +1937,13 @@ pub const IWICBitmapFrameDecode = extern union {
     vtable: *const VTable,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn GetMetadataQueryReader(self: *const IWICBitmapFrameDecode, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.Inline) HRESULT {
+    pub fn GetMetadataQueryReader(self: *const IWICBitmapFrameDecode, ppIMetadataQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataQueryReader(self, ppIMetadataQueryReader);
     }
-    pub fn GetColorContexts(self: *const IWICBitmapFrameDecode, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColorContexts(self: *const IWICBitmapFrameDecode, cCount: u32, ppIColorContexts: [*]?*IWICColorContext, pcActualCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorContexts(self, cCount, ppIColorContexts, pcActualCount);
     }
-    pub fn GetThumbnail(self: *const IWICBitmapFrameDecode, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
+    pub fn GetThumbnail(self: *const IWICBitmapFrameDecode, ppIThumbnail: ?*?*IWICBitmapSource) callconv(.@"inline") HRESULT {
         return self.vtable.GetThumbnail(self, ppIThumbnail);
     }
 };
@@ -1969,13 +1969,13 @@ pub const IWICProgressiveLevelControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLevelCount(self: *const IWICProgressiveLevelControl, pcLevels: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLevelCount(self: *const IWICProgressiveLevelControl, pcLevels: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetLevelCount(self, pcLevels);
     }
-    pub fn GetCurrentLevel(self: *const IWICProgressiveLevelControl, pnLevel: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentLevel(self: *const IWICProgressiveLevelControl, pnLevel: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentLevel(self, pnLevel);
     }
-    pub fn SetCurrentLevel(self: *const IWICProgressiveLevelControl, nLevel: u32) callconv(.Inline) HRESULT {
+    pub fn SetCurrentLevel(self: *const IWICProgressiveLevelControl, nLevel: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCurrentLevel(self, nLevel);
     }
 };
@@ -1995,7 +1995,7 @@ pub const IWICProgressCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Notify(self: *const IWICProgressCallback, uFrameNum: u32, operation: WICProgressOperation, dblProgress: f64) callconv(.Inline) HRESULT {
+    pub fn Notify(self: *const IWICProgressCallback, uFrameNum: u32, operation: WICProgressOperation, dblProgress: f64) callconv(.@"inline") HRESULT {
         return self.vtable.Notify(self, uFrameNum, operation, dblProgress);
     }
 };
@@ -2022,7 +2022,7 @@ pub const IWICBitmapCodecProgressNotification = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterProgressNotification(self: *const IWICBitmapCodecProgressNotification, pfnProgressNotification: ?PFNProgressNotification, pvData: ?*anyopaque, dwProgressFlags: u32) callconv(.Inline) HRESULT {
+    pub fn RegisterProgressNotification(self: *const IWICBitmapCodecProgressNotification, pfnProgressNotification: ?PFNProgressNotification, pvData: ?*anyopaque, dwProgressFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterProgressNotification(self, pfnProgressNotification, pvData, dwProgressFlags);
     }
 };
@@ -2076,28 +2076,28 @@ pub const IWICComponentInfo = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetComponentType(self: *const IWICComponentInfo, pType: ?*WICComponentType) callconv(.Inline) HRESULT {
+    pub fn GetComponentType(self: *const IWICComponentInfo, pType: ?*WICComponentType) callconv(.@"inline") HRESULT {
         return self.vtable.GetComponentType(self, pType);
     }
-    pub fn GetCLSID(self: *const IWICComponentInfo, pclsid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetCLSID(self: *const IWICComponentInfo, pclsid: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetCLSID(self, pclsid);
     }
-    pub fn GetSigningStatus(self: *const IWICComponentInfo, pStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSigningStatus(self: *const IWICComponentInfo, pStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSigningStatus(self, pStatus);
     }
-    pub fn GetAuthor(self: *const IWICComponentInfo, cchAuthor: u32, wzAuthor: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAuthor(self: *const IWICComponentInfo, cchAuthor: u32, wzAuthor: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetAuthor(self, cchAuthor, wzAuthor, pcchActual);
     }
-    pub fn GetVendorGUID(self: *const IWICComponentInfo, pguidVendor: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetVendorGUID(self: *const IWICComponentInfo, pguidVendor: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetVendorGUID(self, pguidVendor);
     }
-    pub fn GetVersion(self: *const IWICComponentInfo, cchVersion: u32, wzVersion: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IWICComponentInfo, cchVersion: u32, wzVersion: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetVersion(self, cchVersion, wzVersion, pcchActual);
     }
-    pub fn GetSpecVersion(self: *const IWICComponentInfo, cchSpecVersion: u32, wzSpecVersion: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSpecVersion(self: *const IWICComponentInfo, cchSpecVersion: u32, wzSpecVersion: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSpecVersion(self, cchSpecVersion, wzSpecVersion, pcchActual);
     }
-    pub fn GetFriendlyName(self: *const IWICComponentInfo, cchFriendlyName: u32, wzFriendlyName: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFriendlyName(self: *const IWICComponentInfo, cchFriendlyName: u32, wzFriendlyName: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFriendlyName(self, cchFriendlyName, wzFriendlyName, pcchActual);
     }
 };
@@ -2122,10 +2122,10 @@ pub const IWICFormatConverterInfo = extern union {
     vtable: *const VTable,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn GetPixelFormats(self: *const IWICFormatConverterInfo, cFormats: u32, pPixelFormatGUIDs: [*]Guid, pcActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormats(self: *const IWICFormatConverterInfo, cFormats: u32, pPixelFormatGUIDs: [*]Guid, pcActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormats(self, cFormats, pPixelFormatGUIDs, pcActual);
     }
-    pub fn CreateInstance(self: *const IWICFormatConverterInfo, ppIConverter: ?*?*IWICFormatConverter) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IWICFormatConverterInfo, ppIConverter: ?*?*IWICFormatConverter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstance(self, ppIConverter);
     }
 };
@@ -2201,40 +2201,40 @@ pub const IWICBitmapCodecInfo = extern union {
     vtable: *const VTable,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn GetContainerFormat(self: *const IWICBitmapCodecInfo, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetContainerFormat(self: *const IWICBitmapCodecInfo, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainerFormat(self, pguidContainerFormat);
     }
-    pub fn GetPixelFormats(self: *const IWICBitmapCodecInfo, cFormats: u32, pguidPixelFormats: [*]Guid, pcActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormats(self: *const IWICBitmapCodecInfo, cFormats: u32, pguidPixelFormats: [*]Guid, pcActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPixelFormats(self, cFormats, pguidPixelFormats, pcActual);
     }
-    pub fn GetColorManagementVersion(self: *const IWICBitmapCodecInfo, cchColorManagementVersion: u32, wzColorManagementVersion: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColorManagementVersion(self: *const IWICBitmapCodecInfo, cchColorManagementVersion: u32, wzColorManagementVersion: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorManagementVersion(self, cchColorManagementVersion, wzColorManagementVersion, pcchActual);
     }
-    pub fn GetDeviceManufacturer(self: *const IWICBitmapCodecInfo, cchDeviceManufacturer: u32, wzDeviceManufacturer: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceManufacturer(self: *const IWICBitmapCodecInfo, cchDeviceManufacturer: u32, wzDeviceManufacturer: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceManufacturer(self, cchDeviceManufacturer, wzDeviceManufacturer, pcchActual);
     }
-    pub fn GetDeviceModels(self: *const IWICBitmapCodecInfo, cchDeviceModels: u32, wzDeviceModels: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceModels(self: *const IWICBitmapCodecInfo, cchDeviceModels: u32, wzDeviceModels: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceModels(self, cchDeviceModels, wzDeviceModels, pcchActual);
     }
-    pub fn GetMimeTypes(self: *const IWICBitmapCodecInfo, cchMimeTypes: u32, wzMimeTypes: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMimeTypes(self: *const IWICBitmapCodecInfo, cchMimeTypes: u32, wzMimeTypes: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMimeTypes(self, cchMimeTypes, wzMimeTypes, pcchActual);
     }
-    pub fn GetFileExtensions(self: *const IWICBitmapCodecInfo, cchFileExtensions: u32, wzFileExtensions: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFileExtensions(self: *const IWICBitmapCodecInfo, cchFileExtensions: u32, wzFileExtensions: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileExtensions(self, cchFileExtensions, wzFileExtensions, pcchActual);
     }
-    pub fn DoesSupportAnimation(self: *const IWICBitmapCodecInfo, pfSupportAnimation: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesSupportAnimation(self: *const IWICBitmapCodecInfo, pfSupportAnimation: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesSupportAnimation(self, pfSupportAnimation);
     }
-    pub fn DoesSupportChromakey(self: *const IWICBitmapCodecInfo, pfSupportChromakey: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesSupportChromakey(self: *const IWICBitmapCodecInfo, pfSupportChromakey: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesSupportChromakey(self, pfSupportChromakey);
     }
-    pub fn DoesSupportLossless(self: *const IWICBitmapCodecInfo, pfSupportLossless: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesSupportLossless(self: *const IWICBitmapCodecInfo, pfSupportLossless: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesSupportLossless(self, pfSupportLossless);
     }
-    pub fn DoesSupportMultiframe(self: *const IWICBitmapCodecInfo, pfSupportMultiframe: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesSupportMultiframe(self: *const IWICBitmapCodecInfo, pfSupportMultiframe: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesSupportMultiframe(self, pfSupportMultiframe);
     }
-    pub fn MatchesMimeType(self: *const IWICBitmapCodecInfo, wzMimeType: ?[*:0]const u16, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MatchesMimeType(self: *const IWICBitmapCodecInfo, wzMimeType: ?[*:0]const u16, pfMatches: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MatchesMimeType(self, wzMimeType, pfMatches);
     }
 };
@@ -2254,7 +2254,7 @@ pub const IWICBitmapEncoderInfo = extern union {
     IWICBitmapCodecInfo: IWICBitmapCodecInfo,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn CreateInstance(self: *const IWICBitmapEncoderInfo, ppIBitmapEncoder: **IWICBitmapEncoder) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IWICBitmapEncoderInfo, ppIBitmapEncoder: **IWICBitmapEncoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstance(self, ppIBitmapEncoder);
     }
 };
@@ -2287,13 +2287,13 @@ pub const IWICBitmapDecoderInfo = extern union {
     IWICBitmapCodecInfo: IWICBitmapCodecInfo,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn GetPatterns(self: *const IWICBitmapDecoderInfo, cbSizePatterns: u32, pPatterns: ?*WICBitmapPattern, pcPatterns: ?*u32, pcbPatternsActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPatterns(self: *const IWICBitmapDecoderInfo, cbSizePatterns: u32, pPatterns: ?*WICBitmapPattern, pcPatterns: ?*u32, pcbPatternsActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPatterns(self, cbSizePatterns, pPatterns, pcPatterns, pcbPatternsActual);
     }
-    pub fn MatchesPattern(self: *const IWICBitmapDecoderInfo, pIStream: ?*IStream, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MatchesPattern(self: *const IWICBitmapDecoderInfo, pIStream: ?*IStream, pfMatches: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MatchesPattern(self, pIStream, pfMatches);
     }
-    pub fn CreateInstance(self: *const IWICBitmapDecoderInfo, ppIBitmapDecoder: **IWICBitmapDecoder) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IWICBitmapDecoderInfo, ppIBitmapDecoder: **IWICBitmapDecoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstance(self, ppIBitmapDecoder);
     }
 };
@@ -2331,19 +2331,19 @@ pub const IWICPixelFormatInfo = extern union {
     vtable: *const VTable,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn GetFormatGUID(self: *const IWICPixelFormatInfo, pFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetFormatGUID(self: *const IWICPixelFormatInfo, pFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormatGUID(self, pFormat);
     }
-    pub fn GetColorContext(self: *const IWICPixelFormatInfo, ppIColorContext: ?*?*IWICColorContext) callconv(.Inline) HRESULT {
+    pub fn GetColorContext(self: *const IWICPixelFormatInfo, ppIColorContext: ?*?*IWICColorContext) callconv(.@"inline") HRESULT {
         return self.vtable.GetColorContext(self, ppIColorContext);
     }
-    pub fn GetBitsPerPixel(self: *const IWICPixelFormatInfo, puiBitsPerPixel: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBitsPerPixel(self: *const IWICPixelFormatInfo, puiBitsPerPixel: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetBitsPerPixel(self, puiBitsPerPixel);
     }
-    pub fn GetChannelCount(self: *const IWICPixelFormatInfo, puiChannelCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelCount(self: *const IWICPixelFormatInfo, puiChannelCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelCount(self, puiChannelCount);
     }
-    pub fn GetChannelMask(self: *const IWICPixelFormatInfo, uiChannelIndex: u32, cbMaskBuffer: u32, pbMaskBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChannelMask(self: *const IWICPixelFormatInfo, uiChannelIndex: u32, cbMaskBuffer: u32, pbMaskBuffer: [*:0]u8, pcbActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetChannelMask(self, uiChannelIndex, cbMaskBuffer, pbMaskBuffer, pcbActual);
     }
 };
@@ -2367,10 +2367,10 @@ pub const IWICPixelFormatInfo2 = extern union {
     IWICPixelFormatInfo: IWICPixelFormatInfo,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn SupportsTransparency(self: *const IWICPixelFormatInfo2, pfSupportsTransparency: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn SupportsTransparency(self: *const IWICPixelFormatInfo2, pfSupportsTransparency: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SupportsTransparency(self, pfSupportsTransparency);
     }
-    pub fn GetNumericRepresentation(self: *const IWICPixelFormatInfo2, pNumericRepresentation: ?*WICPixelFormatNumericRepresentation) callconv(.Inline) HRESULT {
+    pub fn GetNumericRepresentation(self: *const IWICPixelFormatInfo2, pNumericRepresentation: ?*WICPixelFormatNumericRepresentation) callconv(.@"inline") HRESULT {
         return self.vtable.GetNumericRepresentation(self, pNumericRepresentation);
     }
 };
@@ -2528,79 +2528,79 @@ pub const IWICImagingFactory = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateDecoderFromFilename(self: *const IWICImagingFactory, wzFilename: ?[*:0]const u16, pguidVendor: ?*const Guid, dwDesiredAccess: u32, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
+    pub fn CreateDecoderFromFilename(self: *const IWICImagingFactory, wzFilename: ?[*:0]const u16, pguidVendor: ?*const Guid, dwDesiredAccess: u32, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDecoderFromFilename(self, wzFilename, pguidVendor, dwDesiredAccess, metadataOptions, ppIDecoder);
     }
-    pub fn CreateDecoderFromStream(self: *const IWICImagingFactory, pIStream: ?*IStream, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
+    pub fn CreateDecoderFromStream(self: *const IWICImagingFactory, pIStream: ?*IStream, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDecoderFromStream(self, pIStream, pguidVendor, metadataOptions, ppIDecoder);
     }
-    pub fn CreateDecoderFromFileHandle(self: *const IWICImagingFactory, hFile: usize, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
+    pub fn CreateDecoderFromFileHandle(self: *const IWICImagingFactory, hFile: usize, pguidVendor: ?*const Guid, metadataOptions: WICDecodeOptions, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDecoderFromFileHandle(self, hFile, pguidVendor, metadataOptions, ppIDecoder);
     }
-    pub fn CreateComponentInfo(self: *const IWICImagingFactory, clsidComponent: ?*const Guid, ppIInfo: ?*?*IWICComponentInfo) callconv(.Inline) HRESULT {
+    pub fn CreateComponentInfo(self: *const IWICImagingFactory, clsidComponent: ?*const Guid, ppIInfo: ?*?*IWICComponentInfo) callconv(.@"inline") HRESULT {
         return self.vtable.CreateComponentInfo(self, clsidComponent, ppIInfo);
     }
-    pub fn CreateDecoder(self: *const IWICImagingFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.Inline) HRESULT {
+    pub fn CreateDecoder(self: *const IWICImagingFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIDecoder: ?*?*IWICBitmapDecoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDecoder(self, guidContainerFormat, pguidVendor, ppIDecoder);
     }
-    pub fn CreateEncoder(self: *const IWICImagingFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIEncoder: ?*?*IWICBitmapEncoder) callconv(.Inline) HRESULT {
+    pub fn CreateEncoder(self: *const IWICImagingFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIEncoder: ?*?*IWICBitmapEncoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncoder(self, guidContainerFormat, pguidVendor, ppIEncoder);
     }
-    pub fn CreatePalette(self: *const IWICImagingFactory, ppIPalette: ?*?*IWICPalette) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IWICImagingFactory, ppIPalette: ?*?*IWICPalette) callconv(.@"inline") HRESULT {
         return self.vtable.CreatePalette(self, ppIPalette);
     }
-    pub fn CreateFormatConverter(self: *const IWICImagingFactory, ppIFormatConverter: ?*?*IWICFormatConverter) callconv(.Inline) HRESULT {
+    pub fn CreateFormatConverter(self: *const IWICImagingFactory, ppIFormatConverter: ?*?*IWICFormatConverter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFormatConverter(self, ppIFormatConverter);
     }
-    pub fn CreateBitmapScaler(self: *const IWICImagingFactory, ppIBitmapScaler: ?*?*IWICBitmapScaler) callconv(.Inline) HRESULT {
+    pub fn CreateBitmapScaler(self: *const IWICImagingFactory, ppIBitmapScaler: ?*?*IWICBitmapScaler) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmapScaler(self, ppIBitmapScaler);
     }
-    pub fn CreateBitmapClipper(self: *const IWICImagingFactory, ppIBitmapClipper: ?*?*IWICBitmapClipper) callconv(.Inline) HRESULT {
+    pub fn CreateBitmapClipper(self: *const IWICImagingFactory, ppIBitmapClipper: ?*?*IWICBitmapClipper) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmapClipper(self, ppIBitmapClipper);
     }
-    pub fn CreateBitmapFlipRotator(self: *const IWICImagingFactory, ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator) callconv(.Inline) HRESULT {
+    pub fn CreateBitmapFlipRotator(self: *const IWICImagingFactory, ppIBitmapFlipRotator: ?*?*IWICBitmapFlipRotator) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmapFlipRotator(self, ppIBitmapFlipRotator);
     }
-    pub fn CreateStream(self: *const IWICImagingFactory, ppIWICStream: ?*?*IWICStream) callconv(.Inline) HRESULT {
+    pub fn CreateStream(self: *const IWICImagingFactory, ppIWICStream: ?*?*IWICStream) callconv(.@"inline") HRESULT {
         return self.vtable.CreateStream(self, ppIWICStream);
     }
-    pub fn CreateColorContext(self: *const IWICImagingFactory, ppIWICColorContext: ?*?*IWICColorContext) callconv(.Inline) HRESULT {
+    pub fn CreateColorContext(self: *const IWICImagingFactory, ppIWICColorContext: ?*?*IWICColorContext) callconv(.@"inline") HRESULT {
         return self.vtable.CreateColorContext(self, ppIWICColorContext);
     }
-    pub fn CreateColorTransformer(self: *const IWICImagingFactory, ppIWICColorTransform: ?*?*IWICColorTransform) callconv(.Inline) HRESULT {
+    pub fn CreateColorTransformer(self: *const IWICImagingFactory, ppIWICColorTransform: ?*?*IWICColorTransform) callconv(.@"inline") HRESULT {
         return self.vtable.CreateColorTransformer(self, ppIWICColorTransform);
     }
-    pub fn CreateBitmap(self: *const IWICImagingFactory, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+    pub fn CreateBitmap(self: *const IWICImagingFactory, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmap(self, uiWidth, uiHeight, pixelFormat, option, ppIBitmap);
     }
-    pub fn CreateBitmapFromSource(self: *const IWICImagingFactory, pIBitmapSource: ?*IWICBitmapSource, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+    pub fn CreateBitmapFromSource(self: *const IWICImagingFactory, pIBitmapSource: ?*IWICBitmapSource, option: WICBitmapCreateCacheOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmapFromSource(self, pIBitmapSource, option, ppIBitmap);
     }
-    pub fn CreateBitmapFromSourceRect(self: *const IWICImagingFactory, pIBitmapSource: ?*IWICBitmapSource, x: u32, y: u32, width: u32, height: u32, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+    pub fn CreateBitmapFromSourceRect(self: *const IWICImagingFactory, pIBitmapSource: ?*IWICBitmapSource, x: u32, y: u32, width: u32, height: u32, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmapFromSourceRect(self, pIBitmapSource, x, y, width, height, ppIBitmap);
     }
-    pub fn CreateBitmapFromMemory(self: *const IWICImagingFactory, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+    pub fn CreateBitmapFromMemory(self: *const IWICImagingFactory, uiWidth: u32, uiHeight: u32, pixelFormat: ?*Guid, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmapFromMemory(self, uiWidth, uiHeight, pixelFormat, cbStride, cbBufferSize, pbBuffer, ppIBitmap);
     }
-    pub fn CreateBitmapFromHBITMAP(self: *const IWICImagingFactory, hBitmap: ?HBITMAP, hPalette: ?HPALETTE, options: WICBitmapAlphaChannelOption, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+    pub fn CreateBitmapFromHBITMAP(self: *const IWICImagingFactory, hBitmap: ?HBITMAP, hPalette: ?HPALETTE, options: WICBitmapAlphaChannelOption, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmapFromHBITMAP(self, hBitmap, hPalette, options, ppIBitmap);
     }
-    pub fn CreateBitmapFromHICON(self: *const IWICImagingFactory, hIcon: ?HICON, ppIBitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+    pub fn CreateBitmapFromHICON(self: *const IWICImagingFactory, hIcon: ?HICON, ppIBitmap: ?*?*IWICBitmap) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBitmapFromHICON(self, hIcon, ppIBitmap);
     }
-    pub fn CreateComponentEnumerator(self: *const IWICImagingFactory, componentTypes: u32, options: u32, ppIEnumUnknown: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateComponentEnumerator(self: *const IWICImagingFactory, componentTypes: u32, options: u32, ppIEnumUnknown: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateComponentEnumerator(self, componentTypes, options, ppIEnumUnknown);
     }
-    pub fn CreateFastMetadataEncoderFromDecoder(self: *const IWICImagingFactory, pIDecoder: ?*IWICBitmapDecoder, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.Inline) HRESULT {
+    pub fn CreateFastMetadataEncoderFromDecoder(self: *const IWICImagingFactory, pIDecoder: ?*IWICBitmapDecoder, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFastMetadataEncoderFromDecoder(self, pIDecoder, ppIFastEncoder);
     }
-    pub fn CreateFastMetadataEncoderFromFrameDecode(self: *const IWICImagingFactory, pIFrameDecoder: ?*IWICBitmapFrameDecode, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.Inline) HRESULT {
+    pub fn CreateFastMetadataEncoderFromFrameDecode(self: *const IWICImagingFactory, pIFrameDecoder: ?*IWICBitmapFrameDecode, ppIFastEncoder: ?*?*IWICFastMetadataEncoder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFastMetadataEncoderFromFrameDecode(self, pIFrameDecoder, ppIFastEncoder);
     }
-    pub fn CreateQueryWriter(self: *const IWICImagingFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
+    pub fn CreateQueryWriter(self: *const IWICImagingFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateQueryWriter(self, guidMetadataFormat, pguidVendor, ppIQueryWriter);
     }
-    pub fn CreateQueryWriterFromReader(self: *const IWICImagingFactory, pIQueryReader: ?*IWICMetadataQueryReader, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
+    pub fn CreateQueryWriterFromReader(self: *const IWICImagingFactory, pIQueryReader: ?*IWICMetadataQueryReader, pguidVendor: ?*const Guid, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateQueryWriterFromReader(self, pIQueryReader, pguidVendor, ppIQueryWriter);
     }
 };
@@ -2777,7 +2777,7 @@ pub const IWICDevelopRawNotificationCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Notify(self: *const IWICDevelopRawNotificationCallback, NotificationMask: u32) callconv(.Inline) HRESULT {
+    pub fn Notify(self: *const IWICDevelopRawNotificationCallback, NotificationMask: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Notify(self, NotificationMask);
     }
 };
@@ -2932,100 +2932,100 @@ pub const IWICDevelopRaw = extern union {
     IWICBitmapFrameDecode: IWICBitmapFrameDecode,
     IWICBitmapSource: IWICBitmapSource,
     IUnknown: IUnknown,
-    pub fn QueryRawCapabilitiesInfo(self: *const IWICDevelopRaw, pInfo: ?*WICRawCapabilitiesInfo) callconv(.Inline) HRESULT {
+    pub fn QueryRawCapabilitiesInfo(self: *const IWICDevelopRaw, pInfo: ?*WICRawCapabilitiesInfo) callconv(.@"inline") HRESULT {
         return self.vtable.QueryRawCapabilitiesInfo(self, pInfo);
     }
-    pub fn LoadParameterSet(self: *const IWICDevelopRaw, ParameterSet: WICRawParameterSet) callconv(.Inline) HRESULT {
+    pub fn LoadParameterSet(self: *const IWICDevelopRaw, ParameterSet: WICRawParameterSet) callconv(.@"inline") HRESULT {
         return self.vtable.LoadParameterSet(self, ParameterSet);
     }
-    pub fn GetCurrentParameterSet(self: *const IWICDevelopRaw, ppCurrentParameterSet: ?*?*IPropertyBag2) callconv(.Inline) HRESULT {
+    pub fn GetCurrentParameterSet(self: *const IWICDevelopRaw, ppCurrentParameterSet: ?*?*IPropertyBag2) callconv(.@"inline") HRESULT {
         return self.vtable.GetCurrentParameterSet(self, ppCurrentParameterSet);
     }
-    pub fn SetExposureCompensation(self: *const IWICDevelopRaw, ev: f64) callconv(.Inline) HRESULT {
+    pub fn SetExposureCompensation(self: *const IWICDevelopRaw, ev: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetExposureCompensation(self, ev);
     }
-    pub fn GetExposureCompensation(self: *const IWICDevelopRaw, pEV: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetExposureCompensation(self: *const IWICDevelopRaw, pEV: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetExposureCompensation(self, pEV);
     }
-    pub fn SetWhitePointRGB(self: *const IWICDevelopRaw, Red: u32, Green: u32, Blue: u32) callconv(.Inline) HRESULT {
+    pub fn SetWhitePointRGB(self: *const IWICDevelopRaw, Red: u32, Green: u32, Blue: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetWhitePointRGB(self, Red, Green, Blue);
     }
-    pub fn GetWhitePointRGB(self: *const IWICDevelopRaw, pRed: ?*u32, pGreen: ?*u32, pBlue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetWhitePointRGB(self: *const IWICDevelopRaw, pRed: ?*u32, pGreen: ?*u32, pBlue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetWhitePointRGB(self, pRed, pGreen, pBlue);
     }
-    pub fn SetNamedWhitePoint(self: *const IWICDevelopRaw, WhitePoint: WICNamedWhitePoint) callconv(.Inline) HRESULT {
+    pub fn SetNamedWhitePoint(self: *const IWICDevelopRaw, WhitePoint: WICNamedWhitePoint) callconv(.@"inline") HRESULT {
         return self.vtable.SetNamedWhitePoint(self, WhitePoint);
     }
-    pub fn GetNamedWhitePoint(self: *const IWICDevelopRaw, pWhitePoint: ?*WICNamedWhitePoint) callconv(.Inline) HRESULT {
+    pub fn GetNamedWhitePoint(self: *const IWICDevelopRaw, pWhitePoint: ?*WICNamedWhitePoint) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamedWhitePoint(self, pWhitePoint);
     }
-    pub fn SetWhitePointKelvin(self: *const IWICDevelopRaw, WhitePointKelvin: u32) callconv(.Inline) HRESULT {
+    pub fn SetWhitePointKelvin(self: *const IWICDevelopRaw, WhitePointKelvin: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetWhitePointKelvin(self, WhitePointKelvin);
     }
-    pub fn GetWhitePointKelvin(self: *const IWICDevelopRaw, pWhitePointKelvin: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetWhitePointKelvin(self: *const IWICDevelopRaw, pWhitePointKelvin: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetWhitePointKelvin(self, pWhitePointKelvin);
     }
-    pub fn GetKelvinRangeInfo(self: *const IWICDevelopRaw, pMinKelvinTemp: ?*u32, pMaxKelvinTemp: ?*u32, pKelvinTempStepValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetKelvinRangeInfo(self: *const IWICDevelopRaw, pMinKelvinTemp: ?*u32, pMaxKelvinTemp: ?*u32, pKelvinTempStepValue: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetKelvinRangeInfo(self, pMinKelvinTemp, pMaxKelvinTemp, pKelvinTempStepValue);
     }
-    pub fn SetContrast(self: *const IWICDevelopRaw, Contrast: f64) callconv(.Inline) HRESULT {
+    pub fn SetContrast(self: *const IWICDevelopRaw, Contrast: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetContrast(self, Contrast);
     }
-    pub fn GetContrast(self: *const IWICDevelopRaw, pContrast: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetContrast(self: *const IWICDevelopRaw, pContrast: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetContrast(self, pContrast);
     }
-    pub fn SetGamma(self: *const IWICDevelopRaw, Gamma: f64) callconv(.Inline) HRESULT {
+    pub fn SetGamma(self: *const IWICDevelopRaw, Gamma: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetGamma(self, Gamma);
     }
-    pub fn GetGamma(self: *const IWICDevelopRaw, pGamma: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetGamma(self: *const IWICDevelopRaw, pGamma: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetGamma(self, pGamma);
     }
-    pub fn SetSharpness(self: *const IWICDevelopRaw, Sharpness: f64) callconv(.Inline) HRESULT {
+    pub fn SetSharpness(self: *const IWICDevelopRaw, Sharpness: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetSharpness(self, Sharpness);
     }
-    pub fn GetSharpness(self: *const IWICDevelopRaw, pSharpness: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetSharpness(self: *const IWICDevelopRaw, pSharpness: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetSharpness(self, pSharpness);
     }
-    pub fn SetSaturation(self: *const IWICDevelopRaw, Saturation: f64) callconv(.Inline) HRESULT {
+    pub fn SetSaturation(self: *const IWICDevelopRaw, Saturation: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetSaturation(self, Saturation);
     }
-    pub fn GetSaturation(self: *const IWICDevelopRaw, pSaturation: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetSaturation(self: *const IWICDevelopRaw, pSaturation: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetSaturation(self, pSaturation);
     }
-    pub fn SetTint(self: *const IWICDevelopRaw, Tint: f64) callconv(.Inline) HRESULT {
+    pub fn SetTint(self: *const IWICDevelopRaw, Tint: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetTint(self, Tint);
     }
-    pub fn GetTint(self: *const IWICDevelopRaw, pTint: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetTint(self: *const IWICDevelopRaw, pTint: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetTint(self, pTint);
     }
-    pub fn SetNoiseReduction(self: *const IWICDevelopRaw, NoiseReduction: f64) callconv(.Inline) HRESULT {
+    pub fn SetNoiseReduction(self: *const IWICDevelopRaw, NoiseReduction: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetNoiseReduction(self, NoiseReduction);
     }
-    pub fn GetNoiseReduction(self: *const IWICDevelopRaw, pNoiseReduction: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetNoiseReduction(self: *const IWICDevelopRaw, pNoiseReduction: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetNoiseReduction(self, pNoiseReduction);
     }
-    pub fn SetDestinationColorContext(self: *const IWICDevelopRaw, pColorContext: ?*IWICColorContext) callconv(.Inline) HRESULT {
+    pub fn SetDestinationColorContext(self: *const IWICDevelopRaw, pColorContext: ?*IWICColorContext) callconv(.@"inline") HRESULT {
         return self.vtable.SetDestinationColorContext(self, pColorContext);
     }
-    pub fn SetToneCurve(self: *const IWICDevelopRaw, cbToneCurveSize: u32, pToneCurve: ?*const WICRawToneCurve) callconv(.Inline) HRESULT {
+    pub fn SetToneCurve(self: *const IWICDevelopRaw, cbToneCurveSize: u32, pToneCurve: ?*const WICRawToneCurve) callconv(.@"inline") HRESULT {
         return self.vtable.SetToneCurve(self, cbToneCurveSize, pToneCurve);
     }
-    pub fn GetToneCurve(self: *const IWICDevelopRaw, cbToneCurveBufferSize: u32, pToneCurve: ?*WICRawToneCurve, pcbActualToneCurveBufferSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetToneCurve(self: *const IWICDevelopRaw, cbToneCurveBufferSize: u32, pToneCurve: ?*WICRawToneCurve, pcbActualToneCurveBufferSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetToneCurve(self, cbToneCurveBufferSize, pToneCurve, pcbActualToneCurveBufferSize);
     }
-    pub fn SetRotation(self: *const IWICDevelopRaw, Rotation: f64) callconv(.Inline) HRESULT {
+    pub fn SetRotation(self: *const IWICDevelopRaw, Rotation: f64) callconv(.@"inline") HRESULT {
         return self.vtable.SetRotation(self, Rotation);
     }
-    pub fn GetRotation(self: *const IWICDevelopRaw, pRotation: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetRotation(self: *const IWICDevelopRaw, pRotation: ?*f64) callconv(.@"inline") HRESULT {
         return self.vtable.GetRotation(self, pRotation);
     }
-    pub fn SetRenderMode(self: *const IWICDevelopRaw, RenderMode: WICRawRenderMode) callconv(.Inline) HRESULT {
+    pub fn SetRenderMode(self: *const IWICDevelopRaw, RenderMode: WICRawRenderMode) callconv(.@"inline") HRESULT {
         return self.vtable.SetRenderMode(self, RenderMode);
     }
-    pub fn GetRenderMode(self: *const IWICDevelopRaw, pRenderMode: ?*WICRawRenderMode) callconv(.Inline) HRESULT {
+    pub fn GetRenderMode(self: *const IWICDevelopRaw, pRenderMode: ?*WICRawRenderMode) callconv(.@"inline") HRESULT {
         return self.vtable.GetRenderMode(self, pRenderMode);
     }
-    pub fn SetNotificationCallback(self: *const IWICDevelopRaw, pCallback: ?*IWICDevelopRawNotificationCallback) callconv(.Inline) HRESULT {
+    pub fn SetNotificationCallback(self: *const IWICDevelopRaw, pCallback: ?*IWICDevelopRawNotificationCallback) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotificationCallback(self, pCallback);
     }
 };
@@ -3089,10 +3089,10 @@ pub const IWICDdsDecoder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetParameters(self: *const IWICDdsDecoder, pParameters: ?*WICDdsParameters) callconv(.Inline) HRESULT {
+    pub fn GetParameters(self: *const IWICDdsDecoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
         return self.vtable.GetParameters(self, pParameters);
     }
-    pub fn GetFrame(self: *const IWICDdsDecoder, arrayIndex: u32, mipLevel: u32, sliceIndex: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.Inline) HRESULT {
+    pub fn GetFrame(self: *const IWICDdsDecoder, arrayIndex: u32, mipLevel: u32, sliceIndex: u32, ppIBitmapFrame: ?*?*IWICBitmapFrameDecode) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrame(self, arrayIndex, mipLevel, sliceIndex, ppIBitmapFrame);
     }
 };
@@ -3121,13 +3121,13 @@ pub const IWICDdsEncoder = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetParameters(self: *const IWICDdsEncoder, pParameters: ?*WICDdsParameters) callconv(.Inline) HRESULT {
+    pub fn SetParameters(self: *const IWICDdsEncoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
         return self.vtable.SetParameters(self, pParameters);
     }
-    pub fn GetParameters(self: *const IWICDdsEncoder, pParameters: ?*WICDdsParameters) callconv(.Inline) HRESULT {
+    pub fn GetParameters(self: *const IWICDdsEncoder, pParameters: ?*WICDdsParameters) callconv(.@"inline") HRESULT {
         return self.vtable.GetParameters(self, pParameters);
     }
-    pub fn CreateNewFrame(self: *const IWICDdsEncoder, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, pArrayIndex: ?*u32, pMipLevel: ?*u32, pSliceIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CreateNewFrame(self: *const IWICDdsEncoder, ppIFrameEncode: ?*?*IWICBitmapFrameEncode, pArrayIndex: ?*u32, pMipLevel: ?*u32, pSliceIndex: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateNewFrame(self, ppIFrameEncode, pArrayIndex, pMipLevel, pSliceIndex);
     }
 };
@@ -3164,13 +3164,13 @@ pub const IWICDdsFrameDecode = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSizeInBlocks(self: *const IWICDdsFrameDecode, pWidthInBlocks: ?*u32, pHeightInBlocks: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSizeInBlocks(self: *const IWICDdsFrameDecode, pWidthInBlocks: ?*u32, pHeightInBlocks: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSizeInBlocks(self, pWidthInBlocks, pHeightInBlocks);
     }
-    pub fn GetFormatInfo(self: *const IWICDdsFrameDecode, pFormatInfo: ?*WICDdsFormatInfo) callconv(.Inline) HRESULT {
+    pub fn GetFormatInfo(self: *const IWICDdsFrameDecode, pFormatInfo: ?*WICDdsFormatInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetFormatInfo(self, pFormatInfo);
     }
-    pub fn CopyBlocks(self: *const IWICDdsFrameDecode, prcBoundsInBlocks: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn CopyBlocks(self: *const IWICDdsFrameDecode, prcBoundsInBlocks: ?*const WICRect, cbStride: u32, cbBufferSize: u32, pbBuffer: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.CopyBlocks(self, prcBoundsInBlocks, cbStride, cbBufferSize, pbBuffer);
     }
 };
@@ -3238,34 +3238,34 @@ pub const IWICJpegFrameDecode = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DoesSupportIndexing(self: *const IWICJpegFrameDecode, pfIndexingSupported: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesSupportIndexing(self: *const IWICJpegFrameDecode, pfIndexingSupported: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesSupportIndexing(self, pfIndexingSupported);
     }
-    pub fn SetIndexing(self: *const IWICJpegFrameDecode, options: WICJpegIndexingOptions, horizontalIntervalSize: u32) callconv(.Inline) HRESULT {
+    pub fn SetIndexing(self: *const IWICJpegFrameDecode, options: WICJpegIndexingOptions, horizontalIntervalSize: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetIndexing(self, options, horizontalIntervalSize);
     }
-    pub fn ClearIndexing(self: *const IWICJpegFrameDecode) callconv(.Inline) HRESULT {
+    pub fn ClearIndexing(self: *const IWICJpegFrameDecode) callconv(.@"inline") HRESULT {
         return self.vtable.ClearIndexing(self);
     }
-    pub fn GetAcHuffmanTable(self: *const IWICJpegFrameDecode, scanIndex: u32, tableIndex: u32, pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE) callconv(.Inline) HRESULT {
+    pub fn GetAcHuffmanTable(self: *const IWICJpegFrameDecode, scanIndex: u32, tableIndex: u32, pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetAcHuffmanTable(self, scanIndex, tableIndex, pAcHuffmanTable);
     }
-    pub fn GetDcHuffmanTable(self: *const IWICJpegFrameDecode, scanIndex: u32, tableIndex: u32, pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE) callconv(.Inline) HRESULT {
+    pub fn GetDcHuffmanTable(self: *const IWICJpegFrameDecode, scanIndex: u32, tableIndex: u32, pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetDcHuffmanTable(self, scanIndex, tableIndex, pDcHuffmanTable);
     }
-    pub fn GetQuantizationTable(self: *const IWICJpegFrameDecode, scanIndex: u32, tableIndex: u32, pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE) callconv(.Inline) HRESULT {
+    pub fn GetQuantizationTable(self: *const IWICJpegFrameDecode, scanIndex: u32, tableIndex: u32, pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuantizationTable(self, scanIndex, tableIndex, pQuantizationTable);
     }
-    pub fn GetFrameHeader(self: *const IWICJpegFrameDecode, pFrameHeader: ?*WICJpegFrameHeader) callconv(.Inline) HRESULT {
+    pub fn GetFrameHeader(self: *const IWICJpegFrameDecode, pFrameHeader: ?*WICJpegFrameHeader) callconv(.@"inline") HRESULT {
         return self.vtable.GetFrameHeader(self, pFrameHeader);
     }
-    pub fn GetScanHeader(self: *const IWICJpegFrameDecode, scanIndex: u32, pScanHeader: ?*WICJpegScanHeader) callconv(.Inline) HRESULT {
+    pub fn GetScanHeader(self: *const IWICJpegFrameDecode, scanIndex: u32, pScanHeader: ?*WICJpegScanHeader) callconv(.@"inline") HRESULT {
         return self.vtable.GetScanHeader(self, scanIndex, pScanHeader);
     }
-    pub fn CopyScan(self: *const IWICJpegFrameDecode, scanIndex: u32, scanOffset: u32, cbScanData: u32, pbScanData: [*:0]u8, pcbScanDataActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CopyScan(self: *const IWICJpegFrameDecode, scanIndex: u32, scanOffset: u32, cbScanData: u32, pbScanData: [*:0]u8, pcbScanDataActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CopyScan(self, scanIndex, scanOffset, cbScanData, pbScanData, pcbScanDataActual);
     }
-    pub fn CopyMinimalStream(self: *const IWICJpegFrameDecode, streamOffset: u32, cbStreamData: u32, pbStreamData: [*:0]u8, pcbStreamDataActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CopyMinimalStream(self: *const IWICJpegFrameDecode, streamOffset: u32, cbStreamData: u32, pbStreamData: [*:0]u8, pcbStreamDataActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CopyMinimalStream(self, streamOffset, cbStreamData, pbStreamData, pcbStreamDataActual);
     }
 };
@@ -3302,16 +3302,16 @@ pub const IWICJpegFrameEncode = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAcHuffmanTable(self: *const IWICJpegFrameEncode, scanIndex: u32, tableIndex: u32, pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE) callconv(.Inline) HRESULT {
+    pub fn GetAcHuffmanTable(self: *const IWICJpegFrameEncode, scanIndex: u32, tableIndex: u32, pAcHuffmanTable: ?*DXGI_JPEG_AC_HUFFMAN_TABLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetAcHuffmanTable(self, scanIndex, tableIndex, pAcHuffmanTable);
     }
-    pub fn GetDcHuffmanTable(self: *const IWICJpegFrameEncode, scanIndex: u32, tableIndex: u32, pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE) callconv(.Inline) HRESULT {
+    pub fn GetDcHuffmanTable(self: *const IWICJpegFrameEncode, scanIndex: u32, tableIndex: u32, pDcHuffmanTable: ?*DXGI_JPEG_DC_HUFFMAN_TABLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetDcHuffmanTable(self, scanIndex, tableIndex, pDcHuffmanTable);
     }
-    pub fn GetQuantizationTable(self: *const IWICJpegFrameEncode, scanIndex: u32, tableIndex: u32, pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE) callconv(.Inline) HRESULT {
+    pub fn GetQuantizationTable(self: *const IWICJpegFrameEncode, scanIndex: u32, tableIndex: u32, pQuantizationTable: ?*DXGI_JPEG_QUANTIZATION_TABLE) callconv(.@"inline") HRESULT {
         return self.vtable.GetQuantizationTable(self, scanIndex, tableIndex, pQuantizationTable);
     }
-    pub fn WriteScan(self: *const IWICJpegFrameEncode, cbScanData: u32, pbScanData: [*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn WriteScan(self: *const IWICJpegFrameEncode, cbScanData: u32, pbScanData: [*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.WriteScan(self, cbScanData, pbScanData);
     }
 };
@@ -3370,16 +3370,16 @@ pub const IWICMetadataBlockReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetContainerFormat(self: *const IWICMetadataBlockReader, pguidContainerFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetContainerFormat(self: *const IWICMetadataBlockReader, pguidContainerFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainerFormat(self, pguidContainerFormat);
     }
-    pub fn GetCount(self: *const IWICMetadataBlockReader, pcCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IWICMetadataBlockReader, pcCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pcCount);
     }
-    pub fn GetReaderByIndex(self: *const IWICMetadataBlockReader, nIndex: u32, ppIMetadataReader: ?*?*IWICMetadataReader) callconv(.Inline) HRESULT {
+    pub fn GetReaderByIndex(self: *const IWICMetadataBlockReader, nIndex: u32, ppIMetadataReader: ?*?*IWICMetadataReader) callconv(.@"inline") HRESULT {
         return self.vtable.GetReaderByIndex(self, nIndex, ppIMetadataReader);
     }
-    pub fn GetEnumerator(self: *const IWICMetadataBlockReader, ppIEnumMetadata: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IWICMetadataBlockReader, ppIEnumMetadata: ?*?*IEnumUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnumerator(self, ppIEnumMetadata);
     }
 };
@@ -3416,19 +3416,19 @@ pub const IWICMetadataBlockWriter = extern union {
     vtable: *const VTable,
     IWICMetadataBlockReader: IWICMetadataBlockReader,
     IUnknown: IUnknown,
-    pub fn InitializeFromBlockReader(self: *const IWICMetadataBlockWriter, pIMDBlockReader: ?*IWICMetadataBlockReader) callconv(.Inline) HRESULT {
+    pub fn InitializeFromBlockReader(self: *const IWICMetadataBlockWriter, pIMDBlockReader: ?*IWICMetadataBlockReader) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeFromBlockReader(self, pIMDBlockReader);
     }
-    pub fn GetWriterByIndex(self: *const IWICMetadataBlockWriter, nIndex: u32, ppIMetadataWriter: ?*?*IWICMetadataWriter) callconv(.Inline) HRESULT {
+    pub fn GetWriterByIndex(self: *const IWICMetadataBlockWriter, nIndex: u32, ppIMetadataWriter: ?*?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
         return self.vtable.GetWriterByIndex(self, nIndex, ppIMetadataWriter);
     }
-    pub fn AddWriter(self: *const IWICMetadataBlockWriter, pIMetadataWriter: ?*IWICMetadataWriter) callconv(.Inline) HRESULT {
+    pub fn AddWriter(self: *const IWICMetadataBlockWriter, pIMetadataWriter: ?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
         return self.vtable.AddWriter(self, pIMetadataWriter);
     }
-    pub fn SetWriterByIndex(self: *const IWICMetadataBlockWriter, nIndex: u32, pIMetadataWriter: ?*IWICMetadataWriter) callconv(.Inline) HRESULT {
+    pub fn SetWriterByIndex(self: *const IWICMetadataBlockWriter, nIndex: u32, pIMetadataWriter: ?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
         return self.vtable.SetWriterByIndex(self, nIndex, pIMetadataWriter);
     }
-    pub fn RemoveWriterByIndex(self: *const IWICMetadataBlockWriter, nIndex: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveWriterByIndex(self: *const IWICMetadataBlockWriter, nIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveWriterByIndex(self, nIndex);
     }
 };
@@ -3471,22 +3471,22 @@ pub const IWICMetadataReader = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMetadataFormat(self: *const IWICMetadataReader, pguidMetadataFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetMetadataFormat(self: *const IWICMetadataReader, pguidMetadataFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataFormat(self, pguidMetadataFormat);
     }
-    pub fn GetMetadataHandlerInfo(self: *const IWICMetadataReader, ppIHandler: ?*?*IWICMetadataHandlerInfo) callconv(.Inline) HRESULT {
+    pub fn GetMetadataHandlerInfo(self: *const IWICMetadataReader, ppIHandler: ?*?*IWICMetadataHandlerInfo) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataHandlerInfo(self, ppIHandler);
     }
-    pub fn GetCount(self: *const IWICMetadataReader, pcCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IWICMetadataReader, pcCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, pcCount);
     }
-    pub fn GetValueByIndex(self: *const IWICMetadataReader, nIndex: u32, pvarSchema: ?*PROPVARIANT, pvarId: ?*PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetValueByIndex(self: *const IWICMetadataReader, nIndex: u32, pvarSchema: ?*PROPVARIANT, pvarId: ?*PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetValueByIndex(self, nIndex, pvarSchema, pvarId, pvarValue);
     }
-    pub fn GetValue(self: *const IWICMetadataReader, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IWICMetadataReader, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetValue(self, pvarSchema, pvarId, pvarValue);
     }
-    pub fn GetEnumerator(self: *const IWICMetadataReader, ppIEnumMetadata: ?*?*IWICEnumMetadataItem) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IWICMetadataReader, ppIEnumMetadata: ?*?*IWICEnumMetadataItem) callconv(.@"inline") HRESULT {
         return self.vtable.GetEnumerator(self, ppIEnumMetadata);
     }
 };
@@ -3523,16 +3523,16 @@ pub const IWICMetadataWriter = extern union {
     vtable: *const VTable,
     IWICMetadataReader: IWICMetadataReader,
     IUnknown: IUnknown,
-    pub fn SetValue(self: *const IWICMetadataWriter, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn SetValue(self: *const IWICMetadataWriter, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetValue(self, pvarSchema, pvarId, pvarValue);
     }
-    pub fn SetValueByIndex(self: *const IWICMetadataWriter, nIndex: u32, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn SetValueByIndex(self: *const IWICMetadataWriter, nIndex: u32, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT, pvarValue: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetValueByIndex(self, nIndex, pvarSchema, pvarId, pvarValue);
     }
-    pub fn RemoveValue(self: *const IWICMetadataWriter, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveValue(self: *const IWICMetadataWriter, pvarSchema: ?*const PROPVARIANT, pvarId: ?*const PROPVARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveValue(self, pvarSchema, pvarId);
     }
-    pub fn RemoveValueByIndex(self: *const IWICMetadataWriter, nIndex: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveValueByIndex(self: *const IWICMetadataWriter, nIndex: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveValueByIndex(self, nIndex);
     }
 };
@@ -3561,16 +3561,16 @@ pub const IWICStreamProvider = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStream(self: *const IWICStreamProvider, ppIStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IWICStreamProvider, ppIStream: ?*?*IStream) callconv(.@"inline") HRESULT {
         return self.vtable.GetStream(self, ppIStream);
     }
-    pub fn GetPersistOptions(self: *const IWICStreamProvider, pdwPersistOptions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPersistOptions(self: *const IWICStreamProvider, pdwPersistOptions: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPersistOptions(self, pdwPersistOptions);
     }
-    pub fn GetPreferredVendorGUID(self: *const IWICStreamProvider, pguidPreferredVendor: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetPreferredVendorGUID(self: *const IWICStreamProvider, pguidPreferredVendor: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetPreferredVendorGUID(self, pguidPreferredVendor);
     }
-    pub fn RefreshStream(self: *const IWICStreamProvider) callconv(.Inline) HRESULT {
+    pub fn RefreshStream(self: *const IWICStreamProvider) callconv(.@"inline") HRESULT {
         return self.vtable.RefreshStream(self);
     }
 };
@@ -3598,10 +3598,10 @@ pub const IWICPersistStream = extern union {
     IPersistStream: IPersistStream,
     IPersist: IPersist,
     IUnknown: IUnknown,
-    pub fn LoadEx(self: *const IWICPersistStream, pIStream: ?*IStream, pguidPreferredVendor: ?*const Guid, dwPersistOptions: u32) callconv(.Inline) HRESULT {
+    pub fn LoadEx(self: *const IWICPersistStream, pIStream: ?*IStream, pguidPreferredVendor: ?*const Guid, dwPersistOptions: u32) callconv(.@"inline") HRESULT {
         return self.vtable.LoadEx(self, pIStream, pguidPreferredVendor, dwPersistOptions);
     }
-    pub fn SaveEx(self: *const IWICPersistStream, pIStream: ?*IStream, dwPersistOptions: u32, fClearDirty: BOOL) callconv(.Inline) HRESULT {
+    pub fn SaveEx(self: *const IWICPersistStream, pIStream: ?*IStream, dwPersistOptions: u32, fClearDirty: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SaveEx(self, pIStream, dwPersistOptions, fClearDirty);
     }
 };
@@ -3650,25 +3650,25 @@ pub const IWICMetadataHandlerInfo = extern union {
     vtable: *const VTable,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn GetMetadataFormat(self: *const IWICMetadataHandlerInfo, pguidMetadataFormat: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetMetadataFormat(self: *const IWICMetadataHandlerInfo, pguidMetadataFormat: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetMetadataFormat(self, pguidMetadataFormat);
     }
-    pub fn GetContainerFormats(self: *const IWICMetadataHandlerInfo, cContainerFormats: u32, pguidContainerFormats: [*]Guid, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetContainerFormats(self: *const IWICMetadataHandlerInfo, cContainerFormats: u32, pguidContainerFormats: [*]Guid, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetContainerFormats(self, cContainerFormats, pguidContainerFormats, pcchActual);
     }
-    pub fn GetDeviceManufacturer(self: *const IWICMetadataHandlerInfo, cchDeviceManufacturer: u32, wzDeviceManufacturer: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceManufacturer(self: *const IWICMetadataHandlerInfo, cchDeviceManufacturer: u32, wzDeviceManufacturer: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceManufacturer(self, cchDeviceManufacturer, wzDeviceManufacturer, pcchActual);
     }
-    pub fn GetDeviceModels(self: *const IWICMetadataHandlerInfo, cchDeviceModels: u32, wzDeviceModels: [*:0]u16, pcchActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceModels(self: *const IWICMetadataHandlerInfo, cchDeviceModels: u32, wzDeviceModels: [*:0]u16, pcchActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceModels(self, cchDeviceModels, wzDeviceModels, pcchActual);
     }
-    pub fn DoesRequireFullStream(self: *const IWICMetadataHandlerInfo, pfRequiresFullStream: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesRequireFullStream(self: *const IWICMetadataHandlerInfo, pfRequiresFullStream: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesRequireFullStream(self, pfRequiresFullStream);
     }
-    pub fn DoesSupportPadding(self: *const IWICMetadataHandlerInfo, pfSupportsPadding: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesSupportPadding(self: *const IWICMetadataHandlerInfo, pfSupportsPadding: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesSupportPadding(self, pfSupportsPadding);
     }
-    pub fn DoesRequireFixedSize(self: *const IWICMetadataHandlerInfo, pfFixedSize: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn DoesRequireFixedSize(self: *const IWICMetadataHandlerInfo, pfFixedSize: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.DoesRequireFixedSize(self, pfFixedSize);
     }
 };
@@ -3711,13 +3711,13 @@ pub const IWICMetadataReaderInfo = extern union {
     IWICMetadataHandlerInfo: IWICMetadataHandlerInfo,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn GetPatterns(self: *const IWICMetadataReaderInfo, guidContainerFormat: ?*const Guid, cbSize: u32, pPattern: ?*WICMetadataPattern, pcCount: ?*u32, pcbActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPatterns(self: *const IWICMetadataReaderInfo, guidContainerFormat: ?*const Guid, cbSize: u32, pPattern: ?*WICMetadataPattern, pcCount: ?*u32, pcbActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPatterns(self, guidContainerFormat, cbSize, pPattern, pcCount, pcbActual);
     }
-    pub fn MatchesPattern(self: *const IWICMetadataReaderInfo, guidContainerFormat: ?*const Guid, pIStream: ?*IStream, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MatchesPattern(self: *const IWICMetadataReaderInfo, guidContainerFormat: ?*const Guid, pIStream: ?*IStream, pfMatches: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.MatchesPattern(self, guidContainerFormat, pIStream, pfMatches);
     }
-    pub fn CreateInstance(self: *const IWICMetadataReaderInfo, ppIReader: **IWICMetadataReader) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IWICMetadataReaderInfo, ppIReader: **IWICMetadataReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstance(self, ppIReader);
     }
 };
@@ -3752,10 +3752,10 @@ pub const IWICMetadataWriterInfo = extern union {
     IWICMetadataHandlerInfo: IWICMetadataHandlerInfo,
     IWICComponentInfo: IWICComponentInfo,
     IUnknown: IUnknown,
-    pub fn GetHeader(self: *const IWICMetadataWriterInfo, guidContainerFormat: ?*const Guid, cbSize: u32, pHeader: ?*WICMetadataHeader, pcbActual: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetHeader(self: *const IWICMetadataWriterInfo, guidContainerFormat: ?*const Guid, cbSize: u32, pHeader: ?*WICMetadataHeader, pcbActual: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetHeader(self, guidContainerFormat, cbSize, pHeader, pcbActual);
     }
-    pub fn CreateInstance(self: *const IWICMetadataWriterInfo, ppIWriter: ?*?*IWICMetadataWriter) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const IWICMetadataWriterInfo, ppIWriter: ?*?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInstance(self, ppIWriter);
     }
 };
@@ -3815,25 +3815,25 @@ pub const IWICComponentFactory = extern union {
     vtable: *const VTable,
     IWICImagingFactory: IWICImagingFactory,
     IUnknown: IUnknown,
-    pub fn CreateMetadataReader(self: *const IWICComponentFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.Inline) HRESULT {
+    pub fn CreateMetadataReader(self: *const IWICComponentFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMetadataReader(self, guidMetadataFormat, pguidVendor, dwOptions, pIStream, ppIReader);
     }
-    pub fn CreateMetadataReaderFromContainer(self: *const IWICComponentFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.Inline) HRESULT {
+    pub fn CreateMetadataReaderFromContainer(self: *const IWICComponentFactory, guidContainerFormat: ?*const Guid, pguidVendor: ?*const Guid, dwOptions: u32, pIStream: ?*IStream, ppIReader: ?*?*IWICMetadataReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMetadataReaderFromContainer(self, guidContainerFormat, pguidVendor, dwOptions, pIStream, ppIReader);
     }
-    pub fn CreateMetadataWriter(self: *const IWICComponentFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwMetadataOptions: u32, ppIWriter: ?*?*IWICMetadataWriter) callconv(.Inline) HRESULT {
+    pub fn CreateMetadataWriter(self: *const IWICComponentFactory, guidMetadataFormat: ?*const Guid, pguidVendor: ?*const Guid, dwMetadataOptions: u32, ppIWriter: ?*?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMetadataWriter(self, guidMetadataFormat, pguidVendor, dwMetadataOptions, ppIWriter);
     }
-    pub fn CreateMetadataWriterFromReader(self: *const IWICComponentFactory, pIReader: ?*IWICMetadataReader, pguidVendor: ?*const Guid, ppIWriter: ?*?*IWICMetadataWriter) callconv(.Inline) HRESULT {
+    pub fn CreateMetadataWriterFromReader(self: *const IWICComponentFactory, pIReader: ?*IWICMetadataReader, pguidVendor: ?*const Guid, ppIWriter: ?*?*IWICMetadataWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMetadataWriterFromReader(self, pIReader, pguidVendor, ppIWriter);
     }
-    pub fn CreateQueryReaderFromBlockReader(self: *const IWICComponentFactory, pIBlockReader: ?*IWICMetadataBlockReader, ppIQueryReader: ?*?*IWICMetadataQueryReader) callconv(.Inline) HRESULT {
+    pub fn CreateQueryReaderFromBlockReader(self: *const IWICComponentFactory, pIBlockReader: ?*IWICMetadataBlockReader, ppIQueryReader: ?*?*IWICMetadataQueryReader) callconv(.@"inline") HRESULT {
         return self.vtable.CreateQueryReaderFromBlockReader(self, pIBlockReader, ppIQueryReader);
     }
-    pub fn CreateQueryWriterFromBlockWriter(self: *const IWICComponentFactory, pIBlockWriter: ?*IWICMetadataBlockWriter, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.Inline) HRESULT {
+    pub fn CreateQueryWriterFromBlockWriter(self: *const IWICComponentFactory, pIBlockWriter: ?*IWICMetadataBlockWriter, ppIQueryWriter: ?*?*IWICMetadataQueryWriter) callconv(.@"inline") HRESULT {
         return self.vtable.CreateQueryWriterFromBlockWriter(self, pIBlockWriter, ppIQueryWriter);
     }
-    pub fn CreateEncoderPropertyBag(self: *const IWICComponentFactory, ppropOptions: [*]PROPBAG2, cCount: u32, ppIPropertyBag: ?*?*IPropertyBag2) callconv(.Inline) HRESULT {
+    pub fn CreateEncoderPropertyBag(self: *const IWICComponentFactory, ppropOptions: [*]PROPBAG2, cCount: u32, ppIPropertyBag: ?*?*IPropertyBag2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEncoderPropertyBag(self, ppropOptions, cCount, ppIPropertyBag);
     }
 };

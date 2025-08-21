@@ -21,7 +21,7 @@ pub const IInkCommitRequestHandler = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnCommitRequested(self: *const IInkCommitRequestHandler) callconv(.Inline) HRESULT {
+    pub fn OnCommitRequested(self: *const IInkCommitRequestHandler) callconv(.@"inline") HRESULT {
         return self.vtable.OnCommitRequested(self);
     }
 };
@@ -57,19 +57,19 @@ pub const IInkPresenterDesktop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetRootVisual(self: *const IInkPresenterDesktop, rootVisual: ?*IUnknown, device: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetRootVisual(self: *const IInkPresenterDesktop, rootVisual: ?*IUnknown, device: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetRootVisual(self, rootVisual, device);
     }
-    pub fn SetCommitRequestHandler(self: *const IInkPresenterDesktop, handler: ?*IInkCommitRequestHandler) callconv(.Inline) HRESULT {
+    pub fn SetCommitRequestHandler(self: *const IInkPresenterDesktop, handler: ?*IInkCommitRequestHandler) callconv(.@"inline") HRESULT {
         return self.vtable.SetCommitRequestHandler(self, handler);
     }
-    pub fn GetSize(self: *const IInkPresenterDesktop, width: ?*f32, height: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IInkPresenterDesktop, width: ?*f32, height: ?*f32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSize(self, width, height);
     }
-    pub fn SetSize(self: *const IInkPresenterDesktop, width: f32, height: f32) callconv(.Inline) HRESULT {
+    pub fn SetSize(self: *const IInkPresenterDesktop, width: f32, height: f32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSize(self, width, height);
     }
-    pub fn OnHighContrastChanged(self: *const IInkPresenterDesktop) callconv(.Inline) HRESULT {
+    pub fn OnHighContrastChanged(self: *const IInkPresenterDesktop) callconv(.@"inline") HRESULT {
         return self.vtable.OnHighContrastChanged(self);
     }
 };
@@ -86,7 +86,7 @@ pub const IInkHostWorkItem = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Invoke(self: *const IInkHostWorkItem) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IInkHostWorkItem) callconv(.@"inline") HRESULT {
         return self.vtable.Invoke(self);
     }
 };
@@ -117,13 +117,13 @@ pub const IInkDesktopHost = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn QueueWorkItem(self: *const IInkDesktopHost, workItem: ?*IInkHostWorkItem) callconv(.Inline) HRESULT {
+    pub fn QueueWorkItem(self: *const IInkDesktopHost, workItem: ?*IInkHostWorkItem) callconv(.@"inline") HRESULT {
         return self.vtable.QueueWorkItem(self, workItem);
     }
-    pub fn CreateInkPresenter(self: *const IInkDesktopHost, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInkPresenter(self: *const IInkDesktopHost, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateInkPresenter(self, riid, ppv);
     }
-    pub fn CreateAndInitializeInkPresenter(self: *const IInkDesktopHost, rootVisual: ?*IUnknown, width: f32, height: f32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateAndInitializeInkPresenter(self: *const IInkDesktopHost, rootVisual: ?*IUnknown, width: f32, height: f32, riid: ?*const Guid, ppv: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAndInitializeInkPresenter(self, rootVisual, width, height, riid, ppv);
     }
 };
@@ -155,7 +155,7 @@ pub const IInkD2DRenderer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Draw(self: *const IInkD2DRenderer, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, fHighContrast: BOOL) callconv(.Inline) HRESULT {
+    pub fn Draw(self: *const IInkD2DRenderer, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, fHighContrast: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.Draw(self, pD2D1DeviceContext, pInkStrokeIterable, fHighContrast);
     }
 };
@@ -174,7 +174,7 @@ pub const IInkD2DRenderer2 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Draw(self: *const IInkD2DRenderer2, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT) callconv(.Inline) HRESULT {
+    pub fn Draw(self: *const IInkD2DRenderer2, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT) callconv(.@"inline") HRESULT {
         return self.vtable.Draw(self, pD2D1DeviceContext, pInkStrokeIterable, highContrastAdjustment);
     }
 };

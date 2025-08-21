@@ -41,22 +41,22 @@ pub const ICompositionDrawingSurfaceInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeginDraw(self: *const ICompositionDrawingSurfaceInterop, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: **anyopaque, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
+    pub fn BeginDraw(self: *const ICompositionDrawingSurfaceInterop, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: **anyopaque, updateOffset: ?*POINT) callconv(.@"inline") HRESULT {
         return self.vtable.BeginDraw(self, updateRect, iid, updateObject, updateOffset);
     }
-    pub fn EndDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.Inline) HRESULT {
+    pub fn EndDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.@"inline") HRESULT {
         return self.vtable.EndDraw(self);
     }
-    pub fn Resize(self: *const ICompositionDrawingSurfaceInterop, sizePixels: SIZE) callconv(.Inline) HRESULT {
+    pub fn Resize(self: *const ICompositionDrawingSurfaceInterop, sizePixels: SIZE) callconv(.@"inline") HRESULT {
         return self.vtable.Resize(self, sizePixels);
     }
-    pub fn Scroll(self: *const ICompositionDrawingSurfaceInterop, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) callconv(.Inline) HRESULT {
+    pub fn Scroll(self: *const ICompositionDrawingSurfaceInterop, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) callconv(.@"inline") HRESULT {
         return self.vtable.Scroll(self, scrollRect, clipRect, offsetX, offsetY);
     }
-    pub fn ResumeDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.Inline) HRESULT {
+    pub fn ResumeDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.@"inline") HRESULT {
         return self.vtable.ResumeDraw(self);
     }
-    pub fn SuspendDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.Inline) HRESULT {
+    pub fn SuspendDraw(self: *const ICompositionDrawingSurfaceInterop) callconv(.@"inline") HRESULT {
         return self.vtable.SuspendDraw(self);
     }
 };
@@ -77,7 +77,7 @@ pub const ICompositionDrawingSurfaceInterop2 = extern union {
     vtable: *const VTable,
     ICompositionDrawingSurfaceInterop: ICompositionDrawingSurfaceInterop,
     IUnknown: IUnknown,
-    pub fn CopySurface(self: *const ICompositionDrawingSurfaceInterop2, destinationResource: ?*IUnknown, destinationOffsetX: i32, destinationOffsetY: i32, sourceRectangle: ?*const RECT) callconv(.Inline) HRESULT {
+    pub fn CopySurface(self: *const ICompositionDrawingSurfaceInterop2, destinationResource: ?*IUnknown, destinationOffsetX: i32, destinationOffsetY: i32, sourceRectangle: ?*const RECT) callconv(.@"inline") HRESULT {
         return self.vtable.CopySurface(self, destinationResource, destinationOffsetX, destinationOffsetY, sourceRectangle);
     }
 };
@@ -98,10 +98,10 @@ pub const ICompositionGraphicsDeviceInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRenderingDevice(self: *const ICompositionGraphicsDeviceInterop, value: **IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetRenderingDevice(self: *const ICompositionGraphicsDeviceInterop, value: **IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetRenderingDevice(self, value);
     }
-    pub fn SetRenderingDevice(self: *const ICompositionGraphicsDeviceInterop, value: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetRenderingDevice(self: *const ICompositionGraphicsDeviceInterop, value: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetRenderingDevice(self, value);
     }
 };
@@ -129,13 +129,13 @@ pub const ICompositorInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateCompositionSurfaceForHandle(self: *const ICompositorInterop, swapChain: ?HANDLE, result: **struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
+    pub fn CreateCompositionSurfaceForHandle(self: *const ICompositorInterop, swapChain: ?HANDLE, result: **struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"}) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCompositionSurfaceForHandle(self, swapChain, result);
     }
-    pub fn CreateCompositionSurfaceForSwapChain(self: *const ICompositorInterop, swapChain: ?*IUnknown, result: **struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
+    pub fn CreateCompositionSurfaceForSwapChain(self: *const ICompositorInterop, swapChain: ?*IUnknown, result: **struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"}) callconv(.@"inline") HRESULT {
         return self.vtable.CreateCompositionSurfaceForSwapChain(self, swapChain, result);
     }
-    pub fn CreateGraphicsDevice(self: *const ICompositorInterop, renderingDevice: ?*IUnknown, result: **struct{comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
+    pub fn CreateGraphicsDevice(self: *const ICompositorInterop, renderingDevice: ?*IUnknown, result: **struct{comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition"}) callconv(.@"inline") HRESULT {
         return self.vtable.CreateGraphicsDevice(self, renderingDevice, result);
     }
 };
@@ -152,7 +152,7 @@ pub const ISwapChainInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSwapChain(self: *const ISwapChainInterop, swapChain: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetSwapChain(self: *const ISwapChainInterop, swapChain: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetSwapChain(self, swapChain);
     }
 };
@@ -169,7 +169,7 @@ pub const IVisualInteractionSourceInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TryRedirectForManipulation(self: *const IVisualInteractionSourceInterop, pointerInfo: ?*const POINTER_INFO) callconv(.Inline) HRESULT {
+    pub fn TryRedirectForManipulation(self: *const IVisualInteractionSourceInterop, pointerInfo: ?*const POINTER_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.TryRedirectForManipulation(self, pointerInfo);
     }
 };
@@ -188,7 +188,7 @@ pub const ICompositionCapabilitiesInteropFactory = extern union {
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const ICompositionCapabilitiesInteropFactory, hwnd: ?HWND, result: **struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"}) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const ICompositionCapabilitiesInteropFactory, hwnd: ?HWND, result: **struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"}) callconv(.@"inline") HRESULT {
         return self.vtable.GetForWindow(self, hwnd, result);
     }
 };
@@ -211,10 +211,10 @@ pub const ICompositorDesktopInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateDesktopWindowTarget(self: *const ICompositorDesktopInterop, hwndTarget: ?HWND, isTopmost: BOOL, result: **struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"}) callconv(.Inline) HRESULT {
+    pub fn CreateDesktopWindowTarget(self: *const ICompositorDesktopInterop, hwndTarget: ?HWND, isTopmost: BOOL, result: **struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"}) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDesktopWindowTarget(self, hwndTarget, isTopmost, result);
     }
-    pub fn EnsureOnThread(self: *const ICompositorDesktopInterop, threadId: u32) callconv(.Inline) HRESULT {
+    pub fn EnsureOnThread(self: *const ICompositorDesktopInterop, threadId: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnsureOnThread(self, threadId);
     }
 };
@@ -232,7 +232,7 @@ pub const IDesktopWindowTargetInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Hwnd(self: *const IDesktopWindowTargetInterop, value: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn get_Hwnd(self: *const IDesktopWindowTargetInterop, value: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.get_Hwnd(self, value);
     }
 };

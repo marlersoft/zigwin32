@@ -252,13 +252,13 @@ pub const IBackgroundCopyFile = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRemoteName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetRemoteName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetRemoteName(self, pVal);
     }
-    pub fn GetLocalName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetLocalName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLocalName(self, pVal);
     }
-    pub fn GetProgress(self: *const IBackgroundCopyFile, pVal: ?*BG_FILE_PROGRESS) callconv(.Inline) HRESULT {
+    pub fn GetProgress(self: *const IBackgroundCopyFile, pVal: ?*BG_FILE_PROGRESS) callconv(.@"inline") HRESULT {
         return self.vtable.GetProgress(self, pVal);
     }
 };
@@ -293,19 +293,19 @@ pub const IEnumBackgroundCopyFiles = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBackgroundCopyFiles, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumBackgroundCopyFiles, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumBackgroundCopyFiles, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumBackgroundCopyFiles, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumBackgroundCopyFiles) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumBackgroundCopyFiles, ppenum: ?*?*IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumBackgroundCopyFiles, ppenum: ?*?*IEnumBackgroundCopyFiles) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
-    pub fn GetCount(self: *const IEnumBackgroundCopyFiles, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IEnumBackgroundCopyFiles, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, puCount);
     }
 };
@@ -363,19 +363,19 @@ pub const IBackgroundCopyError = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetError(self: *const IBackgroundCopyError, pContext: ?*BG_ERROR_CONTEXT, pCode: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn GetError(self: *const IBackgroundCopyError, pContext: ?*BG_ERROR_CONTEXT, pCode: ?*HRESULT) callconv(.@"inline") HRESULT {
         return self.vtable.GetError(self, pContext, pCode);
     }
-    pub fn GetFile(self: *const IBackgroundCopyError, pVal: ?*?*IBackgroundCopyFile) callconv(.Inline) HRESULT {
+    pub fn GetFile(self: *const IBackgroundCopyError, pVal: ?*?*IBackgroundCopyFile) callconv(.@"inline") HRESULT {
         return self.vtable.GetFile(self, pVal);
     }
-    pub fn GetErrorDescription(self: *const IBackgroundCopyError, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetErrorDescription(self: *const IBackgroundCopyError, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorDescription(self, LanguageId, pErrorDescription);
     }
-    pub fn GetErrorContextDescription(self: *const IBackgroundCopyError, LanguageId: u32, pContextDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetErrorContextDescription(self: *const IBackgroundCopyError, LanguageId: u32, pContextDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorContextDescription(self, LanguageId, pContextDescription);
     }
-    pub fn GetProtocol(self: *const IBackgroundCopyError, pProtocol: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetProtocol(self: *const IBackgroundCopyError, pProtocol: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetProtocol(self, pProtocol);
     }
 };
@@ -588,100 +588,100 @@ pub const IBackgroundCopyJob = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddFileSet(self: *const IBackgroundCopyJob, cFileCount: u32, pFileSet: [*]BG_FILE_INFO) callconv(.Inline) HRESULT {
+    pub fn AddFileSet(self: *const IBackgroundCopyJob, cFileCount: u32, pFileSet: [*]BG_FILE_INFO) callconv(.@"inline") HRESULT {
         return self.vtable.AddFileSet(self, cFileCount, pFileSet);
     }
-    pub fn AddFile(self: *const IBackgroundCopyJob, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddFile(self: *const IBackgroundCopyJob, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.AddFile(self, RemoteUrl, LocalName);
     }
-    pub fn EnumFiles(self: *const IBackgroundCopyJob, pEnum: ?*?*IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
+    pub fn EnumFiles(self: *const IBackgroundCopyJob, pEnum: ?*?*IEnumBackgroundCopyFiles) callconv(.@"inline") HRESULT {
         return self.vtable.EnumFiles(self, pEnum);
     }
-    pub fn Suspend(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn Suspend(self: *const IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.Suspend(self);
     }
-    pub fn Resume(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn Cancel(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.Cancel(self);
     }
-    pub fn Complete(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn Complete(self: *const IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.Complete(self);
     }
-    pub fn GetId(self: *const IBackgroundCopyJob, pVal: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetId(self: *const IBackgroundCopyJob, pVal: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, pVal);
     }
-    pub fn GetType(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_TYPE) callconv(.@"inline") HRESULT {
         return self.vtable.GetType(self, pVal);
     }
-    pub fn GetProgress(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_PROGRESS) callconv(.Inline) HRESULT {
+    pub fn GetProgress(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_PROGRESS) callconv(.@"inline") HRESULT {
         return self.vtable.GetProgress(self, pVal);
     }
-    pub fn GetTimes(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_TIMES) callconv(.Inline) HRESULT {
+    pub fn GetTimes(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_TIMES) callconv(.@"inline") HRESULT {
         return self.vtable.GetTimes(self, pVal);
     }
-    pub fn GetState(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_STATE) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_STATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, pVal);
     }
-    pub fn GetError(self: *const IBackgroundCopyJob, ppError: ?*?*IBackgroundCopyError) callconv(.Inline) HRESULT {
+    pub fn GetError(self: *const IBackgroundCopyJob, ppError: ?*?*IBackgroundCopyError) callconv(.@"inline") HRESULT {
         return self.vtable.GetError(self, ppError);
     }
-    pub fn GetOwner(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetOwner(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetOwner(self, pVal);
     }
-    pub fn SetDisplayName(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDisplayName(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDisplayName(self, Val);
     }
-    pub fn GetDisplayName(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDisplayName(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDisplayName(self, pVal);
     }
-    pub fn SetDescription(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDescription(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetDescription(self, Val);
     }
-    pub fn GetDescription(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetDescription(self, pVal);
     }
-    pub fn SetPriority(self: *const IBackgroundCopyJob, Val: BG_JOB_PRIORITY) callconv(.Inline) HRESULT {
+    pub fn SetPriority(self: *const IBackgroundCopyJob, Val: BG_JOB_PRIORITY) callconv(.@"inline") HRESULT {
         return self.vtable.SetPriority(self, Val);
     }
-    pub fn GetPriority(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_PRIORITY) callconv(.Inline) HRESULT {
+    pub fn GetPriority(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_PRIORITY) callconv(.@"inline") HRESULT {
         return self.vtable.GetPriority(self, pVal);
     }
-    pub fn SetNotifyFlags(self: *const IBackgroundCopyJob, Val: u32) callconv(.Inline) HRESULT {
+    pub fn SetNotifyFlags(self: *const IBackgroundCopyJob, Val: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotifyFlags(self, Val);
     }
-    pub fn GetNotifyFlags(self: *const IBackgroundCopyJob, pVal: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNotifyFlags(self: *const IBackgroundCopyJob, pVal: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNotifyFlags(self, pVal);
     }
-    pub fn SetNotifyInterface(self: *const IBackgroundCopyJob, Val: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetNotifyInterface(self: *const IBackgroundCopyJob, Val: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotifyInterface(self, Val);
     }
-    pub fn GetNotifyInterface(self: *const IBackgroundCopyJob, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetNotifyInterface(self: *const IBackgroundCopyJob, pVal: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetNotifyInterface(self, pVal);
     }
-    pub fn SetMinimumRetryDelay(self: *const IBackgroundCopyJob, Seconds: u32) callconv(.Inline) HRESULT {
+    pub fn SetMinimumRetryDelay(self: *const IBackgroundCopyJob, Seconds: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMinimumRetryDelay(self, Seconds);
     }
-    pub fn GetMinimumRetryDelay(self: *const IBackgroundCopyJob, Seconds: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMinimumRetryDelay(self: *const IBackgroundCopyJob, Seconds: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMinimumRetryDelay(self, Seconds);
     }
-    pub fn SetNoProgressTimeout(self: *const IBackgroundCopyJob, Seconds: u32) callconv(.Inline) HRESULT {
+    pub fn SetNoProgressTimeout(self: *const IBackgroundCopyJob, Seconds: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetNoProgressTimeout(self, Seconds);
     }
-    pub fn GetNoProgressTimeout(self: *const IBackgroundCopyJob, Seconds: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNoProgressTimeout(self: *const IBackgroundCopyJob, Seconds: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetNoProgressTimeout(self, Seconds);
     }
-    pub fn GetErrorCount(self: *const IBackgroundCopyJob, Errors: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetErrorCount(self: *const IBackgroundCopyJob, Errors: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorCount(self, Errors);
     }
-    pub fn SetProxySettings(self: *const IBackgroundCopyJob, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: ?[*:0]const u16, ProxyBypassList: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetProxySettings(self: *const IBackgroundCopyJob, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: ?[*:0]const u16, ProxyBypassList: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetProxySettings(self, ProxyUsage, ProxyList, ProxyBypassList);
     }
-    pub fn GetProxySettings(self: *const IBackgroundCopyJob, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?PWSTR, pProxyBypassList: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetProxySettings(self: *const IBackgroundCopyJob, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?PWSTR, pProxyBypassList: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetProxySettings(self, pProxyUsage, pProxyList, pProxyBypassList);
     }
-    pub fn TakeOwnership(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn TakeOwnership(self: *const IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.TakeOwnership(self);
     }
 };
@@ -716,19 +716,19 @@ pub const IEnumBackgroundCopyJobs = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBackgroundCopyJobs, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumBackgroundCopyJobs, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumBackgroundCopyJobs, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumBackgroundCopyJobs, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumBackgroundCopyJobs, ppenum: ?*?*IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumBackgroundCopyJobs, ppenum: ?*?*IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
-    pub fn GetCount(self: *const IEnumBackgroundCopyJobs, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IEnumBackgroundCopyJobs, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, puCount);
     }
 };
@@ -756,13 +756,13 @@ pub const IBackgroundCopyCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn JobTransferred(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn JobTransferred(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.JobTransferred(self, pJob);
     }
-    pub fn JobError(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.Inline) HRESULT {
+    pub fn JobError(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.@"inline") HRESULT {
         return self.vtable.JobError(self, pJob, pError);
     }
-    pub fn JobModification(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn JobModification(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.JobModification(self, pJob, dwReserved);
     }
 };
@@ -798,22 +798,22 @@ pub const AsyncIBackgroundCopyCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_JobTransferred(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn Begin_JobTransferred(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_JobTransferred(self, pJob);
     }
-    pub fn Finish_JobTransferred(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
+    pub fn Finish_JobTransferred(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_JobTransferred(self);
     }
-    pub fn Begin_JobError(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.Inline) HRESULT {
+    pub fn Begin_JobError(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_JobError(self, pJob, pError);
     }
-    pub fn Finish_JobError(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
+    pub fn Finish_JobError(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_JobError(self);
     }
-    pub fn Begin_JobModification(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_JobModification(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Begin_JobModification(self, pJob, dwReserved);
     }
-    pub fn Finish_JobModification(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
+    pub fn Finish_JobModification(self: *const AsyncIBackgroundCopyCallback) callconv(.@"inline") HRESULT {
         return self.vtable.Finish_JobModification(self);
     }
 };
@@ -850,16 +850,16 @@ pub const IBackgroundCopyManager = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateJob(self: *const IBackgroundCopyManager, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn CreateJob(self: *const IBackgroundCopyManager, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.CreateJob(self, DisplayName, Type, pJobId, ppJob);
     }
-    pub fn GetJob(self: *const IBackgroundCopyManager, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
+    pub fn GetJob(self: *const IBackgroundCopyManager, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.@"inline") HRESULT {
         return self.vtable.GetJob(self, jobID, ppJob);
     }
-    pub fn EnumJobs(self: *const IBackgroundCopyManager, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+    pub fn EnumJobs(self: *const IBackgroundCopyManager, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) callconv(.@"inline") HRESULT {
         return self.vtable.EnumJobs(self, dwFlags, ppEnum);
     }
-    pub fn GetErrorDescription(self: *const IBackgroundCopyManager, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetErrorDescription(self: *const IBackgroundCopyManager, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetErrorDescription(self, hResult, LanguageId, pErrorDescription);
     }
 };
@@ -953,28 +953,28 @@ pub const IBackgroundCopyJob2 = extern union {
     vtable: *const VTable,
     IBackgroundCopyJob: IBackgroundCopyJob,
     IUnknown: IUnknown,
-    pub fn SetNotifyCmdLine(self: *const IBackgroundCopyJob2, Program: ?[*:0]const u16, Parameters: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetNotifyCmdLine(self: *const IBackgroundCopyJob2, Program: ?[*:0]const u16, Parameters: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotifyCmdLine(self, Program, Parameters);
     }
-    pub fn GetNotifyCmdLine(self: *const IBackgroundCopyJob2, pProgram: ?*?PWSTR, pParameters: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetNotifyCmdLine(self: *const IBackgroundCopyJob2, pProgram: ?*?PWSTR, pParameters: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetNotifyCmdLine(self, pProgram, pParameters);
     }
-    pub fn GetReplyProgress(self: *const IBackgroundCopyJob2, pProgress: ?*BG_JOB_REPLY_PROGRESS) callconv(.Inline) HRESULT {
+    pub fn GetReplyProgress(self: *const IBackgroundCopyJob2, pProgress: ?*BG_JOB_REPLY_PROGRESS) callconv(.@"inline") HRESULT {
         return self.vtable.GetReplyProgress(self, pProgress);
     }
-    pub fn GetReplyData(self: *const IBackgroundCopyJob2, ppBuffer: ?*?*u8, pLength: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetReplyData(self: *const IBackgroundCopyJob2, ppBuffer: ?*?*u8, pLength: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetReplyData(self, ppBuffer, pLength);
     }
-    pub fn SetReplyFileName(self: *const IBackgroundCopyJob2, ReplyFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetReplyFileName(self: *const IBackgroundCopyJob2, ReplyFileName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetReplyFileName(self, ReplyFileName);
     }
-    pub fn GetReplyFileName(self: *const IBackgroundCopyJob2, pReplyFileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetReplyFileName(self: *const IBackgroundCopyJob2, pReplyFileName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetReplyFileName(self, pReplyFileName);
     }
-    pub fn SetCredentials(self: *const IBackgroundCopyJob2, credentials: ?*BG_AUTH_CREDENTIALS) callconv(.Inline) HRESULT {
+    pub fn SetCredentials(self: *const IBackgroundCopyJob2, credentials: ?*BG_AUTH_CREDENTIALS) callconv(.@"inline") HRESULT {
         return self.vtable.SetCredentials(self, credentials);
     }
-    pub fn RemoveCredentials(self: *const IBackgroundCopyJob2, Target: BG_AUTH_TARGET, Scheme: BG_AUTH_SCHEME) callconv(.Inline) HRESULT {
+    pub fn RemoveCredentials(self: *const IBackgroundCopyJob2, Target: BG_AUTH_TARGET, Scheme: BG_AUTH_SCHEME) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveCredentials(self, Target, Scheme);
     }
 };
@@ -1018,16 +1018,16 @@ pub const IBackgroundCopyJob3 = extern union {
     IBackgroundCopyJob2: IBackgroundCopyJob2,
     IBackgroundCopyJob: IBackgroundCopyJob,
     IUnknown: IUnknown,
-    pub fn ReplaceRemotePrefix(self: *const IBackgroundCopyJob3, OldPrefix: ?[*:0]const u16, NewPrefix: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ReplaceRemotePrefix(self: *const IBackgroundCopyJob3, OldPrefix: ?[*:0]const u16, NewPrefix: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.ReplaceRemotePrefix(self, OldPrefix, NewPrefix);
     }
-    pub fn AddFileWithRanges(self: *const IBackgroundCopyJob3, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16, RangeCount: u32, Ranges: [*]BG_FILE_RANGE) callconv(.Inline) HRESULT {
+    pub fn AddFileWithRanges(self: *const IBackgroundCopyJob3, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16, RangeCount: u32, Ranges: [*]BG_FILE_RANGE) callconv(.@"inline") HRESULT {
         return self.vtable.AddFileWithRanges(self, RemoteUrl, LocalName, RangeCount, Ranges);
     }
-    pub fn SetFileACLFlags(self: *const IBackgroundCopyJob3, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn SetFileACLFlags(self: *const IBackgroundCopyJob3, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetFileACLFlags(self, Flags);
     }
-    pub fn GetFileACLFlags(self: *const IBackgroundCopyJob3, Flags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFileACLFlags(self: *const IBackgroundCopyJob3, Flags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileACLFlags(self, Flags);
     }
 };
@@ -1051,10 +1051,10 @@ pub const IBackgroundCopyFile2 = extern union {
     vtable: *const VTable,
     IBackgroundCopyFile: IBackgroundCopyFile,
     IUnknown: IUnknown,
-    pub fn GetFileRanges(self: *const IBackgroundCopyFile2, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+    pub fn GetFileRanges(self: *const IBackgroundCopyFile2, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileRanges(self, RangeCount, Ranges);
     }
-    pub fn SetRemoteName(self: *const IBackgroundCopyFile2, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetRemoteName(self: *const IBackgroundCopyFile2, Val: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetRemoteName(self, Val);
     }
 };
@@ -1128,28 +1128,28 @@ pub const IBackgroundCopyJobHttpOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetClientCertificateByID(self: *const IBackgroundCopyJobHttpOptions, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, pCertHashBlob: *[20]u8) callconv(.Inline) HRESULT {
+    pub fn SetClientCertificateByID(self: *const IBackgroundCopyJobHttpOptions, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, pCertHashBlob: *[20]u8) callconv(.@"inline") HRESULT {
         return self.vtable.SetClientCertificateByID(self, StoreLocation, StoreName, pCertHashBlob);
     }
-    pub fn SetClientCertificateByName(self: *const IBackgroundCopyJobHttpOptions, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, SubjectName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetClientCertificateByName(self: *const IBackgroundCopyJobHttpOptions, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, SubjectName: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetClientCertificateByName(self, StoreLocation, StoreName, SubjectName);
     }
-    pub fn RemoveClientCertificate(self: *const IBackgroundCopyJobHttpOptions) callconv(.Inline) HRESULT {
+    pub fn RemoveClientCertificate(self: *const IBackgroundCopyJobHttpOptions) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveClientCertificate(self);
     }
-    pub fn GetClientCertificate(self: *const IBackgroundCopyJobHttpOptions, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: *[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetClientCertificate(self: *const IBackgroundCopyJobHttpOptions, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: *[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetClientCertificate(self, pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
     }
-    pub fn SetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, RequestHeaders: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, RequestHeaders: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetCustomHeaders(self, RequestHeaders);
     }
-    pub fn GetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, pRequestHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, pRequestHeaders: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCustomHeaders(self, pRequestHeaders);
     }
-    pub fn SetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn SetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSecurityFlags(self, Flags);
     }
-    pub fn GetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, pFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, pFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSecurityFlags(self, pFlags);
     }
 };
@@ -1194,25 +1194,25 @@ pub const IBitsPeerCacheRecord = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetId(self: *const IBitsPeerCacheRecord, pVal: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetId(self: *const IBitsPeerCacheRecord, pVal: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetId(self, pVal);
     }
-    pub fn GetOriginUrl(self: *const IBitsPeerCacheRecord, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetOriginUrl(self: *const IBitsPeerCacheRecord, pVal: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetOriginUrl(self, pVal);
     }
-    pub fn GetFileSize(self: *const IBitsPeerCacheRecord, pVal: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetFileSize(self: *const IBitsPeerCacheRecord, pVal: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileSize(self, pVal);
     }
-    pub fn GetFileModificationTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetFileModificationTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileModificationTime(self, pVal);
     }
-    pub fn GetLastAccessTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetLastAccessTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastAccessTime(self, pVal);
     }
-    pub fn IsFileValidated(self: *const IBitsPeerCacheRecord) callconv(.Inline) HRESULT {
+    pub fn IsFileValidated(self: *const IBitsPeerCacheRecord) callconv(.@"inline") HRESULT {
         return self.vtable.IsFileValidated(self);
     }
-    pub fn GetFileRanges(self: *const IBitsPeerCacheRecord, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+    pub fn GetFileRanges(self: *const IBitsPeerCacheRecord, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileRanges(self, pRangeCount, ppRanges);
     }
 };
@@ -1247,19 +1247,19 @@ pub const IEnumBitsPeerCacheRecords = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBitsPeerCacheRecords, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumBitsPeerCacheRecords, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumBitsPeerCacheRecords, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumBitsPeerCacheRecords, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumBitsPeerCacheRecords) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumBitsPeerCacheRecords, ppenum: ?*?*IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumBitsPeerCacheRecords, ppenum: ?*?*IEnumBitsPeerCacheRecords) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
-    pub fn GetCount(self: *const IEnumBitsPeerCacheRecords, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IEnumBitsPeerCacheRecords, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, puCount);
     }
 };
@@ -1285,13 +1285,13 @@ pub const IBitsPeer = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPeerName(self: *const IBitsPeer, pName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPeerName(self: *const IBitsPeer, pName: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPeerName(self, pName);
     }
-    pub fn IsAuthenticated(self: *const IBitsPeer, pAuth: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsAuthenticated(self: *const IBitsPeer, pAuth: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsAuthenticated(self, pAuth);
     }
-    pub fn IsAvailable(self: *const IBitsPeer, pOnline: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsAvailable(self: *const IBitsPeer, pOnline: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsAvailable(self, pOnline);
     }
 };
@@ -1326,19 +1326,19 @@ pub const IEnumBitsPeers = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBitsPeers, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumBitsPeers, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumBitsPeers, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumBitsPeers, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumBitsPeers) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumBitsPeers) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumBitsPeers, ppenum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumBitsPeers, ppenum: ?*?*IEnumBitsPeers) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
-    pub fn GetCount(self: *const IEnumBitsPeers, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IEnumBitsPeers, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, puCount);
     }
 };
@@ -1406,46 +1406,46 @@ pub const IBitsPeerCacheAdministration = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMaximumCacheSize(self: *const IBitsPeerCacheAdministration, pBytes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaximumCacheSize(self: *const IBitsPeerCacheAdministration, pBytes: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaximumCacheSize(self, pBytes);
     }
-    pub fn SetMaximumCacheSize(self: *const IBitsPeerCacheAdministration, Bytes: u32) callconv(.Inline) HRESULT {
+    pub fn SetMaximumCacheSize(self: *const IBitsPeerCacheAdministration, Bytes: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMaximumCacheSize(self, Bytes);
     }
-    pub fn GetMaximumContentAge(self: *const IBitsPeerCacheAdministration, pSeconds: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaximumContentAge(self: *const IBitsPeerCacheAdministration, pSeconds: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaximumContentAge(self, pSeconds);
     }
-    pub fn SetMaximumContentAge(self: *const IBitsPeerCacheAdministration, Seconds: u32) callconv(.Inline) HRESULT {
+    pub fn SetMaximumContentAge(self: *const IBitsPeerCacheAdministration, Seconds: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMaximumContentAge(self, Seconds);
     }
-    pub fn GetConfigurationFlags(self: *const IBitsPeerCacheAdministration, pFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetConfigurationFlags(self: *const IBitsPeerCacheAdministration, pFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConfigurationFlags(self, pFlags);
     }
-    pub fn SetConfigurationFlags(self: *const IBitsPeerCacheAdministration, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn SetConfigurationFlags(self: *const IBitsPeerCacheAdministration, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetConfigurationFlags(self, Flags);
     }
-    pub fn EnumRecords(self: *const IBitsPeerCacheAdministration, ppEnum: ?*?*IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
+    pub fn EnumRecords(self: *const IBitsPeerCacheAdministration, ppEnum: ?*?*IEnumBitsPeerCacheRecords) callconv(.@"inline") HRESULT {
         return self.vtable.EnumRecords(self, ppEnum);
     }
-    pub fn GetRecord(self: *const IBitsPeerCacheAdministration, id: ?*const Guid, ppRecord: ?*?*IBitsPeerCacheRecord) callconv(.Inline) HRESULT {
+    pub fn GetRecord(self: *const IBitsPeerCacheAdministration, id: ?*const Guid, ppRecord: ?*?*IBitsPeerCacheRecord) callconv(.@"inline") HRESULT {
         return self.vtable.GetRecord(self, id, ppRecord);
     }
-    pub fn ClearRecords(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
+    pub fn ClearRecords(self: *const IBitsPeerCacheAdministration) callconv(.@"inline") HRESULT {
         return self.vtable.ClearRecords(self);
     }
-    pub fn DeleteRecord(self: *const IBitsPeerCacheAdministration, id: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn DeleteRecord(self: *const IBitsPeerCacheAdministration, id: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRecord(self, id);
     }
-    pub fn DeleteUrl(self: *const IBitsPeerCacheAdministration, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteUrl(self: *const IBitsPeerCacheAdministration, url: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteUrl(self, url);
     }
-    pub fn EnumPeers(self: *const IBitsPeerCacheAdministration, ppEnum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
+    pub fn EnumPeers(self: *const IBitsPeerCacheAdministration, ppEnum: ?*?*IEnumBitsPeers) callconv(.@"inline") HRESULT {
         return self.vtable.EnumPeers(self, ppEnum);
     }
-    pub fn ClearPeers(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
+    pub fn ClearPeers(self: *const IBitsPeerCacheAdministration) callconv(.@"inline") HRESULT {
         return self.vtable.ClearPeers(self);
     }
-    pub fn DiscoverPeers(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
+    pub fn DiscoverPeers(self: *const IBitsPeerCacheAdministration) callconv(.@"inline") HRESULT {
         return self.vtable.DiscoverPeers(self);
     }
 };
@@ -1486,22 +1486,22 @@ pub const IBackgroundCopyJob4 = extern union {
     IBackgroundCopyJob2: IBackgroundCopyJob2,
     IBackgroundCopyJob: IBackgroundCopyJob,
     IUnknown: IUnknown,
-    pub fn SetPeerCachingFlags(self: *const IBackgroundCopyJob4, Flags: u32) callconv(.Inline) HRESULT {
+    pub fn SetPeerCachingFlags(self: *const IBackgroundCopyJob4, Flags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetPeerCachingFlags(self, Flags);
     }
-    pub fn GetPeerCachingFlags(self: *const IBackgroundCopyJob4, pFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPeerCachingFlags(self: *const IBackgroundCopyJob4, pFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetPeerCachingFlags(self, pFlags);
     }
-    pub fn GetOwnerIntegrityLevel(self: *const IBackgroundCopyJob4, pLevel: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOwnerIntegrityLevel(self: *const IBackgroundCopyJob4, pLevel: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetOwnerIntegrityLevel(self, pLevel);
     }
-    pub fn GetOwnerElevationState(self: *const IBackgroundCopyJob4, pElevated: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetOwnerElevationState(self: *const IBackgroundCopyJob4, pElevated: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetOwnerElevationState(self, pElevated);
     }
-    pub fn SetMaximumDownloadTime(self: *const IBackgroundCopyJob4, Timeout: u32) callconv(.Inline) HRESULT {
+    pub fn SetMaximumDownloadTime(self: *const IBackgroundCopyJob4, Timeout: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMaximumDownloadTime(self, Timeout);
     }
-    pub fn GetMaximumDownloadTime(self: *const IBackgroundCopyJob4, pTimeout: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaximumDownloadTime(self: *const IBackgroundCopyJob4, pTimeout: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMaximumDownloadTime(self, pTimeout);
     }
 };
@@ -1533,16 +1533,16 @@ pub const IBackgroundCopyFile3 = extern union {
     IBackgroundCopyFile2: IBackgroundCopyFile2,
     IBackgroundCopyFile: IBackgroundCopyFile,
     IUnknown: IUnknown,
-    pub fn GetTemporaryName(self: *const IBackgroundCopyFile3, pFilename: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTemporaryName(self: *const IBackgroundCopyFile3, pFilename: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetTemporaryName(self, pFilename);
     }
-    pub fn SetValidationState(self: *const IBackgroundCopyFile3, state: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetValidationState(self: *const IBackgroundCopyFile3, state: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.SetValidationState(self, state);
     }
-    pub fn GetValidationState(self: *const IBackgroundCopyFile3, pState: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetValidationState(self: *const IBackgroundCopyFile3, pState: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.GetValidationState(self, pState);
     }
-    pub fn IsDownloadedFromPeer(self: *const IBackgroundCopyFile3, pVal: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsDownloadedFromPeer(self: *const IBackgroundCopyFile3, pVal: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.IsDownloadedFromPeer(self, pVal);
     }
 };
@@ -1562,7 +1562,7 @@ pub const IBackgroundCopyCallback2 = extern union {
     vtable: *const VTable,
     IBackgroundCopyCallback: IBackgroundCopyCallback,
     IUnknown: IUnknown,
-    pub fn FileTransferred(self: *const IBackgroundCopyCallback2, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) callconv(.Inline) HRESULT {
+    pub fn FileTransferred(self: *const IBackgroundCopyCallback2, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) callconv(.@"inline") HRESULT {
         return self.vtable.FileTransferred(self, pJob, pFile);
     }
 };
@@ -1597,19 +1597,19 @@ pub const IBitsTokenOptions = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetHelperTokenFlags(self: *const IBitsTokenOptions, UsageFlags: BG_TOKEN) callconv(.Inline) HRESULT {
+    pub fn SetHelperTokenFlags(self: *const IBitsTokenOptions, UsageFlags: BG_TOKEN) callconv(.@"inline") HRESULT {
         return self.vtable.SetHelperTokenFlags(self, UsageFlags);
     }
-    pub fn GetHelperTokenFlags(self: *const IBitsTokenOptions, pFlags: ?*BG_TOKEN) callconv(.Inline) HRESULT {
+    pub fn GetHelperTokenFlags(self: *const IBitsTokenOptions, pFlags: ?*BG_TOKEN) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelperTokenFlags(self, pFlags);
     }
-    pub fn SetHelperToken(self: *const IBitsTokenOptions) callconv(.Inline) HRESULT {
+    pub fn SetHelperToken(self: *const IBitsTokenOptions) callconv(.@"inline") HRESULT {
         return self.vtable.SetHelperToken(self);
     }
-    pub fn ClearHelperToken(self: *const IBitsTokenOptions) callconv(.Inline) HRESULT {
+    pub fn ClearHelperToken(self: *const IBitsTokenOptions) callconv(.@"inline") HRESULT {
         return self.vtable.ClearHelperToken(self);
     }
-    pub fn GetHelperTokenSid(self: *const IBitsTokenOptions, pSid: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetHelperTokenSid(self: *const IBitsTokenOptions, pSid: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetHelperTokenSid(self, pSid);
     }
 };
@@ -1631,7 +1631,7 @@ pub const IBackgroundCopyFile4 = extern union {
     IBackgroundCopyFile2: IBackgroundCopyFile2,
     IBackgroundCopyFile: IBackgroundCopyFile,
     IUnknown: IUnknown,
-    pub fn GetPeerDownloadStats(self: *const IBackgroundCopyFile4, pFromOrigin: ?*u64, pFromPeers: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetPeerDownloadStats(self: *const IBackgroundCopyFile4, pFromOrigin: ?*u64, pFromPeers: ?*u64) callconv(.@"inline") HRESULT {
         return self.vtable.GetPeerDownloadStats(self, pFromOrigin, pFromPeers);
     }
 };
@@ -1711,10 +1711,10 @@ pub const IBackgroundCopyJob5 = extern union {
     IBackgroundCopyJob2: IBackgroundCopyJob2,
     IBackgroundCopyJob: IBackgroundCopyJob,
     IUnknown: IUnknown,
-    pub fn SetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: BITS_JOB_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: BITS_JOB_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, PropertyId, PropertyValue);
     }
-    pub fn GetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, PropertyId, PropertyValue);
     }
 };
@@ -1742,10 +1742,10 @@ pub const IBackgroundCopyFile5 = extern union {
     IBackgroundCopyFile2: IBackgroundCopyFile2,
     IBackgroundCopyFile: IBackgroundCopyFile,
     IUnknown: IUnknown,
-    pub fn SetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: BITS_FILE_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: BITS_FILE_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, PropertyId, PropertyValue);
     }
-    pub fn GetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, PropertyId, PropertyValue);
     }
 };
@@ -1771,7 +1771,7 @@ pub const IBackgroundCopyCallback3 = extern union {
     IBackgroundCopyCallback2: IBackgroundCopyCallback2,
     IBackgroundCopyCallback: IBackgroundCopyCallback,
     IUnknown: IUnknown,
-    pub fn FileRangesTransferred(self: *const IBackgroundCopyCallback3, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.Inline) HRESULT {
+    pub fn FileRangesTransferred(self: *const IBackgroundCopyCallback3, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.@"inline") HRESULT {
         return self.vtable.FileRangesTransferred(self, job, file, rangeCount, ranges);
     }
 };
@@ -1804,13 +1804,13 @@ pub const IBackgroundCopyFile6 = extern union {
     IBackgroundCopyFile2: IBackgroundCopyFile2,
     IBackgroundCopyFile: IBackgroundCopyFile,
     IUnknown: IUnknown,
-    pub fn UpdateDownloadPosition(self: *const IBackgroundCopyFile6, offset: u64) callconv(.Inline) HRESULT {
+    pub fn UpdateDownloadPosition(self: *const IBackgroundCopyFile6, offset: u64) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateDownloadPosition(self, offset);
     }
-    pub fn RequestFileRanges(self: *const IBackgroundCopyFile6, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.Inline) HRESULT {
+    pub fn RequestFileRanges(self: *const IBackgroundCopyFile6, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.@"inline") HRESULT {
         return self.vtable.RequestFileRanges(self, rangeCount, ranges);
     }
-    pub fn GetFilledFileRanges(self: *const IBackgroundCopyFile6, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+    pub fn GetFilledFileRanges(self: *const IBackgroundCopyFile6, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) callconv(.@"inline") HRESULT {
         return self.vtable.GetFilledFileRanges(self, rangeCount, ranges);
     }
 };
@@ -1836,10 +1836,10 @@ pub const IBackgroundCopyJobHttpOptions2 = extern union {
     vtable: *const VTable,
     IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
     IUnknown: IUnknown,
-    pub fn SetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.SetHttpMethod(self, method);
     }
-    pub fn GetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetHttpMethod(self, method);
     }
 };
@@ -1865,7 +1865,7 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ValidateServerCertificate(self: *const IBackgroundCopyServerCertificateValidationCallback, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn ValidateServerCertificate(self: *const IBackgroundCopyServerCertificateValidationCallback, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) callconv(.@"inline") HRESULT {
         return self.vtable.ValidateServerCertificate(self, job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
     }
 };
@@ -1887,10 +1887,10 @@ pub const IBackgroundCopyJobHttpOptions3 = extern union {
     IBackgroundCopyJobHttpOptions2: IBackgroundCopyJobHttpOptions2,
     IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
     IUnknown: IUnknown,
-    pub fn SetServerCertificateValidationInterface(self: *const IBackgroundCopyJobHttpOptions3, certValidationCallback: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetServerCertificateValidationInterface(self: *const IBackgroundCopyJobHttpOptions3, certValidationCallback: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetServerCertificateValidationInterface(self, certValidationCallback);
     }
-    pub fn MakeCustomHeadersWriteOnly(self: *const IBackgroundCopyJobHttpOptions3) callconv(.Inline) HRESULT {
+    pub fn MakeCustomHeadersWriteOnly(self: *const IBackgroundCopyJobHttpOptions3) callconv(.@"inline") HRESULT {
         return self.vtable.MakeCustomHeadersWriteOnly(self);
     }
 };
@@ -1923,16 +1923,16 @@ pub const IBITSExtensionSetup = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn EnableBITSUploads(self: *const IBITSExtensionSetup) callconv(.Inline) HRESULT {
+    pub fn EnableBITSUploads(self: *const IBITSExtensionSetup) callconv(.@"inline") HRESULT {
         return self.vtable.EnableBITSUploads(self);
     }
-    pub fn DisableBITSUploads(self: *const IBITSExtensionSetup) callconv(.Inline) HRESULT {
+    pub fn DisableBITSUploads(self: *const IBITSExtensionSetup) callconv(.@"inline") HRESULT {
         return self.vtable.DisableBITSUploads(self);
     }
-    pub fn GetCleanupTaskName(self: *const IBITSExtensionSetup, pTaskName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetCleanupTaskName(self: *const IBITSExtensionSetup, pTaskName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetCleanupTaskName(self, pTaskName);
     }
-    pub fn GetCleanupTask(self: *const IBITSExtensionSetup, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetCleanupTask(self: *const IBITSExtensionSetup, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.GetCleanupTask(self, riid, ppUnk);
     }
 };
@@ -1952,7 +1952,7 @@ pub const IBITSExtensionSetupFactory = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetObject(self: *const IBITSExtensionSetupFactory, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const IBITSExtensionSetupFactory, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) callconv(.@"inline") HRESULT {
         return self.vtable.GetObject(self, Path, ppExtensionSetup);
     }
 };
@@ -2012,28 +2012,28 @@ pub const IBackgroundCopyJob1 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CancelJob(self: *const IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+    pub fn CancelJob(self: *const IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
         return self.vtable.CancelJob(self);
     }
-    pub fn GetProgress(self: *const IBackgroundCopyJob1, dwFlags: u32, pdwProgress: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProgress(self: *const IBackgroundCopyJob1, dwFlags: u32, pdwProgress: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProgress(self, dwFlags, pdwProgress);
     }
-    pub fn GetStatus(self: *const IBackgroundCopyJob1, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IBackgroundCopyJob1, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
     }
-    pub fn AddFiles(self: *const IBackgroundCopyJob1, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) callconv(.Inline) HRESULT {
+    pub fn AddFiles(self: *const IBackgroundCopyJob1, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) callconv(.@"inline") HRESULT {
         return self.vtable.AddFiles(self, cFileCount, ppFileSet);
     }
-    pub fn GetFile(self: *const IBackgroundCopyJob1, cFileIndex: u32, pFileInfo: ?*FILESETINFO) callconv(.Inline) HRESULT {
+    pub fn GetFile(self: *const IBackgroundCopyJob1, cFileIndex: u32, pFileInfo: ?*FILESETINFO) callconv(.@"inline") HRESULT {
         return self.vtable.GetFile(self, cFileIndex, pFileInfo);
     }
-    pub fn GetFileCount(self: *const IBackgroundCopyJob1, pdwFileCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFileCount(self: *const IBackgroundCopyJob1, pdwFileCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFileCount(self, pdwFileCount);
     }
-    pub fn SwitchToForeground(self: *const IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+    pub fn SwitchToForeground(self: *const IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
         return self.vtable.SwitchToForeground(self);
     }
-    pub fn get_JobID(self: *const IBackgroundCopyJob1, pguidJobID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_JobID(self: *const IBackgroundCopyJob1, pguidJobID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_JobID(self, pguidJobID);
     }
 };
@@ -2068,19 +2068,19 @@ pub const IEnumBackgroundCopyJobs1 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBackgroundCopyJobs1, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumBackgroundCopyJobs1, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumBackgroundCopyJobs1, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumBackgroundCopyJobs1, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumBackgroundCopyJobs1, ppenum: ?*?*IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumBackgroundCopyJobs1, ppenum: ?*?*IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
-    pub fn GetCount(self: *const IEnumBackgroundCopyJobs1, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IEnumBackgroundCopyJobs1, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, puCount);
     }
 };
@@ -2190,49 +2190,49 @@ pub const IBackgroundCopyGroup = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProp(self, propID, pvarVal);
     }
-    pub fn SetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetProp(self, propID, pvarVal);
     }
-    pub fn GetProgress(self: *const IBackgroundCopyGroup, dwFlags: u32, pdwProgress: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProgress(self: *const IBackgroundCopyGroup, dwFlags: u32, pdwProgress: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetProgress(self, dwFlags, pdwProgress);
     }
-    pub fn GetStatus(self: *const IBackgroundCopyGroup, pdwStatus: ?*u32, pdwJobIndex: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IBackgroundCopyGroup, pdwStatus: ?*u32, pdwJobIndex: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, pdwStatus, pdwJobIndex);
     }
-    pub fn GetJob(self: *const IBackgroundCopyGroup, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+    pub fn GetJob(self: *const IBackgroundCopyGroup, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
         return self.vtable.GetJob(self, jobID, ppJob);
     }
-    pub fn SuspendGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+    pub fn SuspendGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
         return self.vtable.SuspendGroup(self);
     }
-    pub fn ResumeGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+    pub fn ResumeGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
         return self.vtable.ResumeGroup(self);
     }
-    pub fn CancelGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+    pub fn CancelGroup(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CancelGroup(self);
     }
-    pub fn get_Size(self: *const IBackgroundCopyGroup, pdwSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Size(self: *const IBackgroundCopyGroup, pdwSize: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Size(self, pdwSize);
     }
-    pub fn get_GroupID(self: *const IBackgroundCopyGroup, pguidGroupID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_GroupID(self: *const IBackgroundCopyGroup, pguidGroupID: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.get_GroupID(self, pguidGroupID);
     }
-    pub fn CreateJob(self: *const IBackgroundCopyGroup, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+    pub fn CreateJob(self: *const IBackgroundCopyGroup, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.@"inline") HRESULT {
         return self.vtable.CreateJob(self, guidJobID, ppJob);
     }
-    pub fn EnumJobs(self: *const IBackgroundCopyGroup, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+    pub fn EnumJobs(self: *const IBackgroundCopyGroup, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) callconv(.@"inline") HRESULT {
         return self.vtable.EnumJobs(self, dwFlags, ppEnumJobs);
     }
-    pub fn SwitchToForeground(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+    pub fn SwitchToForeground(self: *const IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
         return self.vtable.SwitchToForeground(self);
     }
-    pub fn QueryNewJobInterface(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: **IUnknown) callconv(.Inline) HRESULT {
+    pub fn QueryNewJobInterface(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: **IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.QueryNewJobInterface(self, iid, pUnk);
     }
-    pub fn SetNotificationPointer(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetNotificationPointer(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.SetNotificationPointer(self, iid, pUnk);
     }
 };
@@ -2267,19 +2267,19 @@ pub const IEnumBackgroundCopyGroups = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumBackgroundCopyGroups, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumBackgroundCopyGroups, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumBackgroundCopyGroups, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumBackgroundCopyGroups, celt: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumBackgroundCopyGroups) callconv(.@"inline") HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumBackgroundCopyGroups, ppenum: ?*?*IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumBackgroundCopyGroups, ppenum: ?*?*IEnumBackgroundCopyGroups) callconv(.@"inline") HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
-    pub fn GetCount(self: *const IEnumBackgroundCopyGroups, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IEnumBackgroundCopyGroups, puCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetCount(self, puCount);
     }
 };
@@ -2321,13 +2321,13 @@ pub const IBackgroundCopyCallback1 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStatus(self: *const IBackgroundCopyCallback1, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) callconv(.Inline) HRESULT {
+    pub fn OnStatus(self: *const IBackgroundCopyCallback1, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnStatus(self, pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
     }
-    pub fn OnProgress(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) callconv(.Inline) HRESULT {
+    pub fn OnProgress(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) callconv(.@"inline") HRESULT {
         return self.vtable.OnProgress(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
     }
-    pub fn OnProgressEx(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn OnProgressEx(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) callconv(.@"inline") HRESULT {
         return self.vtable.OnProgressEx(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
     }
 };
@@ -2356,13 +2356,13 @@ pub const IBackgroundCopyQMgr = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateGroup(self: *const IBackgroundCopyQMgr, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+    pub fn CreateGroup(self: *const IBackgroundCopyQMgr, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CreateGroup(self, guidGroupID, ppGroup);
     }
-    pub fn GetGroup(self: *const IBackgroundCopyQMgr, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+    pub fn GetGroup(self: *const IBackgroundCopyQMgr, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.@"inline") HRESULT {
         return self.vtable.GetGroup(self, groupID, ppGroup);
     }
-    pub fn EnumGroups(self: *const IBackgroundCopyQMgr, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
+    pub fn EnumGroups(self: *const IBackgroundCopyQMgr, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) callconv(.@"inline") HRESULT {
         return self.vtable.EnumGroups(self, dwFlags, ppEnumGroups);
     }
 };

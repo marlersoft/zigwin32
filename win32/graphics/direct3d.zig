@@ -571,10 +571,10 @@ pub const ID3DBlob = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBufferPointer(self: *const ID3DBlob) callconv(.Inline) ?*anyopaque {
+    pub fn GetBufferPointer(self: *const ID3DBlob) callconv(.@"inline") ?*anyopaque {
         return self.vtable.GetBufferPointer(self);
     }
-    pub fn GetBufferSize(self: *const ID3DBlob) callconv(.Inline) usize {
+    pub fn GetBufferSize(self: *const ID3DBlob) callconv(.@"inline") usize {
         return self.vtable.GetBufferSize(self);
     }
 };
@@ -603,10 +603,10 @@ pub const ID3DDestructionNotifier = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RegisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.RegisterDestructionCallback(self, callbackFn, pData, pCallbackID);
     }
-    pub fn UnregisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackID: u32) callconv(.Inline) HRESULT {
+    pub fn UnregisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackID: u32) callconv(.@"inline") HRESULT {
         return self.vtable.UnregisterDestructionCallback(self, callbackID);
     }
 };
@@ -641,10 +641,10 @@ pub const ID3DInclude = extern union {
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    pub fn Open(self: *const ID3DInclude, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const ID3DInclude, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Open(self, IncludeType, pFileName, pParentData, ppData, pBytes);
     }
-    pub fn Close(self: *const ID3DInclude, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ID3DInclude, pData: ?*const anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.Close(self, pData);
     }
 };

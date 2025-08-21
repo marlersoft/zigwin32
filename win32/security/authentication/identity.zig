@@ -6953,7 +6953,7 @@ pub const ICcgDomainAuthCredentials = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPasswordCredentials(self: *const ICcgDomainAuthCredentials, pluginInput: ?[*:0]const u16, domainName: ?*?PWSTR, username: ?*?PWSTR, password: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPasswordCredentials(self: *const ICcgDomainAuthCredentials, pluginInput: ?[*:0]const u16, domainName: ?*?PWSTR, username: ?*?PWSTR, password: ?*?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetPasswordCredentials(self, pluginInput, domainName, username, password);
     }
 };

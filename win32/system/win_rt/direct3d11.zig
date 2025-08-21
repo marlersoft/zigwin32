@@ -19,7 +19,7 @@ pub const IDirect3DDxgiInterfaceAccess = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInterface(self: *const IDirect3DDxgiInterfaceAccess, iid: ?*const Guid, p: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetInterface(self: *const IDirect3DDxgiInterfaceAccess, iid: ?*const Guid, p: **anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetInterface(self, iid, p);
     }
 };

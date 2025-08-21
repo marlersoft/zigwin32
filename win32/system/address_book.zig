@@ -495,7 +495,7 @@ pub const IMAPIAdviseSink = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnNotify(self: *const IMAPIAdviseSink, cNotif: u32, lpNotifications: ?*NOTIFICATION) callconv(.Inline) u32 {
+    pub fn OnNotify(self: *const IMAPIAdviseSink, cNotif: u32, lpNotifications: ?*NOTIFICATION) callconv(.@"inline") u32 {
         return self.vtable.OnNotify(self, cNotif, lpNotifications);
     }
 };
@@ -536,19 +536,19 @@ pub const IMAPIProgress = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Progress(self: *const IMAPIProgress, ulValue: u32, ulCount: u32, ulTotal: u32) callconv(.Inline) HRESULT {
+    pub fn Progress(self: *const IMAPIProgress, ulValue: u32, ulCount: u32, ulTotal: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Progress(self, ulValue, ulCount, ulTotal);
     }
-    pub fn GetFlags(self: *const IMAPIProgress, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const IMAPIProgress, lpulFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetFlags(self, lpulFlags);
     }
-    pub fn GetMax(self: *const IMAPIProgress, lpulMax: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMax(self: *const IMAPIProgress, lpulMax: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMax(self, lpulMax);
     }
-    pub fn GetMin(self: *const IMAPIProgress, lpulMin: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMin(self: *const IMAPIProgress, lpulMin: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMin(self, lpulMin);
     }
-    pub fn SetLimits(self: *const IMAPIProgress, lpulMin: ?*u32, lpulMax: ?*u32, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetLimits(self: *const IMAPIProgress, lpulMin: ?*u32, lpulMax: ?*u32, lpulFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLimits(self, lpulMin, lpulMax, lpulFlags);
     }
 };
@@ -646,37 +646,37 @@ pub const IMAPIProp = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLastError(self: *const IMAPIProp, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+    pub fn GetLastError(self: *const IMAPIProp, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastError(self, hResult, ulFlags, lppMAPIError);
     }
-    pub fn SaveChanges(self: *const IMAPIProp, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SaveChanges(self: *const IMAPIProp, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SaveChanges(self, ulFlags);
     }
-    pub fn GetProps(self: *const IMAPIProp, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpcValues: ?*u32, lppPropArray: ?*?*SPropValue) callconv(.Inline) HRESULT {
+    pub fn GetProps(self: *const IMAPIProp, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpcValues: ?*u32, lppPropArray: ?*?*SPropValue) callconv(.@"inline") HRESULT {
         return self.vtable.GetProps(self, lpPropTagArray, ulFlags, lpcValues, lppPropArray);
     }
-    pub fn GetPropList(self: *const IMAPIProp, ulFlags: u32, lppPropTagArray: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
+    pub fn GetPropList(self: *const IMAPIProp, ulFlags: u32, lppPropTagArray: ?*?*SPropTagArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetPropList(self, ulFlags, lppPropTagArray);
     }
-    pub fn OpenProperty(self: *const IMAPIProp, ulPropTag: u32, lpiid: ?*Guid, ulInterfaceOptions: u32, ulFlags: u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn OpenProperty(self: *const IMAPIProp, ulPropTag: u32, lpiid: ?*Guid, ulInterfaceOptions: u32, ulFlags: u32, lppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OpenProperty(self, ulPropTag, lpiid, ulInterfaceOptions, ulFlags, lppUnk);
     }
-    pub fn SetProps(self: *const IMAPIProp, cValues: u32, lpPropArray: ?*SPropValue, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+    pub fn SetProps(self: *const IMAPIProp, cValues: u32, lpPropArray: ?*SPropValue, lppProblems: ?*?*SPropProblemArray) callconv(.@"inline") HRESULT {
         return self.vtable.SetProps(self, cValues, lpPropArray, lppProblems);
     }
-    pub fn DeleteProps(self: *const IMAPIProp, lpPropTagArray: ?*SPropTagArray, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+    pub fn DeleteProps(self: *const IMAPIProp, lpPropTagArray: ?*SPropTagArray, lppProblems: ?*?*SPropProblemArray) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteProps(self, lpPropTagArray, lppProblems);
     }
-    pub fn CopyTo(self: *const IMAPIProp, ciidExclude: u32, rgiidExclude: ?*Guid, lpExcludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*anyopaque, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+    pub fn CopyTo(self: *const IMAPIProp, ciidExclude: u32, rgiidExclude: ?*Guid, lpExcludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*anyopaque, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.@"inline") HRESULT {
         return self.vtable.CopyTo(self, ciidExclude, rgiidExclude, lpExcludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
     }
-    pub fn CopyProps(self: *const IMAPIProp, lpIncludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*anyopaque, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+    pub fn CopyProps(self: *const IMAPIProp, lpIncludeProps: ?*SPropTagArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, lpInterface: ?*Guid, lpDestObj: ?*anyopaque, ulFlags: u32, lppProblems: ?*?*SPropProblemArray) callconv(.@"inline") HRESULT {
         return self.vtable.CopyProps(self, lpIncludeProps, ulUIParam, lpProgress, lpInterface, lpDestObj, ulFlags, lppProblems);
     }
-    pub fn GetNamesFromIDs(self: *const IMAPIProp, lppPropTags: ?*?*SPropTagArray, lpPropSetGuid: ?*Guid, ulFlags: u32, lpcPropNames: ?*u32, lpppPropNames: ?*?*?*MAPINAMEID) callconv(.Inline) HRESULT {
+    pub fn GetNamesFromIDs(self: *const IMAPIProp, lppPropTags: ?*?*SPropTagArray, lpPropSetGuid: ?*Guid, ulFlags: u32, lpcPropNames: ?*u32, lpppPropNames: ?*?*?*MAPINAMEID) callconv(.@"inline") HRESULT {
         return self.vtable.GetNamesFromIDs(self, lppPropTags, lpPropSetGuid, ulFlags, lpcPropNames, lpppPropNames);
     }
-    pub fn GetIDsFromNames(self: *const IMAPIProp, cPropNames: u32, lppPropNames: ?*?*MAPINAMEID, ulFlags: u32, lppPropTags: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
+    pub fn GetIDsFromNames(self: *const IMAPIProp, cPropNames: u32, lppPropNames: ?*?*MAPINAMEID, ulFlags: u32, lppPropTags: ?*?*SPropTagArray) callconv(.@"inline") HRESULT {
         return self.vtable.GetIDsFromNames(self, cPropNames, lppPropNames, ulFlags, lppPropTags);
     }
 };
@@ -906,73 +906,73 @@ pub const IMAPITable = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLastError(self: *const IMAPITable, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+    pub fn GetLastError(self: *const IMAPITable, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastError(self, hResult, ulFlags, lppMAPIError);
     }
-    pub fn Advise(self: *const IMAPITable, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IMAPITable, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, ulEventMask, lpAdviseSink, lpulConnection);
     }
-    pub fn Unadvise(self: *const IMAPITable, ulConnection: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IMAPITable, ulConnection: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, ulConnection);
     }
-    pub fn GetStatus(self: *const IMAPITable, lpulTableStatus: ?*u32, lpulTableType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IMAPITable, lpulTableStatus: ?*u32, lpulTableType: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetStatus(self, lpulTableStatus, lpulTableType);
     }
-    pub fn SetColumns(self: *const IMAPITable, lpPropTagArray: ?*SPropTagArray, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetColumns(self: *const IMAPITable, lpPropTagArray: ?*SPropTagArray, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetColumns(self, lpPropTagArray, ulFlags);
     }
-    pub fn QueryColumns(self: *const IMAPITable, ulFlags: u32, lpPropTagArray: ?*?*SPropTagArray) callconv(.Inline) HRESULT {
+    pub fn QueryColumns(self: *const IMAPITable, ulFlags: u32, lpPropTagArray: ?*?*SPropTagArray) callconv(.@"inline") HRESULT {
         return self.vtable.QueryColumns(self, ulFlags, lpPropTagArray);
     }
-    pub fn GetRowCount(self: *const IMAPITable, ulFlags: u32, lpulCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRowCount(self: *const IMAPITable, ulFlags: u32, lpulCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetRowCount(self, ulFlags, lpulCount);
     }
-    pub fn SeekRow(self: *const IMAPITable, bkOrigin: u32, lRowCount: i32, lplRowsSought: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SeekRow(self: *const IMAPITable, bkOrigin: u32, lRowCount: i32, lplRowsSought: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.SeekRow(self, bkOrigin, lRowCount, lplRowsSought);
     }
-    pub fn SeekRowApprox(self: *const IMAPITable, ulNumerator: u32, ulDenominator: u32) callconv(.Inline) HRESULT {
+    pub fn SeekRowApprox(self: *const IMAPITable, ulNumerator: u32, ulDenominator: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SeekRowApprox(self, ulNumerator, ulDenominator);
     }
-    pub fn QueryPosition(self: *const IMAPITable, lpulRow: ?*u32, lpulNumerator: ?*u32, lpulDenominator: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QueryPosition(self: *const IMAPITable, lpulRow: ?*u32, lpulNumerator: ?*u32, lpulDenominator: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.QueryPosition(self, lpulRow, lpulNumerator, lpulDenominator);
     }
-    pub fn FindRow(self: *const IMAPITable, lpRestriction: ?*SRestriction, bkOrigin: u32, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn FindRow(self: *const IMAPITable, lpRestriction: ?*SRestriction, bkOrigin: u32, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.FindRow(self, lpRestriction, bkOrigin, ulFlags);
     }
-    pub fn Restrict(self: *const IMAPITable, lpRestriction: ?*SRestriction, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Restrict(self: *const IMAPITable, lpRestriction: ?*SRestriction, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Restrict(self, lpRestriction, ulFlags);
     }
-    pub fn CreateBookmark(self: *const IMAPITable, lpbkPosition: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CreateBookmark(self: *const IMAPITable, lpbkPosition: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CreateBookmark(self, lpbkPosition);
     }
-    pub fn FreeBookmark(self: *const IMAPITable, bkPosition: u32) callconv(.Inline) HRESULT {
+    pub fn FreeBookmark(self: *const IMAPITable, bkPosition: u32) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBookmark(self, bkPosition);
     }
-    pub fn SortTable(self: *const IMAPITable, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SortTable(self: *const IMAPITable, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SortTable(self, lpSortCriteria, ulFlags);
     }
-    pub fn QuerySortOrder(self: *const IMAPITable, lppSortCriteria: ?*?*SSortOrderSet) callconv(.Inline) HRESULT {
+    pub fn QuerySortOrder(self: *const IMAPITable, lppSortCriteria: ?*?*SSortOrderSet) callconv(.@"inline") HRESULT {
         return self.vtable.QuerySortOrder(self, lppSortCriteria);
     }
-    pub fn QueryRows(self: *const IMAPITable, lRowCount: i32, ulFlags: u32, lppRows: ?*?*SRowSet) callconv(.Inline) HRESULT {
+    pub fn QueryRows(self: *const IMAPITable, lRowCount: i32, ulFlags: u32, lppRows: ?*?*SRowSet) callconv(.@"inline") HRESULT {
         return self.vtable.QueryRows(self, lRowCount, ulFlags, lppRows);
     }
-    pub fn Abort(self: *const IMAPITable) callconv(.Inline) HRESULT {
+    pub fn Abort(self: *const IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.Abort(self);
     }
-    pub fn ExpandRow(self: *const IMAPITable, cbInstanceKey: u32, pbInstanceKey: ?*u8, ulRowCount: u32, ulFlags: u32, lppRows: ?*?*SRowSet, lpulMoreRows: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ExpandRow(self: *const IMAPITable, cbInstanceKey: u32, pbInstanceKey: ?*u8, ulRowCount: u32, ulFlags: u32, lppRows: ?*?*SRowSet, lpulMoreRows: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.ExpandRow(self, cbInstanceKey, pbInstanceKey, ulRowCount, ulFlags, lppRows, lpulMoreRows);
     }
-    pub fn CollapseRow(self: *const IMAPITable, cbInstanceKey: u32, pbInstanceKey: ?*u8, ulFlags: u32, lpulRowCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CollapseRow(self: *const IMAPITable, cbInstanceKey: u32, pbInstanceKey: ?*u8, ulFlags: u32, lpulRowCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CollapseRow(self, cbInstanceKey, pbInstanceKey, ulFlags, lpulRowCount);
     }
-    pub fn WaitForCompletion(self: *const IMAPITable, ulFlags: u32, ulTimeout: u32, lpulTableStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn WaitForCompletion(self: *const IMAPITable, ulFlags: u32, ulTimeout: u32, lpulTableStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.WaitForCompletion(self, ulFlags, ulTimeout, lpulTableStatus);
     }
-    pub fn GetCollapseState(self: *const IMAPITable, ulFlags: u32, cbInstanceKey: u32, lpbInstanceKey: ?*u8, lpcbCollapseState: ?*u32, lppbCollapseState: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetCollapseState(self: *const IMAPITable, ulFlags: u32, cbInstanceKey: u32, lpbInstanceKey: ?*u8, lpcbCollapseState: ?*u32, lppbCollapseState: ?*?*u8) callconv(.@"inline") HRESULT {
         return self.vtable.GetCollapseState(self, ulFlags, cbInstanceKey, lpbInstanceKey, lpcbCollapseState, lppbCollapseState);
     }
-    pub fn SetCollapseState(self: *const IMAPITable, ulFlags: u32, cbCollapseState: u32, pbCollapseState: ?*u8, lpbkLocation: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetCollapseState(self: *const IMAPITable, ulFlags: u32, cbCollapseState: u32, pbCollapseState: ?*u8, lpbkLocation: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCollapseState(self, ulFlags, cbCollapseState, pbCollapseState, lpbkLocation);
     }
 };
@@ -1016,16 +1016,16 @@ pub const IMAPIStatus = extern union {
     vtable: *const VTable,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn ValidateState(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn ValidateState(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ValidateState(self, ulUIParam, ulFlags);
     }
-    pub fn SettingsDialog(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SettingsDialog(self: *const IMAPIStatus, ulUIParam: usize, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SettingsDialog(self, ulUIParam, ulFlags);
     }
-    pub fn ChangePassword(self: *const IMAPIStatus, lpOldPass: ?*i8, lpNewPass: ?*i8, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn ChangePassword(self: *const IMAPIStatus, lpOldPass: ?*i8, lpNewPass: ?*i8, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.ChangePassword(self, lpOldPass, lpNewPass, ulFlags);
     }
-    pub fn FlushQueues(self: *const IMAPIStatus, ulUIParam: usize, cbTargetTransport: u32, lpTargetTransport: ?[*]ENTRYID, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn FlushQueues(self: *const IMAPIStatus, ulUIParam: usize, cbTargetTransport: u32, lpTargetTransport: ?[*]ENTRYID, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.FlushQueues(self, ulUIParam, cbTargetTransport, lpTargetTransport, ulFlags);
     }
 };
@@ -1070,19 +1070,19 @@ pub const IMAPIContainer = extern union {
     vtable: *const VTable,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn GetContentsTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+    pub fn GetContentsTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.GetContentsTable(self, ulFlags, lppTable);
     }
-    pub fn GetHierarchyTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+    pub fn GetHierarchyTable(self: *const IMAPIContainer, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.GetHierarchyTable(self, ulFlags, lppTable);
     }
-    pub fn OpenEntry(self: *const IMAPIContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn OpenEntry(self: *const IMAPIContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OpenEntry(self, cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
     }
-    pub fn SetSearchCriteria(self: *const IMAPIContainer, lpRestriction: ?*SRestriction, lpContainerList: ?*SBinaryArray, ulSearchFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetSearchCriteria(self: *const IMAPIContainer, lpRestriction: ?*SRestriction, lpContainerList: ?*SBinaryArray, ulSearchFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetSearchCriteria(self, lpRestriction, lpContainerList, ulSearchFlags);
     }
-    pub fn GetSearchCriteria(self: *const IMAPIContainer, ulFlags: u32, lppRestriction: ?*?*SRestriction, lppContainerList: ?*?*SBinaryArray, lpulSearchState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSearchCriteria(self: *const IMAPIContainer, ulFlags: u32, lppRestriction: ?*?*SRestriction, lppContainerList: ?*?*SBinaryArray, lpulSearchState: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSearchCriteria(self, ulFlags, lppRestriction, lppContainerList, lpulSearchState);
     }
 };
@@ -1128,16 +1128,16 @@ pub const IABContainer = extern union {
     IMAPIContainer: IMAPIContainer,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn CreateEntry(self: *const IABContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.Inline) HRESULT {
+    pub fn CreateEntry(self: *const IABContainer, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEntry(self, cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
     }
-    pub fn CopyEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn CopyEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CopyEntries(self, lpEntries, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn DeleteEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteEntries(self: *const IABContainer, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteEntries(self, lpEntries, ulFlags);
     }
-    pub fn ResolveNames(self: *const IABContainer, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.Inline) HRESULT {
+    pub fn ResolveNames(self: *const IABContainer, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveNames(self, lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
     }
 };
@@ -1188,16 +1188,16 @@ pub const IDistList = extern union {
     IMAPIContainer: IMAPIContainer,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn CreateEntry(self: *const IDistList, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.Inline) HRESULT {
+    pub fn CreateEntry(self: *const IDistList, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulCreateFlags: u32, lppMAPIPropEntry: ?*?*IMAPIProp) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEntry(self, cbEntryID, lpEntryID, ulCreateFlags, lppMAPIPropEntry);
     }
-    pub fn CopyEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn CopyEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CopyEntries(self, lpEntries, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn DeleteEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteEntries(self: *const IDistList, lpEntries: ?*SBinaryArray, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteEntries(self, lpEntries, ulFlags);
     }
-    pub fn ResolveNames(self: *const IDistList, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.Inline) HRESULT {
+    pub fn ResolveNames(self: *const IDistList, lpPropTagArray: ?*SPropTagArray, ulFlags: u32, lpAdrList: ?*ADRLIST, lpFlagList: ?*_flaglist) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveNames(self, lpPropTagArray, ulFlags, lpAdrList, lpFlagList);
     }
 };
@@ -1297,37 +1297,37 @@ pub const IMAPIFolder = extern union {
     IMAPIContainer: IMAPIContainer,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn CreateMessage(self: *const IMAPIFolder, lpInterface: ?*Guid, ulFlags: u32, lppMessage: ?*?*IMessage) callconv(.Inline) HRESULT {
+    pub fn CreateMessage(self: *const IMAPIFolder, lpInterface: ?*Guid, ulFlags: u32, lppMessage: ?*?*IMessage) callconv(.@"inline") HRESULT {
         return self.vtable.CreateMessage(self, lpInterface, ulFlags, lppMessage);
     }
-    pub fn CopyMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn CopyMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CopyMessages(self, lpMsgList, lpInterface, lpDestFolder, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn DeleteMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteMessages(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteMessages(self, lpMsgList, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn CreateFolder(self: *const IMAPIFolder, ulFolderType: u32, lpszFolderName: ?*i8, lpszFolderComment: ?*i8, lpInterface: ?*Guid, ulFlags: u32, lppFolder: ?*?*IMAPIFolder) callconv(.Inline) HRESULT {
+    pub fn CreateFolder(self: *const IMAPIFolder, ulFolderType: u32, lpszFolderName: ?*i8, lpszFolderComment: ?*i8, lpInterface: ?*Guid, ulFlags: u32, lppFolder: ?*?*IMAPIFolder) callconv(.@"inline") HRESULT {
         return self.vtable.CreateFolder(self, ulFolderType, lpszFolderName, lpszFolderComment, lpInterface, ulFlags, lppFolder);
     }
-    pub fn CopyFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, lpszNewFolderName: ?*i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn CopyFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, lpDestFolder: ?*anyopaque, lpszNewFolderName: ?*i8, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.CopyFolder(self, cbEntryID, lpEntryID, lpInterface, lpDestFolder, lpszNewFolderName, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn DeleteFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteFolder(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteFolder(self, cbEntryID, lpEntryID, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn SetReadFlags(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetReadFlags(self: *const IMAPIFolder, lpMsgList: ?*SBinaryArray, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetReadFlags(self, lpMsgList, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn GetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32, lpulMessageStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32, lpulMessageStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetMessageStatus(self, cbEntryID, lpEntryID, ulFlags, lpulMessageStatus);
     }
-    pub fn SetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulNewStatus: u32, ulNewStatusMask: u32, lpulOldStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetMessageStatus(self: *const IMAPIFolder, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulNewStatus: u32, ulNewStatusMask: u32, lpulOldStatus: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetMessageStatus(self, cbEntryID, lpEntryID, ulNewStatus, ulNewStatusMask, lpulOldStatus);
     }
-    pub fn SaveContentsSort(self: *const IMAPIFolder, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SaveContentsSort(self: *const IMAPIFolder, lpSortCriteria: ?*SSortOrderSet, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SaveContentsSort(self, lpSortCriteria, ulFlags);
     }
-    pub fn EmptyFolder(self: *const IMAPIFolder, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn EmptyFolder(self: *const IMAPIFolder, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EmptyFolder(self, ulUIParam, lpProgress, ulFlags);
     }
 };
@@ -1426,43 +1426,43 @@ pub const IMsgStore = extern union {
     vtable: *const VTable,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn Advise(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, cbEntryID, lpEntryID, ulEventMask, lpAdviseSink, lpulConnection);
     }
-    pub fn Unadvise(self: *const IMsgStore, ulConnection: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IMsgStore, ulConnection: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, ulConnection);
     }
-    pub fn CompareEntryIDs(self: *const IMsgStore, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CompareEntryIDs(self: *const IMsgStore, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CompareEntryIDs(self, cbEntryID1, lpEntryID1, cbEntryID2, lpEntryID2, ulFlags, lpulResult);
     }
-    pub fn OpenEntry(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn OpenEntry(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, ppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OpenEntry(self, cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, ppUnk);
     }
-    pub fn SetReceiveFolder(self: *const IMsgStore, lpszMessageClass: ?*i8, ulFlags: u32, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
+    pub fn SetReceiveFolder(self: *const IMsgStore, lpszMessageClass: ?*i8, ulFlags: u32, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.@"inline") HRESULT {
         return self.vtable.SetReceiveFolder(self, lpszMessageClass, ulFlags, cbEntryID, lpEntryID);
     }
-    pub fn GetReceiveFolder(self: *const IMsgStore, lpszMessageClass: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID, lppszExplicitClass: ?*?*i8) callconv(.Inline) HRESULT {
+    pub fn GetReceiveFolder(self: *const IMsgStore, lpszMessageClass: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID, lppszExplicitClass: ?*?*i8) callconv(.@"inline") HRESULT {
         return self.vtable.GetReceiveFolder(self, lpszMessageClass, ulFlags, lpcbEntryID, lppEntryID, lppszExplicitClass);
     }
-    pub fn GetReceiveFolderTable(self: *const IMsgStore, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+    pub fn GetReceiveFolderTable(self: *const IMsgStore, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.GetReceiveFolderTable(self, ulFlags, lppTable);
     }
-    pub fn StoreLogoff(self: *const IMsgStore, lpulFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn StoreLogoff(self: *const IMsgStore, lpulFlags: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.StoreLogoff(self, lpulFlags);
     }
-    pub fn AbortSubmit(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn AbortSubmit(self: *const IMsgStore, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.AbortSubmit(self, cbEntryID, lpEntryID, ulFlags);
     }
-    pub fn GetOutgoingQueue(self: *const IMsgStore, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+    pub fn GetOutgoingQueue(self: *const IMsgStore, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.GetOutgoingQueue(self, ulFlags, lppTable);
     }
-    pub fn SetLockState(self: *const IMsgStore, lpMessage: ?*IMessage, ulLockState: u32) callconv(.Inline) HRESULT {
+    pub fn SetLockState(self: *const IMsgStore, lpMessage: ?*IMessage, ulLockState: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetLockState(self, lpMessage, ulLockState);
     }
-    pub fn FinishedMsg(self: *const IMsgStore, ulFlags: u32, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
+    pub fn FinishedMsg(self: *const IMsgStore, ulFlags: u32, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.@"inline") HRESULT {
         return self.vtable.FinishedMsg(self, ulFlags, cbEntryID, lpEntryID);
     }
-    pub fn NotifyNewMail(self: *const IMsgStore, lpNotification: ?*NOTIFICATION) callconv(.Inline) HRESULT {
+    pub fn NotifyNewMail(self: *const IMsgStore, lpNotification: ?*NOTIFICATION) callconv(.@"inline") HRESULT {
         return self.vtable.NotifyNewMail(self, lpNotification);
     }
 };
@@ -1518,28 +1518,28 @@ pub const IMessage = extern union {
     vtable: *const VTable,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn GetAttachmentTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+    pub fn GetAttachmentTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.GetAttachmentTable(self, ulFlags, lppTable);
     }
-    pub fn OpenAttach(self: *const IMessage, ulAttachmentNum: u32, lpInterface: ?*Guid, ulFlags: u32, lppAttach: ?*?*IAttach) callconv(.Inline) HRESULT {
+    pub fn OpenAttach(self: *const IMessage, ulAttachmentNum: u32, lpInterface: ?*Guid, ulFlags: u32, lppAttach: ?*?*IAttach) callconv(.@"inline") HRESULT {
         return self.vtable.OpenAttach(self, ulAttachmentNum, lpInterface, ulFlags, lppAttach);
     }
-    pub fn CreateAttach(self: *const IMessage, lpInterface: ?*Guid, ulFlags: u32, lpulAttachmentNum: ?*u32, lppAttach: ?*?*IAttach) callconv(.Inline) HRESULT {
+    pub fn CreateAttach(self: *const IMessage, lpInterface: ?*Guid, ulFlags: u32, lpulAttachmentNum: ?*u32, lppAttach: ?*?*IAttach) callconv(.@"inline") HRESULT {
         return self.vtable.CreateAttach(self, lpInterface, ulFlags, lpulAttachmentNum, lppAttach);
     }
-    pub fn DeleteAttach(self: *const IMessage, ulAttachmentNum: u32, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteAttach(self: *const IMessage, ulAttachmentNum: u32, ulUIParam: usize, lpProgress: ?*IMAPIProgress, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAttach(self, ulAttachmentNum, ulUIParam, lpProgress, ulFlags);
     }
-    pub fn GetRecipientTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+    pub fn GetRecipientTable(self: *const IMessage, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.GetRecipientTable(self, ulFlags, lppTable);
     }
-    pub fn ModifyRecipients(self: *const IMessage, ulFlags: u32, lpMods: ?*ADRLIST) callconv(.Inline) HRESULT {
+    pub fn ModifyRecipients(self: *const IMessage, ulFlags: u32, lpMods: ?*ADRLIST) callconv(.@"inline") HRESULT {
         return self.vtable.ModifyRecipients(self, ulFlags, lpMods);
     }
-    pub fn SubmitMessage(self: *const IMessage, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SubmitMessage(self: *const IMessage, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SubmitMessage(self, ulFlags);
     }
-    pub fn SetReadFlag(self: *const IMessage, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetReadFlag(self: *const IMessage, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetReadFlag(self, ulFlags);
     }
 };
@@ -1614,13 +1614,13 @@ pub const IMAPIControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLastError(self: *const IMAPIControl, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+    pub fn GetLastError(self: *const IMAPIControl, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastError(self, hResult, ulFlags, lppMAPIError);
     }
-    pub fn Activate(self: *const IMAPIControl, ulFlags: u32, ulUIParam: usize) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const IMAPIControl, ulFlags: u32, ulUIParam: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Activate(self, ulFlags, ulUIParam);
     }
-    pub fn GetState(self: *const IMAPIControl, ulFlags: u32, lpulState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const IMAPIControl, ulFlags: u32, lpulState: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetState(self, ulFlags, lpulState);
     }
 };
@@ -1737,19 +1737,19 @@ pub const IProviderAdmin = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLastError(self: *const IProviderAdmin, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+    pub fn GetLastError(self: *const IProviderAdmin, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastError(self, hResult, ulFlags, lppMAPIError);
     }
-    pub fn GetProviderTable(self: *const IProviderAdmin, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+    pub fn GetProviderTable(self: *const IProviderAdmin, ulFlags: u32, lppTable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.GetProviderTable(self, ulFlags, lppTable);
     }
-    pub fn CreateProvider(self: *const IProviderAdmin, lpszProvider: ?*i8, cValues: u32, lpProps: [*]SPropValue, ulUIParam: usize, ulFlags: u32, lpUID: ?*MAPIUID) callconv(.Inline) HRESULT {
+    pub fn CreateProvider(self: *const IProviderAdmin, lpszProvider: ?*i8, cValues: u32, lpProps: [*]SPropValue, ulUIParam: usize, ulFlags: u32, lpUID: ?*MAPIUID) callconv(.@"inline") HRESULT {
         return self.vtable.CreateProvider(self, lpszProvider, cValues, lpProps, ulUIParam, ulFlags, lpUID);
     }
-    pub fn DeleteProvider(self: *const IProviderAdmin, lpUID: ?*MAPIUID) callconv(.Inline) HRESULT {
+    pub fn DeleteProvider(self: *const IProviderAdmin, lpUID: ?*MAPIUID) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteProvider(self, lpUID);
     }
-    pub fn OpenProfileSection(self: *const IProviderAdmin, lpUID: ?*MAPIUID, lpInterface: ?*Guid, ulFlags: u32, lppProfSect: ?*?*IProfSect) callconv(.Inline) HRESULT {
+    pub fn OpenProfileSection(self: *const IProviderAdmin, lpUID: ?*MAPIUID, lpInterface: ?*Guid, ulFlags: u32, lppProfSect: ?*?*IProfSect) callconv(.@"inline") HRESULT {
         return self.vtable.OpenProfileSection(self, lpUID, lpInterface, ulFlags, lppProfSect);
     }
 };
@@ -1820,31 +1820,31 @@ pub const ITableData = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn HrGetView(self: *const ITableData, lpSSortOrderSet: ?*SSortOrderSet, lpfCallerRelease: ?*?CALLERRELEASE, ulCallerData: u32, lppMAPITable: ?*?*IMAPITable) callconv(.Inline) HRESULT {
+    pub fn HrGetView(self: *const ITableData, lpSSortOrderSet: ?*SSortOrderSet, lpfCallerRelease: ?*?CALLERRELEASE, ulCallerData: u32, lppMAPITable: ?*?*IMAPITable) callconv(.@"inline") HRESULT {
         return self.vtable.HrGetView(self, lpSSortOrderSet, lpfCallerRelease, ulCallerData, lppMAPITable);
     }
-    pub fn HrModifyRow(self: *const ITableData, param0: ?*SRow) callconv(.Inline) HRESULT {
+    pub fn HrModifyRow(self: *const ITableData, param0: ?*SRow) callconv(.@"inline") HRESULT {
         return self.vtable.HrModifyRow(self, param0);
     }
-    pub fn HrDeleteRow(self: *const ITableData, lpSPropValue: ?*SPropValue) callconv(.Inline) HRESULT {
+    pub fn HrDeleteRow(self: *const ITableData, lpSPropValue: ?*SPropValue) callconv(.@"inline") HRESULT {
         return self.vtable.HrDeleteRow(self, lpSPropValue);
     }
-    pub fn HrQueryRow(self: *const ITableData, lpsPropValue: ?*SPropValue, lppSRow: ?*?*SRow, lpuliRow: ?*u32) callconv(.Inline) HRESULT {
+    pub fn HrQueryRow(self: *const ITableData, lpsPropValue: ?*SPropValue, lppSRow: ?*?*SRow, lpuliRow: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.HrQueryRow(self, lpsPropValue, lppSRow, lpuliRow);
     }
-    pub fn HrEnumRow(self: *const ITableData, ulRowNumber: u32, lppSRow: ?*?*SRow) callconv(.Inline) HRESULT {
+    pub fn HrEnumRow(self: *const ITableData, ulRowNumber: u32, lppSRow: ?*?*SRow) callconv(.@"inline") HRESULT {
         return self.vtable.HrEnumRow(self, ulRowNumber, lppSRow);
     }
-    pub fn HrNotify(self: *const ITableData, ulFlags: u32, cValues: u32, lpSPropValue: ?*SPropValue) callconv(.Inline) HRESULT {
+    pub fn HrNotify(self: *const ITableData, ulFlags: u32, cValues: u32, lpSPropValue: ?*SPropValue) callconv(.@"inline") HRESULT {
         return self.vtable.HrNotify(self, ulFlags, cValues, lpSPropValue);
     }
-    pub fn HrInsertRow(self: *const ITableData, uliRow: u32, lpSRow: ?*SRow) callconv(.Inline) HRESULT {
+    pub fn HrInsertRow(self: *const ITableData, uliRow: u32, lpSRow: ?*SRow) callconv(.@"inline") HRESULT {
         return self.vtable.HrInsertRow(self, uliRow, lpSRow);
     }
-    pub fn HrModifyRows(self: *const ITableData, ulFlags: u32, lpSRowSet: ?*SRowSet) callconv(.Inline) HRESULT {
+    pub fn HrModifyRows(self: *const ITableData, ulFlags: u32, lpSRowSet: ?*SRowSet) callconv(.@"inline") HRESULT {
         return self.vtable.HrModifyRows(self, ulFlags, lpSRowSet);
     }
-    pub fn HrDeleteRows(self: *const ITableData, ulFlags: u32, lprowsetToDelete: ?*SRowSet, cRowsDeleted: ?*u32) callconv(.Inline) HRESULT {
+    pub fn HrDeleteRows(self: *const ITableData, ulFlags: u32, lprowsetToDelete: ?*SRowSet, cRowsDeleted: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.HrDeleteRows(self, ulFlags, lprowsetToDelete, cRowsDeleted);
     }
 };
@@ -1875,16 +1875,16 @@ pub const IPropData = extern union {
     vtable: *const VTable,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn HrSetObjAccess(self: *const IPropData, ulAccess: u32) callconv(.Inline) HRESULT {
+    pub fn HrSetObjAccess(self: *const IPropData, ulAccess: u32) callconv(.@"inline") HRESULT {
         return self.vtable.HrSetObjAccess(self, ulAccess);
     }
-    pub fn HrSetPropAccess(self: *const IPropData, lpPropTagArray: ?*SPropTagArray, rgulAccess: ?*u32) callconv(.Inline) HRESULT {
+    pub fn HrSetPropAccess(self: *const IPropData, lpPropTagArray: ?*SPropTagArray, rgulAccess: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.HrSetPropAccess(self, lpPropTagArray, rgulAccess);
     }
-    pub fn HrGetPropAccess(self: *const IPropData, lppPropTagArray: ?*?*SPropTagArray, lprgulAccess: ?*?*u32) callconv(.Inline) HRESULT {
+    pub fn HrGetPropAccess(self: *const IPropData, lppPropTagArray: ?*?*SPropTagArray, lprgulAccess: ?*?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.HrGetPropAccess(self, lppPropTagArray, lprgulAccess);
     }
-    pub fn HrAddObjProps(self: *const IPropData, lppPropTagArray: ?*SPropTagArray, lprgulAccess: ?*?*SPropProblemArray) callconv(.Inline) HRESULT {
+    pub fn HrAddObjProps(self: *const IPropData, lppPropTagArray: ?*SPropTagArray, lprgulAccess: ?*?*SPropProblemArray) callconv(.@"inline") HRESULT {
         return self.vtable.HrAddObjProps(self, lppPropTagArray, lprgulAccess);
     }
 };
@@ -2079,58 +2079,58 @@ pub const IAddrBook = extern union {
     vtable: *const VTable,
     IMAPIProp: IMAPIProp,
     IUnknown: IUnknown,
-    pub fn OpenEntry(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn OpenEntry(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpInterface: ?*Guid, ulFlags: u32, lpulObjType: ?*u32, lppUnk: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.OpenEntry(self, cbEntryID, lpEntryID, lpInterface, ulFlags, lpulObjType, lppUnk);
     }
-    pub fn CompareEntryIDs(self: *const IAddrBook, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CompareEntryIDs(self: *const IAddrBook, cbEntryID1: u32, lpEntryID1: ?*ENTRYID, cbEntryID2: u32, lpEntryID2: ?*ENTRYID, ulFlags: u32, lpulResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.CompareEntryIDs(self, cbEntryID1, lpEntryID1, cbEntryID2, lpEntryID2, ulFlags, lpulResult);
     }
-    pub fn Advise(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID, ulEventMask: u32, lpAdviseSink: ?*IMAPIAdviseSink, lpulConnection: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.Advise(self, cbEntryID, lpEntryID, ulEventMask, lpAdviseSink, lpulConnection);
     }
-    pub fn Unadvise(self: *const IAddrBook, ulConnection: u32) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IAddrBook, ulConnection: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, ulConnection);
     }
-    pub fn CreateOneOff(self: *const IAddrBook, lpszName: ?*i8, lpszAdrType: ?*i8, lpszAddress: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
+    pub fn CreateOneOff(self: *const IAddrBook, lpszName: ?*i8, lpszAdrType: ?*i8, lpszAddress: ?*i8, ulFlags: u32, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
         return self.vtable.CreateOneOff(self, lpszName, lpszAdrType, lpszAddress, ulFlags, lpcbEntryID, lppEntryID);
     }
-    pub fn NewEntry(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, cbEIDContainer: u32, lpEIDContainer: ?*ENTRYID, cbEIDNewEntryTpl: u32, lpEIDNewEntryTpl: ?*ENTRYID, lpcbEIDNewEntry: ?*u32, lppEIDNewEntry: ?*?*ENTRYID) callconv(.Inline) HRESULT {
+    pub fn NewEntry(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, cbEIDContainer: u32, lpEIDContainer: ?*ENTRYID, cbEIDNewEntryTpl: u32, lpEIDNewEntryTpl: ?*ENTRYID, lpcbEIDNewEntry: ?*u32, lppEIDNewEntry: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
         return self.vtable.NewEntry(self, ulUIParam, ulFlags, cbEIDContainer, lpEIDContainer, cbEIDNewEntryTpl, lpEIDNewEntryTpl, lpcbEIDNewEntry, lppEIDNewEntry);
     }
-    pub fn ResolveName(self: *const IAddrBook, ulUIParam: usize, ulFlags: u32, lpszNewEntryTitle: ?*i8, lpAdrList: ?*ADRLIST) callconv(.Inline) HRESULT {
+    pub fn ResolveName(self: *const IAddrBook, ulUIParam: usize, ulFlags: u32, lpszNewEntryTitle: ?*i8, lpAdrList: ?*ADRLIST) callconv(.@"inline") HRESULT {
         return self.vtable.ResolveName(self, ulUIParam, ulFlags, lpszNewEntryTitle, lpAdrList);
     }
-    pub fn Address(self: *const IAddrBook, lpulUIParam: ?*u32, lpAdrParms: ?*ADRPARM, lppAdrList: ?*?*ADRLIST) callconv(.Inline) HRESULT {
+    pub fn Address(self: *const IAddrBook, lpulUIParam: ?*u32, lpAdrParms: ?*ADRPARM, lppAdrList: ?*?*ADRLIST) callconv(.@"inline") HRESULT {
         return self.vtable.Address(self, lpulUIParam, lpAdrParms, lppAdrList);
     }
-    pub fn Details(self: *const IAddrBook, lpulUIParam: ?*usize, lpfnDismiss: ?LPFNDISMISS, lpvDismissContext: ?*anyopaque, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpfButtonCallback: ?LPFNBUTTON, lpvButtonContext: ?*anyopaque, lpszButtonText: ?*i8, ulFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Details(self: *const IAddrBook, lpulUIParam: ?*usize, lpfnDismiss: ?LPFNDISMISS, lpvDismissContext: ?*anyopaque, cbEntryID: u32, lpEntryID: ?*ENTRYID, lpfButtonCallback: ?LPFNBUTTON, lpvButtonContext: ?*anyopaque, lpszButtonText: ?*i8, ulFlags: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Details(self, lpulUIParam, lpfnDismiss, lpvDismissContext, cbEntryID, lpEntryID, lpfButtonCallback, lpvButtonContext, lpszButtonText, ulFlags);
     }
-    pub fn RecipOptions(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, lpRecip: ?*ADRENTRY) callconv(.Inline) HRESULT {
+    pub fn RecipOptions(self: *const IAddrBook, ulUIParam: u32, ulFlags: u32, lpRecip: ?*ADRENTRY) callconv(.@"inline") HRESULT {
         return self.vtable.RecipOptions(self, ulUIParam, ulFlags, lpRecip);
     }
-    pub fn QueryDefaultRecipOpt(self: *const IAddrBook, lpszAdrType: ?*i8, ulFlags: u32, lpcValues: ?*u32, lppOptions: ?*?*SPropValue) callconv(.Inline) HRESULT {
+    pub fn QueryDefaultRecipOpt(self: *const IAddrBook, lpszAdrType: ?*i8, ulFlags: u32, lpcValues: ?*u32, lppOptions: ?*?*SPropValue) callconv(.@"inline") HRESULT {
         return self.vtable.QueryDefaultRecipOpt(self, lpszAdrType, ulFlags, lpcValues, lppOptions);
     }
-    pub fn GetPAB(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
+    pub fn GetPAB(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
         return self.vtable.GetPAB(self, lpcbEntryID, lppEntryID);
     }
-    pub fn SetPAB(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
+    pub fn SetPAB(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.@"inline") HRESULT {
         return self.vtable.SetPAB(self, cbEntryID, lpEntryID);
     }
-    pub fn GetDefaultDir(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.Inline) HRESULT {
+    pub fn GetDefaultDir(self: *const IAddrBook, lpcbEntryID: ?*u32, lppEntryID: ?*?*ENTRYID) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultDir(self, lpcbEntryID, lppEntryID);
     }
-    pub fn SetDefaultDir(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.Inline) HRESULT {
+    pub fn SetDefaultDir(self: *const IAddrBook, cbEntryID: u32, lpEntryID: ?*ENTRYID) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultDir(self, cbEntryID, lpEntryID);
     }
-    pub fn GetSearchPath(self: *const IAddrBook, ulFlags: u32, lppSearchPath: ?*?*SRowSet) callconv(.Inline) HRESULT {
+    pub fn GetSearchPath(self: *const IAddrBook, ulFlags: u32, lppSearchPath: ?*?*SRowSet) callconv(.@"inline") HRESULT {
         return self.vtable.GetSearchPath(self, ulFlags, lppSearchPath);
     }
-    pub fn SetSearchPath(self: *const IAddrBook, ulFlags: u32, lpSearchPath: ?*SRowSet) callconv(.Inline) HRESULT {
+    pub fn SetSearchPath(self: *const IAddrBook, ulFlags: u32, lpSearchPath: ?*SRowSet) callconv(.@"inline") HRESULT {
         return self.vtable.SetSearchPath(self, ulFlags, lpSearchPath);
     }
-    pub fn PrepareRecips(self: *const IAddrBook, ulFlags: u32, lpPropTagArray: ?*SPropTagArray, lpRecipList: ?*ADRLIST) callconv(.Inline) HRESULT {
+    pub fn PrepareRecips(self: *const IAddrBook, ulFlags: u32, lpPropTagArray: ?*SPropTagArray, lpRecipList: ?*ADRLIST) callconv(.@"inline") HRESULT {
         return self.vtable.PrepareRecips(self, ulFlags, lpPropTagArray, lpRecipList);
     }
 };
@@ -2223,43 +2223,43 @@ pub const IWABObject = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLastError(self: *const IWABObject, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+    pub fn GetLastError(self: *const IWABObject, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastError(self, hResult, ulFlags, lppMAPIError);
     }
-    pub fn AllocateBuffer(self: *const IWABObject, cbSize: u32, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn AllocateBuffer(self: *const IWABObject, cbSize: u32, lppBuffer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.AllocateBuffer(self, cbSize, lppBuffer);
     }
-    pub fn AllocateMore(self: *const IWABObject, cbSize: u32, lpObject: ?*anyopaque, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn AllocateMore(self: *const IWABObject, cbSize: u32, lpObject: ?*anyopaque, lppBuffer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.AllocateMore(self, cbSize, lpObject, lppBuffer);
     }
-    pub fn FreeBuffer(self: *const IWABObject, lpBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn FreeBuffer(self: *const IWABObject, lpBuffer: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBuffer(self, lpBuffer);
     }
-    pub fn Backup(self: *const IWABObject, lpFileName: ?PSTR) callconv(.Inline) HRESULT {
+    pub fn Backup(self: *const IWABObject, lpFileName: ?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Backup(self, lpFileName);
     }
-    pub fn Import(self: *const IWABObject, lpWIP: ?PSTR) callconv(.Inline) HRESULT {
+    pub fn Import(self: *const IWABObject, lpWIP: ?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Import(self, lpWIP);
     }
-    pub fn Find(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Find(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Find(self, lpIAB, hWnd);
     }
-    pub fn VCardDisplay(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.Inline) HRESULT {
+    pub fn VCardDisplay(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.VCardDisplay(self, lpIAB, hWnd, lpszFileName);
     }
-    pub fn LDAPUrl(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+    pub fn LDAPUrl(self: *const IWABObject, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.LDAPUrl(self, lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
     }
-    pub fn VCardCreate(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.Inline) HRESULT {
+    pub fn VCardCreate(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.VCardCreate(self, lpIAB, ulFlags, lpszVCard, lpMailUser);
     }
-    pub fn VCardRetrieve(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+    pub fn VCardRetrieve(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.VCardRetrieve(self, lpIAB, ulFlags, lpszVCard, lppMailUser);
     }
-    pub fn GetMe(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn GetMe(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetMe(self, lpIAB, ulFlags, lpdwAction, lpsbEID, hwnd);
     }
-    pub fn SetMe(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetMe(self: *const IWABObject, lpIAB: ?*IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetMe(self, lpIAB, ulFlags, sbEID, hwnd);
     }
 };
@@ -2444,52 +2444,52 @@ pub const IWABOBJECT_ = extern union {
         ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    pub fn QueryInterface(self: *const IWABOBJECT_, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn QueryInterface(self: *const IWABOBJECT_, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.QueryInterface(self, riid, ppvObj);
     }
-    pub fn AddRef(self: *const IWABOBJECT_) callconv(.Inline) u32 {
+    pub fn AddRef(self: *const IWABOBJECT_) callconv(.@"inline") u32 {
         return self.vtable.AddRef(self);
     }
-    pub fn Release(self: *const IWABOBJECT_) callconv(.Inline) u32 {
+    pub fn Release(self: *const IWABOBJECT_) callconv(.@"inline") u32 {
         return self.vtable.Release(self);
     }
-    pub fn GetLastError(self: *const IWABOBJECT_, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.Inline) HRESULT {
+    pub fn GetLastError(self: *const IWABOBJECT_, hResult: HRESULT, ulFlags: u32, lppMAPIError: ?*?*MAPIERROR) callconv(.@"inline") HRESULT {
         return self.vtable.GetLastError(self, hResult, ulFlags, lppMAPIError);
     }
-    pub fn AllocateBuffer(self: *const IWABOBJECT_, cbSize: u32, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn AllocateBuffer(self: *const IWABOBJECT_, cbSize: u32, lppBuffer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.AllocateBuffer(self, cbSize, lppBuffer);
     }
-    pub fn AllocateMore(self: *const IWABOBJECT_, cbSize: u32, lpObject: ?*anyopaque, lppBuffer: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn AllocateMore(self: *const IWABOBJECT_, cbSize: u32, lpObject: ?*anyopaque, lppBuffer: ?*?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.AllocateMore(self, cbSize, lpObject, lppBuffer);
     }
-    pub fn FreeBuffer(self: *const IWABOBJECT_, lpBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn FreeBuffer(self: *const IWABOBJECT_, lpBuffer: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.FreeBuffer(self, lpBuffer);
     }
-    pub fn Backup(self: *const IWABOBJECT_, lpFileName: ?PSTR) callconv(.Inline) HRESULT {
+    pub fn Backup(self: *const IWABOBJECT_, lpFileName: ?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Backup(self, lpFileName);
     }
-    pub fn Import(self: *const IWABOBJECT_, lpWIP: ?PSTR) callconv(.Inline) HRESULT {
+    pub fn Import(self: *const IWABOBJECT_, lpWIP: ?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Import(self, lpWIP);
     }
-    pub fn Find(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Find(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.Find(self, lpIAB, hWnd);
     }
-    pub fn VCardDisplay(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.Inline) HRESULT {
+    pub fn VCardDisplay(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND, lpszFileName: ?PSTR) callconv(.@"inline") HRESULT {
         return self.vtable.VCardDisplay(self, lpIAB, hWnd, lpszFileName);
     }
-    pub fn LDAPUrl(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+    pub fn LDAPUrl(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, hWnd: ?HWND, ulFlags: u32, lpszURL: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.LDAPUrl(self, lpIAB, hWnd, ulFlags, lpszURL, lppMailUser);
     }
-    pub fn VCardCreate(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.Inline) HRESULT {
+    pub fn VCardCreate(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lpMailUser: ?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.VCardCreate(self, lpIAB, ulFlags, lpszVCard, lpMailUser);
     }
-    pub fn VCardRetrieve(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.Inline) HRESULT {
+    pub fn VCardRetrieve(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpszVCard: ?PSTR, lppMailUser: ?*?*IMailUser) callconv(.@"inline") HRESULT {
         return self.vtable.VCardRetrieve(self, lpIAB, ulFlags, lpszVCard, lppMailUser);
     }
-    pub fn GetMe(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn GetMe(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, lpdwAction: ?*u32, lpsbEID: ?*SBinary, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetMe(self, lpIAB, ulFlags, lpdwAction, lpsbEID, hwnd);
     }
-    pub fn SetMe(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetMe(self: *const IWABOBJECT_, lpIAB: ?*IAddrBook, ulFlags: u32, sbEID: SBinary, hwnd: ?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.SetMe(self, lpIAB, ulFlags, sbEID, hwnd);
     }
 };
@@ -2552,7 +2552,7 @@ pub const IWABExtInit = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IWABExtInit, lpWABExtDisplay: ?*WABEXTDISPLAY) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWABExtInit, lpWABExtDisplay: ?*WABEXTDISPLAY) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, lpWABExtDisplay);
     }
 };

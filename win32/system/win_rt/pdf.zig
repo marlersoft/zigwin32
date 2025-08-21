@@ -40,10 +40,10 @@ pub const IPdfRendererNative = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RenderPageToSurface(self: *const IPdfRendererNative, pdfPage: ?*IUnknown, pSurface: ?*IDXGISurface, offset: POINT, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
+    pub fn RenderPageToSurface(self: *const IPdfRendererNative, pdfPage: ?*IUnknown, pSurface: ?*IDXGISurface, offset: POINT, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.@"inline") HRESULT {
         return self.vtable.RenderPageToSurface(self, pdfPage, pSurface, offset, pRenderParams);
     }
-    pub fn RenderPageToDeviceContext(self: *const IPdfRendererNative, pdfPage: ?*IUnknown, pD2DDeviceContext: ?*ID2D1DeviceContext, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.Inline) HRESULT {
+    pub fn RenderPageToDeviceContext(self: *const IPdfRendererNative, pdfPage: ?*IUnknown, pD2DDeviceContext: ?*ID2D1DeviceContext, pRenderParams: ?*PDF_RENDER_PARAMS) callconv(.@"inline") HRESULT {
         return self.vtable.RenderPageToDeviceContext(self, pdfPage, pD2DDeviceContext, pRenderParams);
     }
 };

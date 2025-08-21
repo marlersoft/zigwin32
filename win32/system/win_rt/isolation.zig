@@ -19,7 +19,7 @@ pub const IIsolatedEnvironmentInterop = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHostHwndInterop(self: *const IIsolatedEnvironmentInterop, containerHwnd: ?HWND, hostHwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn GetHostHwndInterop(self: *const IIsolatedEnvironmentInterop, containerHwnd: ?HWND, hostHwnd: ?*?HWND) callconv(.@"inline") HRESULT {
         return self.vtable.GetHostHwndInterop(self, containerHwnd, hostHwnd);
     }
 };

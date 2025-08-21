@@ -246,16 +246,16 @@ pub const IReferenceClock = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTime(self: *const IReferenceClock, pTime: ?*i64) callconv(.Inline) HRESULT {
+    pub fn GetTime(self: *const IReferenceClock, pTime: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetTime(self, pTime);
     }
-    pub fn AdviseTime(self: *const IReferenceClock, baseTime: i64, streamTime: i64, hEvent: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.Inline) HRESULT {
+    pub fn AdviseTime(self: *const IReferenceClock, baseTime: i64, streamTime: i64, hEvent: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.AdviseTime(self, baseTime, streamTime, hEvent, pdwAdviseCookie);
     }
-    pub fn AdvisePeriodic(self: *const IReferenceClock, startTime: i64, periodTime: i64, hSemaphore: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.Inline) HRESULT {
+    pub fn AdvisePeriodic(self: *const IReferenceClock, startTime: i64, periodTime: i64, hSemaphore: ?HANDLE, pdwAdviseCookie: ?*usize) callconv(.@"inline") HRESULT {
         return self.vtable.AdvisePeriodic(self, startTime, periodTime, hSemaphore, pdwAdviseCookie);
     }
-    pub fn Unadvise(self: *const IReferenceClock, dwAdviseCookie: usize) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IReferenceClock, dwAdviseCookie: usize) callconv(.@"inline") HRESULT {
         return self.vtable.Unadvise(self, dwAdviseCookie);
     }
 };
@@ -277,10 +277,10 @@ pub const IReferenceClockTimerControl = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetDefaultTimerResolution(self: *const IReferenceClockTimerControl, timerResolution: i64) callconv(.Inline) HRESULT {
+    pub fn SetDefaultTimerResolution(self: *const IReferenceClockTimerControl, timerResolution: i64) callconv(.@"inline") HRESULT {
         return self.vtable.SetDefaultTimerResolution(self, timerResolution);
     }
-    pub fn GetDefaultTimerResolution(self: *const IReferenceClockTimerControl, pTimerResolution: ?*i64) callconv(.Inline) HRESULT {
+    pub fn GetDefaultTimerResolution(self: *const IReferenceClockTimerControl, pTimerResolution: ?*i64) callconv(.@"inline") HRESULT {
         return self.vtable.GetDefaultTimerResolution(self, pTimerResolution);
     }
 };

@@ -28,7 +28,7 @@ pub const IIsolatedAppLauncher = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Launch(self: *const IIsolatedAppLauncher, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) callconv(.Inline) HRESULT {
+    pub fn Launch(self: *const IIsolatedAppLauncher, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) callconv(.@"inline") HRESULT {
         return self.vtable.Launch(self, appUserModelId, arguments, telemetryParameters);
     }
 };

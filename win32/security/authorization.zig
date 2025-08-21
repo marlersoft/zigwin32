@@ -1240,157 +1240,157 @@ pub const IAzAuthorizationStore = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Description(self: *const IAzAuthorizationStore, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzAuthorizationStore, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzAuthorizationStore, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzAuthorizationStore, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzAuthorizationStore, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzAuthorizationStore, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzAuthorizationStore, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzAuthorizationStore, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_DomainTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DomainTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_DomainTimeout(self, plProp);
     }
-    pub fn put_DomainTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_DomainTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_DomainTimeout(self, lProp);
     }
-    pub fn get_ScriptEngineTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ScriptEngineTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_ScriptEngineTimeout(self, plProp);
     }
-    pub fn put_ScriptEngineTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_ScriptEngineTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_ScriptEngineTimeout(self, lProp);
     }
-    pub fn get_MaxScriptEngines(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxScriptEngines(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_MaxScriptEngines(self, plProp);
     }
-    pub fn put_MaxScriptEngines(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxScriptEngines(self: *const IAzAuthorizationStore, lProp: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_MaxScriptEngines(self, lProp);
     }
-    pub fn get_GenerateAudits(self: *const IAzAuthorizationStore, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_GenerateAudits(self: *const IAzAuthorizationStore, pbProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_GenerateAudits(self, pbProp);
     }
-    pub fn put_GenerateAudits(self: *const IAzAuthorizationStore, bProp: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_GenerateAudits(self: *const IAzAuthorizationStore, bProp: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_GenerateAudits(self, bProp);
     }
-    pub fn get_Writable(self: *const IAzAuthorizationStore, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzAuthorizationStore, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn AddPropertyItem(self: *const IAzAuthorizationStore, lPropId: AZ_PROP_CONSTANTS, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzAuthorizationStore, lPropId: AZ_PROP_CONSTANTS, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn get_PolicyAdministrators(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministrators(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyAdministrators(self, pvarAdmins);
     }
-    pub fn get_PolicyReaders(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReaders(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyReaders(self, pvarReaders);
     }
-    pub fn AddPolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyReader(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyReader(self, bstrReader, varReserved);
     }
-    pub fn Initialize(self: *const IAzAuthorizationStore, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IAzAuthorizationStore, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, lFlags, bstrPolicyURL, varReserved);
     }
-    pub fn UpdateCache(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn UpdateCache(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.UpdateCache(self, varReserved);
     }
-    pub fn Delete(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Delete(self, varReserved);
     }
-    pub fn get_Applications(self: *const IAzAuthorizationStore, ppAppCollection: ?*?*IAzApplications) callconv(.Inline) HRESULT {
+    pub fn get_Applications(self: *const IAzAuthorizationStore, ppAppCollection: ?*?*IAzApplications) callconv(.@"inline") HRESULT {
         return self.vtable.get_Applications(self, ppAppCollection);
     }
-    pub fn OpenApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
+    pub fn OpenApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.@"inline") HRESULT {
         return self.vtable.OpenApplication(self, bstrApplicationName, varReserved, ppApplication);
     }
-    pub fn CreateApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
+    pub fn CreateApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.@"inline") HRESULT {
         return self.vtable.CreateApplication(self, bstrApplicationName, varReserved, ppApplication);
     }
-    pub fn DeleteApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteApplication(self, bstrApplicationName, varReserved);
     }
-    pub fn get_ApplicationGroups(self: *const IAzAuthorizationStore, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationGroups(self: *const IAzAuthorizationStore, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationGroups(self, ppGroupCollection);
     }
-    pub fn CreateApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn CreateApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CreateApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn OpenApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn OpenApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
         return self.vtable.OpenApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn DeleteApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteApplicationGroup(self, bstrGroupName, varReserved);
     }
-    pub fn Submit(self: *const IAzAuthorizationStore, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzAuthorizationStore, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn get_DelegatedPolicyUsers(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DelegatedPolicyUsers(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_DelegatedPolicyUsers(self, pvarDelegatedPolicyUsers);
     }
-    pub fn AddDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn DeleteDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn get_TargetMachine(self: *const IAzAuthorizationStore, pbstrTargetMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetMachine(self: *const IAzAuthorizationStore, pbstrTargetMachine: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_TargetMachine(self, pbstrTargetMachine);
     }
-    pub fn get_ApplyStoreSacl(self: *const IAzAuthorizationStore, pbApplyStoreSacl: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_ApplyStoreSacl(self: *const IAzAuthorizationStore, pbApplyStoreSacl: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplyStoreSacl(self, pbApplyStoreSacl);
     }
-    pub fn put_ApplyStoreSacl(self: *const IAzAuthorizationStore, bApplyStoreSacl: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_ApplyStoreSacl(self: *const IAzAuthorizationStore, bApplyStoreSacl: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplyStoreSacl(self, bApplyStoreSacl);
     }
-    pub fn get_PolicyAdministratorsName(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministratorsName(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyAdministratorsName(self, pvarAdmins);
     }
-    pub fn get_PolicyReadersName(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReadersName(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyReadersName(self, pvarReaders);
     }
-    pub fn AddPolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn get_DelegatedPolicyUsersName(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DelegatedPolicyUsersName(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_DelegatedPolicyUsersName(self, pvarDelegatedPolicyUsers);
     }
-    pub fn AddDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn DeleteDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn CloseApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, lFlag: i32) callconv(.Inline) HRESULT {
+    pub fn CloseApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, lFlag: i32) callconv(.@"inline") HRESULT {
         return self.vtable.CloseApplication(self, bstrApplicationName, lFlag);
     }
 };
@@ -1418,10 +1418,10 @@ pub const IAzAuthorizationStore2 = extern union {
     IAzAuthorizationStore: IAzAuthorizationStore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OpenApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
+    pub fn OpenApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.@"inline") HRESULT {
         return self.vtable.OpenApplication2(self, bstrApplicationName, varReserved, ppApplication);
     }
-    pub fn CreateApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
+    pub fn CreateApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateApplication2(self, bstrApplicationName, varReserved, ppApplication);
     }
 };
@@ -1460,19 +1460,19 @@ pub const IAzAuthorizationStore3 = extern union {
     IAzAuthorizationStore: IAzAuthorizationStore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsUpdateNeeded(self, pbIsUpdateNeeded);
     }
-    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.BizruleGroupSupported(self, pbSupported);
     }
-    pub fn UpgradeStoresFunctionalLevel(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32) callconv(.Inline) HRESULT {
+    pub fn UpgradeStoresFunctionalLevel(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32) callconv(.@"inline") HRESULT {
         return self.vtable.UpgradeStoresFunctionalLevel(self, lFunctionalLevel);
     }
-    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsFunctionalLevelUpgradeSupported(self, lFunctionalLevel, pbSupported);
     }
-    pub fn GetSchemaVersion(self: *const IAzAuthorizationStore3, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetSchemaVersion(self: *const IAzAuthorizationStore3, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.GetSchemaVersion(self, plMajorVersion, plMinorVersion);
     }
 };
@@ -1811,187 +1811,187 @@ pub const IAzApplication = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzApplication, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzApplication, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzApplication, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzApplication, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzApplication, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzApplication, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzApplication, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzApplication, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzApplication, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzApplication, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzApplication, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzApplication, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_AuthzInterfaceClsid(self: *const IAzApplication, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AuthzInterfaceClsid(self: *const IAzApplication, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_AuthzInterfaceClsid(self, pbstrProp);
     }
-    pub fn put_AuthzInterfaceClsid(self: *const IAzApplication, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_AuthzInterfaceClsid(self: *const IAzApplication, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_AuthzInterfaceClsid(self, bstrProp);
     }
-    pub fn get_Version(self: *const IAzApplication, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IAzApplication, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Version(self, pbstrProp);
     }
-    pub fn put_Version(self: *const IAzApplication, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Version(self: *const IAzApplication, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Version(self, bstrProp);
     }
-    pub fn get_GenerateAudits(self: *const IAzApplication, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_GenerateAudits(self: *const IAzApplication, pbProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_GenerateAudits(self, pbProp);
     }
-    pub fn put_GenerateAudits(self: *const IAzApplication, bProp: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_GenerateAudits(self: *const IAzApplication, bProp: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_GenerateAudits(self, bProp);
     }
-    pub fn get_ApplyStoreSacl(self: *const IAzApplication, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_ApplyStoreSacl(self: *const IAzApplication, pbProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplyStoreSacl(self, pbProp);
     }
-    pub fn put_ApplyStoreSacl(self: *const IAzApplication, bProp: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_ApplyStoreSacl(self: *const IAzApplication, bProp: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplyStoreSacl(self, bProp);
     }
-    pub fn get_Writable(self: *const IAzApplication, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzApplication, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzApplication, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzApplication, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn get_PolicyAdministrators(self: *const IAzApplication, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministrators(self: *const IAzApplication, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyAdministrators(self, pvarAdmins);
     }
-    pub fn get_PolicyReaders(self: *const IAzApplication, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReaders(self: *const IAzApplication, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyReaders(self, pvarReaders);
     }
-    pub fn AddPolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyReader(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyReader(self, bstrReader, varReserved);
     }
-    pub fn get_Scopes(self: *const IAzApplication, ppScopeCollection: ?*?*IAzScopes) callconv(.Inline) HRESULT {
+    pub fn get_Scopes(self: *const IAzApplication, ppScopeCollection: ?*?*IAzScopes) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scopes(self, ppScopeCollection);
     }
-    pub fn OpenScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+    pub fn OpenScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.@"inline") HRESULT {
         return self.vtable.OpenScope(self, bstrScopeName, varReserved, ppScope);
     }
-    pub fn CreateScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+    pub fn CreateScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.@"inline") HRESULT {
         return self.vtable.CreateScope(self, bstrScopeName, varReserved, ppScope);
     }
-    pub fn DeleteScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteScope(self, bstrScopeName, varReserved);
     }
-    pub fn get_Operations(self: *const IAzApplication, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
+    pub fn get_Operations(self: *const IAzApplication, ppOperationCollection: ?*?*IAzOperations) callconv(.@"inline") HRESULT {
         return self.vtable.get_Operations(self, ppOperationCollection);
     }
-    pub fn OpenOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
+    pub fn OpenOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.@"inline") HRESULT {
         return self.vtable.OpenOperation(self, bstrOperationName, varReserved, ppOperation);
     }
-    pub fn CreateOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
+    pub fn CreateOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.@"inline") HRESULT {
         return self.vtable.CreateOperation(self, bstrOperationName, varReserved, ppOperation);
     }
-    pub fn DeleteOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteOperation(self, bstrOperationName, varReserved);
     }
-    pub fn get_Tasks(self: *const IAzApplication, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+    pub fn get_Tasks(self: *const IAzApplication, ppTaskCollection: ?*?*IAzTasks) callconv(.@"inline") HRESULT {
         return self.vtable.get_Tasks(self, ppTaskCollection);
     }
-    pub fn OpenTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+    pub fn OpenTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.@"inline") HRESULT {
         return self.vtable.OpenTask(self, bstrTaskName, varReserved, ppTask);
     }
-    pub fn CreateTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+    pub fn CreateTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTask(self, bstrTaskName, varReserved, ppTask);
     }
-    pub fn DeleteTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteTask(self, bstrTaskName, varReserved);
     }
-    pub fn get_ApplicationGroups(self: *const IAzApplication, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationGroups(self: *const IAzApplication, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationGroups(self, ppGroupCollection);
     }
-    pub fn OpenApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn OpenApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
         return self.vtable.OpenApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn CreateApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn CreateApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CreateApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn DeleteApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteApplicationGroup(self, bstrGroupName, varReserved);
     }
-    pub fn get_Roles(self: *const IAzApplication, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
+    pub fn get_Roles(self: *const IAzApplication, ppRoleCollection: ?*?*IAzRoles) callconv(.@"inline") HRESULT {
         return self.vtable.get_Roles(self, ppRoleCollection);
     }
-    pub fn OpenRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+    pub fn OpenRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.@"inline") HRESULT {
         return self.vtable.OpenRole(self, bstrRoleName, varReserved, ppRole);
     }
-    pub fn CreateRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+    pub fn CreateRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRole(self, bstrRoleName, varReserved, ppRole);
     }
-    pub fn DeleteRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRole(self, bstrRoleName, varReserved);
     }
-    pub fn InitializeClientContextFromToken(self: *const IAzApplication, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContextFromToken(self: *const IAzApplication, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeClientContextFromToken(self, ullTokenHandle, varReserved, ppClientContext);
     }
-    pub fn AddPropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzApplication, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzApplication, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn InitializeClientContextFromName(self: *const IAzApplication, ClientName: ?BSTR, DomainName: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContextFromName(self: *const IAzApplication, ClientName: ?BSTR, DomainName: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeClientContextFromName(self, ClientName, DomainName, varReserved, ppClientContext);
     }
-    pub fn get_DelegatedPolicyUsers(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DelegatedPolicyUsers(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_DelegatedPolicyUsers(self, pvarDelegatedPolicyUsers);
     }
-    pub fn AddDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn DeleteDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn InitializeClientContextFromStringSid(self: *const IAzApplication, SidString: ?BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContextFromStringSid(self: *const IAzApplication, SidString: ?BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeClientContextFromStringSid(self, SidString, lOptions, varReserved, ppClientContext);
     }
-    pub fn get_PolicyAdministratorsName(self: *const IAzApplication, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministratorsName(self: *const IAzApplication, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyAdministratorsName(self, pvarAdmins);
     }
-    pub fn get_PolicyReadersName(self: *const IAzApplication, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReadersName(self: *const IAzApplication, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyReadersName(self, pvarReaders);
     }
-    pub fn AddPolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn get_DelegatedPolicyUsersName(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DelegatedPolicyUsersName(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_DelegatedPolicyUsersName(self, pvarDelegatedPolicyUsers);
     }
-    pub fn AddDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn DeleteDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
     }
 };
@@ -2020,10 +2020,10 @@ pub const IAzApplication2 = extern union {
     IAzApplication: IAzApplication,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn InitializeClientContextFromToken2(self: *const IAzApplication2, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContextFromToken2(self: *const IAzApplication2, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeClientContextFromToken2(self, ulTokenHandleLowPart, ulTokenHandleHighPart, varReserved, ppClientContext);
     }
-    pub fn InitializeClientContext2(self: *const IAzApplication2, IdentifyingString: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContext2(self: *const IAzApplication2, IdentifyingString: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.@"inline") HRESULT {
         return self.vtable.InitializeClientContext2(self, IdentifyingString, varReserved, ppClientContext);
     }
 };
@@ -2053,13 +2053,13 @@ pub const IAzApplications = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzApplications, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzApplications, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzApplications, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzApplications, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzApplications, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzApplications, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -2136,40 +2136,40 @@ pub const IAzOperation = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzOperation, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzOperation, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzOperation, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzOperation, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzOperation, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzOperation, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzOperation, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzOperation, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzOperation, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzOperation, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzOperation, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzOperation, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_OperationID(self: *const IAzOperation, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_OperationID(self: *const IAzOperation, plProp: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_OperationID(self, plProp);
     }
-    pub fn put_OperationID(self: *const IAzOperation, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_OperationID(self: *const IAzOperation, lProp: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_OperationID(self, lProp);
     }
-    pub fn get_Writable(self: *const IAzOperation, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzOperation, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzOperation, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzOperation, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzOperation, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzOperation, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzOperation, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzOperation, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
 };
@@ -2199,13 +2199,13 @@ pub const IAzOperations = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzOperations, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzOperations, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzOperations, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzOperations, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzOperations, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzOperations, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -2354,82 +2354,82 @@ pub const IAzTask = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzTask, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzTask, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzTask, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzTask, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzTask, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzTask, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzTask, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzTask, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzTask, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzTask, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzTask, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzTask, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_BizRule(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRule(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRule(self, pbstrProp);
     }
-    pub fn put_BizRule(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRule(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRule(self, bstrProp);
     }
-    pub fn get_BizRuleLanguage(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleLanguage(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRuleLanguage(self, pbstrProp);
     }
-    pub fn put_BizRuleLanguage(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRuleLanguage(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRuleLanguage(self, bstrProp);
     }
-    pub fn get_BizRuleImportedPath(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleImportedPath(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRuleImportedPath(self, pbstrProp);
     }
-    pub fn put_BizRuleImportedPath(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRuleImportedPath(self: *const IAzTask, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRuleImportedPath(self, bstrProp);
     }
-    pub fn get_IsRoleDefinition(self: *const IAzTask, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsRoleDefinition(self: *const IAzTask, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_IsRoleDefinition(self, pfProp);
     }
-    pub fn put_IsRoleDefinition(self: *const IAzTask, fProp: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_IsRoleDefinition(self: *const IAzTask, fProp: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_IsRoleDefinition(self, fProp);
     }
-    pub fn get_Operations(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Operations(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Operations(self, pvarProp);
     }
-    pub fn get_Tasks(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Tasks(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Tasks(self, pvarProp);
     }
-    pub fn AddOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddOperation(self, bstrOp, varReserved);
     }
-    pub fn DeleteOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteOperation(self, bstrOp, varReserved);
     }
-    pub fn AddTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddTask(self, bstrTask, varReserved);
     }
-    pub fn DeleteTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteTask(self, bstrTask, varReserved);
     }
-    pub fn get_Writable(self: *const IAzTask, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzTask, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzTask, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzTask, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn AddPropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzTask, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzTask, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
 };
@@ -2459,13 +2459,13 @@ pub const IAzTasks = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzTasks, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzTasks, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzTasks, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzTasks, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzTasks, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzTasks, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -2680,118 +2680,118 @@ pub const IAzScope = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzScope, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzScope, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzScope, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzScope, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzScope, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzScope, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzScope, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzScope, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzScope, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzScope, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzScope, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzScope, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_Writable(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzScope, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzScope, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzScope, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn AddPropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn get_PolicyAdministrators(self: *const IAzScope, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministrators(self: *const IAzScope, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyAdministrators(self, pvarAdmins);
     }
-    pub fn get_PolicyReaders(self: *const IAzScope, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReaders(self: *const IAzScope, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyReaders(self, pvarReaders);
     }
-    pub fn AddPolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyReader(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyReader(self, bstrReader, varReserved);
     }
-    pub fn get_ApplicationGroups(self: *const IAzScope, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationGroups(self: *const IAzScope, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationGroups(self, ppGroupCollection);
     }
-    pub fn OpenApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn OpenApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
         return self.vtable.OpenApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn CreateApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn CreateApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.@"inline") HRESULT {
         return self.vtable.CreateApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn DeleteApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteApplicationGroup(self, bstrGroupName, varReserved);
     }
-    pub fn get_Roles(self: *const IAzScope, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
+    pub fn get_Roles(self: *const IAzScope, ppRoleCollection: ?*?*IAzRoles) callconv(.@"inline") HRESULT {
         return self.vtable.get_Roles(self, ppRoleCollection);
     }
-    pub fn OpenRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+    pub fn OpenRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.@"inline") HRESULT {
         return self.vtable.OpenRole(self, bstrRoleName, varReserved, ppRole);
     }
-    pub fn CreateRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+    pub fn CreateRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRole(self, bstrRoleName, varReserved, ppRole);
     }
-    pub fn DeleteRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRole(self, bstrRoleName, varReserved);
     }
-    pub fn get_Tasks(self: *const IAzScope, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+    pub fn get_Tasks(self: *const IAzScope, ppTaskCollection: ?*?*IAzTasks) callconv(.@"inline") HRESULT {
         return self.vtable.get_Tasks(self, ppTaskCollection);
     }
-    pub fn OpenTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+    pub fn OpenTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.@"inline") HRESULT {
         return self.vtable.OpenTask(self, bstrTaskName, varReserved, ppTask);
     }
-    pub fn CreateTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+    pub fn CreateTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.@"inline") HRESULT {
         return self.vtable.CreateTask(self, bstrTaskName, varReserved, ppTask);
     }
-    pub fn DeleteTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteTask(self, bstrTaskName, varReserved);
     }
-    pub fn Submit(self: *const IAzScope, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzScope, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn get_CanBeDelegated(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_CanBeDelegated(self: *const IAzScope, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_CanBeDelegated(self, pfProp);
     }
-    pub fn get_BizrulesWritable(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_BizrulesWritable(self: *const IAzScope, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizrulesWritable(self, pfProp);
     }
-    pub fn get_PolicyAdministratorsName(self: *const IAzScope, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministratorsName(self: *const IAzScope, pvarAdmins: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyAdministratorsName(self, pvarAdmins);
     }
-    pub fn get_PolicyReadersName(self: *const IAzScope, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReadersName(self: *const IAzScope, pvarReaders: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_PolicyReadersName(self, pvarReaders);
     }
-    pub fn AddPolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePolicyReaderName(self, bstrReader, varReserved);
     }
 };
@@ -2821,13 +2821,13 @@ pub const IAzScopes = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzScopes, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzScopes, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzScopes, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzScopes, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzScopes, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzScopes, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -3006,100 +3006,100 @@ pub const IAzApplicationGroup = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzApplicationGroup, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzApplicationGroup, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzApplicationGroup, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzApplicationGroup, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Type(self: *const IAzApplicationGroup, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IAzApplicationGroup, plProp: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Type(self, plProp);
     }
-    pub fn put_Type(self: *const IAzApplicationGroup, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_Type(self: *const IAzApplicationGroup, lProp: i32) callconv(.@"inline") HRESULT {
         return self.vtable.put_Type(self, lProp);
     }
-    pub fn get_LdapQuery(self: *const IAzApplicationGroup, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LdapQuery(self: *const IAzApplicationGroup, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LdapQuery(self, pbstrProp);
     }
-    pub fn put_LdapQuery(self: *const IAzApplicationGroup, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LdapQuery(self: *const IAzApplicationGroup, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_LdapQuery(self, bstrProp);
     }
-    pub fn get_AppMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_AppMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppMembers(self, pvarProp);
     }
-    pub fn get_AppNonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_AppNonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppNonMembers(self, pvarProp);
     }
-    pub fn get_Members(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Members(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Members(self, pvarProp);
     }
-    pub fn get_NonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_NonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_NonMembers(self, pvarProp);
     }
-    pub fn get_Description(self: *const IAzApplicationGroup, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzApplicationGroup, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzApplicationGroup, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzApplicationGroup, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn AddAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddAppMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAppMember(self, bstrProp, varReserved);
     }
-    pub fn AddAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddAppNonMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAppNonMember(self, bstrProp, varReserved);
     }
-    pub fn AddMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteMember(self, bstrProp, varReserved);
     }
-    pub fn AddNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddNonMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteNonMember(self, bstrProp, varReserved);
     }
-    pub fn get_Writable(self: *const IAzApplicationGroup, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzApplicationGroup, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzApplicationGroup, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzApplicationGroup, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn AddPropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzApplicationGroup, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzApplicationGroup, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn AddMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddMemberName(self, bstrProp, varReserved);
     }
-    pub fn DeleteMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteMemberName(self, bstrProp, varReserved);
     }
-    pub fn AddNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddNonMemberName(self, bstrProp, varReserved);
     }
-    pub fn DeleteNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteNonMemberName(self, bstrProp, varReserved);
     }
-    pub fn get_MembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_MembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_MembersName(self, pvarProp);
     }
-    pub fn get_NonMembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_NonMembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_NonMembersName(self, pvarProp);
     }
 };
@@ -3129,13 +3129,13 @@ pub const IAzApplicationGroups = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzApplicationGroups, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzApplicationGroups, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzApplicationGroups, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzApplicationGroups, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzApplicationGroups, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzApplicationGroups, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -3289,85 +3289,85 @@ pub const IAzRole = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzRole, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzRole, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzRole, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzRole, bstrName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzRole, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzRole, pbstrDescription: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzRole, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzRole, bstrDescription: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzRole, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzRole, pbstrApplicationData: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzRole, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzRole, bstrApplicationData: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn AddAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddAppMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteAppMember(self, bstrProp, varReserved);
     }
-    pub fn AddTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddTask(self, bstrProp, varReserved);
     }
-    pub fn DeleteTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteTask(self, bstrProp, varReserved);
     }
-    pub fn AddOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddOperation(self, bstrProp, varReserved);
     }
-    pub fn DeleteOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteOperation(self, bstrProp, varReserved);
     }
-    pub fn AddMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteMember(self, bstrProp, varReserved);
     }
-    pub fn get_Writable(self: *const IAzRole, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzRole, pfProp: ?*BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzRole, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzRole, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn get_AppMembers(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_AppMembers(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_AppMembers(self, pvarProp);
     }
-    pub fn get_Members(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Members(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Members(self, pvarProp);
     }
-    pub fn get_Operations(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Operations(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Operations(self, pvarProp);
     }
-    pub fn get_Tasks(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Tasks(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Tasks(self, pvarProp);
     }
-    pub fn AddPropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzRole, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzRole, lFlags: i32, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn AddMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddMemberName(self, bstrProp, varReserved);
     }
-    pub fn DeleteMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteMemberName(self, bstrProp, varReserved);
     }
-    pub fn get_MembersName(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_MembersName(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_MembersName(self, pvarProp);
     }
 };
@@ -3397,13 +3397,13 @@ pub const IAzRoles = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoles, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzRoles, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzRoles, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzRoles, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzRoles, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzRoles, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -3490,43 +3490,43 @@ pub const IAzClientContext = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AccessCheck(self: *const IAzClientContext, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AccessCheck(self: *const IAzClientContext, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AccessCheck(self, bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
     }
-    pub fn GetBusinessRuleString(self: *const IAzClientContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetBusinessRuleString(self: *const IAzClientContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.GetBusinessRuleString(self, pbstrBusinessRuleString);
     }
-    pub fn get_UserDn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserDn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserDn(self, pbstrProp);
     }
-    pub fn get_UserSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserSamCompat(self, pbstrProp);
     }
-    pub fn get_UserDisplay(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserDisplay(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserDisplay(self, pbstrProp);
     }
-    pub fn get_UserGuid(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserGuid(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserGuid(self, pbstrProp);
     }
-    pub fn get_UserCanonical(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserCanonical(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserCanonical(self, pbstrProp);
     }
-    pub fn get_UserUpn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserUpn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserUpn(self, pbstrProp);
     }
-    pub fn get_UserDnsSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserDnsSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_UserDnsSamCompat(self, pbstrProp);
     }
-    pub fn GetProperty(self: *const IAzClientContext, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzClientContext, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn GetRoles(self: *const IAzClientContext, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetRoles(self: *const IAzClientContext, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetRoles(self, bstrScopeName, pvarRoleNames);
     }
-    pub fn get_RoleForAccessCheck(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RoleForAccessCheck(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_RoleForAccessCheck(self, pbstrProp);
     }
-    pub fn put_RoleForAccessCheck(self: *const IAzClientContext, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RoleForAccessCheck(self: *const IAzClientContext, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_RoleForAccessCheck(self, bstrProp);
     }
 };
@@ -3572,22 +3572,22 @@ pub const IAzClientContext2 = extern union {
     IAzClientContext: IAzClientContext,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetAssignedScopesPage(self: *const IAzClientContext2, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetAssignedScopesPage(self: *const IAzClientContext2, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetAssignedScopesPage(self, lOptions, PageSize, pvarCursor, pvarScopeNames);
     }
-    pub fn AddRoles(self: *const IAzClientContext2, varRoles: VARIANT, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddRoles(self: *const IAzClientContext2, varRoles: VARIANT, bstrScopeName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddRoles(self, varRoles, bstrScopeName);
     }
-    pub fn AddApplicationGroups(self: *const IAzClientContext2, varApplicationGroups: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddApplicationGroups(self: *const IAzClientContext2, varApplicationGroups: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddApplicationGroups(self, varApplicationGroups);
     }
-    pub fn AddStringSids(self: *const IAzClientContext2, varStringSids: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddStringSids(self: *const IAzClientContext2, varStringSids: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddStringSids(self, varStringSids);
     }
-    pub fn put_LDAPQueryDN(self: *const IAzClientContext2, bstrLDAPQueryDN: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LDAPQueryDN(self: *const IAzClientContext2, bstrLDAPQueryDN: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_LDAPQueryDN(self, bstrLDAPQueryDN);
     }
-    pub fn get_LDAPQueryDN(self: *const IAzClientContext2, pbstrLDAPQueryDN: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LDAPQueryDN(self: *const IAzClientContext2, pbstrLDAPQueryDN: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_LDAPQueryDN(self, pbstrLDAPQueryDN);
     }
 };
@@ -3622,16 +3622,16 @@ pub const IAzBizRuleContext = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_BusinessRuleResult(self: *const IAzBizRuleContext, bResult: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_BusinessRuleResult(self: *const IAzBizRuleContext, bResult: BOOL) callconv(.@"inline") HRESULT {
         return self.vtable.put_BusinessRuleResult(self, bResult);
     }
-    pub fn put_BusinessRuleString(self: *const IAzBizRuleContext, bstrBusinessRuleString: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BusinessRuleString(self: *const IAzBizRuleContext, bstrBusinessRuleString: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BusinessRuleString(self, bstrBusinessRuleString);
     }
-    pub fn get_BusinessRuleString(self: *const IAzBizRuleContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BusinessRuleString(self: *const IAzBizRuleContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BusinessRuleString(self, pbstrBusinessRuleString);
     }
-    pub fn GetParameter(self: *const IAzBizRuleContext, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetParameter(self: *const IAzBizRuleContext, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetParameter(self, bstrParameterName, pvarParameterValue);
     }
 };
@@ -3673,22 +3673,22 @@ pub const IAzBizRuleParameters = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddParameter(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddParameter(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddParameter(self, bstrParameterName, varParameterValue);
     }
-    pub fn AddParameters(self: *const IAzBizRuleParameters, varParameterNames: VARIANT, varParameterValues: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddParameters(self: *const IAzBizRuleParameters, varParameterNames: VARIANT, varParameterValues: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddParameters(self, varParameterNames, varParameterValues);
     }
-    pub fn GetParameterValue(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetParameterValue(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetParameterValue(self, bstrParameterName, pvarParameterValue);
     }
-    pub fn Remove(self: *const IAzBizRuleParameters, varParameterName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IAzBizRuleParameters, varParameterName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, varParameterName);
     }
-    pub fn RemoveAll(self: *const IAzBizRuleParameters) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const IAzBizRuleParameters) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAll(self);
     }
-    pub fn get_Count(self: *const IAzBizRuleParameters, plCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzBizRuleParameters, plCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
 };
@@ -3733,22 +3733,22 @@ pub const IAzBizRuleInterfaces = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddInterface(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddInterface(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddInterface(self, bstrInterfaceName, lInterfaceFlag, varInterface);
     }
-    pub fn AddInterfaces(self: *const IAzBizRuleInterfaces, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddInterfaces(self: *const IAzBizRuleInterfaces, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.AddInterfaces(self, varInterfaceNames, varInterfaceFlags, varInterfaces);
     }
-    pub fn GetInterfaceValue(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetInterfaceValue(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetInterfaceValue(self, bstrInterfaceName, lInterfaceFlag, varInterface);
     }
-    pub fn Remove(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.Remove(self, bstrInterfaceName);
     }
-    pub fn RemoveAll(self: *const IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const IAzBizRuleInterfaces) callconv(.@"inline") HRESULT {
         return self.vtable.RemoveAll(self);
     }
-    pub fn get_Count(self: *const IAzBizRuleInterfaces, plCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzBizRuleInterfaces, plCount: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
 };
@@ -3809,28 +3809,28 @@ pub const IAzClientContext3 = extern union {
     IAzClientContext: IAzClientContext,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.AccessCheck2(self, bstrObjectName, bstrScopeName, lOperation, plResult);
     }
-    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.IsInRoleAssignment(self, bstrScopeName, bstrRoleName, pbIsInRole);
     }
-    pub fn GetOperations(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
+    pub fn GetOperations(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.@"inline") HRESULT {
         return self.vtable.GetOperations(self, bstrScopeName, ppOperationCollection);
     }
-    pub fn GetTasks(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+    pub fn GetTasks(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.@"inline") HRESULT {
         return self.vtable.GetTasks(self, bstrScopeName, ppTaskCollection);
     }
-    pub fn get_BizRuleParameters(self: *const IAzClientContext3, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleParameters(self: *const IAzClientContext3, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRuleParameters(self, ppBizRuleParam);
     }
-    pub fn get_BizRuleInterfaces(self: *const IAzClientContext3, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleInterfaces(self: *const IAzClientContext3, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRuleInterfaces(self, ppBizRuleInterfaces);
     }
-    pub fn GetGroups(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetGroups(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetGroups(self, bstrScopeName, ulOptions, pGroupArray);
     }
-    pub fn get_Sids(self: *const IAzClientContext3, pStringSidArray: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Sids(self: *const IAzClientContext3, pStringSidArray: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Sids(self, pStringSidArray);
     }
 };
@@ -3884,28 +3884,28 @@ pub const IAzScope2 = extern union {
     IAzScope: IAzScope,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RoleDefinitions(self: *const IAzScope2, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+    pub fn get_RoleDefinitions(self: *const IAzScope2, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
-    pub fn CreateRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+    pub fn CreateRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
     }
-    pub fn OpenRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+    pub fn OpenRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.@"inline") HRESULT {
         return self.vtable.OpenRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
     }
-    pub fn DeleteRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinitionName);
     }
-    pub fn get_RoleAssignments(self: *const IAzScope2, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn get_RoleAssignments(self: *const IAzScope2, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.get_RoleAssignments(self, ppRoleAssignments);
     }
-    pub fn CreateRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+    pub fn CreateRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
     }
-    pub fn OpenRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+    pub fn OpenRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.@"inline") HRESULT {
         return self.vtable.OpenRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
     }
-    pub fn DeleteRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRoleAssignment(self, bstrRoleAssignmentName);
     }
 };
@@ -3989,46 +3989,46 @@ pub const IAzApplication3 = extern union {
     IAzApplication: IAzApplication,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.Inline) HRESULT {
+    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.ScopeExists(self, bstrScopeName, pbExist);
     }
-    pub fn OpenScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
+    pub fn OpenScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.@"inline") HRESULT {
         return self.vtable.OpenScope2(self, bstrScopeName, ppScope2);
     }
-    pub fn CreateScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
+    pub fn CreateScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.@"inline") HRESULT {
         return self.vtable.CreateScope2(self, bstrScopeName, ppScope2);
     }
-    pub fn DeleteScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteScope2(self, bstrScopeName);
     }
-    pub fn get_RoleDefinitions(self: *const IAzApplication3, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+    pub fn get_RoleDefinitions(self: *const IAzApplication3, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
-    pub fn CreateRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+    pub fn CreateRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
     }
-    pub fn OpenRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+    pub fn OpenRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.@"inline") HRESULT {
         return self.vtable.OpenRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
     }
-    pub fn DeleteRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinitionName);
     }
-    pub fn get_RoleAssignments(self: *const IAzApplication3, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn get_RoleAssignments(self: *const IAzApplication3, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.get_RoleAssignments(self, ppRoleAssignments);
     }
-    pub fn CreateRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+    pub fn CreateRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.@"inline") HRESULT {
         return self.vtable.CreateRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
     }
-    pub fn OpenRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+    pub fn OpenRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.@"inline") HRESULT {
         return self.vtable.OpenRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
     }
-    pub fn DeleteRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRoleAssignment(self, bstrRoleAssignmentName);
     }
-    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*i16) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRulesEnabled(self, pbEnabled);
     }
-    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: i16) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRulesEnabled(self, bEnabled);
     }
 };
@@ -4050,7 +4050,7 @@ pub const IAzOperation2 = extern union {
     IAzOperation: IAzOperation,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };
@@ -4080,13 +4080,13 @@ pub const IAzRoleDefinitions = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoleDefinitions, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzRoleDefinitions, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzRoleDefinitions, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzRoleDefinitions, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzRoleDefinitions, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzRoleDefinitions, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -4121,16 +4121,16 @@ pub const IAzRoleDefinition = extern union {
     IAzTask: IAzTask,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
-    pub fn AddRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
     }
-    pub fn DeleteRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinition);
     }
-    pub fn get_RoleDefinitions(self: *const IAzRoleDefinition, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+    pub fn get_RoleDefinitions(self: *const IAzRoleDefinition, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
 };
@@ -4164,16 +4164,16 @@ pub const IAzRoleAssignment = extern union {
     IAzRole: IAzRole,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
     }
-    pub fn DeleteRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinition);
     }
-    pub fn get_RoleDefinitions(self: *const IAzRoleAssignment, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+    pub fn get_RoleDefinitions(self: *const IAzRoleAssignment, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.@"inline") HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
-    pub fn get_Scope(self: *const IAzRoleAssignment, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+    pub fn get_Scope(self: *const IAzRoleAssignment, ppScope: ?*?*IAzScope) callconv(.@"inline") HRESULT {
         return self.vtable.get_Scope(self, ppScope);
     }
 };
@@ -4203,13 +4203,13 @@ pub const IAzRoleAssignments = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoleAssignments, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzRoleAssignments, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzRoleAssignments, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzRoleAssignments, plCount: ?*i32) callconv(.@"inline") HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzRoleAssignments, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzRoleAssignments, ppEnumPtr: ?*?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -4234,10 +4234,10 @@ pub const IAzPrincipalLocator = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_NameResolver(self: *const IAzPrincipalLocator, ppNameResolver: ?*?*IAzNameResolver) callconv(.Inline) HRESULT {
+    pub fn get_NameResolver(self: *const IAzPrincipalLocator, ppNameResolver: ?*?*IAzNameResolver) callconv(.@"inline") HRESULT {
         return self.vtable.get_NameResolver(self, ppNameResolver);
     }
-    pub fn get_ObjectPicker(self: *const IAzPrincipalLocator, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.Inline) HRESULT {
+    pub fn get_ObjectPicker(self: *const IAzPrincipalLocator, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.@"inline") HRESULT {
         return self.vtable.get_ObjectPicker(self, ppObjectPicker);
     }
 };
@@ -4264,10 +4264,10 @@ pub const IAzNameResolver = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn NameFromSid(self: *const IAzNameResolver, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn NameFromSid(self: *const IAzNameResolver, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.NameFromSid(self, bstrSid, pSidType, pbstrName);
     }
-    pub fn NamesFromSids(self: *const IAzNameResolver, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn NamesFromSids(self: *const IAzNameResolver, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.NamesFromSids(self, vSids, pvSidTypes, pvNames);
     }
 };
@@ -4295,10 +4295,10 @@ pub const IAzObjectPicker = extern union {
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetPrincipals(self: *const IAzObjectPicker, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetPrincipals(self: *const IAzObjectPicker, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.@"inline") HRESULT {
         return self.vtable.GetPrincipals(self, hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
     }
-    pub fn get_Name(self: *const IAzObjectPicker, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzObjectPicker, pbstrName: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
 };
@@ -4350,25 +4350,25 @@ pub const IAzApplicationGroup2 = extern union {
     IAzApplicationGroup: IAzApplicationGroup,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BizRule(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRule(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRule(self, pbstrProp);
     }
-    pub fn put_BizRule(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRule(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRule(self, bstrProp);
     }
-    pub fn get_BizRuleLanguage(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleLanguage(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRuleLanguage(self, pbstrProp);
     }
-    pub fn put_BizRuleLanguage(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRuleLanguage(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRuleLanguage(self, bstrProp);
     }
-    pub fn get_BizRuleImportedPath(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleImportedPath(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.get_BizRuleImportedPath(self, pbstrProp);
     }
-    pub fn put_BizRuleImportedPath(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRuleImportedPath(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.@"inline") HRESULT {
         return self.vtable.put_BizRuleImportedPath(self, bstrProp);
     }
-    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };
@@ -4390,7 +4390,7 @@ pub const IAzTask2 = extern union {
     IAzTask: IAzTask,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzTask2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn RoleAssignments(self: *const IAzTask2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.@"inline") HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };

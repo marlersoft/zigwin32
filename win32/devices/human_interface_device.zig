@@ -2589,34 +2589,34 @@ pub const IDirectInputEffect = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IDirectInputEffect, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInputEffect, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1, param2);
     }
-    pub fn GetEffectGuid(self: *const IDirectInputEffect, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetEffectGuid(self: *const IDirectInputEffect, param0: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectGuid(self, param0);
     }
-    pub fn GetParameters(self: *const IDirectInputEffect, param0: ?*DIEFFECT, param1: u32) callconv(.Inline) HRESULT {
+    pub fn GetParameters(self: *const IDirectInputEffect, param0: ?*DIEFFECT, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetParameters(self, param0, param1);
     }
-    pub fn SetParameters(self: *const IDirectInputEffect, param0: ?*DIEFFECT, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetParameters(self: *const IDirectInputEffect, param0: ?*DIEFFECT, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetParameters(self, param0, param1);
     }
-    pub fn Start(self: *const IDirectInputEffect, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IDirectInputEffect, param0: u32, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Start(self, param0, param1);
     }
-    pub fn Stop(self: *const IDirectInputEffect) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IDirectInputEffect) callconv(.@"inline") HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn GetEffectStatus(self: *const IDirectInputEffect, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEffectStatus(self: *const IDirectInputEffect, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectStatus(self, param0);
     }
-    pub fn Download(self: *const IDirectInputEffect) callconv(.Inline) HRESULT {
+    pub fn Download(self: *const IDirectInputEffect) callconv(.@"inline") HRESULT {
         return self.vtable.Download(self);
     }
-    pub fn Unload(self: *const IDirectInputEffect) callconv(.Inline) HRESULT {
+    pub fn Unload(self: *const IDirectInputEffect) callconv(.@"inline") HRESULT {
         return self.vtable.Unload(self);
     }
-    pub fn Escape(self: *const IDirectInputEffect, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+    pub fn Escape(self: *const IDirectInputEffect, param0: ?*DIEFFESCAPE) callconv(.@"inline") HRESULT {
         return self.vtable.Escape(self, param0);
     }
 };
@@ -3061,49 +3061,49 @@ pub const IDirectInputDeviceW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const IDirectInputDeviceW, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IDirectInputDeviceW, param0: ?*DIDEVCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, param0);
     }
-    pub fn EnumObjects(self: *const IDirectInputDeviceW, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumObjects(self: *const IDirectInputDeviceW, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumObjects(self, param0, param1, param2);
     }
-    pub fn GetProperty(self: *const IDirectInputDeviceW, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IDirectInputDeviceW, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, param0, param1);
     }
-    pub fn SetProperty(self: *const IDirectInputDeviceW, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IDirectInputDeviceW, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, param0, param1);
     }
-    pub fn Acquire(self: *const IDirectInputDeviceW) callconv(.Inline) HRESULT {
+    pub fn Acquire(self: *const IDirectInputDeviceW) callconv(.@"inline") HRESULT {
         return self.vtable.Acquire(self);
     }
-    pub fn Unacquire(self: *const IDirectInputDeviceW) callconv(.Inline) HRESULT {
+    pub fn Unacquire(self: *const IDirectInputDeviceW) callconv(.@"inline") HRESULT {
         return self.vtable.Unacquire(self);
     }
-    pub fn GetDeviceState(self: *const IDirectInputDeviceW, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDeviceState(self: *const IDirectInputDeviceW, param0: u32, param1: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceState(self, param0, param1);
     }
-    pub fn GetDeviceData(self: *const IDirectInputDeviceW, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceData(self: *const IDirectInputDeviceW, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceData(self, param0, param1, param2, param3);
     }
-    pub fn SetDataFormat(self: *const IDirectInputDeviceW, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
+    pub fn SetDataFormat(self: *const IDirectInputDeviceW, param0: ?*DIDATAFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.SetDataFormat(self, param0);
     }
-    pub fn SetEventNotification(self: *const IDirectInputDeviceW, param0: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn SetEventNotification(self: *const IDirectInputDeviceW, param0: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventNotification(self, param0);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectInputDeviceW, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectInputDeviceW, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn GetObjectInfo(self: *const IDirectInputDeviceW, param0: ?*DIDEVICEOBJECTINSTANCEW, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetObjectInfo(self: *const IDirectInputDeviceW, param0: ?*DIDEVICEOBJECTINSTANCEW, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectInfo(self, param0, param1, param2);
     }
-    pub fn GetDeviceInfo(self: *const IDirectInputDeviceW, param0: ?*DIDEVICEINSTANCEW) callconv(.Inline) HRESULT {
+    pub fn GetDeviceInfo(self: *const IDirectInputDeviceW, param0: ?*DIDEVICEINSTANCEW) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceInfo(self, param0);
     }
-    pub fn RunControlPanel(self: *const IDirectInputDeviceW, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn RunControlPanel(self: *const IDirectInputDeviceW, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RunControlPanel(self, param0, param1);
     }
-    pub fn Initialize(self: *const IDirectInputDeviceW, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInputDeviceW, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1, param2);
     }
 };
@@ -3188,49 +3188,49 @@ pub const IDirectInputDeviceA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const IDirectInputDeviceA, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IDirectInputDeviceA, param0: ?*DIDEVCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, param0);
     }
-    pub fn EnumObjects(self: *const IDirectInputDeviceA, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumObjects(self: *const IDirectInputDeviceA, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumObjects(self, param0, param1, param2);
     }
-    pub fn GetProperty(self: *const IDirectInputDeviceA, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IDirectInputDeviceA, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, param0, param1);
     }
-    pub fn SetProperty(self: *const IDirectInputDeviceA, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IDirectInputDeviceA, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, param0, param1);
     }
-    pub fn Acquire(self: *const IDirectInputDeviceA) callconv(.Inline) HRESULT {
+    pub fn Acquire(self: *const IDirectInputDeviceA) callconv(.@"inline") HRESULT {
         return self.vtable.Acquire(self);
     }
-    pub fn Unacquire(self: *const IDirectInputDeviceA) callconv(.Inline) HRESULT {
+    pub fn Unacquire(self: *const IDirectInputDeviceA) callconv(.@"inline") HRESULT {
         return self.vtable.Unacquire(self);
     }
-    pub fn GetDeviceState(self: *const IDirectInputDeviceA, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDeviceState(self: *const IDirectInputDeviceA, param0: u32, param1: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceState(self, param0, param1);
     }
-    pub fn GetDeviceData(self: *const IDirectInputDeviceA, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceData(self: *const IDirectInputDeviceA, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceData(self, param0, param1, param2, param3);
     }
-    pub fn SetDataFormat(self: *const IDirectInputDeviceA, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
+    pub fn SetDataFormat(self: *const IDirectInputDeviceA, param0: ?*DIDATAFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.SetDataFormat(self, param0);
     }
-    pub fn SetEventNotification(self: *const IDirectInputDeviceA, param0: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn SetEventNotification(self: *const IDirectInputDeviceA, param0: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventNotification(self, param0);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectInputDeviceA, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectInputDeviceA, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn GetObjectInfo(self: *const IDirectInputDeviceA, param0: ?*DIDEVICEOBJECTINSTANCEA, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetObjectInfo(self: *const IDirectInputDeviceA, param0: ?*DIDEVICEOBJECTINSTANCEA, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectInfo(self, param0, param1, param2);
     }
-    pub fn GetDeviceInfo(self: *const IDirectInputDeviceA, param0: ?*DIDEVICEINSTANCEA) callconv(.Inline) HRESULT {
+    pub fn GetDeviceInfo(self: *const IDirectInputDeviceA, param0: ?*DIDEVICEINSTANCEA) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceInfo(self, param0);
     }
-    pub fn RunControlPanel(self: *const IDirectInputDeviceA, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn RunControlPanel(self: *const IDirectInputDeviceA, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RunControlPanel(self, param0, param1);
     }
-    pub fn Initialize(self: *const IDirectInputDeviceA, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInputDeviceA, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1, param2);
     }
 };
@@ -3323,31 +3323,31 @@ pub const IDirectInputDevice2W = extern union {
     vtable: *const VTable,
     IDirectInputDeviceW: IDirectInputDeviceW,
     IUnknown: IUnknown,
-    pub fn CreateEffect(self: *const IDirectInputDevice2W, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateEffect(self: *const IDirectInputDevice2W, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEffect(self, param0, param1, param2, param3);
     }
-    pub fn EnumEffects(self: *const IDirectInputDevice2W, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumEffects(self: *const IDirectInputDevice2W, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffects(self, param0, param1, param2);
     }
-    pub fn GetEffectInfo(self: *const IDirectInputDevice2W, param0: ?*DIEFFECTINFOW, param1: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetEffectInfo(self: *const IDirectInputDevice2W, param0: ?*DIEFFECTINFOW, param1: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectInfo(self, param0, param1);
     }
-    pub fn GetForceFeedbackState(self: *const IDirectInputDevice2W, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetForceFeedbackState(self: *const IDirectInputDevice2W, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetForceFeedbackState(self, param0);
     }
-    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice2W, param0: u32) callconv(.Inline) HRESULT {
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice2W, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendForceFeedbackCommand(self, param0);
     }
-    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice2W, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice2W, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCreatedEffectObjects(self, param0, param1, param2);
     }
-    pub fn Escape(self: *const IDirectInputDevice2W, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+    pub fn Escape(self: *const IDirectInputDevice2W, param0: ?*DIEFFESCAPE) callconv(.@"inline") HRESULT {
         return self.vtable.Escape(self, param0);
     }
-    pub fn Poll(self: *const IDirectInputDevice2W) callconv(.Inline) HRESULT {
+    pub fn Poll(self: *const IDirectInputDevice2W) callconv(.@"inline") HRESULT {
         return self.vtable.Poll(self);
     }
-    pub fn SendDeviceData(self: *const IDirectInputDevice2W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn SendDeviceData(self: *const IDirectInputDevice2W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendDeviceData(self, param0, param1, param2, param3);
     }
 };
@@ -3407,31 +3407,31 @@ pub const IDirectInputDevice2A = extern union {
     vtable: *const VTable,
     IDirectInputDeviceA: IDirectInputDeviceA,
     IUnknown: IUnknown,
-    pub fn CreateEffect(self: *const IDirectInputDevice2A, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateEffect(self: *const IDirectInputDevice2A, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEffect(self, param0, param1, param2, param3);
     }
-    pub fn EnumEffects(self: *const IDirectInputDevice2A, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumEffects(self: *const IDirectInputDevice2A, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffects(self, param0, param1, param2);
     }
-    pub fn GetEffectInfo(self: *const IDirectInputDevice2A, param0: ?*DIEFFECTINFOA, param1: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetEffectInfo(self: *const IDirectInputDevice2A, param0: ?*DIEFFECTINFOA, param1: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectInfo(self, param0, param1);
     }
-    pub fn GetForceFeedbackState(self: *const IDirectInputDevice2A, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetForceFeedbackState(self: *const IDirectInputDevice2A, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetForceFeedbackState(self, param0);
     }
-    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice2A, param0: u32) callconv(.Inline) HRESULT {
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice2A, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendForceFeedbackCommand(self, param0);
     }
-    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice2A, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice2A, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCreatedEffectObjects(self, param0, param1, param2);
     }
-    pub fn Escape(self: *const IDirectInputDevice2A, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+    pub fn Escape(self: *const IDirectInputDevice2A, param0: ?*DIEFFESCAPE) callconv(.@"inline") HRESULT {
         return self.vtable.Escape(self, param0);
     }
-    pub fn Poll(self: *const IDirectInputDevice2A) callconv(.Inline) HRESULT {
+    pub fn Poll(self: *const IDirectInputDevice2A) callconv(.@"inline") HRESULT {
         return self.vtable.Poll(self);
     }
-    pub fn SendDeviceData(self: *const IDirectInputDevice2A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn SendDeviceData(self: *const IDirectInputDevice2A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendDeviceData(self, param0, param1, param2, param3);
     }
 };
@@ -3460,10 +3460,10 @@ pub const IDirectInputDevice7W = extern union {
     IDirectInputDevice2W: IDirectInputDevice2W,
     IDirectInputDeviceW: IDirectInputDeviceW,
     IUnknown: IUnknown,
-    pub fn EnumEffectsInFile(self: *const IDirectInputDevice7W, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+    pub fn EnumEffectsInFile(self: *const IDirectInputDevice7W, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffectsInFile(self, param0, param1, param2, param3);
     }
-    pub fn WriteEffectToFile(self: *const IDirectInputDevice7W, param0: ?[*:0]const u16, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
+    pub fn WriteEffectToFile(self: *const IDirectInputDevice7W, param0: ?[*:0]const u16, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteEffectToFile(self, param0, param1, param2, param3);
     }
 };
@@ -3492,10 +3492,10 @@ pub const IDirectInputDevice7A = extern union {
     IDirectInputDevice2A: IDirectInputDevice2A,
     IDirectInputDeviceA: IDirectInputDeviceA,
     IUnknown: IUnknown,
-    pub fn EnumEffectsInFile(self: *const IDirectInputDevice7A, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+    pub fn EnumEffectsInFile(self: *const IDirectInputDevice7A, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffectsInFile(self, param0, param1, param2, param3);
     }
-    pub fn WriteEffectToFile(self: *const IDirectInputDevice7A, param0: ?[*:0]const u8, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
+    pub fn WriteEffectToFile(self: *const IDirectInputDevice7A, param0: ?[*:0]const u8, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteEffectToFile(self, param0, param1, param2, param3);
     }
 };
@@ -3656,91 +3656,91 @@ pub const IDirectInputDevice8W = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const IDirectInputDevice8W, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IDirectInputDevice8W, param0: ?*DIDEVCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, param0);
     }
-    pub fn EnumObjects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumObjects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumObjects(self, param0, param1, param2);
     }
-    pub fn GetProperty(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, param0, param1);
     }
-    pub fn SetProperty(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, param0, param1);
     }
-    pub fn Acquire(self: *const IDirectInputDevice8W) callconv(.Inline) HRESULT {
+    pub fn Acquire(self: *const IDirectInputDevice8W) callconv(.@"inline") HRESULT {
         return self.vtable.Acquire(self);
     }
-    pub fn Unacquire(self: *const IDirectInputDevice8W) callconv(.Inline) HRESULT {
+    pub fn Unacquire(self: *const IDirectInputDevice8W) callconv(.@"inline") HRESULT {
         return self.vtable.Unacquire(self);
     }
-    pub fn GetDeviceState(self: *const IDirectInputDevice8W, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDeviceState(self: *const IDirectInputDevice8W, param0: u32, param1: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceState(self, param0, param1);
     }
-    pub fn GetDeviceData(self: *const IDirectInputDevice8W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceData(self: *const IDirectInputDevice8W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceData(self, param0, param1, param2, param3);
     }
-    pub fn SetDataFormat(self: *const IDirectInputDevice8W, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
+    pub fn SetDataFormat(self: *const IDirectInputDevice8W, param0: ?*DIDATAFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.SetDataFormat(self, param0);
     }
-    pub fn SetEventNotification(self: *const IDirectInputDevice8W, param0: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn SetEventNotification(self: *const IDirectInputDevice8W, param0: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventNotification(self, param0);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectInputDevice8W, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectInputDevice8W, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn GetObjectInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEOBJECTINSTANCEW, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetObjectInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEOBJECTINSTANCEW, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectInfo(self, param0, param1, param2);
     }
-    pub fn GetDeviceInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEINSTANCEW) callconv(.Inline) HRESULT {
+    pub fn GetDeviceInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEINSTANCEW) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceInfo(self, param0);
     }
-    pub fn RunControlPanel(self: *const IDirectInputDevice8W, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn RunControlPanel(self: *const IDirectInputDevice8W, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RunControlPanel(self, param0, param1);
     }
-    pub fn Initialize(self: *const IDirectInputDevice8W, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInputDevice8W, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1, param2);
     }
-    pub fn CreateEffect(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateEffect(self: *const IDirectInputDevice8W, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEffect(self, param0, param1, param2, param3);
     }
-    pub fn EnumEffects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumEffects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffects(self, param0, param1, param2);
     }
-    pub fn GetEffectInfo(self: *const IDirectInputDevice8W, param0: ?*DIEFFECTINFOW, param1: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetEffectInfo(self: *const IDirectInputDevice8W, param0: ?*DIEFFECTINFOW, param1: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectInfo(self, param0, param1);
     }
-    pub fn GetForceFeedbackState(self: *const IDirectInputDevice8W, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetForceFeedbackState(self: *const IDirectInputDevice8W, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetForceFeedbackState(self, param0);
     }
-    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice8W, param0: u32) callconv(.Inline) HRESULT {
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice8W, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendForceFeedbackCommand(self, param0);
     }
-    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice8W, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCreatedEffectObjects(self, param0, param1, param2);
     }
-    pub fn Escape(self: *const IDirectInputDevice8W, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+    pub fn Escape(self: *const IDirectInputDevice8W, param0: ?*DIEFFESCAPE) callconv(.@"inline") HRESULT {
         return self.vtable.Escape(self, param0);
     }
-    pub fn Poll(self: *const IDirectInputDevice8W) callconv(.Inline) HRESULT {
+    pub fn Poll(self: *const IDirectInputDevice8W) callconv(.@"inline") HRESULT {
         return self.vtable.Poll(self);
     }
-    pub fn SendDeviceData(self: *const IDirectInputDevice8W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn SendDeviceData(self: *const IDirectInputDevice8W, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendDeviceData(self, param0, param1, param2, param3);
     }
-    pub fn EnumEffectsInFile(self: *const IDirectInputDevice8W, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+    pub fn EnumEffectsInFile(self: *const IDirectInputDevice8W, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffectsInFile(self, param0, param1, param2, param3);
     }
-    pub fn WriteEffectToFile(self: *const IDirectInputDevice8W, param0: ?[*:0]const u16, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
+    pub fn WriteEffectToFile(self: *const IDirectInputDevice8W, param0: ?[*:0]const u16, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteEffectToFile(self, param0, param1, param2, param3);
     }
-    pub fn BuildActionMap(self: *const IDirectInputDevice8W, param0: ?*DIACTIONFORMATW, param1: ?[*:0]const u16, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BuildActionMap(self: *const IDirectInputDevice8W, param0: ?*DIACTIONFORMATW, param1: ?[*:0]const u16, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BuildActionMap(self, param0, param1, param2);
     }
-    pub fn SetActionMap(self: *const IDirectInputDevice8W, param0: ?*DIACTIONFORMATW, param1: ?[*:0]const u16, param2: u32) callconv(.Inline) HRESULT {
+    pub fn SetActionMap(self: *const IDirectInputDevice8W, param0: ?*DIACTIONFORMATW, param1: ?[*:0]const u16, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetActionMap(self, param0, param1, param2);
     }
-    pub fn GetImageInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEIMAGEINFOHEADERW) callconv(.Inline) HRESULT {
+    pub fn GetImageInfo(self: *const IDirectInputDevice8W, param0: ?*DIDEVICEIMAGEINFOHEADERW) callconv(.@"inline") HRESULT {
         return self.vtable.GetImageInfo(self, param0);
     }
 };
@@ -3901,91 +3901,91 @@ pub const IDirectInputDevice8A = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const IDirectInputDevice8A, param0: ?*DIDEVCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IDirectInputDevice8A, param0: ?*DIDEVCAPS) callconv(.@"inline") HRESULT {
         return self.vtable.GetCapabilities(self, param0);
     }
-    pub fn EnumObjects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumObjects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumObjects(self, param0, param1, param2);
     }
-    pub fn GetProperty(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.@"inline") HRESULT {
         return self.vtable.GetProperty(self, param0, param1);
     }
-    pub fn SetProperty(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIPROPHEADER) callconv(.@"inline") HRESULT {
         return self.vtable.SetProperty(self, param0, param1);
     }
-    pub fn Acquire(self: *const IDirectInputDevice8A) callconv(.Inline) HRESULT {
+    pub fn Acquire(self: *const IDirectInputDevice8A) callconv(.@"inline") HRESULT {
         return self.vtable.Acquire(self);
     }
-    pub fn Unacquire(self: *const IDirectInputDevice8A) callconv(.Inline) HRESULT {
+    pub fn Unacquire(self: *const IDirectInputDevice8A) callconv(.@"inline") HRESULT {
         return self.vtable.Unacquire(self);
     }
-    pub fn GetDeviceState(self: *const IDirectInputDevice8A, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDeviceState(self: *const IDirectInputDevice8A, param0: u32, param1: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceState(self, param0, param1);
     }
-    pub fn GetDeviceData(self: *const IDirectInputDevice8A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceData(self: *const IDirectInputDevice8A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceData(self, param0, param1, param2, param3);
     }
-    pub fn SetDataFormat(self: *const IDirectInputDevice8A, param0: ?*DIDATAFORMAT) callconv(.Inline) HRESULT {
+    pub fn SetDataFormat(self: *const IDirectInputDevice8A, param0: ?*DIDATAFORMAT) callconv(.@"inline") HRESULT {
         return self.vtable.SetDataFormat(self, param0);
     }
-    pub fn SetEventNotification(self: *const IDirectInputDevice8A, param0: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn SetEventNotification(self: *const IDirectInputDevice8A, param0: ?HANDLE) callconv(.@"inline") HRESULT {
         return self.vtable.SetEventNotification(self, param0);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectInputDevice8A, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectInputDevice8A, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn GetObjectInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEOBJECTINSTANCEA, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetObjectInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEOBJECTINSTANCEA, param1: u32, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetObjectInfo(self, param0, param1, param2);
     }
-    pub fn GetDeviceInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEINSTANCEA) callconv(.Inline) HRESULT {
+    pub fn GetDeviceInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEINSTANCEA) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceInfo(self, param0);
     }
-    pub fn RunControlPanel(self: *const IDirectInputDevice8A, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn RunControlPanel(self: *const IDirectInputDevice8A, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RunControlPanel(self, param0, param1);
     }
-    pub fn Initialize(self: *const IDirectInputDevice8A, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInputDevice8A, param0: ?HINSTANCE, param1: u32, param2: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1, param2);
     }
-    pub fn CreateEffect(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateEffect(self: *const IDirectInputDevice8A, param0: ?*const Guid, param1: ?*DIEFFECT, param2: ?*?*IDirectInputEffect, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateEffect(self, param0, param1, param2, param3);
     }
-    pub fn EnumEffects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumEffects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffects(self, param0, param1, param2);
     }
-    pub fn GetEffectInfo(self: *const IDirectInputDevice8A, param0: ?*DIEFFECTINFOA, param1: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetEffectInfo(self: *const IDirectInputDevice8A, param0: ?*DIEFFECTINFOA, param1: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectInfo(self, param0, param1);
     }
-    pub fn GetForceFeedbackState(self: *const IDirectInputDevice8A, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetForceFeedbackState(self: *const IDirectInputDevice8A, param0: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetForceFeedbackState(self, param0);
     }
-    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice8A, param0: u32) callconv(.Inline) HRESULT {
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputDevice8A, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendForceFeedbackCommand(self, param0);
     }
-    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
+    pub fn EnumCreatedEffectObjects(self: *const IDirectInputDevice8A, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumCreatedEffectObjects(self, param0, param1, param2);
     }
-    pub fn Escape(self: *const IDirectInputDevice8A, param0: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+    pub fn Escape(self: *const IDirectInputDevice8A, param0: ?*DIEFFESCAPE) callconv(.@"inline") HRESULT {
         return self.vtable.Escape(self, param0);
     }
-    pub fn Poll(self: *const IDirectInputDevice8A) callconv(.Inline) HRESULT {
+    pub fn Poll(self: *const IDirectInputDevice8A) callconv(.@"inline") HRESULT {
         return self.vtable.Poll(self);
     }
-    pub fn SendDeviceData(self: *const IDirectInputDevice8A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn SendDeviceData(self: *const IDirectInputDevice8A, param0: u32, param1: ?*DIDEVICEOBJECTDATA, param2: ?*u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendDeviceData(self, param0, param1, param2, param3);
     }
-    pub fn EnumEffectsInFile(self: *const IDirectInputDevice8A, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+    pub fn EnumEffectsInFile(self: *const IDirectInputDevice8A, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumEffectsInFile(self, param0, param1, param2, param3);
     }
-    pub fn WriteEffectToFile(self: *const IDirectInputDevice8A, param0: ?[*:0]const u8, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.Inline) HRESULT {
+    pub fn WriteEffectToFile(self: *const IDirectInputDevice8A, param0: ?[*:0]const u8, param1: u32, param2: ?*DIFILEEFFECT, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.WriteEffectToFile(self, param0, param1, param2, param3);
     }
-    pub fn BuildActionMap(self: *const IDirectInputDevice8A, param0: ?*DIACTIONFORMATA, param1: ?[*:0]const u8, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BuildActionMap(self: *const IDirectInputDevice8A, param0: ?*DIACTIONFORMATA, param1: ?[*:0]const u8, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.BuildActionMap(self, param0, param1, param2);
     }
-    pub fn SetActionMap(self: *const IDirectInputDevice8A, param0: ?*DIACTIONFORMATA, param1: ?[*:0]const u8, param2: u32) callconv(.Inline) HRESULT {
+    pub fn SetActionMap(self: *const IDirectInputDevice8A, param0: ?*DIACTIONFORMATA, param1: ?[*:0]const u8, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetActionMap(self, param0, param1, param2);
     }
-    pub fn GetImageInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEIMAGEINFOHEADERA) callconv(.Inline) HRESULT {
+    pub fn GetImageInfo(self: *const IDirectInputDevice8A, param0: ?*DIDEVICEIMAGEINFOHEADERA) callconv(.@"inline") HRESULT {
         return self.vtable.GetImageInfo(self, param0);
     }
 };
@@ -4115,19 +4115,19 @@ pub const IDirectInputW = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateDevice(self: *const IDirectInputW, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceW, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateDevice(self: *const IDirectInputW, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceW, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDevice(self, param0, param1, param2);
     }
-    pub fn EnumDevices(self: *const IDirectInputW, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+    pub fn EnumDevices(self: *const IDirectInputW, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDevices(self, param0, param1, param2, param3);
     }
-    pub fn GetDeviceStatus(self: *const IDirectInputW, param0: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetDeviceStatus(self: *const IDirectInputW, param0: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceStatus(self, param0);
     }
-    pub fn RunControlPanel(self: *const IDirectInputW, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn RunControlPanel(self: *const IDirectInputW, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RunControlPanel(self, param0, param1);
     }
-    pub fn Initialize(self: *const IDirectInputW, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInputW, param0: ?HINSTANCE, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
 };
@@ -4167,19 +4167,19 @@ pub const IDirectInputA = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateDevice(self: *const IDirectInputA, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceA, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateDevice(self: *const IDirectInputA, param0: ?*const Guid, param1: ?*?*IDirectInputDeviceA, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDevice(self, param0, param1, param2);
     }
-    pub fn EnumDevices(self: *const IDirectInputA, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+    pub fn EnumDevices(self: *const IDirectInputA, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDevices(self, param0, param1, param2, param3);
     }
-    pub fn GetDeviceStatus(self: *const IDirectInputA, param0: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetDeviceStatus(self: *const IDirectInputA, param0: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceStatus(self, param0);
     }
-    pub fn RunControlPanel(self: *const IDirectInputA, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn RunControlPanel(self: *const IDirectInputA, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RunControlPanel(self, param0, param1);
     }
-    pub fn Initialize(self: *const IDirectInputA, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInputA, param0: ?HINSTANCE, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
 };
@@ -4199,7 +4199,7 @@ pub const IDirectInput2W = extern union {
     vtable: *const VTable,
     IDirectInputW: IDirectInputW,
     IUnknown: IUnknown,
-    pub fn FindDevice(self: *const IDirectInput2W, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn FindDevice(self: *const IDirectInput2W, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FindDevice(self, param0, param1, param2);
     }
 };
@@ -4219,7 +4219,7 @@ pub const IDirectInput2A = extern union {
     vtable: *const VTable,
     IDirectInputA: IDirectInputA,
     IUnknown: IUnknown,
-    pub fn FindDevice(self: *const IDirectInput2A, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn FindDevice(self: *const IDirectInput2A, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FindDevice(self, param0, param1, param2);
     }
 };
@@ -4241,7 +4241,7 @@ pub const IDirectInput7W = extern union {
     IDirectInput2W: IDirectInput2W,
     IDirectInputW: IDirectInputW,
     IUnknown: IUnknown,
-    pub fn CreateDeviceEx(self: *const IDirectInput7W, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateDeviceEx(self: *const IDirectInput7W, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDeviceEx(self, param0, param1, param2, param3);
     }
 };
@@ -4263,7 +4263,7 @@ pub const IDirectInput7A = extern union {
     IDirectInput2A: IDirectInput2A,
     IDirectInputA: IDirectInputA,
     IUnknown: IUnknown,
-    pub fn CreateDeviceEx(self: *const IDirectInput7A, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateDeviceEx(self: *const IDirectInput7A, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDeviceEx(self, param0, param1, param2, param3);
     }
 };
@@ -4324,28 +4324,28 @@ pub const IDirectInput8W = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateDevice(self: *const IDirectInput8W, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8W, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateDevice(self: *const IDirectInput8W, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8W, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDevice(self, param0, param1, param2);
     }
-    pub fn EnumDevices(self: *const IDirectInput8W, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+    pub fn EnumDevices(self: *const IDirectInput8W, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDevices(self, param0, param1, param2, param3);
     }
-    pub fn GetDeviceStatus(self: *const IDirectInput8W, param0: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetDeviceStatus(self: *const IDirectInput8W, param0: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceStatus(self, param0);
     }
-    pub fn RunControlPanel(self: *const IDirectInput8W, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn RunControlPanel(self: *const IDirectInput8W, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RunControlPanel(self, param0, param1);
     }
-    pub fn Initialize(self: *const IDirectInput8W, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInput8W, param0: ?HINSTANCE, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn FindDevice(self: *const IDirectInput8W, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn FindDevice(self: *const IDirectInput8W, param0: ?*const Guid, param1: ?[*:0]const u16, param2: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FindDevice(self, param0, param1, param2);
     }
-    pub fn EnumDevicesBySemantics(self: *const IDirectInput8W, param0: ?[*:0]const u16, param1: ?*DIACTIONFORMATW, param2: ?LPDIENUMDEVICESBYSEMANTICSCBW, param3: ?*anyopaque, param4: u32) callconv(.Inline) HRESULT {
+    pub fn EnumDevicesBySemantics(self: *const IDirectInput8W, param0: ?[*:0]const u16, param1: ?*DIACTIONFORMATW, param2: ?LPDIENUMDEVICESBYSEMANTICSCBW, param3: ?*anyopaque, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDevicesBySemantics(self, param0, param1, param2, param3, param4);
     }
-    pub fn ConfigureDevices(self: *const IDirectInput8W, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSW, param2: u32, param3: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ConfigureDevices(self: *const IDirectInput8W, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSW, param2: u32, param3: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.ConfigureDevices(self, param0, param1, param2, param3);
     }
 };
@@ -4406,28 +4406,28 @@ pub const IDirectInput8A = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateDevice(self: *const IDirectInput8A, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8A, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateDevice(self: *const IDirectInput8A, param0: ?*const Guid, param1: ?*?*IDirectInputDevice8A, param2: ?*IUnknown) callconv(.@"inline") HRESULT {
         return self.vtable.CreateDevice(self, param0, param1, param2);
     }
-    pub fn EnumDevices(self: *const IDirectInput8A, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
+    pub fn EnumDevices(self: *const IDirectInput8A, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDevices(self, param0, param1, param2, param3);
     }
-    pub fn GetDeviceStatus(self: *const IDirectInput8A, param0: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn GetDeviceStatus(self: *const IDirectInput8A, param0: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.GetDeviceStatus(self, param0);
     }
-    pub fn RunControlPanel(self: *const IDirectInput8A, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn RunControlPanel(self: *const IDirectInput8A, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.RunControlPanel(self, param0, param1);
     }
-    pub fn Initialize(self: *const IDirectInput8A, param0: ?HINSTANCE, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectInput8A, param0: ?HINSTANCE, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn FindDevice(self: *const IDirectInput8A, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn FindDevice(self: *const IDirectInput8A, param0: ?*const Guid, param1: ?[*:0]const u8, param2: ?*Guid) callconv(.@"inline") HRESULT {
         return self.vtable.FindDevice(self, param0, param1, param2);
     }
-    pub fn EnumDevicesBySemantics(self: *const IDirectInput8A, param0: ?[*:0]const u8, param1: ?*DIACTIONFORMATA, param2: ?LPDIENUMDEVICESBYSEMANTICSCBA, param3: ?*anyopaque, param4: u32) callconv(.Inline) HRESULT {
+    pub fn EnumDevicesBySemantics(self: *const IDirectInput8A, param0: ?[*:0]const u8, param1: ?*DIACTIONFORMATA, param2: ?LPDIENUMDEVICESBYSEMANTICSCBA, param3: ?*anyopaque, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.EnumDevicesBySemantics(self, param0, param1, param2, param3, param4);
     }
-    pub fn ConfigureDevices(self: *const IDirectInput8A, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSA, param2: u32, param3: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn ConfigureDevices(self: *const IDirectInput8A, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSA, param2: u32, param3: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.ConfigureDevices(self, param0, param1, param2, param3);
     }
 };
@@ -4563,37 +4563,37 @@ pub const IDirectInputEffectDriver = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DeviceID(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: u32, param3: u32, param4: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn DeviceID(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: u32, param3: u32, param4: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.DeviceID(self, param0, param1, param2, param3, param4);
     }
-    pub fn GetVersions(self: *const IDirectInputEffectDriver, param0: ?*DIDRIVERVERSIONS) callconv(.Inline) HRESULT {
+    pub fn GetVersions(self: *const IDirectInputEffectDriver, param0: ?*DIDRIVERVERSIONS) callconv(.@"inline") HRESULT {
         return self.vtable.GetVersions(self, param0);
     }
-    pub fn Escape(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*DIEFFESCAPE) callconv(.Inline) HRESULT {
+    pub fn Escape(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*DIEFFESCAPE) callconv(.@"inline") HRESULT {
         return self.vtable.Escape(self, param0, param1, param2);
     }
-    pub fn SetGain(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetGain(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetGain(self, param0, param1);
     }
-    pub fn SendForceFeedbackCommand(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SendForceFeedbackCommand(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SendForceFeedbackCommand(self, param0, param1);
     }
-    pub fn GetForceFeedbackState(self: *const IDirectInputEffectDriver, param0: u32, param1: ?*DIDEVICESTATE) callconv(.Inline) HRESULT {
+    pub fn GetForceFeedbackState(self: *const IDirectInputEffectDriver, param0: u32, param1: ?*DIDEVICESTATE) callconv(.@"inline") HRESULT {
         return self.vtable.GetForceFeedbackState(self, param0, param1);
     }
-    pub fn DownloadEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*u32, param3: ?*DIEFFECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn DownloadEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*u32, param3: ?*DIEFFECT, param4: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DownloadEffect(self, param0, param1, param2, param3, param4);
     }
-    pub fn DestroyEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+    pub fn DestroyEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DestroyEffect(self, param0, param1);
     }
-    pub fn StartEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn StartEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: u32, param3: u32) callconv(.@"inline") HRESULT {
         return self.vtable.StartEffect(self, param0, param1, param2, param3);
     }
-    pub fn StopEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.Inline) HRESULT {
+    pub fn StopEffect(self: *const IDirectInputEffectDriver, param0: u32, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.StopEffect(self, param0, param1);
     }
-    pub fn GetEffectStatus(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEffectStatus(self: *const IDirectInputEffectDriver, param0: u32, param1: u32, param2: ?*u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetEffectStatus(self, param0, param1, param2);
     }
 };
@@ -4794,52 +4794,52 @@ pub const IDirectInputJoyConfig = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Acquire(self: *const IDirectInputJoyConfig) callconv(.Inline) HRESULT {
+    pub fn Acquire(self: *const IDirectInputJoyConfig) callconv(.@"inline") HRESULT {
         return self.vtable.Acquire(self);
     }
-    pub fn Unacquire(self: *const IDirectInputJoyConfig) callconv(.Inline) HRESULT {
+    pub fn Unacquire(self: *const IDirectInputJoyConfig) callconv(.@"inline") HRESULT {
         return self.vtable.Unacquire(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectInputJoyConfig, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectInputJoyConfig, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SendNotify(self: *const IDirectInputJoyConfig) callconv(.Inline) HRESULT {
+    pub fn SendNotify(self: *const IDirectInputJoyConfig) callconv(.@"inline") HRESULT {
         return self.vtable.SendNotify(self);
     }
-    pub fn EnumTypes(self: *const IDirectInputJoyConfig, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn EnumTypes(self: *const IDirectInputJoyConfig, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.EnumTypes(self, param0, param1);
     }
-    pub fn GetTypeInfo(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetTypeInfo(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfo(self, param0, param1, param2);
     }
-    pub fn SetTypeInfo(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
+    pub fn SetTypeInfo(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetTypeInfo(self, param0, param1, param2);
     }
-    pub fn DeleteType(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteType(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteType(self, param0);
     }
-    pub fn GetConfig(self: *const IDirectInputJoyConfig, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetConfig(self: *const IDirectInputJoyConfig, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConfig(self, param0, param1, param2);
     }
-    pub fn SetConfig(self: *const IDirectInputJoyConfig, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
+    pub fn SetConfig(self: *const IDirectInputJoyConfig, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetConfig(self, param0, param1, param2);
     }
-    pub fn DeleteConfig(self: *const IDirectInputJoyConfig, param0: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteConfig(self: *const IDirectInputJoyConfig, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteConfig(self, param0);
     }
-    pub fn GetUserValues(self: *const IDirectInputJoyConfig, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
+    pub fn GetUserValues(self: *const IDirectInputJoyConfig, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserValues(self, param0, param1);
     }
-    pub fn SetUserValues(self: *const IDirectInputJoyConfig, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetUserValues(self: *const IDirectInputJoyConfig, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetUserValues(self, param0, param1);
     }
-    pub fn AddNewHardware(self: *const IDirectInputJoyConfig, param0: ?HWND, param1: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn AddNewHardware(self: *const IDirectInputJoyConfig, param0: ?HWND, param1: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.AddNewHardware(self, param0, param1);
     }
-    pub fn OpenTypeKey(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
+    pub fn OpenTypeKey(self: *const IDirectInputJoyConfig, param0: ?[*:0]const u16, param1: u32, param2: ?*?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.OpenTypeKey(self, param0, param1, param2);
     }
-    pub fn OpenConfigKey(self: *const IDirectInputJoyConfig, param0: u32, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
+    pub fn OpenConfigKey(self: *const IDirectInputJoyConfig, param0: u32, param1: u32, param2: ?*?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.OpenConfigKey(self, param0, param1, param2);
     }
 };
@@ -4929,52 +4929,52 @@ pub const IDirectInputJoyConfig8 = extern union {
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Acquire(self: *const IDirectInputJoyConfig8) callconv(.Inline) HRESULT {
+    pub fn Acquire(self: *const IDirectInputJoyConfig8) callconv(.@"inline") HRESULT {
         return self.vtable.Acquire(self);
     }
-    pub fn Unacquire(self: *const IDirectInputJoyConfig8) callconv(.Inline) HRESULT {
+    pub fn Unacquire(self: *const IDirectInputJoyConfig8) callconv(.@"inline") HRESULT {
         return self.vtable.Unacquire(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectInputJoyConfig8, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectInputJoyConfig8, param0: ?HWND, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SendNotify(self: *const IDirectInputJoyConfig8) callconv(.Inline) HRESULT {
+    pub fn SendNotify(self: *const IDirectInputJoyConfig8) callconv(.@"inline") HRESULT {
         return self.vtable.SendNotify(self);
     }
-    pub fn EnumTypes(self: *const IDirectInputJoyConfig8, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn EnumTypes(self: *const IDirectInputJoyConfig8, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.@"inline") HRESULT {
         return self.vtable.EnumTypes(self, param0, param1);
     }
-    pub fn GetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetTypeInfo(self, param0, param1, param2);
     }
-    pub fn SetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32, param3: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn SetTypeInfo(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: ?*DIJOYTYPEINFO, param2: u32, param3: ?PWSTR) callconv(.@"inline") HRESULT {
         return self.vtable.SetTypeInfo(self, param0, param1, param2, param3);
     }
-    pub fn DeleteType(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteType(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteType(self, param0);
     }
-    pub fn GetConfig(self: *const IDirectInputJoyConfig8, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetConfig(self: *const IDirectInputJoyConfig8, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetConfig(self, param0, param1, param2);
     }
-    pub fn SetConfig(self: *const IDirectInputJoyConfig8, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.Inline) HRESULT {
+    pub fn SetConfig(self: *const IDirectInputJoyConfig8, param0: u32, param1: ?*DIJOYCONFIG, param2: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetConfig(self, param0, param1, param2);
     }
-    pub fn DeleteConfig(self: *const IDirectInputJoyConfig8, param0: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteConfig(self: *const IDirectInputJoyConfig8, param0: u32) callconv(.@"inline") HRESULT {
         return self.vtable.DeleteConfig(self, param0);
     }
-    pub fn GetUserValues(self: *const IDirectInputJoyConfig8, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
+    pub fn GetUserValues(self: *const IDirectInputJoyConfig8, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.GetUserValues(self, param0, param1);
     }
-    pub fn SetUserValues(self: *const IDirectInputJoyConfig8, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetUserValues(self: *const IDirectInputJoyConfig8, param0: ?*DIJOYUSERVALUES, param1: u32) callconv(.@"inline") HRESULT {
         return self.vtable.SetUserValues(self, param0, param1);
     }
-    pub fn AddNewHardware(self: *const IDirectInputJoyConfig8, param0: ?HWND, param1: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn AddNewHardware(self: *const IDirectInputJoyConfig8, param0: ?HWND, param1: ?*const Guid) callconv(.@"inline") HRESULT {
         return self.vtable.AddNewHardware(self, param0, param1);
     }
-    pub fn OpenTypeKey(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: u32, param2: ?*?HKEY) callconv(.Inline) HRESULT {
+    pub fn OpenTypeKey(self: *const IDirectInputJoyConfig8, param0: ?[*:0]const u16, param1: u32, param2: ?*?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.OpenTypeKey(self, param0, param1, param2);
     }
-    pub fn OpenAppStatusKey(self: *const IDirectInputJoyConfig8, param0: ?*?HKEY) callconv(.Inline) HRESULT {
+    pub fn OpenAppStatusKey(self: *const IDirectInputJoyConfig8, param0: ?*?HKEY) callconv(.@"inline") HRESULT {
         return self.vtable.OpenAppStatusKey(self, param0);
     }
 };
