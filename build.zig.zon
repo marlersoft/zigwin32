@@ -1,7 +1,8 @@
 .{
-    .name = "zigwin32",
+    .name = .zigwin32,
+    .fingerprint = 0x204432291d3dd252,
     .version = "25.0.28-preview",
-    .minimum_zig_version = "0.12.0",
+    .minimum_zig_version = "0.14.0",
     .paths = .{
         "build.zig",
         "LICENSE",
