@@ -189,7 +189,7 @@ pub fn FormatErrorString(comptime max_len: usize) type {
             if (len == 0) {
                 try writer.writeAll("unknown error");
             }
-            const msg = std.mem.trimRight(u8, buf[0..len], "\r\n");
+            const msg = std.mem.trimStart(u8, buf[0..len], "\r\n");
             try writer.writeAll(msg);
             if (len + 1 >= buf.len) {
                 try writer.writeAll("...");
@@ -209,7 +209,7 @@ pub fn FormatErrorString(comptime max_len: usize) type {
             if (len == 0) {
                 try writer.writeAll("unknown error");
             }
-            const msg = std.mem.trimRight(u8, buf[0..len], "\r\n");
+            const msg = std.mem.trimStart(u8, buf[0..len], "\r\n");
             try writer.writeAll(msg);
             if (len + 1 >= buf.len) {
                 try writer.writeAll("...");
@@ -239,7 +239,7 @@ pub const FormatError = struct {
 
     pub const format = if (@import("builtin").zig_version.order(.{ .major = 0, .minor = 15, .patch = 0 }) == .lt)
         formatLegacy
-        else
+    else
         formatNew;
     fn formatLegacy(
         self: @This(),
@@ -332,18 +332,25 @@ pub fn pointFromLparam(lparam: win32.LPARAM) win32.POINT {
 pub fn loword(value: anytype) u16 {
     switch (@typeInfo(@TypeOf(value))) {
         .int => |int| switch (int.signedness) {
-            .signed => return loword(@as(@Type(.{ .int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
-            .unsigned => return if (int.bits <= 16) value else @intCast(0xffff & value),
+            .signed => {
+                const unsigned_value: @Int(.unsigned, @max(16, int.bits)) = @bitCast(value);
+                return @truncate(unsigned_value);
+            },
+            .unsigned => return @truncate(value),
         },
         else => {},
     }
     @compileError("unsupported type " ++ @typeName(@TypeOf(value)));
 }
+
 pub fn hiword(value: anytype) u16 {
     switch (@typeInfo(@TypeOf(value))) {
         .int => |int| switch (int.signedness) {
-            .signed => return hiword(@as(@Type(.{ .int = .{ .signedness = .unsigned, .bits = int.bits } }), @bitCast(value))),
-            .unsigned => return @intCast(0xffff & (value >> 16)),
+            .signed => {
+                const unsigned_value: @Int(.unsigned, @max(16, int.bits)) = @bitCast(value);
+                return @truncate(unsigned_value >> 16);
+            },
+            .unsigned => return @truncate(value >> 16),
         },
         else => {},
     }
@@ -436,7 +443,8 @@ fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptime va
         .int => |target_type_info| {
             if (value >= std.math.maxInt(SwitchType)) {
                 if (target_type_info.signedness == .signed) {
-                    const UnsignedT = @Type(std.builtin.Type{ .int = .{ .signedness = .unsigned, .bits = target_type_info.bits } });
+                    const UnsignedT = @Int(.unsigned, target_type_info.bits);
+                    // const UnsignedT = @Type(std.builtin.Type{ .int = .{ .signedness = .unsigned, .bits = target_type_info.bits } });
                     return @as(SwitchType, @bitCast(@as(UnsignedT, value)));
                 }
             }
@@ -473,7 +481,8 @@ fn typedConst2_0_13(comptime ReturnType: type, comptime SwitchType: type, compti
         .Int => |target_type_info| {
             if (value >= std.math.maxInt(SwitchType)) {
                 if (target_type_info.signedness == .signed) {
-                    const UnsignedT = @Type(std.builtin.Type{ .Int = .{ .signedness = .unsigned, .bits = target_type_info.bits } });
+                    const UnsignedT = @Int(.unsigned, target_type_info.bits);
+                    // const UnsignedT = @Type(std.builtin.Type{ .Int = .{ .signedness = .unsigned, .bits = target_type_info.bits } });
                     return @as(SwitchType, @bitCast(@as(UnsignedT, value)));
                 }
             }
